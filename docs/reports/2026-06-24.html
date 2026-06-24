@@ -21,12 +21,12 @@
       <div class="shell">
         <div class="eyebrow">2026-06-24 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今日未提供任何论文题录或摘要，无法生成基于文献内容的科研阅读简报。建议补充论文标题、作者、摘要或其他元数据后再进行汇总。</p>
+        <p class="summary">今天这组论文集中体现出两个主线：一是机器学习在地球系统与环境观测中的深入落地，从云微物理参数化、洪水制图、陆地水储量重建到土壤湿度反演，均强调跨尺度泛化、物理约束、迁移能力和长期稳定性；二是面向特定应用场景的数据与模型适配，包括无障碍审计、石油工程检索适配以及面向系外行星光合作用宜居性的机器学习建模。就科研阅读价值而言，最值得关注的是那些不仅报告离线精度，还讨论在线耦合稳定性、跨事件迁移、可解释图结构或领域数据构建策略的工作，因为这些问题往往决定方法能否真正进入实际系统。</p>
         <div class="metrics">
-          <div class="metric"><strong>160</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>0</strong><span>过滤后候选</span></div>
-          <div class="metric"><strong>0</strong><span>进入报告</span></div>
-          <div class="metric"><strong>0</strong><span>来源数量</span></div>
+          <div class="metric"><strong>460</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>7</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>7</strong><span>进入报告</span></div>
+          <div class="metric"><strong>1</strong><span>来源数量</span></div>
         </div>
       </div>
     </section>
@@ -35,11 +35,27 @@
       <div class="shell viz-grid">
         <div>
           <h2>来源分布</h2>
-          <p class="empty">暂无来源分布。</p>
+          
+            <div class="bar-row">
+              <div class="bar-label">arXiv</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">7</div>
+            </div>
+            
         </div>
         <div>
           <h2>关键词命中</h2>
-          <p class="empty">没有关键词命中；可以在配置中调整关键词或关闭强制关键词过滤。</p>
+          <div class="chips"><span class="chip">earth <strong>4</strong></span>
+<span class="chip">machine learning <strong>3</strong></span>
+<span class="chip">climate <strong>2</strong></span>
+<span class="chip">deep learning <strong>2</strong></span>
+<span class="chip">atmospheric <strong>1</strong></span>
+<span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">weather <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -47,20 +63,167 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <p class="empty">暂无主题聚类。</p>
+        <div class="chips"><span class="chip">地球系统建模中的机器学习参数化与物理约束</span>
+<span class="chip">遥感与环境监测中的跨域泛化和高分辨率制图</span>
+<span class="chip">时空学习与图神经网络在水文气候重建中的应用</span>
+<span class="chip">领域自适应数据集与检索/决策系统构建</span>
+<span class="chip">面向现实任务的可靠性验证与可部署性</span></div>
       </div>
     </section>
 
     <section class="section">
       <div class="shell">
         <h2>论文列表</h2>
-        <div class="paper-list"><div class="empty">今天没有符合条件的新论文。可以放宽关键词、关闭历史去重，或延长 lookback_days。</div></div>
+        <div class="paper-list">
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-22T18:14:09Z</span>
+        <span>Score 37.0</span>
+      </div>
+      <h3>1. <a href="http://arxiv.org/abs/2606.23829v1">From stable online coupling to decade-long climate simulations: A machine learning parameterization for cloud microphysics in ICON</a></h3>
+      <div class="authors">Ellen Sarauer、Mierk Schwabe、Philipp Weiss、Axel Lauer 等 6 人 · <a href="https://arxiv.org/pdf/2606.23829v1">PDF</a></div>
+      <div class="chips"><span class="chip">machine learning <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">atmospheric <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该工作基于5 km分辨率的ICON对流许可模拟数据，开发了可在线耦合到ICON中的机器学习云微物理参数化方案。摘要强调，实现十年尺度稳定气候模拟的关键不只是离线效果，而是物理约束、数据集筛选与耦合稳定性设计。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是提出了一个两阶段ML云微物理方案（分类器+回归器），并证明在施加质量非负和防过冲等约束后，可支持十年尺度的稳定在线气候模拟，性能与经典graupel方案相当。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果你关注AI for climate、混合地球系统模型或可部署的物理参数化替代，这篇文章很值得读，因为它直面“离线好但在线崩”的关键难题，并给出长期耦合层面的证据。</p></div>
+        <div class="note"><strong>注意点</strong><p>目前从摘要看，并未显示出对长期平均态偏差的系统性改进；而且结论主要基于与经典方案相当的气候表现，是否在极端事件、区域气候或不同分辨率下稳健仍需看正文。</p></div>
+      </div>
+      <p class="abstract">The representation of cloud microphysics and its nonlinear character and scale-dependence is a remaining source of uncertainty in Earth system models (ESMs). Here, we develop and couple online a machine learning (ML)-based cloud microphysics parameterization with the Icosahedral non-hydrostatic modeling framework (ICON). The primary challenge is achieving numerically stable, long-term online coupling when transitioning from training with km-scale data to application in coarse-scale simulations, where the coupled system encounters atmospheric states and feedbacks not seen during training. The training data is obtained from a global convection-permitting ICON simulation at 5 km resolution. The ML microphysics scheme uses a two-stage design: a classifier to identify active grid cells and a regressor to predict cloud microphysical tendencies. Physical constraints such as enforcing mass positivity and overshoot prevention prove essential for numerical stability in the coupled system. We demonstrate that achieving stable online coupling requires enforcing physical constraints and careful dataset curation, and that strong offline performance alone is insufficient. The coupled model maintains numerical stability over decade-long simulations with a performance in reproducing the observed climate comparable to the classical graupel scheme. The ML-based scheme eliminates two microphysics-specific tuning parameters of the classical graupel scheme, though systematic improvements in long-term mean-state biases are not yet realized. This study demonstrates that stable, decade-long climate simulations with an ML-based cloud microphysics scheme trained on convection-permitting data are feasible, providing a foundation for future hybrid ESMs.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-23T04:12:33Z</span>
+        <span>Score 32.5</span>
+      </div>
+      <h3>2. <a href="http://arxiv.org/abs/2606.24120v1">Flood Mapping from RGB imagery using a Vision Foundation Model</a></h3>
+      <div class="authors">Vladyslav Polushko、Tilman Bucher、Ronald Rösch、Thomas März 等 6 人 · <a href="https://arxiv.org/pdf/2606.24120v1">PDF</a></div>
+      <div class="chips"><span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该文研究如何将卫星预训练的地球观测视觉基础模型适配到厘米级航空RGB洪水制图任务。摘要表明，所构建的Prithvi-2.0-UPN在同域训练和跨洪水事件迁移中都优于若干基线，但零样本迁移仍有提升空间。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的贡献在于验证了卫星预训练基础模型经过适配后，能够服务于与预训练数据分辨率、成像几何和辐射特性差异很大的航空RGB洪水分割任务，并系统比较了零样本和少样本微调场景。</p></div>
+        <div class="note"><strong>为什么读</strong><p>对遥感基础模型迁移、灾害响应制图和小样本适配感兴趣的研究者会受益，因为这类跨传感器、跨事件泛化问题是实际部署中的核心瓶颈。</p></div>
+        <div class="note"><strong>注意点</strong><p>摘要未给出完整数值结果和误差细节，且明确指出零样本表现仍不充分；此外，结论是否适用于更多地区、更多传感器和非洪水水体场景还不能仅凭摘要判断。</p></div>
+      </div>
+      <p class="abstract">Timely, high-resolution maps of flood extent around settlements are essential for emergency response and damage assessment. We consider airborne RGB imagery for flood mapping as it can be collected rapidly at low cost. To produce flood maps, deep learning models for water segmentation are often used. CNN based and small vision transformer models are used. However, they need much data for adaptation to a change of scenery, i.e., another flooding event. Vision foundation models or large vision transformers are known to generalize across domains. Recently, foundation models for Earth observation became available. They are pretrained on satellite data, whose spatial resolution, viewing geometry, and radiometry differ from nadir RGB imagery. Thus, adaptation is required. We investigate how a satellite-pretrained Earth observation foundation model can be adapted to centimeter-scale floodwater mapping from RGB imagery. Specifically, we fine-tune a model we call Prithvi-2.0-UPN consisting of the Prithvi-EO-2.0-600M Vision Transformer combined with a UPerNet decoder for binary water segmentation on two RGB datasets (BlessemFlood21, NeuenahrFlood). In a first experiment we observe that Prithvi-2.0-UPN reaches state-of-the-art results on BlessemFlood21 and NeuenahrFlood, when trained on their datasets. In a second experiment we show that Prithvi-2.0-UPN performs better than state-of-the-art baseline models for transfer to a new flood event (trained on BlessemFlood21, tested on NeuenahrFlood) in a zero-shot setting. However, the performance indicates room for improvement. In this respect, we investigate in a third experiment how performance improves when further fine-tuning the models with small shares of NeuenahrFlood training data: Prithvi-2.0-UPN improves the fastest and reaches almost the performance level when fully trained on NeuenahrFlood, indicating transfer capabilities.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-22T18:15:58Z</span>
+        <span>Score 29.5</span>
+      </div>
+      <h3>3. <a href="http://arxiv.org/abs/2606.23833v1">Reconstructing GRACE Terrestrial Water Storage with Spatio-Temporal Graph Neural Networks: An Application to South America</a></h3>
+      <div class="authors">Lukas Arzoumanidis、Lara Johannsen、Klara Middendorf、Annette Eicker 等 5 人 · <a href="https://arxiv.org/pdf/2606.23833v1">PDF</a></div>
+      <div class="chips"><span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该工作使用时空图神经网络重建南美1940年以来的GRACE式陆地水储量异常，并以ERA5日尺度气象驱动与GRACE月尺度观测建立映射。摘要显示，该方法在流域尺度上具有较强相关性，并可再现厄尔尼诺/拉尼娜事件的空间特征。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献可能是将原本用于城市传感器预测的MTGNN迁移到卫星大地测量问题，并设计了结合地理邻近与气候时滞相关的静态可解释混合邻接矩阵，以较少预测因子实现有竞争力的重建性能。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果你做水文遥感、气候再分析融合或图学习，这篇文章值得读，因为它展示了图结构先验如何帮助捕捉局地水文联系与大尺度遥相关。</p></div>
+        <div class="note"><strong>注意点</strong><p>摘要提到在某些区域存在特征性弱点，但未展开说明；另外，重建任务高度依赖ERA5与GRACE关系的时空稳定性，这种可迁移性和不确定性评估需要正文进一步确认。</p></div>
+      </div>
+      <p class="abstract">Terrestrial water storage (TWS) integrates snow, soil moisture, surface water, and groundwater and is a key indicator of how climate variability and human activity reshape the global water cycle. The GRACE and GRACE-FO satellite missions provide the only direct, globally consistent observations of TWS change, but their record only begins in 2002 which is too short for many climate-scale analyses. We present a deep learning application that reconstructs monthly GRACE-like TWS anomalies (TWSA) back to 1940 by learning the relationship between daily ERA5 meteorological forcing (precipitation, evapotranspiration, runoff) and monthly GRACE observations. In contrast to prior reconstruction approaches based on grid-cell-wise regression, CNNs, or LSTMs, we adapt a multi-variate time series graph neural network (MTGNN) architecture, which was originally developed for mobility and traffic forecasting on urban sensor networks to this satellite-geodesy task. Spatial dependencies are encoded in a static, interpretable hybrid adjacency matrix that combines geodesic proximity with lagged correlations of climatic time series, capturing both local hydrological coupling and large-scale teleconnections. The reconstruction achieves a grid-cell Pearson correlation of 0.69, a basin-mean correlation of 0.94, and a near-zero bias, and it reproduces the spatial fingerprints of the 2015/16 El Niño and 2020/21 La Niña events. A systematic comparison with established reconstruction approaches (GTWS-MLrec, RM-REC, GRAiCE) shows that the graph-based model is statistically competitive at basin scale, reaching a correlation within 0.025 of the best baseline while using only roughly half to a tenth of the predictors the other models require and revealing characteristic weaknesses in arid regions in all models. The complete implementation is publicly available at github.com/hcu-cml/MTGNN-TWS-Reconstruction-GRACE</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-23T04:23:44Z</span>
+        <span>Score 29.0</span>
+      </div>
+      <h3>4. <a href="http://arxiv.org/abs/2606.24129v1">OmniPath: A Multi-Modal Agentic Framework for Auditing Wheelchair Accessibility</a></h3>
+      <div class="authors">ASM Mobarak Hossain、Nadim Mahmud、Vaskar Raychoudhury、Md Osman Gani · <a href="https://arxiv.org/pdf/2606.24129v1">PDF</a></div>
+      <div class="chips"><span class="chip">agent <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>OmniPath提出一种多模态、具代理式分析能力的轮椅无障碍审计框架，将OSM路网与高密度航空LiDAR融合为高精度三维步行环境模型。系统通过虚拟遍历量化坡度、横坡和高差等指标，并依据ADA标准评估风险等级。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的贡献是把静态地图查询转化为主动式环境审计，并通过实地200个调查点进行验证，展示了对高严重度障碍识别的诊断能力。</p></div>
+        <div class="note"><strong>为什么读</strong><p>对于智慧城市、地理AI、面向公平可达性的空间计算研究者，这篇工作具有明显应用价值，尤其是在如何把开放地图与高精度高程数据转化为可操作的无障碍信息方面。</p></div>
+        <div class="note"><strong>注意点</strong><p>从摘要看，严重/关键类别的F1虽有一定可用性，但仍不算很高；此外，验证区域似乎较集中，模型在不同城市建成环境、数据质量和法规标准下的泛化能力仍需谨慎。</p></div>
+      </div>
+      <p class="abstract">For a wheelchair user, a standard blue line on a map is often a broken promise. While platforms like OpenStreetMap (OSM) successfully capture where a path is, they frequently fail to convey how it physically feels to travel on it. This information barrier is problematic for wheelchair users. To solve this issue, we present OmniPath, a system that moves from passive mapping to proactive environmental auditing. Our framework fuses the network topology of OSM with the submeter precision of high-density aerial LiDAR (USGS 3DEP) to create a high-fidelity 3D model of the pedestrian environment. Rather than simply routing a user, our agent virtually traverses the network, analyzing the surface in 0.5 meter increments. It rigorously quantifies physical friction points specifically running slope, cross slope, and vertical discontinuities against ADA compliance standards, calculating a weighted severity score to categorize hazards from ``Mild&#x27;&#x27; to ``Critical.&#x27;&#x27; To ensure real world reliability, we validated the system against 200 physical ground truth field surveys across the National Mall using stratified random sampling. The framework demonstrated strong diagnostic reliability for high-severity hazards, achieving F1-scores of 0.60 for Severe and 0.58 for critical categories. By automating this micro-scale inspection, OmniPath identifies the ``invisible&#x27;&#x27; barriers that standard maps miss, effectively transforming a static dataset into accessibility data source that anticipates accessibility challenges before the user ever leaves home.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-23T11:45:54Z</span>
+        <span>Score 27.5</span>
+      </div>
+      <h3>5. <a href="http://arxiv.org/abs/2606.24458v1">An Agnostic Machine Learning Model of Photosynthetic Habitability</a></h3>
+      <div class="authors">Callum Gray、Cassandra Hall、Stefano Santabarbara、Klaus Schmidt-Rohr 等 8 人 · <a href="https://arxiv.org/pdf/2606.24458v1">PDF</a></div>
+      <div class="chips"><span class="chip">machine learning <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该文提出一个不依赖地球生物经验曲线的“光合作用宜居性”机器学习模型，以热力学和氧化还原化学为基础评估系外行星上光合作用的可能范围。摘要认为，若允许更一般化的光化学方案，光合作用宜居带可能比传统地球中心估计更宽。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献可能是构建了一个更“不可知论”的光合作用模型，并通过遗传算法在不同恒星辐照谱下优化反应与光捕获特性，从而重新评估M/K/G型恒星周围的PHZ范围。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果你关注天体生物学、可居住性建模或机器学习在科学假设空间探索中的作用，这篇文章很值得看，因为它试图减少地球中心偏见。</p></div>
+        <div class="note"><strong>注意点</strong><p>摘要中的许多结论依赖模型假设与优化目标设定，而非观测验证；此外，“假设的近红外驱动产氧光合作用”本身带有较强推演性质，解读时需注意其理论性。</p></div>
+      </div>
+      <p class="abstract">The search for exoplanet biosignatures is guided by whether planetary environments can sustain photosynthesis. As such, the Photosynthetic Habitable Zone (PHZ) was recently proposed, as the overlap between the canonical habitable zone and the orbital range where stellar irradiance is sufficient to drive photosynthesis. Existing PHZ estimates rely on empirical light-response curves from Earth phytoplankton, and thus include implicit Earth-centric biases. We introduce an agnostic PHZ derived from a generalized model of photosynthesis grounded in thermodynamics and redox chemistry, without reference to model organisms. The model is built on a generic photochemical reaction in which photon capture couples oxidation of a donor molecule to the reduction of CO2. The optical properties and CO2 reduction rate are optimized against irradiance spectra for exoplanets orbiting main-sequence stars, using a genetic algorithm that mimics evolution by natural selection. Our simulations predict that photosynthetic organisms compensate for reduced flux by evolving larger light-harvesting structures. As a result, photosynthetic viability declines only linearly with orbital distance, despite stellar flux falling off quadratically. As such, the agnostic PHZ expands well beyond previous Earth-based estimates. Earth-like (visible light) oxygenic photosynthesis is flux-limited at the outer habitable zone for cool M-dwarf stars; however, both anoxygenic photosynthesis and a hypothetical, NIR-driven oxygenic photosynthesis are viable across the entire habitable zone for M, K, and G stars. This implies that M-dwarf exoplanets could sustain robust oxygenic photosynthesis, though it would be different to that found on Earth, presenting reflectance biosignatures in the NIR band rather than the visible.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-23T09:55:18Z</span>
+        <span>Score 25.0</span>
+      </div>
+      <h3>6. <a href="http://arxiv.org/abs/2606.24364v1">High Resolution Sediment-Specific Surface Soil Moisture Retrieval Using Sentinel-1 Time Series and Auxiliary Data</a></h3>
+      <div class="authors">Alireza Hamedianfar、Oleg Antropov、Matthieu Molinier、Ulla Salmela 等 8 人 · <a href="https://arxiv.org/pdf/2606.24364v1">PDF</a></div>
+      <div class="chips"><span class="chip">machine learning <strong>1</strong></span>
+<span class="chip">weather <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该研究利用Sentinel-1时序SAR、Sentinel-2辅助数据和原位传感器，针对采矿区不同沉积物类型开展高分辨率表层土壤湿度反演。摘要显示，分沉积物建模与更全面的特征组合可显著提升精度，其中树模型表现最好。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的主要贡献是证明了沉积物特异、精细校准的机器学习模型能够明显改进复杂采矿场景下的土壤湿度反演，并给出了多源特征和多类回归器的系统比较。</p></div>
+        <div class="note"><strong>为什么读</strong><p>对SAR反演、矿区环境监测、IoT地面观测融合和面向异质地表的遥感建模感兴趣的读者会觉得这篇很有参考价值。</p></div>
+        <div class="note"><strong>注意点</strong><p>研究区域似乎局限于芬兰一处石灰岩采石场，场景专属性较强；摘要也提示不同沉积物间误差差异明显，说明模型可能对地表类型划分和本地校准较敏感。</p></div>
+      </div>
+      <p class="abstract">In this study, we examine the potential of continuous ground moisture monitoring over a mining site using a combination of in-situ soil moisture sensors and multi-sensor SAR images. We focus on assessing and improving methodologies for retrieval of surface soil moisture, i.e. ground moisture, from SAR measurements focusing on detailed in situ reference observations for several key geomaterials, i.e. sediments, typical in the study site. The mining site represents a limestone quarry locate in the southeastern Finland. Our hypothesis is that sediment-specific well-calibrated models can be instrumental in improving soil moisture retrieval under different weather conditions to produce spatially explicit soil moisture estimates at high resolution compared to baseline approaches. Studied SAR data are represented by Copernicus Sentinel-1 C-band images, while auxiliary datasets include optical Sentinel-2 data. Reference data were collected using IoT enabled capacitance sensors. The examined machine learning methods include Xgboost, LightGBM, RFs, linear regression and k-nearest neighbors regression. The best performance was achieved with the most comprehensive feature set which combines Sentinel-1 backscatter, time-series based soil moisture indices, Sentinel-2 optical, topographic, and temperature predictors. In the best sediment-area-level configurations, RMSE decreased to 0.037-0.050 m^3 m^(-3) (3.7-5.0 volumetric % points), with R^2 values reaching 0.90. Tree-based ensemble methods, especially LightGBM, RF, and XGBoost, provided the most accurate and stable predictions. Accuracy varied by sediment texture, with the lowest errors for clay and organic soil and higher errors for flotation sand and gravel. Adding sediment information improved Sentinel-1-only retrievals by more than 2 vol-%, but provided little additional benefit when richer multi-source feature sets were used.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-23T09:37:44Z</span>
+        <span>Score 25.0</span>
+      </div>
+      <h3>7. <a href="http://arxiv.org/abs/2606.24346v1">PETRA: Transforming Web Text for Petroleum-Engineering Domain Adaptation</a></h3>
+      <div class="authors">Kirill Dubovikov、Omar El Mansouri、Hachem Madmoun、Yanda Li 等 15 人 · <a href="https://arxiv.org/pdf/2606.24346v1">PDF</a></div>
+      <div class="chips"><span class="chip">llm <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>PETRA构建了一个面向石油工程检索适配的大规模数据集与流程，将公开网络文本转化为领域语料和合成监督信号，用于稠密检索与重排序。摘要强调，单纯在合成标签上取得高训练/验证精度并不保证检索收益，而更贴近推理时分布的候选构造更有效。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献可能在于提出了从高召回领域筛选、领域分类、查询生成、难负例构造到教师打分候选集生成的完整适配管线，并通过检索指标和推理任务显示出领域适配收益。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果你研究领域检索、弱监督/合成监督、工业知识搜索或RAG前端召回，这篇文章很值得读，因为它讨论了数据构造方式如何影响真实检索性能。</p></div>
+        <div class="note"><strong>注意点</strong><p>摘要中的评测主要围绕特定领域与基准，跨领域可迁移性仍未知；另外，合成数据与教师模型引入的偏差、人工标注稀缺情况下的真实性能上界，也需在正文中进一步审视。</p></div>
+      </div>
+      <p class="abstract">Petroleum-engineering search exposes a supervision gap for strong general retrievers: relevant evidence exists in public web text, but domain relevance labels are scarce. To address this gap, we propose PETRA, a large-scale Petroleum Engineering Text for Retrieval Adaptation dataset and pipeline that converts noisy public web data into a curated domain corpus and synthetic supervision for dense retrieval and reranking. PETRA contains 1.36M curated chunks, approximately 2B token equivalents, $\approx$859k, embedding training rows from $\approx$224k anchors, and roughly 400k teacher-scored reranker candidate rows. Its construction combines high-recall energy-domain curation, an energy-domain classifier with 98.4% test accuracy, chunk-grounded query generation, LLM-written hard negatives, and retrieval-mined candidate lists. PETRA improves first-stage in-domain Normalized Discounted Cumulative Gain (nDCG) from 0.703 to 0.763 through score fusion. Reranker adaptation improves the public Earth Science benchmark by 44% relative and a six-task reasoning-intensive panel by 23%. Failed training recipes show that high train-holdout accuracy on synthetic labels does not predict retrieval gains; retrieval-mined data helps only after being repackaged as teacher-scored candidate lists sampled from the inference-time candidate distribution.</p>
+    </article>
+    </div>
       </div>
     </section>
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-06-24 06:54。
+      生成时间：2026-06-24 07:15。
     </div>
   </footer>
 </body>
