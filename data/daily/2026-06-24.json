@@ -1,65 +1,174 @@
 {
   "date": "2026-06-24",
   "stats": {
-    "fetched": 460,
-    "deduped": 7,
+    "fetched": 451,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 80,
+      "science": 71
+    },
+    "deduped": 451,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 80,
+      "science": 71
+    },
     "excluded": 0,
-    "keyword_filtered": 453,
-    "ranked": 7,
+    "excluded_by_source": {},
+    "keyword_filtered": 293,
+    "keyword_filtered_by_source": {
+      "arxiv": 293
+    },
+    "keyword_optional_included": 151,
+    "keyword_optional_included_by_source": {
+      "nature": 80,
+      "science": 71
+    },
+    "ranked": 158,
+    "ranked_by_source": {
+      "arxiv": 7,
+      "nature": 80,
+      "science": 71
+    },
     "source_warnings": 0,
-    "seen_filtered": 0
+    "seen_filtered": 7,
+    "selected_by_source": {
+      "nature": 16,
+      "science": 4
+    }
   },
   "analysis": {
-    "daily_summary": "今天这组论文集中体现出两个主线：一是机器学习在地球系统与环境观测中的深入落地，从云微物理参数化、洪水制图、陆地水储量重建到土壤湿度反演，均强调跨尺度泛化、物理约束、迁移能力和长期稳定性；二是面向特定应用场景的数据与模型适配，包括无障碍审计、石油工程检索适配以及面向系外行星光合作用宜居性的机器学习建模。就科研阅读价值而言，最值得关注的是那些不仅报告离线精度，还讨论在线耦合稳定性、跨事件迁移、可解释图结构或领域数据构建策略的工作，因为这些问题往往决定方法能否真正进入实际系统。",
+    "daily_summary": "今天这组题录可分为两类：一类是《Nature》的科学政策、科研生态与时评文章，集中讨论开放科学、欧洲科研竞争力、同行评议偏见、学术职业中断、公平与包容、AI治理以及国家科研能力建设；另一类是少数具备摘要的《Science》研究论文，覆盖HIV广谱中和抗体诱导机制、抗噬菌体逆转录酶的非常规DNA合成、紫罗兰种子荚的生物力学设计，以及用于原油脂肪烃/芳香烃分离的COF膜。基于当前元数据，真正能进行机制层面判断的主要是4篇《Science》研究；多数《Nature》条目因缺少摘要，更适合作为科研政策与学术生态议题的跟踪阅读，而非技术细节研读。",
     "themes": [
-      "地球系统建模中的机器学习参数化与物理约束",
-      "遥感与环境监测中的跨域泛化和高分辨率制图",
-      "时空学习与图神经网络在水文气候重建中的应用",
-      "领域自适应数据集与检索/决策系统构建",
-      "面向现实任务的可靠性验证与可部署性"
+      "科研政策与开放科学",
+      "科研评价、同行评议与学术公平",
+      "国家/地区科技竞争力与治理",
+      "AI与科学社会治理",
+      "前沿生物医学与疫苗设计",
+      "分子机制与非常规核酸生物学",
+      "仿生力学与软机器",
+      "能源分离材料与低能耗炼化"
     ],
     "papers": {
-      "arxiv:2606.23829v1": {
-        "summary": "该工作基于5 km分辨率的ICON对流许可模拟数据，开发了可在线耦合到ICON中的机器学习云微物理参数化方案。摘要强调，实现十年尺度稳定气候模拟的关键不只是离线效果，而是物理约束、数据集筛选与耦合稳定性设计。",
-        "contribution": "可能的核心贡献是提出了一个两阶段ML云微物理方案（分类器+回归器），并证明在施加质量非负和防过冲等约束后，可支持十年尺度的稳定在线气候模拟，性能与经典graupel方案相当。",
-        "why_read": "如果你关注AI for climate、混合地球系统模型或可部署的物理参数化替代，这篇文章很值得读，因为它直面“离线好但在线崩”的关键难题，并给出长期耦合层面的证据。",
-        "limitations": "目前从摘要看，并未显示出对长期平均态偏差的系统性改进；而且结论主要基于与经典方案相当的气候表现，是否在极端事件、区域气候或不同分辨率下稳健仍需看正文。"
+      "doi:10.1038/d41586-026-01958-y": {
+        "summary": "题目表明文章主张当下科学比以往更需要人文学科的参与，可能围绕科学实践中的价值判断、解释框架、社会沟通或治理问题展开。由于无摘要，无法判断其论证路径与具体案例。",
+        "contribution": "可能的贡献是从科学政策或知识论角度，为科学与人文学科协作提供规范性论证。",
+        "why_read": "适合关注跨学科研究治理、科学传播、科研伦理与科学史/科学哲学接口的读者。",
+        "limitations": "无摘要且属评论/时评风格的可能性高，不能据此推断其具体证据、案例范围或可操作政策建议。"
       },
-      "arxiv:2606.24120v1": {
-        "summary": "该文研究如何将卫星预训练的地球观测视觉基础模型适配到厘米级航空RGB洪水制图任务。摘要表明，所构建的Prithvi-2.0-UPN在同域训练和跨洪水事件迁移中都优于若干基线，但零样本迁移仍有提升空间。",
-        "contribution": "可能的贡献在于验证了卫星预训练基础模型经过适配后，能够服务于与预训练数据分辨率、成像几何和辐射特性差异很大的航空RGB洪水分割任务，并系统比较了零样本和少样本微调场景。",
-        "why_read": "对遥感基础模型迁移、灾害响应制图和小样本适配感兴趣的研究者会受益，因为这类跨传感器、跨事件泛化问题是实际部署中的核心瓶颈。",
-        "limitations": "摘要未给出完整数值结果和误差细节，且明确指出零样本表现仍不充分；此外，结论是否适用于更多地区、更多传感器和非洪水水体场景还不能仅凭摘要判断。"
+      "doi:10.1038/d41586-026-01972-0": {
+        "summary": "题目显示作者呼吁在环境影响评估中纳入真菌，而非仅关注动物和植物。文章大概率强调真菌在生态系统功能中的关键地位及其在评估体系中的长期缺位。",
+        "contribution": "可能推动环境评估框架向更完整的生物多样性视角扩展，把真菌纳入政策与管理实践。",
+        "why_read": "对生态保护、环境政策、生物多样性监测和真菌学相关研究者有直接启发。",
+        "limitations": "缺少摘要，无法判断文章依据的是案例分析、政策评述还是系统性证据综述。"
       },
-      "arxiv:2606.23833v1": {
-        "summary": "该工作使用时空图神经网络重建南美1940年以来的GRACE式陆地水储量异常，并以ERA5日尺度气象驱动与GRACE月尺度观测建立映射。摘要显示，该方法在流域尺度上具有较强相关性，并可再现厄尔尼诺/拉尼娜事件的空间特征。",
-        "contribution": "核心贡献可能是将原本用于城市传感器预测的MTGNN迁移到卫星大地测量问题，并设计了结合地理邻近与气候时滞相关的静态可解释混合邻接矩阵，以较少预测因子实现有竞争力的重建性能。",
-        "why_read": "如果你做水文遥感、气候再分析融合或图学习，这篇文章值得读，因为它展示了图结构先验如何帮助捕捉局地水文联系与大尺度遥相关。",
-        "limitations": "摘要提到在某些区域存在特征性弱点，但未展开说明；另外，重建任务高度依赖ERA5与GRACE关系的时空稳定性，这种可迁移性和不确定性评估需要正文进一步确认。"
+      "doi:10.1038/d41586-026-01812-1": {
+        "summary": "题目指向一项20世纪70年代专利对商业生物技术发展路径的深远影响，可能是技术史或知识产权史视角的回顾。文章应聚焦专利如何塑造产业化、资本进入和技术扩散。",
+        "contribution": "可能帮助理解现代生物技术产业形成过程中，专利制度与关键技术节点的关系。",
+        "why_read": "适合关注技术转移、知识产权、产业史和生物技术创新政策的读者。",
+        "limitations": "无作者与摘要信息，无法确认讨论对象、历史材料来源及其结论是否具有普遍性。"
       },
-      "arxiv:2606.24129v1": {
-        "summary": "OmniPath提出一种多模态、具代理式分析能力的轮椅无障碍审计框架，将OSM路网与高密度航空LiDAR融合为高精度三维步行环境模型。系统通过虚拟遍历量化坡度、横坡和高差等指标，并依据ADA标准评估风险等级。",
-        "contribution": "可能的贡献是把静态地图查询转化为主动式环境审计，并通过实地200个调查点进行验证，展示了对高严重度障碍识别的诊断能力。",
-        "why_read": "对于智慧城市、地理AI、面向公平可达性的空间计算研究者，这篇工作具有明显应用价值，尤其是在如何把开放地图与高精度高程数据转化为可操作的无障碍信息方面。",
-        "limitations": "从摘要看，严重/关键类别的F1虽有一定可用性，但仍不算很高；此外，验证区域似乎较集中，模型在不同城市建成环境、数据质量和法规标准下的泛化能力仍需谨慎。"
+      "doi:10.1038/d41586-026-01970-2": {
+        "summary": "题目表明文章讨论尼泊尔新设科学部如何真正增强本国科研能力，而不仅是机构层面重组。核心议题可能包括人才培养、基础设施、经费连续性与政策执行。",
+        "contribution": "可能提出面向中低资源国家科技能力建设的政策重点或优先序。",
+        "why_read": "对于关注全球科研不平衡、国家创新体系建设和科学治理的人有参考价值。",
+        "limitations": "无摘要，无法判断是本土经验总结、政策倡议，还是基于数据的分析。"
       },
-      "arxiv:2606.24458v1": {
-        "summary": "该文提出一个不依赖地球生物经验曲线的“光合作用宜居性”机器学习模型，以热力学和氧化还原化学为基础评估系外行星上光合作用的可能范围。摘要认为，若允许更一般化的光化学方案，光合作用宜居带可能比传统地球中心估计更宽。",
-        "contribution": "核心贡献可能是构建了一个更“不可知论”的光合作用模型，并通过遗传算法在不同恒星辐照谱下优化反应与光捕获特性，从而重新评估M/K/G型恒星周围的PHZ范围。",
-        "why_read": "如果你关注天体生物学、可居住性建模或机器学习在科学假设空间探索中的作用，这篇文章很值得看，因为它试图减少地球中心偏见。",
-        "limitations": "摘要中的许多结论依赖模型假设与优化目标设定，而非观测验证；此外，“假设的近红外驱动产氧光合作用”本身带有较强推演性质，解读时需注意其理论性。"
+      "doi:10.1038/d41586-026-01953-3": {
+        "summary": "题目显示文章主张欧洲应抓住当下机会，在自由与开放科学方面取得领导地位。内容可能涉及开放获取、数据共享、研究基础设施和科研主权之间的平衡。",
+        "contribution": "可能为欧洲开放科学战略提供议题整合与政策倡议。",
+        "why_read": "适合图书馆学、科研管理、开放获取政策及科研基础设施建设相关人员快速把握议程。",
+        "limitations": "无摘要且作者缺失，无法判断其是否提供量化比较、政策细则或只是编辑部立场。"
       },
-      "arxiv:2606.24364v1": {
-        "summary": "该研究利用Sentinel-1时序SAR、Sentinel-2辅助数据和原位传感器，针对采矿区不同沉积物类型开展高分辨率表层土壤湿度反演。摘要显示，分沉积物建模与更全面的特征组合可显著提升精度，其中树模型表现最好。",
-        "contribution": "可能的主要贡献是证明了沉积物特异、精细校准的机器学习模型能够明显改进复杂采矿场景下的土壤湿度反演，并给出了多源特征和多类回归器的系统比较。",
-        "why_read": "对SAR反演、矿区环境监测、IoT地面观测融合和面向异质地表的遥感建模感兴趣的读者会觉得这篇很有参考价值。",
-        "limitations": "研究区域似乎局限于芬兰一处石灰岩采石场，场景专属性较强；摘要也提示不同沉积物间误差差异明显，说明模型可能对地表类型划分和本地校准较敏感。"
+      "doi:10.1038/d41586-026-01955-1": {
+        "summary": "题目显示文章讨论欧洲若想与美国和中国竞争成为科学超级力量，需要满足哪些条件。大概率涉及科研投入、人才流动、产业转化、计算与实验基础设施等。",
+        "contribution": "可能从国际竞争视角梳理欧洲科研体系的优势、短板与改革方向。",
+        "why_read": "适合关心全球科技竞争格局、科研投资和区域创新政策的研究者与管理者。",
+        "limitations": "缺少摘要，不能判断其论证是否建立在数据比较、专家访谈还是政策评论基础上。"
       },
-      "arxiv:2606.24346v1": {
-        "summary": "PETRA构建了一个面向石油工程检索适配的大规模数据集与流程，将公开网络文本转化为领域语料和合成监督信号，用于稠密检索与重排序。摘要强调，单纯在合成标签上取得高训练/验证精度并不保证检索收益，而更贴近推理时分布的候选构造更有效。",
-        "contribution": "核心贡献可能在于提出了从高召回领域筛选、领域分类、查询生成、难负例构造到教师打分候选集生成的完整适配管线，并通过检索指标和推理任务显示出领域适配收益。",
-        "why_read": "如果你研究领域检索、弱监督/合成监督、工业知识搜索或RAG前端召回，这篇文章很值得读，因为它讨论了数据构造方式如何影响真实检索性能。",
-        "limitations": "摘要中的评测主要围绕特定领域与基准，跨领域可迁移性仍未知；另外，合成数据与教师模型引入的偏差、人工标注稀缺情况下的真实性能上界，也需在正文中进一步审视。"
+      "doi:10.1038/d41586-026-01130-6": {
+        "summary": "题目表明文章围绕实验室内基于种族的排斥行为，讨论个人应如何回应。应属于科研职场建议或案例分析，聚焦包容性和实验室文化。",
+        "contribution": "可能为科研环境中的歧视识别、应对路径和支持机制提供实用建议。",
+        "why_read": "对PI、实验室管理者、导师和青年研究者都有现实意义。",
+        "limitations": "无摘要，无法得知文章立足法律合规、心理支持还是组织管理框架，也不宜外推其建议的普适性。"
+      },
+      "doi:10.1038/d41586-026-01969-9": {
+        "summary": "题目指出学术层级中的“光环效应”可能削弱同行评议并助长造假。文章大概率批评对名望、机构和资历的过度依赖。",
+        "contribution": "可能为改进评审匿名化、利益冲突控制和学术诚信治理提供问题框架。",
+        "why_read": "对期刊编辑、评审制度研究者、科研诚信从业者和PI具有较高讨论价值。",
+        "limitations": "无摘要，无法确认文章是否基于系统证据、个案梳理或观点评论。"
+      },
+      "doi:10.1038/s41586-026-10799-8": {
+        "summary": "这是一篇撤稿说明，针对“快射电暴中的亚秒级周期性”原研究作出正式更正记录。其主要功能是更新文献状态，而非提供新的科学发现。",
+        "contribution": "对相关领域读者的核心价值在于纠正文献使用、避免继续引用或建立在失效结果之上。",
+        "why_read": "凡涉及快射电暴时序结构、相关模型或文献综述者都应及时知悉。",
+        "limitations": "当前仅有题录，无法判断撤稿的具体原因、责任划分和对后续研究结论的影响范围。"
+      },
+      "doi:10.1038/d41586-026-01842-9": {
+        "summary": "题目显示一种把样品尺度放大10亿倍的方法，使简单显微镜也能定位到氨基酸水平。文章应是在报道某种超高倍率样品膨胀或结构读出技术。",
+        "contribution": "潜在贡献是以较低仪器门槛实现接近分子级的空间定位，为成像民主化提供方向。",
+        "why_read": "对显微成像、结构生物学、空间组学和方法学开发研究者很有吸引力。",
+        "limitations": "无摘要，无法确认是真正定位单个氨基酸、推断级分辨率，还是新闻报道中的概括性表述。"
+      },
+      "doi:10.1038/d41586-026-01951-5": {
+        "summary": "题目表明作者批评硅谷关于全球AI的统一愿景，主张各国应制定自身蓝图。文章可能强调本地制度、语言、基础设施和社会目标的重要性。",
+        "contribution": "可能为AI治理提供去中心化、情境化和主权导向的政策论证。",
+        "why_read": "适合关注AI政策、科技治理、全球南方数字发展和技术本地化的人。",
+        "limitations": "无摘要，不能判断其针对的是大模型治理、产业政策还是公共部门数字化。"
+      },
+      "doi:10.1038/d41586-026-01971-1": {
+        "summary": "题目指出学术成功标准仍默认职业路径连续不中断，暗示现行评价体系对育儿、照护、健康或其他中断经历者不利。文章应聚焦科研评价制度的隐含偏见。",
+        "contribution": "可能推动招聘、晋升和资助评审对非线性职业轨迹作出更公平设计。",
+        "why_read": "对高校管理者、基金机构、青年学者和科研公平研究者都有现实意义。",
+        "limitations": "无摘要，无法判断其提出的是原则性倡议还是具体制度改革方案。"
+      },
+      "doi:10.1038/d41586-026-01909-7": {
+        "summary": "题目显示首批“核钟”已经出现，并讨论其潜在用途。作为新闻/解读类文章，可能介绍其与传统原子钟相比的优势及潜在在基础物理与精密测量中的应用。",
+        "contribution": "帮助读者快速了解核钟这一新兴精密测量平台的科学意义。",
+        "why_read": "适合原子分子光学、计量学和基础常数测量方向读者做跨领域跟踪。",
+        "limitations": "无摘要，且很可能是新闻稿而非原始研究，不能据此判断器件性能指标与技术成熟度。"
+      },
+      "doi:10.1038/d41586-026-01997-5": {
+        "summary": "这是一则Daily briefing，题目表明其重点之一是首个“核钟”问世并优于原子钟。其作用更像新闻摘要而非深入分析。",
+        "contribution": "提供当日重要科研新闻的快速入口。",
+        "why_read": "适合需要高效扫描跨学科新闻动态的读者。",
+        "limitations": "简报体裁通常高度压缩，细节不足，不应作为技术判断或文献综述依据。"
+      },
+      "doi:10.1038/d41586-026-01949-z": {
+        "summary": "题目显示一艘航天器正走向坠毁风险，并讨论NASA能否挽救。文章可能聚焦航天任务运行、轨道/姿态控制或工程救援决策。",
+        "contribution": "为航天任务管理与风险处置提供一个公众可理解的案例。",
+        "why_read": "适合关注航天任务运行、深空探测和空间工程风险管理的人。",
+        "limitations": "无摘要，无法判断对象航天器、技术故障类型及可行补救方案。"
+      },
+      "doi:10.1038/s41586-026-10771-6": {
+        "summary": "题目表明论文用同位素证据支持星际天体3I/ATLAS起源于寒冷且遥远区域。核心应是通过同位素组成反演其形成环境。",
+        "contribution": "可能为理解星际来客的形成区、化学演化和行星系统比较提供关键约束。",
+        "why_read": "对行星科学、彗星化学、天体化学和小天体起源研究者值得关注。",
+        "limitations": "无摘要，无法判断使用了哪些同位素体系、观测手段及证据强度。"
+      },
+      "doi:10.1126/science.aec6396": {
+        "summary": "作者构建了一个表位聚焦的SHIV模型，在猕猴中以两步机制诱导出针对V3-glycan的广谱中和抗体：先出现V1定向抗体，推动Env变体选择；这些变体再启动并成熟V3-glycan bNAb前体。结果为HIV疫苗设计提供了更清晰的抗体-病毒共进化蓝图。",
+        "contribution": "核心贡献是提出并在非近交动物模型中展示一种可较稳定诱导HIV广谱中和抗体的两步免疫学路径，并解析了相关Env变体与bNAb成熟之间的关系。",
+        "why_read": "HIV疫苗、抗体进化、B细胞系谱分析和免疫原设计方向都值得重点读，因为这项工作把“如何诱导bNAb”从经验探索推进到较明确的机制框架。",
+        "limitations": "摘要虽提供关键结果，但缺少实验细节、统计设计、对照设置完整性及广谱中和范围数据；同时这是感染模型而非直接的人类疫苗试验，转化外推需谨慎。"
+      },
+      "doi:10.1126/science.aed1656": {
+        "summary": "该研究发现一种抗噬菌体防御相关逆转录酶系统DRT3可合成交替重复的双链DNA：Drt3a利用ncRNA中的ACACAC模板合成poly(GT)链，而Drt3b则在无核酸模板条件下，通过蛋白模板化机制合成互补poly(AC)链。冷冻电镜结构支持其由Drt3a、Drt3b和ncRNA组成6:6:6复合体。",
+        "contribution": "核心贡献是揭示了序列特异DNA合成的一种非常规蛋白模板化机制，显著扩展了对核酸聚合酶功能边界的认识。",
+        "why_read": "对逆转录酶机制、抗噬菌体防御系统、合成生物学和酶工程研究者都很有价值，因为它提出了不同于经典模板依赖复制的分子原理。",
+        "limitations": "仅凭摘要尚不清楚该机制在天然防御中的具体生物学功能、普遍性及可编程性；蛋白模板化是否能推广到更复杂序列仍待全文细节支持。"
+      },
+      "doi:10.1126/science.aed2953": {
+        "summary": "研究表明，紫罗兰种荚通过一种简单紧凑的结构实现连续夹捏式种子发射，其形态几何既在有限材料成本下提供足够夹捏强度，又形成可移动的力放大热点，从而实现依次、稳定的种子弹射。作者还据此构建了可用于软机器的自主“拉链式”执行器。",
+        "contribution": "核心贡献是把植物种子传播中的连续能量释放机制上升为可分析、可迁移的设计原理，并完成仿生执行器验证。",
+        "why_read": "对植物生物力学、仿生工程、软体机器人及低复杂度机械设计的研究者很值得读，因为它兼具自然机制解析与工程转化。",
+        "limitations": "摘要未说明执行器性能边界、耐久性、控制精度和应用场景验证深度；从生物原型到工程系统的规模化与可靠性仍需看全文。"
+      },
+      "doi:10.1126/science.aea0869": {
+        "summary": "作者开发了具有明确微孔和烷基功能化骨架的COF膜，结合分子筛分与对脂肪烃的优先亲和，实现原油中脂肪烃/芳香烃分离。借助电场辅助卷对卷工艺实现连续膜规模化制备，并在工业标准1812膜组件中展示出高于传统聚合物膜的渗透性能与较低能耗潜力。",
+        "contribution": "核心贡献是把COF膜从材料概念推进到更接近工业可制造和模块化验证的层面，为原油精细分离提供低能耗替代路线。",
+        "why_read": "膜分离、COF材料、化工过程强化和低碳炼化方向的研究者应重点关注，因为它同时触及材料性能、制造工艺和模块级展示。",
+        "limitations": "摘要未给出长期稳定性、抗污染性、复杂原油适配范围、经济性和与现有工艺耦合方式的完整信息；工业可行性仍需更全面数据支持。"
       }
     },
     "llm_used": true,
@@ -67,232 +176,695 @@
   },
   "papers": [
     {
-      "id": "arxiv:2606.23829v1",
-      "source": "arxiv",
-      "title": "From stable online coupling to decade-long climate simulations: A machine learning parameterization for cloud microphysics in ICON",
+      "id": "doi:10.1038/d41586-026-01958-y",
+      "source": "nature",
+      "title": "Why science needs the humanities more than ever",
       "authors": [
-        "Ellen Sarauer",
-        "Mierk Schwabe",
-        "Philipp Weiss",
-        "Axel Lauer",
-        "Philip Stier",
-        "Veronika Eyring"
+        "Xin Fan"
       ],
-      "published": "2026-06-22T18:14:09Z",
-      "updated": "2026-06-22T18:14:09Z",
-      "abstract": "The representation of cloud microphysics and its nonlinear character and scale-dependence is a remaining source of uncertainty in Earth system models (ESMs). Here, we develop and couple online a machine learning (ML)-based cloud microphysics parameterization with the Icosahedral non-hydrostatic modeling framework (ICON). The primary challenge is achieving numerically stable, long-term online coupling when transitioning from training with km-scale data to application in coarse-scale simulations, where the coupled system encounters atmospheric states and feedbacks not seen during training. The training data is obtained from a global convection-permitting ICON simulation at 5 km resolution. The ML microphysics scheme uses a two-stage design: a classifier to identify active grid cells and a regressor to predict cloud microphysical tendencies. Physical constraints such as enforcing mass positivity and overshoot prevention prove essential for numerical stability in the coupled system. We demonstrate that achieving stable online coupling requires enforcing physical constraints and careful dataset curation, and that strong offline performance alone is insufficient. The coupled model maintains numerical stability over decade-long simulations with a performance in reproducing the observed climate comparable to the classical graupel scheme. The ML-based scheme eliminates two microphysics-specific tuning parameters of the classical graupel scheme, though systematic improvements in long-term mean-state biases are not yet realized. This study demonstrates that stable, decade-long climate simulations with an ML-based cloud microphysics scheme trained on convection-permitting data are feasible, providing a foundation for future hybrid ESMs.",
-      "url": "http://arxiv.org/abs/2606.23829v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.23829v1",
-      "doi": "",
-      "journal": "arXiv",
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01958-y",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01958-y",
+      "journal": "Nature",
       "categories": [
-        "physics.ao-ph"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "machine learning",
-        "earth",
-        "climate",
-        "atmospheric"
-      ],
-      "score": 37.0,
-      "raw": {}
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "866-868"
+      }
     },
     {
-      "id": "arxiv:2606.24120v1",
-      "source": "arxiv",
-      "title": "Flood Mapping from RGB imagery using a Vision Foundation Model",
+      "id": "doi:10.1038/d41586-026-01972-0",
+      "source": "nature",
+      "title": "Do not leave fungi out of impact assessments",
       "authors": [
-        "Vladyslav Polushko",
-        "Tilman Bucher",
-        "Ronald Rösch",
-        "Thomas März",
-        "Markus Rauhut",
-        "Andreas Weinmann"
+        "Ricardo da Silva Ribeiro",
+        "Flávia G. Chaves",
+        "Carlos Augusto Vidigal Fraga Jr",
+        "Douglas de Moraes Couceiro"
       ],
-      "published": "2026-06-23T04:12:33Z",
-      "updated": "2026-06-23T04:12:33Z",
-      "abstract": "Timely, high-resolution maps of flood extent around settlements are essential for emergency response and damage assessment. We consider airborne RGB imagery for flood mapping as it can be collected rapidly at low cost. To produce flood maps, deep learning models for water segmentation are often used. CNN based and small vision transformer models are used. However, they need much data for adaptation to a change of scenery, i.e., another flooding event. Vision foundation models or large vision transformers are known to generalize across domains. Recently, foundation models for Earth observation became available. They are pretrained on satellite data, whose spatial resolution, viewing geometry, and radiometry differ from nadir RGB imagery. Thus, adaptation is required. We investigate how a satellite-pretrained Earth observation foundation model can be adapted to centimeter-scale floodwater mapping from RGB imagery. Specifically, we fine-tune a model we call Prithvi-2.0-UPN consisting of the Prithvi-EO-2.0-600M Vision Transformer combined with a UPerNet decoder for binary water segmentation on two RGB datasets (BlessemFlood21, NeuenahrFlood). In a first experiment we observe that Prithvi-2.0-UPN reaches state-of-the-art results on BlessemFlood21 and NeuenahrFlood, when trained on their datasets. In a second experiment we show that Prithvi-2.0-UPN performs better than state-of-the-art baseline models for transfer to a new flood event (trained on BlessemFlood21, tested on NeuenahrFlood) in a zero-shot setting. However, the performance indicates room for improvement. In this respect, we investigate in a third experiment how performance improves when further fine-tuning the models with small shares of NeuenahrFlood training data: Prithvi-2.0-UPN improves the fastest and reaches almost the performance level when fully trained on NeuenahrFlood, indicating transfer capabilities.",
-      "url": "http://arxiv.org/abs/2606.24120v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24120v1",
-      "doi": "",
-      "journal": "arXiv",
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01972-0",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01972-0",
+      "journal": "Nature",
       "categories": [
-        "cs.CV",
-        "eess.IV"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "foundation model",
-        "deep learning",
-        "earth"
-      ],
-      "score": 32.5,
-      "raw": {}
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "1124-1124"
+      }
     },
     {
-      "id": "arxiv:2606.23833v1",
-      "source": "arxiv",
-      "title": "Reconstructing GRACE Terrestrial Water Storage with Spatio-Temporal Graph Neural Networks: An Application to South America",
-      "authors": [
-        "Lukas Arzoumanidis",
-        "Lara Johannsen",
-        "Klara Middendorf",
-        "Annette Eicker",
-        "Youness Dehbi"
-      ],
-      "published": "2026-06-22T18:15:58Z",
-      "updated": "2026-06-22T18:15:58Z",
-      "abstract": "Terrestrial water storage (TWS) integrates snow, soil moisture, surface water, and groundwater and is a key indicator of how climate variability and human activity reshape the global water cycle. The GRACE and GRACE-FO satellite missions provide the only direct, globally consistent observations of TWS change, but their record only begins in 2002 which is too short for many climate-scale analyses. We present a deep learning application that reconstructs monthly GRACE-like TWS anomalies (TWSA) back to 1940 by learning the relationship between daily ERA5 meteorological forcing (precipitation, evapotranspiration, runoff) and monthly GRACE observations. In contrast to prior reconstruction approaches based on grid-cell-wise regression, CNNs, or LSTMs, we adapt a multi-variate time series graph neural network (MTGNN) architecture, which was originally developed for mobility and traffic forecasting on urban sensor networks to this satellite-geodesy task. Spatial dependencies are encoded in a static, interpretable hybrid adjacency matrix that combines geodesic proximity with lagged correlations of climatic time series, capturing both local hydrological coupling and large-scale teleconnections. The reconstruction achieves a grid-cell Pearson correlation of 0.69, a basin-mean correlation of 0.94, and a near-zero bias, and it reproduces the spatial fingerprints of the 2015/16 El Niño and 2020/21 La Niña events. A systematic comparison with established reconstruction approaches (GTWS-MLrec, RM-REC, GRAiCE) shows that the graph-based model is statistically competitive at basin scale, reaching a correlation within 0.025 of the best baseline while using only roughly half to a tenth of the predictors the other models require and revealing characteristic weaknesses in arid regions in all models. The complete implementation is publicly available at github.com/hcu-cml/MTGNN-TWS-Reconstruction-GRACE",
-      "url": "http://arxiv.org/abs/2606.23833v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.23833v1",
-      "doi": "",
-      "journal": "arXiv",
+      "id": "doi:10.1038/d41586-026-01812-1",
+      "source": "nature",
+      "title": "A 1970s patent that changed the course of commercial biotechnology",
+      "authors": [],
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01812-1",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01812-1",
+      "journal": "Nature",
       "categories": [
-        "cs.LG"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "deep learning",
-        "neural network",
-        "climate"
-      ],
-      "score": 29.5,
-      "raw": {}
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
     },
     {
-      "id": "arxiv:2606.24129v1",
-      "source": "arxiv",
-      "title": "OmniPath: A Multi-Modal Agentic Framework for Auditing Wheelchair Accessibility",
+      "id": "doi:10.1038/d41586-026-01970-2",
+      "source": "nature",
+      "title": "Nepal’s new science ministry must strengthen scientific capacity",
       "authors": [
-        "ASM Mobarak Hossain",
-        "Nadim Mahmud",
-        "Vaskar Raychoudhury",
-        "Md Osman Gani"
+        "Achyut Aryal"
       ],
-      "published": "2026-06-23T04:23:44Z",
-      "updated": "2026-06-23T04:23:44Z",
-      "abstract": "For a wheelchair user, a standard blue line on a map is often a broken promise. While platforms like OpenStreetMap (OSM) successfully capture where a path is, they frequently fail to convey how it physically feels to travel on it. This information barrier is problematic for wheelchair users. To solve this issue, we present OmniPath, a system that moves from passive mapping to proactive environmental auditing. Our framework fuses the network topology of OSM with the submeter precision of high-density aerial LiDAR (USGS 3DEP) to create a high-fidelity 3D model of the pedestrian environment. Rather than simply routing a user, our agent virtually traverses the network, analyzing the surface in 0.5 meter increments. It rigorously quantifies physical friction points specifically running slope, cross slope, and vertical discontinuities against ADA compliance standards, calculating a weighted severity score to categorize hazards from ``Mild'' to ``Critical.'' To ensure real world reliability, we validated the system against 200 physical ground truth field surveys across the National Mall using stratified random sampling. The framework demonstrated strong diagnostic reliability for high-severity hazards, achieving F1-scores of 0.60 for Severe and 0.58 for critical categories. By automating this micro-scale inspection, OmniPath identifies the ``invisible'' barriers that standard maps miss, effectively transforming a static dataset into accessibility data source that anticipates accessibility challenges before the user ever leaves home.",
-      "url": "http://arxiv.org/abs/2606.24129v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24129v1",
-      "doi": "",
-      "journal": "arXiv",
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01970-2",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01970-2",
+      "journal": "Nature",
       "categories": [
-        "cs.AI"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "agent",
-        "environmental"
-      ],
-      "score": 29.0,
-      "raw": {}
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "1124-1124"
+      }
     },
     {
-      "id": "arxiv:2606.24458v1",
-      "source": "arxiv",
-      "title": "An Agnostic Machine Learning Model of Photosynthetic Habitability",
-      "authors": [
-        "Callum Gray",
-        "Cassandra Hall",
-        "Stefano Santabarbara",
-        "Klaus Schmidt-Rohr",
-        "Andrew Ringham",
-        "Edward Gillen",
-        "Thomas J. Haworth",
-        "Christopher D. P. Duffy"
-      ],
-      "published": "2026-06-23T11:45:54Z",
-      "updated": "2026-06-23T11:45:54Z",
-      "abstract": "The search for exoplanet biosignatures is guided by whether planetary environments can sustain photosynthesis. As such, the Photosynthetic Habitable Zone (PHZ) was recently proposed, as the overlap between the canonical habitable zone and the orbital range where stellar irradiance is sufficient to drive photosynthesis. Existing PHZ estimates rely on empirical light-response curves from Earth phytoplankton, and thus include implicit Earth-centric biases. We introduce an agnostic PHZ derived from a generalized model of photosynthesis grounded in thermodynamics and redox chemistry, without reference to model organisms. The model is built on a generic photochemical reaction in which photon capture couples oxidation of a donor molecule to the reduction of CO2. The optical properties and CO2 reduction rate are optimized against irradiance spectra for exoplanets orbiting main-sequence stars, using a genetic algorithm that mimics evolution by natural selection. Our simulations predict that photosynthetic organisms compensate for reduced flux by evolving larger light-harvesting structures. As a result, photosynthetic viability declines only linearly with orbital distance, despite stellar flux falling off quadratically. As such, the agnostic PHZ expands well beyond previous Earth-based estimates. Earth-like (visible light) oxygenic photosynthesis is flux-limited at the outer habitable zone for cool M-dwarf stars; however, both anoxygenic photosynthesis and a hypothetical, NIR-driven oxygenic photosynthesis are viable across the entire habitable zone for M, K, and G stars. This implies that M-dwarf exoplanets could sustain robust oxygenic photosynthesis, though it would be different to that found on Earth, presenting reflectance biosignatures in the NIR band rather than the visible.",
-      "url": "http://arxiv.org/abs/2606.24458v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24458v1",
-      "doi": "",
-      "journal": "arXiv",
+      "id": "doi:10.1038/d41586-026-01953-3",
+      "source": "nature",
+      "title": "Europe must seize the moment to lead on free and open science",
+      "authors": [],
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01953-3",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01953-3",
+      "journal": "Nature",
       "categories": [
-        "astro-ph.EP",
-        "astro-ph.IM",
-        "cs.LG"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "machine learning",
-        "earth"
-      ],
-      "score": 27.5,
-      "raw": {}
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "841-842"
+      }
     },
     {
-      "id": "arxiv:2606.24364v1",
-      "source": "arxiv",
-      "title": "High Resolution Sediment-Specific Surface Soil Moisture Retrieval Using Sentinel-1 Time Series and Auxiliary Data",
+      "id": "doi:10.1038/d41586-026-01955-1",
+      "source": "nature",
+      "title": "Europe as science superpower: what it will take to rival the US and China",
       "authors": [
-        "Alireza Hamedianfar",
-        "Oleg Antropov",
-        "Matthieu Molinier",
-        "Ulla Salmela",
-        "Hanna Kukkula",
-        "Lauri Seitsonen",
-        "Pauliina Liwata-Kenttälä",
-        "Maarit Middleton"
+        "Elizabeth Gibney"
       ],
-      "published": "2026-06-23T09:55:18Z",
-      "updated": "2026-06-23T09:55:18Z",
-      "abstract": "In this study, we examine the potential of continuous ground moisture monitoring over a mining site using a combination of in-situ soil moisture sensors and multi-sensor SAR images. We focus on assessing and improving methodologies for retrieval of surface soil moisture, i.e. ground moisture, from SAR measurements focusing on detailed in situ reference observations for several key geomaterials, i.e. sediments, typical in the study site. The mining site represents a limestone quarry locate in the southeastern Finland. Our hypothesis is that sediment-specific well-calibrated models can be instrumental in improving soil moisture retrieval under different weather conditions to produce spatially explicit soil moisture estimates at high resolution compared to baseline approaches. Studied SAR data are represented by Copernicus Sentinel-1 C-band images, while auxiliary datasets include optical Sentinel-2 data. Reference data were collected using IoT enabled capacitance sensors. The examined machine learning methods include Xgboost, LightGBM, RFs, linear regression and k-nearest neighbors regression. The best performance was achieved with the most comprehensive feature set which combines Sentinel-1 backscatter, time-series based soil moisture indices, Sentinel-2 optical, topographic, and temperature predictors. In the best sediment-area-level configurations, RMSE decreased to 0.037-0.050 m^3 m^(-3) (3.7-5.0 volumetric % points), with R^2 values reaching 0.90. Tree-based ensemble methods, especially LightGBM, RF, and XGBoost, provided the most accurate and stable predictions. Accuracy varied by sediment texture, with the lowest errors for clay and organic soil and higher errors for flotation sand and gravel. Adding sediment information improved Sentinel-1-only retrievals by more than 2 vol-%, but provided little additional benefit when richer multi-source feature sets were used.",
-      "url": "http://arxiv.org/abs/2606.24364v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24364v1",
-      "doi": "",
-      "journal": "arXiv",
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01955-1",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01955-1",
+      "journal": "Nature",
       "categories": [
-        "eess.IV"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "machine learning",
-        "weather"
-      ],
-      "score": 25.0,
-      "raw": {}
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "856-859"
+      }
     },
     {
-      "id": "arxiv:2606.24346v1",
-      "source": "arxiv",
-      "title": "PETRA: Transforming Web Text for Petroleum-Engineering Domain Adaptation",
+      "id": "doi:10.1038/d41586-026-01130-6",
+      "source": "nature",
+      "title": "How should I respond to race-based exclusion in my lab?",
       "authors": [
-        "Kirill Dubovikov",
-        "Omar El Mansouri",
-        "Hachem Madmoun",
-        "Yanda Li",
-        "Sandeep Kumar",
-        "Aya El Mir",
-        "Supriyo Ghosh",
-        "Writabrata Bhattacharya",
-        "Adrian Garcia-Garcia",
-        "Onkar Pandit",
-        "Sunil Kumar Sahu",
-        "Federico Castanedo",
-        "Larry Murray",
-        "Martin Takac",
-        "Salem Lahlou"
+        "Christine Ro"
       ],
-      "published": "2026-06-23T09:37:44Z",
-      "updated": "2026-06-23T09:37:44Z",
-      "abstract": "Petroleum-engineering search exposes a supervision gap for strong general retrievers: relevant evidence exists in public web text, but domain relevance labels are scarce. To address this gap, we propose PETRA, a large-scale Petroleum Engineering Text for Retrieval Adaptation dataset and pipeline that converts noisy public web data into a curated domain corpus and synthetic supervision for dense retrieval and reranking. PETRA contains 1.36M curated chunks, approximately 2B token equivalents, $\\approx$859k, embedding training rows from $\\approx$224k anchors, and roughly 400k teacher-scored reranker candidate rows. Its construction combines high-recall energy-domain curation, an energy-domain classifier with 98.4% test accuracy, chunk-grounded query generation, LLM-written hard negatives, and retrieval-mined candidate lists. PETRA improves first-stage in-domain Normalized Discounted Cumulative Gain (nDCG) from 0.703 to 0.763 through score fusion. Reranker adaptation improves the public Earth Science benchmark by 44% relative and a six-task reasoning-intensive panel by 23%. Failed training recipes show that high train-holdout accuracy on synthetic labels does not predict retrieval gains; retrieval-mined data helps only after being repackaged as teacher-scored candidate lists sampled from the inference-time candidate distribution.",
-      "url": "http://arxiv.org/abs/2606.24346v1",
-      "pdf_url": "https://arxiv.org/pdf/2606.24346v1",
-      "doi": "",
-      "journal": "arXiv",
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01130-6",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01130-6",
+      "journal": "Nature",
       "categories": [
-        "cs.IR",
-        "cs.CL"
+        "journal-article"
       ],
       "image_url": "",
-      "keyword_matches": [
-        "llm",
-        "earth"
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01969-9",
+      "source": "nature",
+      "title": "The halo effect: how academic hierarchy undermines peer review and enables fraud",
+      "authors": [
+        "Wenfeng Wang"
       ],
-      "score": 25.0,
-      "raw": {}
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01969-9",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01969-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "1124-1124"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10799-8",
+      "source": "nature",
+      "title": "Retraction Note: Sub-second periodicity in a fast radio burst",
+      "authors": [
+        "Bridget C. Andersen",
+        "Kevin Bandura",
+        "Mohit Bhardwaj",
+        "P. J. Boyle",
+        "Charanjot Brar",
+        "Daniela Breitman",
+        "Tomas Cassanelli",
+        "Shami Chatterjee",
+        "Pragya Chawla",
+        "Jean-François Cliche",
+        "Davor Cubranic",
+        "Alice P. Curtin",
+        "Meiling Deng",
+        "Matt Dobbs",
+        "Fengqiu Adam Dong",
+        "Emmanuel Fonseca",
+        "B. M. Gaensler",
+        "Utkarsh Giri",
+        "Deborah C. Good",
+        "Alex S. Hill",
+        "Alexander Josephy",
+        "J. F. Kaczmarek",
+        "Zarif Kader",
+        "Joseph Kania",
+        "Victoria M. Kaspi",
+        "Calvin Leung",
+        "D. Z. Li",
+        "Hsiu-Hsien Lin",
+        "Kiyoshi W. Masui",
+        "Ryan Mckinven",
+        "Juan Mena-Parra",
+        "Marcus Merryfield",
+        "B. W. Meyers",
+        "D. Michilli",
+        "Arun Naidu",
+        "Laura Newburgh",
+        "C. Ng",
+        "Anna Ordog",
+        "Chitrang Patel",
+        "Aaron B. Pearlman",
+        "Ue-Li Pen",
+        "Emily Petroff",
+        "Ziggy Pleunis",
+        "Masoud Rafiei-Ravandi",
+        "Mubdi Rahman",
+        "Scott Ransom",
+        "Andre Renard",
+        "Pranav Sanghavi",
+        "Paul Scholz",
+        "J. Richard Shaw",
+        "Kaitlyn Shin",
+        "Seth R. Siegel",
+        "Saurabh Singh",
+        "Kendrick Smith",
+        "Ingrid Stairs",
+        "Chia Min Tan",
+        "Shriharsh P. Tendulkar",
+        "Keith Vanderlinde",
+        "D. V. Wiebe",
+        "Dallas Wulf",
+        "Andrew Zwaniga"
+      ],
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10799-8",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10799-8",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01842-9",
+      "source": "nature",
+      "title": "Making samples one billion times bigger lets simple microscopes pinpoint amino acids",
+      "authors": [
+        "Ewen Callaway"
+      ],
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01842-9",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01842-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01951-5",
+      "source": "nature",
+      "title": "Silicon Valley’s vision for global AI is flawed: each country needs its own blueprint",
+      "authors": [
+        "Pelonomi Moiloa"
+      ],
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01951-5",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01951-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "844-844"
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01971-1",
+      "source": "nature",
+      "title": "Academic success still assumes uninterrupted careers",
+      "authors": [
+        "Dharani Yerrakalva"
+      ],
+      "published": "2026-06-23",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01971-1",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01971-1",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 43.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "1124-1124"
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01909-7",
+      "source": "nature",
+      "title": "The first ticking ‘nuclear clocks’ are here — what can they do?",
+      "authors": [
+        "Elizabeth Gibney"
+      ],
+      "published": "2026-06-22",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01909-7",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01909-7",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01997-5",
+      "source": "nature",
+      "title": "Daily briefing: First-ever ‘nuclear’ clocks put atomic clocks in the shade",
+      "authors": [
+        "Flora Graham"
+      ],
+      "published": "2026-06-22",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01997-5",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01997-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1038/d41586-026-01949-z",
+      "source": "nature",
+      "title": "A spacecraft is falling to its doom — can NASA save it?",
+      "authors": [
+        "Alexandra Witze"
+      ],
+      "published": "2026-06-22",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/d41586-026-01949-z",
+      "pdf_url": "",
+      "doi": "10.1038/d41586-026-01949-z",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10771-6",
+      "source": "nature",
+      "title": "Isotopic evidence for a cold and distant origin of 3I/ATLAS",
+      "authors": [
+        "Martin Cordiner",
+        "Nathan X. Roth",
+        "Marco Micheli",
+        "Geronimo Villanueva",
+        "Davide Farnocchia",
+        "Steven Charnley",
+        "Nicolas Biver",
+        "Dominique Bockelée-Morvan",
+        "Dennis Bodewits",
+        "Colin Orion Chandler",
+        "Jacques Crovisier",
+        "Maria N. Drozdovskaya",
+        "Kenji Furuya",
+        "Michael S. P. Kelley",
+        "Stefanie Milam",
+        "John W. Noonan",
+        "Cyrielle Opitom",
+        "Megan E. Schwamb",
+        "Cristina A. Thomas"
+      ],
+      "published": "2026-06-22",
+      "updated": "2026-06-23",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10771-6",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10771-6",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aec6396",
+      "source": "science",
+      "title": "Induction of broadly neutralizing HIV antibodies by a two-step mechanism informs vaccine design",
+      "authors": [
+        "Ashwin N. Skelly",
+        "Harry B. Gristick",
+        "Hui Li",
+        "Edem Gavor",
+        "Andrew J. Connell",
+        "Edward F. Kreider",
+        "Lorie Marchitto",
+        "Michael P. Hogarty",
+        "Maddy L. Newby",
+        "Joel D. Allen",
+        "Weimin Liu",
+        "Anthony P. West",
+        "Kasirajan Ayyanathan",
+        "Mary S. Campion",
+        "Kaitlyn Winters",
+        "Colette G. Gordon",
+        "Rebecca A. Osbaldeston",
+        "Macy J. Akeley",
+        "Emily Lewis",
+        "Yingying Li",
+        "Ajay Singh",
+        "Kendra Cruickshank",
+        "Younghoon Park",
+        "Chengyan Zhao",
+        "Xuduo Li",
+        "Khaled Amereh",
+        "Elizabeth Van Itallie",
+        "John W. Carey",
+        "Amie Albertus",
+        "Andrew T. DeLaitsch",
+        "Jennifer R. Keeffe",
+        "Melinda G. Lituchy",
+        "Agnes A. Walsh",
+        "Daniel J. Morris",
+        "Rumi Habib",
+        "Frederic Bibollet-Ruche",
+        "Nitesh Mishra",
+        "Gabriel Avillion",
+        "Nicholas S. Koranda",
+        "Samantha J. Plante",
+        "Christian L. Martella",
+        "Jinery Lora",
+        "Eric J. D. Wang",
+        "Mark G. Lewis",
+        "Malcolm A. Martin",
+        "Michel C. Nussenzweig",
+        "Michael S. Seaman",
+        "Darrell J. Irvine",
+        "Kevin J. Wiehe",
+        "Barton F. Haynes",
+        "Kshitij Wagh",
+        "Bette Korber",
+        "Raiees Andrabi",
+        "Max Crispin",
+        "Drew Weissman",
+        "Pamela J. Bjorkman",
+        "Beatrice H. Hahn",
+        "George M. Shaw"
+      ],
+      "published": "2026-06-18",
+      "updated": "2026-06-23",
+      "abstract": "A major obstacle confronting HIV-1 vaccine and cure research is the lack of an outbred animal model for rapid and consistent induction of broadly neutralizing antibodies (bNAbs). We designed an epitope-focused simian-human immunodeficiency virus (SHIV.5MUT) that elicited broad and potent V3-glycan–targeted antibodies within a year of infection in 14 of 22 macaques compared with 0 of 14 control animals. SHIV.5MUT elicited bNAbs by a two-step mechanism, inducing an initial wave of V1-directed antibodies that selected for envelope (Env) glycoprotein variants with shortened, hypoglycosylated V1 loops, which in turn primed V3-glycan bNAb precursors. Rhesus bNAbs were immunogenetically and structurally diverse, closely resembling human V3-glycan bNAbs. Env-bNAb coevolution revealed a diverse repertoire of bNAb precursors and the Env variants that matured them, yielding a molecular blueprint for vaccine design.",
+      "url": "https://doi.org/10.1126/science.aec6396",
+      "pdf_url": "",
+      "doi": "10.1126/science.aec6396",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6804",
+        "page": null
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aed1656",
+      "source": "science",
+      "title": "Protein-templated synthesis of dinucleotide repeat DNA by an antiphage reverse transcriptase",
+      "authors": [
+        "Pujuan Deng",
+        "Hyunbin Lee",
+        "Carlo Armijo",
+        "Haoqing Wang",
+        "Alex Gao"
+      ],
+      "published": "2026-06-18",
+      "updated": "2026-06-23",
+      "abstract": "Defense-associated reverse transcriptases (DRTs) are widespread bacterial antiphage systems that use unconventional mechanisms of polynucleotide synthesis. We show that DRT3, which comprises two distinct RTs (Drt3a and Drt3b) and a noncoding RNA (ncRNA), synthesizes alternating poly(GT/AC) double-stranded DNA. Cryo–electron microscopy structures at 2.6-angstrom resolution reveal a D3-symmetric 6:6:6 complex of Drt3a, Drt3b, and ncRNA. Drt3a produces the poly(GT) strand using a conserved ACACAC template within the ncRNA. Notably, Drt3b synthesizes a complementary, protein-primed poly(AC) strand in the complete absence of a nucleic acid template, using conserved active site residues specific to Drt3b to enforce precise base alternation. These findings expand the functional landscape of nucleic acid polymerases, revealing a protein-templated mechanism for sequence-specific DNA synthesis.",
+      "url": "https://doi.org/10.1126/science.aed1656",
+      "pdf_url": "",
+      "doi": "10.1126/science.aed1656",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6804",
+        "page": "1274-1281"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aed2953",
+      "source": "science",
+      "title": "Viola seed pod architecture shapes sequential, force-augmented pinching",
+      "authors": [
+        "Cheongsan Kim",
+        "Jihyun Won",
+        "Donghyeon Kim",
+        "Sohyun Jung",
+        "Ho-Young Kim",
+        "Youbong Hyun"
+      ],
+      "published": "2026-06-18",
+      "updated": "2026-06-19",
+      "abstract": "Many plants explosively launch seeds, but these natural catapults often display inefficient, unpredictable energy transfer in seed ejection. Violets ( Viola spp.) address this problem by ejecting seeds successively with consistent propulsive force from a single pod, a strategy that requires sophisticated energy release. In this work, we show that Viola achieves this feat with a simple and compact structure that generates adaptive force augmentation through sequential pinching. Our biological and mathematical analyses indicate that the pod valve’s morphogeometry optimizes pinching with sufficient strength for seed ejection with limited material cost and creates a shifting force-amplifying hotspot, which allows consecutive seed ejections. We use this design principle to create autonomous zipping actuators for a range of applications, including biomedical soft machines.",
+      "url": "https://doi.org/10.1126/science.aed2953",
+      "pdf_url": "",
+      "doi": "10.1126/science.aed2953",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6804",
+        "page": "1302-1307"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aea0869",
+      "source": "science",
+      "title": "Scalable fabrication of COF membranes for aliphatic/aromatic separation of crude oil",
+      "authors": [
+        "Li Cao",
+        "Shuhao An",
+        "Bingbing Yuan",
+        "Zhen Li",
+        "Vasilios G. Samaras",
+        "Ting Xu",
+        "Xixiang Zhang",
+        "Huabin Zhang",
+        "Zhiping Lai"
+      ],
+      "published": "2026-06-18",
+      "updated": "2026-06-18",
+      "abstract": "Distillation has been the cornerstone of crude oil refining for more than a century, relying on boiling point differences for fractionation. Although effective, it is highly energy-intensive and lacks the precision to separate specific hydrocarbon classes. We report crystalline covalent organic framework (COF) membranes with well-defined micropores and alkyl-functionalized frameworks that combine molecular sieving with preferential affinity to enrich aliphatics. An electric field–assisted roll-to-roll process enabled scalable fabrication of continuous membranes. These COF membranes enriched aliphatics to >95% and delivered permeance orders of magnitude higher than amorphous polymers in Arabian Light crude oil. A crude oil permeance of 0.34 liters m −2 hours −1 bar −1 with >90% aliphatics enrichment was achieved using industrial-standard 1812 membrane modules, demonstrating a lower energy demand than distillation.",
+      "url": "https://doi.org/10.1126/science.aea0869",
+      "pdf_url": "",
+      "doi": "10.1126/science.aea0869",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6804",
+        "page": "1262-1267"
+      }
     }
   ]
 }
