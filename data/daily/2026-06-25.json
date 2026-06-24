@@ -1,0 +1,594 @@
+{
+  "date": "2026-06-25",
+  "stats": {
+    "fetched": 466,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 74,
+      "science": 92
+    },
+    "deduped": 466,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 74,
+      "science": 92
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 293,
+    "keyword_filtered_by_source": {
+      "arxiv": 293
+    },
+    "keyword_optional_included": 163,
+    "keyword_optional_included_by_source": {
+      "nature": 73,
+      "science": 90
+    },
+    "ranked": 173,
+    "ranked_by_source": {
+      "arxiv": 7,
+      "nature": 74,
+      "science": 92
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 2,
+    "feedback_warnings": 0,
+    "seen_filtered": 62,
+    "selected_by_source": {
+      "nature": 6,
+      "science": 4
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天筛选出 10 篇论文，来源包括Nature、Science。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。",
+    "themes": [],
+    "research_ideas": [
+      {
+        "idea": "围绕“Small-molecule modulation of β-arrestins”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 nature 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“A Streptomyces megacluster encodes synergistic biotin-targeting antibiotics”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 nature 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Dietary cholesterol activates a Ral-dependent pathway driving LDLR turnover”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 nature 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Detection of anisotropic cosmic structures on a gigaparsec scale”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 nature 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Epiblast diversification and blood formation in a human pregastrula”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 nature 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      }
+    ],
+    "papers": {
+      "doi:10.1038/s41586-026-10683-5": {
+        "summary": "该论文围绕β-arrestins这一GPCR信号调控核心蛋白，报道了可直接作用于β-arrestin的小分子抑制剂，并用药理、生化、生物物理与结构手段解析其如何阻断β-arrestin与激动剂激活GPCR的结合。摘要显示，代表性化合物Cmpd-5结合β-arrestin1中央crest区域的一个由middle、C和lariat loops构成的口袋，从而抑制去敏化、内吞及β-arrestin依赖生理功能，同时尽量不影响G蛋白-受体偶联。",
+        "contribution": "1. 在靶点层面，提出并初步验证了“直接药理调控β-arrestin”这一此前缺少化学工具的策略，补上了GPCR药理学中相对空白的一环。2. 在分子机制层面，给出一个较具体的结合位点与作用模型：Cmpd-5作用于β-arrestin1中央crest、涉及middle loop、C loop与lariat loop形成的受体结合界面相关口袋，并稳定一种不利于受体结合的构象。3. 在功能层面，摘要指向较清晰的表型链条：抑制β-arrestin招募/结合，进而削弱受体去敏化、内吞和β-arrestin依赖的生理输出，但保留G protein–receptor coupling，提示其可能作为“选择性切断arrestin支路”的化学探针。4. 在方法整合层面，结合cryo-EM、分子动力学模拟和结构指导突变，说明作者不仅筛到活性分子，还试图把化合物-构象-功能之间的因果关系落到结构基础上。",
+        "why_read": "1. 对GPCR信号偏向性、受体去敏化、内吞和β-arrestin支路感兴趣的研究者，这篇论文值得读，因为它不是继续在受体正构/别构位点上做文章，而是把调控层级下移到β-arrestin本体，可能改变设计偏向性药物或化学探针的思路。2. 对做结构生物学和机制药理的人，文中最有吸引力的是“具体口袋+具体环区+具体构象效应”的描述：如果这一位点具有可重复利用性，那么β-arrestin可能成为可成药的蛋白-蛋白相互作用调控靶点。3. 对关注工具化合物的人，摘要所述‘保留G蛋白偶联、抑制arrestin相关功能’意味着这些分子有潜力作为区分两条信号支路的实验工具，用于在细胞和生理模型中拆解β-arrestin依赖表型。4. 来源为Nature，且从摘要看证据链覆盖药理、结构与模拟，说明其可能对领域内“是否能直接小分子调β-arrestin”这一长期问题提供较强支持，具有较高跟进价值。",
+        "limitations": "1. 仅根据摘要，无法判断抑制剂的化学系列数量、活性范围、选择性、构效关系和可优化空间；“small-molecule inhibitors”可能不止一个，但具体命中质量未知。2. 摘要明确点名的是β-arrestin1与Cmpd-5，尚不清楚对β-arrestin2是否同样有效、是否存在亚型选择性，或这种选择性是否会限制泛化。3. “sparing G protein–receptor coupling”来自摘要表述，但不知道是在多少种GPCR、多少种细胞背景和多大剂量窗口下成立；潜在的受体类型依赖性和系统偏差无法从现有信息判断。4. 摘要提到“β-arrestin-dependent physiological functions”，但未给出具体生理模型、终点指标和效应大小，因此对体内可转化性、药代性质、安全性与脱靶风险目前不能做可靠判断。5. 由于摘要被截断，后半段关于构象机制、实验体系或更多关键结果缺失；因此不能据此断言其是否已证明广谱适用性、是否实现真正意义上的高选择性，或是否适合作为先导药物，只能将其视为很有前景的机制与工具化合物研究。"
+      },
+      "doi:10.1038/s41586-026-10647-9": {
+        "summary": "这篇Nature论文从题名看，研究对象是链霉菌（Streptomyces）中的一个“megacluster”型大型生物合成基因簇，任务是解析其编码的、以生物素为靶点并表现协同作用的抗生素体系。由于提供的摘要为空，目前只能确定论文大概率围绕“基因簇—天然产物—生物素靶向—协同抗菌”这一具体链条展开，无法进一步确认分子结构、作用机制细节或实验数据。",
+        "contribution": "基于题名与期刊信息，核心贡献很可能在于：1）鉴定并界定一个来自Streptomyces的大型生物合成基因簇（megacluster）；2）证明该基因簇不是编码单一分子，而是编码一组具有协同效应的抗生素；3）将这些抗生素的作用靶点具体指向生物素相关过程，提示其可能干扰生物素利用、转运、合成或依赖生物素的代谢节点；4）在天然产物发现层面提供“成簇编码协同药物组合”的实例，这对抗菌机制挖掘和联合用药启发都较具体。以上判断仅依据题名，不能替代摘要或全文证据。",
+        "why_read": "这篇文章值得读，首先因为Nature来源通常意味着其在机制、方法或生物学意义上有较强新意；其次，题名中的“synergistic biotin-targeting antibiotics”很具体，直接对应当前抗菌药发现中的两个高价值方向：新靶点开发与协同药物组合。若你关注放线菌天然产物、大型BGC挖掘、抗生素协同机制、营养因子/辅酶相关脆弱性，或希望寻找可通过基因组挖掘发现多组分抗菌体系的研究机会，这篇论文很可能提供具体案例和方法框架。不过由于当前没有摘要，最值得优先去核实的是：涉及哪些具体化合物、用了何种基因簇解析与活性验证方法、协同作用是在何种菌种和实验条件下观察到的。",
+        "limitations": "现有元数据最大的限制是摘要为空，因此无法确认任何关键事实，包括：具体抗生素名称与化学类别、靶向“生物素”的精确定义、协同效应的量化方式、实验对象菌株、活性谱、耐药性数据以及体内外验证范围。题名中的“targeting biotin”可能有多种机制解释，不能直接等同于抑制生物素合成；“megacluster”也不能仅凭题名判断其边界、长度和进化来源。因此在阅读或引用前，应警惕过度推断，尤其不要提前假设其具有临床可转化性、广谱活性或已解析完整作用机制。"
+      },
+      "doi:10.1038/s41586-026-10697-z": {
+        "summary": "Dietary cholesterol activates a Ral-dependent pathway driving LDLR turnover。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10702-5": {
+        "summary": "Detection of anisotropic cosmic structures on a gigaparsec scale。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10698-y": {
+        "summary": "Epiblast diversification and blood formation in a human pregastrula。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10708-z": {
+        "summary": "Ductile alloys offering 100 MPa tensile strength at 2,400 °C。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1126/science.adv0367": {
+        "summary": "Compound climate events threaten tropical semi-enclosed marine ecosystems。摘要要点：Anthropogenic ocean warming affects ecosystem functioning but is not necessarily the primary climate driver regulating tropical seas.",
+        "contribution": "摘要中最具体的线索是：Anthropogenic ocean warming affects ecosystem functioning but is not necessarily the primary climate driver regulating tropical seas. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.adz7518": {
+        "summary": "A global map for introgressed structural variation and selection in humans。摘要要点：Genetic introgression from Neanderthals and Denisovans shaped modern human genomes; however, introgressed structural variants (SVs ≥ 50 base pairs) remain challenging to discover.",
+        "contribution": "摘要中最具体的线索是：Genetic introgression from Neanderthals and Denisovans shaped modern human genomes; however, introgressed structural variants (SVs ≥ 50 base pairs) remain challenging to discover. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aec3187": {
+        "summary": "A 481-meter-high landslide-tsunami in a cruise ship–frequented Alaska fjord。摘要要点：Early in the morning of 10 August 2025, a >64 × 10 6 –cubic meter landslide struck Tracy Arm fjord in Alaska.",
+        "contribution": "摘要中最具体的线索是：Early in the morning of 10 August 2025, a >64 × 10 6 –cubic meter landslide struck Tracy Arm fjord in Alaska. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.adv8291": {
+        "summary": "Chemically induced skin tumors arise from long-lived stem cells of the upper hair follicle。摘要要点：The identification of the cancer cell of origin is a fundamental question in cancer biology.",
+        "contribution": "摘要中最具体的线索是：The identification of the cancer cell of origin is a fundamental question in cancer biology. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for doi:10.1038/s41586-026-10697-z: HTTP Error 401: Unauthorized",
+      "LLM paper analysis failed for doi:10.1038/s41586-026-10702-5: HTTP Error 401: Unauthorized",
+      "Skipped LLM analysis for 6 paper(s) after 2 consecutive failure(s).",
+      "LLM daily summary failed: HTTP Error 401: Unauthorized"
+    ]
+  },
+  "papers": [
+    {
+      "id": "doi:10.1038/s41586-026-10683-5",
+      "source": "nature",
+      "title": "Small-molecule modulation of β-arrestins",
+      "authors": [
+        "Alem W. Kahsai",
+        "Natalia Pakharukova",
+        "Henry Y. Kwon",
+        "Kunal S. Shah",
+        "Caroline T. del Real",
+        "Bowie N. Shreiber",
+        "Jason G. Liang-Lin",
+        "Paul J. Shim",
+        "Mason A. Lee",
+        "Van A. Ngo",
+        "Allison M. Schwalb",
+        "Uyen Pham",
+        "Anand Chundi",
+        "Haoran Jiang",
+        "Emmanuel Flores-Espinoza",
+        "Samuel Liu",
+        "Preston C. Nibley",
+        "Dana K. Bassford",
+        "Hyunggu Hahn",
+        "Cal A. Kunzle",
+        "Brittany N. Thomas",
+        "Jihee Kim",
+        "Yang Zhou",
+        "Jialu Wang",
+        "Xingdong Zhang",
+        "Jeffrey S. Smith",
+        "Lindsay A. M. Rein",
+        "Alex R. B. Thomsen",
+        "Sudha K. Shenoy",
+        "Sudarshan Rajagopal",
+        "Lei Shi",
+        "Seungkirl Ahn",
+        "Howard A. Rockman",
+        "Ali Masoudi",
+        "Robert J. Lefkowitz"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "Abstract β-Arrestins are multifunctional regulators of G-protein-coupled receptor (GPCR) signalling and orchestrate diverse downstream signalling events and physiological responses across the GPCR superfamily 1–3 . Although GPCR pharmacology has advanced to target orthosteric and allosteric sites, as well as G proteins and GPCR kinases, direct chemical tools to modulate β-arrestin activities have remained conspicuously absent. Here we report the identification of small-molecule inhibitors that selectively target β-arrestins and delineate their mechanism of action through integrated pharmacological, biochemical, biophysical and structural analyses. These inhibitors disrupt β-arrestin engagement with agonist-activated GPCRs, impairing desensitization, internalization and β-arrestin-dependent physiological functions while sparing G protein–receptor coupling. Cryo-electron microscopy, molecular dynamics simulations and structure-guided mutagenesis reveal that one modulator, Cmpd-5, engages a pocket within the central crest of β-arrestin1 formed by the middle, C and lariat loops, a critical receptor-binding interface, stabilizing a distinct conformation that is incompatible with full β-arrestin–receptor engagement. Together, these findings establish a mechanistic framework for β-arrestin modulation, reveal a novel allosteric site for structure-based drug design, and open new avenues for transducer-targeted, pathway-specific GPCR therapeutic agents.",
+      "url": "https://doi.org/10.1038/s41586-026-10683-5",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10683-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 95,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10683-5"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10647-9",
+      "source": "nature",
+      "title": "A Streptomyces megacluster encodes synergistic biotin-targeting antibiotics",
+      "authors": [
+        "R. Gordzevich",
+        "M. Xu",
+        "W. Wang",
+        "M. A. Cook",
+        "D. Hackenberger",
+        "J. P. Deisinger",
+        "M. M. Tu",
+        "L. A. Carfrae",
+        "M. George",
+        "K. Rachwalski",
+        "K. Koteva",
+        "D. Sychantha",
+        "A. Wei",
+        "G. D. Wright",
+        "E. D. Brown"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10647-9",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10647-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 70,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10647-9"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10697-z",
+      "source": "nature",
+      "title": "Dietary cholesterol activates a Ral-dependent pathway driving LDLR turnover",
+      "authors": [
+        "Xue Feng",
+        "Shuo Zhang",
+        "Yuqi Wang",
+        "Twisha Kurlagunda",
+        "Allyssa Sit",
+        "Priyadarshini Jaishankar",
+        "Pusu Yang",
+        "Sadatsugu Sakane",
+        "Se Yong Park",
+        "Churaibhon Wisessaowapak",
+        "Kaylee Nguyen",
+        "Jamie Yan",
+        "Himani Pothulu",
+        "Catherine Dinh",
+        "Felicia Chu",
+        "Yuyao Ren",
+        "Bichen Zhang",
+        "Patrick Secrest",
+        "Linmeng Han",
+        "Chao-Wei Hung",
+        "Preethi Veeragandham",
+        "Yuliya Skorobogatko",
+        "Tatiana Kisseleva",
+        "Philip L.S.M. Gordts",
+        "Adam R. Renslo",
+        "Peng Zhao",
+        "Amit R. Majithia",
+        "Alan R. Saltiel"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10697-z",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10697-z",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 57,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10697-z"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10702-5",
+      "source": "nature",
+      "title": "Detection of anisotropic cosmic structures on a gigaparsec scale",
+      "authors": [
+        "Francesco Sylos Labini",
+        "Marco Galoppo"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10702-5",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10702-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 57,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10702-5"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10698-y",
+      "source": "nature",
+      "title": "Epiblast diversification and blood formation in a human pregastrula",
+      "authors": [
+        "Zhenyu Xiao",
+        "Yandong Gong",
+        "Xiaolong Yang",
+        "Nannan He",
+        "Xinyuan Wang",
+        "Guoju You",
+        "Hanlin Zhu",
+        "Yingping Liang",
+        "Xinwei Xie",
+        "Baoqi Fang",
+        "Gaoke Liu",
+        "Bing Liu",
+        "Yu Lan"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10698-y",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10698-y",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 86,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10698-y"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10708-z",
+      "source": "nature",
+      "title": "Ductile alloys offering 100 MPa tensile strength at 2,400 °C",
+      "authors": [
+        "Mintao Xue",
+        "Suzhi Li",
+        "Jing Wang",
+        "Jinyang Li",
+        "Xiangdong Ding",
+        "En Ma",
+        "Jun Sun"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10708-z",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10708-z",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 39,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10708-z"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adv0367",
+      "source": "science",
+      "title": "Compound climate events threaten tropical semi-enclosed marine ecosystems",
+      "authors": [
+        "Éva E. Plagányi",
+        "Laura K. Blamey",
+        "Rob Kenyon",
+        "Stephanie Brodie",
+        "Roy Aijun Deng",
+        "Denham Parker",
+        "Richard D. Pillans",
+        "Nicole E. Murphy",
+        "Margaret Miller",
+        "Amelia A. Desbiens",
+        "Sean Pascoe",
+        "André E. Punt"
+      ],
+      "published": "2026-06-11",
+      "updated": "2026-06-11",
+      "abstract": "Anthropogenic ocean warming affects ecosystem functioning but is not necessarily the primary climate driver regulating tropical seas. Tropical semi-enclosed marine ecosystems are poorly understood, geographically distinct, and influenced by compounding impacts from global warming, cyclones, monsoons, freshwater influx, and massive sea-level and circulation variability. We unify climate risk understanding of these large-scale integrated ocean-atmosphere-biological systems, showing that compound climate events expose resident species to larger, prolonged fluctuations, causing reconfigured spatial patterns and lack of sustained hydrological connectivity. We attribute changes in species’ abundance in these systems to complex and cumulative combinations of extreme temperatures, exposure, turbidity, and hydrologic connections. We describe evidence of such climate-induced physical and biological regime shifts in tropical marine ecosystems in northern Australia and identify implications for other systems.",
+      "url": "https://doi.org/10.1126/science.adv0367",
+      "pdf_url": "",
+      "doi": "10.1126/science.adv0367",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6803",
+        "page": "1154-1160",
+        "reference_count": 204,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adv0367"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adz7518",
+      "source": "science",
+      "title": "A global map for introgressed structural variation and selection in humans",
+      "authors": [
+        "PingHsun Hsieh",
+        "Natthapon Soisangwan",
+        "David S. Gordon",
+        "Athef Javidh",
+        "William T. Harvey",
+        "David Porubsky",
+        "Kendra Hoekzema",
+        "Carl Baker",
+        "Katherine M. Munson",
+        "Christopher Kinipi",
+        "Matthew Leavesley",
+        "Nicolas Brucato",
+        "Murray P. Cox",
+        "François‐X Ricaut",
+        "Irene Gallego Romero",
+        "Evan E. Eichler"
+      ],
+      "published": "2026-06-11",
+      "updated": "2026-06-11",
+      "abstract": "Genetic introgression from Neanderthals and Denisovans shaped modern human genomes; however, introgressed structural variants (SVs ≥ 50 base pairs) remain challenging to discover. We integrated high-quality phased assemblies from four new Papua New Guinea (PNG) haploid genomes with 94 published assemblies of diverse ancestry to infer an introgressed SV map. Introgressed SVs are enriched in genes (47%), including critical genomic disorder regions, and are most abundant in PNG genomes. We identified 11 centromeres likely derived from archaic hominins, adding unexplored diversity to centromere genomics. Pangenome genotyping of these 98 assemblies across 1363 samples revealed 16 adaptive SVs, many associated with immune-related genes and expression, in the PNG genomes. We hypothesize that archaic SVs contributed to reproductive success, underscoring introgression as a major force in human adaptive evolution.",
+      "url": "https://doi.org/10.1126/science.adz7518",
+      "pdf_url": "",
+      "doi": "10.1126/science.adz7518",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6803",
+        "page": null,
+        "reference_count": 99,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adz7518"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aec3187",
+      "source": "science",
+      "title": "A 481-meter-high landslide-tsunami in a cruise ship–frequented Alaska fjord",
+      "authors": [
+        "Dan H. Shugar",
+        "Katherine R. Barnhart",
+        "Mira Berdahl",
+        "Jacqueline Caplan-Auerbach",
+        "Göran Ekström",
+        "Aram Fathian",
+        "Marten Geertsema",
+        "Stephen P. Hicks",
+        "Bretwood Higman",
+        "Erin K. Jensen",
+        "Ezgi Karasözen",
+        "Patrick Lynett",
+        "John Lyons",
+        "Thomas Monahan",
+        "Gerard Roe",
+        "Kristian Svennevig",
+        "Liam Toney",
+        "Maximillian Van Wyk de Vries",
+        "Michael E. West"
+      ],
+      "published": "2026-06-11",
+      "updated": "2026-06-11",
+      "abstract": "Early in the morning of 10 August 2025, a >64 × 10 6 –cubic meter landslide struck Tracy Arm fjord in Alaska. The landslide was preconditioned by glacial retreat caused by climate change. The resulting 481-meter runup megatsunami followed an initial 100-meter-high breaking wave traveling at >70 meters per second. The landslide was preceded by several days of microseismicity, which increased in rate and magnitude until ~1 hour before failure. The landslide produced globally observed long-period seismic waves equivalent in size to a moment magnitude 5.4 earthquake. A long-period (~66 second) global seismic signal, produced by a landslide-induced seiche trapped within the fjord, persisted for up to 36 hours, the second time a days-long seiche had thus been observed. With fjord regions increasingly visited by cruise ships, and climate change making similar events more likely, this unanticipated, near-miss event highlights the growing risk from landslides and tsunamis in coastal environments.",
+      "url": "https://doi.org/10.1126/science.aec3187",
+      "pdf_url": "",
+      "doi": "10.1126/science.aec3187",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6803",
+        "page": null,
+        "reference_count": 143,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aec3187"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adv8291",
+      "source": "science",
+      "title": "Chemically induced skin tumors arise from long-lived stem cells of the upper hair follicle",
+      "authors": [
+        "Eve Kandyba",
+        "Arnaud Jabouille",
+        "Ferriol Calvet",
+        "Yun Rose Li",
+        "Andrea Curtabbi",
+        "Diana Cristea",
+        "Joyce Shin",
+        "Reyno Delrosario",
+        "Jonathan Anzules",
+        "Di Wu",
+        "David Quigley",
+        "Mark Taylor",
+        "Camila Zanette",
+        "Fang Yin Lo",
+        "Jacob Higgins",
+        "Jesse Salk",
+        "Nuria Lopez-Bigas",
+        "Allan Balmain"
+      ],
+      "published": "2026-06-11",
+      "updated": "2026-06-11",
+      "abstract": "The identification of the cancer cell of origin is a fundamental question in cancer biology. We used fluorescent lineage tracing of independent mouse skin stem cell populations, single cell transcriptomics, and Duplex sequencing, to identify the origin of chemically induced skin tumors. Tumors arose predominantly from Lgr6+ and / or Lrig1+ stem cells of the upper hair follicle, but only very rarely from the Lgr5 + and Krt19 + hair follicle bulge. Lgr6 + stem cells initiated by dimethylbenzanthracene responded to tumor promoter treatment resulting in clonal expansion of initiated cells carrying the canonical Hras Q61L mutation. Spontaneous mutations in Kras also clonally expanded, but did not generate tumors unless the Hras gene was deleted, thus revealing a competitive interaction between Hras and Kras pathways that influences clonal selection.",
+      "url": "https://doi.org/10.1126/science.adv8291",
+      "pdf_url": "",
+      "doi": "10.1126/science.adv8291",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 79,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adv8291"
+      }
+    }
+  ]
+}
