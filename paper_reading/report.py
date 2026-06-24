@@ -300,6 +300,18 @@ def _source_counts(papers: list[Paper]) -> Counter[str]:
     return Counter(paper.journal or paper.source for paper in papers)
 
 
+def _counter_from_mapping(value: Any) -> Counter[str]:
+    if not isinstance(value, dict):
+        return Counter()
+    counter: Counter[str] = Counter()
+    for key, count in value.items():
+        try:
+            counter[str(key)] = int(count)
+        except (TypeError, ValueError):
+            continue
+    return counter
+
+
 def _keyword_counts(papers: list[Paper]) -> Counter[str]:
     counter: Counter[str] = Counter()
     for paper in papers:
@@ -447,6 +459,7 @@ def write_report(
     warning_text = " ".join(str(item) for item in warnings)
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
     source_counter = _source_counts(papers)
+    fetched_source_counter = _counter_from_mapping(stats.get("fetched_by_source"))
     keyword_counter = _keyword_counts(papers)
     paper_cards = "\n".join(_render_paper(paper, analysis, idx + 1) for idx, paper in enumerate(papers))
     if not paper_cards:
@@ -489,13 +502,20 @@ def write_report(
     <section class="section">
       <div class="shell viz-grid">
         <div>
-          <h2>来源分布</h2>
+          <h2>入选来源</h2>
           {_render_bars(source_counter)}
         </div>
         <div>
           <h2>关键词命中</h2>
           {_render_chips(keyword_counter)}
         </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>抓取来源</h2>
+        {_render_bars(fetched_source_counter)}
       </div>
     </section>
 

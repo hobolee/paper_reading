@@ -32,10 +32,18 @@ daily:
 
 filters:
   require_keywords: true
+  keyword_optional_sources:
+    - nature
+    - science
   keywords:
     - [large language model, agent, multimodal]
     - [earth, climate]
   exclude_keywords: []
+
+selection:
+  source_minimums:
+    nature: 4
+    science: 4
 ```
 
 关键词支持两种写法：
@@ -44,6 +52,8 @@ filters:
 - 二维列表：每个子列表内部是 OR 关系，子列表之间是 AND 关系。上面的例子表示论文必须同时命中“LLM/agent/multimodal 之一”和“earth/climate 之一”。
 
 如果你想先看所有论文，把 `require_keywords` 改为 `false`，或者把 `keywords` 设为空列表。
+
+`keyword_optional_sources` 会让指定来源即使没有命中关键词也能进入候选池；`source_minimums` 会尽量为指定来源保留名额。默认配置会优先保证 Nature 和 Science 主刊在报告里有一定占比。
 
 ## 配置 LLM
 
@@ -72,8 +82,35 @@ python -m paper_reading run
    - `OPENAI_API_KEY`
    - `OPENAI_BASE_URL`
    - `OPENAI_MODEL`
+   - `GMAIL_USERNAME`
+   - `GMAIL_APP_PASSWORD`
+   - `MAIL_TO`
 3. 在 `Settings -> Pages` 里把 Source 设为 `GitHub Actions`。
 4. 工作流 [.github/workflows/daily.yml](.github/workflows/daily.yml) 会每天运行，也可以手动触发。
+
+## Gmail 邮件
+
+GitHub Actions 会在 GitHub Pages 部署后尝试发送邮件。如果没有配置 Gmail Secrets，会自动跳过，不影响报告生成。
+
+需要添加这些 Secrets：
+
+```text
+GMAIL_USERNAME=你的 Gmail 地址
+GMAIL_APP_PASSWORD=Gmail App Password
+MAIL_TO=收件邮箱，多个邮箱用逗号分隔
+MAIL_FROM=可选，默认使用 GMAIL_USERNAME
+```
+
+Gmail SMTP 使用 `smtp.gmail.com:587` 和 TLS。`GMAIL_APP_PASSWORD` 不是 Gmail 登录密码；通常需要先开启两步验证，再在 Google Account 中创建 App Password。
+
+本地测试邮件：
+
+```bash
+export GMAIL_USERNAME="yourname@gmail.com"
+export GMAIL_APP_PASSWORD="xxxx xxxx xxxx xxxx"
+export MAIL_TO="yourname@gmail.com"
+python -m paper_reading send-email --report docs/index.html
+```
 
 ## 目录结构
 
@@ -81,6 +118,7 @@ python -m paper_reading run
 paper_reading/
   config.py
   filters.py
+  emailer.py
   llm.py
   main.py
   models.py

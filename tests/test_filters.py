@@ -81,6 +81,25 @@ class FilterTests(unittest.TestCase):
         self.assertEqual(ranked[0].keyword_matches, ["agent", "multimodal", "climate"])
         self.assertEqual(stats["keyword_filtered"], 2)
 
+    def test_rank_and_filter_keyword_optional_sources(self):
+        config = {
+            "filters": {
+                "require_keywords": True,
+                "keyword_optional_sources": ["nature", "science"],
+                "keywords": [["agent"], ["climate"]],
+                "exclude_keywords": [],
+            },
+            "ranking": {"source_priority": {"nature": 35, "arxiv": 10}},
+        }
+        papers = [
+            Paper(id="nature-topic", source="nature", title="A main journal article"),
+            Paper(id="arxiv-topic", source="arxiv", title="A main preprint article"),
+        ]
+        ranked, stats = rank_and_filter(papers, config)
+        self.assertEqual([paper.id for paper in ranked], ["nature-topic"])
+        self.assertEqual(stats["keyword_optional_included"], 1)
+        self.assertEqual(stats["keyword_filtered"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

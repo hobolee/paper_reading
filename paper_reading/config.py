@@ -21,8 +21,12 @@ DEFAULT_CONFIG: dict[str, Any] = {
     },
     "filters": {
         "require_keywords": True,
+        "keyword_optional_sources": [],
         "keywords": [],
         "exclude_keywords": [],
+    },
+    "selection": {
+        "source_minimums": {},
     },
     "ranking": {
         "source_priority": {"nature": 20, "science": 20, "arxiv": 10},
@@ -49,6 +53,19 @@ DEFAULT_CONFIG: dict[str, Any] = {
         "temperature": 0.2,
         "timeout_seconds": 90,
         "max_input_chars_per_paper": 1800,
+    },
+    "email": {
+        "enabled": True,
+        "provider": "gmail-smtp",
+        "host": "smtp.gmail.com",
+        "port": 587,
+        "use_tls": True,
+        "username_env": ["GMAIL_USERNAME", "SMTP_USERNAME"],
+        "password_env": ["GMAIL_APP_PASSWORD", "SMTP_PASSWORD"],
+        "from_env": ["MAIL_FROM", "GMAIL_USERNAME"],
+        "to_env": ["MAIL_TO"],
+        "subject_prefix": "[Paper Reading]",
+        "timeout_seconds": 60,
     },
     "http": {
         "user_agent": "paper-reading-bot/0.1",

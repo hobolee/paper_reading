@@ -13,15 +13,23 @@ report:
 
 filters:
   require_keywords: true
+  keyword_optional_sources:
+    - nature
+    - science
   keywords:
     - [large language model, llm, agent, multimodal, foundation model, artificial intelligence, machine learning, deep learning, neural network]
     - [earth, climate, weather, atmosphere, atmospheric, ocean, geoscience, remote sensing, environmental]
   exclude_keywords: []
 
+selection:
+  source_minimums:
+    nature: 4
+    science: 4
+
 ranking:
   source_priority:
-    nature: 20
-    science: 20
+    nature: 35
+    science: 35
     arxiv: 10
 
 sources:
@@ -70,6 +78,26 @@ llm:
   temperature: 0.2
   timeout_seconds: 90
   max_input_chars_per_paper: 1800
+
+email:
+  enabled: true
+  provider: gmail-smtp
+  host: smtp.gmail.com
+  port: 587
+  use_tls: true
+  username_env:
+    - GMAIL_USERNAME
+    - SMTP_USERNAME
+  password_env:
+    - GMAIL_APP_PASSWORD
+    - SMTP_PASSWORD
+  from_env:
+    - MAIL_FROM
+    - GMAIL_USERNAME
+  to_env:
+    - MAIL_TO
+  subject_prefix: "[Paper Reading]"
+  timeout_seconds: 60
 
 http:
   user_agent: paper-reading-bot/0.1

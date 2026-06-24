@@ -62,3 +62,17 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Send email report
+        env:
+          GMAIL_USERNAME: ${{ secrets.GMAIL_USERNAME }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          REPORT_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          if [ -z "$GMAIL_USERNAME" ] || [ -z "$GMAIL_APP_PASSWORD" ] || [ -z "$MAIL_TO" ]; then
+            echo "Email skipped: set GMAIL_USERNAME, GMAIL_APP_PASSWORD, and MAIL_TO secrets to enable Gmail delivery."
+          else
+            python -m paper_reading send-email --report docs/index.html
+          fi

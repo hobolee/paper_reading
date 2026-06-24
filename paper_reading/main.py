@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from datetime import date
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from paper_reading.config import load_config
+from paper_reading.emailer import send_report_email
 from paper_reading.filters import rank_and_filter
 from paper_reading.llm import analyze_papers
 from paper_reading.models import Paper
@@ -73,12 +76,65 @@ def _fetch_all(config: dict[str, Any]) -> tuple[list[Paper], list[str]]:
     return papers, warnings
 
 
+def _configured_today(config: dict[str, Any]) -> str:
+    timezone_name = str(config.get("daily", {}).get("timezone") or "UTC")
+    try:
+        from datetime import datetime
+
+        return datetime.now(ZoneInfo(timezone_name)).date().isoformat()
+    except Exception:
+        return date.today().isoformat()
+
+
+def _source_minimums(config: dict[str, Any]) -> dict[str, int]:
+    raw = config.get("selection", {}).get("source_minimums") or {}
+    minimums: dict[str, int] = {}
+    if not isinstance(raw, dict):
+        return minimums
+    for source, count in raw.items():
+        try:
+            parsed = int(count)
+        except (TypeError, ValueError):
+            continue
+        if parsed > 0:
+            minimums[str(source).lower()] = parsed
+    return minimums
+
+
+def select_papers(candidates: list[Paper], max_papers: int, config: dict[str, Any]) -> list[Paper]:
+    minimums = _source_minimums(config)
+    selected: list[Paper] = []
+    selected_keys: set[str] = set()
+
+    for source, minimum in minimums.items():
+        picked = 0
+        for paper in candidates:
+            if picked >= minimum or len(selected) >= max_papers:
+                break
+            if paper.source != source or paper.stable_key() in selected_keys:
+                continue
+            selected.append(paper)
+            selected_keys.add(paper.stable_key())
+            picked += 1
+
+    for paper in candidates:
+        if len(selected) >= max_papers:
+            break
+        if paper.stable_key() in selected_keys:
+            continue
+        selected.append(paper)
+        selected_keys.add(paper.stable_key())
+
+    selected.sort(key=lambda item: (item.score, item.published, item.updated), reverse=True)
+    return selected
+
+
 def run(args: argparse.Namespace) -> int:
     config = load_config(args.config)
     if args.no_llm:
         config["llm"]["enabled"] = False
 
-    run_date = args.date or date.today().isoformat()
+    run_date = args.date or _configured_today(config)
     fetched, source_warnings = (_sample_papers(), []) if args.sample else _fetch_all(config)
     ranked, stats = rank_and_filter(fetched, config)
     stats["source_warnings"] = len(source_warnings)
@@ -91,7 +147,8 @@ def run(args: argparse.Namespace) -> int:
     else:
         candidates = [paper for paper in ranked if paper.stable_key() not in seen]
     stats["seen_filtered"] = len(ranked) - len(candidates)
-    selected = candidates[:max_papers]
+    selected = select_papers(candidates, max_papers, config)
+    stats["selected_by_source"] = dict(Counter(paper.source for paper in selected))
 
     analysis = analyze_papers(selected, config)
     if source_warnings:
@@ -118,6 +175,12 @@ def run(args: argparse.Namespace) -> int:
     return 0
 
 
+def send_email(args: argparse.Namespace) -> int:
+    config = load_config(args.config)
+    send_report_email(config, args.report, args.date or _configured_today(config))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Generate daily paper reading report.")
     subparsers = parser.add_subparsers(dest="command")
@@ -127,6 +190,10 @@ def build_parser() -> argparse.ArgumentParser:
     run_parser.add_argument("--sample", action="store_true", help="Use built-in sample papers.")
     run_parser.add_argument("--include-seen", action="store_true", help="Do not filter historical papers.")
     run_parser.add_argument("--no-llm", action="store_true", help="Skip LLM calls.")
+    email_parser = subparsers.add_parser("send-email", help="Send the generated HTML report by email.")
+    email_parser.add_argument("--config", default="config.yaml", help="Path to config YAML.")
+    email_parser.add_argument("--report", default="docs/index.html", help="Path to report HTML.")
+    email_parser.add_argument("--date", default="", help="Report date for the email subject.")
     return parser
 
 
@@ -137,5 +204,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command is None:
             args = parser.parse_args(["run", *(argv or [])])
         return run(args)
+    if args.command == "send-email":
+        return send_email(args)
     parser.print_help()
     return 1
