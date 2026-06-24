@@ -1,6 +1,7 @@
 import unittest
 
 from paper_reading.filters import rank_and_filter
+from paper_reading.feedback import Feedback
 from paper_reading.models import Paper
 
 
@@ -99,6 +100,20 @@ class FilterTests(unittest.TestCase):
         self.assertEqual([paper.id for paper in ranked], ["nature-topic"])
         self.assertEqual(stats["keyword_optional_included"], 1)
         self.assertEqual(stats["keyword_filtered"], 1)
+
+    def test_rank_and_filter_uses_feedback_score(self):
+        config = {
+            "filters": {"require_keywords": False, "keywords": [], "exclude_keywords": []},
+            "ranking": {"source_priority": {"arxiv": 10}},
+            "feedback": {"rating_weights": {"star": 50}},
+        }
+        papers = [
+            Paper(id="plain", source="arxiv", title="Plain", score=0),
+            Paper(id="starred", source="arxiv", title="Starred", score=0),
+        ]
+        feedback = Feedback(ratings={"starred": "star"})
+        ranked, _ = rank_and_filter(papers, config, feedback)
+        self.assertEqual(ranked[0].id, "starred")
 
 
 if __name__ == "__main__":

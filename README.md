@@ -8,6 +8,9 @@
 - OpenAI-compatible LLM 总结
 - GitHub Actions 每日更新
 - GitHub Pages HTML 报告
+- Gmail 邮件报告
+- GitHub Issue 反馈排序
+- 每日可做研究点生成
 
 ## 快速开始
 
@@ -54,6 +57,36 @@ selection:
 如果你想先看所有论文，把 `require_keywords` 改为 `false`，或者把 `keywords` 设为空列表。
 
 `keyword_optional_sources` 会让指定来源即使没有命中关键词也能进入候选池；`source_minimums` 会尽量为指定来源保留名额。默认配置会优先保证 Nature 和 Science 主刊在报告里有一定占比。
+
+## 个人反馈
+
+每篇论文标题旁边有 `⭐`、`👍`、`👎`、`已读` 四个反馈按钮。按钮会打开一个预填好的 GitHub Issue；提交后，下一次 GitHub Actions 会读取这些 issue，并把反馈用于排序：
+
+- `⭐` 和 `👍` 会提高相似关键词、相同来源、同一论文的权重。
+- `👎` 会降低相似关键词和相同来源的权重。
+- `已读` 会轻微降低同一论文再次进入报告的优先级。
+
+默认使用仓库 issue，不需要额外服务。配置在 `feedback` 段：
+
+```yaml
+feedback:
+  enabled: true
+  github_repo: hobolee/paper_reading
+  issue_label: paper-feedback
+```
+
+也可以手动维护 `data/feedback.json`，适合快速给关键词或来源加权。
+
+## 可做研究点
+
+报告会在主题线索后生成“可做研究点”，每个点包含：
+
+- idea：可以尝试的研究问题
+- why：为什么值得做
+- first_step：最小下一步实验或阅读动作
+- risk：主要不确定性
+
+如果 LLM 调用失败，系统也会基于题名、摘要和关键词生成保守版 research ideas，不再只输出模板空话。
 
 ## 配置 LLM
 

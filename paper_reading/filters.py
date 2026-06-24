@@ -5,6 +5,7 @@ from datetime import date, datetime, timezone
 from collections.abc import Iterable
 from typing import Any
 
+from paper_reading.feedback import Feedback, feedback_score
 from paper_reading.models import Paper
 
 
@@ -103,7 +104,12 @@ def _recency_score(paper: Paper) -> float:
     return 1.0
 
 
-def _score_paper(paper: Paper, matches: list[str], config: dict[str, Any]) -> float:
+def _score_paper(
+    paper: Paper,
+    matches: list[str],
+    config: dict[str, Any],
+    feedback: Feedback | None = None,
+) -> float:
     source_priority = config.get("ranking", {}).get("source_priority", {})
     title_matches = _keyword_matches(paper.title, matches)
     abstract_matches = _keyword_matches(paper.abstract, matches)
@@ -113,6 +119,7 @@ def _score_paper(paper: Paper, matches: list[str], config: dict[str, Any]) -> fl
         + len(title_matches) * 4.0
         + len(abstract_matches) * 1.5
         + _recency_score(paper)
+        + (feedback_score(paper, feedback, config) if feedback else 0.0)
     )
 
 
@@ -128,7 +135,11 @@ def dedupe_papers(papers: list[Paper]) -> list[Paper]:
     return unique
 
 
-def rank_and_filter(papers: list[Paper], config: dict[str, Any]) -> tuple[list[Paper], dict[str, Any]]:
+def rank_and_filter(
+    papers: list[Paper],
+    config: dict[str, Any],
+    feedback: Feedback | None = None,
+) -> tuple[list[Paper], dict[str, Any]]:
     filters_cfg = config.get("filters", {})
     keyword_groups = _normalize_keyword_groups(filters_cfg.get("keywords"))
     keywords = _flatten_keyword_groups(keyword_groups)
@@ -179,7 +190,7 @@ def rank_and_filter(papers: list[Paper], config: dict[str, Any]) -> tuple[list[P
             optional_included_by_source[paper.source] += 1
             matches = []
         paper.keyword_matches = matches
-        paper.score = _score_paper(paper, matches, config)
+        paper.score = _score_paper(paper, matches, config, feedback)
         filtered.append(paper)
 
     stats["deduped"] = sum(deduped_by_source.values())

@@ -28,6 +28,19 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "selection": {
         "source_minimums": {},
     },
+    "feedback": {
+        "enabled": True,
+        "github_issues_enabled": True,
+        "github_repo": "",
+        "issue_label": "paper-feedback",
+        "local_file": "data/feedback.json",
+        "rating_weights": {
+            "star": 22,
+            "like": 14,
+            "read": -4,
+            "dislike": -28,
+        },
+    },
     "ranking": {
         "source_priority": {"nature": 20, "science": 20, "arxiv": 10},
     },

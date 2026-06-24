@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: read
   pages: write
   id-token: write
 
@@ -37,6 +38,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: python -m paper_reading run
 
       - name: Commit generated report

@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from paper_reading.feedback import feedback_issue_url
 from paper_reading.models import Paper
 
 
@@ -212,6 +213,36 @@ h1 {
   letter-spacing: 0;
 }
 
+.paper-title-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.feedback-action {
+  min-width: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #ffffff;
+  color: #34383c;
+  font-size: 13px;
+  text-align: center;
+}
+
+.feedback-action:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+}
+
 .authors {
   color: var(--muted);
   font-size: 14px;
@@ -247,6 +278,34 @@ h1 {
   color: #3b4044;
 }
 
+.idea-list {
+  display: grid;
+  gap: 12px;
+}
+
+.idea-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.68);
+  padding: 14px 16px;
+}
+
+.idea-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #1f4e63;
+}
+
+.idea-item p {
+  margin: 6px 0 0;
+  color: #34383c;
+}
+
+.idea-item span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .footer {
   padding: 24px 0 36px;
   color: var(--muted);
@@ -263,8 +322,13 @@ h1 {
 @media (max-width: 760px) {
   .topbar-inner,
   .viz-grid,
-  .note-grid {
+  .note-grid,
+  .paper-title-row {
     grid-template-columns: 1fr;
+  }
+
+  .feedback-actions {
+    justify-content: flex-start;
   }
 
   .topbar-inner {
@@ -355,6 +419,34 @@ def _render_themes(themes: list[Any]) -> str:
     return '<div class="chips">' + "\n".join(chips) + "</div>"
 
 
+def _render_research_ideas(ideas: list[Any]) -> str:
+    if not ideas:
+        return '<p class="empty">暂无可做研究点。</p>'
+    rows = []
+    for idea in ideas[:6]:
+        if isinstance(idea, dict):
+            title = idea.get("idea") or idea.get("title") or ""
+            why = idea.get("why") or ""
+            first_step = idea.get("first_step") or ""
+            risk = idea.get("risk") or ""
+        else:
+            title = str(idea)
+            why = ""
+            first_step = ""
+            risk = ""
+        rows.append(
+            f"""
+            <div class="idea-item">
+              <strong>{_esc(title)}</strong>
+              {f'<p>{_esc(why)}</p>' if why else ''}
+              {f'<p><span>第一步：</span>{_esc(first_step)}</p>' if first_step else ''}
+              {f'<p><span>风险：</span>{_esc(risk)}</p>' if risk else ''}
+            </div>
+            """
+        )
+    return '<div class="idea-list">' + "\n".join(rows) + "</div>"
+
+
 def _paper_note(analysis: dict[str, Any], paper: Paper) -> dict[str, str]:
     notes = analysis.get("papers") if isinstance(analysis.get("papers"), dict) else {}
     note = notes.get(paper.id) if isinstance(notes.get(paper.id), dict) else {}
@@ -366,7 +458,25 @@ def _paper_note(analysis: dict[str, Any], paper: Paper) -> dict[str, str]:
     }
 
 
-def _render_paper(paper: Paper, analysis: dict[str, Any], index: int) -> str:
+def _render_feedback_actions(config: dict[str, Any], paper: Paper) -> str:
+    actions = [
+        ("star", "⭐", "稍后读"),
+        ("like", "👍", "有用"),
+        ("dislike", "👎", "无关"),
+        ("read", "已读", "已读"),
+    ]
+    links = []
+    for rating, label, title in actions:
+        url = feedback_issue_url(config, paper, rating)
+        if not url:
+            continue
+        links.append(
+            f'<a class="feedback-action" href="{_esc(url)}" target="_blank" rel="noopener" title="{_esc(title)}">{_esc(label)}</a>'
+        )
+    return '<div class="feedback-actions">' + "\n".join(links) + "</div>" if links else ""
+
+
+def _render_paper(paper: Paper, analysis: dict[str, Any], index: int, config: dict[str, Any]) -> str:
     note = _paper_note(analysis, paper)
     link = paper.url or paper.pdf_url
     doi_part = f' · DOI: <a href="https://doi.org/{_esc(paper.doi)}">{_esc(paper.doi)}</a>' if paper.doi else ""
@@ -380,7 +490,10 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int) -> str:
         <span>{_esc(paper.published or paper.updated or "日期暂无")}</span>
         <span>Score {_esc(f"{paper.score:.1f}")}</span>
       </div>
-      <h3>{index}. <a href="{_esc(link)}">{_esc(paper.title)}</a></h3>
+      <div class="paper-title-row">
+        <h3>{index}. <a href="{_esc(link)}">{_esc(paper.title)}</a></h3>
+        {_render_feedback_actions(config, paper)}
+      </div>
       <div class="authors">{_esc(_short_authors(paper.authors))}{doi_part}{pdf_part}</div>
       {_render_chips(keywords) if paper.keyword_matches else ""}
       <div class="note-grid">
@@ -467,7 +580,9 @@ def write_report(
     source_counter = _source_counts(papers)
     fetched_source_counter = _counter_from_mapping(stats.get("fetched_by_source"))
     keyword_counter = _keyword_counts(papers)
-    paper_cards = "\n".join(_render_paper(paper, analysis, idx + 1) for idx, paper in enumerate(papers))
+    paper_cards = "\n".join(
+        _render_paper(paper, analysis, idx + 1, config) for idx, paper in enumerate(papers)
+    )
     if not paper_cards:
         paper_cards = f'<div class="empty">{_esc(_empty_paper_message(stats))}</div>'
 
@@ -529,6 +644,13 @@ def write_report(
       <div class="shell">
         <h2>主题线索</h2>
         {_render_themes(analysis.get("themes") if isinstance(analysis.get("themes"), list) else []) or '<p class="empty">暂无主题聚类。</p>'}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>可做研究点</h2>
+        {_render_research_ideas(analysis.get("research_ideas") if isinstance(analysis.get("research_ideas"), list) else [])}
       </div>
     </section>
 

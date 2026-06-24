@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 from paper_reading.config import load_config
 from paper_reading.emailer import send_report_email
+from paper_reading.feedback import load_feedback
 from paper_reading.filters import rank_and_filter
 from paper_reading.llm import analyze_papers
 from paper_reading.models import Paper
@@ -142,8 +143,11 @@ def run(args: argparse.Namespace) -> int:
 
     run_date = args.date or _configured_today(config)
     fetched, source_warnings = (_sample_papers(), []) if args.sample else _fetch_all(config)
-    ranked, stats = rank_and_filter(fetched, config)
+    feedback = load_feedback(config)
+    ranked, stats = rank_and_filter(fetched, config, feedback)
     stats["source_warnings"] = len(source_warnings)
+    stats["feedback_issue_count"] = feedback.issue_count
+    stats["feedback_warnings"] = len(feedback.warnings)
 
     max_papers = int(config.get("daily", {}).get("max_papers") or 20)
     dedupe_history = bool(config.get("daily", {}).get("dedupe_history", True))
@@ -160,6 +164,9 @@ def run(args: argparse.Namespace) -> int:
     if source_warnings:
         analysis.setdefault("warnings", [])
         analysis["warnings"].extend(source_warnings)
+    if feedback.warnings:
+        analysis.setdefault("warnings", [])
+        analysis["warnings"].extend(feedback.warnings)
 
     paths = write_report(config, run_date, selected, analysis, stats)
     save_daily_json(config, run_date, selected, analysis, stats)
