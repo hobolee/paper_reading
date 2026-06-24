@@ -67,7 +67,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
         "base_url": "https://api.openai.com/v1",
         "model": "gpt-4.1-mini",
         "temperature": 0.2,
-        "timeout_seconds": 180,
+        "timeout_seconds": 600,
         "retry_attempts": 3,
         "retry_backoff_seconds": 8,
         "max_input_chars_per_paper": 1200,
