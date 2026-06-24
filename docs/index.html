@@ -21,12 +21,12 @@
       <div class="shell">
         <div class="eyebrow">2026-06-24 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天没有检索到符合条件的新论文。</p>
+        <p class="summary">今天筛选出 20 篇论文，来源包括Nature、Science。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。</p>
         <div class="metrics">
-          <div class="metric"><strong>300</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>7</strong><span>过滤后候选</span></div>
-          <div class="metric"><strong>0</strong><span>进入报告</span></div>
-          <div class="metric"><strong>0</strong><span>来源数量</span></div>
+          <div class="metric"><strong>447</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>154</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>20</strong><span>进入报告</span></div>
+          <div class="metric"><strong>2</strong><span>来源数量</span></div>
         </div>
       </div>
     </section>
@@ -35,11 +35,29 @@
       <div class="shell viz-grid">
         <div>
           <h2>入选来源</h2>
-          <p class="empty">暂无来源分布。</p>
+          
+            <div class="bar-row">
+              <div class="bar-label">Science</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">16</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Nature</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 25%"></div></div>
+              <div class="bar-count">4</div>
+            </div>
+            
         </div>
         <div>
           <h2>关键词命中</h2>
-          <p class="empty">没有关键词命中；可以在配置中调整关键词或关闭强制关键词过滤。</p>
+          <div class="chips"><span class="chip">deep learning <strong>2</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">atmospheric <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -52,6 +70,20 @@
               <div class="bar-label">arxiv</div>
               <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
               <div class="bar-count">300</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">science</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 31%"></div></div>
+              <div class="bar-count">92</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">nature</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 18%"></div></div>
+              <div class="bar-count">55</div>
             </div>
             
       </div>
@@ -67,13 +99,396 @@
     <section class="section">
       <div class="shell">
         <h2>论文列表</h2>
-        <div class="paper-list"><div class="empty">今天抓取到 300 篇论文，但当前关键词规则过滤掉了 293 篇。可以扩展关键词、增加 arXiv 分类，或临时关闭强制关键词过滤。</div></div>
+        <div class="paper-list">
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-06-10</span>
+        <span>Score 49.0</span>
+      </div>
+      <h3>1. <a href="https://doi.org/10.1038/s41586-026-10611-7">Deep learning four decades of human migration</a></h3>
+      <div class="authors">Thomas Gaskin、Guy J. Abel · DOI: <a href="https://doi.org/10.1038/s41586-026-10611-7">10.1038/s41586-026-10611-7</a></div>
+      <div class="chips"><span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Nature，关键词匹配：deep learning、neural network、environmental。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Abstract Human migration is a fundamental driver of global demographic change, shaping population structure, labour markets and social policy across countries 1–3 . Although long-term migration patterns are often linked to economic development 4 , they can shift rapidly in response to shocks such as conflict, environmental crises and political change 5 . Despite its importance, migration remains difficult to measure consistently: existing data are sparse, concentrated in high-income settings and are fragmented across incompatible definitions, temporal resolutions and data types 6–8 . Past efforts have relied on partial datasets, including flow records, stock estimates and model-based reconstructions with limited coverage 9–14 . A central challenge is therefore to construct a globally consistent, high-resolution account of migration flows over time. Here we present a new dataset of annual origin-destination migration across 230 countries and regions from 1990 to the present, integrating diverse data sources into a unified modelling framework. By combining official statistics, census-based stocks, net migration estimates and past flow reconstructions, our approach produces temporally detailed and spatially comprehensive estimates that substantially extend existing resources. Using an ensemble of deep recurrent neural networks informed by geographic, economic, cultural and political covariates, we capture both persistent trends and short-term responses to changing conditions—all while propagating uncertainty to generate confidence bounds. Our results outperform existing five-year flow estimates on held-out data and provide finer temporal resolution, revealing previously obscured dynamics in global migration patterns. This framework highlights regions in which uncertainty remains high and data collection is most urgently needed. By releasing all data, code and trained models, we provide a transparent and reproducible foundation for future work. These advances enable a more timely and detailed understanding of human mobility, with implications for research and policy in an increasingly dynamic global system.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-04</span>
+        <span>Score 43.0</span>
+      </div>
+      <h3>2. <a href="https://doi.org/10.1126/science.aed3197">Fires reverse progress toward ozone air quality standards in the United States</a></h3>
+      <div class="authors">Weizhi Deng、Jun Wang、Meng Zhou、Xi Chen 等 12 人 · DOI: <a href="https://doi.org/10.1126/science.aed3197">10.1126/science.aed3197</a></div>
+      <div class="chips"><span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：deep learning、climate。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Recent surges in wildfire emissions have exacerbated surface ozone pollution in the United States. Using deep learning, we developed a gapless daily surface ozone dataset at 1-kilometer resolution for 2003–2024. This dataset revealed a reversal in national policy–relevant ozone trends that had gone undetected by the sparse monitoring network: from −0.65 parts per billion (ppb) per year (2003–2015) to +0.13 ppb per year (2015–2024). The reversal was primarily driven by increasing wildfire emissions, offsetting 3.9 years of mitigation progress. Premature deaths from fire-sourced ozone have increased by 318 deaths per year since 2013, with post-2013 mortality 46% higher than pre-2013 mortality. During 2022–2024, wildfire emissions exposed 43 million people to nonattainment conditions, effectively preventing a 4-ppb tightening of the ozone standard. These results underscore the growing challenges of sustaining air quality progress as wildfires intensify under climate change.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-04</span>
+        <span>Score 43.0</span>
+      </div>
+      <h3>3. <a href="https://doi.org/10.1126/science.aed6068">Photocatalyzed oxidative cleavage of alkenes using CO 2 as an oxygen donor</a></h3>
+      <div class="authors">Yuman Qin、Peng Ren、Jun Hu、Suman Pradhan 等 20 人 · DOI: <a href="https://doi.org/10.1126/science.aed6068">10.1126/science.aed6068</a></div>
+      <div class="chips"><span class="chip">agent <strong>1</strong></span>
+<span class="chip">atmospheric <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：agent、atmospheric。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Oxidative cleavage of carbon-carbon double bonds often requires hazardous reagents and demanding conditions. In this study, we report a photocatalytic oxidative cleavage of alkenes using benign carbon dioxide (CO 2 ) as an oxygen donor, producing ketones or carboxylic acids at atmospheric pressure and room temperature. A robust iron-based heterogeneous photocatalyst facilitates oxygen transfer to form an epoxide intermediate that subsequently undergoes ring opening and carbon-carbon bond cleavage to yield the oxidative products with high selectivity. Comprehensive mechanistic studies combine time-resolved spectroscopy, isotope labeling, and in situ spectroscopic analyses with advanced quantum mechanical simulations. These results uncover fundamental principles of oxygen transfer from CO 2 under photocatalytic conditions, offering a sustainable platform for light-driven oxidative transformations.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-06-22</span>
+        <span>Score 40.0</span>
+      </div>
+      <h3>4. <a href="https://doi.org/10.1038/s41586-026-10807-x">C-glycoside synthesis via radical cross-coupling of glycohydrazides</a></h3>
+      <div class="authors">Yinliang Guo、Yiheng Li、Benedikt Buchberger、Yixin Liu 等 13 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-10807-x">10.1038/s41586-026-10807-x</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Nature，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-06-22</span>
+        <span>Score 40.0</span>
+      </div>
+      <h3>5. <a href="https://doi.org/10.1038/s41586-026-10800-4">Stereoretentive decarbonylative C(sp3)-C(sp3) cross-coupling</a></h3>
+      <div class="authors">Zhidao Huang、Tianrui Wu、Zehao Yuan、Chuxiong Meng 等 8 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-10800-4">10.1038/s41586-026-10800-4</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Nature，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>6. <a href="https://doi.org/10.1126/science.aei6084">Violet seed propulsion inspires robot design</a></h3>
+      <div class="authors">S. N. Patek · DOI: <a href="https://doi.org/10.1126/science.aei6084">10.1126/science.aei6084</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Comparative analysis of seed biomechanics reveals principles that can guide soft robot technology</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>7. <a href="https://doi.org/10.1126/science.aeb7635">Direct development of stem tetrapods across the fin-to-limb transition</a></h3>
+      <div class="authors">Jason D. Pardo、Arjan Mann · DOI: <a href="https://doi.org/10.1126/science.aeb7635">10.1126/science.aeb7635</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Modern amphibians are characterized by an aquatic larval stage that ends abruptly with a period of widespread tissue remodeling (metamorphosis) upon transition to terrestrial adulthood. A transient larval stage ending in gradual metamorphosis is often assumed for the earliest digited tetrapods, but direct evidence of this larval stage is lacking. Exceptionally preserved stem tetrapod hatchlings show that a transient larval stage was absent in tetrapods both before and after the fin-to-limb transition; instead we identified soft- and hard-tissue evidence of direct development, falsifying hypotheses of an ancestral origin of metamorphosis or of a gradual larval-postlarval transition serving as a template for lissamphibian metamorphosis. We argue that a transient larval period culminating in metamorphosis originated near or within the tetrapod crown group as part of a broader suite of traits associated with terrestrialization.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>8. <a href="https://doi.org/10.1126/science.aec4190">ScS-triggered slip on megathrust interfaces after the 2011 M W 9.0 Tohoku-Oki earthquake</a></h3>
+      <div class="authors">Sunyoung Park、Hiroo Kanamori、Luis Rivera · DOI: <a href="https://doi.org/10.1126/science.aec4190">10.1126/science.aec4190</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">We report an extraordinary observation of ground motion in Japan after the moment magnitude ( M W ) 9.0 2011 Tohoku-Oki earthquake attributed to a multiplate-interface slip event triggered by shear wave that traveled to the Earth’s core and back. The megathrust earthquake generated a strong ScS phase with a peak-to-peak amplitude exceeding 1 centimeter in Japan. Superposed on this waveform, an eastward steplike displacement of up to 5 to 6 millimeters was recorded in Global Navigation Satellite System (GNSS) data throughout Japan. This likely originated from slip on the megathrust interfaces triggered by the nearly simultaneous arrival of the ScS wave across Japan. Such an ScS triggering is a previously unrecognized source of seismic hazard, which can potentially (re)activate the mainshock area and the broader surrounding megathrust interfaces.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>9. <a href="https://doi.org/10.1126/science.aeb6410">Decoupling of global metabolic flux and proteome partitioning in bacteria</a></h3>
+      <div class="authors">Ryan Thiermann、Jin Yang、Aniket Zodage、Fukang She 等 18 人 · DOI: <a href="https://doi.org/10.1126/science.aeb6410">10.1126/science.aeb6410</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Bacteria regulate homeostatic growth by adjusting proteome composition. In Escherichia coli , this coordination is mediated by guanosine tetraphosphate and pentaphosphate, collectively termed (p)ppGpp, which couple amino acid supply with ribsosome production. We identified a distinct architecture in Bacillus subtilis , in which guanosine triphosphate (GTP), not (p)ppGpp, controls proteome allocation. Translational inhibition resulted in GTP depletion and suppressed amino acid biosynthesis through feedback inhibition without altering ribosome abundance, establishing a regulated decoupling between total amino acid flux and proteome composition, with flux deviating from proteome-based predictions. By artificially adjusting GTP concentrations, we recoupled flux and proteome, restoring growth to maximal amounts. The regulated suboptimality enables a trade-off to balance growth and stress resilience. Similar GTP-based strategies were present in other Firmicute species, indicating possible evolutionary conservation. Proteome composition and metabolic flux have distinct regulatory layers in some bacteria.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>10. <a href="https://doi.org/10.1126/science.aea2535">Lamprey 3D single-cell transcriptomics reveals ancestral and specialized features of the vertebrate brain</a></h3>
+      <div class="authors">Haixu Wu、Duoyuan Chen、Jun Li、Tao Zhou 等 29 人 · DOI: <a href="https://doi.org/10.1126/science.aea2535">10.1126/science.aea2535</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">The lamprey occupies a pivotal position for elucidating vertebrate brain evolution. Using spatial transcriptomics and single-nucleus RNA sequencing, we generated a three-dimensional molecular atlas of the lamprey brain, identifying 209 distinct cell clusters across 14 regions. Cross-species comparisons revealed broad conservation of regional spatial architecture, defining an ancestral organizational blueprint. Within this conserved framework, however, marked lineage-specific divergence emerged. We observed extensive neuronal specialization across vertebrate lineages, accompanied by regulatory shifts associated with spatial reorganization and functional diversification of neuronal populations. Additionally, our results suggest that a cerebellum-like architecture predates the jawed vertebrate cerebellum. Together, these findings identified constraints on neural organization and detected cellular innovations driving evolutionary diversification.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>11. <a href="https://doi.org/10.1126/science.aea4041">Maternal trans-vaccenic acid shapes neonatal T cell development and early-life immune imprinting</a></h3>
+      <div class="authors">Hao Fan、Zhong Zheng、Kaitlyn Oliphant、Jiacheng Li 等 29 人 · DOI: <a href="https://doi.org/10.1126/science.aea4041">10.1126/science.aea4041</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">How maternal nutrition influences neonatal immune development and imprinting through breastfeeding remains largely unclear. We report that maternal supplementation with trans-vaccenic acid (TVA), the predominant naturally occurring trans-fatty acid in human breast milk, promoted neonatal T cell development in mice. Neonates fed by mothers on a TVA-enriched diet showed an expanded naïve cluster of differentiation 4 (CD4 + ) T cell population and enhanced adaptive immunity against infection. TVA reprogrammed neonatal naïve CD4 + T cells through a G protein–coupled receptor–CCCTC-binding factor axis and promoted T helper cells (Th1)–skewing by cooperating with the transcription factor TBX21. Early-life exposure to maternal TVA via breastfeeding supported long-lasting antiviral immunity in adulthood. Our findings establish the multifaceted benefits of maternal nutrition and breastfeeding via TVA in promoting infant immune homeostasis and protective immunity.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>12. <a href="https://doi.org/10.1126/science.aef0941">Tracking the roots of zoonoses</a></h3>
+      <div class="authors">Felix M. Key · DOI: <a href="https://doi.org/10.1126/science.aef0941">10.1126/science.aef0941</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Ancient pathogen DNA from animals elucidates the origin and evolution of infectious diseases</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>13. <a href="https://doi.org/10.1126/science.aei3106">An HIV vaccine blueprint</a></h3>
+      <div class="authors">James Binley · DOI: <a href="https://doi.org/10.1126/science.aei3106">10.1126/science.aei3106</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">The infection of rhesus macaques with a chimeric virus uncovers a recipe for broadly neutralizing antibodies</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>14. <a href="https://doi.org/10.1126/science.aef4214">Scientific computing in an AI world</a></h3>
+      <div class="authors">Jack Dongarra、Daniel Reed、Dennis Gannon · DOI: <a href="https://doi.org/10.1126/science.aef4214">10.1126/science.aef4214</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Scientific computing must integrate AI with simulation and focus on energy-efficient methods and systems</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>15. <a href="https://doi.org/10.1126/science.aef5355">Indium-free perovskite/silicon tandem solar cells with tin oxide recombination layer and electrodes</a></h3>
+      <div class="authors">Wei Shi、Shibo Wang、Shumao Wang、Yue Zhang 等 30 人 · DOI: <a href="https://doi.org/10.1126/science.aef5355">10.1126/science.aef5355</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Indium-based transparent conductive oxides are widely used as electrodes and recombination layers in perovskite/silicon tandem solar cells, yet their scalability is constrained by indium scarcity and sputtering-induced damage. Here we report high efficiency and stable indium-free perovskite/silicon tandem solar cells enabled by reactive plasma deposited tin oxide (RPD-SnO x ). For RPD-SnO x as the recombination layer, a certified efficiency of 33.6% is achieved. Fully indium-free tandems that used RPD-SnO x as both recombination layer and electrodes delivering a champion PCE of 33.2% (1 cm 2 ) and a mini-module with a certified efficiency of 31.0% (207.9 cm 2 ). Dense and uniform self-assembled monolayer anchoring enabled by RPD-SnO x suppressed non-radiative recombination and reduced halide migration. Indium-free mini-modules exhibited high thermal, damp-heat, and outdoor operational stability and retained 65% of their maximum initial efficiency after 105 days of outdoor operation.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>16. <a href="https://doi.org/10.1126/science.aei4111">A metastable solid solution transforms into complex nanostructures</a></h3>
+      <div class="authors">Wenhao Sun、Amit Misra · DOI: <a href="https://doi.org/10.1126/science.aei4111">10.1126/science.aei4111</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Instability in a high-entropy alloy drives structural changes that strengthen the alloy</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>17. <a href="https://doi.org/10.1126/science.adx1369">Brain-wide topographic coordination of rotating waves</a></h3>
+      <div class="authors">Zhiwen Ye、Alexander E. Ladd、Nancy MacKenzie、Ljuvica Kolich 等 11 人 · DOI: <a href="https://doi.org/10.1126/science.adx1369">10.1126/science.adx1369</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">Patterns of brain activity moving in waves occur across brain regions and species, yet their spatial organization, anatomical basis, and brain-wide distribution remain unclear. Using cortex-wide imaging and electrophysiology in awake mice, we revealed a prominent wave motif across spatial scales. Waves frequently formed rotational patterns centered on somatosensory cortex and sweeping across somatotopic maps. Axonal architecture within sensory cortex exhibited a matching circular arrangement. Rotating waves were mirrored between hemispheres and between sensory and motor cortex and were coordinated with subcortical spiking. Bilaterally cutting the circular circuitry diminished rotating waves. Rotating waves were modulated across behavioral states, evoked by sensory inputs, and recruited during correct visuomotor performance. These results establish that rotating waves are sculpted by axonal architecture across diverse brain systems and behavioral contexts.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>18. <a href="https://doi.org/10.1126/science.adt9347">Dynamic asymmetric strain imprinted into substrates by an oxide thin film</a></h3>
+      <div class="authors">Elliot Kisiel、Alexandre Pofelski、Pavel Salev、Erbin Qiu 等 19 人 · DOI: <a href="https://doi.org/10.1126/science.adt9347">10.1126/science.adt9347</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">In film-substrate systems, the substrate role is often considered to be limited to providing static mechanical constraints. Dynamic film-substrate interactions when a structural change in the film modifies the substrate are generally disregarded. Using combined X-ray and electron microscopies, we observed that the electrically induced filament in a VO 2 film created strong asymmetric strain in the underlying Al 2 O 3 substate. This asymmetric substrate strain fed back into the film and defined the filament expansion direction, revealing the importance of film-substrate dynamic interactions in determining film functionality. Furthermore, the strain imprint propagated at least tens of microns deep into the substrate, exceeding the film thickness more than 200 times, potentially enabling substrate functionalization as an active mechanical coupling media in 3D-integrated microelectronics architectures.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-18</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>19. <a href="https://doi.org/10.1126/science.aec0503">The Lucy flyby of (52246) Donaldjohanson: A bilobed asteroid with tumbling rotation</a></h3>
+      <div class="authors">Simone Marchi、Harold F. Levison、Keith S. Noll、John R. Spencer 等 66 人 · DOI: <a href="https://doi.org/10.1126/science.aec0503">10.1126/science.aec0503</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Science，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      <p class="abstract">The main belt asteroid (52246) Donaldjohanson (DJ) is a likely member of the Erigone asteroid family. This implies that DJ is a fragment of a larger parent body that was destroyed in a collision about 155 million years ago. We report observations taken during a flyby of DJ by the Lucy spacecraft. We found that DJ is composed of two heavily cratered lobes, connected by a smoother neck, with overall dimensions 8.8 kilometers (km) by 4.4 km by 3.1 km. The crater density is consistent with the Erigone family’s age, except for craters &lt;0.4 km, which have been preferentially erased. DJ rotates slowly in a tumbling state, likely owing to spin-down by radiative forces. Surface spectra show iron-bearing phyllosilicates, indicating moderate aqueous evolution on the parent body.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-06-17</span>
+        <span>Score 38.0</span>
+      </div>
+      <h3>20. <a href="https://doi.org/10.1038/s41586-026-10653-x">A mosaic of whole-body representations on the human precentral gyrus</a></h3>
+      <div class="authors">Darrel R. Deo、Elizaveta V. Okorokova、Anna L. Pritchard、Nick V. Hahn 等 28 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-10653-x">10.1038/s41586-026-10653-x</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文来自 Nature，关键词匹配：未命中显式关键词。</p></div>
+        <div class="note"><strong>贡献</strong><p>需要结合论文摘要和正文进一步判断核心贡献。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果它与你当前关注的关键词或来源优先级一致，可以优先打开原文浏览摘要、图表和实验设置。</p></div>
+        <div class="note"><strong>注意点</strong><p>当前报告没有读取全文；题录元数据可能不足以判断方法细节和结论强度。</p></div>
+      </div>
+      
+    </article>
+    </div>
       </div>
     </section>
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-06-24 08:28。No papers were selected after filtering; skipped LLM analysis. journals fetch failed: HTTP 500 for https://api.crossref.org/journals/1476-4687/works?rows=200&amp;sort=published&amp;order=desc&amp;filter=type%3Ajournal-article%2Cfrom-pub-date%3A2026-05-25: {&quot;status&quot;:&quot;error&quot;,&quot;message-type&quot;:&quot;exception&quot;,&quot;message-version&quot;:&quot;1.0.0&quot;,&quot;message&quot;:{&quot;name&quot;:&quot;class clojure.lang.ExceptionInfo&quot;,&quot;description&quot;:&quot;clojure.lang.ExceptionInfo: Response Exception qbits.spandex.Response@4635a05e&quot;,&quot;message&quot;:&quot;Response Exception&quot;,&quot;stack&quot;:[&quot;qbits.spandex$response_ex__GT_ex_info.invokeStatic(spandex.clj:218)&quot;,&quot;qbits.spandex$response_ex__GT_ex_info.invoke(spandex.clj:215)&quot;,&quot;qbits.spandex$fn__16211.invokeStatic(spandex.clj:227)&quot;,&quot;qbits.spandex$fn__16211.invoke(spandex.clj:225)&quot;,&quot;
+      生成时间：2026-06-24 09:12。LLM call failed: timed out
     </div>
   </footer>
 </body>
