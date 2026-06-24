@@ -7,7 +7,7 @@ from typing import Any
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "daily": {
-        "max_papers": 20,
+        "max_papers": 10,
         "lookback_days": 7,
         "timezone": "Asia/Shanghai",
         "dedupe_history": True,
@@ -68,8 +68,9 @@ DEFAULT_CONFIG: dict[str, Any] = {
         "model": "gpt-4.1-mini",
         "temperature": 0.2,
         "timeout_seconds": 600,
-        "retry_attempts": 3,
+        "retry_attempts": 1,
         "retry_backoff_seconds": 8,
+        "max_consecutive_failures": 2,
         "max_input_chars_per_paper": 1200,
     },
     "email": {

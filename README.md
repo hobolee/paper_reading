@@ -31,7 +31,7 @@ python -m paper_reading run --sample --no-llm --include-seen
 
 ```yaml
 daily:
-  max_papers: 20
+  max_papers: 10
 
 filters:
   require_keywords: true
@@ -100,13 +100,16 @@ export OPENAI_MODEL="gpt-4.1-mini"
 
 也可以使用 `LLM_API_KEY`、`LLM_BASE_URL`、`LLM_MODEL`。如果没有 API key，系统会生成一个基于题录和摘要的保守版报告。
 
+LLM 分析默认按论文逐篇调用：每篇论文先生成独立阅读笔记，最后再用这些短笔记做每日总览、主题线索和可做研究点。这样不会把所有论文和摘要一次性塞给模型，单篇失败也不会拖垮整份报告。
+
 如果报告底部出现 `LLM call failed: timed out`，通常表示模型或代理在超时时间内没有返回完整结果。可以调大这些参数：
 
 ```yaml
 llm:
   timeout_seconds: 600
-  retry_attempts: 3
+  retry_attempts: 1
   retry_backoff_seconds: 8
+  max_consecutive_failures: 2
   max_input_chars_per_paper: 1200
 ```
 

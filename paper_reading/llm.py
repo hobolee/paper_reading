@@ -179,6 +179,196 @@ def _post_chat_completion(
     ) from last_exc
 
 
+def _chat_json(
+    endpoint: str,
+    api_key: str,
+    model: str,
+    messages: list[dict[str, str]],
+    temperature: float,
+    timeout_seconds: int,
+    retry_attempts: int,
+    retry_backoff_seconds: float,
+) -> dict[str, Any]:
+    body = {
+        "model": model,
+        "messages": messages,
+        "temperature": temperature,
+    }
+    data = _post_chat_completion(
+        endpoint,
+        api_key,
+        body,
+        timeout_seconds,
+        retry_attempts,
+        retry_backoff_seconds,
+    )
+    content = data["choices"][0]["message"]["content"]
+    return _extract_json(content)
+
+
+def _normalize_paper_note(result: dict[str, Any], paper: Paper) -> dict[str, str]:
+    note = result.get("paper") if isinstance(result.get("paper"), dict) else result
+    if not isinstance(note, dict):
+        note = {}
+    fallback = _metadata_note(paper)
+    normalized: dict[str, str] = {}
+    for key in ("summary", "contribution", "why_read", "limitations"):
+        normalized[key] = str(note.get(key) or fallback[key])
+    return normalized
+
+
+def _analyze_single_paper(
+    paper: Paper,
+    endpoint: str,
+    api_key: str,
+    model: str,
+    temperature: float,
+    timeout_seconds: int,
+    retry_attempts: int,
+    retry_backoff_seconds: float,
+    max_chars: int,
+) -> dict[str, str]:
+    prompt_payload = {
+        "paper": _paper_payload([paper], max_chars)[0],
+        "instructions": {
+            "language": "zh-CN",
+            "style": "面向科研人员的单篇论文阅读笔记",
+            "paper_notes": (
+                "只根据提供的题名、来源、摘要、关键词和元数据分析。"
+                "summary、contribution、why_read、limitations 都必须尽量落到具体对象、方法、数据、现象或任务上。"
+                "不要输出泛泛模板句；如果摘要为空，要明确说明信息不足。"
+            ),
+            "avoid": "不要声称读过全文；不要编造实验结果；不要输出 Markdown。",
+        },
+        "required_json_schema": {
+            "summary": "一到两句中文总结，必须包含论文具体对象或任务",
+            "contribution": "核心贡献或可能贡献",
+            "why_read": "为什么值得读，结合用户关键词、来源或研究机会",
+            "limitations": "基于现有元数据需要警惕什么",
+        },
+    }
+    messages = [
+        {
+            "role": "system",
+            "content": "你是严谨的科研阅读助手。输出必须是合法 JSON，不要输出 Markdown。",
+        },
+        {"role": "user", "content": json.dumps(prompt_payload, ensure_ascii=False)},
+    ]
+    result = _chat_json(
+        endpoint,
+        api_key,
+        model,
+        messages,
+        temperature,
+        timeout_seconds,
+        retry_attempts,
+        retry_backoff_seconds,
+    )
+    return _normalize_paper_note(result, paper)
+
+
+def _analysis_from_notes(
+    papers: list[Paper],
+    paper_notes: dict[str, dict[str, str]],
+    llm_used: bool,
+    warnings: list[str] | None = None,
+) -> dict[str, Any]:
+    fallback = _fallback_analysis(papers)
+    return {
+        "daily_summary": fallback["daily_summary"],
+        "themes": fallback["themes"],
+        "research_ideas": fallback["research_ideas"],
+        "papers": paper_notes,
+        "llm_used": llm_used,
+        "warnings": list(warnings or []),
+    }
+
+
+def _summary_input(papers: list[Paper], paper_notes: dict[str, dict[str, str]]) -> list[dict[str, Any]]:
+    rows = []
+    for paper in papers:
+        note = paper_notes.get(paper.id, _metadata_note(paper))
+        rows.append(
+            {
+                "id": paper.id,
+                "source": paper.source,
+                "journal": paper.journal,
+                "title": paper.title,
+                "published": paper.published,
+                "keyword_matches": paper.keyword_matches,
+                "score": round(paper.score, 2),
+                "summary": _truncate(note.get("summary", ""), 420),
+                "contribution": _truncate(note.get("contribution", ""), 420),
+                "why_read": _truncate(note.get("why_read", ""), 360),
+                "limitations": _truncate(note.get("limitations", ""), 320),
+            }
+        )
+    return rows
+
+
+def _summarize_daily(
+    papers: list[Paper],
+    paper_notes: dict[str, dict[str, str]],
+    endpoint: str,
+    api_key: str,
+    model: str,
+    temperature: float,
+    timeout_seconds: int,
+    retry_attempts: int,
+    retry_backoff_seconds: float,
+) -> dict[str, Any]:
+    prompt_payload = {
+        "paper_analyses": _summary_input(papers, paper_notes),
+        "instructions": {
+            "language": "zh-CN",
+            "style": "面向科研人员的每日论文阅读总览",
+            "daily_summary": "综合今天这些单篇笔记，写一个高密度中文总述，指出主要方向和阅读优先级。",
+            "themes": "提炼 3-6 个主题线索，避免空泛标签。",
+            "research_ideas": (
+                "生成 3-6 个可做研究点，每个点要落到最小下一步实验、复现、数据检查、对照分析或综述整理。"
+            ),
+            "avoid": "不要声称读过全文；不要编造单篇笔记中没有的信息；不要输出 Markdown。",
+        },
+        "required_json_schema": {
+            "daily_summary": "string",
+            "themes": ["string"],
+            "research_ideas": [
+                {
+                    "idea": "可做研究点",
+                    "why": "为什么这个点值得做",
+                    "first_step": "最小下一步实验或阅读动作",
+                    "risk": "主要风险或不确定性",
+                }
+            ],
+        },
+    }
+    messages = [
+        {
+            "role": "system",
+            "content": "你是严谨的科研阅读助手。输出必须是合法 JSON，不要输出 Markdown。",
+        },
+        {"role": "user", "content": json.dumps(prompt_payload, ensure_ascii=False)},
+    ]
+    result = _chat_json(
+        endpoint,
+        api_key,
+        model,
+        messages,
+        temperature,
+        timeout_seconds,
+        retry_attempts,
+        retry_backoff_seconds,
+    )
+    analysis = _analysis_from_notes(papers, paper_notes, llm_used=True)
+    if result.get("daily_summary"):
+        analysis["daily_summary"] = str(result["daily_summary"])
+    if isinstance(result.get("themes"), list):
+        analysis["themes"] = result["themes"]
+    if isinstance(result.get("research_ideas"), list):
+        analysis["research_ideas"] = result["research_ideas"]
+    return analysis
+
+
 def _normalize_analysis(result: dict[str, Any], papers: list[Paper]) -> dict[str, Any]:
     normalized = {
         "daily_summary": str(result.get("daily_summary") or ""),
@@ -221,70 +411,68 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
     model = _env_first(llm_cfg.get("model_env") or []) or llm_cfg.get("model")
     endpoint = base_url.rstrip("/") + "/chat/completions"
     max_chars = _positive_int(llm_cfg.get("max_input_chars_per_paper"), 1200)
-    prompt_payload = {
-        "papers": _paper_payload(papers, max_chars),
-        "instructions": {
-            "language": "zh-CN",
-            "style": "面向科研人员的每日阅读简报",
-            "paper_notes": (
-                "每篇论文的 summary、contribution、why_read、limitations 都要尽量引用题名或摘要里的具体对象、"
-                "方法、数据、现象或任务。不要输出泛泛模板句；如果摘要为空，要明确说明信息不足。"
-            ),
-            "research_ideas": (
-                "生成 3-6 个可做研究点，每个点都要能落到一个最小下一步实验、复现、数据检查或对照分析。"
-            ),
-            "avoid": "不要声称读过全文；不要编造实验结果；只根据提供的题录和摘要判断。",
-        },
-        "required_json_schema": {
-            "daily_summary": "string",
-            "themes": ["string"],
-            "research_ideas": [
-                {
-                    "idea": "可做研究点",
-                    "why": "为什么这个点值得做",
-                    "first_step": "最小下一步实验或阅读动作",
-                    "risk": "主要风险或不确定性",
-                }
-            ],
-            "papers": {
-                "<paper id>": {
-                    "summary": "一到两句中文总结",
-                    "contribution": "核心贡献或可能贡献",
-                    "why_read": "为什么值得读",
-                    "limitations": "基于现有元数据需要警惕什么",
-                }
-            },
-        },
-    }
-    messages = [
-        {
-            "role": "system",
-            "content": "你是严谨的科研阅读助手。输出必须是合法 JSON，不要输出 Markdown。",
-        },
-        {
-            "role": "user",
-            "content": json.dumps(prompt_payload, ensure_ascii=False),
-        },
-    ]
-    body = {
-        "model": model,
-        "messages": messages,
-        "temperature": float(llm_cfg.get("temperature", 0.2)),
-    }
+    temperature = float(llm_cfg.get("temperature", 0.2))
     timeout_seconds = _positive_int(llm_cfg.get("timeout_seconds"), 180)
-    retry_attempts = _positive_int(llm_cfg.get("retry_attempts"), 3)
+    retry_attempts = _positive_int(llm_cfg.get("retry_attempts"), 1)
     retry_backoff_seconds = _positive_float(llm_cfg.get("retry_backoff_seconds"), 8.0)
+    max_consecutive_failures = _positive_int(llm_cfg.get("max_consecutive_failures"), 2)
+
+    paper_notes: dict[str, dict[str, str]] = {}
+    warnings: list[str] = []
+    llm_successes = 0
+    consecutive_failures = 0
+    skipped_after_failures = 0
+
+    for paper in papers:
+        if consecutive_failures >= max_consecutive_failures:
+            paper_notes[paper.id] = _metadata_note(paper)
+            skipped_after_failures += 1
+            continue
+        try:
+            paper_notes[paper.id] = _analyze_single_paper(
+                paper,
+                endpoint,
+                api_key,
+                model,
+                temperature,
+                timeout_seconds,
+                retry_attempts,
+                retry_backoff_seconds,
+                max_chars,
+            )
+            llm_successes += 1
+            consecutive_failures = 0
+        except Exception as exc:  # noqa: BLE001 - one paper should not kill the report.
+            paper_notes[paper.id] = _metadata_note(paper)
+            consecutive_failures += 1
+            warnings.append(f"LLM paper analysis failed for {paper.id}: {exc}")
+
+    if skipped_after_failures:
+        warnings.append(
+            "Skipped LLM analysis for "
+            f"{skipped_after_failures} paper(s) after {max_consecutive_failures} consecutive failure(s)."
+        )
+
+    if not llm_successes:
+        analysis = _analysis_from_notes(papers, paper_notes, llm_used=False, warnings=warnings)
+        if not warnings:
+            analysis["warnings"].append("LLM produced no successful paper analyses.")
+        return analysis
+
     try:
-        data = _post_chat_completion(
+        analysis = _summarize_daily(
+            papers,
+            paper_notes,
             endpoint,
             api_key,
-            body,
+            model,
+            temperature,
             timeout_seconds,
             retry_attempts,
             retry_backoff_seconds,
         )
-        content = data["choices"][0]["message"]["content"]
-        result = _extract_json(content)
-        return _normalize_analysis(result, papers)
+        analysis["warnings"] = warnings
+        return analysis
     except Exception as exc:  # noqa: BLE001 - report generation should survive LLM failures.
-        return _fallback_analysis(papers, f"LLM call failed: {exc}")
+        warnings.append(f"LLM daily summary failed: {exc}")
+        return _analysis_from_notes(papers, paper_notes, llm_used=True, warnings=warnings)
