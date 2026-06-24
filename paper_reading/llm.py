@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import os
 import re
+import time
 from typing import Any
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 from paper_reading.models import Paper
@@ -130,6 +132,53 @@ def _extract_json(text: str) -> dict[str, Any]:
         return json.loads(match.group(0))
 
 
+def _positive_int(value: Any, default: int) -> int:
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return default
+    return parsed if parsed > 0 else default
+
+
+def _positive_float(value: Any, default: float) -> float:
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return default
+    return parsed if parsed > 0 else default
+
+
+def _post_chat_completion(
+    endpoint: str,
+    api_key: str,
+    body: dict[str, Any],
+    timeout_seconds: int,
+    retry_attempts: int,
+    retry_backoff_seconds: float,
+) -> dict[str, Any]:
+    payload = json.dumps(body).encode("utf-8")
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    last_exc: Exception | None = None
+    for attempt in range(1, retry_attempts + 1):
+        request = Request(endpoint, data=payload, headers=headers, method="POST")
+        try:
+            with urlopen(request, timeout=timeout_seconds) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except HTTPError:
+            raise
+        except Exception as exc:  # noqa: BLE001 - transient network/model delays are retried.
+            last_exc = exc
+            if attempt >= retry_attempts:
+                break
+            time.sleep(retry_backoff_seconds * attempt)
+    raise RuntimeError(
+        f"{last_exc} after {retry_attempts} attempt(s), timeout={timeout_seconds}s"
+    ) from last_exc
+
+
 def _normalize_analysis(result: dict[str, Any], papers: list[Paper]) -> dict[str, Any]:
     normalized = {
         "daily_summary": str(result.get("daily_summary") or ""),
@@ -171,7 +220,7 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
     base_url = _env_first(llm_cfg.get("base_url_env") or []) or llm_cfg.get("base_url")
     model = _env_first(llm_cfg.get("model_env") or []) or llm_cfg.get("model")
     endpoint = base_url.rstrip("/") + "/chat/completions"
-    max_chars = int(llm_cfg.get("max_input_chars_per_paper") or 1800)
+    max_chars = _positive_int(llm_cfg.get("max_input_chars_per_paper"), 1200)
     prompt_payload = {
         "papers": _paper_payload(papers, max_chars),
         "instructions": {
@@ -222,18 +271,18 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
         "messages": messages,
         "temperature": float(llm_cfg.get("temperature", 0.2)),
     }
-    request = Request(
-        endpoint,
-        data=json.dumps(body).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
+    timeout_seconds = _positive_int(llm_cfg.get("timeout_seconds"), 180)
+    retry_attempts = _positive_int(llm_cfg.get("retry_attempts"), 3)
+    retry_backoff_seconds = _positive_float(llm_cfg.get("retry_backoff_seconds"), 8.0)
     try:
-        with urlopen(request, timeout=int(llm_cfg.get("timeout_seconds") or 90)) as response:
-            data = json.loads(response.read().decode("utf-8"))
+        data = _post_chat_completion(
+            endpoint,
+            api_key,
+            body,
+            timeout_seconds,
+            retry_attempts,
+            retry_backoff_seconds,
+        )
         content = data["choices"][0]["message"]["content"]
         result = _extract_json(content)
         return _normalize_analysis(result, papers)

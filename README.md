@@ -100,6 +100,16 @@ export OPENAI_MODEL="gpt-4.1-mini"
 
 也可以使用 `LLM_API_KEY`、`LLM_BASE_URL`、`LLM_MODEL`。如果没有 API key，系统会生成一个基于题录和摘要的保守版报告。
 
+如果报告底部出现 `LLM call failed: timed out`，通常表示模型或代理在超时时间内没有返回完整结果。可以调大这些参数：
+
+```yaml
+llm:
+  timeout_seconds: 180
+  retry_attempts: 3
+  retry_backoff_seconds: 8
+  max_input_chars_per_paper: 1200
+```
+
 ## 本地真实运行
 
 ```bash
