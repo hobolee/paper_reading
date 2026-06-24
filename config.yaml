@@ -47,15 +47,20 @@ sources:
   journals:
     enabled: true
     fetch_limit_per_journal: 200
+    fetch_page_size: 50
     article_only: true
     exclude_title_patterns:
       - "^Author Correction:"
       - "^Publisher Correction:"
       - "^Correction:"
       - "^Retraction:"
+      - "^Retraction Note:"
       - "^Editorial:"
       - "^Comment:"
       - "^Correspondence:"
+      - "^Matters Arising"
+      - "^Reply to"
+      - "^Technical Comment"
       - "^News"
       - "^News & Views"
       - "^Research Highlight"

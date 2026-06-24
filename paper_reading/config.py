@@ -40,6 +40,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
         "journals": {
             "enabled": True,
             "fetch_limit_per_journal": 40,
+            "fetch_page_size": 50,
             "article_only": True,
             "exclude_title_patterns": [],
             "items": [],

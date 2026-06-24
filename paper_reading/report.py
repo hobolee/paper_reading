@@ -396,9 +396,15 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int) -> str:
 
 def _empty_paper_message(stats: dict[str, Any]) -> str:
     fetched = int(stats.get("fetched") or 0)
+    ranked = int(stats.get("ranked") or 0)
     keyword_filtered = int(stats.get("keyword_filtered") or 0)
     seen_filtered = int(stats.get("seen_filtered") or 0)
     source_warnings = int(stats.get("source_warnings") or 0)
+    if ranked and seen_filtered >= ranked:
+        return (
+            f"今天抓取到 {fetched} 篇论文，其中 {ranked} 篇通过筛选，"
+            "但都已经出现在历史记录中。可以等待明天的新论文，或手动运行时加 --include-seen 重新生成。"
+        )
     if fetched and keyword_filtered:
         return (
             f"今天抓取到 {fetched} 篇论文，但当前关键词规则过滤掉了 "

@@ -12,6 +12,13 @@ from paper_reading.models import Paper
 API_URL = "https://api.crossref.org/journals/{issn}/works"
 
 
+def _short_error(exc: Exception, limit: int = 260) -> str:
+    text = re.sub(r"\s+", " ", str(exc)).strip()
+    if len(text) <= limit:
+        return text
+    return text[: limit - 3].rstrip() + "..."
+
+
 def _first(values: Any) -> str:
     if isinstance(values, list) and values:
         return str(values[0])
@@ -185,18 +192,28 @@ def _paper_from_item(item: dict[str, Any], journal_cfg: dict[str, Any]) -> Paper
     )
 
 
-def fetch_journals(config: dict[str, Any]) -> list[Paper]:
+def _page_size(journals_cfg: dict[str, Any]) -> int:
+    try:
+        value = int(journals_cfg.get("fetch_page_size") or 50)
+    except (TypeError, ValueError):
+        value = 50
+    return min(max(value, 1), 100)
+
+
+def fetch_journals(config: dict[str, Any]) -> tuple[list[Paper], list[str]]:
     sources_cfg = config.get("sources", {})
     journals_cfg = sources_cfg.get("journals", {})
     if not journals_cfg.get("enabled", True):
-        return []
+        return [], []
 
     lookback_days = int(config.get("daily", {}).get("lookback_days") or 7)
     from_date = (date.today() - timedelta(days=lookback_days)).isoformat()
-    rows = int(journals_cfg.get("fetch_limit_per_journal") or 40)
+    scan_limit = int(journals_cfg.get("fetch_limit_per_journal") or 40)
+    rows = _page_size(journals_cfg)
     timeout = int(config.get("http", {}).get("timeout_seconds") or 30)
     headers = {"User-Agent": user_agent(config)}
     papers: list[Paper] = []
+    warnings: list[str] = []
 
     for journal_cfg in journals_cfg.get("items") or []:
         if not journal_cfg.get("enabled", True):
@@ -204,23 +221,36 @@ def fetch_journals(config: dict[str, Any]) -> list[Paper]:
         issns = journal_cfg.get("issns") or []
         if not issns:
             continue
-        params = {
-            "rows": rows,
-            "sort": "published",
-            "order": "desc",
-            "filter": f"type:journal-article,from-pub-date:{from_date}",
-        }
-        data = fetch_json(
-            API_URL.format(issn=issns[0]),
-            params=params,
-            headers=headers,
-            timeout=timeout,
-        )
         merged_cfg = _merged_journal_cfg(journals_cfg, journal_cfg)
-        for item in data.get("message", {}).get("items", []):
-            if not _passes_article_filter(item, merged_cfg):
+        journal_name = str(journal_cfg.get("name") or journal_cfg.get("id") or issns[0])
+        for offset in range(0, scan_limit, rows):
+            batch_rows = min(rows, scan_limit - offset)
+            params = {
+                "rows": batch_rows,
+                "offset": offset,
+                "sort": "published",
+                "order": "desc",
+                "filter": f"type:journal-article,from-pub-date:{from_date}",
+            }
+            try:
+                data = fetch_json(
+                    API_URL.format(issn=issns[0]),
+                    params=params,
+                    headers=headers,
+                    timeout=timeout,
+                )
+            except Exception as exc:  # noqa: BLE001 - keep other journal pages alive.
+                warnings.append(
+                    f"{journal_name} Crossref page failed at offset {offset}: {_short_error(exc)}"
+                )
                 continue
-            paper = _paper_from_item(item, merged_cfg)
-            if paper:
-                papers.append(paper)
-    return papers
+            items = data.get("message", {}).get("items", [])
+            if not items:
+                break
+            for item in items:
+                if not _passes_article_filter(item, merged_cfg):
+                    continue
+                paper = _paper_from_item(item, merged_cfg)
+                if paper:
+                    papers.append(paper)
+    return papers, warnings

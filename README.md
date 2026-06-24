@@ -77,6 +77,8 @@ python -m paper_reading run
 
 Nature 与 Science 默认只保留研究 Article。系统会过滤 News、Comment、Editorial、Correction、Research Highlight 等内容；Nature 主要保留 `10.1038/s41586-...` DOI，Science 会要求 `10.1126/science...` DOI、摘要和最低引用条目数。需要调整时看 `sources.journals` 下的 `article_only`、`include_doi_patterns`、`exclude_title_patterns`、`require_abstract` 和 `min_references`。
 
+Crossref 查询会按 `fetch_page_size` 小批量分页抓取，扫描到 `fetch_limit_per_journal` 为止。这样单页失败不会拖垮整个 Nature/Science 源，页面底部会显示简短 warning。
+
 ## GitHub Pages
 
 1. 把项目推到 GitHub。

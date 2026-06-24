@@ -70,7 +70,13 @@ def _fetch_all(config: dict[str, Any]) -> tuple[list[Paper], list[str]]:
     warnings: list[str] = []
     for label, fetcher in (("arXiv", fetch_arxiv), ("journals", fetch_journals)):
         try:
-            papers.extend(fetcher(config))
+            result = fetcher(config)
+            if isinstance(result, tuple):
+                source_papers, source_warnings = result
+                papers.extend(source_papers)
+                warnings.extend(str(warning) for warning in source_warnings)
+            else:
+                papers.extend(result)
         except Exception as exc:  # noqa: BLE001 - one broken source should not kill the report.
             warnings.append(f"{label} fetch failed: {exc}")
     return papers, warnings
