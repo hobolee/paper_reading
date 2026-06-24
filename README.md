@@ -75,6 +75,8 @@ python -m paper_reading run
 
 真实运行会访问 arXiv API 和 Crossref API。Nature 与 Science 主刊通过 ISSN 从 Crossref 获取元数据，不抓全文。
 
+Nature 与 Science 默认只保留研究 Article。系统会过滤 News、Comment、Editorial、Correction、Research Highlight 等内容；Nature 主要保留 `10.1038/s41586-...` DOI，Science 会要求 `10.1126/science...` DOI、摘要和最低引用条目数。需要调整时看 `sources.journals` 下的 `article_only`、`include_doi_patterns`、`exclude_title_patterns`、`require_abstract` 和 `min_references`。
+
 ## GitHub Pages
 
 1. 把项目推到 GitHub。

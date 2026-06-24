@@ -58,6 +58,100 @@ def _authors(item: dict[str, Any]) -> list[str]:
     return names
 
 
+def _patterns(config: dict[str, Any], key: str) -> list[str]:
+    values = config.get(key) or []
+    if isinstance(values, str):
+        return [values]
+    return [str(value) for value in values if str(value)]
+
+
+def _matches_any(value: str, patterns: list[str]) -> bool:
+    if not value or not patterns:
+        return False
+    for pattern in patterns:
+        if re.search(pattern, value, flags=re.IGNORECASE):
+            return True
+    return False
+
+
+def _reference_count(item: dict[str, Any]) -> int:
+    for key in ("reference-count", "references-count"):
+        value = item.get(key)
+        if isinstance(value, int):
+            return value
+        if isinstance(value, str) and value.isdigit():
+            return int(value)
+    references = item.get("reference")
+    return len(references) if isinstance(references, list) else 0
+
+
+def _merged_journal_cfg(journals_cfg: dict[str, Any], journal_cfg: dict[str, Any]) -> dict[str, Any]:
+    merged = {
+        "article_only": journals_cfg.get("article_only", True),
+        "exclude_title_patterns": _patterns(journals_cfg, "exclude_title_patterns"),
+        "exclude_doi_patterns": _patterns(journals_cfg, "exclude_doi_patterns"),
+        "exclude_url_patterns": _patterns(journals_cfg, "exclude_url_patterns"),
+    }
+    merged.update(journal_cfg)
+    for key in (
+        "include_title_patterns",
+        "include_doi_patterns",
+        "include_url_patterns",
+        "exclude_title_patterns",
+        "exclude_doi_patterns",
+        "exclude_url_patterns",
+    ):
+        inherited = _patterns(merged, key)
+        local = _patterns(journal_cfg, key)
+        if key.startswith("exclude_"):
+            inherited = _patterns(journals_cfg, key) + local
+        merged[key] = inherited
+    return merged
+
+
+def _resource_url(item: dict[str, Any]) -> str:
+    resource = item.get("resource")
+    if isinstance(resource, dict):
+        primary = resource.get("primary")
+        if isinstance(primary, dict) and primary.get("URL"):
+            return str(primary["URL"])
+    return str(item.get("URL") or "")
+
+
+def _passes_article_filter(item: dict[str, Any], journal_cfg: dict[str, Any]) -> bool:
+    if not journal_cfg.get("article_only", True):
+        return True
+
+    title = _clean_text(_first(item.get("title")))
+    doi = str(item.get("DOI") or "").strip()
+    url = _resource_url(item)
+    abstract = _clean_text(item.get("abstract"))
+
+    if _matches_any(title, _patterns(journal_cfg, "exclude_title_patterns")):
+        return False
+    if _matches_any(doi, _patterns(journal_cfg, "exclude_doi_patterns")):
+        return False
+    if _matches_any(url, _patterns(journal_cfg, "exclude_url_patterns")):
+        return False
+
+    include_title_patterns = _patterns(journal_cfg, "include_title_patterns")
+    include_doi_patterns = _patterns(journal_cfg, "include_doi_patterns")
+    include_url_patterns = _patterns(journal_cfg, "include_url_patterns")
+    if include_title_patterns and not _matches_any(title, include_title_patterns):
+        return False
+    if include_doi_patterns and not _matches_any(doi, include_doi_patterns):
+        return False
+    if include_url_patterns and not _matches_any(url, include_url_patterns):
+        return False
+
+    if journal_cfg.get("require_abstract") and not abstract:
+        return False
+    min_references = int(journal_cfg.get("min_references") or 0)
+    if min_references and _reference_count(item) < min_references:
+        return False
+    return True
+
+
 def _paper_from_item(item: dict[str, Any], journal_cfg: dict[str, Any]) -> Paper | None:
     title = _clean_text(_first(item.get("title")))
     doi = str(item.get("DOI") or "").strip()
@@ -85,6 +179,8 @@ def _paper_from_item(item: dict[str, Any], journal_cfg: dict[str, Any]) -> Paper
             "volume": item.get("volume"),
             "issue": item.get("issue"),
             "page": item.get("page"),
+            "reference_count": _reference_count(item),
+            "resource_url": _resource_url(item),
         },
     )
 
@@ -120,8 +216,11 @@ def fetch_journals(config: dict[str, Any]) -> list[Paper]:
             headers=headers,
             timeout=timeout,
         )
+        merged_cfg = _merged_journal_cfg(journals_cfg, journal_cfg)
         for item in data.get("message", {}).get("items", []):
-            paper = _paper_from_item(item, journal_cfg)
+            if not _passes_article_filter(item, merged_cfg):
+                continue
+            paper = _paper_from_item(item, merged_cfg)
             if paper:
                 papers.append(paper)
     return papers

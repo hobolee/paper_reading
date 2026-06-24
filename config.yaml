@@ -46,17 +46,44 @@ sources:
     fetch_limit: 300
   journals:
     enabled: true
-    fetch_limit_per_journal: 80
+    fetch_limit_per_journal: 200
+    article_only: true
+    exclude_title_patterns:
+      - "^Author Correction:"
+      - "^Publisher Correction:"
+      - "^Correction:"
+      - "^Retraction:"
+      - "^Editorial:"
+      - "^Comment:"
+      - "^Correspondence:"
+      - "^News"
+      - "^News & Views"
+      - "^Research Highlight"
+      - "^Research Highlights"
+      - "^This Week in Science"
+      - "^Editor's Choice"
+      - "^Editor's summary"
+      - "^In Brief"
+      - "^Careers"
+      - "^Books & Arts"
+      - "^Obituary"
+      - "^Outlook"
     items:
       - id: nature
         name: Nature
         enabled: true
+        include_doi_patterns:
+          - "^10\\.1038/s41586-"
         issns:
           - 1476-4687
           - 0028-0836
       - id: science
         name: Science
         enabled: true
+        include_doi_patterns:
+          - "^10\\.1126/science\\.[a-z0-9]+$"
+        require_abstract: true
+        min_references: 5
         issns:
           - 1095-9203
           - 0036-8075
