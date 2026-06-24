@@ -102,6 +102,9 @@ def _normalize_analysis(result: dict[str, Any], papers: list[Paper]) -> dict[str
 
 
 def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any]:
+    if not papers:
+        return _fallback_analysis(papers, "No papers were selected after filtering; skipped LLM analysis.")
+
     llm_cfg = config.get("llm", {})
     if not llm_cfg.get("enabled", True):
         return _fallback_analysis(papers, "LLM disabled by configuration.")

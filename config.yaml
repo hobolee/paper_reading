@@ -1,6 +1,6 @@
 daily:
   max_papers: 20
-  lookback_days: 7
+  lookback_days: 30
   timezone: Asia/Shanghai
   dedupe_history: true
 
@@ -14,8 +14,8 @@ report:
 filters:
   require_keywords: true
   keywords:
-    - [large language model, agent, multimodal]
-    - [earth, climate]
+    - [large language model, llm, agent, multimodal, foundation model, artificial intelligence, machine learning, deep learning, neural network]
+    - [earth, climate, weather, atmosphere, atmospheric, ocean, geoscience, remote sensing, environmental]
   exclude_keywords: []
 
 ranking:
@@ -31,11 +31,14 @@ sources:
       - cs.AI
       - cs.CL
       - cs.LG
+      - eess.IV
+      - physics.ao-ph
+      - physics.geo-ph
       - stat.ML
-    fetch_limit: 80
+    fetch_limit: 300
   journals:
     enabled: true
-    fetch_limit_per_journal: 40
+    fetch_limit_per_journal: 80
     items:
       - id: nature
         name: Nature

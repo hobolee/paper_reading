@@ -382,6 +382,26 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int) -> str:
     """
 
 
+def _empty_paper_message(stats: dict[str, Any]) -> str:
+    fetched = int(stats.get("fetched") or 0)
+    keyword_filtered = int(stats.get("keyword_filtered") or 0)
+    seen_filtered = int(stats.get("seen_filtered") or 0)
+    source_warnings = int(stats.get("source_warnings") or 0)
+    if fetched and keyword_filtered:
+        return (
+            f"今天抓取到 {fetched} 篇论文，但当前关键词规则过滤掉了 "
+            f"{keyword_filtered} 篇。可以扩展关键词、增加 arXiv 分类，或临时关闭强制关键词过滤。"
+        )
+    if fetched and seen_filtered:
+        return (
+            f"今天抓取到 {fetched} 篇论文，但它们都已经出现在历史记录中。"
+            "如果想重新生成报告，可以运行时加 --include-seen。"
+        )
+    if source_warnings:
+        return "今天没有可用论文，且部分数据源抓取失败。请查看页面底部或 Actions 日志里的 warning。"
+    return "今天没有符合条件的新论文。可以放宽关键词、关闭历史去重，或延长 lookback_days。"
+
+
 def _render_report_index(output_dir: Path, history_dir: Path) -> None:
     reports = sorted(history_dir.glob("*.html"), reverse=True)
     items = "\n".join(
@@ -430,7 +450,7 @@ def write_report(
     keyword_counter = _keyword_counts(papers)
     paper_cards = "\n".join(_render_paper(paper, analysis, idx + 1) for idx, paper in enumerate(papers))
     if not paper_cards:
-        paper_cards = '<div class="empty">今天没有符合条件的新论文。可以放宽关键词、关闭历史去重，或延长 lookback_days。</div>'
+        paper_cards = f'<div class="empty">{_esc(_empty_paper_message(stats))}</div>'
 
     title = report_cfg.get("title") or "Paper Reading"
     content = f"""<!doctype html>
