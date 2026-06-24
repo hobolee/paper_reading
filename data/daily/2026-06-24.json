@@ -1,0 +1,121 @@
+{
+  "date": "2026-06-24",
+  "stats": {
+    "fetched": 3,
+    "deduped": 3,
+    "excluded": 0,
+    "keyword_filtered": 0,
+    "ranked": 3,
+    "source_warnings": 0,
+    "seen_filtered": 0
+  },
+  "analysis": {
+    "daily_summary": "今日样本覆盖生物学、气候科学与科研工作流三个方向，主题上都体现了机器学习从“通用表征”走向“领域增益”的趋势：一类工作将基础模型用于细胞扰动图谱，尝试在复杂实验条件下提取共享信号；一类工作将机器学习与物理模拟结合，用于提升近未来区域气候风险预测；还有一类工作聚焦文献分诊代理，面向科研信息过载这一实际痛点。基于题录与摘要判断，这三篇都值得按“方法可迁移性、领域约束是否充分、评估是否贴近真实使用场景”三个维度进一步筛读。",
+    "themes": [
+      "基础模型与通用表征在科学数据中的应用",
+      "机器学习与领域物理/实验体系的结合",
+      "面向科研流程的信息筛选与代理化工作流"
+    ],
+    "papers": {
+      "sample:llm-biology": {
+        "summary": "该工作训练了一个面向细胞扰动谱的基础模型，目标是在不同疾病状态与实验条件之间学习共享表征，并据此发现新的信号。按摘要看，重点在于跨条件整合与表征学习，而非单一任务上的局部优化。",
+        "contribution": "可能的核心贡献是把基础模型范式引入细胞扰动数据，构建可跨疾病状态和实验条件迁移的表示空间，从而提升信号发现能力。",
+        "why_read": "如果你关注生物医学中的表征学习、单细胞/扰动组学分析或基础模型在科学数据中的落地，这篇文章值得优先看其数据规模、预训练目标和下游验证设计。",
+        "limitations": "目前只有题录与摘要，尚不清楚模型规模、训练数据异质性、与现有基线的比较方式，以及“new signals”具体指统计关联、机制线索还是可实验验证的发现。"
+      },
+      "sample:science-climate": {
+        "summary": "该研究将物理模拟与机器学习结合，以在观测稀疏的条件下改进区域尺度的近期气候风险预测。摘要显示其定位不是纯数据驱动替代，而是利用机器学习增强传统气候风险预报流程。",
+        "contribution": "可能的核心贡献是提出一种物理模拟与机器学习融合的预测框架，在稀疏观测场景下提升近未来区域气候风险预报能力。",
+        "why_read": "对于从事气候风险评估、地球系统建模或科学机器学习的研究者，这篇文章值得关注其融合策略、区域泛化能力以及对低观测地区的实际价值。",
+        "limitations": "仅凭摘要无法判断改进幅度、风险指标定义、时间尺度与空间分辨率，也不清楚模型是否真正具备可解释性、稳健性以及跨区域迁移能力。"
+      },
+      "arxiv:2606.00001": {
+        "summary": "这篇预印本提出一种用于文献分诊的LLM代理式工作流，可按用户意图对论文排序、总结证据并保留引文链接。其目标是缓解科研阅读中的检索与初筛负担。",
+        "contribution": "可能的核心贡献是把排序、证据摘要和引用保真整合进一个面向文献分诊的代理流程，强调与用户意图对齐而非仅做通用摘要。",
+        "why_read": "如果你关心科研助手、RAG/Agent 在学术场景中的应用，或希望搭建高保真文献筛选系统，这篇工作可作为任务定义与系统设计的参考。",
+        "limitations": "这是 arXiv 预印本，尚不清楚评测数据、人工标注协议、排序质量与引用保真度指标，以及代理流程在幻觉控制和跨学科泛化上的实际表现。"
+      }
+    },
+    "llm_used": true,
+    "warnings": []
+  },
+  "papers": [
+    {
+      "id": "sample:llm-biology",
+      "source": "nature",
+      "title": "Foundation models reveal new signals in cellular perturbation maps",
+      "authors": [
+        "Ada Chen",
+        "Min Li",
+        "Sara Patel"
+      ],
+      "published": "2026-06-24",
+      "updated": "",
+      "abstract": "A foundation model is trained on cellular perturbation profiles to identify shared representations across disease states and experimental conditions.",
+      "url": "https://www.nature.com/",
+      "pdf_url": "",
+      "doi": "",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "foundation model"
+      ],
+      "score": 35.5,
+      "raw": {}
+    },
+    {
+      "id": "sample:science-climate",
+      "source": "science",
+      "title": "Machine learning improves near-term climate risk forecasts",
+      "authors": [
+        "Rui Zhang",
+        "Elena Garcia"
+      ],
+      "published": "2026-06-24",
+      "updated": "",
+      "abstract": "The study combines physical simulations and machine learning to improve regional climate risk forecasts under sparse observations.",
+      "url": "https://www.science.org/journal/science",
+      "pdf_url": "",
+      "doi": "",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "machine learning"
+      ],
+      "score": 35.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.00001",
+      "source": "arxiv",
+      "title": "Large language model agents for literature triage",
+      "authors": [
+        "Jamie Smith",
+        "Lin Wang"
+      ],
+      "published": "2026-06-24",
+      "updated": "",
+      "abstract": "We introduce an agentic workflow for literature triage that ranks papers by user intent, summarizes evidence, and preserves citation links.",
+      "url": "https://arxiv.org/abs/2606.00001",
+      "pdf_url": "https://arxiv.org/pdf/2606.00001",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model"
+      ],
+      "score": 24.0,
+      "raw": {}
+    }
+  ]
+}

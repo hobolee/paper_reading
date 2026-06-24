@@ -1,0 +1,74 @@
+daily:
+  max_papers: 20
+  lookback_days: 7
+  timezone: Asia/Shanghai
+  dedupe_history: true
+
+report:
+  title: Paper Reading
+  language: zh
+  output_dir: docs
+  history_dir: reports
+  data_dir: data
+
+filters:
+  require_keywords: true
+  keywords:
+    - [large language model, agent, multimodal]
+    - [earth, climate]
+  exclude_keywords: []
+
+ranking:
+  source_priority:
+    nature: 20
+    science: 20
+    arxiv: 10
+
+sources:
+  arxiv:
+    enabled: true
+    categories:
+      - cs.AI
+      - cs.CL
+      - cs.LG
+      - stat.ML
+    fetch_limit: 80
+  journals:
+    enabled: true
+    fetch_limit_per_journal: 40
+    items:
+      - id: nature
+        name: Nature
+        enabled: true
+        issns:
+          - 1476-4687
+          - 0028-0836
+      - id: science
+        name: Science
+        enabled: true
+        issns:
+          - 1095-9203
+          - 0036-8075
+
+llm:
+  enabled: true
+  provider: openai-compatible
+  api_key_env:
+    - OPENAI_API_KEY
+    - LLM_API_KEY
+  base_url_env:
+    - OPENAI_BASE_URL
+    - LLM_BASE_URL
+  model_env:
+    - OPENAI_MODEL
+    - LLM_MODEL
+  base_url: https://api.openai.com/v1
+  model: gpt-4.1-mini
+  temperature: 0.2
+  timeout_seconds: 90
+  max_input_chars_per_paper: 1800
+
+http:
+  user_agent: paper-reading-bot/0.1
+  mailto: ""
+  timeout_seconds: 90

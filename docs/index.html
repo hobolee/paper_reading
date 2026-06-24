@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Reading · 2026-06-24</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">Paper Reading</div>
+      <nav class="nav">
+        <a href="index.html">最新报告</a>
+        <a href="reports/index.html">历史报告</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow">2026-06-24 · 中文论文简报</div>
+        <h1>今日论文阅读报告</h1>
+        <p class="summary">今日样本覆盖生物学、气候科学与科研工作流三个方向，主题上都体现了机器学习从“通用表征”走向“领域增益”的趋势：一类工作将基础模型用于细胞扰动图谱，尝试在复杂实验条件下提取共享信号；一类工作将机器学习与物理模拟结合，用于提升近未来区域气候风险预测；还有一类工作聚焦文献分诊代理，面向科研信息过载这一实际痛点。基于题录与摘要判断，这三篇都值得按“方法可迁移性、领域约束是否充分、评估是否贴近真实使用场景”三个维度进一步筛读。</p>
+        <div class="metrics">
+          <div class="metric"><strong>3</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>3</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>3</strong><span>进入报告</span></div>
+          <div class="metric"><strong>3</strong><span>来源数量</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell viz-grid">
+        <div>
+          <h2>来源分布</h2>
+          
+            <div class="bar-row">
+              <div class="bar-label">Nature</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">1</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Science</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">1</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">arXiv</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">1</div>
+            </div>
+            
+        </div>
+        <div>
+          <h2>关键词命中</h2>
+          <div class="chips"><span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">machine learning <strong>1</strong></span>
+<span class="chip">large language model <strong>1</strong></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>主题线索</h2>
+        <div class="chips"><span class="chip">基础模型与通用表征在科学数据中的应用</span>
+<span class="chip">机器学习与领域物理/实验体系的结合</span>
+<span class="chip">面向科研流程的信息筛选与代理化工作流</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>论文列表</h2>
+        <div class="paper-list">
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-06-24</span>
+        <span>Score 35.5</span>
+      </div>
+      <h3>1. <a href="https://www.nature.com/">Foundation models reveal new signals in cellular perturbation maps</a></h3>
+      <div class="authors">Ada Chen、Min Li、Sara Patel</div>
+      <div class="chips"><span class="chip">foundation model <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该工作训练了一个面向细胞扰动谱的基础模型，目标是在不同疾病状态与实验条件之间学习共享表征，并据此发现新的信号。按摘要看，重点在于跨条件整合与表征学习，而非单一任务上的局部优化。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是把基础模型范式引入细胞扰动数据，构建可跨疾病状态和实验条件迁移的表示空间，从而提升信号发现能力。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果你关注生物医学中的表征学习、单细胞/扰动组学分析或基础模型在科学数据中的落地，这篇文章值得优先看其数据规模、预训练目标和下游验证设计。</p></div>
+        <div class="note"><strong>注意点</strong><p>目前只有题录与摘要，尚不清楚模型规模、训练数据异质性、与现有基线的比较方式，以及“new signals”具体指统计关联、机制线索还是可实验验证的发现。</p></div>
+      </div>
+      <p class="abstract">A foundation model is trained on cellular perturbation profiles to identify shared representations across disease states and experimental conditions.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-06-24</span>
+        <span>Score 35.5</span>
+      </div>
+      <h3>2. <a href="https://www.science.org/journal/science">Machine learning improves near-term climate risk forecasts</a></h3>
+      <div class="authors">Rui Zhang、Elena Garcia</div>
+      <div class="chips"><span class="chip">machine learning <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该研究将物理模拟与机器学习结合，以在观测稀疏的条件下改进区域尺度的近期气候风险预测。摘要显示其定位不是纯数据驱动替代，而是利用机器学习增强传统气候风险预报流程。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是提出一种物理模拟与机器学习融合的预测框架，在稀疏观测场景下提升近未来区域气候风险预报能力。</p></div>
+        <div class="note"><strong>为什么读</strong><p>对于从事气候风险评估、地球系统建模或科学机器学习的研究者，这篇文章值得关注其融合策略、区域泛化能力以及对低观测地区的实际价值。</p></div>
+        <div class="note"><strong>注意点</strong><p>仅凭摘要无法判断改进幅度、风险指标定义、时间尺度与空间分辨率，也不清楚模型是否真正具备可解释性、稳健性以及跨区域迁移能力。</p></div>
+      </div>
+      <p class="abstract">The study combines physical simulations and machine learning to improve regional climate risk forecasts under sparse observations.</p>
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-06-24</span>
+        <span>Score 24.0</span>
+      </div>
+      <h3>3. <a href="https://arxiv.org/abs/2606.00001">Large language model agents for literature triage</a></h3>
+      <div class="authors">Jamie Smith、Lin Wang · <a href="https://arxiv.org/pdf/2606.00001">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇预印本提出一种用于文献分诊的LLM代理式工作流，可按用户意图对论文排序、总结证据并保留引文链接。其目标是缓解科研阅读中的检索与初筛负担。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是把排序、证据摘要和引用保真整合进一个面向文献分诊的代理流程，强调与用户意图对齐而非仅做通用摘要。</p></div>
+        <div class="note"><strong>为什么读</strong><p>如果你关心科研助手、RAG/Agent 在学术场景中的应用，或希望搭建高保真文献筛选系统，这篇工作可作为任务定义与系统设计的参考。</p></div>
+        <div class="note"><strong>注意点</strong><p>这是 arXiv 预印本，尚不清楚评测数据、人工标注协议、排序质量与引用保真度指标，以及代理流程在幻觉控制和跨学科泛化上的实际表现。</p></div>
+      </div>
+      <p class="abstract">We introduce an agentic workflow for literature triage that ranks papers by user intent, summarizes evidence, and preserves citation links.</p>
+    </article>
+    </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="shell">
+      生成时间：2026-06-24 13:26。
+    </div>
+  </footer>
+</body>
+</html>
