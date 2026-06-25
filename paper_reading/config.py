@@ -49,6 +49,11 @@ DEFAULT_CONFIG: dict[str, Any] = {
             "enabled": True,
             "categories": ["cs.AI", "cs.CL", "cs.LG", "stat.ML"],
             "fetch_limit": 80,
+            "fetch_page_size": 50,
+            "retry_attempts": 2,
+            "retry_backoff_seconds": 5,
+            "page_pause_seconds": 3,
+            "max_consecutive_failures": 2,
         },
         "journals": {
             "enabled": True,

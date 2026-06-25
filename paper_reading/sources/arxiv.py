@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import time
 import xml.etree.ElementTree as ET
 from typing import Any
 
@@ -30,23 +31,35 @@ def _query_for_categories(categories: list[str]) -> str:
     return " OR ".join(f"cat:{category}" for category in categories)
 
 
-def fetch_arxiv(config: dict[str, Any]) -> list[Paper]:
-    source_cfg = config.get("sources", {}).get("arxiv", {})
-    if not source_cfg.get("enabled", True):
-        return []
+def _positive_int(value: Any, default: int) -> int:
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return default
+    return parsed if parsed > 0 else default
 
-    categories = source_cfg.get("categories") or []
-    fetch_limit = int(source_cfg.get("fetch_limit") or 80)
-    timeout = int(config.get("http", {}).get("timeout_seconds") or 30)
-    headers = {"User-Agent": user_agent(config)}
-    params = {
-        "search_query": _query_for_categories(categories),
-        "start": 0,
-        "max_results": fetch_limit,
-        "sortBy": "submittedDate",
-        "sortOrder": "descending",
-    }
-    xml_text = fetch_text(API_URL, params=params, headers=headers, timeout=timeout)
+
+def _positive_float(value: Any, default: float) -> float:
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return default
+    return parsed if parsed >= 0 else default
+
+
+def _is_transient_error(exc: Exception) -> bool:
+    text = str(exc)
+    return any(marker in text for marker in ("HTTP 429", "HTTP 500", "HTTP 502", "HTTP 503", "HTTP 504", "Network error"))
+
+
+def _short_error(exc: Exception, limit: int = 220) -> str:
+    cleaned = re.sub(r"\s+", " ", str(exc)).strip()
+    if len(cleaned) <= limit:
+        return cleaned
+    return cleaned[: limit - 3].rstrip() + "..."
+
+
+def _parse_feed(xml_text: str) -> list[Paper]:
     root = ET.fromstring(xml_text)
     papers: list[Paper] = []
 
@@ -89,3 +102,71 @@ def fetch_arxiv(config: dict[str, Any]) -> list[Paper]:
             )
         )
     return papers
+
+
+def fetch_arxiv(config: dict[str, Any]) -> tuple[list[Paper], list[str]]:
+    source_cfg = config.get("sources", {}).get("arxiv", {})
+    if not source_cfg.get("enabled", True):
+        return [], []
+
+    categories = source_cfg.get("categories") or []
+    fetch_limit = _positive_int(source_cfg.get("fetch_limit"), 80)
+    page_size = min(_positive_int(source_cfg.get("fetch_page_size"), 50), fetch_limit)
+    retry_attempts = _positive_int(source_cfg.get("retry_attempts"), 2)
+    retry_backoff_seconds = _positive_float(source_cfg.get("retry_backoff_seconds"), 5.0)
+    page_pause_seconds = _positive_float(source_cfg.get("page_pause_seconds"), 3.0)
+    max_consecutive_failures = _positive_int(source_cfg.get("max_consecutive_failures"), 2)
+    timeout = _positive_int(config.get("http", {}).get("timeout_seconds"), 30)
+    headers = {"User-Agent": user_agent(config)}
+    query = _query_for_categories(categories)
+    papers: list[Paper] = []
+    warnings: list[str] = []
+    consecutive_failures = 0
+
+    for start in range(0, fetch_limit, page_size):
+        remaining = fetch_limit - start
+        max_results = min(page_size, remaining)
+        params = {
+            "search_query": query,
+            "start": start,
+            "max_results": max_results,
+            "sortBy": "submittedDate",
+            "sortOrder": "descending",
+        }
+        last_exc: Exception | None = None
+        page_papers: list[Paper] = []
+        for attempt in range(1, retry_attempts + 1):
+            try:
+                xml_text = fetch_text(API_URL, params=params, headers=headers, timeout=timeout)
+                page_papers = _parse_feed(xml_text)
+                last_exc = None
+                break
+            except Exception as exc:  # noqa: BLE001 - one page should not kill the source.
+                last_exc = exc
+                if attempt >= retry_attempts or not _is_transient_error(exc):
+                    break
+                time.sleep(retry_backoff_seconds * attempt)
+
+        if last_exc:
+            consecutive_failures += 1
+            warnings.append(
+                f"arXiv page failed at start={start}, max_results={max_results}: {_short_error(last_exc)}"
+            )
+            if consecutive_failures >= max_consecutive_failures:
+                warnings.append(
+                    f"arXiv fetch stopped after {consecutive_failures} consecutive page failure(s)."
+                )
+                break
+            continue
+
+        consecutive_failures = 0
+        if not page_papers:
+            break
+        papers.extend(page_papers)
+        if len(papers) >= fetch_limit:
+            papers = papers[:fetch_limit]
+            break
+        if page_pause_seconds > 0:
+            time.sleep(page_pause_seconds)
+
+    return papers, warnings

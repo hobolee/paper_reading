@@ -128,6 +128,8 @@ Nature 与 Science 默认只保留研究 Article。系统会过滤 News、Commen
 
 Crossref 查询会按 `fetch_page_size` 小批量分页抓取，扫描到 `fetch_limit_per_journal` 为止。这样单页失败不会拖垮整个 Nature/Science 源，页面底部会显示简短 warning。
 
+arXiv 查询也会按 `fetch_page_size` 分页抓取，默认每页 50 条；遇到 `503`、`504` 或网络抖动会重试。连续多页失败时会停止 arXiv 源，但 Nature/Science 和报告生成仍会继续。
+
 ## GitHub Pages
 
 1. 把项目推到 GitHub。
