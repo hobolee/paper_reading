@@ -45,8 +45,9 @@ filters:
 
 selection:
   source_minimums:
-    nature: 4
-    science: 4
+    nature: 3
+    science: 3
+    arxiv: 2
 ```
 
 关键词支持两种写法：
@@ -56,7 +57,7 @@ selection:
 
 如果你想先看所有论文，把 `require_keywords` 改为 `false`，或者把 `keywords` 设为空列表。
 
-`keyword_optional_sources` 会让指定来源即使没有命中关键词也能进入候选池；`source_minimums` 会尽量为指定来源保留名额。默认配置会优先保证 Nature 和 Science 主刊在报告里有一定占比。
+`keyword_optional_sources` 会让指定来源即使没有命中关键词也能进入候选池；`source_minimums` 会尽量为指定来源保留名额。默认配置会优先保证 Nature 和 Science 主刊有一定占比，同时每天尽量保留 arXiv 候选。
 
 ## 个人反馈
 
@@ -112,6 +113,8 @@ llm:
   max_consecutive_failures: 2
   max_input_chars_per_paper: 1200
 ```
+
+如果报告底部出现 `HTTP 401 Unauthorized` 或 `HTTP 403 Forbidden`，这是 LLM 服务拒绝了当前凭据。重点检查 GitHub Secrets 里的 `OPENAI_API_KEY`、`OPENAI_BASE_URL` 和 `OPENAI_MODEL` 是否匹配同一个服务商。
 
 ## 本地真实运行
 

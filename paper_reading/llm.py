@@ -11,6 +11,10 @@ from urllib.request import Request, urlopen
 from paper_reading.models import Paper
 
 
+class LLMAuthError(RuntimeError):
+    """Raised when the configured LLM endpoint rejects credentials."""
+
+
 def _env_first(names: list[str]) -> str:
     for name in names:
         value = os.getenv(name)
@@ -167,7 +171,12 @@ def _post_chat_completion(
         try:
             with urlopen(request, timeout=timeout_seconds) as response:
                 return json.loads(response.read().decode("utf-8"))
-        except HTTPError:
+        except HTTPError as exc:
+            if exc.code in {401, 403}:
+                raise LLMAuthError(
+                    f"LLM authentication failed: HTTP {exc.code} {exc.reason}. "
+                    "Check GitHub Secrets OPENAI_API_KEY, OPENAI_BASE_URL, and OPENAI_MODEL."
+                ) from exc
             raise
         except Exception as exc:  # noqa: BLE001 - transient network/model delays are retried.
             last_exc = exc
@@ -235,7 +244,7 @@ def _analyze_single_paper(
             "style": "面向科研人员的单篇论文阅读笔记",
             "paper_notes": (
                 "只根据提供的题名、来源、摘要、关键词和元数据分析。"
-                "summary、contribution、why_read、limitations 都必须尽量落到具体对象、方法、数据、现象或任务上。"
+                "summary 和 contribution 都必须尽量落到具体对象、方法、数据、现象或任务上。"
                 "不要输出泛泛模板句；如果摘要为空，要明确说明信息不足。"
             ),
             "avoid": "不要声称读过全文；不要编造实验结果；不要输出 Markdown。",
@@ -243,8 +252,6 @@ def _analyze_single_paper(
         "required_json_schema": {
             "summary": "一到两句中文总结，必须包含论文具体对象或任务",
             "contribution": "核心贡献或可能贡献",
-            "why_read": "为什么值得读，结合用户关键词、来源或研究机会",
-            "limitations": "基于现有元数据需要警惕什么",
         },
     }
     messages = [
@@ -299,8 +306,6 @@ def _summary_input(papers: list[Paper], paper_notes: dict[str, dict[str, str]]) 
                 "score": round(paper.score, 2),
                 "summary": _truncate(note.get("summary", ""), 420),
                 "contribution": _truncate(note.get("contribution", ""), 420),
-                "why_read": _truncate(note.get("why_read", ""), 360),
-                "limitations": _truncate(note.get("limitations", ""), 320),
             }
         )
     return rows
@@ -422,8 +427,9 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
     llm_successes = 0
     consecutive_failures = 0
     skipped_after_failures = 0
+    auth_failed = False
 
-    for paper in papers:
+    for index, paper in enumerate(papers):
         if consecutive_failures >= max_consecutive_failures:
             paper_notes[paper.id] = _metadata_note(paper)
             skipped_after_failures += 1
@@ -442,6 +448,18 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
             )
             llm_successes += 1
             consecutive_failures = 0
+        except LLMAuthError as exc:
+            paper_notes[paper.id] = _metadata_note(paper)
+            remaining = papers[index + 1 :]
+            for remaining_paper in remaining:
+                paper_notes[remaining_paper.id] = _metadata_note(remaining_paper)
+            warnings.append(str(exc))
+            if remaining:
+                warnings.append(
+                    f"Skipped LLM analysis for {len(remaining)} paper(s) after authentication failure."
+                )
+            auth_failed = True
+            break
         except Exception as exc:  # noqa: BLE001 - one paper should not kill the report.
             paper_notes[paper.id] = _metadata_note(paper)
             consecutive_failures += 1
@@ -452,6 +470,9 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
             "Skipped LLM analysis for "
             f"{skipped_after_failures} paper(s) after {max_consecutive_failures} consecutive failure(s)."
         )
+
+    if auth_failed:
+        return _analysis_from_notes(papers, paper_notes, llm_used=bool(llm_successes), warnings=warnings)
 
     if not llm_successes:
         analysis = _analysis_from_notes(papers, paper_notes, llm_used=False, warnings=warnings)
@@ -473,6 +494,9 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
         )
         analysis["warnings"] = warnings
         return analysis
+    except LLMAuthError as exc:
+        warnings.append(str(exc))
+        return _analysis_from_notes(papers, paper_notes, llm_used=True, warnings=warnings)
     except Exception as exc:  # noqa: BLE001 - report generation should survive LLM failures.
         warnings.append(f"LLM daily summary failed: {exc}")
         return _analysis_from_notes(papers, paper_notes, llm_used=True, warnings=warnings)

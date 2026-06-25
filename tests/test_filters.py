@@ -82,6 +82,27 @@ class FilterTests(unittest.TestCase):
         self.assertEqual(ranked[0].keyword_matches, ["agent", "multimodal", "climate"])
         self.assertEqual(stats["keyword_filtered"], 2)
 
+    def test_rank_and_filter_matches_abstract_keywords(self):
+        config = {
+            "filters": {
+                "require_keywords": True,
+                "keywords": [["llm", "language model"], ["earth observation", "remote sensing"]],
+                "exclude_keywords": [],
+            },
+            "ranking": {"source_priority": {}},
+        }
+        papers = [
+            Paper(
+                id="abstract-match",
+                source="arxiv",
+                title="A satellite benchmark",
+                abstract="We use an LLM for remote sensing data analysis.",
+            )
+        ]
+        ranked, stats = rank_and_filter(papers, config)
+        self.assertEqual([paper.id for paper in ranked], ["abstract-match"])
+        self.assertEqual(stats["keyword_filtered"], 0)
+
     def test_rank_and_filter_keyword_optional_sources(self):
         config = {
             "filters": {

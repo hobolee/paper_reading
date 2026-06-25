@@ -499,8 +499,6 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int, config: di
       <div class="note-grid">
         <div class="note"><strong>一句话</strong><p>{_esc(note["summary"])}</p></div>
         <div class="note"><strong>贡献</strong><p>{_esc(note["contribution"])}</p></div>
-        <div class="note"><strong>为什么读</strong><p>{_esc(note["why_read"])}</p></div>
-        <div class="note"><strong>注意点</strong><p>{_esc(note["limitations"])}</p></div>
       </div>
       {abstract}
     </article>

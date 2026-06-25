@@ -17,14 +17,15 @@ filters:
     - nature
     - science
   keywords:
-    - [large language model, llm, agent, multimodal, foundation model, artificial intelligence, machine learning, deep learning, neural network]
-    - [earth, climate, weather, atmosphere, atmospheric, ocean, geoscience, remote sensing, environmental]
+    - [large language model, large language models, llm, l.l.m., language model, language models, foundation model, foundation models, fm, generative ai, genai, agent, agents, ai agent, ai agents, autonomous agent, tool use, rag, retrieval augmented generation, multimodal, multi-modal, vision-language, vision language, vlm, mllm, artificial intelligence, ai, machine learning, ml, deep learning, neural network, neural networks, transformer, diffusion, representation learning, self-supervised, self supervised]
+    - [earth, earth system, climate, climatology, weather, meteorology, atmosphere, atmospheric, atmospheric science, ocean, oceanography, geoscience, geophysical, remote sensing, satellite, earth observation, environmental, environment, carbon, greenhouse gas, precipitation, rainfall, temperature, drought, flood, wildfire, aerosol, cloud, land cover, land use, hydrology, cryosphere]
   exclude_keywords: []
 
 selection:
   source_minimums:
-    nature: 4
-    science: 4
+    nature: 3
+    science: 3
+    arxiv: 2
 
 feedback:
   enabled: true
@@ -42,7 +43,7 @@ ranking:
   source_priority:
     nature: 35
     science: 35
-    arxiv: 10
+    arxiv: 24
 
 sources:
   arxiv:

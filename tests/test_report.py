@@ -61,6 +61,8 @@ class ReportMessageTests(unittest.TestCase):
         self.assertIn("复现区域预测实验", html)
         self.assertIn("github.com/hobolee/paper_reading/issues/new", html)
         self.assertIn("稍后读", html)
+        self.assertNotIn("为什么读", html)
+        self.assertNotIn("注意点", html)
 
 
 if __name__ == "__main__":

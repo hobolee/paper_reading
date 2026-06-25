@@ -3,7 +3,7 @@ import os
 import unittest
 from unittest.mock import patch
 
-from paper_reading.llm import _fallback_analysis, _post_chat_completion, analyze_papers
+from paper_reading.llm import LLMAuthError, _fallback_analysis, _post_chat_completion, analyze_papers
 from paper_reading.models import Paper
 
 
@@ -150,6 +150,39 @@ class LlmFallbackTests(unittest.TestCase):
         self.assertFalse(analysis["llm_used"])
         self.assertIn("p3", analysis["papers"])
         self.assertTrue(any("Skipped LLM analysis" in item for item in analysis["warnings"]))
+
+    def test_analyze_papers_stops_immediately_on_auth_error(self):
+        papers = [
+            Paper(id="p1", source="nature", title="Paper one", abstract="A"),
+            Paper(id="p2", source="science", title="Paper two", abstract="B"),
+            Paper(id="p3", source="arxiv", title="Paper three", abstract="C"),
+        ]
+        calls = []
+
+        def unauthorized(endpoint, api_key, body, timeout, retry_attempts, retry_backoff):
+            del endpoint, api_key, body, timeout, retry_attempts, retry_backoff
+            calls.append(1)
+            raise LLMAuthError("LLM authentication failed: HTTP 401 Unauthorized.")
+
+        config = {
+            "llm": {
+                "enabled": True,
+                "base_url": "https://example.com/v1",
+                "model": "test-model",
+                "timeout_seconds": 600,
+                "retry_attempts": 1,
+                "max_consecutive_failures": 2,
+            }
+        }
+        with patch.dict(os.environ, {"OPENAI_API_KEY": "bad-key"}), patch(
+            "paper_reading.llm._post_chat_completion", unauthorized
+        ):
+            analysis = analyze_papers(papers, config)
+
+        self.assertEqual(len(calls), 1)
+        self.assertFalse(analysis["llm_used"])
+        self.assertIn("p3", analysis["papers"])
+        self.assertTrue(any("authentication failed" in item for item in analysis["warnings"]))
 
 
 if __name__ == "__main__":
