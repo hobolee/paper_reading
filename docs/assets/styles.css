@@ -265,6 +265,56 @@ h1 {
   color: #3b4044;
 }
 
+.paper-detail {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfbf8;
+}
+
+.paper-detail summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 9px 12px;
+  color: #1f4e63;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.paper-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.paper-detail summary::after {
+  content: "展开";
+  float: right;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.paper-detail[open] summary::after {
+  content: "收起";
+}
+
+.detail-body {
+  border-top: 1px solid var(--line);
+  padding: 12px;
+  color: #34383c;
+}
+
+.detail-body p {
+  margin: 0 0 10px;
+}
+
+.detail-body p:last-child {
+  margin-bottom: 0;
+}
+
+.detail-body strong {
+  color: #1f4e63;
+}
+
 .idea-list {
   display: grid;
   gap: 12px;
