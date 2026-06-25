@@ -13,7 +13,7 @@ from urllib.request import Request, urlopen
 from paper_reading.models import Paper
 
 
-RATINGS = {"star", "like", "read", "dislike"}
+RATINGS = {"star", "like", "dislike"}
 
 
 @dataclass

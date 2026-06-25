@@ -79,6 +79,13 @@ class LlmFallbackTests(unittest.TestCase):
                     "summary": f"单篇总结：{paper['title']}",
                     "contribution": "围绕具体任务给出方法或证据。",
                     "details": f"详细解释：{paper['title']} 的方法、证据线索和需要核对的信息。",
+                    "detail_sections": {
+                        "question": f"{paper['title']} 要解决的问题。",
+                        "method": "比较模型工作流和基线。",
+                        "strengths": "问题设定清晰。",
+                        "weaknesses": "需要核对数据和实验细节。",
+                        "next_step": "查看图表和方法部分。",
+                    },
                     "why_read": "与当前关键词和来源优先级相关。",
                     "limitations": "需要核对全文实验设置。",
                 }
@@ -119,6 +126,7 @@ class LlmFallbackTests(unittest.TestCase):
         self.assertEqual(analysis["daily_summary"], "今天的十篇候选围绕气候和 foundation model 展开。")
         self.assertIn("单篇总结：Agentic climate model", analysis["papers"]["p1"]["summary"])
         self.assertIn("详细解释：Agentic climate model", analysis["papers"]["p1"]["details"])
+        self.assertEqual(analysis["papers"]["p1"]["detail_sections"]["method"], "比较模型工作流和基线。")
         self.assertTrue(analysis["llm_used"])
 
     def test_analyze_papers_skips_remaining_after_consecutive_failures(self):

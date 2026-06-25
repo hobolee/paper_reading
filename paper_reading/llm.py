@@ -38,7 +38,7 @@ def _first_sentence(value: str, limit: int = 260) -> str:
     return _truncate(sentence, limit)
 
 
-def _metadata_note(paper: Paper) -> dict[str, str]:
+def _metadata_note(paper: Paper) -> dict[str, Any]:
     matched = "、".join(paper.keyword_matches) if paper.keyword_matches else "未命中显式关键词"
     source = paper.journal or paper.source
     title = paper.title
@@ -55,6 +55,13 @@ def _metadata_note(paper: Paper) -> dict[str, str]:
             f"摘要中可用的信息是：{abstract_hint} "
             "建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。"
         )
+        detail_sections = {
+            "question": f"这篇论文围绕“{title}”展开；摘要线索显示问题可能与 {abstract_hint} 有关。",
+            "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+            "strengths": f"它来自 {source}，且与 {matched} 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+            "weaknesses": limitations,
+            "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。",
+        }
     else:
         summary = f"{title}。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。"
         contribution = (
@@ -66,10 +73,18 @@ def _metadata_note(paper: Paper) -> dict[str, str]:
             f"来源为 {source}，关键词匹配：{matched}。当前只有题名“{title}”和基础元数据，"
             "无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。"
         )
+        detail_sections = {
+            "question": f"题名指向“{title}”，但缺少摘要，研究问题只能粗略判断。",
+            "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+            "strengths": f"来源为 {source}，可作为候选主刊/预印本条目先进入人工筛选。",
+            "weaknesses": limitations,
+            "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。",
+        }
     return {
         "summary": summary,
         "contribution": contribution,
         "details": details,
+        "detail_sections": detail_sections,
         "why_read": (
             f"来源为 {source}，关键词匹配：{matched}。"
             "如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。"
@@ -225,14 +240,22 @@ def _chat_json(
     return _extract_json(content)
 
 
-def _normalize_paper_note(result: dict[str, Any], paper: Paper) -> dict[str, str]:
+def _normalize_paper_note(result: dict[str, Any], paper: Paper) -> dict[str, Any]:
     note = result.get("paper") if isinstance(result.get("paper"), dict) else result
     if not isinstance(note, dict):
         note = {}
     fallback = _metadata_note(paper)
-    normalized: dict[str, str] = {}
+    normalized: dict[str, Any] = {}
     for key in ("summary", "contribution", "details", "why_read", "limitations"):
         normalized[key] = str(note.get(key) or fallback[key])
+    sections = note.get("detail_sections")
+    fallback_sections = fallback.get("detail_sections") if isinstance(fallback.get("detail_sections"), dict) else {}
+    if not isinstance(sections, dict):
+        sections = {}
+    normalized["detail_sections"] = {
+        key: str(sections.get(key) or fallback_sections.get(key) or "")
+        for key in ("question", "method", "strengths", "weaknesses", "next_step")
+    }
     return normalized
 
 
@@ -254,7 +277,7 @@ def _analyze_single_paper(
             "style": "面向科研人员的单篇论文阅读笔记",
             "paper_notes": (
                 "只根据提供的题名、来源、摘要、关键词和元数据分析。"
-                "summary、contribution 和 details 都必须尽量落到具体对象、方法、数据、现象或任务上。"
+                "summary、contribution、details 和 detail_sections 都必须尽量落到具体对象、方法、数据、现象或任务上。"
                 "不要输出泛泛模板句；如果摘要为空，要明确说明信息不足。"
             ),
             "avoid": "不要声称读过全文；不要编造实验结果；不要输出 Markdown。",
@@ -263,6 +286,13 @@ def _analyze_single_paper(
             "summary": "一到两句中文总结，必须包含论文具体对象或任务",
             "contribution": "核心贡献或可能贡献",
             "details": "更完整的中文解释：研究对象、可能方法、证据线索、与用户方向的关系、需要核对的信息",
+            "detail_sections": {
+                "question": "研究问题：这篇论文想解决什么具体科学/方法问题",
+                "method": "可能方法：使用什么数据、实验、模型、推理或分析路径",
+                "strengths": "亮点：最值得关注的设计、证据或应用价值",
+                "weaknesses": "局限：基于题录/摘要需要警惕的边界或缺失信息",
+                "next_step": "下一步：读者最小可执行动作，如复现、对照、查图表或记录问题",
+            },
         },
     }
     messages = [
@@ -287,7 +317,7 @@ def _analyze_single_paper(
 
 def _analysis_from_notes(
     papers: list[Paper],
-    paper_notes: dict[str, dict[str, str]],
+    paper_notes: dict[str, dict[str, Any]],
     llm_used: bool,
     warnings: list[str] | None = None,
 ) -> dict[str, Any]:
@@ -302,7 +332,7 @@ def _analysis_from_notes(
     }
 
 
-def _summary_input(papers: list[Paper], paper_notes: dict[str, dict[str, str]]) -> list[dict[str, Any]]:
+def _summary_input(papers: list[Paper], paper_notes: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     rows = []
     for paper in papers:
         note = paper_notes.get(paper.id, _metadata_note(paper))
@@ -317,6 +347,12 @@ def _summary_input(papers: list[Paper], paper_notes: dict[str, dict[str, str]]) 
                 "score": round(paper.score, 2),
                 "summary": _truncate(note.get("summary", ""), 420),
                 "contribution": _truncate(note.get("contribution", ""), 420),
+                "question": _truncate((note.get("detail_sections") or {}).get("question", ""), 260)
+                if isinstance(note.get("detail_sections"), dict)
+                else "",
+                "method": _truncate((note.get("detail_sections") or {}).get("method", ""), 260)
+                if isinstance(note.get("detail_sections"), dict)
+                else "",
             }
         )
     return rows
@@ -324,7 +360,7 @@ def _summary_input(papers: list[Paper], paper_notes: dict[str, dict[str, str]]) 
 
 def _summarize_daily(
     papers: list[Paper],
-    paper_notes: dict[str, dict[str, str]],
+    paper_notes: dict[str, dict[str, Any]],
     endpoint: str,
     api_key: str,
     model: str,
@@ -406,6 +442,16 @@ def _normalize_analysis(result: dict[str, Any], papers: list[Paper]) -> dict[str
             continue
         for key in ("summary", "contribution", "details", "why_read", "limitations"):
             note[key] = str(note.get(key) or fallback["papers"][paper.id][key])
+        sections = note.get("detail_sections")
+        fallback_sections = fallback["papers"][paper.id].get("detail_sections")
+        if not isinstance(sections, dict):
+            sections = {}
+        if not isinstance(fallback_sections, dict):
+            fallback_sections = {}
+        note["detail_sections"] = {
+            key: str(sections.get(key) or fallback_sections.get(key) or "")
+            for key in ("question", "method", "strengths", "weaknesses", "next_step")
+        }
     if not normalized["research_ideas"]:
         normalized["research_ideas"] = fallback["research_ideas"]
     return normalized
@@ -433,7 +479,7 @@ def analyze_papers(papers: list[Paper], config: dict[str, Any]) -> dict[str, Any
     retry_backoff_seconds = _positive_float(llm_cfg.get("retry_backoff_seconds"), 8.0)
     max_consecutive_failures = _positive_int(llm_cfg.get("max_consecutive_failures"), 2)
 
-    paper_notes: dict[str, dict[str, str]] = {}
+    paper_notes: dict[str, dict[str, Any]] = {}
     warnings: list[str] = []
     llm_successes = 0
     consecutive_failures = 0

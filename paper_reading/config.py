@@ -37,7 +37,6 @@ DEFAULT_CONFIG: dict[str, Any] = {
         "rating_weights": {
             "star": 22,
             "like": 14,
-            "read": -4,
             "dislike": -28,
         },
     },

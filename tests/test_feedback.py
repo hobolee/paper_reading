@@ -16,7 +16,6 @@ class FeedbackTests(unittest.TestCase):
                 "rating_weights": {
                     "star": 22,
                     "like": 14,
-                    "read": -4,
                     "dislike": -28,
                 }
             }

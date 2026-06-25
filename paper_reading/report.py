@@ -283,15 +283,17 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfbf8;
+  overflow: hidden;
 }
 
 .paper-detail summary {
   cursor: pointer;
   list-style: none;
-  padding: 9px 12px;
+  padding: 11px 14px;
   color: #1f4e63;
   font-size: 14px;
   font-weight: 700;
+  background: #f2f7f4;
 }
 
 .paper-detail summary::-webkit-details-marker {
@@ -312,16 +314,136 @@ h1 {
 
 .detail-body {
   border-top: 1px solid var(--line);
-  padding: 12px;
+  padding: 16px;
   color: #34383c;
 }
 
-.detail-body p {
-  margin: 0 0 10px;
+.detail-signal {
+  display: grid;
+  grid-template-columns: 130px 1fr 92px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
 }
 
-.detail-body p:last-child {
-  margin-bottom: 0;
+.signal-kicker {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.signal-source {
+  font-weight: 760;
+  color: #1f4e63;
+}
+
+.signal-meter {
+  height: 9px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e6e2d9;
+}
+
+.signal-meter span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--good), var(--accent));
+}
+
+.signal-score {
+  text-align: right;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.signal-score strong {
+  display: block;
+  color: #34383c;
+  font-size: 17px;
+}
+
+.detail-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.flow-step {
+  min-height: 64px;
+  border-top: 3px solid var(--accent);
+  padding-top: 8px;
+  color: #34383c;
+}
+
+.flow-step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #e7f0ed;
+  color: #1f4e63;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.flow-step strong {
+  font-size: 13px;
+  color: #1f4e63;
+}
+
+.flow-step p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.detail-section {
+  padding-left: 12px;
+  border-left: 3px solid #c6d8d1;
+}
+
+.detail-section strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #1f4e63;
+  font-size: 13px;
+}
+
+.detail-section p {
+  margin: 0;
+  color: #34383c;
+}
+
+.abstract-detail {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.abstract-detail summary {
+  cursor: pointer;
+  color: #1f4e63;
+  font-size: 13px;
+  font-weight: 700;
+  list-style-position: inside;
+  padding: 0;
+  background: transparent;
+}
+
+.abstract-detail p {
+  margin: 8px 0 0;
+  color: #3b4044;
 }
 
 .detail-body strong {
@@ -373,8 +495,15 @@ h1 {
   .topbar-inner,
   .viz-grid,
   .note-grid,
+  .detail-signal,
+  .detail-flow,
+  .detail-grid,
   .paper-title-row {
     grid-template-columns: 1fr;
+  }
+
+  .signal-score {
+    text-align: left;
   }
 
   .feedback-actions {
@@ -497,15 +626,28 @@ def _render_research_ideas(ideas: list[Any]) -> str:
     return '<div class="idea-list">' + "\n".join(rows) + "</div>"
 
 
-def _paper_note(analysis: dict[str, Any], paper: Paper) -> dict[str, str]:
+def _paper_note(analysis: dict[str, Any], paper: Paper) -> dict[str, Any]:
     notes = analysis.get("papers") if isinstance(analysis.get("papers"), dict) else {}
     note = notes.get(paper.id) if isinstance(notes.get(paper.id), dict) else {}
     return {
         "summary": str(note.get("summary") or ""),
         "contribution": str(note.get("contribution") or ""),
         "details": str(note.get("details") or ""),
+        "detail_sections": note.get("detail_sections") if isinstance(note.get("detail_sections"), dict) else {},
         "why_read": str(note.get("why_read") or ""),
         "limitations": str(note.get("limitations") or ""),
+    }
+
+
+def _detail_sections(note: dict[str, Any]) -> dict[str, str]:
+    raw = note.get("detail_sections") if isinstance(note.get("detail_sections"), dict) else {}
+    details = str(note.get("details") or note.get("summary") or "当前没有更多单篇分析。")
+    return {
+        "question": str(raw.get("question") or details),
+        "method": str(raw.get("method") or "方法信息需要结合摘要和原文方法部分进一步确认。"),
+        "strengths": str(raw.get("strengths") or note.get("contribution") or "亮点需要结合正文证据判断。"),
+        "weaknesses": str(raw.get("weaknesses") or note.get("limitations") or "当前只基于题录和摘要，不能替代全文判断。"),
+        "next_step": str(raw.get("next_step") or "先读 abstract、图 1 和方法概览，记录数据、基线和主要结论。"),
     }
 
 
@@ -514,7 +656,6 @@ def _render_feedback_actions(config: dict[str, Any], paper: Paper) -> str:
         ("star", "⭐", "收藏/稍后读"),
         ("like", "👍", "有用"),
         ("dislike", "👎", "无关"),
-        ("read", "已读", "已读：降低同一论文再次出现优先级"),
     ]
     links = []
     for rating, label, title in actions:
@@ -527,25 +668,64 @@ def _render_feedback_actions(config: dict[str, Any], paper: Paper) -> str:
     return '<div class="feedback-actions">' + "\n".join(links) + "</div>" if links else ""
 
 
+def _render_paper_detail(paper: Paper, note: dict[str, Any]) -> str:
+    sections = _detail_sections(note)
+    keyword_count = len(paper.keyword_matches)
+    meter_width = min(100, max(12, keyword_count * 18))
+    abstract = (
+        f"""
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>{_esc(paper.abstract)}</p>
+        </details>
+        """
+        if paper.abstract
+        else ""
+    )
+    return f"""
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">{_esc(paper.journal or paper.source)}</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 {keyword_count}</div>
+              <div class="signal-meter"><span style="width: {meter_width}%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>{_esc(f"{paper.score:.1f}")}</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>{_esc(sections["question"])}</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>{_esc(sections["method"])}</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>{_esc(sections["strengths"])}</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>{_esc(sections["next_step"])}</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>{_esc(sections["question"])}</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>{_esc(sections["method"])}</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>{_esc(sections["strengths"])}</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>{_esc(sections["weaknesses"])}</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>{_esc(sections["next_step"])}</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>{_esc(note["details"] or note["summary"])}</p></div>
+          </div>
+          {abstract}
+        </div>
+      </details>
+    """
+
+
 def _render_paper(paper: Paper, analysis: dict[str, Any], index: int, config: dict[str, Any]) -> str:
     note = _paper_note(analysis, paper)
     link = paper.url or paper.pdf_url
     doi_part = f' · DOI: <a href="https://doi.org/{_esc(paper.doi)}">{_esc(paper.doi)}</a>' if paper.doi else ""
     pdf_part = f' · <a href="{_esc(paper.pdf_url)}">PDF</a>' if paper.pdf_url else ""
     keywords = Counter({keyword: 1 for keyword in paper.keyword_matches})
-    details = note["details"] or note["summary"] or note["contribution"]
-    detail_abstract = (
-        f'<p class="abstract"><strong>摘要：</strong>{_esc(paper.abstract)}</p>' if paper.abstract else ""
-    )
-    detail_panel = f"""
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <p>{_esc(details)}</p>
-          {detail_abstract}
-        </div>
-      </details>
-    """
     return f"""
     <article class="paper-card">
       <div class="paper-meta">
@@ -563,7 +743,7 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int, config: di
         <div class="note"><strong>一句话</strong><p>{_esc(note["summary"])}</p></div>
         <div class="note"><strong>贡献</strong><p>{_esc(note["contribution"])}</p></div>
       </div>
-      {detail_panel}
+      {_render_paper_detail(paper, note)}
     </article>
     """
 

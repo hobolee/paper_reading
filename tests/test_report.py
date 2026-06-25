@@ -46,6 +46,13 @@ class ReportMessageTests(unittest.TestCase):
                     "summary": "论文围绕区域气候预测展开。",
                     "contribution": "可能贡献是把 agent workflow 用于预测流程。",
                     "details": "这篇论文的详细解释会说明 agent workflow 如何连接区域气候预测、数据约束和实验验证。",
+                    "detail_sections": {
+                        "question": "如何把 agent workflow 用于区域气候预测。",
+                        "method": "比较 agent workflow 与非 agent 基线。",
+                        "strengths": "把模型工作流和气候预测任务连接起来。",
+                        "weaknesses": "需要确认数据开放性和基线设置。",
+                        "next_step": "先检查数据集、图 1 和实验设置。",
+                    },
                     "why_read": "与 climate 和 agent 关键词相关。",
                     "limitations": "需要核对全文实验设置。",
                 }
@@ -63,9 +70,14 @@ class ReportMessageTests(unittest.TestCase):
         self.assertIn("复现区域预测实验", html)
         self.assertIn("github.com/hobolee/paper_reading/issues/new", html)
         self.assertIn("稍后读", html)
+        self.assertNotIn("已读", html)
         self.assertIn("详情", html)
-        self.assertIn("这篇论文的详细解释", html)
-        self.assertIn("摘要：", html)
+        self.assertIn("研究问题", html)
+        self.assertIn("可能方法", html)
+        self.assertIn("优点/价值", html)
+        self.assertIn("局限/风险", html)
+        self.assertIn("关键词命中 2", html)
+        self.assertIn("原始摘要", html)
         self.assertNotIn("为什么读", html)
         self.assertNotIn("注意点", html)
 
