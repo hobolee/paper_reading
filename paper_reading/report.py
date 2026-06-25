@@ -278,6 +278,56 @@ h1 {
   color: #3b4044;
 }
 
+.paper-detail {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfbf8;
+}
+
+.paper-detail summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 9px 12px;
+  color: #1f4e63;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.paper-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.paper-detail summary::after {
+  content: "展开";
+  float: right;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.paper-detail[open] summary::after {
+  content: "收起";
+}
+
+.detail-body {
+  border-top: 1px solid var(--line);
+  padding: 12px;
+  color: #34383c;
+}
+
+.detail-body p {
+  margin: 0 0 10px;
+}
+
+.detail-body p:last-child {
+  margin-bottom: 0;
+}
+
+.detail-body strong {
+  color: #1f4e63;
+}
+
 .idea-list {
   display: grid;
   gap: 12px;
@@ -453,6 +503,7 @@ def _paper_note(analysis: dict[str, Any], paper: Paper) -> dict[str, str]:
     return {
         "summary": str(note.get("summary") or ""),
         "contribution": str(note.get("contribution") or ""),
+        "details": str(note.get("details") or ""),
         "why_read": str(note.get("why_read") or ""),
         "limitations": str(note.get("limitations") or ""),
     }
@@ -460,10 +511,10 @@ def _paper_note(analysis: dict[str, Any], paper: Paper) -> dict[str, str]:
 
 def _render_feedback_actions(config: dict[str, Any], paper: Paper) -> str:
     actions = [
-        ("star", "⭐", "稍后读"),
+        ("star", "⭐", "收藏/稍后读"),
         ("like", "👍", "有用"),
         ("dislike", "👎", "无关"),
-        ("read", "已读", "已读"),
+        ("read", "已读", "已读：降低同一论文再次出现优先级"),
     ]
     links = []
     for rating, label, title in actions:
@@ -482,7 +533,19 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int, config: di
     doi_part = f' · DOI: <a href="https://doi.org/{_esc(paper.doi)}">{_esc(paper.doi)}</a>' if paper.doi else ""
     pdf_part = f' · <a href="{_esc(paper.pdf_url)}">PDF</a>' if paper.pdf_url else ""
     keywords = Counter({keyword: 1 for keyword in paper.keyword_matches})
-    abstract = f'<p class="abstract">{_esc(paper.abstract)}</p>' if paper.abstract else ""
+    details = note["details"] or note["summary"] or note["contribution"]
+    detail_abstract = (
+        f'<p class="abstract"><strong>摘要：</strong>{_esc(paper.abstract)}</p>' if paper.abstract else ""
+    )
+    detail_panel = f"""
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <p>{_esc(details)}</p>
+          {detail_abstract}
+        </div>
+      </details>
+    """
     return f"""
     <article class="paper-card">
       <div class="paper-meta">
@@ -500,7 +563,7 @@ def _render_paper(paper: Paper, analysis: dict[str, Any], index: int, config: di
         <div class="note"><strong>一句话</strong><p>{_esc(note["summary"])}</p></div>
         <div class="note"><strong>贡献</strong><p>{_esc(note["contribution"])}</p></div>
       </div>
-      {abstract}
+      {detail_panel}
     </article>
     """
 

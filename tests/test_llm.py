@@ -32,6 +32,7 @@ class LlmFallbackTests(unittest.TestCase):
         note = analysis["papers"]["p1"]
         self.assertIn("A new climate model", note["summary"])
         self.assertIn("摘要要点", note["summary"])
+        self.assertIn("regional climate prediction", note["details"])
         self.assertTrue(analysis["research_ideas"])
 
     def test_chat_completion_retries_after_timeout(self):
@@ -77,6 +78,7 @@ class LlmFallbackTests(unittest.TestCase):
                 content = {
                     "summary": f"单篇总结：{paper['title']}",
                     "contribution": "围绕具体任务给出方法或证据。",
+                    "details": f"详细解释：{paper['title']} 的方法、证据线索和需要核对的信息。",
                     "why_read": "与当前关键词和来源优先级相关。",
                     "limitations": "需要核对全文实验设置。",
                 }
@@ -116,6 +118,7 @@ class LlmFallbackTests(unittest.TestCase):
         self.assertIn("paper_analyses", calls[2])
         self.assertEqual(analysis["daily_summary"], "今天的十篇候选围绕气候和 foundation model 展开。")
         self.assertIn("单篇总结：Agentic climate model", analysis["papers"]["p1"]["summary"])
+        self.assertIn("详细解释：Agentic climate model", analysis["papers"]["p1"]["details"])
         self.assertTrue(analysis["llm_used"])
 
     def test_analyze_papers_skips_remaining_after_consecutive_failures(self):

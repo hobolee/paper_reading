@@ -57,7 +57,7 @@ selection:
 
 如果你想先看所有论文，把 `require_keywords` 改为 `false`，或者把 `keywords` 设为空列表。
 
-`keyword_optional_sources` 会让指定来源即使没有命中关键词也能进入候选池；`source_minimums` 会尽量为指定来源保留名额。默认配置会优先保证 Nature 和 Science 主刊有一定占比，同时每天尽量保留 arXiv 候选。
+`keyword_optional_sources` 会让指定来源即使没有命中关键词也能进入候选池；`source_minimums` 会尽量为指定来源保留名额。默认配置会优先保证 Nature 和 Science 主刊有一定占比，同时每天尽量保留 arXiv 候选。当前关键词第二组也覆盖 AI for Science、科学推理、符号推理、形式化推理、符号回归和 test-time/inference-time scaling 等方向。
 
 ## 个人反馈
 
@@ -65,7 +65,9 @@ selection:
 
 - `⭐` 和 `👍` 会提高相似关键词、相同来源、同一论文的权重。
 - `👎` 会降低相似关键词和相同来源的权重。
-- `已读` 会轻微降低同一论文再次进入报告的优先级。
+- `已读` 会轻微降低同一论文再次进入报告的优先级，主要用于避免已经看过的论文反复占据日报位置。
+
+每篇论文还有一个 `详情` 展开区，展示 LLM 的单篇分析和原始摘要；外层只保留“一句话”和“贡献”，方便快速扫描。
 
 默认使用仓库 issue，不需要额外服务。配置在 `feedback` 段：
 

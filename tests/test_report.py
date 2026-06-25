@@ -25,6 +25,7 @@ class ReportMessageTests(unittest.TestCase):
             source="science",
             journal="Science",
             title="Climate model agents improve regional forecasts",
+            abstract="The study tests agent workflows for regional climate forecasting.",
             doi="10.1/demo",
             keyword_matches=["climate", "agent"],
             url="https://example.com/paper",
@@ -44,6 +45,7 @@ class ReportMessageTests(unittest.TestCase):
                 paper.id: {
                     "summary": "论文围绕区域气候预测展开。",
                     "contribution": "可能贡献是把 agent workflow 用于预测流程。",
+                    "details": "这篇论文的详细解释会说明 agent workflow 如何连接区域气候预测、数据约束和实验验证。",
                     "why_read": "与 climate 和 agent 关键词相关。",
                     "limitations": "需要核对全文实验设置。",
                 }
@@ -61,6 +63,9 @@ class ReportMessageTests(unittest.TestCase):
         self.assertIn("复现区域预测实验", html)
         self.assertIn("github.com/hobolee/paper_reading/issues/new", html)
         self.assertIn("稍后读", html)
+        self.assertIn("详情", html)
+        self.assertIn("这篇论文的详细解释", html)
+        self.assertIn("摘要：", html)
         self.assertNotIn("为什么读", html)
         self.assertNotIn("注意点", html)
 

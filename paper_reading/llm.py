@@ -50,6 +50,11 @@ def _metadata_note(paper: Paper) -> dict[str, str]:
             "阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。"
         )
         limitations = "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+        details = (
+            f"来源为 {source}，关键词匹配：{matched}。题名指向“{title}”。"
+            f"摘要中可用的信息是：{abstract_hint} "
+            "建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。"
+        )
     else:
         summary = f"{title}。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。"
         contribution = (
@@ -57,9 +62,14 @@ def _metadata_note(paper: Paper) -> dict[str, str]:
             "建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。"
         )
         limitations = "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+        details = (
+            f"来源为 {source}，关键词匹配：{matched}。当前只有题名“{title}”和基础元数据，"
+            "无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。"
+        )
     return {
         "summary": summary,
         "contribution": contribution,
+        "details": details,
         "why_read": (
             f"来源为 {source}，关键词匹配：{matched}。"
             "如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。"
@@ -221,7 +231,7 @@ def _normalize_paper_note(result: dict[str, Any], paper: Paper) -> dict[str, str
         note = {}
     fallback = _metadata_note(paper)
     normalized: dict[str, str] = {}
-    for key in ("summary", "contribution", "why_read", "limitations"):
+    for key in ("summary", "contribution", "details", "why_read", "limitations"):
         normalized[key] = str(note.get(key) or fallback[key])
     return normalized
 
@@ -244,7 +254,7 @@ def _analyze_single_paper(
             "style": "面向科研人员的单篇论文阅读笔记",
             "paper_notes": (
                 "只根据提供的题名、来源、摘要、关键词和元数据分析。"
-                "summary 和 contribution 都必须尽量落到具体对象、方法、数据、现象或任务上。"
+                "summary、contribution 和 details 都必须尽量落到具体对象、方法、数据、现象或任务上。"
                 "不要输出泛泛模板句；如果摘要为空，要明确说明信息不足。"
             ),
             "avoid": "不要声称读过全文；不要编造实验结果；不要输出 Markdown。",
@@ -252,6 +262,7 @@ def _analyze_single_paper(
         "required_json_schema": {
             "summary": "一到两句中文总结，必须包含论文具体对象或任务",
             "contribution": "核心贡献或可能贡献",
+            "details": "更完整的中文解释：研究对象、可能方法、证据线索、与用户方向的关系、需要核对的信息",
         },
     }
     messages = [
@@ -393,7 +404,7 @@ def _normalize_analysis(result: dict[str, Any], papers: list[Paper]) -> dict[str
         if not isinstance(note, dict):
             normalized["papers"][paper.id] = fallback["papers"].get(paper.id, {})
             continue
-        for key in ("summary", "contribution", "why_read", "limitations"):
+        for key in ("summary", "contribution", "details", "why_read", "limitations"):
             note[key] = str(note.get(key) or fallback["papers"][paper.id][key])
     if not normalized["research_ideas"]:
         normalized["research_ideas"] = fallback["research_ideas"]

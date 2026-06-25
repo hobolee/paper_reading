@@ -103,6 +103,30 @@ class FilterTests(unittest.TestCase):
         self.assertEqual([paper.id for paper in ranked], ["abstract-match"])
         self.assertEqual(stats["keyword_filtered"], 0)
 
+    def test_rank_and_filter_matches_scientific_symbolic_direction(self):
+        config = {
+            "filters": {
+                "require_keywords": True,
+                "keywords": [
+                    ["llm", "foundation model"],
+                    ["symbolic reasoning", "scientific inference"],
+                ],
+                "exclude_keywords": [],
+            },
+            "ranking": {"source_priority": {}},
+        }
+        papers = [
+            Paper(
+                id="symbolic-match",
+                source="arxiv",
+                title="Foundation models for scientific inference",
+                abstract="We evaluate symbolic reasoning in scientific problem solving.",
+            )
+        ]
+        ranked, stats = rank_and_filter(papers, config)
+        self.assertEqual([paper.id for paper in ranked], ["symbolic-match"])
+        self.assertEqual(stats["keyword_filtered"], 0)
+
     def test_rank_and_filter_keyword_optional_sources(self):
         config = {
             "filters": {
