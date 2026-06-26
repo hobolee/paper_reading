@@ -1,0 +1,693 @@
+{
+  "date": "2026-06-27",
+  "stats": {
+    "fetched": 482,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 69,
+      "science": 113
+    },
+    "deduped": 482,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 69,
+      "science": 113
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 255,
+    "keyword_filtered_by_source": {
+      "arxiv": 255
+    },
+    "keyword_optional_included": 150,
+    "keyword_optional_included_by_source": {
+      "nature": 64,
+      "science": 86
+    },
+    "ranked": 227,
+    "ranked_by_source": {
+      "arxiv": 45,
+      "nature": 69,
+      "science": 113
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 91,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天筛选出 10 篇论文，来源包括Nature、Science、arXiv。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。",
+    "themes": [],
+    "research_ideas": [
+      {
+        "idea": "围绕“Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 llm、agent、agents、rag、multimodal、mllm、ai、ml、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“LCAi: Life Cycle Assessment with big data fusion and retrieval-augmented generation-assisted interpretation”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、large language models、language model、language models、rag、artificial intelligence、ai、environmental、environment、carbon 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“On-board Remote-Sensing Foundation Models for Unsupervised Change Detection of Disaster Events”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 foundation model、foundation models、rag、ai、earth、remote sensing、satellite、earth observation 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Joint Learning of Experiential Rules and Policies for Large Language Model Agents”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、llm、language model、agent、agents、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Superconducting phase diagram of multilayer square-planar nickelates”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 ai、earth 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      }
+    ],
+    "papers": {
+      "arxiv:2606.27330v1": {
+        "summary": "这篇论文聚焦于多模态网页/GUI智能体的任务规划问题，目标是在真实网站环境中让小型开源MLLM更好地把复杂GUI任务分解为可执行动作。作者提出PEEU，通过自主探索环境获取规划经验并利用hindsight experience构造高层训练数据，同时用TDHAF从低/中/高三种任务粒度分析组合泛化与规划能力的关系。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：一是提出PEEU（planning experience exploration and utilization）方法，用自主经验探索与事后经验利用来生成严格对齐的高层规划训练数据；二是提出TDHAF（task decomposition hierarchical analysis framework），专门定量分析GUI任务分解中的分层泛化行为；三是在真实世界基准上验证，小型7B模型在GUI任务规划上取得明显提升，并给出“低层原子技能掌握不等于高层规划能力、高层任务训练更利于OOD泛化”的实证结论。",
+        "details": "根据题名、摘要和关键词，这项工作研究的是“面向网页/GUI操作的多模态智能体如何提升任务规划能力”，尤其关注小型开源MLLM在成本、隐私方面有优势，但在跨网站泛化和复杂任务分解上明显弱于更大商业模型的问题。论文提出的PEEU名称已经透露出两阶段思路：先在环境中自主探索，积累任务执行轨迹、界面状态、动作序列、成功/失败经验等；再利用hindsight experience，把原始交互轨迹转化成与规划目标严格对齐的高层训练样本。这里“strictly aligned, high-level training data”是一个关键线索，说明作者可能不是仅做行为克隆，而是在把低层点击/输入轨迹重写为更抽象的子目标、步骤计划或任务分解监督信号，以补足小模型最欠缺的规划层知识。\n\nTDHAF则是另一条重要贡献线索。摘要明确说它系统研究compositional generalization，并区分low、middle、high三种任务粒度。这意味着作者不仅报告总体成功率，还尝试回答：GUI智能体对“原子动作”会了以后，能不能组合成跨页面、跨网站、跨任务模板的高层计划？摘要给出的结论是否定前者、支持后者：仅掌握低层技能并不保证高层规划 competence，而高层任务训练能带来更强OOD泛化。这对做GUI agent、web agent、multimodal planning的人很有参考意义，因为它指向一个训练原则：如果目标是跨网站泛化，单纯堆原子操作数据可能收益有限，更应设计能表达任务结构、子目标层级和结果导向的高层监督。\n\n从实验对象看，论文应当使用真实世界网页基准，而非纯合成环境；摘要也提到“real world benchmarks”。但由于提供的信息被截断，目前只能确定作者声称7B模型达到30.6%的某项指标，无法确认这是任务成功率、相对提升、还是某个特定benchmark上的得分，也无法知道比较对象是闭源模型、开源同规模模型，还是消融版本。因此，涉及具体数值表现、SOTA地位、数据集名称、实验设置、统计显著性等内容都需要读正文核对。\n\n与科研方向的关系方面，如果读者关注LLM/MLLM agent、GUI automation、web navigation、任务分解、经验回放/轨迹重标注、以及小模型蒸馏或训练数据合成，这篇文章很值得看。它把“自主探索得到经验”和“用 hindsight 重解释经验生成规划监督”结合起来，方法上可能接近强化学习中的 hindsight relabeling思想，但服务对象是高层任务规划数据构造而非传统值函数学习；这可能为低成本训练GUI planner提供一条实用途径。若你关心OOD泛化评测设计，TDHAF也值得重点核对，因为它可能提供了一套比单一成功率更能解释模型能力边界的分层分析框架。\n\n需要重点核对的信息包括：PEEU具体如何定义“experience”、如何做hindsight utilization、训练目标是next-step planning还是完整task decomposition；TDHAF三层粒度的正式定义与标注方式；真实世界benchmark具体名称、网站覆盖范围、任务类型和是否含跨站迁移；7B模型的backbone、视觉编码器、训练数据规模与成本；以及30.6%这一结果对应的指标和相对基线。",
+        "why_read": "来源为 arXiv，关键词匹配：llm、agent、agents、rag、multimodal、mllm、ai、ml、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：为什么小型开源多模态模型在网页/GUI智能体中难以做好复杂任务规划与跨网站泛化，以及如何通过自动获取和利用交互经验，构造能提升高层任务分解能力的训练监督。更细一点说，作者还想回答一个科学问题：低层GUI原子技能、中的子任务能力和高层完整任务规划之间到底是什么关系，哪一层训练更能带来组合泛化与OOD迁移。",
+          "method": "从摘要可推断，方法路径大致是：1）让GUI/web agent在环境中自主探索，收集页面观测、动作、结果和可能的成功/失败轨迹；2）利用hindsight experience对这些轨迹做事后重解释或重标注，把实际达到的结果转成高层规划样本，从而合成“严格对齐”的训练数据；3）用这些数据训练一个7B级开源多模态模型，使其学会把复杂GUI任务分解为更可执行的高层步骤；4）通过TDHAF把任务拆成低/中/高三个粒度，分别评估ID/OOD或组合泛化表现，分析不同训练层级对规划能力的影响；5）在真实网站benchmark上与基线模型比较，并做可能的消融分析，如无自主探索、无hindsight、仅低层数据训练、仅高层数据训练等。",
+          "strengths": "最值得关注的亮点有三点。第一，问题选择很具体，不是泛泛做agent，而是抓住GUI/web agent中最关键也最难的数据瓶颈——高层规划监督缺乏。第二，PEEU把“自主探索”与“hindsight经验利用”结合，意味着它可能减少人工标注高层计划的成本，同时保持训练信号与环境可达结果一致，这对真实网站任务很有应用价值。第三，TDHAF提供了分层能力分析，而不是只看最终成功率；摘要中的结论“低层技能不保证高层规划，高层训练更利于OOD”如果实验充分，将对后续数据构造和评测范式具有方法论意义。",
+          "weaknesses": "基于当前题录信息，局限和风险也比较明显。首先，摘要未给出具体benchmark名称、任务数、网站数、比较基线和评测指标，因此暂时无法判断30.6%结果的实际含义与强度。其次，“strictly aligned”与“high-level training data”听起来很关键，但没有看到形式化定义，不清楚对齐是相对原任务指令、执行结果，还是界面状态转移。再次，自主探索在真实网站上的覆盖率、样本效率和安全性常是难点，摘要未说明探索是否依赖专家先验、工具约束或回放过滤。最后，TDHAF虽然听上去系统，但三层粒度如何界定、是否可复用到其他GUI benchmark、是否有人为主观划分，都需要谨慎核对。",
+          "next_step": "最小可执行动作建议是：1）先查正文中的方法图，确认PEEU的数据流：环境探索、轨迹重标注、训练样本格式各是什么；2）定位TDHAF定义与示意图，记录低/中/高层任务粒度的正式标准；3）查实验表，确认30.6%对应的具体benchmark和指标，并记下主要基线；4）优先看消融实验，判断性能提升主要来自自主探索、hindsight重写还是高层训练目标；5）如果你做相关研究，可尝试把自己的GUI/Web轨迹按论文思路重写成高层子目标数据，先做一个小规模对照，验证高层监督是否真的比原子动作监督更利于跨站泛化。"
+        }
+      },
+      "arxiv:2606.26857v1": {
+        "summary": "该论文提出一个用于生命周期评价（LCA）解释阶段的“视角条件化”检索增强生成框架 LCAi，目标是把环境热点与改进机会转化为在技术、社会和政策不确定性下更可执行的战略路径。作者以意大利某苹果生产设施中的“氢能辅助减少柴油使用”场景为案例，融合学术、产业、公共舆论和欧盟资助数据，并借助 GPT-5 nano 进行受控综合。",
+        "contribution": "从摘要看，论文的核心贡献是把 RAG 明确嵌入 LCA 的“解释”环节，而不是仅做数据问答：一是提出“场景锚点 + 多视角微查询 + 仅基于账本输出的中立综合”的三步式流程；二是构建覆盖学术、工业、公共话语与欧盟资助项目的数据源融合架构；三是尝试解决 LCA 从定量热点识别到战略行动建议之间缺乏结构化桥梁的问题，尤其面向脱碳决策。",
+        "details": "仅根据题名、摘要和元数据，这篇论文关注的不是传统 LCA 清单建模或影响评价算法本身，而是更靠后的 interpretation（解释/决策支持）阶段。作者指出，LCA 往往能量化环境热点与改进机会，但难以把这些结果进一步翻译成在现实约束下可执行的技术路线、组织行动或政策路径，因此引入“多源大数据融合 + 检索增强生成”的 AI 辅助解释框架。具体对象相当明确：意大利苹果生产设施中的柴油减量问题，策略抓手是氢能介入；这意味着论文很可能把某个农业-能源耦合改造情景作为 scenario anchor，用来固定系统边界、减碳目标与解释任务。方法线索也较具体：首先设定场景锚点；其次围绕不同“视角”发出受约束的微查询，分别从学术、产业、公共 discourse、EU funding 数据集中检索证据；最后进行“中立综合”，且综合阶段不再继续外部检索，而只整合前面已写入 ledger 的输出。这种 ledger-stored outputs 的设计，表明作者试图降低大模型在最终总结时随意引入未检索信息的风险，提高可追溯性和审计性。摘要还提到使用 GPT-5 nano 作为 reasoning model，说明其重点可能不在追求最大模型性能，而在流程化、成本可控和可嵌入分析链路的解释生成。与环境、碳管理、工业生态或 AI for science 方向的研究者相关之处在于：该框架试图把 LCA 的结果解释从单一专家判断转为多证据源汇合的半结构化过程，潜在适用于企业脱碳路线筛选、技术采纳可行性扫描、政策对齐分析等任务。需要重点核对的信息包括：各数据集的具体构成与时间范围；“公共 discourse”是新闻、社交媒体还是论坛；微查询如何设计、约束和评价；ledger 的数据结构；中立综合是否有人工评审；案例中所谓“柴油 reduction”是替代燃料、设备改造还是物流环节优化；以及作者是否提供与普通单源 RAG、无 RAG LLM 解释或人工专家解释的对照。摘要未给出定量结果，因此目前不能判断该框架是否实质提高了解释质量、可执行性或一致性。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、language model、language models、rag、artificial intelligence、ai、environmental、environment、carbon。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：LCA 在识别环境热点之后，如何把这些定量发现系统地转化为可行动的战略建议，尤其是在技术成熟度、社会接受度、产业可行性与政策支持存在不确定性的情况下，避免只给出抽象的“改进方向”而缺乏实施路径。",
+          "method": "从摘要可推测，方法由三部分构成。第一，用 scenario anchor 明确案例的系统边界、脱碳目标和解释语境，这相当于给后续检索提供任务约束。第二，针对学术、产业、公共话语和 EU funding 四类数据源设计 perspective-specific micro-queries，并进行 constrained retrieval，说明查询不是一次性宽泛搜索，而是按视角拆分问题、限制检索范围。第三，在 neutral synthesis 阶段只使用先前检索并存入 ledger 的内容做综合，不再追加检索，以减少幻觉并增强溯源。案例层面，研究对象是意大利苹果生产设施中借助氢能降低柴油使用的方案，推理模型为 GPT-5 nano。",
+          "strengths": "最值得关注的亮点有三点。其一，论文把“多视角证据融合”明确制度化：学术证据回答技术与环境合理性，产业数据反映落地可行性，公共话语可能反映社会接受度，EU funding 数据则可折射政策与创新支持方向。其二，采用 micro-query + constrained retrieval + ledger synthesis 的链式设计，具有较强的可审计性和过程控制意识，比直接让大模型泛化式生成更适合科研或决策支持场景。其三，案例选在农业生产设施的柴油脱碳问题，具有较具体的应用背景，可能展示该框架如何服务于非纯理论的实际减排决策。",
+          "weaknesses": "基于现有摘要，需要警惕几个边界。第一，论文可能更像决策支持框架展示，而非严格的 LCA 方法学创新；其增益也许主要体现在“解释组织方式”而非环境结果本身。第二，摘要未说明检索质量、生成质量和最终建议质量如何评估，也没有出现基线对照，因此实际有效性尚待核实。第三，多源数据之间的偏差与冲突可能很大，例如公共舆论与学术结论并不等价，若缺少明确权重或证据分级，综合结果可能受数据源噪声影响。第四，单一案例是意大利苹果设施中的氢能减柴油情景，外推到其他行业、地区或环境目标时可能有限。第五，使用 GPT-5 nano 虽有成本优势，但其推理深度是否足以处理复杂政策-技术耦合问题，需要看全文实验。",
+          "next_step": "最小可执行动作：第一，拿到全文后优先查看方法图和流程图，确认 scenario anchor、micro-query、ledger、neutral synthesis 的具体定义。第二，直接查案例章节，弄清“氢能辅助柴油减量”在苹果生产设施中对应哪个单元过程。第三，记录四类数据源的具体来源、规模、时间跨度和清洗规则。第四，寻找是否有与单源 RAG、无检索 LLM 或人工解释的对照表。第五，若你关心复现，可先尝试用一个小型公开案例把四视角检索模板照搬出来，验证这种“先分视角再综合”的结构是否能稳定输出更可执行的解释。"
+        }
+      },
+      "arxiv:2606.27018v1": {
+        "summary": "On-board Remote-Sensing Foundation Models for Unsupervised Change Detection of Disaster Events。摘要要点：Remote Sensing Foundation Models (RSFMs) have emerged as a powerful alternative to supervised models for Earth Observation, allowing satellites to autonomously trigger high-resolution captures or adjust tasking parameters upon detecting an anomaly, thereby maximizing the utility ...[truncated]",
+        "contribution": "摘要中最具体的线索是：Remote Sensing Foundation Models (RSFMs) have emerged as a powerful alternative to supervised models for Earth Observation, allowing satellites to autonomously trigger high-resolution captures or adjust tasking parameters upon detecting an anomaly, thereby maximizing the utility ...[truncated] 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：foundation model、foundation models、rag、ai、earth、remote sensing、satellite、earth observation。题名指向“On-board Remote-Sensing Foundation Models for Unsupervised Change Detection of Disaster Events”。摘要中可用的信息是：Remote Sensing Foundation Models (RSFMs) have emerged as a powerful alternative to supervised models for Earth Observation, allowing satellites to autonomously trigger high-resolution captures or adjust tasking parameters upon detecting an anomaly, thereby maximizing the utility ...[truncated] 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“On-board Remote-Sensing Foundation Models for Unsupervised Change Detection of Disaster Events”展开；摘要线索显示问题可能与 Remote Sensing Foundation Models (RSFMs) have emerged as a powerful alternative to supervised models for Earth Observation, allowing satellites to autonomously trigger high-resolution captures or adjust tasking parameters upon detecting an anomaly, thereby maximizing the utility ...[truncated] 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 foundation model、foundation models、rag、ai、earth、remote sensing、satellite、earth observation 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：foundation model、foundation models、rag、ai、earth、remote sensing、satellite、earth observation。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2606.27136v1": {
+        "summary": "这篇论文针对多步交互环境中的大语言模型智能体，研究如何把同一批交互轨迹同时用于更新“经验规则池”和策略本身，以提升稀疏奖励场景下的决策质量。作者提出 JERP（Joint Learning of Experiential Rules and Policies），在决策时检索任务相关规则辅助行动，在回合结束后再利用轨迹和成功参考轨迹共同修正规则与策略。",
+        "contribution": "从摘要看，核心贡献是提出一种将“外部自然语言经验规则”和“模型参数化策略学习”耦合起来的统一框架：同源地利用交互轨迹，一方面维护长期经验规则池，另一方面优化 LLM agent 的策略；并通过与参考成功轨迹的比较来修正规则，从而缓解规则与不断演化的策略不同步、以及单纯参数更新难以纠正局部错误的问题。",
+        "details": "基于题名、摘要和关键词，这项工作聚焦的是 LLM agents 在多步、交互式环境中的经验利用问题，而不是单轮问答或纯离线指令微调。摘要明确指出现有两条经验利用路线：一是把经验沉淀为模型外的自然语言规则，供后续提示时调用；二是直接用轨迹和反馈更新模型参数。作者认为前者虽然可解释，但会随着策略更新而逐渐失配；后者虽然能整体提升策略，却在稀疏奖励环境里难以及时修正局部决策错误。JERP 的关键思路是把这两条路线合并：在执行阶段，从长期规则池中检索与当前任务相关的规则，与交互历史一起作为条件输入给 agent；在学习阶段，则用同一批 episode 轨迹同时做两件事：优化 policy，以及通过将当前 rollout 与“参考成功轨迹”比较来修订规则池。摘要还暗示了一个重要机制假设：稳定、有效的行为模式可以随着训练逐步被抽象进规则，再反过来约束或引导后续决策，这相当于在显式经验知识与隐式参数策略之间建立闭环。\n\n从方法形态判断，这篇论文大概率处于“检索增强 agent + 经验规则编辑 + 策略优化”的交叉位置。需要注意的是，摘要没有给出具体策略学习范式，因此目前无法确认是 RL、offline-to-online 更新、DPO/偏好优化、行为克隆式蒸馏，还是某种基于轨迹回报的监督信号。也没有说明“参考成功轨迹”来自人工示范、环境搜索、历史最佳 rollout，还是外部求解器。类似地，“规则池”的表示形式虽被描述为 natural-language rules，但尚不清楚其粒度是高层任务分解、局部错误修正、状态-动作启发式，还是带触发条件的 if-then 规则；检索方式也可能是语义相似度检索、任务标签检索，或状态条件匹配。摘要中最值得科研读者关注的证据线索是：作者显式强调 sparse-reward settings、local mistakes、reference successful trajectories 和 synchronized evolution between rule pool and policy，这说明论文很可能在需要长程规划、错误传播明显的 agent benchmark 上评估，例如网页操作、具身交互、文本环境或工具使用任务。但具体任务、数据集、基座模型、训练成本、规则更新频率、是否需要人工标注，目前都需要核对。\n\n如果你的方向与 LLM agent、在线学习、经验回放、可解释决策、检索增强策略或稀疏奖励强化学习相关，这篇论文的价值在于它试图把“显式可读经验”和“隐式策略学习”从并行模块改造成相互校准的联合系统。最需要进一步查证的信息包括：1）规则修订算法是否自动化且稳定；2）规则检索是否真正带来因果增益，而非仅增加上下文提示；3）与仅做 policy update、仅做 rule memory、或交替训练相比，联合学习的边际收益有多大；4）规则池规模增大后是否出现冗余、冲突和检索退化；5）参考成功轨迹的获取成本是否限制方法通用性。由于目前只有摘要，不能声称论文已经证明这些问题都被解决。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：在多步交互环境中，LLM agent 积累的大量交互经验应该如何被有效利用，才能既保留显式规则的可解释性，又获得策略参数更新的泛化收益，并且避免两者彼此脱节。更细地说，作者关注两个痛点：经验规则作为外部文本记忆容易与后续更新后的策略不同步；而只依赖轨迹/反馈更新参数，在稀疏奖励任务中又难以针对局部失误提供直接纠偏。",
+          "method": "根据摘要，JERP 的可能方法流程是：先维护一个长期 experiential-rule pool，规则形式应为自然语言；每次 agent 决策时，根据当前任务或状态从规则池检索相关规则，与交互历史一起作为模型输入，生成下一步动作；每个 episode 完成后，收集到的 trajectories 被双重利用，一部分用于优化 policy，另一部分通过与 reference successful trajectories 对比来识别有效模式或错误模式，并据此更新、修订或抽象规则池。这里可能涉及三个核心子模块：规则表示与存储、规则检索与上下文拼接、基于成功轨迹对比的规则编辑/归纳机制。实验上大概率会在多步 agent benchmark 上做消融：无规则、仅规则、仅策略更新、联合学习；并关注成功率、样本效率、长期稳定性、规则质量或可解释性。",
+          "strengths": "最值得关注的亮点是“同源轨迹双用途”的联合设计：它不是把规则记忆和策略学习当成两个松耦合组件，而是让二者围绕同一批交互数据协同演化。第二个亮点是显式针对 sparse-reward 与 local mistakes 提出机制，说明方法意图解决长链任务中常见的局部错误放大问题。第三个亮点是可解释性与可学习性的折中：规则池保留了可读、可检索、可修订的外部知识载体，而策略更新则保留了模型内部泛化能力。若实验成立，这类框架对网页代理、工具使用代理、文本游戏或具身任务都可能有实际价值。",
+          "weaknesses": "基于当前题录和摘要，主要局限是关键信息缺失较多。首先，不清楚 policy 优化的具体算法，因此难判断训练稳定性和可复现性。其次，reference successful trajectories 的来源和成本未说明，若依赖高质量示范或昂贵搜索，方法适用范围会受限。再次，规则池的更新可能带来冲突、冗余和检索污染，但摘要未说明如何做规则去重、版本控制或置信度管理。另一个需要警惕的问题是，性能提升可能来自更长上下文或额外检索信息，而不一定来自“联合学习”本身，因此必须看严格消融。最后，摘要没有给出具体 benchmark、基座模型和量化结果，现阶段不能判断方法是否真正优于现有 agent memory 或 RL-based LLM agent 方法。",
+          "next_step": "最小可执行动作：第一，拿到全文后优先查看方法图和算法框，确认规则池表示、检索方式、策略更新算法以及参考成功轨迹来源；第二，直接查实验主表和消融表，重点比较 joint vs rule-only vs policy-only；第三，记录作者使用的具体任务环境，判断是否与你关注的 agent 场景一致；第四，检查是否报告规则示例、错误案例和规则演化过程，以验证“可解释且同步更新”的主张；第五，如果考虑复现，先列出所需组件：基座 LLM、交互环境、轨迹缓存、规则存储与检索模块、成功轨迹构建方式。"
+        }
+      },
+      "doi:10.1126/science.adp4440": {
+        "summary": "该论文围绕多层方平面镍酸盐Nd_{n+1}Ni_nO_{2n+2}构建超导相图，报告了在层数维度n=4到8范围内的超导迹象，并比较其与无限层RNiO2镍酸盐及铜酸盐样行为的异同。工作核心任务是理解多层结构、维度变化、4f电子效应与磁涨落如何共同塑造镍酸盐超导相图。",
+        "contribution": "核心贡献是把实验研究对象从已被广泛关注的无限层RNiO2扩展到多层方平面Nd_{n+1}Ni_nO_{2n+2}系列，并给出一个按层数n组织的超导相图；摘要还表明作者识别出随n减小而演化的超导各向异性、接近铜酸盐的电子结构特征，以及跨越超导区到过掺杂非超导区持续存在的磁涨落，从而为“方平面镍酸盐超导的共性与结构依赖性”提供了新的比较框架。",
+        "details": "从题名和摘要看，研究对象非常具体，是多层方平面镍酸盐Nd_{n+1}Ni_nO_{2n+2}，其中n代表NiO2层数或有效层状维度。作者声称“constructed a phase diagram”，说明主要产出之一应是以n或相关电子填充/掺杂参数为横轴、超导与非超导相区为纵向判据的实验相图；并且在n=4到8观察到“signatures of superconductivity”，这里措辞是“超导迹象”而非明确零电阻+迈斯纳完整证明，因此需要在正文核对其超导证据强度，可能涉及电阻转变、磁输运、临界场、各向异性或磁响应等。摘要指出“upon decreasing n, the superconducting anisotropy evolves owing to 4f electron effects”，这暗示作者不仅比较不同层数样品，还试图把Nd的4f电子自由度与超导各向异性联系起来，可能通过角分辨输运、上临界场方向依赖、磁化率或谱学数据建立关联。又因为作者名单中包含同步辐射/谱学背景研究者，且摘要直接提到“electronic structure characteristics approach cuprate-like behavior”，合理推测方法上可能包含某种电子结构表征，如x射线吸收、共振非弹性x射线散射、ARPES风格推断，或结合理论/第一性原理分析来比较镍酸盐与铜酸盐的轨道和能带特征；但仅凭摘要无法确定具体技术。摘要还强调磁涨落从超导区持续到过掺杂非超导区，这是一条重要证据线索：它意味着作者可能将磁涨落视为超导机制相关背景而非仅在超导相内出现的伴随现象，也提示其相图可能包含“过掺杂”一侧的系统扫描。与无限层化学掺杂镍酸盐超导区重叠，则说明多层模板并未脱离现有镍酸盐超导版图，而是在相似电子条件下提供了新的结构实现；这对做镍酸盐、铜氧化物类比、高温超导机制研究的读者尤其重要，因为它把“结构维度”“稀土4f效应”“磁涨落”和“铜酸盐相似电子结构”放在同一实验框架内比较。需要重点核对的信息包括：相图坐标到底是层数n、氧含量、载流子浓度还是外场/温度的组合；超导迹象的判据是否达到公认标准；磁涨落由何种实验量识别；“cuprate-like behavior”具体指费米面、轨道极化、交换相互作用还是输运各向异性；以及样品制备路线是否为薄膜外延、拓扑还原还是块体合成，因为这些会直接影响可复现性与相图解释。",
+        "why_read": "来源为 Science，关键词匹配：ai、earth。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题是：在无限层RNiO2之外，多层方平面镍酸盐Nd_{n+1}Ni_nO_{2n+2}是否也能承载超导；如果能，超导相图如何随层数n变化；这种结构维度变化是否会通过Nd的4f电子、电子结构向铜酸盐靠拢以及磁涨落的持续存在来改变超导性质与边界。",
+          "method": "从摘要可推断，作者应先制备一系列不同n的Nd_{n+1}Ni_nO_{2n+2}样品，再通过低温输运/磁学手段识别超导信号并构建相图；为讨论超导各向异性，可能测量不同晶向下的临界场或电阻响应；为论证4f电子效应与电子结构演化，可能结合元素特异谱学、散射实验或电子结构计算；为识别磁涨落延伸到过掺杂非超导区，可能进行温度和掺杂/组成依赖的磁谱或相关响应分析。",
+          "strengths": "最值得关注的亮点有三点：第一，研究对象从单一无限层扩展到系统的多层序列，天然适合做结构维度控制变量研究；第二，不只报告是否超导，还把超导各向异性、4f电子、电子结构铜酸盐相似性和磁涨落纳入同一相图叙事，信息密度高；第三，指出多层体系与化学掺杂无限层镍酸盐超导区存在重叠，这为抽取镍酸盐超导的普适成分与结构特异成分提供了比较基准。",
+          "weaknesses": "基于摘要首先要警惕“signatures of superconductivity”措辞偏保守，可能意味着超导证据尚不如成熟体系那样完整；其次，摘要没有给出转变温度、临界场、样品数量、误差范围和具体掺杂控制方式，因此相图的定量可信度需要看正文；再次，所谓“4f electron effects”与“cuprate-like behavior”都属于机制性解释，若缺乏直接可观测量支撑，可能仍带有较强推断色彩；最后，多层镍酸盐合成通常复杂，样品相纯度、氧化还原程度、应变与缺陷都可能影响超导判读。",
+          "next_step": "最小可执行动作：先核对正文和图1/主相图，记录n=4到8各样品的超导判据、转变温度与测量手段；再查支持“磁涨落持续到过掺杂区”的关键图，确认对应实验量；随后对照无限层RNiO2文献，整理相图区间、各向异性和电子结构相似性的具体可比参数；如果你的方向偏材料或机制，优先摘录样品制备路线、层数定义和4f效应证据链。"
+        }
+      },
+      "doi:10.1126/science.aed3823": {
+        "summary": "这篇Science论文聚焦蓝藻水华，具体研究微囊藻（Microcystis）群体为何会在几天内突然崩解。摘要提出：细胞内可游离铁催化形成“活性脂质过氧化物”，先触发单个细胞发生类似铁死亡的膜损伤与裂解，再通过氧化脂质向邻近细胞传播，最终导致水华群体的超快速集体死亡。",
+        "contribution": "核心贡献在于把蓝藻水华骤亡与一条较具体的因果链联系起来：可游离铁暴发→氧化应激→脂质过氧化→膜纳米孔形成→单细胞铁死亡/裂解→氧化脂质外释并在群体内扩散。若摘要表述可靠，这不仅是对水华终止机制的分子与细胞层面解释，也把 ferroptosis/脂质过氧化传播的概念扩展到蓝藻群体生态过程。",
+        "details": "从题名和摘要看，研究对象非常具体，是“盛放期蓝藻群体，尤其是微囊藻水华，在短时间内集体崩解”的机制。作者并未停留在一般性的“氧化损伤导致死亡”，而是强调铁催化的活性脂质过氧化物是主导因素，并给出按时间排序的事件序列：先出现 labile iron burst（可游离铁暴发），随后是氧化应激、脂质过氧化和细胞死亡。这说明他们很可能做了时间分辨采样，至少在一个微囊藻水华衰亡事件中追踪了多项生化指标，并将这些指标与死亡进程对齐。摘要还提到死亡细胞在群体/菌落中呈非随机空间分布，提示作者可能结合了显微成像、菌落空间统计或单细胞分布分析，而不是只做总体平均测量。\n\n机制层面最值得注意的是，作者把“脂质过氧化”进一步具体化为：在细胞内可游离铁催化下，膜脂被氧化并生成带烷基、短链脂酰基的截短磷脂。这类产物被描述为 active lipid peroxides，能够直接破坏质膜稳定性并诱导纳米尺度膜孔形成。这里的证据链如果成立，通常需要多种方法支撑：一类是铁、ROS、脂质过氧化与死亡的时序和干预关系；一类是氧化脂质分子种类鉴定，可能依赖脂质组学/质谱；另一类是膜结构损伤证据，例如高分辨显微、膜完整性探针、甚至电镜或纳米尺度成孔观察。摘要还提出 ferroptotic 细胞释放的氧化脂质可传播到邻近细胞、放大群体死亡，这意味着作者可能做了条件培养液转移、外源氧化脂质处理、共培养传播、空间邻域分析，或使用抗氧化/铁螯合抑制剂来验证传播性。\n\n对科研读者而言，这篇文章的意义在于把一个生态学现象——有害蓝藻水华突然消退——落到了可实验操控的细胞死亡机制上。如果你关注藻类生态、水华控制、膜脂氧化、铁稳态或非动物系统中的 ferroptosis，这篇论文都值得优先读。它可能启发两个方向：一是把水华终止从“环境因子相关性”推进到“细胞死亡执行机制”；二是提示通过调控铁可利用性、脂质过氧化或膜氧化产物传播来影响群体命运。不过，基于摘要仍需核对几个关键问题：作者所称 ferroptosis 在蓝藻中的操作定义是什么；“active lipid peroxides”与一般脂质过氧化产物如何区分；证据是来源于自然水华原位事件、实验室培养体系，还是二者结合；以及这些机制在微囊藻之外是否可推广到其他蓝藻或藻华物种。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：为什么微囊藻等蓝藻水华会在短短几天内突然发生群体性崩解？其核心科学问题不是“是否有氧化损伤”，而是“哪一类分子事件主导了超快速、可传播的集体死亡”，以及这种死亡是否可由铁催化的脂质过氧化和类似 ferroptosis 的过程来解释。",
+          "method": "依据摘要，可能的方法路径包括：1）在一次或多次微囊藻水华衰亡过程中做时间序列观测，按阶段测定可游离铁、氧化应激、脂质过氧化和细胞死亡；2）利用菌落/群体显微成像，分析死亡细胞在菌落中的空间分布是否非随机；3）通过脂质组学或质谱鉴定截短磷脂等氧化膜脂产物；4）通过膜完整性染色、高分辨成像或电镜观察纳米孔形成与膜失稳；5）通过铁螯合剂、抗氧化剂、脂质过氧化抑制策略，或者外源氧化脂质处理、培养液转移实验，验证铁依赖性和死亡传播性。",
+          "strengths": "亮点在于证据链试图跨越生态现象、单细胞死亡、膜脂化学和群体传播四个层次。尤其值得关注的点有：第一，给出明确时序而非静态相关；第二，把膜损伤具体归因于截短磷脂等活性氧化脂质，而非笼统 ROS；第三，强调菌落内部死亡的非随机空间分布，说明死亡传播可能有局部邻域效应；第四，将 ferroptosis 概念引入蓝藻水华崩解，为生态调控提供潜在可干预靶点。",
+          "weaknesses": "仅凭题录和摘要，仍有若干边界需要警惕：1）ferroptosis 是否在蓝藻中有充分、严格的判据，还是借用了类比性术语；2）摘要未说明样本量、重复次数、自然事件与实验室验证各占多大比重；3）“活性脂质过氧化物”与“截短磷脂”的检测和定量是否足够直接，是否能排除其他膜损伤机制；4）传播机制目前只在摘要中表述为氧化脂质释放，尚不清楚其扩散尺度、稳定性和在天然水体中的实际效应强度；5）结论可能主要针对微囊藻，物种普适性需要谨慎。",
+          "next_step": "最小可执行动作：1）优先查看正文中的时间序列主图，确认可游离铁、ROS、脂质过氧化和死亡的先后关系是否由同一体系测得；2）查找是否使用铁螯合剂、自由基清除剂或 ferroptosis 抑制剂做因果干预；3）定位氧化脂质鉴定图表，记录具体分子名称、截短链特征和定量变化；4）查看“非随机空间分布”和“纳米孔形成”的成像证据及统计方法；5）记下一个关键问题：作者如何在蓝藻中界定 ferroptosis，而不是一般氧化性裂解。"
+        }
+      },
+      "doi:10.1126/science.adw3949": {
+        "summary": "Single-cell multiomics of neuron activation reveals context-specific genetics of brain disorders。摘要要点：Most causal variants for neuropsychiatric disorders (NPD) remain unknown.",
+        "contribution": "摘要中最具体的线索是：Most causal variants for neuropsychiatric disorders (NPD) remain unknown. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Single-cell multiomics of neuron activation reveals context-specific genetics of brain disorders”。摘要中可用的信息是：Most causal variants for neuropsychiatric disorders (NPD) remain unknown. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Single-cell multiomics of neuron activation reveals context-specific genetics of brain disorders”展开；摘要线索显示问题可能与 Most causal variants for neuropsychiatric disorders (NPD) remain unknown. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-10810-2": {
+        "summary": "Role of methanesulfonic acid in atmospheric particle nucleation and growth。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Role of methanesulfonic acid in atmospheric particle nucleation and growth”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Role of methanesulfonic acid in atmospheric particle nucleation and growth”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10684-4": {
+        "summary": "Chiral laser gyroscopes breaking the lock-in limit。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Chiral laser gyroscopes breaking the lock-in limit”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Chiral laser gyroscopes breaking the lock-in limit”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10685-3": {
+        "summary": "The mutational landscape of STING-induced immunity。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“The mutational landscape of STING-induced immunity”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“The mutational landscape of STING-induced immunity”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for arxiv:2606.27018v1: Extra data: line 1 column 3247 (char 3246)",
+      "LLM authentication failed: HTTP 401 Unauthorized. Check GitHub Secrets OPENAI_API_KEY, OPENAI_BASE_URL, and OPENAI_MODEL.",
+      "Skipped LLM analysis for 3 paper(s) after authentication failure."
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2606.27330v1",
+      "source": "arxiv",
+      "title": "Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning",
+      "authors": [
+        "Tianyi Men",
+        "Zhuoran Jin",
+        "Pengfei Cao",
+        "Yubo Chen",
+        "Kang Liu",
+        "Jun Zhao"
+      ],
+      "published": "2026-06-25T17:44:48Z",
+      "updated": "2026-06-25T17:44:48Z",
+      "abstract": "Multimodal web agents can assist humans in operating repetitive GUI tasks, where effective task planning is essential for decomposing complex tasks into executable actions. While small open source MLLMs are cost efficient and privacy preserving compared with commercial large models, they suffer from weak planning and limited cross website generalization. To address these limitations, we introduce the planning experience exploration and utilization (PEEU) method, which autonomously explores environments to discover experiences and utilizes hindsight experience to synthesize strictly aligned, high level training data. To quantitatively analyze the generalization behaviors driving this performance, we propose the task decomposition hierarchical analysis framework (TDHAF) to systematically study compositional generalization across three task granularities: low, middle and high levels. Our analysis reveals that mastering low level atomic skills does not guarantee high level planning competence, while high level task training yields stronger OOD generalization. Experiments on real world benchmarks demonstrate PEEU's superior effectiveness: our 7B model achieves 30.6% accuracy, outperforming the much larger Qwen2.5-VL-32B model. These demonstrate constructing hindsight high level tasks and leveraging experiences is crucial for OOD planning abilities of small MLLMs.",
+      "url": "http://arxiv.org/abs/2606.27330v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.27330v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "llm",
+        "agent",
+        "agents",
+        "rag",
+        "multimodal",
+        "mllm",
+        "ai",
+        "ml",
+        "environment"
+      ],
+      "score": 73.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.26857v1",
+      "source": "arxiv",
+      "title": "LCAi: Life Cycle Assessment with big data fusion and retrieval-augmented generation-assisted interpretation",
+      "authors": [
+        "Georgios Tsironis",
+        "Juan D. Medrano-Garcia",
+        "Gonzalo Guillen-Gosalbez"
+      ],
+      "published": "2026-06-25T10:41:48Z",
+      "updated": "2026-06-25T10:41:48Z",
+      "abstract": "The interpretation phase of life cycle assessment often lacks structured mechanisms for translating quantified improvement opportunities addressing environmental hotspots into actionable strategic pathways under technological, social, and policy uncertainty. To overcome this limitation, this study introduces a perspective-conditioned retrieval-augmented generation framework for LCA interpretation, where a multi-perspective retrieval and controlled synthesis is incorporated in the artificial intelligence (AI)-assisted LCA. To operationalise large language models in LCA interpretation, a perspective fusion RAG architecture was developed, covering academic, industry, public discourse, and European union (EU) funding datasets. Our approach comprises three steps: (1) a scenario anchor defining system boundaries and decarbonization targets, (2) a set of perspective-specific micro-queries with constrained retrieval, and (3) a neutral synthesis step integrating only ledger-stored outputs without further retrieval. The framework is demonstrated through a hydrogen-enabled diesel reduction use case in an Italian apple production facility using GPT-5 nano as the reasoning model. Overall, the structured retrieval and constrained synthesis are designed to mitigate the risk of hallucination while preserving cross-domain diversity. The approach presented can support more disciplined translation of impact results into strategic pathways and opens up new avenues for the use of advanced AI tools in LCA studies, particularly those focused on technologies that could be deployed at scale. This proof-of-concept demonstrates how AI-assisted, evidence-grounded interpretation can support implementation-oriented decision-making beyond conventional LCA studies.",
+      "url": "http://arxiv.org/abs/2606.26857v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26857v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "language model",
+        "language models",
+        "rag",
+        "artificial intelligence",
+        "ai",
+        "environmental",
+        "environment",
+        "carbon"
+      ],
+      "score": 73.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.27018v1",
+      "source": "arxiv",
+      "title": "On-board Remote-Sensing Foundation Models for Unsupervised Change Detection of Disaster Events",
+      "authors": [
+        "S. Ramírez-Gallego"
+      ],
+      "published": "2026-06-25T13:30:51Z",
+      "updated": "2026-06-25T13:30:51Z",
+      "abstract": "Remote Sensing Foundation Models (RSFMs) have emerged as a powerful alternative to supervised models for Earth Observation, allowing satellites to autonomously trigger high-resolution captures or adjust tasking parameters upon detecting an anomaly, thereby maximizing the utility of the mission's limited power and computational resources. RSFMs are versatile, unified encoders that optimize onboard storage for multiple orbital applications while ensuring high-fidelity feature extraction. In particular, unsupervised change detection with RSFMs offers a well-informed and transformative path for disaster monitoring without expensive labels. In this paper, we present a novel unsupervised detection method based on ResNet (RSFM) + FPN which identifies a wide spectrum of anomalies by detecting subtle semantic shifts in the latent space between successive orbital passes. By relying on an untrained FPN architecture and its intrinsic priors, the system achieves efficient image-level generation and higher resolution mapping with minimal effort (training-free) compared to previous proposals (patch-based, trained). And by replacing tailored models with RSFMs, we can achieve comparable results through an approach that eliminates the need for bespoke training and extensive development effort and adds customization, while ensuring high-performance generalization across diverse terrains and sensors.",
+      "url": "http://arxiv.org/abs/2606.27018v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.27018v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "foundation model",
+        "foundation models",
+        "rag",
+        "ai",
+        "earth",
+        "remote sensing",
+        "satellite",
+        "earth observation"
+      ],
+      "score": 72.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.27136v1",
+      "source": "arxiv",
+      "title": "Joint Learning of Experiential Rules and Policies for Large Language Model Agents",
+      "authors": [
+        "Shicheng Ye",
+        "Chao Yu"
+      ],
+      "published": "2026-06-25T15:11:02Z",
+      "updated": "2026-06-25T15:11:02Z",
+      "abstract": "For LLM agents in multi-step interactive environments, a key challenge is to make effective use of accumulated interaction experience. Existing work has typically separated two uses of such experience: keeping it outside the model as natural-language rules for later prompting, or using trajectories and feedback to update the model parameters. The former is easy to interpret but can fall out of sync with the evolving policy; the latter improves the policy more broadly but provides only limited correction for local mistakes in sparse-reward settings. We present Joint Learning of Experiential Rules and Policies for LLM Agents (JERP), which updates a long-term experiential-rule pool and the policy from the same interaction trajectories. At decision time, JERP retrieves task-relevant rules and conditions the agent on them together with the interaction history. After each episode, it uses the collected trajectories both to optimize the policy and to revise the rule pool by comparing current rollouts with reference successful trajectories. This coupling keeps the rule pool aligned with the evolving policy while allowing stable and effective behaviors to be gradually absorbed into the model itself. Experiments on AlfWorld and WebShop show that JERP yields consistent gains in decision performance for complex interactive tasks.",
+      "url": "http://arxiv.org/abs/2606.27136v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.27136v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 71.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.adp4440",
+      "source": "science",
+      "title": "Superconducting phase diagram of multilayer square-planar nickelates",
+      "authors": [
+        "Grace A. Pan",
+        "Dan Ferenc Segedin",
+        "Sophia F. R. TenHuisen",
+        "Lopa Bhatt",
+        "Harrison LaBollita",
+        "Abigail Y. Jiang",
+        "Qi Song",
+        "Ari B. Turkiewicz",
+        "Denitsa R. Baykusheva",
+        "Abhishek Nag",
+        "Stefano Agrestini",
+        "Ke-Jin Zhou",
+        "Jonathan Pelliciari",
+        "Valentina Bisogni",
+        "Hua Zhou",
+        "Mark P. M. Dean",
+        "Hanjong Paik",
+        "David A. Muller",
+        "Lena F. Kourkoutis",
+        "Charles M. Brooks",
+        "Matteo Mitrano",
+        "Antia S. Botana",
+        "Berit H. Goodge",
+        "Julia A. Mundy"
+      ],
+      "published": "2026-06-25",
+      "updated": "2026-06-25",
+      "abstract": "The discovery of superconductivity in square-planar nickelates has offered a rich materials platform to explore the origins of high-temperature superconductivity. However, experimental investigations have largely been limited to the infinite-layer R NiO 2 ( R , rare earth) nickelates. We constructed a phase diagram of multilayer square-planar Nd n +1 Ni n O 2 n +2 compounds and found signatures of superconductivity for dimensionality n = 4 to 8. Upon decreasing n , the superconducting anisotropy evolves owing to 4 f electron effects, and electronic structure characteristics approach cuprate-like behavior. Magnetic fluctuations persist from within the superconducting regime and into the overdoped, nonsuperconducting regime. The superconducting regime overlaps with that of chemically doped infinite-layer nickelates, demonstrating underlying commonalities as well as differences across varying structural realizations of square-planar nickelates. Our work establishes this layered template for creating new nickel-based superconductors.",
+      "url": "https://doi.org/10.1126/science.adp4440",
+      "pdf_url": "",
+      "doi": "10.1126/science.adp4440",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "ai",
+        "earth"
+      ],
+      "score": 56.5,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6805",
+        "page": "1390-1395",
+        "reference_count": 124,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adp4440"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aed3823",
+      "source": "science",
+      "title": "Iron-catalyzed active lipid peroxides drive ultrafast collective cell death in blooming algae",
+      "authors": [
+        "Yinjie Zhu",
+        "Xiaoxiong Wang",
+        "Yifan Tong",
+        "Chengzhen Jia",
+        "Huansheng Cao",
+        "Hongying Hu",
+        "Yi Tao"
+      ],
+      "published": "2026-06-25",
+      "updated": "2026-06-26",
+      "abstract": "Harmful algal blooms, the most severe ecological hazards worldwide, terminate abruptly within a few days. In this work, we identified that iron-catalyzed active lipid peroxides predominantly trigger individual cell ferroptosis and drive the population collapse of blooming cyanobacteria. We reveal the chronological sequence of labile iron burst, oxidative stress, lipid peroxidation, and cell death during a Microcystis bloom demise event. Dead cells exhibit a nonrandom spatial distribution within colonies. Intensifying lipid peroxidation catalyzed by cellular labile iron generates truncated phospholipids with shortened fatty acyl chains bearing alkyl groups. These active lipid peroxides destabilize plasma membranes and induce nanoscale membrane pore formation, resulting in individual cell ferroptosis and lysis. Oxidized lipids are also released from ferroptotic cells, propagating lipid peroxidation to neighboring cells, thereby spreading death throughout the population.",
+      "url": "https://doi.org/10.1126/science.aed3823",
+      "pdf_url": "",
+      "doi": "10.1126/science.aed3823",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6805",
+        "page": null,
+        "reference_count": 79,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aed3823"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adw3949",
+      "source": "science",
+      "title": "Single-cell multiomics of neuron activation reveals context-specific genetics of brain disorders",
+      "authors": [
+        "Lifan Liang",
+        "Siwei Zhang",
+        "Zicheng Wang",
+        "Hanwen Zhang",
+        "Chuxuan Li",
+        "Christina Thapa",
+        "Emily K. Oh",
+        "David Sirkin",
+        "Xiaotong Sun",
+        "Alexandra Barishman",
+        "Ada McCarroll",
+        "Alexandra C. Duhe",
+        "Sheng Qian",
+        "Xiaoyuan Zhong",
+        "Brendan Jamison",
+        "Whitney Wood",
+        "Alena Kozlova",
+        "Zhiping P. Pang",
+        "Alan R. Sanders",
+        "Xin He",
+        "Jubao Duan"
+      ],
+      "published": "2026-06-25",
+      "updated": "2026-06-26",
+      "abstract": "Most causal variants for neuropsychiatric disorders (NPD) remain unknown. A major hurdle is that disease variants may act in specific contexts, such as during neuronal activation, which is difficult to study in vivo at the population level. We profiled single-nucleus neuron-activation multiomics in human induced pluripotent stem cell–derived neurons from 100 donors, revealing the NPD-relevant transcriptomic and epigenomic landscape of neuronal activation. We identified abundant genetic variants associated with activity-dependent gene expression and chromatin accessibility, the latter explaining larger proportions of NPD heritability. Integrating multiomics data with genome-wide association studies further revealed NPD risk variants and genes with effects detected only upon stimulation, such as activity-dependent cholesterol metabolism. Our work highlights the power of cell stimulation to reveal context-specific “hidden” genetic effects.",
+      "url": "https://doi.org/10.1126/science.adw3949",
+      "pdf_url": "",
+      "doi": "10.1126/science.adw3949",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6805",
+        "page": null,
+        "reference_count": 124,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adw3949"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10810-2",
+      "source": "nature",
+      "title": "Role of methanesulfonic acid in atmospheric particle nucleation and growth",
+      "authors": [
+        "Rima Baalbaki",
+        "Jiali Shen",
+        "Mario Simon",
+        "Hannah Klebach",
+        "Samuel Ruhl",
+        "Jenna DeVivo",
+        "Mingyi Wang",
+        "Wiebke Scholz",
+        "Lubna Dada",
+        "Birte Rörup",
+        "Dominik Stolzenburg",
+        "Hanna E. Manninen",
+        "Eva Sommer",
+        "Lucía Caudillo-Plath",
+        "Guillaume Marie",
+        "Martin Friedrich",
+        "Wenjuan Yu",
+        "Markus Leiminger",
+        "Dina Alfaouri",
+        "Antonio Amorim",
+        "Tatjana Arnoldi-Meadows",
+        "Hannah Beckmann",
+        "Moritz Berntheusel",
+        "Steffen Bräkling",
+        "Zoé Brasseur",
+        "Randall Chiu",
+        "Jonathan Duplissy",
+        "Henning Finkenzeller",
+        "Martin Heinritzi",
+        "Felix Kunkler",
+        "Houssni Lamkaddam",
+        "Brandon Lopez",
+        "Naser Mahfouz",
+        "Vladimir Makhmutov",
+        "Monica Martinez",
+        "Ruby Marten",
+        "Dario Massabo",
+        "Roy Mauldin",
+        "Bernhard Mentler",
+        "Markus Müller",
+        "Maxim Philippov",
+        "Ana A. Piedehierro",
+        "Pedro Rato",
+        "Tobias Reinecke",
+        "Sarah Richter",
+        "Douglas M. Russell",
+        "Benjamin Schulze",
+        "Mihnea Surdu",
+        "Roseline Thakur",
+        "Yee Jun Tham",
+        "Ping Tian",
+        "António Tomé",
+        "Yandong Tong",
+        "Jens Top",
+        "Andrea C. Wagner",
+        "Dongyu S. Wang",
+        "Yonghong Wang",
+        "Ryan X. Ward",
+        "Stefan K. Weber",
+        "André Welti",
+        "Yusheng Wu",
+        "Marcel Zauner-Wieczorek",
+        "Jiangyi Zhang",
+        "Joachim Curtius",
+        "Neil M. Donahue",
+        "Imad El Haddad",
+        "Richard C. Flagan",
+        "Armin Hansel",
+        "Hartwig Harder",
+        "Andreas Kürten",
+        "Tuukka Petäjä",
+        "Siegfried Schobesberger",
+        "Mikko Sipilä",
+        "Rainer Volkamer",
+        "Paul M. Winkler",
+        "Douglas R. Worsnop",
+        "Theodoros Christoudias",
+        "Andrea Pozzer",
+        "Markku Kulmala",
+        "Jasper Kirkby",
+        "Katrianne Lehtipalo",
+        "Xu-Cheng He"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10810-2",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10810-2",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10810-2"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10684-4",
+      "source": "nature",
+      "title": "Chiral laser gyroscopes breaking the lock-in limit",
+      "authors": [
+        "Yuan-Hao Mao",
+        "Ji-Peng Xu",
+        "Hong-Teng Ji",
+        "Li-Tian Yang",
+        "Zhong-Qi Tan",
+        "Yu-Chuan Quan",
+        "Tao Pu",
+        "Wei Shao",
+        "Jun-Quan Hu",
+        "Ran Huang",
+        "Franco Nori",
+        "Hui Jing"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10684-4",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10684-4",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "654",
+        "issue": "8120",
+        "page": "926-931",
+        "reference_count": 53,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10684-4"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10685-3",
+      "source": "nature",
+      "title": "The mutational landscape of STING-induced immunity",
+      "authors": [
+        "Bing Zhang",
+        "Pengbiao Xu",
+        "Yu Meng",
+        "Laure Gallay",
+        "François Lestelle",
+        "Hélène Morel",
+        "Marie-Louise Frémond",
+        "Bruno E. Correia",
+        "Andrea Ablasser"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10685-3",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10685-3",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 74,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10685-3"
+      }
+    }
+  ]
+}
