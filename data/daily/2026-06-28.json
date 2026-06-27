@@ -1,0 +1,633 @@
+{
+  "date": "2026-06-28",
+  "stats": {
+    "fetched": 483,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 70,
+      "science": 113
+    },
+    "deduped": 483,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 70,
+      "science": 113
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 255,
+    "keyword_filtered_by_source": {
+      "arxiv": 255
+    },
+    "keyword_optional_included": 151,
+    "keyword_optional_included_by_source": {
+      "nature": 65,
+      "science": 86
+    },
+    "ranked": 228,
+    "ranked_by_source": {
+      "arxiv": 45,
+      "nature": 70,
+      "science": 113
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 101,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天筛选出 10 篇论文，来源包括Nature、Science、arXiv。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。",
+    "themes": [],
+    "research_ideas": [
+      {
+        "idea": "围绕“OpenFinGym: A Verifiable Multi-Task Gym Environment for Evaluating Quant Agents”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、language model、agent、agents、rag、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Automating Potential-based Reward Shaping with Vision Language Model Guidance”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 language model、agent、agents、rag、vision language、vlm、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Socratic agents for autonomous scientific discovery in high-dimensional physical systems”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 agent、agents、multi-modal、ai、environmental、environment、scientific discovery 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“EO-WM: A Physically Informed World Model for Probabilistic Earth Observation Forecasting”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 ai、transformer、diffusion、earth、weather、satellite、earth observation 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Constraining an exoplanet’s magnetic field using star-planet interactions”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 science 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      }
+    ],
+    "papers": {
+      "arxiv:2606.26350v1": {
+        "summary": "OpenFinGym: A Verifiable Multi-Task Gym Environment for Evaluating Quant Agents。摘要要点：Although large language model agents are increasingly applied to quantitative-finance workflows, their evaluation remains fragmented across isolated tasks, while the financial relevance of benchmark tasks is often overlooked.",
+        "contribution": "摘要中最具体的线索是：Although large language model agents are increasingly applied to quantitative-finance workflows, their evaluation remains fragmented across isolated tasks, while the financial relevance of benchmark tasks is often overlooked. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、language model、agent、agents、rag、ai、environment。题名指向“OpenFinGym: A Verifiable Multi-Task Gym Environment for Evaluating Quant Agents”。摘要中可用的信息是：Although large language model agents are increasingly applied to quantitative-finance workflows, their evaluation remains fragmented across isolated tasks, while the financial relevance of benchmark tasks is often overlooked. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“OpenFinGym: A Verifiable Multi-Task Gym Environment for Evaluating Quant Agents”展开；摘要线索显示问题可能与 Although large language model agents are increasingly applied to quantitative-finance workflows, their evaluation remains fragmented across isolated tasks, while the financial relevance of benchmark tasks is often overlooked. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、language model、agent、agents、rag、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、language model、agent、agents、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2606.27180v1": {
+        "summary": "Automating Potential-based Reward Shaping with Vision Language Model Guidance。摘要要点：Sparse rewards are inherently challenging for reinforcement learning agents as they lack intermediate feedback to guide exploration and to correctly attribute the sparse success rewards to relevant parts of the trajectory.",
+        "contribution": "摘要中最具体的线索是：Sparse rewards are inherently challenging for reinforcement learning agents as they lack intermediate feedback to guide exploration and to correctly attribute the sparse success rewards to relevant parts of the trajectory. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：language model、agent、agents、rag、vision language、vlm、ai、environment。题名指向“Automating Potential-based Reward Shaping with Vision Language Model Guidance”。摘要中可用的信息是：Sparse rewards are inherently challenging for reinforcement learning agents as they lack intermediate feedback to guide exploration and to correctly attribute the sparse success rewards to relevant parts of the trajectory. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Automating Potential-based Reward Shaping with Vision Language Model Guidance”展开；摘要线索显示问题可能与 Sparse rewards are inherently challenging for reinforcement learning agents as they lack intermediate feedback to guide exploration and to correctly attribute the sparse success rewards to relevant parts of the trajectory. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 language model、agent、agents、rag、vision language、vlm、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：language model、agent、agents、rag、vision language、vlm、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2606.26722v1": {
+        "summary": "Socratic agents for autonomous scientific discovery in high-dimensional physical systems。摘要要点：The automation of scientific discovery has reached an inflection point.",
+        "contribution": "摘要中最具体的线索是：The automation of scientific discovery has reached an inflection point. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：agent、agents、multi-modal、ai、environmental、environment、scientific discovery。题名指向“Socratic agents for autonomous scientific discovery in high-dimensional physical systems”。摘要中可用的信息是：The automation of scientific discovery has reached an inflection point. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Socratic agents for autonomous scientific discovery in high-dimensional physical systems”展开；摘要线索显示问题可能与 The automation of scientific discovery has reached an inflection point. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 agent、agents、multi-modal、ai、environmental、environment、scientific discovery 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：agent、agents、multi-modal、ai、environmental、environment、scientific discovery。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2606.27277v1": {
+        "summary": "EO-WM: A Physically Informed World Model for Probabilistic Earth Observation Forecasting。摘要要点：Earth Observation (EO) forecasting aims to predict future Earth surface dynamics from satellite observations under changing meteorological conditions.",
+        "contribution": "摘要中最具体的线索是：Earth Observation (EO) forecasting aims to predict future Earth surface dynamics from satellite observations under changing meteorological conditions. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：ai、transformer、diffusion、earth、weather、satellite、earth observation。题名指向“EO-WM: A Physically Informed World Model for Probabilistic Earth Observation Forecasting”。摘要中可用的信息是：Earth Observation (EO) forecasting aims to predict future Earth surface dynamics from satellite observations under changing meteorological conditions. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“EO-WM: A Physically Informed World Model for Probabilistic Earth Observation Forecasting”展开；摘要线索显示问题可能与 Earth Observation (EO) forecasting aims to predict future Earth surface dynamics from satellite observations under changing meteorological conditions. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 ai、transformer、diffusion、earth、weather、satellite、earth observation 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：ai、transformer、diffusion、earth、weather、satellite、earth observation。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.adv3075": {
+        "summary": "Constraining an exoplanet’s magnetic field using star-planet interactions。摘要要点：Theory predicts that a planet with a sufficiently strong magnetic field orbiting close to its host star could induce star-planet magnetic interactions.",
+        "contribution": "摘要中最具体的线索是：Theory predicts that a planet with a sufficiently strong magnetic field orbiting close to its host star could induce star-planet magnetic interactions. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Constraining an exoplanet’s magnetic field using star-planet interactions”。摘要中可用的信息是：Theory predicts that a planet with a sufficiently strong magnetic field orbiting close to its host star could induce star-planet magnetic interactions. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Constraining an exoplanet’s magnetic field using star-planet interactions”展开；摘要线索显示问题可能与 Theory predicts that a planet with a sufficiently strong magnetic field orbiting close to its host star could induce star-planet magnetic interactions. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.adz3996": {
+        "summary": "Structural insights into spectral tuning and retinal exchange in cone visual pigments。摘要要点：Color vision in catarrhine primates relies on red-, green-, and blue-sensitive cone pigments that share an 11- cis -retinal chromophore but differ in absorption maxima.",
+        "contribution": "摘要中最具体的线索是：Color vision in catarrhine primates relies on red-, green-, and blue-sensitive cone pigments that share an 11- cis -retinal chromophore but differ in absorption maxima. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Structural insights into spectral tuning and retinal exchange in cone visual pigments”。摘要中可用的信息是：Color vision in catarrhine primates relies on red-, green-, and blue-sensitive cone pigments that share an 11- cis -retinal chromophore but differ in absorption maxima. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Structural insights into spectral tuning and retinal exchange in cone visual pigments”展开；摘要线索显示问题可能与 Color vision in catarrhine primates relies on red-, green-, and blue-sensitive cone pigments that share an 11- cis -retinal chromophore but differ in absorption maxima. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.ads0532": {
+        "summary": "Innate factors and ontogeny determine nonbreeding areas of migrant songbirds。摘要要点：Migratory birds connect ecosystems worldwide and often show connectivity between breeding and nonbreeding areas, meaning that individuals have nonbreeding (“wintering”) locations close to others from the same breeding population.",
+        "contribution": "摘要中最具体的线索是：Migratory birds connect ecosystems worldwide and often show connectivity between breeding and nonbreeding areas, meaning that individuals have nonbreeding (“wintering”) locations close to others from the same breeding population. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Innate factors and ontogeny determine nonbreeding areas of migrant songbirds”。摘要中可用的信息是：Migratory birds connect ecosystems worldwide and often show connectivity between breeding and nonbreeding areas, meaning that individuals have nonbreeding (“wintering”) locations close to others from the same breeding population. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Innate factors and ontogeny determine nonbreeding areas of migrant songbirds”展开；摘要线索显示问题可能与 Migratory birds connect ecosystems worldwide and often show connectivity between breeding and nonbreeding areas, meaning that individuals have nonbreeding (“wintering”) locations close to others from the same breeding population. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-10681-7": {
+        "summary": "Fourier pixels for bidirectional light control。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Fourier pixels for bidirectional light control”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Fourier pixels for bidirectional light control”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10767-2": {
+        "summary": "Addendum: Transmission of MPXV from fire-footed rope squirrels to sooty mangabeys。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Addendum: Transmission of MPXV from fire-footed rope squirrels to sooty mangabeys”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Addendum: Transmission of MPXV from fire-footed rope squirrels to sooty mangabeys”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10670-w": {
+        "summary": "Zero-shot design of drug-binding proteins via neural iterative selection−expansion。摘要要点：Abstract The design of proteins that bind to small molecules has been challenging because it requires simultaneous optimization of the protein sequence, protein structure and ligand conformation 1–7 .",
+        "contribution": "摘要中最具体的线索是：Abstract The design of proteins that bind to small molecules has been challenging because it requires simultaneous optimization of the protein sequence, protein structure and ligand conformation 1–7 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。题名指向“Zero-shot design of drug-binding proteins via neural iterative selection−expansion”。摘要中可用的信息是：Abstract The design of proteins that bind to small molecules has been challenging because it requires simultaneous optimization of the protein sequence, protein structure and ligand conformation 1–7 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Zero-shot design of drug-binding proteins via neural iterative selection−expansion”展开；摘要线索显示问题可能与 Abstract The design of proteins that bind to small molecules has been challenging because it requires simultaneous optimization of the protein sequence, protein structure and ligand conformation 1–7 . 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      }
+    },
+    "llm_used": false,
+    "warnings": [
+      "LLM authentication failed: HTTP 401 Unauthorized. Check GitHub Secrets OPENAI_API_KEY, OPENAI_BASE_URL, and OPENAI_MODEL.",
+      "Skipped LLM analysis for 9 paper(s) after authentication failure."
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2606.26350v1",
+      "source": "arxiv",
+      "title": "OpenFinGym: A Verifiable Multi-Task Gym Environment for Evaluating Quant Agents",
+      "authors": [
+        "Kaicheng Zhang",
+        "Wen Ge",
+        "Lei Jiang",
+        "Weixin Yang",
+        "Jordan Langham-Lopez",
+        "Jialin Yu",
+        "Lukasz Szpruch",
+        "Hao Ni"
+      ],
+      "published": "2026-06-24T19:42:55Z",
+      "updated": "2026-06-24T19:42:55Z",
+      "abstract": "Although large language model agents are increasingly applied to quantitative-finance workflows, their evaluation remains fragmented across isolated tasks, while the financial relevance of benchmark tasks is often overlooked. Yet financial workflows are inherently multi-stage, spanning interdependent tasks such as forecasting, strategy construction, risk management, and trading. Existing platforms typically focus on a single task, and can therefore overstate agent competence and fail to reveal weaknesses in generalization, real-market interaction, and financially meaningful decision-making. We introduce OpenFinGym, a unified gym environment for quantitative-finance agent development that covers forecasting, market generation, real-time trading, and fraud detection under a single execution and verification interface. OpenFinGym additionally provides an automated task-construction pipeline that turns quantitative finance publications into executable task packages; a containerised runtime with a host-side verifier service that supports scalable agent rollouts and prevents runtime train-test leakage; a paper trading engine with a low-latency data-stream design; deferred-resolution support for long-horizon and event-market forecasts; and integration for SFT and RL post-training",
+      "url": "http://arxiv.org/abs/2606.26350v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26350v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "language model",
+        "agent",
+        "agents",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 67.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.27180v1",
+      "source": "arxiv",
+      "title": "Automating Potential-based Reward Shaping with Vision Language Model Guidance",
+      "authors": [
+        "Henrik Müller",
+        "Daniel Kudenko"
+      ],
+      "published": "2026-06-25T15:45:57Z",
+      "updated": "2026-06-25T15:45:57Z",
+      "abstract": "Sparse rewards are inherently challenging for reinforcement learning agents as they lack intermediate feedback to guide exploration and to correctly attribute the sparse success rewards to relevant parts of the trajectory. Naive reward shaping can induce reward hacking, yielding policies that exploit auxiliary signals instead of solving the intended task. Potential-based reward shaping (PBRS) guarantees preservation of the optimal policy set, but requires the definition of a heuristic potential function over the state space. In this work, we introduce the VLM-guided PBRS framework VLM-PBRS that learns the potential function directly from vision language model (VLM) feedback. We query a lightweight VLM to obtain preferences over image pairs and train a model of the potential function using these preferences. As this approach is based on potential-based reward shaping, it preserves the original optimal policies, and removes the need for expert-designed reward shaping terms. Because large VLMs are prohibitively expensive to invoke repeatedly during policy learning, we employ smaller, more computationally efficient VLMs. Although the resulting preference labels are less accurate, empirical evidence shows that the preference labels can still be used to accelerate learning. We validate our method empirically in the Meta-World and Franka Kitchen environments and highlight the connection between VLM preference label accuracy and sample efficiency improvements. Our contributions are threefold: (1) the first application of VLM preference-based learning to synthesize a potential function for PBRS, (2) a principled, low-cost solution that leverages small VLMs, and (3) extensive empirical demonstration of improved sample efficiency and robustness to reward hacking.",
+      "url": "http://arxiv.org/abs/2606.27180v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.27180v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "language model",
+        "agent",
+        "agents",
+        "rag",
+        "vision language",
+        "vlm",
+        "ai",
+        "environment"
+      ],
+      "score": 67.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.26722v1",
+      "source": "arxiv",
+      "title": "Socratic agents for autonomous scientific discovery in high-dimensional physical systems",
+      "authors": [
+        "Xianrui Zeng",
+        "Pengfei Liu",
+        "Yirui Zang",
+        "Yang Shen",
+        "Fei Yu",
+        "Chunlei Yu",
+        "Minghao Liu",
+        "Yang Du"
+      ],
+      "published": "2026-06-25T08:01:07Z",
+      "updated": "2026-06-25T08:01:07Z",
+      "abstract": "The automation of scientific discovery has reached an inflection point. While AI systems now operate instruments, optimize parameters and generate hypotheses, most remain procedural: they execute workflows fixed by human designers. True autonomous science demands epistemic autonomy--the capacity to construct, challenge and revise physical explanations in response to evidence. Here we introduce AHOIS, a multi-agent AI scientist that embeds Socratic midwifery into closed-loop experimentation. A physics-critic agent interrogates hypotheses through causal questioning, constraint checking, counterexample generation and falsification-criteria formulation. We evaluate AHOIS on a real multimode-fibre optical platform, a high-dimensional system with complex wave transformations, indirect detection, environmental drift and multi-modal acquisition. Without prior encoding schemes, classifiers or speckle models, the system autonomously proposed and validated a random-interference encoding hypothesis, discovered task-adaptive sparse-measurement strategies, diagnosed distinct failure modes (encoding instability, fluorescence contamination and detector noise) and translated a published imaging protocol into an executable workflow on a non-original configuration. The discovered encoding yielded 16x16 measurements with effective rank 56.9 and classification accuracies of 76.97% on MNIST and 83.17% on Fashion-MNIST. Ablations show that Socratic interrogation improves physical consistency, hypothesis completeness, uncertainty calibration and experimental-plan validity. These results establish a route from workflow automation towards evidence-grounded, self-correcting autonomous discovery in complex physical environments.",
+      "url": "http://arxiv.org/abs/2606.26722v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.26722v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "physics.optics"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "agent",
+        "agents",
+        "multi-modal",
+        "ai",
+        "environmental",
+        "environment",
+        "scientific discovery"
+      ],
+      "score": 66.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2606.27277v1",
+      "source": "arxiv",
+      "title": "EO-WM: A Physically Informed World Model for Probabilistic Earth Observation Forecasting",
+      "authors": [
+        "Junwei Luo",
+        "Shuai Yuan",
+        "Zhenya Yang",
+        "Yansheng Li",
+        "Zhe Liu",
+        "Hengshuang Zhao"
+      ],
+      "published": "2026-06-25T16:53:30Z",
+      "updated": "2026-06-25T16:53:30Z",
+      "abstract": "Earth Observation (EO) forecasting aims to predict future Earth surface dynamics from satellite observations under changing meteorological conditions. In this paper, we view this task as a partially observed, weather-driven world modeling problem, in which weather acts as a conditioning signal, while forecasting remains uncertain due to sparse observations and unobserved land-surface states. However, existing methods do not fully capture this setting: deterministic models collapse uncertainty into a single future prediction, while diffusion-based methods typically treat weather variables as undifferentiated conditioning signals, and existing benchmarks focus mainly on reconstruction accuracy rather than whether forecasts respond correctly to changed weather forcing.We introduce EO-WM, a video diffusion transformer for multispectral EO forecasting. EO-WM incorporates a physically informed conditioning framework that represents meteorological forcing through a climatological baseline, weather anomalies, and cumulative physical stress signals. Specifically, it separates baseline and anomaly through distinct conditioning pathways, and accumulates anomalous forcing over time to capture sustained heat and drought stress. To evaluate weather-response behavior beyond standard metrics, we introduce two diagnostic benchmarks: an Extreme Summer Benchmark for severity-aware prediction of vegetation degradation under extreme weather, and a Seasonal Matched-Pair Benchmark for testing response fidelity under changed weather forcing. Experiments show that EO-WM reduces the error in predicted Normalized Difference Vegetation Index (NDVI) decline amplitude by a relative 5.63% and improves directional hit rate by a relative 7.80%, while remaining competitive on standard pixel-level metrics. The benchmarks and model will be made open-source at https://github.com/Luo-Z13/EO-WM.",
+      "url": "http://arxiv.org/abs/2606.27277v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.27277v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "ai",
+        "transformer",
+        "diffusion",
+        "earth",
+        "weather",
+        "satellite",
+        "earth observation"
+      ],
+      "score": 65.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.adv3075",
+      "source": "science",
+      "title": "Constraining an exoplanet’s magnetic field using star-planet interactions",
+      "authors": [
+        "D. Revilla",
+        "P. J. Amado",
+        "R. Luque",
+        "P. Schöfer",
+        "A. F. Lanza",
+        "A. Binnenfeld",
+        "J. A. Caballero",
+        "A. P. Hatzes",
+        "G. W. Henry",
+        "S. V. Jeffers",
+        "S. Kaur",
+        "E. Pallé",
+        "L. Peña-Moñino",
+        "M. Pérez-Torres",
+        "A. Quirrenbach",
+        "A. Reiners",
+        "I. Ribas",
+        "D. Viganò",
+        "M. R. Zapatero-Osorio",
+        "S. Zucker"
+      ],
+      "published": "2026-06-25",
+      "updated": "2026-06-25",
+      "abstract": "Theory predicts that a planet with a sufficiently strong magnetic field orbiting close to its host star could induce star-planet magnetic interactions. This is potentially observable as an optical or radio stellar activity signal synchronised with the planet’s orbital period. We analyze 18 years of high-resolution optical spectroscopy of GJ 436, a low mass star orbited by a Neptune-sized exoplanet on a polar eccentric orbit. Stellar activity indicators show enhancements at a period corresponding to the exoplanet orbit, modulated by stellar rotation, and the star’s 8-year magnetic cycle. We interpret this as a signal of star-planet magnetic interaction. Using a geometric model, we reproduce these periods if GJ 436 b has a magnetic field strength of 6 to 110 Gauss.",
+      "url": "https://doi.org/10.1126/science.adv3075",
+      "pdf_url": "",
+      "doi": "10.1126/science.adv3075",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 84,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adv3075"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adz3996",
+      "source": "science",
+      "title": "Structural insights into spectral tuning and retinal exchange in cone visual pigments",
+      "authors": [
+        "Sayaka Ohashi",
+        "Kota Katayama",
+        "Asato Kojima",
+        "Xuchun Yang",
+        "Masahiro Fukuda",
+        "Filippo Sacchetta",
+        "Ryoji Suno",
+        "Yukihiko Sugita",
+        "Nipawan Nuemket",
+        "Suhyang Kim",
+        "Kazuhiro Kobayashi",
+        "Hiroo Imai",
+        "So Iwata",
+        "Eriko Nango",
+        "Takuya Kobayashi",
+        "Takeshi Noda",
+        "Massimo Olivucci",
+        "Hideaki E. Kato",
+        "Hideki Kandori"
+      ],
+      "published": "2026-06-25",
+      "updated": "2026-06-25",
+      "abstract": "Color vision in catarrhine primates relies on red-, green-, and blue-sensitive cone pigments that share an 11- cis -retinal chromophore but differ in absorption maxima. Red and green pigments arose by recent gene duplication and differ at only a few residues. Here, we report cryo–electron microscopy structures of red and green cone pigments from the cynomolgus macaque ( Macaca fascicularis ) integrated with low-temperature vibrational spectroscopy and quantum mechanical and molecular mechanical modeling. The red-green spectral shift is dominated by threonine 285, the hydroxyl dipole of which modulates chromophore electrostatics, whereas steric effects appear modest. We also identified membrane-facing lateral openings in cone pigments but not in inactive rhodopsin. Comparisons with active-state structures suggest activation-dependent gating, and mutational and spectroscopic analyses support a role for this opening in retinal uptake and rapid pigment regeneration.",
+      "url": "https://doi.org/10.1126/science.adz3996",
+      "pdf_url": "",
+      "doi": "10.1126/science.adz3996",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6805",
+        "page": null,
+        "reference_count": 78,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adz3996"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.ads0532",
+      "source": "science",
+      "title": "Innate factors and ontogeny determine nonbreeding areas of migrant songbirds",
+      "authors": [
+        "K.P. Lamers",
+        "J. Ouwehand",
+        "R. Ubels",
+        "M. Nicolaus",
+        "C. Camacho",
+        "J. Potti",
+        "F. Bell",
+        "M. Burgess",
+        "H.M. Lampe",
+        "J.Å. Nilsson",
+        "A. Kerimov",
+        "T. Ilyina",
+        "E. Belskii",
+        "V.G. Grinkov",
+        "H. Sternberg",
+        "C. Both"
+      ],
+      "published": "2026-06-25",
+      "updated": "2026-06-25",
+      "abstract": "Migratory birds connect ecosystems worldwide and often show connectivity between breeding and nonbreeding areas, meaning that individuals have nonbreeding (“wintering”) locations close to others from the same breeding population. Although much work has characterized migration routes, we know little about what determines nonbreeding areas. We tracked pied flycatchers ( Ficedula hypoleuca ) from their entire breeding range and identified population-specific nonbreeding areas. Using an egg translocation experiment between the Netherlands and Sweden, we show that both inheritance and natal environment determine nonbreeding areas. Genetically Dutch birds that hatched in Sweden had nonbreeding areas intermediate between Swedish and Dutch populations. Although an inherited basis for migratory routes and nonbreeding areas may hamper rapid adaptation to a changing world, dispersing individuals can create new breeding–nonbreeding site combinations.",
+      "url": "https://doi.org/10.1126/science.ads0532",
+      "pdf_url": "",
+      "doi": "10.1126/science.ads0532",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "392",
+        "issue": "6805",
+        "page": "1375-1379",
+        "reference_count": 98,
+        "resource_url": "https://www.science.org/doi/10.1126/science.ads0532"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10681-7",
+      "source": "nature",
+      "title": "Fourier pixels for bidirectional light control",
+      "authors": [
+        "Yannik M. Glauser",
+        "Sander J. W. Vonk",
+        "David B. Seda",
+        "Hannah Niese",
+        "Boris de Jong",
+        "Matthieu F. Bidaut",
+        "Erwan Bossavit",
+        "Daniel Petter",
+        "Gabriel Nagamine",
+        "Nolan Lassaline",
+        "David J. Norris"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10681-7",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10681-7",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 46,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10681-7"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10767-2",
+      "source": "nature",
+      "title": "Addendum: Transmission of MPXV from fire-footed rope squirrels to sooty mangabeys",
+      "authors": [
+        "Carme Riutord-Fe",
+        "Jasmin Schlotterbeck",
+        "Lorenzo Lagostina",
+        "Leonce Kouadio",
+        "Harriet R. Herridge",
+        "Moritz J. S. Jochum",
+        "Nea Yves Noma",
+        "Ane López-Morales",
+        "Donata Hoffmann",
+        "Sten Calvelage",
+        "Hjalmar Kühl",
+        "Alexander Mielke",
+        "Catherine Crockford",
+        "Liran Samuni",
+        "Roman M. Wittig",
+        "Martin Beer",
+        "Sery Gonedelé-Bi",
+        "Jan F. Gogarten",
+        "Sébastien Calvignac-Spencer",
+        "Ariane Düx",
+        "Livia V. Patrono",
+        "Fabian H. Leendertz"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10767-2",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10767-2",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 1,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10767-2"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10670-w",
+      "source": "nature",
+      "title": "Zero-shot design of drug-binding proteins via neural iterative selection−expansion",
+      "authors": [
+        "Benjamin Fry",
+        "Kaia Slaw",
+        "Nicholas F. Polizzi"
+      ],
+      "published": "2026-06-24",
+      "updated": "2026-06-24",
+      "abstract": "Abstract The design of proteins that bind to small molecules has been challenging because it requires simultaneous optimization of the protein sequence, protein structure and ligand conformation 1–7 . Current deep-learning algorithms have struggled to navigate this landscape, precluding the zero-shot design of binders. Here we show that by combining two neural networks in an iterative design algorithm, small-molecule binding proteins can be created from scratch with high accuracy. We trained a graph neural network—ligand-aware sequence engineering message-passing neural network (LASErMPNN)—to design compatible protein sequences for an input protein backbone and docked ligand. We paired LASErMPNN with a structure predictor that models a three-dimensional protein–ligand complex for an input protein sequence and ligand identity. The closed-loop iteration of these reciprocal networks optimized sequence–structure–ligand compatibility, and outperformed a comparable design loop using a physics-based energy function. We used our strategy, termed neural iterative selection–expansion (NISE), to design proteins that, using different folds, specifically bind to two chemically distinct small-molecule drugs, exatecan and apixaban, with success rates of 100% and 83%, respectively. The tightest NISE binders had nanomolar-to-picomolar affinities, surpassing those of the next-leading method by 70-fold for exatecan and nearly 10,000-fold for apixaban. LASErMPNN then suggested two amino-acid substitutions that improved the affinity of the tightest exatecan binder by 100-fold without any experimental input. The optimized binder protected the labile lactone ring of exatecan from hydrolysis for days. Our work describes a general recipe for using neural networks to automate the design of small-molecule binding proteins for applications in drug delivery, sensing and catalysis.",
+      "url": "https://doi.org/10.1038/s41586-026-10670-w",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10670-w",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 58,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10670-w"
+      }
+    }
+  ]
+}
