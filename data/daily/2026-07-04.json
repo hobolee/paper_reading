@@ -1,0 +1,641 @@
+{
+  "date": "2026-07-04",
+  "stats": {
+    "fetched": 246,
+    "fetched_by_source": {
+      "arxiv": 50,
+      "nature": 78,
+      "science": 118
+    },
+    "deduped": 246,
+    "deduped_by_source": {
+      "arxiv": 50,
+      "nature": 78,
+      "science": 118
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 40,
+    "keyword_filtered_by_source": {
+      "arxiv": 40
+    },
+    "keyword_optional_included": 165,
+    "keyword_optional_included_by_source": {
+      "nature": 72,
+      "science": 93
+    },
+    "ranked": 206,
+    "ranked_by_source": {
+      "arxiv": 10,
+      "nature": 78,
+      "science": 118
+    },
+    "source_warnings": 3,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 127,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文里，最值得优先阅读的是与“LLM/agent 在科学数据发现中的落地”直接相关的 arxiv:2607.02387v1。按现有摘要，它不是泛泛讨论 agent，而是把知识图谱、监督式神经检索、BM25 融合和零样本 LLM agent 重排序组合到 NASA 地球观测数据发现这一明确任务上，还给出了开放基准 NASA-EO-Bench 与可量化的检索增益。这类工作对科研人员的现实价值很高，因为它触及一个普遍痛点：如何把自然语言科研问题稳定映射到可用数据集与工具，而不仅是做聊天式问答。若你关注 AI for Science、科学信息检索、地球科学基础设施，这篇应列为今日首读。\n\n第二优先级是一组“AI 系统在具体环境约束下的可用性/鲁棒性”论文。arxiv:2607.02407v1 针对非曼哈顿室内环境的文本驱动 3D 场景合成，核心不在一般生成，而在复杂几何边界下如何兼顾语义合理性与物理可行性；它提示当前 LLM/生成式系统正从规则空间走向更真实的环境约束。arxiv:2607.02371v1 则把多模态视觉能力压到安卓端、面向视障辅助，重点是离线优先和个性化物体找回，体现出“端侧感知 + 少量云端 LLM 叙事”的实用分层架构。这两篇共同反映：近期 AI 论文的一个实质趋势，不是再做更大更通用的模型声明，而是把系统带到非理想环境、资源受限设备和个体化任务中去验证。\n\n第三优先级是 arxiv:2607.02416v1，这篇不做模型，而是研究学术共同体本身：2010–2026 年 NLP 学者是否从 ACL 主会迁移到 Findings 和通用 ML venue。若摘要属实，其价值在于把“LLM 时代 NLP 是否正在 venue 迁移”从直觉争论推进到长期纵向数据和因果推断层面。对做领域研究规划、投稿策略、学科史梳理的人，这篇值得关注；但它的直接技术可复用性低于前两类应用论文，所以阅读顺位可以稍后。\n\n其余 Science/Nature 论文大多不是 AI 方向，但从科研情报角度看，今天有几条值得标记的高影响线索：一是地球与环境方向出现了与大气增湿、超高树木水力系统相关的工作，说明极端事件与生态-气候耦合仍是高热问题；二是生命科学方向有机械感知调控肝再生的分区化机制；三是物理与材料方向有多带超导分数量子涡旋/skyrmion 观测，以及二维材料晶体管接触输运参数的直接探测。这些工作虽然与“LLM”无关，但如果你做跨学科 AI，尤其是科学知识库、文献图谱或科学数据检索，它们恰好构成了需要被更好索引、结构化和任务化检索的典型对象。\n\n综合看，今天最清晰的主线不是“又有新模型”，而是三件事：第一，agent/LLM 正开始嵌入严肃的科学数据基础设施；第二，AI 系统评价正从理想化 benchmark 转向几何、设备和个体用户约束；第三，LLM 时代也在反过来改变研究者的发表流向与学科边界。如果时间有限，建议先读 NASA agentic search，再看非曼哈顿 3D 场景与离线视障助手，最后读 NLP venue 迁移；Science/Nature 条目则可按你所属学科选择性跟进。",
+    "themes": [
+      "从聊天式 LLM 到“任务可执行”的科学数据发现：知识图谱、监督检索与零样本 agent 重排序开始组合成面向真实科研流程的检索栈",
+      "AI 系统进入非理想环境评测：非曼哈顿空间、移动端离线约束、个性化实例检索等因素正在替代单纯的标准 benchmark 指标",
+      "生成与感知方法都在强调“先验 + 分层决策”：无论是室内布局中的对象统计先验与大物体优先，还是移动辅助中的多模型流水线，都是把纯端到端黑箱改造成受约束系统",
+      "LLM 时代的元科研问题升温：NLP 研究不只在做模型，也在反思作者、venue 与引用回报之间的结构性迁移",
+      "高影响自然科学论文继续向可观测机制推进：从平流层增湿、森林水力、肝再生机械感知到超导拓扑缺陷，核心都是把复杂现象落实到可测信号或明确机制链"
+    ],
+    "research_ideas": [
+      {
+        "idea": "复现一个小型“科学数据发现”原型，比较 BM25、神经检索和 LLM 重排序三者的增益分解",
+        "why": "arxiv:2607.02387v1 的价值点不只是效果更好，而是说明不同检索层各自贡献不同。做一个小型复现可以判断这套设计是否能迁移到其他科学数据库，如气候、材料或生物数据仓库",
+        "first_step": "先不追求 NASA 全量数据，选一个公开且元数据较规范的科学数据目录，人工整理 100-300 个自然语言任务查询和相关数据集标注，先跑 BM25 与一个现成嵌入检索基线，再在 top-k 上加入通用 LLM 重排序做误差分析",
+        "risk": "最大风险是没有与 NASA-EO-Bench 同等级的数据标注，导致结果不稳定；另外 LLM 重排序可能受提示词和候选集质量强烈影响"
+      },
+      {
+        "idea": "检查“零样本 agent 重排序”究竟提升了哪些查询类型，而不是只看平均 MRR",
+        "why": "如果 LLM agent 主要提升 task-based、组合约束型或需要工具理解的查询，那么它的价值是明确的；若提升只来自少数容易样本，系统设计结论会不同",
+        "first_step": "针对 arxiv:2607.02387v1 摘要中提到的 task-based queries，建立一个查询类型标签体系，如现象描述型、任务型、变量约束型、时空约束型，然后在一个小样本上做分层评测",
+        "risk": "公开信息可能不足以复原原始 query 分布；人工查询分类也会引入主观性"
+      },
+      {
+        "idea": "对非曼哈顿室内场景生成做“约束来源”对照：统计先验、大物体优先、几何碰撞约束各自贡献多少",
+        "why": "arxiv:2607.02407v1 的创新点看似很多，但真正可迁移的往往是其中一两个关键机制。拆开做消融，能帮助判断未来文本到3D系统该优先补哪类约束",
+        "first_step": "如果代码未开源，可先做综述式复现设计：搜集现有文本驱动室内布局模型，在公开非矩形平面图上实现一个简化版启发式 pipeline，只加入“大物体优先”和碰撞检测两项，观察布局违例是否已明显下降",
+        "risk": "缺少原论文数据和指标定义时，复现实验可能只能得到趋势性结论，难以严格对比 SOTA"
+      },
+      {
+        "idea": "围绕离线优先多模态助手，测试“端侧感知 + 云端叙事”分层架构在其他辅助任务中的适用性",
+        "why": "arxiv:2607.02371v1 提供了一个很实用的系统思想：把高频、低延迟、隐私敏感任务留在端侧，把开放式语言能力放到可选云端。这种分层可能比端到端大模型助手更容易落地",
+        "first_step": "选择一个邻近任务，如实验室物品查找或仓储拣选辅助，先用手机端现成检测/嵌入模型搭一个最小系统，只评估三项指标：离线延迟、目标找回成功率、用户交互负担",
+        "risk": "论文中的个性化物体找回依赖真实交互设计，单纯算法复现可能低估系统价值；同时移动端部署细节可能成为主要门槛"
+      },
+      {
+        "idea": "把 arxiv:2607.02416v1 的“学术迁移”问题扩展到 AI for Science 子领域，观察作者是否从领域会议转向通用 AI venue",
+        "why": "NLP venue 迁移只是一个起点。对于地球科学、计算生物、材料 AI 等方向，同样存在“学科 venue 与通用 AI venue 之间”的重心转移问题，这对领域建设和评审标准都很重要",
+        "first_step": "先选一个子领域，例如地球科学中的机器学习论文，手工构建一个小规模样本，标注作者首次出现 venue、后续 venue 流向和引用情况，做一个探索性时间序列统计",
+        "risk": "跨领域主题识别和作者消歧难度高；没有严谨因果设计时，引用溢价只能做相关性解释"
+      },
+      {
+        "idea": "整理一篇短综述，主题为“受约束环境中的 AI 系统设计”，串联科学数据检索、非曼哈顿生成和移动辅助三类工作",
+        "why": "今天几篇 arXiv 虽然任务不同，但共同点很强：它们都不是追求无限通用，而是在知识结构、空间几何、设备算力或用户个体化约束下设计系统。这个主题适合形成方法学综述或组会报告",
+        "first_step": "先建立一个二维表：一维列出约束类型（知识结构、几何、算力、隐私、个体化），一维列出系统策略（检索融合、分层决策、端云分工、先验注入、agent 重排序），把今天三篇 arXiv 放进去做比较",
+        "risk": "如果材料只来自少量论文，综述可能显得证据不足；需要继续补充近两年同类工作以避免过度概括"
+      }
+    ],
+    "papers": {
+      "arxiv:2607.02387v1": {
+        "summary": "这篇论文围绕“地球观测数据发现”这一具体任务，提出了一个面向 NASA 地球科学社区的 agentic search 系统：输入自然语言科研问题，输出匹配的数据集与工具。按摘要信息，其核心技术路径是结合 NASA Earth Observation Knowledge Graph、基于 NASA-EO-Bench 微调的神经检索打分器、BM25 融合，以及零样本 LLM agent 重排序。",
+        "contribution": "核心贡献应包括四点：第一，面向 NASA 海量地球科学数据与工具的数据发现场景，构建并公开部署了自然语言到“数据集/工具”匹配的 agentic search 服务；第二，基于 NASA EO-KG 派生出开放基准 NASA-EO-Bench，规模约 4.7 万 query-dataset 对，其中约 2.1 万为 task-based queries；第三，训练了一个在 NASA-EO-Bench 上微调的神经打分器，并报告其优于 cosine 与 BM25 基线，且与 BM25 做 score fusion 后在 Recall@10 和 MRR 上提升超过 5 倍；第四，在监督检索流程之上加入无需额外训练的零样本 agentic reranking，在分层抽样的 N=200 子集上进一步将 MRR 提升 28%，论证了 LLM 推理与监督检索的互补性。",
+        "details": "从题名和摘要看，论文聚焦的不是通用问答，而是 NASA 地球观测生态中的“研究问题到可用数据/工具”的发现与检索问题。具体对象包括 NASA 及其数据中心持有的数千个 geoscience datasets，以及 Worldview、Giovanni、Science Discovery Engine、Harmony 等工具。作者认为，即便对领域专家而言，在这些异构资源中定位合适的数据与工具也很困难，因此提出 agentic search 作为检索与推理结合的解决方案。\n\n方法线索比较清晰。知识源方面，论文以 NASA Earth Observation Knowledge Graph 作为结构化语义基础，并由此构建 NASA-EO-Bench。这个 benchmark 的规模是一个重要信号：4.7 万 query-dataset pair、其中 2.1 万是 task-based queries，说明它不只是关键词匹配，可能还包含科研任务导向的复杂描述，如围绕某一地学现象、区域、时间尺度、变量类型或分析工具需求的检索表达。模型方面，至少有三层：一是传统 lexical baseline，如 BM25；二是 neural scorer，在 NASA-EO-Bench 上微调，应该用于 query-dataset 相关性打分；三是在初筛结果之上进行的 zero-shot agentic reranking，利用大语言模型进行推理式重排。摘要还明确强调 KG 的“latent value”在大模型时代可被放大，说明知识图谱可能不仅用于生成训练样本，还可能在 agent 推理、候选解释或属性约束中发挥作用，但这一点需要读正文核实。\n\n证据线索也比较具体。摘要声称神经打分器优于 cosine 和 BM25；进一步与 BM25 融合后，R@10 和 MRR 均提升超过 5 倍，这意味着原始基线可能较弱，或 benchmark 中任务型查询对纯词面匹配特别不友好。之后再加上零样本 agentic reranking，在一个分层 N=200 子集上 MRR 额外提升 28%。这里可推测作者的总体观点是：监督学习负责大规模召回和初排，LLM agent 负责更细粒度的语义/任务约束推理，两者互补。但需要注意，28% 的提升不是在全量 benchmark 上报告，而是在一个较小的分层子集上，因此其稳定性、成本与泛化边界都需要读正文确认。\n\n如果你的研究方向涉及信息检索、科学数据管理、知识图谱、地球科学 AI 或 LLM agent，这篇论文的价值在于它把“agentic search”落到了一个真实、高价值且结构复杂的科学数据发现场景，而不只是开放域搜索。尤其值得关注的是三类具体问题：第一，NASA-EO-Bench 的构造方式，是否能支持其他科学领域构建类似 benchmark；第二，神经 scorer 的训练目标、负样本策略和融合方式，是否适用于垂直领域检索；第三，agentic reranking 如何利用工具描述、数据集元数据和 KG 关系做推理，是否产生可解释的筛选依据。\n\n基于目前只有题录和摘要，仍有若干关键点需要核对：公开服务的系统架构与实际可访问性；NASA EO-KG 的具体模式和覆盖范围；NASA-EO-Bench 的查询来源、标注方式与质量控制；神经 scorer 的模型骨干与训练细节；score fusion 的具体公式；agentic reranking 的提示设计、上下文输入、成本和延迟；N=200 分层子集的抽样标准；以及“超过 5 倍”提升对应的绝对指标值与比较对象。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、ai、earth、geoscience、earth observation。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：面对 NASA 及其数据中心中数量庞大、类型多样的地球科学数据集与分析工具，如何让研究者用自然语言提出科研问题或任务需求，并自动检索出最相关的数据集和工具。方法层面，它要回答的进一步问题是：知识图谱、监督式神经检索和零样本 LLM agent 推理能否组合成一个比传统关键词检索更有效的科学数据发现系统。",
+          "method": "按摘要推测，方法流程大致为：先利用 NASA Earth Observation Knowledge Graph 组织数据集与工具的结构化知识，并据此构建 NASA-EO-Bench 训练/评测集；然后训练一个面向 query-dataset 匹配的神经 scorer，作为监督式检索核心；再将该神经分数与 BM25 进行 score fusion，以兼顾语义匹配与词面召回；最后在候选结果上加入零样本 agentic reranking，由大语言模型根据查询任务、数据集属性、可能的工具用途等进行推理式重排序。实验指标至少包含 Recall@10 和 MRR，并在一个分层 N=200 子集上评估 agentic reranking 的附加收益。",
+          "strengths": "亮点主要体现在四个具体层面。其一，场景真实且困难：不是开放网页搜索，而是面向 NASA 地球观测数据与工具生态的科研资源发现。其二，数据资产有潜在长期价值：NASA-EO-Bench 规模达到 4.7 万 query-dataset 对，若公开，将可能成为科学数据检索的重要 benchmark。其三，检索架构体现互补设计：BM25、监督神经 scorer、零样本 LLM agent 并非替代关系，而是分层协同。其四，摘要给出的结果信号较强：融合后 R@10 和 MRR 提升超过 5 倍，且 agentic reranking 在小规模分层子集上还能继续提升 28%，说明任务型查询中仅靠词面匹配可能远远不够。",
+          "weaknesses": "基于摘要需要警惕的边界包括：第一，很多关键技术细节缺失，例如神经 scorer 的模型结构、训练方式、负样本构造和融合公式，因此目前无法判断结果是否主要来自数据构造、模型能力还是评测设置。第二，agentic reranking 的收益只在 N=200 的分层子集上给出，样本较小，且未见全量评测，因此泛化性和统计稳健性需核查。第三，摘要强调公开部署为公共服务，但未说明在线系统的延迟、成本、鲁棒性和失败案例，这对 agent 系统尤其关键。第四，benchmark 来源于 NASA EO-KG，若查询或标注生成过程强依赖 KG 结构，可能存在训练/测试分布与真实用户查询之间的偏差。第五，目前还不清楚系统是只返回数据集，也返回工具，还是联合排序两类对象；如果两类对象共排，评测定义需特别关注。",
+          "next_step": "最小可执行动作建议是：第一，优先查看 NASA-EO-Bench 的数据构造部分，确认 4.7 万 query-dataset 对和 2.1 万 task-based queries 的来源、标注方式与划分策略；第二，定位主结果表，记录 cosine、BM25、neural scorer、fusion、agentic reranking 各自的 R@10/MRR 绝对值，而不仅是倍数和百分比；第三，查系统图，弄清 KG、监督检索和 agent 重排序的先后关系与输入输出对象；第四，查看 N=200 分层子集的定义和案例分析，判断 28% MRR 增益是否集中在复杂任务型查询；第五，如果你做相关研究，可尝试把该论文的方法抽象成“KG 生成 benchmark + 监督检索 + LLM 重排”的三段式范式，并思考能否迁移到你自己的科学数据发现场景。"
+        }
+      },
+      "arxiv:2607.02407v1": {
+        "summary": "这篇论文聚焦“非曼哈顿（non-Manhattan）室内环境”的文本驱动3D场景生成，目标是在存在非正交墙体或复杂几何边界的空间中，生成兼顾语义合理性与物理可行性的物体布局。摘要显示作者提出了名为SPG-Layout的框架，通过对象分布统计先验和“大物体优先”的分层布局策略，减少几何冲突与布局违例。",
+        "contribution": "从摘要可见，论文的核心贡献可能有三点：一是明确针对现有文本生成3D室内场景方法在非曼哈顿环境中难以建模非正交空间关系的问题；二是提出SPG-Layout，将对象分布统计先验纳入训练，并采用类似人类室内设计流程的分层放置机制，优先安置大件家具以降低后续冲突；三是构建包含500个多样化非曼哈顿环境的新基准，用于评测复杂空间中的布局质量与物理合理性。",
+        "details": "研究对象非常具体：不是一般的3D室内生成，而是“根据文本描述，在非曼哈顿室内包络中生成物体布局”。这里的关键难点在于，传统方法通常隐含正交房间假设，适合直角墙体、规则边界和轴对齐家具关系；一旦房间出现斜墙、非直角转角或复杂轮廓，模型就更容易产生穿墙、重叠、朝向不合理、与边界不匹配等几何违例。摘要中的证据线索主要有两个。第一，作者强调“statistical priors of object distributions”用于指导训练，这说明其方法可能不是纯粹依赖LLM文本推理，而是引入了从数据集中提取的对象类别分布、相对位置、朝向或邻接模式统计，以提升对复杂环境的理解和场景保真度。第二，“hierarchical layout strategy that prioritizes the placement of large objects”表明方法可能采用分阶段生成：先放置床、沙发、餐桌、柜体等大件，再补充小件，以减少后续局部填充时的可行域被挤占，从而降低物理冲突。与很多仅强调语义匹配的文本到3D工作相比，这篇论文更关注几何约束和物理可实现性，特别适合关注室内场景生成、空间智能体、建筑几何理解、机器人仿真环境构建的人阅读。另一方面，需要严格核对的信息也不少：摘要没有给出SPG-Layout的具体模型结构，尚不清楚LLM在其中扮演的是高层规划器、文本解析器还是布局生成器；也未说明统计先验如何编码，是作为损失项、条件输入、检索模板还是图结构约束；新基准的来源、标注方式、场景类别构成、文本描述生成方式及评价指标也都需要看正文确认。摘要提到“Extensive experiments demo ...”但结果被截断，因此目前不能判断其相对基线提升幅度、是否进行了消融实验、以及“physical fidelity”是通过碰撞率、可达性、对齐误差还是真实用户评价来衡量。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：现有基于LLM或文本驱动的3D室内场景合成方法，大多针对曼哈顿世界假设下的正交房间有效，但在非曼哈顿环境中难以正确处理非正交空间关系，导致对象布局出现高几何违例和低物理可信度。作者希望建立一种能在复杂房间边界内根据文本生成合理家具布局的方法。",
+          "method": "根据摘要，可能的方法路径包括：1）输入文本描述和非曼哈顿室内环境几何；2）利用从训练数据中统计得到的对象分布先验，帮助模型学习不同物体在复杂边界中的常见位置、朝向或共现关系；3）采用分层布局策略，先生成大件物体布局，再逐步放置小件和补充物体；4）在训练或推理中结合几何约束，以减少与墙体、边界或其他物体的碰撞；5）在作者新建的500个非曼哈顿环境基准上，与现有文本驱动室内场景生成方法比较。",
+          "strengths": "最值得关注的亮点有三点。第一，问题定义明确且现实：非曼哈顿房间在真实建筑中很常见，但现有3D场景生成工作往往忽略这类复杂几何。第二，方法设计具有较强直觉性和可解释性：统计先验提升场景分布合理性，大物体优先的层级规划符合室内设计常识，也有助于降低组合搜索难度。第三，作者构建了500个非曼哈顿环境的新基准，这对后续该方向的可比评测可能具有基础设施价值。",
+          "weaknesses": "基于题录和摘要，当前需要警惕的局限包括：1）缺少模型细节，无法判断SPG-Layout相较现有方法的真正创新点是结构性改进还是训练技巧组合；2）实验结果在提供文本中被截断，无法确认性能提升的具体指标和统计显著性；3）“物理可行性”定义尚不清楚，不确定是否真正涉及稳定性、可达性、功能流线，还是仅指几何无碰撞；4）新基准虽然规模为500个环境，但多样性、来源真实性和文本描述质量都需要正文验证；5）摘要提到LLMs背景，但不清楚该工作是否真正以LLM为核心，还是仅在任务表述上延续该范式。",
+          "next_step": "最小可执行动作：1）优先查看正文中的方法总览图，确认SPG-Layout的数据流、LLM角色和分层布局具体实现；2）查实验表，记录用于衡量几何违例、语义真实性和物理保真度的指标名称；3）重点看消融实验，验证“统计先验”和“大物体优先”各自贡献；4）检查500场景基准的构建方式，确认是否公开；5）如果你的研究与室内生成或空间推理相关，可立即列一个对照问题：在你的数据或任务中，是否也存在非正交几何导致的布局失败，能否借鉴其分层放置与先验约束思路。"
+        }
+      },
+      "arxiv:2607.02416v1": {
+        "summary": "这篇论文研究2010到2026年间NLP学者在发表场所上的迁移，具体考察ACL主会、Findings以及通用机器学习会议之间的份额变化，并试图解释大语言模型时代NLP研究的“学科重心”是否正在从传统NLP会议转向更广义的ML venue。摘要还显示作者特别分析了资深作者与新作者两类群体，并用因果推断估计通用ML venue带来的引用溢价对投稿选择的影响。",
+        "contribution": "基于摘要可见，这篇工作可能有三点核心贡献：第一，构建了一个覆盖2010–2026年NLP-topic论文与作者的长期纵向发表数据，定量刻画NLP作者从ACL主会向Findings和通用ML会议迁移的趋势；第二，区分既有作者与新晋作者，显示迁移不仅发生在老作者的venue再分配上，也体现在新作者职业起点的venue归属变化上；第三，使用因果推断方法估计通用ML venue的引用优势，并将其作为解释学术迁移机制的证据，而不仅停留在描述性统计。",
+        "details": "从题名和摘要看，论文的研究对象不是语言模型本身，而是“NLP学术共同体的发表行为与学科边界变化”。具体任务是判断：在LLM推动NLP与通用ML边界模糊之后，NLP研究是否正在把主要发表重心从ACL体系转移到更广泛的ML会议。摘要给出两条主要证据线索。其一是对“已建立作者”的前后对比：在LLM前后两个时期，作者在ACL旗舰主会轨道的份额下降19.2个百分点，在Findings上升14.8个百分点，通用ML venue上升8.6个百分点，而且作者声称已对领域整体扩张做了调整，说明其目标不是简单反映投稿量增长，而是识别相对份额重分配。其二是对“新作者”的进入路径分析：选择至少有3篇NLP主题第一作者论文的新人，比较其作品主要出现在哪类venue；从2019到2024，主要投向ACL venue者由84%降至74%，主要投向通用ML venue者由5%升至21%。这提示学科重心变化不仅是既有ACL作者外流，也可能是新生代研究者从一开始就把自己定位在ML生态中。\n\n方法上，摘要暗示作者首先需要定义“NLP-topic paper”“established authors”“new authors”“general ML venues”“*ACL venues”和“pre-/post-LLM era”。数据很可能来自arXiv分类、DBLP、Semantic Scholar、OpenAlex、ACL Anthology或会议元数据的整合；因为时间跨度到2026，且要比较venue share与citation，作者大概率构建了作者-论文-venue的面板数据。对“调整平行增长”的表述说明分析中可能做了领域规模归一化、按年份标准化，或采用差分式比较。因果推断部分则可能围绕“发表在通用ML venue是否提高引用”展开，采用倾向评分、匹配、加权、回归调整、双重稳健估计等方法，但这一点必须通读正文确认，因为摘要只说了using causal inference techniques，没有给出识别假设。\n\n对科研读者而言，这篇论文的价值在于：它把近年广泛感受到的现象——NLP论文越来越多地出现在NeurIPS/ICML/ICLR等场所，而ACL主会与Findings功能分化——转化成了可检验的学术生态问题。如果你的方向与LLM、学科演化、科学计量、NLP社区结构或研究评价有关，这篇论文值得重点看，因为它不仅报告迁移现象，还试图解释激励机制，即更高引用可能诱导作者选择ML venue。若你关注投稿策略，这篇论文也可能提供对“不同venue带来的可见度回报”的经验依据。\n\n但需要核对的关键信息很多。首先，摘要中的“citation premium”是否真正可作因果解释，取决于是否充分控制了论文质量、作者声望、机构资源、热门主题和合作网络等混杂因素。其次，“NLP-topic”如何判定会显著影响结果：若主要依赖关键词、arXiv类别或venue标签，可能把多模态、语音、信息检索、agent类工作误划入或划出。再次，Findings的上升究竟表示ACL体系内部吸纳能力增强，还是主会相对吸引力下降，需要看更细的分层统计。最后，摘要被截断，关于“venue selection”之后的机制解释、异质性分析和政策含义尚不完整，不能据此断言作者已经证明“NLP未来不在NLP会议”。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、machine learning、ml、causal inference。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图回答的具体问题是：在大语言模型推动NLP与通用机器学习融合之后，NLP研究者的主要发表场所是否发生了系统性迁移；这种迁移是否同时体现在资深作者和新入场作者身上；以及通用ML venue是否因具有更高引用回报而改变作者的投稿选择与学科归属。",
+          "method": "依据摘要，可能方法包括：1）收集2010–2026年的NLP-topic论文，并为每篇论文标注venue类型，如ACL主会、Findings、其他*ACL venue、通用ML venue；2）按作者构建纵向发表轨迹，区分既有作者与新作者，并统计不同时间段各venue份额变化；3）为避免仅仅反映领域规模增长，对venue份额做标准化或相对增长调整；4）对新作者设定较严格的入样条件，如至少3篇NLP主题第一作者论文，以减少偶然投稿带来的噪声；5）在引用分析中使用某种因果推断框架，比较相似论文发表在通用ML venue与NLP venue时的引用差异，从而估计citation premium。需要重点查正文以确认样本来源、NLP-topic判定规则、作者消歧方法、LLM时代分界点以及因果识别假设。",
+          "strengths": "最值得关注的亮点有三点。第一，研究对象非常具体：不是笼统讨论“跨学科”，而是直接观察ACL主会、Findings与通用ML会议之间的份额迁移，能对应真实投稿生态。第二，作者同时分析资深作者与新作者，避免只看到老一代学者转场，却忽略新生代是否从一开始就选择不同学术中心。第三，摘要声称使用因果推断而非仅做相关性描述，这意味着论文可能尝试把“为什么迁移”落实到可检验机制，尤其是引用回报这一学术激励。",
+          "weaknesses": "基于当前题录和摘要，需要警惕几类局限。第一，题目带有较强论断色彩，但摘要目前仅支持“迁移增强”，未必足以支持“未来可能不在NLP会议”这种更强命题。第二，因果推断部分存在天然挑战：高影响力工作本就更容易进入顶级ML venue，若未充分处理选择偏差，citation premium可能被高估。第三，venue分类和主题识别可能存在模糊地带，尤其在LLM、多模态、代理系统与基础模型研究上，NLP与ML边界本身就是争议点。第四，Findings作为ACL体系内部的新轨道，其增幅如何解读需要结合接收率、审稿政策和论文类型变化，否则容易把制度性扩容误读为学科迁移。第五，摘要截断，缺少对异质性、稳健性和具体效应规模解释的完整信息。",
+          "next_step": "最小可执行动作：1）优先查正文中的数据构建部分，记录NLP-topic、general ML venue、established/new authors的正式定义；2）查看核心图表，尤其是2010–2026年各venue份额时间序列，以及2019–2024新作者主要venue归属变化图；3）重点读因果推断方法与稳健性分析，确认citation premium的识别设计、协变量和敏感性检验；4）如果你关心本领域投稿策略，可把自己的近三年目标论文按该文的venue分类框架做一次小样本对照，看看你的子方向是否也出现同样迁移；5）记录一个核对问题清单：LLM时代起点如何定义、Findings是否单独建模、是否按子领域分层、是否控制作者名气与机构效应。"
+        }
+      },
+      "arxiv:2607.02371v1": {
+        "summary": "这篇论文介绍了一个面向视障人士的离线优先安卓多模态助手 VisionAId，目标是在普通智能手机上完成避障、找个人物品、识别人脸、识别纸币等具体任务。其核心任务之一是“个性化物体找回”：用户先拍摄个人物品的少样本视角图像，系统之后在真实环境中重新定位该特定实例，并用增强现实标记、空间音频和按距离变化的提示进行引导。",
+        "contribution": "从摘要看，论文的核心贡献在于把六类端侧视觉模型统一集成为一个可在安卓手机上实时运行的辅助系统，并提出一个面向个人物品的 few-shot 特定实例检索/定位流程，而不是只识别预定义类别。另一个可能贡献是系统架构上的“离线优先”：主要感知能力全部通过 ONNX Runtime 在本地运行，仅将叙事性场景描述和自动物体标注交给可选的云端大语言模型，从而兼顾可用性、隐私和连通性限制。",
+        "details": "基于题名、摘要和关键词，这项工作聚焦于视障辅助这一高实际价值场景，研究对象不是单一模型，而是一个完整的手机端多模态交互系统。摘要明确列出了六个在设备端运行的深度学习组件：度量型单目深度估计、实例分割、视觉嵌入、面部嵌入、人脸检测，以及自定义纸币检测器；这些组件共同服务于多个具体任务，包括障碍感知、个人物品检索、熟人识别和现金处理。系统部署层面强调全部通过 ONNX Runtime 在安卓端执行，说明作者可能重点处理了模型导出、推理延迟、内存占用和移动端协同调度问题。与很多只做“类别识别”的辅助应用不同，这里最有辨识度的是个人物品 few-shot 流程：用户从多个角度拍摄某件私人物品，系统利用视觉嵌入或相似性匹配在后续场景中寻找同一实例，而不是寻找“杯子/钥匙”这类泛化类别。为了真正可用，系统还把检测结果转成可操作反馈，例如 AR 标记、空间音频和距离相关提示，这意味着论文可能同时讨论感知、定位和人机交互链路。摘要还提到可选云端 Google Gemini Flash，仅用于叙述性场景描述和自动标签生成，这提供了一条证据线索：作者有意把高频、时延敏感、隐私敏感的任务留在本地，把需要更强语言生成能力但非核心闭环的任务放到云端。对科研读者而言，最值得核对的信息包括：few-shot 个人物品检索具体如何建模，是 embedding matching、开放词汇检测结合重排序，还是分割后做实例级相似度；端侧六模型的具体 backbone 与量化/加速策略；“实时”在何种手机硬件上达到多少 FPS/延迟；深度估计是否真正用于距离提示和避障决策；人脸相关功能如何处理隐私、注册流程与误识别风险；以及系统是否做了视障用户研究、任务完成时间或成功率评估。目前仅凭摘要不能确认实验规模、对比基线、误检漏检情况以及在复杂光照、遮挡、杂乱场景中的稳健性。若你的研究方向涉及移动端多模态感知、可及性技术、离线智能体或个性化实例检索，这篇论文尤其值得看其系统实现和评测设计。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、language model、multimodal、ai、deep learning、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何在不依赖专用硬件、尽量不依赖云连接的前提下，把普通安卓手机变成可实时辅助视障人士的视觉助手，并覆盖多项日常任务；其中一个更细的问题是，如何让系统不仅识别通用类别，还能通过少样本注册后重新找到“这一个属于用户自己的物品实例”。",
+          "method": "从摘要推测，方法上是一个端侧多模型流水线：用单目深度估计提供距离/空间信息，用实例分割给出场景中可分离目标，用视觉嵌入做一般目标或个人物品的相似度检索，用人脸检测和面部嵌入完成熟人识别，用定制纸币检测器处理现金场景；所有模型通过 ONNX Runtime 在安卓端推理。个性化物品部分大概率采用用户拍摄的多视角样本构建实例表征库，在线时对相机画面中的候选区域计算嵌入并匹配，再把匹配结果转化为 AR 标记、空间音频和距离提示。云端 LLM 则只在需要自然语言场景叙述或自动命名物体时调用。",
+          "strengths": "亮点之一是任务定义足够贴近日常辅助需求，覆盖避障、找物、识人、识币等具体场景，而非单一 benchmark。亮点之二是离线优先设计，若多数核心功能确实不依赖网络，将直接提升可靠性、隐私性和部署普适性。亮点之三是“个人物品 few-shot 找回”这一能力，它比固定类别识别更贴近真实需求，也更能体现多模态辅助系统的差异化价值。亮点之四是输出形式不仅有检测结果，还有 AR 与空间音频引导，说明作者关注从感知到行动的闭环。",
+          "weaknesses": "目前最大的局限是信息完全来自摘要，尚不知道系统是否进行了严格、可重复的定量评估。摘要没有给出任何准确率、延迟、功耗、设备型号、用户研究规模或对比基线，因此“实时”“有效”仍需验证。few-shot 个性化检索在遮挡、相似外观物体、光照变化、尺度变化和背景杂乱下可能很脆弱，而摘要未说明鲁棒性策略。多模型同时在手机端运行也可能带来电量、温度和帧率下降问题。使用人脸识别与云端 LLM 还涉及隐私、安全和误报后的辅助风险，这些都需要看正文是否充分讨论。",
+          "next_step": "最小可执行动作是先获取正文后优先查四类内容：第一，看系统图与模型清单，确认六个端侧模型的具体名称、输入输出和调用顺序；第二，看实验表，记录各任务的准确率、召回率、延迟、手机型号和是否量化；第三，专门查个人物品 few-shot 模块，弄清注册样本数量、匹配方法和失败案例；第四，查看是否有视障用户测试或任务完成实验，并把评价指标整理成可与其他 assistive vision 系统对照的表格。"
+        }
+      },
+      "doi:10.1126/science.ads0189": {
+        "summary": "该论文以多带超导体KFe2As2的钾终止表面为具体对象，报告了量子涡旋芯分数化的观测迹象：单个整数磁通涡旋可分裂为多个分数量子涡旋，从而出现“磁通量子数与涡旋芯数不一致”的现象。作者还指出这些分数涡旋常形成链状结构，并结合计算将其解释为具有CP^2 skyrmion拓扑不变量的手性skyrmion。",
+        "contribution": "核心贡献是把多带超导中的“分数涡旋—skyrmion”物理从理论候选推进到实验观测线索层面：在KFe2As2表面识别出涡旋芯分裂、链状分数涡旋排布以及整数涡旋与分数涡旋不同的谱学响应，并用计算将其与CP^2 skyrmionic拓扑结构联系起来。",
+        "details": "从题名、摘要和元数据看，这是一项面向非常具体对象的实验-理论结合研究：对象是KFe2As2这一多带超导体的钾终止表面，任务是在外磁场下考察量子涡旋的核心结构是否偏离单组分超导中“每个磁通量子对应一个核心奇点”的London量子化图景。摘要给出的关键信号有三类。第一类是实空间缺陷结构信号：观察到单个整数磁通涡旋分裂成多个分数涡旋，意味着同一区域内磁通量子数与可辨识的涡旋芯数量不再一一对应。第二类是排布形态信号：这些分数涡旋倾向形成链状结构，而不是普通Abrikosov晶格中那样的简单点阵。第三类是谱学信号：整数涡旋和构成skyrmion的分数涡旋具有不同的局域谱学特征，提示它们不仅几何形貌不同，而且电子结构/束缚态也不同。方法上，虽然摘要未明说仪器，但“表面”“谱学特征”“观测到涡旋芯分裂”强烈暗示使用了能够同时做原子级表面分辨和涡旋态局域谱测量的扫描隧道显微/谱学（STM/STS）或近似技术；“calculations show”则表明作者结合了多组分Ginzburg-Landau或相关有效模型计算，进而把链状分数涡旋识别为带有CP^2拓扑不变量的手性skyrmion。对相关研究方向而言，这项工作的重要性在于：它直接关联多带超导、分数量子涡旋、拓扑缺陷和局域谱学可观测量，可能为区分单组分与多组分序参量耦合、理解带间相位结构、以及寻找非常规涡旋物理提供新证据。需要核对的信息包括：所谓“signatures”究竟是直接成像还是间接推断；分数磁通的定量证据来自磁场分布、拓扑计数还是谱学拟合；链状结构出现的磁场、温度、表面条件与统计显著性如何；计算采用何种模型参数及其与KFe2As2材料特性的对应关系；“手性skyrmion”与其他可能的表面重构、钉扎效应或多重缺陷解释如何区分。总体上，基于摘要可判断该文最值得读的部分应是涡旋实空间图像、局域dI/dV谱、以及将实验图样映射到CP^2 skyrmion不变量的理论论证。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在多带超导体KFe2As2表面，外磁场下的量子涡旋是否会发生涡旋芯分数化，从而打破单组分超导中“一个磁通量子对应一个核心奇点”的常规关系；如果会，这些分数涡旋是否构成具有明确拓扑分类的skyrmion型缺陷，以及这种缺陷能否在局域谱学上与普通整数涡旋区分。",
+          "method": "依据摘要推测，研究路径包括：1）在KFe2As2钾终止表面施加磁场，获取单个涡旋的实空间表面图像与局域电子谱，识别涡旋芯是否分裂、是否存在多个核心对应同一整数磁通；2）统计分数涡旋的空间排布，特别是链状构型；3）用多组分超导理论计算或数值模拟，比较整数涡旋、分数涡旋和链状复合缺陷的能量与拓扑结构；4）通过CP^2 skyrmion拓扑不变量对所见链状缺陷进行分类；5）对比不同缺陷的谱学签名，以建立实验观测与理论对象之间的对应。",
+          "strengths": "亮点主要有三点。其一，研究对象非常具体且有代表性：KFe2As2是典型多带超导平台，适合检验分数量子涡旋。其二，证据链跨越实空间形貌、拓扑解释与谱学响应，不只是看到“异常涡旋图样”，而是试图把图样、拓扑不变量和电子结构联系起来。其三，若摘要所述成立，这项工作提供了“磁通量子数与涡旋芯数不一致”的直接实验线索，这是区分多组分拓扑缺陷与普通涡旋的重要可观测判据，并且链状分数涡旋对应手性skyrmion这一点具有较强新颖性。",
+          "weaknesses": "基于题录和摘要，仍需警惕几个边界。第一，摘要使用的是“signatures”而非更强的“direct observation/proof”，说明作者可能报告的是强迹象而非无争议定论。第二，分数磁通本身的定量测量方式未在摘要中说明，仅凭表面谱学或形貌可能存在多种解释。第三，观测基于钾终止表面，结果是否代表体相涡旋物理、是否受表面重构或钉扎中心影响，需要正文验证。第四，链状结构也可能与各向异性、缺陷钉扎、表面势或磁场条件有关，必须看作者如何排除非拓扑起源。第五，理论上CP^2 skyrmion分类与材料实际多带参数之间的映射是否稳健，仅凭摘要无法判断。",
+          "next_step": "最小可执行动作：1）先查正文中的实验技术与样品条件，确认是否为STM/STS及其温度、磁场范围；2）重点看展示“一个磁通量子对应多个涡旋芯”的主图，记录作者如何定义磁通与核心数；3）查看局域谱图，比较整数涡旋与分数涡旋的dI/dV差异；4）查理论部分中CP^2 skyrmion不变量的定义和数值模拟参数；5）整理一个对照表：普通整数涡旋、分数涡旋、链状skyrmion在形貌、磁通、谱学和拓扑分类上的差别，并记录尚未排除的替代解释。"
+        }
+      },
+      "doi:10.1126/science.aef0825": {
+        "summary": "该研究围绕小鼠肝脏再生中的“分区化机械感知”展开，指出肝小叶中部 zone 2 的 DPP4阳性肝细胞是关键增殖细胞群，富集机械敏感离子通道 PIEZO1，并通过 IGFBP2 介导的通路驱动肝脏再生。摘要还表明，对 PIEZO1 进行遗传性失活会抑制肝细胞增殖并削弱再生，而分区化的功能增强则可加速恢复。",
+        "contribution": "核心贡献在于把“组织力学—分区化肝细胞亚群—PIEZO1—IGFBP2—肝再生”串联成一条具体机制链：并非所有肝细胞均等响应机械刺激，而是由 zone 2、DPP4阳性的机械敏感肝细胞承担主要再生功能；同时通过遗传操作提示 PIEZO1 具有因果性而非仅是相关性。",
+        "details": "从题名和摘要看，论文研究对象是小鼠肝脏再生过程中的特定肝细胞分区与机械信号转导，重点锁定肝小叶中部的 zone 2 DPP4阳性 hepatocytes。作者提出的核心命题不是一般性的“肝再生受机械力影响”，而是“机械线索如何以区域特异方式调控肝细胞增殖”，并进一步把这一作用归因于 PIEZO1 富集的 DPP4阳性细胞亚群。证据线索上，摘要至少暗示了四类工作：第一，分区或亚群鉴定，即证明 DPP4阳性肝细胞位于 zone 2 且构成关键增殖池；第二，机制定位，即证明 PIEZO1 在这一亚群中富集并承担主要机械感知功能；第三，功能扰动，即通过 PIEZO1 的遗传破坏观察到增殖下降和肝再生受损；第四，增益实验，即进行分区化 PIEZO1 gain-of-function 后看到增殖增强和恢复加快。下游分子方面，IGFBP2 被摘要点名为介导因子，说明作者可能构建了 PIEZO1 到生长因子相关分泌/转录程序的连接，但具体是转录上调、分泌调节，还是通过旁分泌影响其他细胞，目前仅凭摘要不能确定。可能采用的方法包括：部分肝切除或其他肝损伤后再生模型；肝小叶分区标记与谱系/免疫染色分析；DPP4、PIEZO1、增殖标志物检测；肝细胞特异或 zone 2 偏向的遗传敲除/激活；以及对 IGFBP2 的表达和功能验证。若你的方向涉及再生医学、机械生物学、肝脏分区、离子通道或肝细胞异质性，这篇文章的价值在于提供了一个较具体的细胞亚群入口，而不是笼统讨论整个肝脏。当前最需要核对的信息包括：zone 2 DPP4阳性细胞的定义方式；PIEZO1 gain-of-function 的具体遗传工具和靶向精度；机械线索的来源与测量方式；IGFBP2 是否为必要且充分的下游因子；以及结论是否适用于不同损伤模型、不同性别/年龄小鼠，或是否有向人肝样本延伸。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：肝脏再生虽然具有明显分区特征，但究竟是哪一类肝细胞在感知再生期间的组织力学变化，并把这种机械信号转化为区域特异的增殖响应；进一步说，PIEZO1 是否是这一过程中的关键机械传感器，以及其下游是否通过 IGFBP2 促进肝脏再生。",
+          "method": "根据摘要，可能的分析路径是先在小鼠肝脏中按肝小叶分区识别增殖活跃的 hepatocyte 亚群，发现 zone 2 的 DPP4阳性细胞是主要增殖池；随后检测 PIEZO1 在不同分区/亚群中的富集情况，建立其与机械感知候选机制的关联；再通过遗传性 disruption 验证 PIEZO1 缺失是否导致肝细胞增殖下降、肝再生变差；并通过 zonated gain-of-function 检验增强 PIEZO1 是否足以提升增殖和恢复速度；最后结合 IGFBP2 的表达或功能实验，将机械感知与下游生长调控联系起来。",
+          "strengths": "最值得关注的亮点有三点。其一，问题定义具体，把“肝再生”细化到“肝小叶分区中的机械感知”这一层面。其二，摘要显示作者不仅做了表达定位，还做了失活和功能增强两类遗传因果实验，这比单纯相关性观察更有说服力。其三，锁定 DPP4阳性 zone 2 hepatocytes 这一细胞群，为肝再生调控提供了可操作的细胞靶点，同时提出 IGFBP2 作为可能的下游效应分子，便于后续机制拆解和干预设计。",
+          "weaknesses": "基于题录和摘要，当前需要警惕的边界包括：第一，机械线索本身如何定义和量化并不清楚，是张力、流体剪切、基质刚度还是损伤后组织形变，摘要未交代。第二，DPP4阳性 zone 2 细胞是否在不同再生模型中都占主导，尚不明确。第三，PIEZO1 的作用是否完全细胞自主，还是涉及非实质细胞、血流、炎症或代谢环境改变，摘要未展开。第四，IGFBP2 虽被点名，但其在机制链中的必要性、充分性和作用层级尚需看正文证据。第五，发表日期为 2026-07-02，若用于系统综述或立项，需进一步核对正式版本、补充材料和图表细节。",
+          "next_step": "最小可执行动作：第一，查正文图1和相关补图，确认 zone 2 DPP4阳性 hepatocytes 的定义、定位和增殖证据；第二，重点看 PIEZO1 loss-of-function 与 gain-of-function 使用的 Cre 系统、靶向范围和再生终点指标；第三，记录 IGFBP2 相关实验是表达关联、阻断救援还是过表达救援；第四，核对肝再生模型类型、时间点、样本量和统计方法；第五，如果你做相关课题，可把这篇文章作为“分区化机械感知”关键词入口，延伸检索 PIEZO1、DPP4、zone 2、IGFBP2 在肝脏或其他再生组织中的交叉文献。"
+        }
+      },
+      "doi:10.1126/science.aea9013": {
+        "summary": "Height does not impair the hydraulic system of the tallest tropical Dipterocarp trees。摘要要点：Half of the aboveground biomass in forests is stored in a disproportionately small number of very tall trees.",
+        "contribution": "摘要中最具体的线索是：Half of the aboveground biomass in forests is stored in a disproportionately small number of very tall trees. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Height does not impair the hydraulic system of the tallest tropical Dipterocarp trees”。摘要中可用的信息是：Half of the aboveground biomass in forests is stored in a disproportionately small number of very tall trees. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Height does not impair the hydraulic system of the tallest tropical Dipterocarp trees”展开；摘要线索显示问题可能与 Half of the aboveground biomass in forests is stored in a disproportionately small number of very tall trees. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-10716-z": {
+        "summary": "这篇Nature论文从题名看，聚焦“利用金属配位特征进行靶向酶发现”这一具体任务，目标对象应是依赖金属离子配位环境的酶或酶家族。由于当前未提供摘要、关键词和正文信息，能确认的是研究主题与方法线索，无法根据现有材料判断其具体酶类、数据规模或实验结果。",
+        "contribution": "基于题名可推测，论文的核心贡献可能是提出或系统化了一种以“金属配位挖掘”为中心的酶发现策略，用于从序列、结构或基因组资源中更定向地识别具有目标催化潜力的金属酶。其潜在价值在于把传统功能注释或酶挖掘中的广泛筛选，收缩到由金属结合位点与配位几何所定义的更可操作搜索空间。",
+        "details": "从题名“Targeted enzyme discovery using metal-coordination mining”判断，研究对象大概率不是泛化的所有酶，而是具有明确金属依赖性的酶体系，因为“metal-coordination”通常对应活性位点中的金属离子种类、配体残基组成、配位数和空间几何等特征。题目中的“targeted enzyme discovery”暗示作者并非仅做数据库注释，而是围绕某类反应、某种催化基元或某一生物合成目标，发展一种更有指向性的发现流程。结合作者背景信息，Michelle C. Y. Chang长期与酶催化、天然产物和生物合成相关，因此该工作也可能与功能新酶、代谢途径节点酶或特殊化学转化酶的发现有关，但这一点需要正文核对，不能仅凭作者信息下结论。\n\n可能的方法路径包括：第一，从已知金属酶的结构数据库、序列注释库或天然产物/基因簇背景中提取金属结合位点模式；第二，把这些模式编码为可搜索的规则、统计模型或结构模板，例如特定氨基酸残基组合、间距约束、二级结构环境或三维局部构象；第三，在大规模蛋白序列、预测结构或微生物基因组中进行“挖掘”；第四，对候选酶做生化验证、金属依赖性测试、底物谱测试或与代谢背景的关联分析。若题目中的“mining”强调计算侧，说明论文可能包含数据库扫描和候选排序；若强调“discovery”，则很可能至少有若干新酶被实验确认。遗憾的是，摘要为空，因此这些都只能视为基于题名的高可信推断，而非论文已证实事实。\n\n对科研读者而言，这项工作的意义可能在于：它提供了一条不同于纯序列同源搜索的酶发现路径。传统同源搜索容易在远缘酶、收敛进化体系或功能多样化家族中失效，而金属配位环境往往更直接约束催化化学，因此可能更适合发现执行特定氧化还原、C-H活化、重排或键形成反应的新酶。如果你的方向是酶工程、天然产物生物合成、金属蛋白、结构生物学或功能基因组学，这篇论文值得重点关注其“金属位点特征如何被形式化”“搜索空间如何定义”“假阳性如何排除”“发现到验证的转化效率如何”这几个问题。\n\n目前最需要核对的信息包括：1，具体针对的是哪一类金属酶，还是通用框架；2，输入数据是实验结构、AlphaFold结构、序列模体还是基因组上下文；3，是否发现了全新酶家族、仅是新成员，还是新反应；4，是否有系统实验验证，例如金属替换、位点突变、体外活性和产物鉴定；5，性能评估如何定义，是否与BLAST/HMM/结构比对等基线方法对照；6，方法的适用边界，是否只能处理金属依赖且位点保守的体系。由于摘要缺失，以上关键信息均不能从当前元数据直接确认。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "题目所指向的核心科学问题应是：如何利用酶活性位点中的金属配位信息，更高效、更定向地发现具有目标功能的酶，尤其是在传统基于全序列同源性的搜索难以准确定位候选时。更具体地说，论文可能在解决“金属结合化学特征能否成为发现新酶/新功能的可计算线索”这一问题。",
+          "method": "根据题名，可能方法是围绕金属配位位点开展挖掘：先从已知金属酶提取配位残基类型、相对位置、几何构型或局部结构模板，再将这些特征用于扫描蛋白序列库、预测结构库或基因组/生物合成基因簇数据，得到候选酶。后续大概率需要通过重组表达、体外酶活检测、金属依赖性测试、突变验证和产物分析来确认功能。若论文偏计算方法学，还可能包含候选排序、假阳性过滤和与现有注释方法的比较。",
+          "strengths": "最值得关注的潜在亮点是把“金属配位”这一更接近催化本质的局部化学约束，转化为酶发现信号。这种设计若成立，可能特别适合远缘同源、低序列保守但活性位点化学保守的酶体系。另一个可能亮点是“targeted”二字所暗示的面向具体反应或功能类别的发现效率提升，即不仅能找到候选，还能减少无关序列筛选成本。若文中包含实验验证，则会显著增强方法可信度和应用价值。",
+          "weaknesses": "基于当前题录信息，最大局限是摘要为空，无法确认研究范围、数据来源、验证深度和结果规模，因此不能判断其是否为通用平台方法，还是某个特定酶家族的案例研究。还需警惕“金属配位模式”可能在不同蛋白超家族中存在重复，导致特异性不足；若依赖预测结构，则候选质量也受结构预测精度影响。另一个潜在边界是该方法天然更适用于金属依赖酶，对非金属酶或配位环境不明显的催化体系帮助有限。",
+          "next_step": "最小可执行动作是先补齐摘要与图文信息，并优先核对四项内容：第一，看摘要和图1是否定义了“metal-coordination mining”的输入特征与工作流程；第二，记录论文具体针对的酶类、金属类型和反应任务；第三，查看是否有新酶实例及其生化验证证据；第四，对照现有同源搜索或结构搜索方法，记下作者声称的优势与适用边界。如果你准备复现，可先尝试从公开金属酶结构中手工整理一个小型配位位点模式集，验证这种思路是否能在你的目标酶家族上缩小候选空间。"
+        }
+      },
+      "doi:10.1038/s41586-026-10731-0": {
+        "summary": "这篇Nature论文从题名判断，聚焦“中等规模火山喷发”和“极端野火”这两类事件对平流层水汽的增湿作用，核心任务是识别并量化这些扰动源如何改变平流层湿度。由于提供的摘要为空，目前只能基于题名、期刊与作者信息做有限解读，无法确认其具体数据、结论幅度和因果证据链。",
+        "contribution": "可能的核心贡献是：将以往更常讨论的特大火山或一般平流层成分变化问题，具体推进到“中等火山喷发+极端野火”对平流层加湿这一对象上，并强调这两类事件可能是被低估的平流层水汽来源或调制因子。若论文证据充分，其价值在于改进对平流层水循环、辐射强迫、化学过程及短期气候扰动的认识。",
+        "details": "从题名“Moderate volcanic eruptions and extreme wildfires humidify the stratosphere”可直接提取的研究对象是两类强对流/注入型自然事件：中等规模火山喷发，以及极端野火；目标现象是“humidify the stratosphere”，即提高平流层水汽含量。作者阵容中包含长期从事平流层观测、痕量气体与气候过程研究的研究者，这提示论文很可能依赖卫星遥感、平流层成分再分析或事件归因分析，而不是单纯理论讨论。具体而言，可能会围绕若干已知事件，比较事件前后平流层水汽异常、垂直分布、纬向/全球传播及持续时间，并讨论是直接注入、烟羽/火山羽流的自抬升，还是温度与微物理过程改变导致的间接增湿。题名中将火山喷发与极端野火并列，意味着作者可能试图建立一个更一般的框架：并非只有超大喷发才显著影响平流层水汽，一些“中等”火山事件与强烈火灾对流注入也能产生可检测、甚至气候相关的加湿信号。对科研读者而言，这篇论文与以下方向直接相关：平流层水汽趋势归因、SAGE/MLS/OMPS等卫星资料应用、火山与野火对辐射和臭氧化学的影响、以及地球系统模型中瞬变强迫事件的表示。当前最需要核对的信息包括：1）“moderate”火山喷发的定量定义；2）“extreme wildfires”是否特指形成pyroCb/烟羽入平流层事件；3）所用平流层水汽数据源及其误差控制；4）增湿效应的时间尺度、空间范围和幅度；5）是否给出与温度、气溶胶、甲烷氧化或对流输送区分开的因果归因；6）是否评估了辐射强迫或化学后果。由于没有摘要，不能断言论文已经证明了这些环节，只能说这些是从题名最可能延伸出的证据线索。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题，很可能是：中等规模火山喷发和极端野火是否能够把足够的水汽或促成足够的过程改变，从而使平流层出现可观测、可归因的增湿；以及这种增湿在幅度、持续时间、垂直层次和气候意义上是否重要到值得纳入主流平流层水汽与气候扰动框架。",
+          "method": "在没有摘要的情况下，最可能的方法路径是事件型观测归因分析：选取若干火山喷发和极端野火案例，利用卫星平流层水汽观测、可能配合气溶胶/烟羽/二氧化硫观测、温度场与轨迹分析，比较事件发生前后异常变化；若研究更完整，可能还会结合化学-气候模式、辐射传输估算或拉格朗日输送分析，以区分直接注入、加热抬升和背景变率。作者背景也暗示可能使用长期平流层观测记录来做复合分析或趋势背景扣除。",
+          "strengths": "题名显示的最大亮点是问题切得很具体且具有新意：把“平流层增湿”明确关联到两类离散极端事件，尤其强调“中等”火山喷发，这可能突破了只有特大事件才重要的传统关注范围。若论文使用多事件、多传感器和归因分析，其证据链会对平流层水循环、短期辐射扰动与化学效应研究都很有价值；同时，极端野火作为近年更频繁受关注的气候风险源，具有很强现实意义。",
+          "weaknesses": "目前最大局限是摘要为空，导致无法确认研究设计、数据来源、统计显著性和结论强度。仅从题名看，需要警惕几个边界：一是“humidify”可能指局地或短期异常，并不一定意味着全球显著变化；二是火山与野火的增湿机制可能不同，若并列讨论，比较框架是否严格需要核查；三是平流层水汽检索本身受观测误差、采样和动力背景影响，若事件信号不大，归因难度较高；四是题名未说明是否讨论辐射、臭氧或气候响应，因此不能预设其影响评估已经完整。",
+          "next_step": "最小可执行动作：第一，获取摘要与正文后优先查看引言最后一段，确认研究问题的精确定义；第二，直接查主图与补充材料，记录涉及的具体火山事件、野火事件、时间范围、观测数据集和水汽异常幅度；第三，核对作者是否使用MLS、SAGE III/ISS、OMPS-LP或其他平流层资料，并记下垂直层次与纬度带；第四，单独整理“增湿机制”证据，是直接注入、烟羽加热自抬升、温度效应还是混合机制；第五，若你的研究涉及平流层趋势或事件归因，可把该文与既有Hunga Tonga、澳洲/加拿大野火文献做对照，特别关注其对“中等火山”的新增证据。"
+        }
+      },
+      "doi:10.1038/s41586-026-10707-0": {
+        "summary": "这篇Nature论文从题名看，聚焦二维材料晶体管中的“载流子转移长度”这一具体接触输运参数，目标是对其进行直接探测而不是仅依赖间接拟合。由于提供的摘要为空，目前只能确定研究对象是2D-material transistors及其接触区载流子注入/传输问题，无法确认所用材料体系、实验装置和定量结果。",
+        "contribution": "基于题名推测，核心贡献很可能是提出或实现了一种可直接测量二维材料晶体管中载流子转移长度的实验表征方法，并用该方法澄清金属-二维半导体接触区域内的电流注入尺度、接触设计限制或器件优化规则。但由于摘要缺失，这一判断需要以正文和图表核对。",
+        "details": "研究对象应是二维材料晶体管，尤其是其源漏金属接触附近的载流子注入区域。题名中的carrier transfer length通常对应接触工程中的关键长度尺度，可理解为载流子从金属接触进入二维沟道时的有效电流转移范围；这一参数直接关系接触电阻、缩放极限、接触长度优化和器件性能波动。题名使用“Directly probing”是最重要的线索，暗示作者并非仅通过传输线法、器件尺寸标度或等效电路拟合间接提取，而可能结合空间分辨电势/电流成像、局域探针、电学映射、电子显微/扫描探针联用，或者特殊器件结构来直接观察接触附近的电流分布或电位衰减。若该工作成立，其证据链通常应包括：在不同接触长度、偏压、栅压、材料厚度或金属类型下，直接观测到某一空间特征长度；该长度与接触电阻或模型参数一致；并显示与传统提取方法存在偏差或修正关系。与科研读者的关系在于，这类结果对二维半导体器件设计非常实用：如果转移长度远小于接触物理长度，则继续增加接触长度收益有限；如果转移长度受栅压、缺陷、相工程或界面势垒强烈影响，则接触优化应从界面调控而非简单几何放大入手。当前最需要核对的信息包括：具体二维材料是MoS2、WSe2还是其他TMD/石墨烯相关体系；“直接探测”对应哪一种实验技术；转移长度的量级是纳米、百纳米还是微米；是否区分电子/空穴注入；是否讨论温度、相接触、边接触/面接触或肖特基势垒。由于摘要为空，任何关于实验结果优劣、数值大小和普适性的判断都不能下定论。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题，应该是二维材料晶体管中载流子究竟在多长的接触区内完成从金属到二维沟道的转移，以及这一长度如何被可靠、直接地测出。更深一层的问题可能是：传统间接提取的转移长度是否准确，接触设计是否被错误地依赖经验长度放大，以及接触受限器件性能瓶颈的真实空间起源是什么。",
+          "method": "从题名推断，方法核心应是“直接探测”接触区输运的空间分布。可能路径包括：1，构建具有可控接触长度和沟道几何的二维材料晶体管阵列，对比不同尺寸器件的局域电流/电势响应；2，使用扫描光电流、扫描开尔文探针、导电原子力显微镜、近场显微、电子束诱导电流、纳米探针电学或其他空间分辨表征手段，在接触边缘附近直接读取衰减长度；3，将空间测量与器件I-V、接触电阻、栅压依赖或温度依赖模型联合拟合，以确认所见长度对应carrier transfer length而非其他扩散或屏蔽长度。具体是哪一路线，必须查摘要和图1、图2。",
+          "strengths": "最值得关注的亮点在于，如果作者确实实现了对transfer length的直接观测，这将比传统仅靠器件级等效模型提取更有说服力，尤其适合处理二维材料中常见的非理想接触、边缘电流集中和界面不均匀问题。题名发表在Nature也提示该工作可能不仅是测量技巧本身，还可能给出对二维接触物理的普适认识，例如揭示实际有效注入区域远小于名义接触面积，或者提出接触长度设计的新准则。对器件工程而言，这类结论有望直接指导接触缩放、金属选择和界面改性。",
+          "weaknesses": "目前最大的局限是摘要为空，导致无法确认研究材料、实验方法、关键数值、统计重复性和适用边界。仅凭题名无法判断该“直接探测”是否真正普适，还是只适用于特定材料堆栈、特殊加工窗口或特定偏压条件。也无法判断作者是否充分排除了局域发热、陷阱态、非均匀掺杂、光致效应或探针侵入性等伪影。如果你的研究需要定量采用其结论，必须核对测量定义、误差条、对照样品和模型假设。",
+          "next_step": "最小可执行动作是先补齐摘要和首图信息，并重点查四类内容：1，图1或方法部分对“directly probing”的具体技术定义；2，结果部分给出的transfer length数值范围及其随栅压/材料/金属变化；3，与传统TLM或接触电阻提取结果的对应关系；4，作者是否提出可操作的接触长度设计规则。若你做二维器件，可立即建立一个阅读核对表，记录材料体系、接触构型、转移长度量级、测量空间分辨率、偏压条件和适用范围，再决定是否值得复现或纳入自己的接触模型。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for doi:10.1126/science.aea9013: Extra data: line 1 column 2359 (char 2358)",
+      "arXiv page failed at start=50, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=50&max_results=50&sortBy=su...",
+      "arXiv page failed at start=100, max_results=50: HTTP 503 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=100&max_results=50&sortBy=s...",
+      "arXiv fetch stopped after 2 consecutive page failure(s)."
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2607.02387v1",
+      "source": "arxiv",
+      "title": "Bringing Agentic Search to Earth Observation Data Discovery",
+      "authors": [
+        "Minghan Yu",
+        "Youran Sun",
+        "Chugang Yi",
+        "Yixin Wen",
+        "Haizhao Yang"
+      ],
+      "published": "2026-07-02T16:24:16Z",
+      "updated": "2026-07-02T16:24:16Z",
+      "abstract": "NASA and its data centers hold thousands of geoscience datasets and tools like Worldview, Giovanni, the Science Discovery Engine, and Harmony. Finding the right one is hard even for domain experts. We present an agentic search system, deployed as a public service for the geoscience community, that takes a natural-language research query and returns the matching datasets and tools. We demonstrate that, in the era of large language models, the latent value of knowledge graphs (KGs) can be substantially amplified through agentic search. From the NASA Earth Observation Knowledge Graph (NASA EO-KG) we derive NASA-EO-Bench, an open benchmark of 47k query-dataset pairs (21k task-based queries). A neural scorer fine-tuned on NASA-EO-Bench beats cosine and BM25 baselines. Further combining it with BM25 via score fusion raises both Recall@10 (R@10) and MRR by over 5x. On top of this supervised pipeline, we add a zero-shot agentic reranking stage that, without any additional training, lifts MRR by 28% on a stratified N=200 subset, showing that LLM reasoning is complementary to supervised retrieval.",
+      "url": "http://arxiv.org/abs/2607.02387v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.02387v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.IR",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "ai",
+        "earth",
+        "geoscience",
+        "earth observation"
+      ],
+      "score": 83.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.02407v1",
+      "source": "arxiv",
+      "title": "Text-Driven 3D Indoor Scene Synthesis in Non-Manhattan Environments",
+      "authors": [
+        "Xianhui Meng",
+        "Zirui Song",
+        "Yuchen Zhang",
+        "Li Zhang",
+        "Yongxuan Lv",
+        "Xiuying Chen",
+        "Kun Wang",
+        "Yan Luo",
+        "Kai Chen",
+        "Hangjun Ye",
+        "Long Chen",
+        "Jun Liu",
+        "Xiaoshuai Hao"
+      ],
+      "published": "2026-07-02T16:40:08Z",
+      "updated": "2026-07-02T16:40:08Z",
+      "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities in 3D indoor synthesis for Manhattan environments. However, existing methods often fail to capture plausible object layout patterns in non-Manhattan settings, primarily because they struggle to model non-orthogonal spatial relationships, leading to high geometric violations and low physical fidelity. To address this challenge, we propose SPG-Layout, a novel text-driven framework designed to generate physically plausible indoor scenes within complex non-Manhattan environments. Specifically, we first utilize statistical priors of object distributions to guide the training process, enhancing environmental understanding and fidelity. Furthermore, mirroring human design workflows, we adopt a hierarchical layout strategy that prioritizes the placement of large objects, thereby substantially minimizing layout violations. By synergizing these components, SPG-Layout achieves a balanced optimization of semantic realism and physical plausibility. To evaluate performance in these complex settings, we constructed a new benchmark comprising 500 diverse non-Manhattan environments. Extensive experiments demonstrate that SPG-Layout consistently and significantly outperforms existing methods across both Manhattan and non-Manhattan environments. The code will be publicly released.",
+      "url": "http://arxiv.org/abs/2607.02407v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.02407v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 66.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.02416v1",
+      "source": "arxiv",
+      "title": "The Future of NLP may not be at NLP Conferences: Scholarly Migration Patterns in Natural Language Processing",
+      "authors": [
+        "David Jurgens"
+      ],
+      "published": "2026-07-02T16:47:14Z",
+      "updated": "2026-07-02T16:47:14Z",
+      "abstract": "Natural Language Processing (NLP) has traditionally been published in its core disciplinary venues like ACL. However, advances in Large Language Models (LLMs) has led to a blurring of the disciplinary lines between NLP and general Machine Learning (ML), with authors regularly publishing in venues from both fields. Here, we ask whether the disciplinary center of gravity is shifting. Using NLP research published from 2010 to 2026 and studies of both established and new authors, we find that a migration is taking place. First, comparing the pre- and post-LLM eras, established authors lost 19.2pp of share at flagship *ACL main-conference tracks while gaining 14.8pp in the newer Findings tracks, and general ML venues rose 8.6pp, even when adjusting for parallel growth in the fields. Second, among newer authors who debut with at least three first-author NLP-topic papers, the share whose work appears mostly at *ACL venues fell from 84% (2019) to 74% (2024), while the share appearing mostly at general ML venues rose from 5% to 21%. Using causal inference techniques, we estimate that these general ML venues confer a significant citation premium, which influences venue selection. Together, these results point to a significant shift in where NLP research is published.",
+      "url": "http://arxiv.org/abs/2607.02416v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.02416v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "ai",
+        "machine learning",
+        "ml",
+        "causal inference"
+      ],
+      "score": 65.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.02371v1",
+      "source": "arxiv",
+      "title": "VisionAId: An Offline-First Multimodal Android Assistant for People with Visual Impairment, Featuring Personalized Object Retrieval",
+      "authors": [
+        "Cristian-Gabriel Florea",
+        "Stelian Spînu"
+      ],
+      "published": "2026-07-02T16:12:50Z",
+      "updated": "2026-07-02T16:12:50Z",
+      "abstract": "Over 285 million people worldwide live with a visual impairment, for whom everyday tasks such as avoiding obstacles, locating personal belongings, recognizing familiar faces, or handling cash remain persistent obstacles to personal autonomy. Existing assistive applications are typically limited to recognizing predefined categories, depend heavily on cloud connectivity, or require dedicated hardware. We present VisionAId, an Android application that turns a commodity smartphone into a real-time visual assistant. The system integrates six on-device deep learning models (metric monocular depth estimation, instance segmentation, visual and facial embeddings, face detection, and a custom banknote detector) running entirely through ONNX Runtime, with an optional cloud large language model (Google Gemini Flash) used only for narrative scene description and automatic object labeling. A distinctive contribution is a few-shot pipeline for personal objects: the user photographs an object from several angles, and the system later locates that specific instance in the environment, guiding the user toward it with augmented-reality markers, spatial audio, and distance-proportional haptics. All feedback is multimodal (Romanian speech synthesis, voice commands, vibration). On a reference device (Samsung Galaxy S21 Ultra), INT8 quantization reduces depth latency from ~1200 ms to ~491 ms, the custom banknote detector reaches an mAP@50 of 0.986, and metric depth is calibrated to below 1 cm of error within 3 m.",
+      "url": "http://arxiv.org/abs/2607.02371v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.02371v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "language model",
+        "multimodal",
+        "ai",
+        "deep learning",
+        "environment"
+      ],
+      "score": 63.0,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.ads0189",
+      "source": "science",
+      "title": "Observation of quantum vortex core fractionalization and skyrmion formation in a superconductor",
+      "authors": [
+        "Yu Zheng",
+        "Quanxin Hu",
+        "Xin Yu",
+        "Haijiao Ji",
+        "Igor Timoshuk",
+        "Julien Garaud",
+        "Hanxiang Xu",
+        "Yongwei Li",
+        "Ye Gao",
+        "Xingye Lu",
+        "Vadim Grinenko",
+        "Egor Babaev",
+        "Noah F. Q. Yuan",
+        "Rui Wu",
+        "Baiqing Lv",
+        "Chi-Ming Yim",
+        "Hong Ding"
+      ],
+      "published": "2026-07-02",
+      "updated": "2026-07-03",
+      "abstract": "Magnetic fields can penetrate a superconductor in the form of quantum vortices, which consist of a core singularity with circulating currents. London’s quantization implies that there is one core singularity per quantum of magnetic flux in single-component superconductors. In this study, we report signatures of quantum vortex core fractionalization on the potassium-terminated surface of a multiband superconductor, KFe 2 As 2 . The observed splitting of single integer–flux vortices into several fractional vortices results in a disparity between the numbers of flux quanta and vortex cores. These fractional vortices often arrange in chains, which calculations show are characterized by a ℂP 2 skyrmionic topological invariant; this constitutes a different type of topological defect: the chiral skyrmion. The disparate natures of integer and fractional vortices comprising skyrmions lead to distinct spectroscopic signatures.",
+      "url": "https://doi.org/10.1126/science.ads0189",
+      "pdf_url": "",
+      "doi": "10.1126/science.ads0189",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6806",
+        "page": "80-84",
+        "reference_count": 59,
+        "resource_url": "https://www.science.org/doi/10.1126/science.ads0189"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aef0825",
+      "source": "science",
+      "title": "Zonated mechanosensing by PIEZO1 controls liver regeneration",
+      "authors": [
+        "Ying Zhang",
+        "Yuzhuo Sun",
+        "Guangkui Xu",
+        "Yue Wu",
+        "Zhijun Shi",
+        "Zhuo Chang",
+        "Junjun Liu",
+        "Kaidan Pang",
+        "Siyu Liu",
+        "Han Wang",
+        "Weixin Rong",
+        "Zehua Shao",
+        "Xingqian Liu",
+        "Yu He",
+        "Yang Yan",
+        "Bin Zhou",
+        "Zuyi Yuan",
+        "Xu-Feng Zhang",
+        "Stefan Offermanns",
+        "Shengpeng Wang"
+      ],
+      "published": "2026-07-02",
+      "updated": "2026-07-03",
+      "abstract": "The liver exhibits a marked regenerative capacity organized through distinct zones, yet how tissue mechanics coordinate zonated proliferation remains elusive. We reveal that mechanical cues critically contribute to mouse liver regeneration in a highly region-specific manner through sensing by a subpopulation of mid-lobular hepatocytes, which are characterized by dipeptidyl peptidase-4 (DPP4) expression and represent the key proliferative pool of hepatocytes. PIEZO1 is a primary mechanosensor enriched in zone 2 DPP4 + hepatocytes that integrates biomechanical cues to drive liver regrowth by insulin-like growth factor binding protein 2 (IGFBP2). Genetic disruption of PIEZO1 restrains hepatocyte proliferation and compromises liver regeneration, whereas zonated PIEZO1 gain of function enhances proliferation and accelerates recovery. These findings reveal that DPP4 + mechanosensitive hepatocytes orchestrate liver regrowth through PIEZO1-mediated mechanosensing, establishing a link between tissue mechanics and liver regeneration.",
+      "url": "https://doi.org/10.1126/science.aef0825",
+      "pdf_url": "",
+      "doi": "10.1126/science.aef0825",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6806",
+        "page": null,
+        "reference_count": 72,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aef0825"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aea9013",
+      "source": "science",
+      "title": "Height does not impair the hydraulic system of the tallest tropical Dipterocarp trees",
+      "authors": [
+        "Paulo Bittencourt",
+        "Arne Scheire",
+        "Palasiah Jotan",
+        "Jehova Lourenço",
+        "Lindsay F. Banin",
+        "Mohd Aminur Faiz bin Suis",
+        "David F. R. P. Burslem",
+        "Bradley Christoffersen",
+        "David Coomes",
+        "Peter Groenendijk",
+        "Steven Jansen",
+        "Tommaso Jucker",
+        "Radim Matula",
+        "Maurizio Mencuccini",
+        "Rafael Oliveira",
+        "Roman Plichta",
+        "Reuben Nilus",
+        "Rolando Robert",
+        "Martin Svátek",
+        "Lucy Rowland"
+      ],
+      "published": "2026-07-02",
+      "updated": "2026-07-03",
+      "abstract": "Half of the aboveground biomass in forests is stored in a disproportionately small number of very tall trees. These giants are predicted to be more vulnerable to drought-induced damage because height impairs their hydraulic system. We evaluated whether the hydraulic system of world’s tallest tropical tree species—Southeast Asian dipterocarps—are negatively affected by their height. The more negative xylem pressures caused by tree height were fully compensated for through adjustment of vessel anatomy and leaf hydraulic traits, and the trees suffered no height-related loss in growth during a severe drought. Therefore, height does not make the hydraulic systems of the world’s tallest tropical tree species more vulnerable to drought, and the growth rates of these trees are not more negatively affected by drought than are their smaller counterparts.",
+      "url": "https://doi.org/10.1126/science.aea9013",
+      "pdf_url": "",
+      "doi": "10.1126/science.aea9013",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6806",
+        "page": "60-64",
+        "reference_count": 98,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aea9013"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10716-z",
+      "source": "nature",
+      "title": "Targeted enzyme discovery using metal-coordination mining",
+      "authors": [
+        "Ioannis Kipouros",
+        "Michelle C. Y. Chang"
+      ],
+      "published": "2026-07-01",
+      "updated": "2026-07-01",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10716-z",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10716-z",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 50,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10716-z"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10731-0",
+      "source": "nature",
+      "title": "Moderate volcanic eruptions and extreme wildfires humidify the stratosphere",
+      "authors": [
+        "Yifeng Peng",
+        "William Randel",
+        "Owen Brian Toon",
+        "Xinyue Wang",
+        "Kai Qie",
+        "Sean M. Davis",
+        "Karen H. Rosenlof",
+        "Pengfei Yu"
+      ],
+      "published": "2026-07-01",
+      "updated": "2026-07-01",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10731-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10731-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 60,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10731-0"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10707-0",
+      "source": "nature",
+      "title": "Directly probing the carrier transfer length in 2D-material transistors",
+      "authors": [
+        "Zi-Liang Yang",
+        "Bo-Chao Huang",
+        "Yu-Kuan Lin",
+        "Yan-Ruei Lin",
+        "Hung-Chang Hsu",
+        "Hao-Yu Chen",
+        "Yi Wan",
+        "Kai-Wei Tseng",
+        "Shu-Ting Yang",
+        "Han-Chieh Lo",
+        "You-Jia Huang",
+        "Fangyuan Zheng",
+        "Ni Yang",
+        "Wanqing Meng",
+        "Jiacheng Min",
+        "Po-Cheng Huang",
+        "Yann-Wen Lan",
+        "Lain-Jong Li",
+        "Ya-Ping Chiu"
+      ],
+      "published": "2026-07-01",
+      "updated": "2026-07-01",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10707-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10707-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 50,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10707-0"
+      }
+    }
+  ]
+}
