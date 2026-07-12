@@ -1,0 +1,696 @@
+{
+  "date": "2026-07-13",
+  "stats": {
+    "fetched": 479,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 76,
+      "science": 103
+    },
+    "deduped": 479,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 76,
+      "science": 103
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 254,
+    "keyword_filtered_by_source": {
+      "arxiv": 254
+    },
+    "keyword_optional_included": 154,
+    "keyword_optional_included_by_source": {
+      "nature": 67,
+      "science": 87
+    },
+    "ranked": 225,
+    "ranked_by_source": {
+      "arxiv": 46,
+      "nature": 76,
+      "science": 103
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 149,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文里，最值得优先读的是4篇AI/智能体方向稿件，因为它们的问题定义清楚、方法线索较完整，而且彼此之间能形成一条很强的方法学主线：一是如何把大模型能力迁移到更便宜、更可部署的小模型；二是如何在长时程、强约束环境中把“高层推理”和“低层控制”解耦；三是如何把生成过程中的“顺序/策略”本身作为可学习对象；四是如何把自治智能体放进带物理与治理约束的真实风格环境里评测可信性。具体看，SQuaD-SQL适合优先阅读，因为它给出了一个当前非常实用的问题设定：用LLM生成合成Text-to-SQL数据并蒸馏到小模型，目标指标也明确，且声称能在消费级GPU上训练，兼具方法价值和落地价值。FSD-VLN次优先，它代表了另一个很强趋势：在视觉-语言导航尤其是无人机这类高频控制任务里，单体端到端模型可能已不足够，快慢双系统、异步语义更新、连续动作生成和平滑控制正在成为更合理的系统设计。多模态masked diffusion那篇则更偏基础方法问题：作者不是继续堆更大模型，而是追问“生成顺序”这个常被当作启发式细节的核心变量，若结果稳健，可能影响多模态扩散生成与理解的训练范式。SolarChain-Eval的价值在于，它把LLM/agent研究从“会不会做任务”推进到“是否可信、可审计、物理上安全”，尤其适合对AI for energy、agent governance、benchmark设计感兴趣的读者。非AI论文里，Science关于社会记忆价性更新的工作信息量最高，已经给出较具体的vCA1-BLA-NAc环路框架，适合神经科学方向优先跟进；量子气体相位显微镜则是明显的方法学进展，适合冷原子/强关联实验读者。其余几篇Nature/Science题录因摘要不足，目前更适合做题目级跟踪而非深读。整体上，今天最清晰的阅读主轴不是“模型更大”，而是“能力迁移、系统分层、过程控制、可信评测”这四个方向正在同时推进，且都在试图把AI从离线演示推向受算力、时延、物理规律和审计要求约束的真实任务环境。",
+    "themes": [
+      "LLM能力压缩与低成本部署正在成为独立研究主线：从SQuaD-SQL可见，关键不只是蒸馏，更是如何构造高质量合成监督、结合参数高效微调，并进一步做领域自适应。",
+      "长时程具身/导航任务正在从单一模型转向分层双系统：FSD-VLN体现的是把慢速语义理解与快速连续控制拆开，以解决时延、抖动和动作一致性之间的结构冲突。",
+      "生成模型研究开始把“生成顺序”本身问题化：多模态masked diffusion工作提示，在跨模态、空间关系和推理任务里，解码顺序并非次要工程细节，而可能是决定性能的核心策略变量。",
+      "Agent评测正在从任务成功率扩展到可信性协议：SolarChain-Eval把物理安全、动作平滑、空间公平、滑点和可审计性并列为核心指标，说明真实世界智能体需要面向约束而非只面向收益优化。",
+      "高影响力基础科学论文中，‘可观测性增强’是共同特征：无论是社会记忆价性更新的环路级因果框架，还是量子气体中的相位显微镜，核心都在于把过去难直接测量的隐变量变成可操作、可成像、可检验对象。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "复现一个“教师LLM合成数据质量—小模型Text-to-SQL性能”关系的小型实验",
+        "why": "SQuaD-SQL最值得检验的不只是最终准确率，而是其真正的关键增益是否来自合成数据质量、提示设计还是参数高效微调本身。这个问题具有普适价值，可迁移到其他结构化生成任务。",
+        "first_step": "选WikiSQL子集，固定一个小模型和一种LoRA配置，构造2到3种不同质量层次的教师LLM合成数据方案，只比较执行准确率、SQL语法合法率和字段匹配错误类型。",
+        "risk": "如果原论文依赖未公开的提示细节或数据清洗流程，外部复现可能低估方法效果；同时WikiSQL任务相对简单，结论未必能外推到更复杂数据库。"
+      },
+      {
+        "idea": "做一个“快慢双系统”对照综述加最小复现实验，比较分层控制是否稳定优于单体VLN策略",
+        "why": "FSD-VLN触及一个重要系统问题：语义推理和低延迟控制是否必须解耦。这个问题不仅适用于无人机，也适用于机器人、自动驾驶和交互式agent。",
+        "first_step": "先整理近两年VLN或具身导航中显式分层/异步更新方法的设计表，再在一个可运行仿真环境里搭建最小版双系统基线：慢分支低频更新导航意图，快分支高频输出动作，与单模型策略比较轨迹抖动和延迟。",
+        "risk": "若缺少论文使用的专门低空仿真环境或Diffusion Transformer实现，实验只能验证方向性而非复现论文数值；不同任务下控制频率设定也会显著影响结论。"
+      },
+      {
+        "idea": "检验多模态masked diffusion中‘logits排序’与‘最优生成顺序’的一致性是否真的不足",
+        "why": "这篇工作提出了一个很基础但可验证的命题：在多模态任务中，模型当前置信度未必能指示最优去掩码顺序。若成立，会直接影响很多扩散/掩码模型的解码设计。",
+        "first_step": "选一个公开可运行的masked generation框架，在文生图或视觉问答代理任务上实现3种顺序策略：基于logits、随机、简单学习到的控制器，然后比较对齐指标、空间关系错误和稳定性。",
+        "risk": "真正的‘最优顺序’很难定义，容易退化成经验对比；如果任务和指标选得不敏感，可能观测不到顺序策略差异。"
+      },
+      {
+        "idea": "围绕SolarChain-Eval整理一个‘可信agent benchmark指标框架’并做跨领域映射",
+        "why": "这类工作的重要性可能不只在能源市场，而在于它提供了把收益、约束、安全、审计放入同一评测协议的模板。做出指标框架有助于迁移到金融、交通、供应链等高风险agent场景。",
+        "first_step": "先抽取摘要中明确出现的指标维度和治理组件，形成一个二维表：目标函数、约束类型、干预方式、日志形式；再对比现有agent benchmark中哪些维度缺失。",
+        "risk": "由于目前只有摘要级信息，细节定义可能不够稳定；跨领域映射若过早进行，容易变成概念拼接而缺乏可操作性。"
+      },
+      {
+        "idea": "对社会记忆价性更新论文做一份‘身份表征与价性重写’机制型文献卡片，并列出可检验分歧点",
+        "why": "这篇Science论文提供了较清晰的环路假说，适合快速进入深读。它与一般恐惧学习、社会回避、engram重激活研究之间的关系值得系统梳理。",
+        "first_step": "按‘行为范式—细胞群体—环路连接—因果操作—行为输出’五栏做结构化笔记，并专门记录作者声称的必要性/充分性证据分别来自哪里。",
+        "risk": "如果仅凭摘要预设机制图，容易忽略正文中的限制条件，例如性别、时间尺度、范式特异性或统计效应大小。"
+      },
+      {
+        "idea": "跟踪量子气体相位显微镜方法，评估其是否可作为‘相位关联测量工具箱’切入综述",
+        "why": "这类方法论文往往比单一物理结论更有长期影响。如果其确实实现格点分辨相位涨落成像，就可能改变二维玻色体系、BKT相关实验的测量手段。",
+        "first_step": "读取摘要和图1后，先整理它与传统干涉法、TOF成像、噪声关联测量相比新增的可观测量和分辨率优势，再判断是否值得扩展成方法综述提纲。",
+        "risk": "若方法高度依赖特定Talbot条件或实验平台，可推广性可能有限；而且仅从题录和简要摘要尚不能确认其适用范围。"
+      }
+    ],
+    "papers": {
+      "arxiv:2607.08161v1": {
+        "summary": "这篇论文针对Text-to-SQL任务，提出了名为SQuaD-SQL的方法，目标是在WikiSQL等结构化数据库问答场景中，通过LLM引导的知识蒸馏与合成数据生成，让小语言模型以更低算力接近大语言模型性能。摘要显示其重点对象包括LLM生成的合成SQL数据、可在单张消费级GPU上训练的参数高效微调方案，以及面向特定领域的自适应微调。",
+        "contribution": "从摘要可见，论文的核心贡献可能有三点：一是把大语言模型在Text-to-SQL上的结构化知识通过提示设计转化为可蒸馏的合成训练数据；二是结合参数高效微调，使小模型能够在受限硬件条件下完成训练和部署；三是通过领域自适应微调，用领域特定合成数据进一步提升目标域SQL生成性能，并在WikiSQL上报告了86.9%的测试执行准确率。",
+        "details": "基于题名、摘要和元数据，这项工作聚焦自然语言到SQL生成这一典型的结构化语义解析任务，核心动机是缓解LLM虽强但部署成本高的问题。作者提出的SQuaD-SQL从名字看强调“小而合格、经蒸馏得到的SQL能力”，其技术路线较明确：先由LLM通过精心设计的prompt生成或提炼Text-to-SQL相关知识，形成带有SQL监督信号的合成数据；再用参数高效微调方法训练小语言模型，以降低显存和训练成本；最后利用领域特定的合成样本做domain-adaptive fine-tuning，以增强在特定数据库/场景下的表现。摘要给出的直接证据线索是WikiSQL测试集execution accuracy达到86.9%，并声称接近大模型表现且效率更高。对科研读者而言，这篇论文与“低资源条件下的语义解析、LLM到SLM能力迁移、合成数据蒸馏、资源受限部署”高度相关。如果你的方向涉及数据库问答、企业本地部署、边缘设备上的NL2SQL，本文的方法设定有现实意义。需要重点核对的信息包括：所用SLM与teacher LLM分别是什么；合成数据生成的规模、过滤策略和SQL分布；参数高效微调具体是LoRA、QLoRA还是其他方法；领域自适应实验覆盖哪些domain；86.9%是相对哪些强基线“接近”；是否只在WikiSQL这一较相对简化的数据集上验证，还是还包含Spider/BIRD等更复杂跨库基准；此外元数据里含cs.CV分类，与Text-to-SQL主题并不完全一致，可能需要核对投稿分类是否有噪声。由于当前只有截断摘要，不能确认完整实验设置、误差分析和消融细节。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：如何在Text-to-SQL任务中，不依赖高成本大语言模型直接推理，而是利用LLM作为教师，通过知识蒸馏和合成数据构造，把自然语言到SQL映射能力转移给更小、更易部署的小语言模型，同时尽量保持执行准确率。进一步的问题还包括：在受限算力条件下如何训练；以及如何让模型在特定业务领域数据库上继续提升。",
+          "method": "从摘要推测，方法包含三段式流程。第一步是LLM-based synthetic data generation：使用精心设计的提示策略，让LLM产出Text-to-SQL训练样本，可能包括自然语言问题、表结构信息、SQL语句以及中间解释，从而抽取“结构化知识”。第二步是parameter-efficient fine-tuning：在小语言模型上采用参数高效微调，目标是在单张消费级GPU上完成训练，这暗示方法可能偏向LoRA类技术而不是全参数训练。第三步是domain-adaptive fine-tuning：继续使用领域特定合成数据做二阶段微调，使模型适配目标域。实验数据明确提到WikiSQL，评价指标是execution accuracy；论文还可能比较教师LLM、未蒸馏SLM、蒸馏后SLM以及不同合成数据/领域微调配置。",
+          "strengths": "最值得关注的亮点，一是把LLM能力显式转化为可复用的数据资产，而不是把推理完全绑定在昂贵教师模型上，这对低成本部署很关键。二是论文强调“单张消费级GPU可训练”，说明其工程门槛较低，适合学术复现和产业试用。三是提出领域自适应合成数据微调，这对真实场景尤其重要，因为企业数据库通常具有鲜明领域特征。四是摘要给出具体结果86.9% execution accuracy，至少说明作者提供了定量证据，而不是仅停留在方法设想。",
+          "weaknesses": "基于现有题录信息，需要警惕几个边界。首先，WikiSQL相对是单表、SQL结构较简单的数据集，如果只在该基准上验证，结果未必能代表复杂跨表、多跳推理Text-to-SQL场景。其次，合成数据生成高度依赖教师LLM和提示设计，可能存在数据噪声、SQL模式偏置和与测试分布过近的问题。第三，摘要没有给出与哪些模型进行公平比较，也没有说明效率提升的量化指标是训练成本、推理延迟还是显存占用。第四，领域自适应是否真正提升泛化，还是只对特定域过拟合，目前无法判断。最后，摘要被截断，可能遗漏了关键限制、消融结果和错误案例分析。",
+          "next_step": "最小可执行动作建议有五项：第一，先获取全文并核对86.9%对应的具体模型规模、teacher模型、训练预算和对照基线。第二，重点查看数据生成流程图和prompt设计，确认合成样本是否包含schema、reasoning或SQL模板。第三，查实验表中是否包含Spider、BIRD或其他复杂Text-to-SQL基准，以判断方法外推性。第四，查看消融实验，确认性能主要来自蒸馏、参数高效微调还是领域自适应。第五，如果你做复现，可先在WikiSQL上搭建一个LoRA/QLoRA蒸馏基线，对比“原始人工数据训练”和“加入LLM合成数据训练”的执行准确率变化。"
+        }
+      },
+      "arxiv:2607.08359v1": {
+        "summary": "这篇论文针对无人机在未知环境中的长时程视觉-语言导航任务，提出名为 FSD-VLN 的快慢双系统架构，用于缓解“全局多模态语义理解”和“低时延连续飞行控制”之间的结构错配。根据摘要，其核心场景是低空 aerial VLN，重点解决长序列导航中的轨迹抖动、决策延迟和动作一致性问题。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：第一，提出快慢双流异步架构，将高层语义推理与快速飞行指令生成解耦；第二，在快速分支中引入 Diffusion Transformer 建模跨时间动作分布，以提升长时程输出的平滑性和一致性；第三，设计时间感知自适应优化器以稳定长序列训练、降低梯度振荡，并在大规模低空仿真环境中进行验证。",
+        "details": "研究对象是无人机视觉-语言导航，尤其是需要根据自然语言指令、结合实时视觉输入，在未知环境中执行长航程飞行决策的 aerial VLN 任务。摘要明确指出，现有方法的问题不只是感知或控制精度不足，而是系统结构层面存在错配：全局多模态理解往往依赖高容量预训练视觉-语言模型，推理稳定但慢；而连续飞行动作生成要求低时延、时序连续且对局部状态敏感，二者混在同一链路中会导致轨迹抖动和长时程决策延迟。论文因此提出 FSD-VLN，将系统拆成两个异步分支：慢速分支从预训练视觉-语言模型中提取较稳定的语义先验，负责“看懂指令与环境”的高层部分；快速分支则使用 Diffusion Transformer 对跨时间动作分布进行建模，直接生成一致的飞行输出，负责“及时且平滑地飞”。这意味着作者可能把语义表征视为低频更新的条件信号，而把控制动作视为高频时序生成问题，从而减少每一步都调用重语义推理带来的时延与不稳定。另一个值得注意的点是训练层面：他们提出时间感知自适应优化器，目标是稳定长序列训练并降低梯度振荡，这说明方法可能在长时间依赖、扩散式动作建模或双流异步协同训练中遇到常见的优化不稳问题。证据线索主要来自摘要中的关键词：pre-trained vision-language models、Diffusion Transformer、cross-temporal action distributions、asynchronous branches、time-aware adaptive optimizer，以及 large-scale low-altitude simulation。与多模态、具身智能、无人机控制或长时程决策相关的研究者尤其值得关注这篇工作，因为它把“语义规划”和“低级控制”明确分治，并试图用扩散建模连续动作轨迹，而不是只做逐步动作分类。需要核对的信息包括：慢速流和快速流之间如何通信与同步；DiT 建模的是离散动作 token 还是连续控制量；训练数据是作者新建模拟器还是基于已有 aerial VLN 基准；评测指标是否覆盖成功率、轨迹平滑度、时延、能耗或鲁棒性；时间感知优化器与 AdamW/Lion 等基线相比的具体收益；以及是否提供真实无人机或 sim-to-real 证据。由于当前只基于题名、摘要和元数据，不能判断实验提升幅度、消融是否充分，也不能确认方法在复杂天气、动态障碍或开放词汇指令下的泛化能力。",
+        "why_read": "来源为 arXiv，关键词匹配：language model、language models、multimodal、vision-language、ai、transformer、diffusion、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：在无人机长时程视觉-语言导航中，如何同时实现高层语义理解的可靠性与飞行控制的低时延连续性。现有 VLN 方法把全局多模态理解和逐步动作生成耦合在一起，容易在长航程任务中出现决策慢、轨迹抖动、动作不连贯等问题，尤其对 aerial 场景更敏感，因为无人机控制频率高、容错空间小。",
+          "method": "从摘要推测，方法路径包括四部分。1）输入：自然语言指令加实时视觉观测，任务环境为低空飞行仿真场景。2）慢速分支：调用预训练视觉-语言模型提取相对稳定的语义先验，可能包含目标、方向、地标关系或阶段性导航意图。3）快速分支：用 Diffusion Transformer 建模跨时间动作分布，在语义先验和最近观测条件下生成连续飞行指令，以获得更平滑一致的控制输出。4）训练：引入时间感知自适应优化器，针对长序列训练中的梯度振荡与优化不稳进行调整。实验上大概率会在大规模低空模拟数据上，对比传统 VLN、端到端策略网络、可能的 transformer policy 或其他多模态导航基线。",
+          "strengths": "最值得关注的亮点是把 aerial VLN 明确拆成“慢语义、快控制”的双系统，这比单链路端到端更贴近实际无人机部署需求。第二个亮点是使用扩散式 Transformer 处理动作序列分布，而不是只预测下一步动作，这对长时程控制的平滑性、抗抖动和多峰决策建模可能更有优势。第三个亮点是强调异步机制，意味着重语义模块不必每个控制周期都运行，理论上能降低在线推理延迟。第四个亮点是专门提出时间感知优化器，说明作者不仅关注架构，也关注长序列训练稳定性这一实际瓶颈。如果实验完整，这篇工作对具身多模态导航、无人机自主控制和分层决策系统都有参考价值。",
+          "weaknesses": "基于当前题录与摘要，首先要警惕的是信息仍不足：尚不清楚具体数据集、任务定义、动作空间和评价指标。其次，快慢双流虽然直观，但可能引入系统同步误差：慢速语义先验若更新过慢，在快速变化场景中可能变成过时条件。第三，扩散模型用于控制常伴随采样成本问题，论文虽强调低时延，但需要核对 DiT 在线推理速度是否真的适合高频 UAV 控制。第四，摘要提到大规模低空仿真，却未说明是否有真实世界验证，因此部署价值可能暂时停留在 simulation。第五，时间感知优化器是否具有普适性，还是只对该架构与数据设置有效，也需要看消融实验。",
+          "next_step": "最小可执行动作建议有五项。1）先找论文正文中的系统框图，确认慢速流、快速流、异步调度和条件注入位置。2）查看实验表格中是否单独报告成功率、轨迹平滑度、控制时延和长航程表现，而不只看单一导航成功指标。3）重点读消融：去掉慢速流、去掉 DiT、改成普通 transformer policy、去掉时间感知优化器后的变化。4）核对数据与任务：是否有作者自建 low-altitude simulation benchmark，指令类型是否包含多地标、多阶段、长距离目标。5）如果你的方向是多模态具身智能，可记录一个复现问题：将“低频语义条件 + 高频动作生成”迁移到地面机器人或自动驾驶是否成立，以及扩散控制是否能在实时约束下替换为更轻量的生成器。"
+        }
+      },
+      "arxiv:2607.08056v1": {
+        "summary": "这篇论文关注多模态掩码扩散模型中的生成顺序优化，具体覆盖文本到图像生成和多模态理解两类任务。作者提出用一个可学习的控制模块通过GRPO训练来决定token/位置的生成顺序，以提升文图对齐、细粒度空间关系建模以及多模态推理表现。",
+        "contribution": "核心贡献是把“生成顺序”从依赖模型logits的启发式选择，扩展为一个可学习、可强化优化的控制问题，并将其应用到文本到图像和多模态理解场景。摘要还明确给出一个负面发现：在这些多模态任务中，单靠模型logits不足以判断最优生成序列，因此需要额外的顺序控制模块。",
+        "details": "根据题名和摘要，这项工作研究的是Multimodal Masked Diffusion Models中的generation order，即在扩散式、掩码式生成过程中，模型应当先生成哪些token、图像区域或模态元素。作者把问题落在两个具体任务上：一是text-to-image synthesis，二是multimodal understanding。论文首先通过对比指出，在某些结构化语言问题中，logits或置信度可作为生成顺序的近似依据，但在文生图与多模态理解中，这种信号不够可靠，说明“高置信度优先生成”并不必然对应更优的全局生成路径。为此，作者引入了一个learnable control module，并使用Group Relative Policy Optimization（GRPO）训练，让该模块学习在生成过程中如何选择顺序。摘要中的证据线索主要包括：文图对齐增强、细粒度空间关系捕捉更强、多模态推理和理解任务性能提升，以及在G开头的数据集/基准上进行了评测，但由于摘要被截断，具体基准名称、模型规模、奖励定义、控制粒度、顺序作用对象都需要核对。对相关研究者而言，这篇工作与近年来“非自回归/扩散语言模型中的自适应解码顺序”“强化学习用于推理轨迹控制”“多模态生成中的布局和空间一致性”这些方向都有直接关系。尤其值得关注的是，它不是单纯提升语言推理，而是把顺序学习扩展到视觉生成与多模态理解，说明generation order可能是多模态扩散模型的一个独立优化维度。需要重点核对的信息包括：控制模块插入在哪一层或哪一阶段；顺序决策单位是文本token、图像patch、mask group还是跨模态块；GRPO的奖励来自下游任务分数、对齐打分、理解准确率还是组合指标；与logit-based ordering、随机顺序、固定顺序相比的增益幅度；是否增加推理成本或训练不稳定性。",
+        "why_read": "来源为 arXiv，关键词匹配：language model、language models、multimodal、vlm、ai、ml、diffusion、mathematical reasoning。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：在多模态掩码扩散模型中，生成顺序应如何确定，才能更好地服务于文本到图像生成和多模态理解？更具体地说，作者质疑仅凭模型当前logits来安排下一步生成位置是否足够，并尝试回答在涉及空间关系、跨模态依赖和全局一致性的任务里，是否需要一个专门学习出来的顺序策略。",
+          "method": "从摘要推测，方法上是在现有DLM或多模态masked diffusion框架外增加一个control module，用于在每一步选择接下来要解码/去掩码的元素集合或位置。训练上采用GRPO，说明作者把顺序选择视为策略优化问题，可能通过组内相对奖励比较不同顺序轨迹的优劣。实验上应至少包含两类评测：文生图的对齐与空间关系相关指标，以及多模态理解/推理任务准确率。摘要提到与Sudoku等结构化语言问题形成对照，说明论文可能先做分析实验，展示logits与最优顺序之间在多模态任务上的失配，再给出强化学习控制模块的改进结果。",
+          "strengths": "最值得关注的亮点有三点。第一，提出了一个明确的负面结论：logits不足以决定多模态任务中的最优生成顺序，这对很多基于置信度的启发式解码策略是直接挑战。第二，方法上不是仅做推断时重排，而是引入可学习控制模块并用GRPO训练，意味着顺序本身被当成可优化对象。第三，摘要强调改善了细粒度空间关系和多模态推理，这比单纯提高图像质量或一般理解分数更具体，暗示该方法可能特别有助于处理位置关系、布局约束和跨模态依赖。",
+          "weaknesses": "基于当前题录信息，主要局限是细节缺失较多。摘要被截断，无法确认评测基准、模型名称、参数规模、奖励设计与对比方法。其次，所谓‘生成顺序’在多模态场景中的具体粒度不清楚：如果是patch级或mask-group级，其泛化性和实现复杂度会与token级方法很不同。再次，GRPO虽然适合策略优化，但训练稳定性、样本效率、推理时是否引入额外决策开销都未知。最后，摘要宣称提升文图对齐和理解能力，但未给出定量幅度，也无法判断改进是否来自顺序学习本身，还是来自附加控制模块带来的参数与训练信号。",
+          "next_step": "最小可执行动作是先获取全文并重点查看四类信息：1）方法图，确认control module的输入输出和顺序决策单位；2）实验表，定位与logit-based ordering、随机/固定顺序的直接对比；3）奖励函数与GRPO设置，判断能否复现；4）案例图，特别检查涉及左/右、前/后、遮挡、数量关系的文生图样例。如果你做相关研究，可先记录一个复现实验清单：在一个公开多模态masked diffusion基线上替换顺序策略，比较固定顺序、置信度顺序和学习顺序对空间关系指令的影响。"
+        }
+      },
+      "arxiv:2607.08681v1": {
+        "summary": "这篇论文提出 SolarChain-Eval，一个面向去中心化能源市场中“可信经济智能体”的物理约束评测基准，把市场治理建模为按小时决策的 Gymnasium 兼容 MDP，并同时考察市场效用、物理安全、滑点、动作平滑性、空间公平性和可审计性。摘要还表明作者在基准中加入了 LLM 规划器/审计器层，用于设定回合级动作边界、审核高风险动作并生成结构化审计日志。",
+        "contribution": "核心贡献很可能是构建了一个兼顾经济目标与物理约束的智能体评测环境，不再只看收益或任务完成率，而是系统衡量自治体在能源市场中的可信性；同时提出 Planner/Auditor 式 LLM 干预框架，把风险控制与审计记录纳入 benchmark 本身，并比较了 static、random、myopic、RL、RL+LLM 等多类策略。",
+        "details": "从题名和摘要看，论文聚焦的不是一般性 LLM agent，而是部署在去中心化能源市场这一 cyber-physical 场景中的经济决策智能体。作者认为此类智能体即使能提升市场效用，也可能因为利用无效物理数据、制造人工流动性或给出不稳定治理决策而失去“可信性”，因此需要一个带物理约束的评测框架。SolarChain-Eval 将市场治理任务表述为 Gymnasium-compatible 的马尔可夫决策过程，时间粒度是每小时一次动作，这说明环境应包含时序状态、动作约束、可能的电力/能源供需或网络物理条件，以及经济层面的市场反馈。评价维度设计得较具体：market utility 对应经济绩效，physical safety 对应是否违反物理边界或系统稳定性，slippage 反映执行与预期之间的市场摩擦或价格冲击，action smoothness 约束策略的时序抖动，spatial fairness 说明环境可能涉及不同节点、区域或参与者之间的分配公平，auditability 则强调事后可追责与可解释。为支持 agentic evaluation，作者又加入了 LLM-based Planner/Auditor layer：Planner 在每个 episode 级别定义动作边界与审计规则，Auditor 对高风险动作进行复核和修订，并把触发信号、原始动作、修订动作和审计理由记录到结构化日志中。这个设计的意义在于，它不仅评估“智能体能赚多少”，还评估“智能体如何被治理、如何被监督以及是否留下可审计轨迹”。从摘要最后一句可见，作者至少实验了 static、random、myopic、RL 和 RL+LLM planner/auditor 一类方法，因此论文可能比较纯强化学习与加入语言层监督后的差别，但摘要在当前截断版本中没有给出具体结果幅度、数据集来源、物理系统规模、是否使用真实电网/市场数据、以及 LLM 介入是否显著改善安全与公平等关键信息，这些都需要通读正文核对。对研究可信智能体、AI for energy、multi-objective RL、AI governance 或 LLM-as-judge/monitor 的读者，这篇论文的价值在于提供了一个把物理约束、经济表现和审计机制统一起来的 benchmark 视角；但如果你的方向更偏基础算法，还需要确认该工作是以环境与评测贡献为主，还是同时提出了新的训练/控制算法。",
+        "why_read": "来源为 arXiv，关键词匹配：llm、agent、agents、autonomous agent、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何在去中心化能源市场这一同时受经济激励与物理规律约束的场景中，评估自治经济智能体是否“值得信任”。更具体地说，作者关注的不是单一收益最大化，而是智能体是否会利用无效物理数据、制造虚假流动性、引发不稳定治理决策，以及在这些风险存在时如何通过评测协议和审计机制识别、约束并记录其行为。",
+          "method": "根据摘要，方法主体包括两个层面。第一层是环境/任务建模：把市场治理构造成 Gymnasium 兼容 MDP，按小时推进决策，允许不同策略在统一接口下交互评测。第二层是可信性评估与治理：设置多维指标，包括市场效用、物理安全、滑点、动作平滑性、空间公平性、可审计性；再叠加一个 LLM 规划器/审计器框架，其中 Planner 在回合级定义动作边界和审计规则，Auditor 对高风险动作进行审查和修订，并输出结构化日志。实验对象应是多种基线策略：静态策略、随机策略、短视/myopic 策略、强化学习策略，以及加入 LLM 规划/审计的 RL 策略。",
+          "strengths": "最值得关注的亮点有三点。其一，benchmark 明确把去中心化能源市场视为 cyber-physical system，而不是纯交易仿真，因此“物理安全”和“空间公平性”这类指标比一般经济 agent 评测更贴近真实部署风险。其二，LLM 在这里不是直接充当主控制器，而是被放在 Planner/Auditor 的治理层，形成“策略执行 + 风险审核 + 审计记录”的结构，这对可信 AI 和可监管智能体研究很有启发。其三，结构化日志设计较具体，记录触发信号、候选动作、修订动作和审计理由，说明作者重视事后分析、责任追踪和失败案例研究，这有助于 benchmark 超越单一 leaderboard。",
+          "weaknesses": "基于当前题录和摘要，主要局限是关键信息缺失。首先，摘要未说明物理约束的具体形式：是配电网潮流约束、储能约束、光伏出力约束，还是更抽象的供需平衡限制。其次，去中心化市场的参与主体、状态空间、动作空间、奖励函数和公平性定义都未展开，难以判断任务真实性和难度。再次，LLM 审计器的风险触发机制、修订权限、成本和延迟没有说明，可能影响可部署性。最后，实验结果在截断摘要中不可见，因此目前不能判断 RL+LLM 相比 RL 究竟提升了哪些维度、是否存在收益与安全的权衡、以及结论是否稳健。",
+          "next_step": "最小可执行动作是：第一，优先查看论文中的环境定义表或任务设定图，确认状态、动作、约束和小时级时间轴；第二，查找多维评测指标的精确定义，尤其是 physical safety、slippage、spatial fairness、auditability 的公式或计算规则；第三，核对 Planner/Auditor 的 prompt、触发规则和日志样例，判断其是否可复现；第四，对照 static/random/myopic/RL/RL+LLM 的主结果表，记录哪些指标改善、哪些指标恶化；第五，如果你计划复现或借用该 benchmark，先确认代码是否公开、是否依赖真实能源数据或仿真器，以及是否能替换成你的智能体策略。"
+        }
+      },
+      "doi:10.1126/science.adx8231": {
+        "summary": "这篇Science论文聚焦“社会记忆中的价性更新”这一具体任务：当一个原本中性的熟悉同类个体后来变成具有攻击性的对象时，小鼠如何在神经环路层面把该个体的社会表征从中性更新为负性。摘要指出，这一更新依赖海马腹侧CA1（vCA1）—基底外侧杏仁核（BLA）—伏隔核（NAc）环路内突触连接增强及生理状态改变，尤其涉及vCA1社会记忆engram神经元与携带负价性的BLA神经元之间连接加强。",
+        "contribution": "核心贡献是提出并初步证明了一个较具体的环路级机制：社会对象的“身份/记忆表征”与其“情绪价性”不是静态绑定的，而是可以在经历社会挫败后，通过vCA1→BLA→NAc通路发生可塑性重写，从而驱动适应性社会回避行为。若摘要表述对应正文数据，该工作的重要性在于把社会记忆engram、价性编码和社会行为更新三者连接到同一条可操作的神经回路框架中。",
+        "details": "从题名和摘要看，研究对象应是社会性动物中的熟悉同类识别与回避行为，极可能以小鼠为模型；具体任务不是一般的社交偏好，而是“把先前中性的熟悉个体人为转变为攻击性个体”后，观察个体如何更新其社会记忆对应的情绪价性。摘要给出的证据线索较集中：第一，存在行为学上的价性更新，即动物在经历defeat（社会挫败/被攻击）后，会对原先熟悉且中性的同类出现选择性回避；第二，环路层面涉及vCA1、BLA、NAc三节点，其中vCA1可能承担社会记忆表征，BLA承担负价性相关编码，NAc参与行为输出或动机选择；第三，机制层面提到“enhanced synaptic connectivity and physiological changes”，说明作者可能结合了突触连接强度测量、电生理/钙成像、生理响应比较，甚至可能有engram标记、光遗传/化学遗传操控来验证因果性；第四，摘要特别强调“social memory engram neurons in the vCA1 strengthened their connections with BLA neurons carrying negative valence”，这暗示实验设计可能包含活动依赖标记vCA1中编码特定熟悉个体的神经元群，再检测这些神经元到BLA负价性细胞群的投射是否因挫败经历而增强。对相关方向读者而言，这篇文章的价值在于它可能提供一个“身份表征—价性重赋值—行为更新”的环路范式，适用于理解社会创伤、攻击经历、个体识别错误泛化以及情绪障碍中的社会回避。需要核对的信息包括：动物种属与性别、攻击范式如何建立、熟悉同类是否为个体特异性记忆对象、engram神经元如何定义和标记、BLA“负价性神经元”如何操作化识别、NAc在链条中是被记录还是被因果操控、突触增强的证据是解剖、功能还是双重证据，以及行为变化是否具有个体特异性而非一般社交抑制。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体科学问题是：当动物已经形成对某个熟悉同类的社会记忆后，如果该对象后来变得具有威胁性或攻击性，大脑如何把这段既有社会记忆的情绪价性从中性更新为负性，并将这种更新转化为适应性的回避行为。更细一点说，它关注的不是陌生个体识别，也不是单纯恐惧学习，而是“已知社会对象”的价性重写机制。",
+          "method": "基于摘要可推测，方法路径大致包括以下几层。1）行为范式：先建立对熟悉同类的中性社会记忆，再通过人为安排该同类引发攻击/社会挫败，使该对象的社会意义发生改变，随后测试动物是否出现特异性的回避或偏好下降。2）神经元群体识别：可能使用活动依赖标记策略捕捉vCA1中的社会记忆engram神经元，并识别BLA中负价性相关神经元。3）环路测量：通过示踪、切片电生理、体内记录或钙成像评估vCA1到BLA、以及BLA到NAc的连接与生理变化。4）因果操控：很可能使用光遗传/化学遗传抑制或激活vCA1-BLA-NAc通路，检验该环路是否足以或必需于价性更新和社会回避。5）比较分析：将挫败前后、被更新对象与未更新对象、或相关神经元与非相关神经元做对照，以支撑“特异性连接增强”而非全局应激效应。",
+          "strengths": "最值得关注的亮点有三点。第一，任务设计很具体：不是泛化的社交压力模型，而是把“同一个熟悉对象”的社会价性进行动态更新，这比一般社交行为研究更接近日常社会关系变化。第二，环路框架清晰：vCA1负责社会记忆、BLA负责价性、NAc负责行为调节，这种节点分工使结果具有较强可解释性。第三，摘要中出现了“engram neurons”“strengthened their connections”“negative valence”等关键词，说明作者可能不仅观察到相关性，还尝试把记忆细胞群与价性细胞群之间的突触可塑性作为机制核心来论证；如果正文有因果操控数据，这会显著增强说服力。",
+          "weaknesses": "仅凭摘要需要警惕几类边界。第一，尚不清楚这种价性更新是否真正是“个体特异性”的，即只针对那个攻击过的熟悉同类，还是扩展为对所有同类的普遍回避。第二，摘要未说明样本范围和性别差异；社会攻击和社会记忆常有显著性别、年龄和经验依赖性。第三，vCA1-BLA-NAc被称为关键环路，但不同节点各自的必要性、充分性和时间顺序需要看正文图表才能判断。第四，“增强的突触连接”可能来自多种证据层级，若只是间接指标，其机制强度需要谨慎解读。第五，社会挫败本身会引起应激、唤醒和奖惩系统改变，因此需要确认作者是否排除了非特异性压力反应对社交回避的贡献。",
+          "next_step": "最小可执行动作建议是：1）优先查看正文或图摘要中行为范式，确认“中性熟悉同类变为攻击性对象”的具体流程和回避测试是否个体特异；2）重点核对vCA1社会记忆engram的标记方式，以及BLA负价性神经元的定义标准；3）查看是否有vCA1→BLA、BLA→NAc的双向因果操控数据，而不仅是相关记录；4）记录每一条机制证据属于哪一层：行为、活动相关、突触生理、解剖连接、因果干预；5）若你关注社会记忆或情绪环路，可直接把这篇文献放入“社会身份表征与价性重赋值”主题下，与海马-engram、杏仁核价性编码和社交挫败模型文献做对照。"
+        }
+      },
+      "doi:10.1126/science.adt1712": {
+        "summary": "这篇论文围绕二维光学晶格中的超冷玻色气体，研究其跨越热相变时的相位相干性质。作者基于高阶 Talbot 复现的直接物质波成像，并提出一种把格点分辨的相位涨落映射为密度涨落的“相位显微镜”，以提取相位相干和相位涨落分布。",
+        "contribution": "核心贡献是提出并演示了一种面向量子气体的“相位显微镜”测量框架：通过物质波成像中的高阶 Talbot 复现和格点分辨映射，直接访问二维玻色气体的相位关联。摘要给出的关键结果包括：在超流相中观测到相位关联的代数衰减，以及相关指数随温度线性增加，这表明该方法能够以全空间分辨率研究强关联体系中的相干性质。",
+        "details": "从题名和摘要看，论文的研究对象是二维光学晶格中的超冷 Bose 气体，问题聚焦于热相变附近的相位相干、相位涨落以及空间关联函数如何被直接测量。方法上，作者似乎没有仅依赖传统动量分布或飞行时间成像，而是利用更高阶的 Talbot revival 物质波成像来增强对相位信息的敏感性；进一步，他们提出一种“phase microscope”，其关键操作是把原本难以直接测得的格点相位涨落，通过成像过程转写为可观测的密度涨落，并且这个映射具有 site-resolved 空间分辨能力。摘要中的证据线索较明确：一是“推断 phase coherence and phase fluctuation profiles”，说明不仅测平均相干长度，还可能得到空间分布；二是“observed the algebraic decay of the phase correlations in the superfluid phase”，这直接对应二维体系中相位关联函数的幂律衰减特征；三是“a linear temperature increase of the exponent”，说明他们把关联衰减指数与温度建立了定量关系，可能与二维超流/BKT 物理密切相关。对相关方向的读者而言，这篇工作的重要性在于：它提供了一种直接、空间分辨地表征量子气体相位结构的实验手段，潜在适用于研究强关联晶格体系、涡旋/缺陷、非平衡相干演化以及有限温度下的二维相变。基于现有信息仍需核对的点包括：实验温度标定方式、Talbot 复现的具体时间序列和分析模型、相位到密度映射是否依赖弱相互作用近似、代数衰减指数的拟合区间与系统尺寸效应、是否与理论或数值模拟做了定量比较，以及该方法相对于现有干涉测量或噪声关联方法的信噪比和适用范围。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：如何在二维光学晶格中的超冷玻色气体里，直接并且格点分辨地测量热相变附近的相位相干与相位涨落；以及如何从实验上辨认超流相中相位关联的空间衰减规律，并跟踪其随温度的变化。",
+          "method": "从摘要推断，实验体系是二维光学晶格中的超冷 Bose 气体。测量路径大致为：先通过直接物质波成像观察较高阶的 Talbot revivals；再利用成像演化中相位信息向密度分布的转写，把局域相位涨落映射为可测的密度涨落；随后在格点分辨的图像上重建相位相干与相位涨落剖面，并拟合相位关联函数的衰减形式及其温度依赖。这里的分析对象应包括空间关联函数、涨落分布以及衰减指数。",
+          "strengths": "最值得关注的亮点有三点。第一，方法学上不是间接从整体分布推断，而是强调 site-resolved 的相位测量思路，这对空间非均匀体系很重要。第二，实验上利用高阶 Talbot 复现，说明测量协议对相位结构具有专门优化，可能比常规飞行时间成像更敏感。第三，结果上给出了具体可检验的二维相干特征：超流相中的代数衰减，以及指数随温度线性增大，这使该技术不仅是成像演示，也具备提取临界行为信息的潜力。",
+          "weaknesses": "仅根据摘要，仍有若干边界需要警惕。首先，看不到实验参数范围，如晶格深度、原子数、相互作用强度、温度区间和系统尺寸，因此难判断方法的普适性。其次，“相位涨落映射到密度涨落”可能依赖特定近似或成像时序，摘要没有说明其理论误差来源。再次，摘要只报告了超流相中的代数衰减和指数温度关系，但未说明在相变点附近或正常相中是否清晰分辨到关联形式变化。最后，题录信息不足以确认该方法对强关联、强相互作用或非平衡态是否已被真正验证，还是仅作为前景提出。",
+          "next_step": "最小可执行动作可以是：1）优先查看正文中的实验装置图和 Talbot 成像时序图，确认“相位到密度映射”的具体机制；2）查找相位关联函数 g 相位(r) 或等效量的定义、拟合公式和温度标定方法；3）记录摘要中两条关键结果是否有图表直接支撑：代数衰减、指数与温度线性关系；4）对照自己熟悉的二维 Bose/BKT 理论，检查该指数的物理含义及适用区间；5）若考虑复现，先整理所需条件：二维晶格、单格点分辨成像、可控释放/演化时间以及多温度数据集。"
+        }
+      },
+      "doi:10.1126/science.adv1219": {
+        "summary": "C1q and immunoglobulins mediate activity-dependent synapse loss in the adult brain。摘要要点：Complement component 1q (C1q), the initiator of the classical complement cascade, mediates synaptic elimination in development and disease, yet the triggers for its deposition on synapses remain unclear.",
+        "contribution": "摘要中最具体的线索是：Complement component 1q (C1q), the initiator of the classical complement cascade, mediates synaptic elimination in development and disease, yet the triggers for its deposition on synapses remain unclear. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“C1q and immunoglobulins mediate activity-dependent synapse loss in the adult brain”。摘要中可用的信息是：Complement component 1q (C1q), the initiator of the classical complement cascade, mediates synaptic elimination in development and disease, yet the triggers for its deposition on synapses remain unclear. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“C1q and immunoglobulins mediate activity-dependent synapse loss in the adult brain”展开；摘要线索显示问题可能与 Complement component 1q (C1q), the initiator of the classical complement cascade, mediates synaptic elimination in development and disease, yet the triggers for its deposition on synapses remain unclear. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-10712-3": {
+        "summary": "这篇Nature论文从题名看，研究对象是“可透气水凝胶”，核心任务是通过“气凝胶的黏弹性相分离”实现兼具水凝胶属性与空气可渗透性的材料设计。由于提供的摘要为空，目前只能依据题名和期刊元数据判断其主题聚焦于新型多孔软材料的构筑机制与性能实现，具体实验结果和适用场景仍需核对原文。",
+        "contribution": "从题名推测，论文的核心贡献可能是在材料设计上提出了一条不同于常规致孔/发泡/模板法的路线：利用气凝胶体系中的黏弹性相分离过程，构建连续空气传输通道，同时保持水凝胶网络的软性、含水性或力学完整性。如果这一判断成立，其潜在贡献在于把通常“高含水、低透气”的水凝胶，转化为适用于界面传质、可穿戴、生物集成或软体器件的新一类空气可通透材料。",
+        "details": "基于题名“Air-permeable hydrogels through viscoelastic phase separation of aerogels”，论文最值得关注的具体对象是“air-permeable hydrogels（可透气水凝胶）”以及实现该性质的结构生成机制“viscoelastic phase separation of aerogels（气凝胶的黏弹性相分离）”。这暗示作者可能不是简单在成熟水凝胶中打孔，而是从溶胶-凝胶/相分离/干燥或重构相关过程出发，获得具有连通孔道或分级网络的软材料。题名中的“through”说明作者大概率把“黏弹性相分离”作为关键机制而非仅仅现象描述，因而原文中应重点查看：相分离发生在何种前驱体系中、是否涉及聚合物/纳米纤维/无机溶胶/有机-无机复合网络、孔结构如何从气凝胶态转入最终水凝胶态，以及空气渗透性是否在含水状态下得到保持。\n\n从材料科学角度，这项工作可能针对一个具体矛盾：传统水凝胶通常富水且对气体扩散有限，难以同时满足柔软贴合与高效空气交换；而高孔隙气凝胶虽然轻质、多孔，但通常干燥、脆弱，与湿润软组织环境或可穿戴场景存在不匹配。若作者实现了由气凝胶相关结构演化得到“可透气水凝胶”，那么其科学问题可能是如何在高含水软网络中保存贯通空气通道，并避免吸水膨胀后孔隙塌陷或气路阻塞。这一问题对皮肤界面材料、伤口敷料、表皮电子学、汗液/气体管理、软体机器人表面层甚至细胞培养基底都具有潜在意义，但这些具体应用不能仅凭题名确认，需要在摘要和图文中核对。\n\n可能方法方面，题名给出的唯一直接线索是“viscoelastic phase separation”。这通常意味着体系中存在动力学不对称的组分分离，形成非平衡、网络化或双连续结构。结合“aerogels”一词，论文可能涉及以下路径中的一种或组合：先形成具有特定黏弹性相分离形貌的湿凝胶/气凝胶骨架，再经复水得到透气水凝胶；或在气凝胶材料中引入可吸水/可溶胀网络，使其在水化后仍保留连通孔道；或直接利用具有黏弹性差异的前驱组分，通过凝胶化锁定双连续结构。原文中应核查是否使用扫描电镜、X射线断层、压汞/气体吸附、流体渗透测试、氧传输测试、含水率、压缩循环、流变学等来证明“相分离形貌—孔连通性—空气渗透—力学性能”之间的因果链条。\n\n证据线索方面，仅从Nature和题名可以合理预期，作者应提供至少三类证据：第一，结构证据，即多尺度孔道或双连续网络确实存在，且来源于黏弹性相分离；第二，功能证据，即材料在湿润或实际使用状态下具有可量化空气渗透性，而非仅干态透气；第三，稳定性证据，即在压缩、弯折、浸润、长期使用或生物环境中，透气性与力学性质仍能维持。如果论文面向生物或穿戴应用，还可能补充皮肤相容性、蒸汽/氧气交换、界面黏附、细胞活性或器件集成演示，但这些都需要原文确认。\n\n与用户方向的关系上，如果你关注软材料、功能高分子、仿生界面、可穿戴器件或组织工程，这篇论文的潜在价值在于提供一种“把高孔隙连通结构引入湿软材料而不显著牺牲柔顺性”的设计范式。如果你更偏基础研究，则其意义可能在于黏弹性相分离在非经典凝胶微结构构筑中的应用；如果你偏应用开发，则要重点看其透气量级、机械强度、制备可放大性、环境稳定性以及是否兼容现有加工方式。\n\n目前最需要核对的信息包括：1）“aerogels”在文中是前驱体、最终结构描述，还是某类特定材料体系；2）可透气是指空气整体流通、氧气扩散增强，还是水蒸气透过；3）材料成分是有机、无机还是复合；4）相分离调控变量是什么，如浓度、交联速率、溶剂交换、温度或组分黏弹性差异；5）透气性与含水率、力学性能、透明性、生物相容性之间是否存在权衡；6）是否展示了具体应用任务，如皮肤长期覆盖、气体交换培养、传感器封装或防闷汗界面。由于摘要为空，这些都是需要优先从原文摘要、图1、方法和补充信息中验证的关键点。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题，按题名判断，是如何制备一种在含水、柔软的水凝胶状态下仍具空气可渗透性的材料，以及其背后的结构形成机制是否可以由“气凝胶的黏弹性相分离”来实现。更细一点说，问题核心可能是打破“水凝胶高含水但不利空气流通”与“气凝胶多孔透气但通常不适于湿软场景”之间的传统矛盾。",
+          "method": "可能的方法路线是围绕黏弹性相分离构筑连通多孔网络，并将该网络稳定在可复水或本身含水的凝胶体系中。潜在实验路径包括：设计具有明显动力学不对称的多组分前驱体系；在凝胶化/老化/溶剂交换/干燥过程中诱导并锁定双连续或网络化相分离结构；再通过复水或后处理得到最终可透气水凝胶。验证上可能结合显微形貌表征、流变与力学测试、空气渗透或氧传输测试、含水保持与循环稳定性测试，以及与普通水凝胶或普通气凝胶对照。",
+          "strengths": "题名显示的最大亮点是把“air-permeable”和“hydrogels”这两个通常不容易兼得的属性直接结合，并且强调了一个具有机制色彩的构筑路径“viscoelastic phase separation”。如果论文确实证明该机制可普适调控孔结构并在湿态下保留空气通路，那么它的价值不仅是得到一种新材料，更可能是提供一个可推广的软多孔材料设计原则。发表在Nature也提示其证据链可能覆盖从结构形成机理到功能演示的多个层次。",
+          "weaknesses": "当前最主要局限是摘要缺失，导致无法确认具体材料体系、实验规模、性能指标和应用边界。仅凭题名无法判断所谓“air-permeable”是在何种测试条件下成立，也无法判断是否牺牲了力学性能、透明性、耐久性或生物安全性。同样也不能确认“aerogels”是关键前驱体还是仅是结构类比，因此任何关于应用效果、性能优越性和机制普适性的判断都必须谨慎。",
+          "next_step": "最小可执行动作：第一，先补看论文摘要和图1，确认材料成分、制备流程、透气性的定义与测试方式；第二，重点查是否有与常规水凝胶的定量对照，例如空气通量、氧扩散系数、孔径分布、压缩模量和含水率；第三，记录文中关于“viscoelastic phase separation”成立的直接证据，而不是只看示意图；第四，如果与你的研究相关，优先寻找补充信息中的配方、工艺窗口和失败条件，评估能否在现有实验平台上复现。"
+        }
+      },
+      "doi:10.1038/s41586-026-10703-4": {
+        "summary": "Chromatin landscape and epigenetic heterogeneity of acute myeloid leukaemia。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Chromatin landscape and epigenetic heterogeneity of acute myeloid leukaemia”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Chromatin landscape and epigenetic heterogeneity of acute myeloid leukaemia”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-10750-x": {
+        "summary": "这篇发表于Nature的论文从题名看，聚焦“肥胖相关的免疫治疗疗效”这一具体现象，提出其背后存在“饮食—肠道微生物组协同作用”的机制。由于当前未提供摘要和关键词，能确认的核心任务仅限于：解释肥胖状态下免疫治疗效果变化，并将饮食因素与微生物组联动纳入同一机制框架。",
+        "contribution": "基于题名可推测，论文的核心贡献是把以往可能分别讨论的肥胖、饮食、微生物组和免疫治疗反应整合为一个协同机制问题，而不是将肥胖仅视为宿主代谢背景变量。若题名准确反映主结论，则该工作可能指出：决定免疫治疗效应的关键不是单一肥胖表型，而是特定饮食结构与微生物组状态共同塑造的免疫反应环境。",
+        "details": "从题名“Diet–microbiome synergy underlies obesity-associated immunotherapy efficacy”判断，研究对象很可能是肥胖宿主中的抗肿瘤免疫治疗反应，尤其关注为什么肥胖会与免疫治疗疗效相关，以及这种相关性是否可被饮食和肠道微生物组解释。这里的“immunotherapy”在Nature肿瘤免疫语境下常见地指免疫检查点阻断，但由于摘要为空，不能排除也涉及其他免疫治疗形式。题名中的“synergy”意味着作者可能不仅比较了饮食或微生物组各自的作用，还强调二者联合作用强于单因素解释；这通常对应多组对照设计，例如不同饮食条件、是否肥胖、是否有菌/抗生素处理、菌群移植或特定菌群定植，以及免疫治疗应答终点的比较。若研究是机制导向，常见证据线索会包括肿瘤生长、存活、免疫细胞浸润、细胞因子、代谢物、菌群组成、粪菌移植可转移性，以及阻断关键免疫或代谢通路后的因果验证。但这些都需要正文和图表核对，当前不能当作既定事实。与科研读者的关系上，这篇文章尤其值得肿瘤免疫、微生物组、代谢免疫和营养科学方向关注，因为它可能改变“肥胖悖论”式观察结果的解释框架：真正可干预的变量也许不是BMI或肥胖本身，而是饮食模式及其塑造的微生物生态。当前最需要核对的信息包括：具体疾病模型或患者队列、免疫治疗类型、饮食类型定义、高脂/高纤维/限时进食等是否涉及、微生物组证据是相关还是因果、效应是否在小鼠和人之间都成立、以及所谓协同作用的统计和实验判据是什么。由于摘要缺失，以上均属于基于题名和期刊语境的审慎推断，信息不足之处必须在正式阅读时重点补齐。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题，按题名推断，是：为何肥胖状态会与免疫治疗疗效相关，以及这种疗效差异是否并非由肥胖本身直接决定，而是由饮食组成与肠道微生物组共同驱动。进一步说，它可能在问：能否把“肥胖相关免疫治疗效应”分解为可测量、可操控的饮食和菌群因素。",
+          "method": "在缺少摘要的情况下，最可能的方法路径包括：1）在肥胖与非肥胖背景下比较免疫治疗反应；2）操纵饮食条件以区分肥胖表型和饮食成分效应；3）通过16S测序、宏基因组或代谢组描述菌群差异；4）用抗生素、无菌模型、粪菌移植或特定菌株补充验证菌群因果性；5）结合流式、单细胞转录组、空间组学或免疫表型分析解释肿瘤微环境变化；6）若有人体数据，可能将患者饮食信息、BMI、菌群特征与免疫治疗结局关联分析。以上只是高概率研究路径，不代表题录已明确给出。",
+          "strengths": "题名显示的最大亮点是把多个通常分散讨论的层面——宿主代谢状态、营养暴露、微生物组和免疫治疗反应——放到同一机制链条中考察。如果论文确实完成了因果验证，那么其价值在于把“肥胖相关疗效”从描述性临床现象推进到可干预机制。此外，若作者证明单纯肥胖指标不足以预测疗效，而饮食-菌群组合更关键，这对患者分层和辅助干预设计会有直接启发。",
+          "weaknesses": "当前最主要的局限不是论文本身，而是可用信息严重不足：摘要为空、无关键词、无实验概述。因此不能确认研究对象是人群、动物还是两者结合；不能确认免疫治疗具体类型；也不能确认所谓协同作用是统计交互、机制互作还是实验上双因素缺一不可。还需要警惕题名可能强调正向发现，但未呈现边界条件，例如效应是否只在某类肿瘤、某种饮食模型、特定菌群背景或特定性别/品系中成立。",
+          "next_step": "最小可执行动作：1）先获取摘要与图1，确认研究系统（患者/小鼠/肿瘤类型/治疗类型）；2）重点查是否有饮食操控与菌群因果实验，而不仅是相关性；3）记录所有对照组设置，尤其是肥胖与饮食是否被拆分；4）查看主要终点是肿瘤控制、存活还是免疫表型；5）若你的方向与肿瘤免疫或微生物组相关，优先整理文中可直接复用的干预变量：饮食类型、菌群处理方式、应答判定标准。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for doi:10.1126/science.adv1219: Extra data: line 1 column 2756 (char 2755)",
+      "LLM paper analysis failed for doi:10.1038/s41586-026-10703-4: Extra data: line 1 column 2474 (char 2473)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2607.08161v1",
+      "source": "arxiv",
+      "title": "SQuaD-SQL: Efficient Text-to-SQL with Small Language Models via LLM-Guided Knowledge Distillation",
+      "authors": [
+        "Wangyu Wu",
+        "Xiaojian Lin",
+        "Rong Fu",
+        "Zaiyang Yu",
+        "Xuhang Chen",
+        "Wenjun Yu",
+        "Zhenhong Chen"
+      ],
+      "published": "2026-07-09T06:56:20Z",
+      "updated": "2026-07-09T06:56:20Z",
+      "abstract": "Text-to-SQL is a fundamental task in natural language processing that enables users to interact with structured databases using natural language. While large language models (LLMs) have demonstrated remarkable performance on this task, their substantial computational requirements hinder deployment in resource-constrained settings. In this paper, we introduce SQuaD-SQL (Small-Qualified and Distilled for SQL), a novel approach that empowers small language models (SLMs) to approach the performance of LLMs on the Text-to-SQL task while significantly improving efficiency through knowledge distillation and synthetic data generation. Our method comprises three key components: (1) LLM-based synthetic data generation, where structured knowledge is extracted from LLMs via carefully designed prompting strategies; (2) parameter-efficient fine-tuning, enabling full model training on a single consumer-grade GPU; and (3) domain-adaptive fine-tuning, where domain-specific synthetic data further enhances performance in targeted domains. Experiments on the WikiSQL dataset demonstrate that SQuaD-SQL achieves an execution accuracy of 86.9% on the test set, approaching the performance of LLMs while offering faster inference and lower memory usage. These results suggest that, with proper training strategies, SLMs can serve as practical and efficient alternatives for Text-to-SQL applications in resource-limited environments.",
+      "url": "http://arxiv.org/abs/2607.08161v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.08161v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL",
+        "cs.CV"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "ai",
+        "environment"
+      ],
+      "score": 67.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.08359v1",
+      "source": "arxiv",
+      "title": "FSD-VLN: Fast-Slow Dual-System Modeling for Aerial Long-Horizon Vision-Language Navigation",
+      "authors": [
+        "Xueke Zhu",
+        "Qingyan Meng",
+        "Liutao Yu",
+        "Wei Zhang",
+        "Zhengyu Ma",
+        "Huihui Zhou",
+        "Yonghong Tian"
+      ],
+      "published": "2026-07-09T11:17:04Z",
+      "updated": "2026-07-09T11:17:04Z",
+      "abstract": "Vision-Language Navigation (VLN) enables UAV autonomous navigation in unknown environments by mapping language instructions to real-time visual inputs. Compared with GPS-dependent or pre-programmed navigation, VLN supports intuitive human-machine interaction and stronger environmental adaptability, requiring tight integration of high-level semantic reasoning and low-latency flight control.Existing methods suffer from structural misalignment between global multimodal understanding and sequential action generation, causing jittery trajectories and severe decision latency for long-horizon aerial navigation. To solve this issue, we propose FSD-VLN, a fast-slow dual-system architecture disentangling semantic reasoning and low-latency flight command generation.The framework has two asynchronous branches: a slow stream extracting stable semantic priors from pre-trained vision-language models, and a Diffusion Transformer (DiT) fast stream modeling cross-temporal action distributions to produce consistent flight outputs. We further introduce a time-aware adaptive optimizer to stabilize long-sequence training and reduce gradient oscillation.Large-scale low-altitude simulation experiments show FSD-VLN achieves up to 2X higher navigation success rates on unseen scenes than SOTA methods, while cutting single-action inference delay and total task runtime by over 50%. Our work validates the benefit of decoupled semantic-control modeling and provides a practical paradigm for long-horizon aerial VLN.",
+      "url": "http://arxiv.org/abs/2607.08359v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.08359v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "language model",
+        "language models",
+        "multimodal",
+        "vision-language",
+        "ai",
+        "transformer",
+        "diffusion",
+        "environmental",
+        "environment"
+      ],
+      "score": 66.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.08056v1",
+      "source": "arxiv",
+      "title": "Reinforcing the Generation Order of Multimodal Masked Diffusion Models",
+      "authors": [
+        "Yidong Ouyang",
+        "Zhe Wang",
+        "Sourav Bhabesh",
+        "Dmitriy Bespalov"
+      ],
+      "published": "2026-07-09T02:07:30Z",
+      "updated": "2026-07-09T02:07:30Z",
+      "abstract": "Diffusion Language Models (DLMs) have recently achieved substantial progress in natural language generation tasks. Recent research demonstrates that adaptive token generation ordering can significantly improve performance in mathematical reasoning and code synthesis applications. In this work, we investigate the optimization of generation order for both text-to-image synthesis and multimodal understanding. We first establish that, unlike structured problems in language generation such as Sudoku puzzles, model logits alone are insufficient for determining optimal generation sequences in text-to-image generation and multimodal understanding. To address this challenge, we introduce a learnable control module trained via Group Relative Policy Optimization (GRPO) to determine the generation order. Our results demonstrate that learning this control block substantially improves both text-to-image alignment and multimodal understanding in DLMs. In particular, it enhances the model's ability to capture fine-grained spatial relationships in generated images while also strengthening performance on multimodal reasoning and comprehension tasks. We evaluate our framework on GenEval, an object-focused benchmark for text-to-image alignment, where it achieves 4.08% relative improvements. In addition, experiments on VLMEvalKit confirm 4.85% relative improvements in multimodal understanding, highlighting the broad effectiveness of our approach.",
+      "url": "http://arxiv.org/abs/2607.08056v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.08056v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "language model",
+        "language models",
+        "multimodal",
+        "vlm",
+        "ai",
+        "ml",
+        "diffusion",
+        "mathematical reasoning"
+      ],
+      "score": 65.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.08681v1",
+      "source": "arxiv",
+      "title": "SolarChain-Eval: A Physics-Constrained Benchmark for Trustworthy Economic Agents in Decentralized Energy Markets",
+      "authors": [
+        "Shilin Ou",
+        "Yifan Xu",
+        "Luyao Zhang"
+      ],
+      "published": "2026-07-09T16:43:42Z",
+      "updated": "2026-07-09T16:43:42Z",
+      "abstract": "As agentic AI systems are increasingly applied to cyber-physical environments, their evaluation requires assessment of both task performance and trustworthiness. In decentralized energy markets, autonomous agents may improve market utility, but may also exploit invalid physical data, create artificial liquidity, and produce unstable governance decisions. Therefore, we propose SolarChain-Eval, a physics-constrained benchmark for evaluating trustworthy economic agents. It formulates market governance as a Gymnasium-compatible Markov Decision Process, where agents make hourly decisions. SolarChain-Eval evaluates each policy across multiple dimensions, including market utility, physical safety, slippage, action smoothness, spatial fairness, and auditability. To support agentic evaluation, SolarChain-Eval incorporates an LLM-based Planner/Auditor layer. The Planner defines episode-level action bounds and audit rules, while the Auditor reviews and revises high-risk actions. All interventions are recorded through structured logs, including trigger signals, proposed actions, revised actions, and audit rationales. Experiments with static, random, myopic, RL, and RL+LLM policies reveal a clear utility-safety trade-off. RL agents improve market utility but can still produce unsafe behavior. When the physics penalty is removed, reward-maximizing agents exploit invalid generation and increase artificial liquidity. The LLM Planner/Auditor improves auditability and mitigates selected risks, but it cannot fully compensate for a misspecified reward function. These results indicate that trustworthy agentic AI evaluation requires both physical constraints and transparent intervention traces. We release data and code as open access on GitHub for replicability.",
+      "url": "http://arxiv.org/abs/2607.08681v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.08681v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "llm",
+        "agent",
+        "agents",
+        "autonomous agent",
+        "ai",
+        "environment"
+      ],
+      "score": 64.0,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.adx8231",
+      "source": "science",
+      "title": "Neural circuits for valence updating in social memory",
+      "authors": [
+        "Narutoshi Suto",
+        "Mu-Yun Wang",
+        "Shota Morikawa",
+        "Myung Chung",
+        "Kentaro Tao",
+        "Ziyan Huang",
+        "Yuji Ikegaya",
+        "Haruki Takeuchi",
+        "Shinichiro Kira",
+        "Teruhiro Okuyama"
+      ],
+      "published": "2026-07-09",
+      "updated": "2026-07-09",
+      "abstract": "Social animals recognize familiar conspecifics and selectively avoid harmful ones. As social relationships shift, continuous updating of social valence is essential, yet the underlying neural mechanisms remain unclear. Here, by artificially transforming a previously neutral conspecific into an aggressive one, we show that valence updating depends on enhanced synaptic connectivity and physiological changes within the hippocampal ventral CA1 (vCA1)–basolateral amygdala (BLA)–nucleus accumbens (NAc) circuit. Following defeat, social memory engram neurons in the vCA1 strengthened their connections with BLA neurons carrying negative valence. The vCA1–BLA–NAc neural circuit flexibly regulates adaptive social behaviors.",
+      "url": "https://doi.org/10.1126/science.adx8231",
+      "pdf_url": "",
+      "doi": "10.1126/science.adx8231",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6807",
+        "page": null,
+        "reference_count": 72,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adx8231"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adt1712",
+      "source": "science",
+      "title": "A phase microscope for quantum gases",
+      "authors": [
+        "J. C. Brüggenjürgen",
+        "M. S. Fischer",
+        "C. Weitenberg"
+      ],
+      "published": "2026-07-09",
+      "updated": "2026-07-09",
+      "abstract": "Coherence properties are central to quantum systems and are at the heart of phenomena such as superconductivity. In this work, we studied coherence properties of an ultracold Bose gas in a two-dimensional optical lattice across the thermal phase transition. To infer the phase coherence and phase fluctuation profiles, we used direct matter-wave imaging of higher Talbot revivals and introduced a phase microscope based on a site-resolved mapping of phase fluctuations to density fluctuations during matter-wave imaging. We observed the algebraic decay of the phase correlations in the superfluid phase and a linear temperature increase of the exponent. These techniques may enable studying coherence properties in strongly correlated quantum systems with full spatial resolution.",
+      "url": "https://doi.org/10.1126/science.adt1712",
+      "pdf_url": "",
+      "doi": "10.1126/science.adt1712",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6807",
+        "page": "167-171",
+        "reference_count": 72,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adt1712"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adv1219",
+      "source": "science",
+      "title": "C1q and immunoglobulins mediate activity-dependent synapse loss in the adult brain",
+      "authors": [
+        "Gerard Crowley",
+        "Minjung Kim",
+        "Nathanael O’Neill",
+        "Emir Turkes",
+        "Fateme Ghasemi",
+        "Luca Giudice",
+        "Sebastiaan De Schepper",
+        "Benjy J. Y. Tan",
+        "Benito Maffei",
+        "Laís S. S. Ferreira",
+        "Julie Rebejac",
+        "Javier Rueda-Carrasco",
+        "Margarita Toneva",
+        "John Christian Fajardo",
+        "Judy Z. Ge",
+        "Zhengyue Grace Yang",
+        "Paula Korhonen",
+        "Phillip Muckett",
+        "Damaris Bennett",
+        "Camille Paoletti",
+        "Tammie T. M. Sow",
+        "David A. Posner",
+        "Annerieke Sierksma",
+        "Dimitra Sokolova",
+        "Viktoras Konstantellos",
+        "Leen Ali",
+        "Kiavash Movahedi",
+        "Andrew F. MacAskill",
+        "Victor L. J. Tybulewicz",
+        "Tarja Malm",
+        "Gabriele Lignani",
+        "Menna R. Clatworthy",
+        "Soyon Hong"
+      ],
+      "published": "2026-07-09",
+      "updated": "2026-07-09",
+      "abstract": "Complement component 1q (C1q), the initiator of the classical complement cascade, mediates synaptic elimination in development and disease, yet the triggers for its deposition on synapses remain unclear. Using in vivo chemogenetics, we demonstrate that neuronal hyperactivity induces region-specific, C1q-dependent synapse loss in the adult hippocampus. Suppressing perforant pathway hyperactivity in a mouse model of Alzheimer’s disease reduced local amyloid-β amounts and C1q deposition and partially rescued synapse loss. Combining spatial transcriptomics, live cell tracking, and super-resolution microscopy, we identified association of antibody-secreting B-lineage cells in the adult hippocampus with activity-dependent, C1q-mediated synapse loss under physiological conditions. Together, these findings link neuronal hyperactivity to C1q-mediated synapse loss in the adult brain and implicate immunoglobulins as players in this process.",
+      "url": "https://doi.org/10.1126/science.adv1219",
+      "pdf_url": "",
+      "doi": "10.1126/science.adv1219",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6807",
+        "page": null,
+        "reference_count": 128,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adv1219"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10712-3",
+      "source": "nature",
+      "title": "Air-permeable hydrogels through viscoelastic phase separation of aerogels",
+      "authors": [
+        "Xiao-Yun Yan",
+        "Shucong Li",
+        "Won Jun Song",
+        "Runze Li",
+        "Aarosh Dahal",
+        "Bastien F. G. Aymon",
+        "Haodong Hu",
+        "Deep K. Malu",
+        "Gabriella E. Carreira",
+        "Jingjing Wu",
+        "Gengxi Lu",
+        "Bolei Deng",
+        "Jiayi Liu",
+        "Siqin Yu",
+        "Shu Wang",
+        "Eric Lu",
+        "Hyunhee Lee",
+        "Hui Xu",
+        "Anqi Chen",
+        "Yuxing Yao",
+        "James H. Zhang",
+        "Chen Gong",
+        "Yiyuan Sun",
+        "Jeong-Yun Sun",
+        "David A. Weitz",
+        "Casey O’Brien",
+        "Yuhang Hu",
+        "Zachary P. Smith",
+        "Aditya Kumar",
+        "Xuanhe Zhao"
+      ],
+      "published": "2026-07-08",
+      "updated": "2026-07-08",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10712-3",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10712-3",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "655",
+        "issue": "8122",
+        "page": "372-380",
+        "reference_count": 51,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10712-3"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10703-4",
+      "source": "nature",
+      "title": "Chromatin landscape and epigenetic heterogeneity of acute myeloid leukaemia",
+      "authors": [
+        "Yotaro Ochi",
+        "Markus Liew-Littorin",
+        "Yasuhito Nannya",
+        "Sofia Bengtzen",
+        "Benedicte Piauger",
+        "Stefan Deneberg",
+        "Martin Jädersten",
+        "Vladimir Lazarevic",
+        "Jörg Cammenga",
+        "Anna Robelius",
+        "Lovisa Wennström",
+        "Emma Ölander",
+        "Senji Kasahara",
+        "Nobuhiro Hiramoto",
+        "Nobuhiro Kanemura",
+        "Nobuo Sezaki",
+        "Maki Sakurada",
+        "Makoto Iwasaki",
+        "Junya Kanda",
+        "Yasunori Ueda",
+        "Satoshi Yoshihara",
+        "Tom Erkers",
+        "Nona Struyf",
+        "Yu Watanabe",
+        "Masanori Motomura",
+        "Masahiro M. Nakagawa",
+        "Ryunosuke Saiki",
+        "Hidehito Fukushima",
+        "Koji Okazaki",
+        "Suguru Morimoto",
+        "Akinori Yoda",
+        "Rurika Okuda",
+        "Shintaro Komatsu",
+        "Guoxiang Xie",
+        "Albin Österroos",
+        "Ayana Kon",
+        "Lanying Zhao",
+        "Yuichi Shiraishi",
+        "Takayuki Ishikawa",
+        "Satoru Miyano",
+        "Kotoe Katayama",
+        "Seiya Imoto",
+        "Shuichi Matsuda",
+        "Akifumi Takaori-Kondo",
+        "Hiroyuki Aburatani",
+        "Hiroshi I. Suzuki",
+        "Olli Kallioniemi",
+        "Gunnar Juliusson",
+        "Martin Höglund",
+        "Sören Lehmann",
+        "Seishi Ogawa"
+      ],
+      "published": "2026-07-08",
+      "updated": "2026-07-08",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10703-4",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10703-4",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 92,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10703-4"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10750-x",
+      "source": "nature",
+      "title": "Diet–microbiome synergy underlies obesity-associated immunotherapy efficacy",
+      "authors": [
+        "Lysanne Desharnais",
+        "Anikka Swaby",
+        "Meriem Messaoudene",
+        "Samuel Doré",
+        "Miranda W. Yu",
+        "Benoit Fiset",
+        "Valérie Breton",
+        "Mayra Ponce",
+        "Yongjia Hu",
+        "Liam Wilson",
+        "Mark Sorin",
+        "Ye Wang",
+        "Ken Dewar",
+        "Michael Pollak",
+        "Arielle Elkrief",
+        "Bertrand Routy",
+        "Logan A. Walsh",
+        "Daniela F. Quail"
+      ],
+      "published": "2026-07-08",
+      "updated": "2026-07-08",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10750-x",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10750-x",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 79,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10750-x"
+      }
+    }
+  ]
+}
