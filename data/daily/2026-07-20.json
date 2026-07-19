@@ -1,0 +1,627 @@
+{
+  "date": "2026-07-20",
+  "stats": {
+    "fetched": 483,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 75,
+      "science": 108
+    },
+    "deduped": 483,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 75,
+      "science": 108
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 255,
+    "keyword_filtered_by_source": {
+      "arxiv": 255
+    },
+    "keyword_optional_included": 159,
+    "keyword_optional_included_by_source": {
+      "nature": 63,
+      "science": 96
+    },
+    "ranked": 228,
+    "ranked_by_source": {
+      "arxiv": 45,
+      "nature": 75,
+      "science": 108
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 142,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这批论文里，最值得优先读的是4篇AI/机器人方向工作，因为它们不只是“又一个模型”，而是在训练目标、环境适应设定和可扩展性配方上提出了较清晰的新问题定义。第一优先级是 arXiv:2607.15200v1，它直指扩散语言模型做强化学习时的一个结构性漏洞：现有近似往往只把学习信号压到token预测上，却没有显式处理“哪些位置该继续mask/重mask”这一决策；如果摘要中的两阶段MDP与可分解策略梯度成立，这会影响今后如何给非自回归或迭代式生成模型做RL。第二优先级是 arXiv:2607.14777v1，它试图为长时程agent RL补上中间监督，通过把on-policy轨迹转成事后自然语言技能，再反向蒸馏进策略，这和当前工具使用、多轮交互、稀疏结果奖励的痛点高度贴合。第三优先级是 arXiv:2607.14721v1，它提出 Test-Space Training 这种“已知部署环境、允许在该环境中做自监督专门化”的问题设定，挑战了只追求跨环境泛化的默认范式；如果你的研究对象是机器人、穿戴设备或固定场所感知系统，这篇的设定价值可能大于具体算法细节。第四优先级是 arXiv:2607.15163v1，它把 humanoid behavior foundation model 的扩展问题拆成学习范式、on-policy rollout与参考动作多样性、以及模型架构三者协同缩放，适合把它当作“机器人基础模型 scaling law 是否开始成形”的信号来读。\n\n其余几篇高水平综合类期刊论文覆盖免疫学、神经科学、器件物理、统计遗传学和材料分离。它们都重要，但从这份“每日总览”的角度，更适合按你自己的领域决定是否深读。Science 的“Lymph nodes now optional”看起来是围绕肿瘤内三级淋巴结构与树突状细胞组织作用的研究亮点/评论，启发意义在于把抗肿瘤免疫的关键组织位点从传统淋巴结部分转向肿瘤局部。另一篇Science关于CA3锥体神经元树突并行电压计算，则代表神经科学中“单细胞内部多计算单元”这一趋势。单电子存储器工作则显示器件微缩和量子态操控的结合正在逼近“单电子可读写存储”这一极限问题。Nature 的两篇题名型条目——纵向EHR贝叶斯遗传发现、可规模化准纯MOF膜——都很可能是各自领域的重要论文，但因为目前只有题名级信息，阅读上应先查摘要、图1和方法框架，再决定是否投入时间。\n\n如果从跨论文的共性看，今天最强的主线不是“某个模型又更大了”，而是三件事：一，训练对象被重新拆细，学习信号开始对准生成或决策过程中的隐含子动作；二，部署环境不再只是测试集，而被主动吸收进训练流程；三，扩展规律讨论从单纯堆参数，转向数据、交互和结构共同缩放。对科研人员来说，这意味着阅读时应优先关注“问题设定是否改变了评价标准”和“训练信号是否更贴近真实决策过程”，而不只是最终分数。",
+    "themes": [
+      "把复杂生成/决策过程显式拆成可学习的子动作：MDLM中的token填充与重mask决策、agent RL中的轨迹结果与中间技能监督，都在尝试改写信用分配颗粒度。",
+      "从追求普适泛化转向部署环境专门化：Test-Space Training 明确把固定测试环境里的多模态数据当成监督来源，这与传统 train/test 分离范式形成直接张力。",
+      "可扩展性不再等于参数规模：在人形机器人基础模型中，学习范式、参考行为库多样性、on-policy rollout 和模型架构被当作共同决定性能增长的耦合因素。",
+      "语言/世界模型训练开始吸收‘事后解释’或‘后见之明’信号：SEED 用轨迹后分析生成自然语言技能，再蒸馏回策略，体现出把解释文本当作中间控制变量的趋势。",
+      "多个非AI领域论文也在强调‘局部组织单元’的重要性：肿瘤内TLS、CA3树突子单元、单电子器件中的局域量子态，虽然领域不同，但都在把系统功能定位到更细粒度的组织层级。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "做一个面向扩散语言模型RL的最小复现实验，分离比较 token-only 更新、mask-only 更新、token+mask 联合更新三种训练方式在推理任务上的差异。",
+        "why": "如果 arXiv:2607.15200v1 的核心论点成立，那么性能提升不应仅来自‘多一个公式’，而应体现为 mask 决策本身携带独立学习信号；这是最直接可验证的因果拆分。",
+        "first_step": "先不追求完整复现论文规模，选择一个小型 MDLM 或离散迭代生成玩具任务，定义显式重mask动作，再在同一奖励下做三组对照训练并记录收敛速度、最终正确率和轨迹长度分布。",
+        "risk": "真实论文结果可能依赖特定模型实现、奖励设计或训练稳定化技巧；小规模实验即使趋势正确，幅度也可能很弱。"
+      },
+      {
+        "idea": "针对长时程agent任务，比较‘事后自然语言技能蒸馏’与更简单的轨迹摘要、成功失败标签重加权、或价值函数优势加权之间的增益来源。",
+        "why": "SEED 的关键新意不是on-policy本身，而是把轨迹后见信息转成自然语言技能再蒸馏；需要确认收益究竟来自语言化技能、额外上下文、还是只是某种再加权。",
+        "first_step": "选一个可复现实验环境，固定同一基础策略与采样预算，做四个条件：无蒸馏、成功失败标签重加权、自由文本摘要蒸馏、结构化技能蒸馏，比较样本效率和长时程成功率。",
+        "risk": "实现成本较高，而且技能文本质量可能强依赖底座模型能力；若分析器本身太弱，结论会被噪声掩盖。"
+      },
+      {
+        "idea": "围绕 Test-Space Training 写一篇小型综述或实验备忘，系统梳理‘环境内专门化’与‘跨环境泛化’在目标、评测和数据使用规则上的差异。",
+        "why": "arXiv:2607.14721v1 提出的价值可能首先来自问题设定而非某个特定算法；很多相关工作其实已隐含使用环境内数据，但缺少统一表述。先做设定澄清，后续实验更容易站稳。",
+        "first_step": "收集机器人、自监督感知、个性化设备学习中使用部署环境未标注数据的代表论文，按是否允许测试前采集、是否允许测试时更新、目标是否为固定环境专门化三个维度做表格。",
+        "risk": "如果文献边界定义不清，综述容易变成松散拼盘；此外，不同领域对‘test-time’‘deployment’‘adaptation’术语使用不一致。"
+      },
+      {
+        "idea": "为 humanoid behavior foundation model 提出一个最小缩放分析框架，把模型大小、参考动作多样性和 on-policy rollout 数量分开做三维消融。",
+        "why": "当前很多机器人基础模型论文容易把多种增长因素同时混在一起报告；arXiv:2607.15163v1 强调协同缩放，正适合推动更规范的 scaling study。",
+        "first_step": "即便没有人形机器人实体，也可先在公开控制基准或仿真平台上定义统一行为跟踪任务，构造小中大三档模型、三档参考数据、三档rollout预算，观察是否存在明显交互项。",
+        "risk": "人形机器人结论未必能迁移到简化仿真；若任务过于简单，可能看不到协同缩放，只会得到平庸的单因素趋势。"
+      },
+      {
+        "idea": "做一个跨论文方法学观察：总结今天AI论文中‘训练信号再分解’的共同模式，并尝试抽象成统一模板。",
+        "why": "MDLM 的 token/mask 分解、SEED 的结果奖励/技能蒸馏分解，本质上都在把粗粒度目标拆成更贴近真实动作结构的学习信号；这可能是近期强化学习与生成模型结合的重要方向。",
+        "first_step": "先写一页框架草图，用‘状态—隐含子动作—外显动作—后验解释—奖励归因’五个槽位去对齐至少两篇论文，检查是否能形成可复用术语表和比较维度。",
+        "risk": "样本量还太少，抽象过早可能流于概念包装；需要更多论文支撑才能判断它是不是稳定趋势。"
+      },
+      {
+        "idea": "对题名级的 Nature 论文做快速情报补全，建立‘是否值得深读’的二次筛选流程。",
+        "why": "今天有几篇高影响力论文只有题名级信息，若不补摘要和图1，很难判断优先级；建立快速筛选流程本身能提高日常文献处理效率。",
+        "first_step": "补查 doi:10.1038/s41586-026-10780-5、10.1038/s41586-026-10655-9、10.1038/s41586-026-10782-3 的摘要、图1和结论，按‘问题是否新、方法是否可迁移、是否与本组方向相关’三项各打1-5分。",
+        "risk": "这更像信息整理而非直接科研产出；而且若原文受限或摘要仍过短，筛选结论可能不稳定。"
+      }
+    ],
+    "papers": {
+      "arxiv:2607.15200v1": {
+        "summary": "这篇论文关注将强化学习用于掩码扩散语言模型（Masked Diffusion Language Models, MDLMs）的推理提升，特别是数学推理和代码生成任务。作者从生成过程中的“填什么token”和“重新mask哪些位置”两个具体决策出发，提出面向mask决策的策略梯度分解，并在GSM8K与MBPP上报告了较强结果。",
+        "contribution": "核心贡献是在MDLM的强化学习建模中，不再只近似token预测对应的对数似然，而是把生成过程形式化为一个两阶段动作MDP：每步同时包含token生成动作与位置重mask动作，并据此得到可分解的策略梯度，包括token项和masking项。摘要声称同时优化这两项可显著提升数学推理和编程基准表现，达到GSM8K 87.1%与MBPP 53.4%。",
+        "details": "从摘要看，论文的研究对象非常具体：不是一般自回归大语言模型，而是掩码扩散语言模型在强化学习微调中的优化问题。其切入点是MDLM的训练/生成机制与自回归模型不同，导致常规基于log-likelihood的RL目标难以直接处理；已有方法只建模“被mask位置预测什么token”，却忽略“下一步哪些位置会被重新mask/解mask”的顺序与选择，这可能让策略梯度估计缺失一部分决策信用分配。作者的关键观察是，MDLM每一步至少有两类动作：一类是对当前mask位置填充token，另一类是决定后续重mask哪些位置，因此更自然的形式化是两阶段动作MDP。按照这个表述，策略梯度会被拆成token term和masking term，进而可以联合优化。证据线索主要来自摘要中的任务和分数：数学推理基准GSM8K上87.1%，代码基准MBPP上53.4%，说明作者将方法用于需要多步推理和结构化输出的场景，而不是只做困惑度或一般文本生成评估。与相关方向的关系上，这项工作对“扩散语言模型如何做RLHF/RL reasoning”尤其关键，因为它指出MDLM中的策略不只是token policy，还包含mask schedule/policy；这对任何试图把GRPO/PPO类思路迁移到非自回归或半并行生成模型的研究都很有参考价值。需要核对的信息包括：MDP状态和动作空间的精确定义；masking term具体是如何参数化、采样和做方差控制的；奖励是终局奖励还是逐步奖励；与现有只优化token项的方法相比是否有严格消融；GSM8K和MBPP的评测设置、是否使用pass@k、是否与同规模MDLM或AR模型公平比较；以及该方法对采样步数、mask比例、训练稳定性和计算成本的影响。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、language model、language models、ai、diffusion、mathematical reasoning。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在掩码扩散语言模型中，如何进行正确且有效的强化学习优化，尤其是在无法直接精确估计标准log-likelihood的情况下，怎样为生成过程中的不同决策分配学习信号。更细一点说，作者质疑现有方法只把RL目标压缩为“预测token”的问题设定，忽略了MDLM生成中“位置何时被mask/重mask”的决策，而这部分决策可能直接影响推理链形成、错误修复以及最终答案质量。",
+          "method": "根据摘要，方法上作者先把MDLM生成过程形式化为两阶段动作MDP。状态很可能是当前部分已填充、部分被mask的序列；第一阶段动作是对当前mask位置输出token分布或具体token；第二阶段动作是选择哪些位置在下一步继续mask或重新mask。随后利用该MDP推导策略梯度分解，得到token term和masking term。训练上应是将任务奖励信号同时回传给两类动作，从而比只优化token预测的近似目标更完整。实验对象从摘要可见至少包括数学推理GSM8K和代码生成MBPP，说明评测集中在需要正确中间结构和最终答案判定的任务。",
+          "strengths": "最值得关注的亮点有三点。第一，问题定义抓住了MDLM与自回归LM最本质的差异：生成不只决定内容，也决定未观测位置的演化顺序。第二，提出的两阶段动作视角具有较强概念清晰度，它不仅是工程技巧，更像是对MDLM策略空间的重新建模，因此可能影响后续理论和算法设计。第三，摘要给出的应用场景和结果比较硬：数学推理和代码任务通常比开放式生成更能检验RL是否真正改善了求解能力；如果87.1% GSM8K和53.4% MBPP是在有竞争力设置下取得，这会说明mask-aware优化确有实用价值。",
+          "weaknesses": "基于题录和摘要，当前需要警惕的边界主要有：一是无法判断相对谁达到state-of-the-art，比较对象是否为同类MDLM、同参数量模型、还是跨范式与AR模型比较。二是摘要没有给出训练代价、采样步数、稳定性和方差控制细节，而策略梯度在离散mask动作上可能带来较高方差。三是GSM8K和MBPP分数虽有吸引力，但缺少是否使用测试时多样本采样、重排序、pass@k或额外工具链的信息。四是目前看不到该方法是否普适到一般指令跟随、开放生成或更大规模预训练模型，因此其适用范围仍待核对。五是“log-likelihood intractability”在具体MDLM设定下究竟来自何种边缘化难题，摘要未展开，理论部分需要细读。",
+          "next_step": "最小可执行动作建议是：第一，优先查论文中对两阶段MDP的正式定义和策略梯度公式，确认token term与masking term分别对应哪些随机变量与期望。第二，定位GSM8K和MBPP实验表，记录基线名称、模型规模、采样设置和是否有消融“只训token项/只训mask项/联合优化”。第三，检查实现细节：mask策略是逐位置伯努利、固定比例选择还是排序采样；奖励是序列级还是步骤级；是否使用baseline、advantage normalization或PPO/REINFORCE变体。第四，如果你的研究方向涉及非自回归LM或推理强化学习，可尝试把自己的生成过程也拆成多类动作，思考是否存在类似被忽略的策略项。第五，读完后重点记录一个判断：性能提升究竟主要来自更正确的目标建模，还是来自额外自由度带来的搜索/采样优势。"
+        }
+      },
+      "arxiv:2607.14721v1": {
+        "summary": "这篇论文研究一种面向固定测试环境的自监督适应方案：利用设备在该环境中可获得的多模态传感数据，进行跨模态自监督预训练，从而为同一环境内的下游任务学习更有效的表示。作者将该设定称为 Test-Space Training（TST），核心任务是在“只针对某个给定测试环境做专门化”的前提下，考察多模态是否可以直接充当监督信号。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：第一，提出一个受控的“测试环境专门化”问题设定，即用户设备被限制在单一给定环境中，目标不是泛化到任意场景，而是把模型专门训练好服务该环境；第二，提出 TST 框架，在测试环境内采集多模态数据，并通过跨模态自监督预训练学习表示；第三，在同一环境内的多种下游任务上评估这种表示，并总结若干经验性发现，尤其强调“丰富多模态数据采集”对环境内性能提升的价值。",
+        "details": "仅依据题名、摘要和元数据，这项工作聚焦于一个很具体但很有应用意义的对象：部署在单一真实场景中的设备，例如家庭机器人，它在运行环境里自带多种传感器，因此可以持续感知图像、音频、深度、触觉或其他模态。论文不是研究传统意义上的跨域泛化，而是反过来提出一个 specialization 视角：如果设备最终只需要服务一个固定测试环境，那么是否可以直接利用这个环境中的多模态观测，做自监督表示学习，再将其用于该环境内的识别、预测、控制或其他下游任务。摘要给出的主要方法线索是“cross-modal learning”，即用一种模态预测另一种模态，把模态之间的一致性或可预测性当作监督信号；而 TST 则是把这种思想前移到测试空间本身，即先在目标环境中采集多模态数据，再进行预训练。证据线索主要来自摘要中的两点：一是作者明确说在 same environment 的 various downstream tasks 上做评估，说明其主要结论应围绕环境内任务性能；二是作者提到 developmental psychology，说明论文试图为“多模态感知帮助形成环境表征”提供某种计算上的对应框架。与多模态学习、机器人自监督、test-time adaptation、environment specialization 等方向相关的读者会特别关心这篇工作，因为它把“测试时才获得的多模态信息”从单纯在线适应信号，提升为系统性的预训练资源。不过目前信息也明显不完整：摘要被截断，无法确认具体模态组合、模型结构、采样时长、下游任务类型、基线方法、性能提升幅度，以及这种环境专门化是否会牺牲迁移性或带来较大部署成本。这些都需要后续核对原文。",
+        "why_read": "来源为 arXiv，关键词匹配：agent、agents、rag、multimodal、ai、self-supervised、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：当设备被部署在一个固定的测试环境中，并且该环境里可以持续获得丰富的多模态传感数据时，能否通过跨模态自监督学习，在该环境内预先学习出更有用的表示，从而提升同一环境中的下游任务表现。更细一点说，它在挑战传统“训练集-测试集分离、追求普适泛化”的范式，转而研究“已知最终服务环境”的专门化学习问题。",
+          "method": "从摘要推断，方法路径应包含几个关键步骤。第一，在目标测试环境中由设备主动或被动采集多模态数据，场景示例很可能是带多传感器的机器人平台。第二，构造跨模态自监督目标，即让模型从一种或多种模态预测另一模态，或学习它们之间的一致表征。第三，在这些环境内采集的数据上进行预训练，得到适应该环境的表征。第四，将该表征迁移到同一环境中的多个下游任务上进行评估。由于摘要未给出细节，暂时无法确认是使用对比学习、生成式重建、掩码预测、教师-学生蒸馏，还是多任务联合训练；也无法确认具体数据模态是 RGB/深度/音频/IMU/触觉中的哪些组合。",
+          "strengths": "最值得关注的亮点是问题设定本身非常明确且贴近部署：很多现实系统并不需要对所有环境都泛化，而是长期服务一个家庭、房间、工厂或车辆舱内场景，因此“测试空间训练”有明确工程意义。第二个亮点是把 multimodality 直接当成监督来源，而不是仅作为额外输入，这意味着即使缺乏人工标签，也可能通过多传感器耦合信号获得有效表征。第三个亮点是该工作似乎强调 controlled setup，这有助于更干净地回答一个科学问题：性能提升究竟来自多模态自监督本身，还是来自额外环境数据量。第四个亮点是它可能连接了机器人、表征学习与 test-time specialization 三个方向，容易启发后续面向特定环境的自主数据采集与持续学习研究。",
+          "weaknesses": "基于现有题录信息，需要警惕几个边界。第一，这种方法可能高度依赖“目标环境可提前访问且可大量采集数据”的条件，不适用于一次性部署或环境频繁变化的场景。第二，多模态传感器配置本身有成本，若某些模态只在训练阶段可用而部署时不可用，则需要确认推理时依赖关系。第三，专门化到单一环境可能提升环境内性能，但可能削弱跨环境迁移与鲁棒性。第四，摘要没有给出与哪些基线比较，例如纯单模态自监督、通用预训练、测试时适应、环境内有监督微调等，因此当前无法判断改进到底来自方法设计还是简单的数据贴近性。第五，摘要被截断，导致所谓“various interesting insights”具体是什么并不清楚，不能据此推断具体实验结论。",
+          "next_step": "最小可执行动作有五个。第一，优先查看原文方法图和实验设定图，确认 TST 的训练阶段、传感器模态、数据流和下游任务。第二，记录所有比较基线，特别是是否和同环境单模态自监督、跨环境预训练、随机初始化、监督学习进行了公平对照。第三，查实验表中每个下游任务的绝对提升幅度与数据采集成本，判断方法是否值得在真实系统中部署。第四，重点看消融实验：模态数量、采集时长、跨模态目标形式、是否只用测试环境数据、是否冻结骨干网络。第五，如果你的研究与机器人或环境专门化相关，可尝试把这篇工作的核心假设写成一个可复现实验：在固定场景内采集两到三种模态，比较跨模态自监督预训练与普通单模态预训练对同场景任务的影响。"
+        }
+      },
+      "arxiv:2607.15163v1": {
+        "summary": "这篇论文讨论面向人形机器人控制的Behavior Foundation Model（行为基础模型）扩展规律，具体聚焦于如何通过“运动跟踪式学习范式、on-policy rollout数量与参考动作多样性的协同、以及可扩展模型架构”来提升全身动作协调、实时控制响应和跨环境泛化。基于摘要信息，作者试图给出一套适用于人形机器人全身行为建模的缩放配方，而不仅是报告单一模型结果。",
+        "contribution": "从题名与摘要看，论文的核心贡献可能在于：第一，重新审视并提出适用于人形机器人BFM的scaling recipe，把不同控制任务统一为全身行为在全局坐标系中的运动复现/跟踪问题；第二，强调数据与训练机制的协同缩放，不是单纯增大模型，而是同时平衡on-policy rollout规模与参考动作库多样性；第三，提出或验证了一种更具表达能力且可扩展的模型架构，用于支撑大规模行为学习与泛化。",
+        "details": "研究对象非常明确：人形机器人控制，尤其是需要自然的全身协调、对控制信号的实时响应，以及在多样环境中的稳健泛化。这类任务通常比单一 locomotion 或 manipulation 更难，因为它涉及高维动作空间、复杂接触、全身平衡、时序依赖和任务条件变化。摘要中的关键词“motion tracking”“integrated whole-body behaviors in the global frame”表明，作者并非把问题切分成许多手工设计的低层技能，而是倾向于把多种控制任务统一表示为对整合式全身行为轨迹的跟踪或再现，这是一条很具体的方法线索。\n\n从方法线索看，论文大概率结合了强化学习中的on-policy rollout与大规模参考动作数据。这里的“strategic synergy between on-policy rollout quantity and reference motion diversity”很关键：它暗示作者认为行为基础模型的性能提升，不仅取决于离线动作数据是否丰富，也取决于在线交互采样量如何与动作库多样性共同决定学习信号质量。换言之，这篇论文可能在讨论一种双重缩放机制：一边增加参考动作/行为先验的覆盖面，另一边增加策略在环境中的rollout，以便把参考行为真正转化为可执行、可泛化的控制策略。\n\n模型方面，摘要提到“expressive and scalable model architecture”，但题录未给出具体网络类型。考虑到关键词命中了foundation model与transformer，且行为基础模型近年常使用序列模型、条件策略网络或时序Transformer，这里可以合理推测作者可能采用了较强的时序建模架构，来统一处理状态、控制信号、参考运动和环境上下文；不过这一点必须在正文中核对，不能仅凭关键词认定就是Transformer。\n\n证据线索方面，摘要声称“substantial performance gains can be achieved”，说明正文中大概率包含缩放实验，而非单点SOTA展示。最值得核查的是：1）缩放轴到底有哪些，例如参数量、动作数据规模、rollout步数、任务数、环境扰动种类；2）评价任务是否覆盖行走、转向、起身、全身操作、复杂地形等不同场景；3）所谓“global frame”相对局部坐标或技能分解方法到底带来什么收益；4）作者是否给出 scaling law 风格的定量曲线，还是经验性消融总结。\n\n与科研方向的关系上，如果读者关心具身智能、机器人基础模型、模仿学习与强化学习结合、或人形全身控制，这篇论文很值得关注，因为它讨论的不是某个孤立任务，而是“如何把BFM真正做大做强”的训练配方问题。特别是它把学习范式、数据组成和模型架构放在一起讨论，可能对设计大规模机器人训练系统、数据采集策略和算力预算分配有直接启发。\n\n但基于当前仅有摘要，也有几项必须谨慎：第一，不清楚实验是在纯仿真还是真机上完成；第二，不清楚行为数据来自mocap、仿真生成、遥操作还是混合来源；第三，不清楚“foundation model”在本文中是广义称呼还是已达到跨任务、跨环境、跨身体条件的大规模统一模型；第四，尚不能判断其改进究竟来自训练范式重构，还是来自更多数据/更大模型的常规收益。因此，阅读正文时应重点查找实验设置、数据来源、模型规模、任务定义与对比基线。",
+        "why_read": "来源为 arXiv，关键词匹配：foundation model、foundation models、agent、agents、rag、ai、transformer、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在人形机器人行为基础模型的扩展过程中，哪些因素真正决定性能增长，以及学习范式、行为数据和模型架构应如何协同设计，才能同时提升全身协调性、实时控制能力和跨环境泛化，而不是只在单一任务或单一数据设定上有效。更具体地说，作者关注的是：能否把多样的人形控制任务统一重写为全局坐标系下的整合式全身动作跟踪问题，并在此基础上找到一条可随数据、rollout和模型规模共同增长的训练路线。",
+          "method": "从摘要推测，方法包含三个明确组成。其一，学习范式采用motion tracking，把不同 humanoid control 问题转化为对参考全身行为的跟踪/复现，且强调是在global frame中建模，这可能意味着状态、目标和奖励设计围绕全局姿态、速度、轨迹一致性而展开。其二，训练数据与采样机制上，同时使用参考动作数据和on-policy rollout；参考数据提供行为先验与动作多样性，在线rollout提供环境适应性与闭环纠偏，论文重点分析二者配比或共同缩放。其三，模型侧使用更具表达性且可扩展的架构，可能是序列建模网络、条件策略模型或Transformer类结构，用于处理长时程全身动作依赖、控制信号和环境上下文。实验上大概率会做缩放消融：改变参考动作多样性、在线采样量、模型大小或架构设计，观察性能和泛化变化。",
+          "strengths": "最值得关注的亮点是问题定义具体且具有系统性：不是单纯提出一个新控制器，而是试图回答“人形机器人BFM应如何缩放”这一更基础的问题。摘要中的三个协调维度都很实在：学习范式、在线采样、参考动作多样性、模型架构，说明作者可能给出可执行的工程配方。另一个亮点是采用whole-body behavior作为统一表示，这对人形机器人尤其重要，因为它可能减少任务割裂、提高技能迁移效率，并更自然地覆盖 locomotion 与更复杂的全身控制场景。如果正文确实展示了随数据/rollout/模型增长而稳定提升的趋势，那么其价值会超出单篇任务论文，接近训练原则总结。",
+          "weaknesses": "基于当前题录和摘要，局限主要是信息缺口。首先，不清楚所谓“substantial performance gains”是相对哪些基线、在哪些具体任务上、提升幅度多大。其次，不知道训练和评测是否包含真实机器人，若仅在仿真中，结论对硬件落地的外推需要谨慎。第三，摘要未说明参考动作数据的来源与规模，若动作库高度依赖高质量mocap或精心清洗的数据，其可复制性和普适性需要评估。第四，“foundation model”一词在机器人领域常被宽泛使用，需警惕是否只是较大规模的单体策略模型，而非真正具备广泛迁移能力的基础模型。第五，global frame下的运动跟踪虽然统一，但也可能对环境变化、局部接触细节或高频反馈提出更高建模要求，这部分是否稳健尚待正文验证。",
+          "next_step": "最小可执行动作有五个。第一，优先查正文中的方法图和训练框架图，确认motion tracking在global frame中的具体输入、目标和奖励定义。第二，记录缩放轴：模型参数量、参考动作规模、动作种类数、on-policy rollout步数/并行环境数、任务数。第三，查主表和消融表，看作者是否分别证明了三项因素的独立贡献，以及它们之间是否存在交互效应。第四，核对实验场景是否包括真机、复杂地形、扰动恢复或多任务切换，以判断泛化结论的强弱。第五，如果你做相关研究，可直接把本文整理成一个对照清单：你的系统是否也能统一为全身动作跟踪、是否缺少高多样性参考行为、是否在线rollout不足、是否模型容量成瓶颈。"
+        }
+      },
+      "arxiv:2607.14777v1": {
+        "summary": "这篇论文提出 SEED（Self-Evolving On-Policy Distillation），面向需要多轮交互、工具调用和环境反馈的长时程智能体强化学习任务，试图弥合基于结果奖励的轨迹级 RL 与 token 级策略学习之间的监督缺口。核心做法是把已完成的 on-policy 轨迹转化为训练时的“事后技能”自然语言描述，再将这些技能对动作选择的行为效应蒸馏回当前策略。",
+        "contribution": "从摘要看，论文的核心贡献在于提出一种“自演化”的 on-policy distillation 框架：同一个策略既负责采样轨迹，也负责分析轨迹并提炼可复用的自然语言技能；随后通过比较普通上下文与加入技能上下文时对已采样动作的重评分差异，把事后技能的指导作用转化为可训练信号。该思路可能为长时程 agent RL 提供比稀疏 outcome reward 更细粒度、但又不依赖外部逐步标注的中间监督。",
+        "details": "研究对象很明确：不是一般文本生成，而是作为交互式智能体的大语言模型，任务特征包括长时程决策、多轮交互、工具使用和环境反馈。摘要指出现有 outcome-based RL 的实际问题在于奖励常发生在整条轨迹结束后，只能告诉模型“最终成败”，却难以告诉它中间哪些观察、步骤或决策模式是关键，因此 episode-level outcome 与 token-level policy optimization 之间存在监督鸿沟。SEED 的切入点是把一条已经完成的 on-policy 轨迹，转写为训练时可用的 hindsight skills，形式上是自然语言技能总结，内容可能涵盖可复用工作流、关键观察模式、避免失败的规则等。一个重要设计是“self-evolving”：策略模型在 RL 过程中一边采样新轨迹，一边充当分析器从这些轨迹中抽取技能，因此当策略变强时，技能分析器也会同步进化，形成联合提升。摘要还提到，SEED 会在“普通上下文”和“加入技能上下文”下重新给采样动作打分，再把两者差异蒸馏回策略；这说明其训练信号可能不是直接监督技能文本本身，而是监督技能条件下动作概率相对提升的行为后果。这一点对 agent 训练很关键，因为它避免把自然语言技能仅当作额外输出，而是把技能转化成可影响策略分布的学习信号。证据线索方面，虽然摘要被截断，没有看到基准、实验设置和结果数字，但可以推断作者大概率在 agent RL 场景的 benchmark 上比较了原始 outcome-based RL 与加入 SEED 后的性能、样本效率或决策质量，可能还分析了技能质量随训练阶段演化的现象。与用户若关注的大模型 agent、RLHF/RLAIF 之后的 agentic RL、工具调用规划、长轨迹信用分配等方向高度相关，因为它提供了一条不依赖密集人工过程监督、而利用模型自身事后分析能力补足中间监督的路线。需要重点核对的信息包括：技能生成是否需要额外监督微调数据；技能是对整条轨迹总结还是对局部片段总结；动作重评分具体采用 KL、优势加权还是某种对比蒸馏目标；技能文本是否只在训练中使用还是推理时也注入；方法对错误技能分析是否鲁棒；以及实验是否覆盖真实工具调用环境还是仅限仿真/文本环境。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、language model、language models、agent、agents、tool use、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在长时程 agent 强化学习中，如果只使用轨迹最终成败作为奖励，如何为中间每一步动作与 token 提供更有针对性的学习信号，从而改善工具使用、多轮交互和环境反馈条件下的决策学习与信用分配。更细一点说，它想回答：能否把已完成轨迹中的成功经验或失败教训自动提炼成可复用技能，并将其重新注入当前策略更新过程。",
+          "method": "根据摘要，方法路径大致包括四步。第一，先让策略模型具备分析已完成轨迹并生成自然语言技能的能力，这里可能通过额外微调实现。第二，在 RL 训练中，当前策略按 on-policy 方式与环境交互，收集完整轨迹。第三，用同一个当前策略作为“分析器”读取这些轨迹，生成 hindsight skills，技能内容针对工作流、关键观察和失败规避规则。第四，对轨迹中已采样动作分别在无技能上下文和有技能上下文下重新计算分数或概率，用二者差异构造蒸馏/加权更新信号，把技能带来的偏好转回基础策略。由此，策略提升会带来更好的轨迹与更好的技能，技能又反过来改善下一轮策略学习，形成 self-evolving 闭环。数据与实验方面，从任务描述推断应是 agent benchmark，上下文中可能包含工具调用历史、观察、动作和环境反馈。",
+          "strengths": "最值得关注的亮点有三点。第一，它不是引入外部教师模型，而是让 on-policy 当前策略自我分析、自我蒸馏，方法上更闭环，也更贴近 RL 训练流程。第二，技能采用自然语言形式，理论上更容易承载跨轨迹复用的程序性知识、决策规则和失败模式，比单纯价值回传更具可解释性。第三，训练信号落脚在“技能条件下动作更应被偏好”这一行为效应，而非仅生成一段解释文字，因此更可能直接改善策略。若实验充分，这一框架对稀疏奖励、长轨迹信用分配和 agent planning 都可能有实际价值。",
+          "weaknesses": "基于题录和截断摘要，需要警惕几个边界。第一，尚不清楚技能分析器初始能力从何而来，如果需要高质量轨迹分析数据进行预训练，方法成本可能不低。第二，自生成技能可能存在幻觉、过拟合局部轨迹或把偶然成功归纳为规则的问题，错误技能是否会误导蒸馏需要验证。第三，on-policy 轨迹再分析与重评分会增加训练开销，尤其在长轨迹和大模型场景下。第四，摘要未提供具体 benchmark、对比方法、收益幅度和失败案例，因此目前无法判断其真实增益来自技能蒸馏本身，还是来自额外计算、额外上下文或辅助监督。第五，如果技能只在训练时使用、不在推理时显式注入，那么其可解释性与实际部署方式需要进一步弄清。",
+          "next_step": "最小可执行动作建议是：第一，优先查看论文方法图和算法伪代码，确认“普通上下文/技能上下文重评分”具体如何实现。第二，查实验表，记录所用 agent benchmark、工具环境、基线方法以及 SEED 的绝对提升和样本效率变化。第三，重点找消融实验：去掉技能生成、固定分析器不自演化、只做技能提示不做蒸馏、只做蒸馏不做自然语言技能，比较各组件贡献。第四，查看案例分析，判断技能文本是否真正提炼了可迁移规则，还是仅复述轨迹。第五，如果你做相关研究，可先在自有 agent 任务上实现一个简化版：对完成轨迹生成一句“成功/失败经验总结”，再测试把该总结作为附加上下文进行动作重评分是否能提升 advantage 加权训练效果。"
+        }
+      },
+      "doi:10.1126/science.aei9741": {
+        "summary": "这是一篇Science题名/摘要级别的短评或研究亮点类文章，聚焦肿瘤组织中一类树突状细胞如何协调三级淋巴结构（tertiary lymphoid structures, TLS）的形成，并据此提出“淋巴结现在可能并非必需”的免疫学视角。就现有信息看，文章核心对象是肿瘤内特定树突状细胞亚群与TLS形成这一任务，而不是泛泛讨论肿瘤免疫。",
+        "contribution": "基于题名与摘要，文章的核心贡献应是指出：在肿瘤微环境内，某个树突状细胞亚群是TLS形成的关键组织者，从而支持局部、类淋巴结样免疫生态位可以在肿瘤内建立并承担部分原本归属于引流淋巴结的功能。若该结论来自被评述研究，则其意义在于把抗肿瘤免疫启动/维持的关键环节从经典次级淋巴器官部分转向肿瘤局部组织化免疫结构。",
+        "details": "仅根据题名、期刊、摘要与元数据判断，这篇文章更像Science中的观点/评论/Research Highlight，而不一定是原始研究论文；作者仅1人且摘要极短，也支持其可能是在解读另一项研究。因此需要首先核对文献类型。就科学内容而言，摘要明确给出研究对象为“肿瘤组织中的一部分树突状细胞”，研究现象为“编排/协调三级淋巴结构的形成”。TLS通常被视为在慢性炎症、感染、自身免疫或肿瘤中形成的异位淋巴样结构，常与局部抗原呈递、T/B细胞募集与分化、以及免疫治疗应答相关。题名“Lymph nodes now optional”暗示一个更强的概念推进：抗肿瘤免疫反应的某些关键步骤，也许可以在肿瘤局部形成的TLS中完成，而不完全依赖传统淋巴结。\n\n从方法线索推断，被评论或概述的原始工作很可能结合了肿瘤样本空间定位、单细胞转录组或流式分型来识别该树突状细胞亚群，并通过组织学/免疫荧光显示其与TLS萌芽、成熟TLS区域、T细胞区/B细胞区、以及高内皮微静脉样结构的空间共定位。若要证明“orchestrates”而非“伴随出现”，通常还需要功能扰动证据，例如在小鼠肿瘤模型中清除该DC亚群、阻断其趋化因子/淋巴毒素相关信号，观察TLS数量、成熟度、淋巴细胞浸润和抗肿瘤效应是否下降；或者相反，通过增强该亚群或相关信号促进TLS生成并改善免疫应答。\n\n证据线索上，最值得核对的具体分子通常会包括TLS形成经典轴线，如CXCL13、CCL19、CCL21、LTα/β、TNF家族信号，以及DC与成纤维样基质细胞、血管内皮细胞之间的互作。若文章强调“subset of dendritic cells”，则读者尤其要查明究竟是cDC1、cDC2、LAMP3+迁移型DC、成熟富集调节性分子（mregDC）样群体，还是一种更特殊的TLS诱导型DC状态；不同亚群对应完全不同的机制解释和可转化意义。\n\n与科研方向的关系方面，如果你关注肿瘤免疫、空间组学、免疫治疗生物标志物或淋巴结构发生，这篇文章的重要性在于：它把TLS从“伴随好预后/好应答的组织学标志”推进到“可被特定免疫细胞主动组织的功能性结构单元”。这意味着后续研究可以不只统计TLS有无，还要追问是谁诱导、何时诱导、成熟度如何、是否真正替代或补偿淋巴结中的初始激活步骤，以及在不同肿瘤类型中是否一致。\n\n需要核对的信息很多：第一，文献类型究竟是原始研究还是评论；第二，研究所指的肿瘤模型/癌种是小鼠、人体还是两者结合；第三，被识别的DC亚群定义标准和标志物；第四，TLS“形成”的判定是组织学计数、分子特征还是功能读出；第五，题名中的“淋巴结可选”是严格实验结论，还是编辑性概括。如果没有这些信息，不能把摘要外推成“淋巴结不再重要”的普遍定律。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇文章想回答的具体问题是：在肿瘤组织内部，究竟是哪类免疫细胞驱动三级淋巴结构的出现与组织化；以及这些肿瘤内TLS是否能够承担部分通常由淋巴结完成的抗原呈递、淋巴细胞募集和局部免疫启动功能。更进一步的问题是，肿瘤局部免疫是否能在缺乏或弱依赖经典淋巴结输入的条件下被有效组织起来。",
+          "method": "按摘要内容反推，相关研究很可能使用了肿瘤组织样本的空间组织学分析来识别TLS，并用单细胞RNA测序、流式细胞术或多重免疫荧光来界定树突状细胞亚群；再结合小鼠肿瘤模型中的细胞清除、遗传敲除或细胞因子/趋化因子阻断实验，测试该DC亚群是否对TLS形成具有因果作用。若涉及人样本，可能还会分析该亚群丰度与TLS评分、免疫浸润水平、甚至免疫治疗反应之间的相关性。",
+          "strengths": "题录层面最突出的亮点是对象非常具体：不是泛指“免疫细胞促进TLS”，而是锁定“某一树突状细胞子集”作为组织者。其次，题名直接把TLS与淋巴结功能替代联系起来，说明其概念价值较高，可能对肿瘤免疫启动位点的传统认识形成修正。若原始证据充分，这类工作对TLS定向诱导、肿瘤微环境重塑和免疫治疗增敏都具有明确应用潜力。",
+          "weaknesses": "当前信息极其有限，只有一句摘要，且文章类型可能是评论而非原始研究，因此不能据此确认实验体系、样本量、癌种普适性、树突状细胞亚群身份、分子机制和功能终点。题名具有较强传播性，可能夸大了“淋巴结可有可无”的适用范围；真实结论也许仅限于某些肿瘤模型、特定阶段或局部免疫反应。另一个风险是TLS形成与抗肿瘤效果常相关但不等同，若缺少功能验证，不能把结构存在直接解释为有效免疫。",
+          "next_step": "最小可执行动作：1）先在Science页面核对文章类型，确认它是评论、观点还是原始研究；2）定位其所评述的原始论文并记录癌种、模型、DC亚群标志物和TLS判定标准；3）优先查看摘要对应的主图，确认“orchestrates”是否有因果扰动证据；4）记下涉及的关键趋化因子/信号轴，如CXCL13、CCL19/21、LTβ等；5）如果你的工作涉及空间组学或肿瘤免疫，建立一个对照表：DC亚群—TLS成熟度—T/B细胞区—治疗应答，避免只停留在概念层面。"
+        }
+      },
+      "doi:10.1126/science.aeh9302": {
+        "summary": "该研究以小鼠海马CA3锥体神经元为具体对象，在虚拟现实导航任务中结合树突与胞体电压成像，提出CA3树突树并非统一整合器，而是由多个可相互独立、又可按行为条件与胞体活动耦合或解耦的计算单元组成。摘要进一步表明，这些树突单元参与空间、奖励和情境的亚细胞表征，并在sharp-wave ripple期间保留特定协调关系。",
+        "contribution": "从摘要看，论文的核心贡献是把“CA3神经元如何在体内沿树突进行电压计算”这个问题具体化为可观测的亚细胞电压动态，并给出一个功能框架：单个CA3锥体细胞的树突分支可并行承载相对独立的表征，且这种表征与胞体输出之间的耦合是条件性的、行为依赖的。这一结论若被全文数据支持，将把海马CA3从以胞体放电和回路水平表征为主的研究，推进到‘单细胞内部多计算单元并行编码过去、现在与未来相关信息’的层面。",
+        "details": "研究对象非常明确：小鼠海马CA3区锥体神经元，关注的是其树突与胞体在体内行为过程中的电压活动，而不是仅仅钙信号或离体切片电生理。任务场景也较具体，即虚拟现实引导的导航，这意味着作者很可能在受控空间线索、奖励位置和上下文切换条件下，比较不同树突分支与胞体输出之间的活动关系。摘要中“using voltage imaging across dendrites and somata”提示关键技术路线是多亚细胞区段同步电压成像，可能依赖遗传编码电压指示器，并针对CA3深部成像做了光学或分析层面的优化。证据线索主要有四条：第一，树突 arbor 被描述为“multiple independent computational units”，说明作者应当量化不同树突分支间以及树突-胞体间的相关性、同步性、事件耦合概率或调谐一致性，以支持“独立性”；第二，“can dynamically couple to or dissociate from somatic activity, depending on behavioral conditions”说明行为状态或任务变量被用作分层因素，比较如导航阶段、奖励临近、上下文切换或运动状态下的耦合变化；第三，“dendritic activity shapes subcellular representations of space, reward, and context”表明作者不是只看一般活动强弱，而是建立了树突层面的空间调谐、奖励相关响应和情境选择性；第四，“spatially cotuned dendrites retain their coordination during sharp-wave ripples”说明除在线导航外，还分析了sharp-wave ripple相关时段，可能将清醒静止或任务间歇中的涟漪事件与先前导航中共同调谐的树突活动联系起来。摘要最后一句“past, present, and future representations coexist within the dendritic arbor of CA3 pyramidal neurons”是一个较强的概念性表述，可能分别对应情境/记忆痕迹、当前导航位置/奖励信息，以及与回放或预测相关的ripple期活动，但这一点必须回到全文图表核对其操作性定义，避免过度诠释。与科研读者的关系上，这篇文章对以下方向尤其相关：海马编码与导航、树突计算、单神经元内表征分解、在体电压成像、CA3回路与记忆检索/模式完成。如果你的研究关注place cell、reward coding、SWR回放或树突分支作为功能子单元，这篇文章值得重点读方法和定量判据。需要核对的信息包括：样本量与记录时长、树突“独立计算单元”的判定标准、是否区分主干/分叉/远端树突、行为条件的具体定义、SWR检测方式、空间共调谐的统计阈值、以及电压成像信噪比和时间分辨率是否足以分离局部树突事件与反向传播动作电位。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：在体行为条件下，海马CA3锥体神经元的树突是否作为一个整体将输入汇总到胞体，还是由多个能够并行、相对独立处理信息的树突子单元构成；这些子单元如何随行为状态与胞体输出发生条件性耦合；它们是否分别承载空间位置、奖励和情境等不同或部分重叠的表征；以及这种树突级协调是否延续到sharp-wave ripple相关的离线/回放过程。",
+          "method": "根据摘要，最可能的方法是：在小鼠执行虚拟现实导航任务时，对CA3锥体神经元的胞体和多个树突区段进行同步在体电压成像；将电压信号与行为变量如位置、速度、奖励时刻、情境切换对齐；计算不同树突分支与胞体之间的事件耦合、相关结构和调谐曲线；识别对空间位置、奖励或情境具有选择性的亚细胞活动模式；在sharp-wave ripple期间进一步分析先前空间共调谐的树突是否继续表现出协调激活。若使用现代电压指示器，作者还可能结合高帧率双光子或相关高速成像，并进行事件检测、去卷积或状态分层统计分析。",
+          "strengths": "亮点首先在于研究层级：不是传统的胞体放电或整细胞平均树突活动，而是直接把CA3单神经元内部的多个树突分支作为可比较的计算单元。其次是技术组合具有较高信息量：在体电压成像相比钙成像更接近膜电位动态，更适合讨论树突-胞体耦合和局部电压事件。再次，行为任务与神经现象衔接紧密，摘要覆盖导航中的空间、奖励、情境以及SWR期协调，说明作者试图把在线编码与离线重激活统一到同一树突框架中。最后，若“conditional coupling”有扎实定量支持，它将为理解CA3如何同时支持记忆检索、情境区分和预测相关活动提供新的单细胞机制解释。",
+          "weaknesses": "仅凭题录和摘要，几个边界需要警惕。第一，“independent computational units”是强结论，但独立性究竟指统计去相关、局部事件发生、还是功能上可分离，需看全文定义和对照。第二，电压成像在深部海马CA3的空间覆盖、信噪比和时间稳定性都可能限制样本量与树突分支数，摘要未给出。第三，虚拟现实导航虽可控，但与自由行为下CA3输入结构并不完全等价。第四，空间、奖励、情境以及过去/现在/未来表征的对应关系在摘要里较概念化，可能存在解释跨度大于直接测量证据的问题。第五，SWR期间树突协调的观察未必等同于因果参与记忆回放或行为决策，若无干预实验，机制层面的推断应谨慎。",
+          "next_step": "最小可执行动作：第一，优先查全文图1和方法部分，确认成像方案、记录深度、动物数、细胞数、树突段数以及任务设计。第二，专门寻找作者如何定义“independent computational units”“couple/dissociate”“spatially cotuned dendrites”这三个核心概念及其统计阈值。第三，核对是否区分局部树突电压事件、胞体动作电位相关反向传播以及全局同步事件。第四，查看与SWR相关的图，判断是相关性分析还是更强的表征重建。第五，如果你做相关研究，可记录一个复现清单：行为变量、树突-胞体耦合指标、调谐分析窗口、SWR检测准则，并列出需要对照的替代解释，如运动速度、视觉线索或共同输入导致的伪独立性。"
+        }
+      },
+      "doi:10.1126/science.aeg6638": {
+        "summary": "该论文围绕“单电子存储器”这一极限信息存储任务，报告了一种二维单电子存储器器件：通过共面漏极-沟道-源极结构抑制边缘电容效应，在单个电子变化后实现了0.5 V的非易失阈值电压漂移。摘要还指出作者验证了与编程电压相关的两种量子行为，并提出并观测到一种由“态密度剪刀”导致量子态被切断的独特量子存储效应。",
+        "contribution": "从摘要可提炼的核心贡献有三点：第一，针对器件微缩后边缘电容放大、难以观察单电子存储的问题，提出了二维共面 drain-channel-source 器件结构作为抑制方案；第二，在实验上展示了“单电子改变”可对应0.5 V的非易失阈值电压位移，给出单电子存储可观测性的关键证据线索；第三，除器件演示外，还围绕编程电压揭示了两类量子行为，并提出/观察到“density of states scissors（态密度剪刀）”所对应的量子记忆效应，说明该工作不只是器件优化，也涉及量子态调控机制。",
+        "details": "仅根据题名、Science 来源与摘要，这项工作研究的是超小尺度电子器件中的单电子非易失存储：目标是在一个极小空间内约束单个电子，并利用两个可区分量子态实现信息写入/保持。摘要强调的科学矛盾是：器件越小，本应越接近单电子极限，但边缘电容（fringe capacitance）反而更显著，掩盖单电子效应；因此作者的主要设计思路是改造器件几何结构，而不是单纯继续缩小传统结构。具体对象应是一种二维器件，采用共面漏极-沟道-源极布局，这一布局被用于降低寄生/边缘电容，从而提高单电子事件对阈值电压的影响可见度。摘要给出的最具体实验结果是：单个电子变化后可得到0.5 V的非易失阈值电压偏移，这意味着读者应重点核对其电学转移曲线、阈值提取方法、单电子判据、器件尺寸、温度条件、循环稳定性和保持特性。所谓“两种与编程电压相关的量子行为”在摘要中未展开，可能涉及编程电压离散窗口、阈值跳变、量子态占据转换或写入极性/幅度依赖的非经典特征，但这一点必须在正文或图中核实，不能仅凭摘要下定论。另一个重要但定义尚不清楚的概念是“quantum state is cut off by density of states scissors”，可理解为某种由态密度分布、能级对齐或可用量子态窗口截断引起的存储/写入效应；这应是论文的新机制表述，值得重点确认其理论模型、实验判据以及是否具有普适性。对于从事纳米电子学、二维半导体器件、单电子晶体管、非易失存储或量子器件的研究者，这篇论文的价值可能在于：它把“几何电容工程”与“单电子量子态操控”结合起来，试图跨过传统单电子存储难以在实际器件中稳定观测的障碍。不过，基于当前信息仍需警惕几个问题：单电子变化是如何严格归因的；0.5 V阈值漂移是否在统计上稳定；工作温度是否接近室温；器件是否具有批量一致性与可扩展性；“robust”究竟体现为保持时间、抗扰动性还是循环可靠性；以及所谓二维器件的材料体系究竟是什么。由于没有全文和图表，这些都是必须进一步核对的关键点。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：如何在超小尺度器件中真正实现并观测“单电子存储”，同时克服器件微缩后边缘电容增强这一反常障碍；进一步地，如何利用单电子对应的可区分量子态，实现可编程、非易失、可电学读出的存储行为，并解释其中出现的量子写入现象。",
+          "method": "从摘要推测，作者采用的是器件结构创新加电学表征相结合的路径。核心方法应包括：设计二维共面漏极-沟道-源极结构以减小边缘电容；通过编程电压调控单电子占据/释放，记录器件阈值电压变化；利用转移特性或存储窗口来证明单电子改变对应约0.5 V非易失阈值漂移；并结合量子态、能级分布或态密度分析，解释编程电压相关的两种量子行为以及“态密度剪刀”效应。若正文完整，可能还会包含电容模型、能带/态密度示意、器件几何仿真或温度依赖测量。",
+          "strengths": "最突出的亮点是问题抓得很具体：不是泛泛讨论新型存储器，而是直指单电子存储可观测性的瓶颈——边缘电容。第二个亮点是结果表述具体，给出了“单个电子变化对应0.5 V阈值偏移”这一高辨识度指标，这比笼统声称观察到单电子效应更有可检验性。第三，工作不仅有器件演示，还涉及编程电压下的量子行为与新的量子记忆机制表述，说明其贡献可能横跨器件工程和物理机制。第四，发表在Science，通常意味着其证据链、机制新颖性或潜在影响具有较高门槛，但仍需以正文为准。",
+          "weaknesses": "仅凭摘要，仍存在多处关键缺失。首先，缺少材料体系信息，无法判断二维器件是石墨烯、过渡金属硫化物还是其他超薄材料。其次，缺少工作温度、器件尺寸、写入/擦除条件、保持时间、循环次数和器件统计，因而无法判断“robust”是否指向实际应用层面的稳定性。第三，单电子归因可能需要非常严格的电容、噪声和离散电荷分析，而摘要没有展示证据细节。第四，“两种量子行为”与“态密度剪刀”都是新颖但定义不足的表述，存在术语营销化的风险，必须看图表和模型。第五，摘要没有交代与既有单电子存储/单电子晶体管工作的直接性能对比，因此其相对优势目前只能谨慎推断。",
+          "next_step": "最小可执行动作有五项：1）优先查正文中的器件结构图和等效电容示意，确认共面 drain-channel-source 如何降低 fringe capacitance；2）定位展示0.5 V阈值位移的原始转移曲线，记录测试温度、扫压条件与阈值定义方法；3）查找支持“single electron change”的证据，是库仑充电估算、离散台阶、统计分布还是仿真拟合；4）专门阅读与编程电压相关的两种量子行为和“density of states scissors”对应图表，整理其物理定义与触发条件；5）建立一个对照表，记录该工作与已有单电子存储器在材料、温度、存储窗口、保持/循环和可扩展性上的差异。"
+        }
+      },
+      "doi:10.1038/s41586-026-10780-5": {
+        "summary": "这篇 Nature 论文从题名看，聚焦“纵向电子健康记录（EHR）与遗传发现”的联合建模问题，提出一个贝叶斯框架，目标很可能是利用时间序列式临床表型数据提升基因关联发现或风险解析。由于提供信息中摘要为空，目前只能基于题名和元数据判断其核心任务是把长期随访EHR与遗传数据整合到统一统计模型中。",
+        "contribution": "可能的核心贡献是提出一套面向纵向EHR与遗传研究的贝叶斯统计框架，用于从重复测量、异质时间结构和临床噪声中提取可用于基因发现的信号；若属实，其价值在于相较传统横断面GWAS或单时点表型分析，更系统地利用患者随访轨迹进行遗传关联建模。",
+        "details": "从题名“A Bayesian framework for longitudinal EHR and genetic discovery”判断，研究对象不是单一疾病，而更可能是一类由电子健康记录定义的长期临床表型轨迹，以及这些轨迹对应的遗传变异信号。这里“longitudinal EHR”提示数据应包含个体在多个时间点的诊断、检验、用药、事件或风险因子变化；“genetic discovery”提示任务可能包括遗传关联检测、位点发现、遗传效应估计、疾病亚型解析，或通过时间动态表型提高发现效率。方法上，“Bayesian framework”说明作者强调概率建模、先验整合、不确定性量化，以及可能对缺失、测量误差、稀疏观察和个体间异质性进行层次化建模。考虑作者背景和期刊定位，这项工作很可能涉及大规模生物样本库或医疗系统队列中的EHR-linked genotype 数据，并将临床时间结构直接纳入遗传分析，而不是先把EHR压缩成简单病例/对照标签。证据线索主要只有题名、作者阵容、期刊和发表时间，尚不足以确认具体疾病领域、样本量、是否为多性状模型、是否支持因果推断、是否与现有GWAS/trajectory GWAS/latent phenotype模型做了系统对照。若你的研究方向涉及统计遗传学、医学AI、真实世界数据分析、时间序列表型建模或EHR表型算法，这篇论文值得优先关注，因为它可能提供一种将临床轨迹信息直接转化为遗传发现增益的统一框架。当前最需要核对的信息包括：1）模型输入是原始时间戳事件、规则化时间序列还是潜变量轨迹；2）遗传部分是单变异扫描、gene-based 分析还是polygenic建模；3）贝叶斯层次结构如何处理纵向相关性和患者异质性；4）相较传统横断面EHR GWAS提升了哪些具体指标；5）是否提供软件、推断算法和可扩展性评估；6）发现结果是否有外部队列验证或功能注释支持。由于摘要为空，以上均为基于题名的审慎推断，不能视为论文已证实结论。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题，推测是：如何把电子健康记录中的纵向、重复、噪声较大的临床数据，与基因型数据在同一统计框架下整合，从而比传统单时点或病例-对照定义更有效地进行遗传发现。更细一点说，问题可能包括：EHR表型随时间演变、观测不规则、缺失和编码异质性时，如何稳健估计遗传效应；以及如何利用个体疾病进展或生物标志物轨迹来增强关联信号。",
+          "method": "可能方法上，这篇工作大概率构建了一个层次贝叶斯模型。数据层面，输入可能是带时间戳的EHR表型轨迹，如诊断事件序列、化验指标纵向测量、药物暴露历史或复合疾病状态；遗传层面可能是常见变异基因型、聚合遗传评分或全基因组扫描。模型层面，可能包含：个体层随机效应以刻画患者异质性；时间结构建模以处理轨迹变化；表型生成层以描述EHR观测噪声与缺失；遗传效应层以共享信息并提高发现功效。推断上可能使用变分推断、MCMC或近似贝叶斯计算，以适应大样本生物样本库。分析路径可能是先从纵向EHR中学习潜在疾病进程/表型，再做遗传关联；也可能是联合模型，直接把纵向表型与遗传效应一起估计。",
+          "strengths": "最值得关注的亮点，首先是把“纵向EHR”而非静态表型作为核心对象，这在真实世界医疗数据中更接近疾病自然史。其次，贝叶斯框架通常适合处理不确定性、层次结构和多来源信息，因此有潜力缓解EHR研究中常见的标签误差、稀疏性和个体间差异。再次，如果论文确实展示了遗传发现增益，那么其应用价值会很直接：既可提高GWAS类研究的统计效率，也可能帮助识别疾病进展相关遗传机制，甚至支持患者分层。发表在 Nature 也提示其方法或应用范围可能较广，可能不局限于单一队列或单一疾病。",
+          "weaknesses": "基于当前题录信息，最大局限是摘要为空，无法确认研究到底是方法论文、资源论文还是方法加大规模应用。题名虽清楚指向纵向EHR与遗传发现，但没有说明具体临床场景、样本规模、比较基线、性能提升幅度及外部验证情况。需要警惕几个边界：第一，贝叶斯模型可能在超大规模数据上的计算代价较高；第二，EHR时间轨迹的质量受医疗行为驱动，未必等同于真实生物过程；第三，遗传发现若建立在复杂潜变量表型上，可解释性和可复现性需要额外验证；第四，如果模型依赖特定医疗系统编码习惯，跨机构泛化可能受限。以上都必须以正文和补充材料核实。",
+          "next_step": "最小可执行动作建议：1）先获取摘要、图1和方法概览，确认研究对象到底是疾病轨迹、实验室指标还是综合EHR表型；2）记录数据来源与样本量，特别是是否来自生物样本库/医疗系统联结基因组数据；3）查主对照基线是否为传统横断面GWAS、phecode病例定义或简单纵向汇总特征；4）看是否有软件包、代码仓库或模型公式，判断自己能否在现有EHR-genotype队列中复现；5）重点记下论文如何定义“genetic discovery”的终点，是新位点数、功效提升、效应精度，还是疾病分型能力；6）若你做相关研究，可准备一个对照清单：时间建模方式、缺失处理、推断算法、计算复杂度、跨队列可迁移性。"
+        }
+      },
+      "doi:10.1038/s41586-026-10655-9": {
+        "summary": "这篇Nature论文从题名看聚焦“可规模化制备的准纯MOF膜”，目标任务是实现更节能的气体分离。由于提供信息中摘要为空，目前只能基于题名和期刊元数据判断：作者可能在金属有机框架膜的纯相控制、放大制备与分离性能之间建立了新的工艺路线。",
+        "contribution": "可能的核心贡献是提出一种能够在较大尺度上制备“quasi-pure（准纯）”MOF膜的方法，并将其用于能效导向的气体分离场景；如果题名表述准确，论文的新意大概率同时落在材料相纯度控制、膜制备可放大性以及分离能耗降低这三个方面。",
+        "details": "需要明确说明的是：由于摘要为空，当前无法确认具体MOF种类、目标气体体系、性能数据、稳定性时长、膜面积、厚度、支撑体类型、是否进行混合气与湿气条件测试、是否有工业过程模拟等关键事实。因此不能声称其性能超过现有基准，也不能断言其适用场景。阅读正文时应优先核对题名中的三个承诺词——scalable、quasi-pure、energy-efficient——分别被什么实验或模型真正支撑。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，推测是MOF膜在气体分离中长期存在的“三难”平衡：一方面需要高相纯度和低缺陷以保证选择性，另一方面需要薄膜和大面积制备以保证高通量与实际产能，同时还要证明该膜分离路线相较传统分离过程具有更低能耗。更细一点说，研究问题可能是：如何在可放大制备条件下获得接近纯相、缺陷受控的MOF膜，并将其用于具有工业意义的气体对分离。",
+          "method": "可能的方法路径包括：1）设计一种能稳定诱导目标MOF晶相优先生长的成膜工艺；2）在特定支撑体上实现连续、均匀、较大面积的膜层构筑；3）通过结构表征证明膜层接近纯相且缺陷较少；4）进行单组分和混合气渗透/分离测试，比较不同相纯度或不同制备条件下的通量与选择性；5）通过分子模拟或传质分析解释相纯度、晶界和孔道结构对分离性能的影响；6）若题名中的“energy-efficient”有实质内容，则还应有工艺模拟、能耗估算或与基准技术对比。由于摘要缺失，以上均需正文核对。",
+          "strengths": "基于题名可预期的亮点主要有三点。第一，把MOF膜研究从“小样品高性能演示”推进到“可规模化制备”，这是材料走向工程应用的关键门槛。第二，“准纯”这一表述可能比传统追求绝对纯相更贴近制造现实，若作者证明少量杂相可容忍且不显著损害分离性能，这会对膜制备标准和产业化判据有实际意义。第三，如果论文真正将膜性能和分离能耗联系起来，而不是只报告理想选择性，那么其价值会超出材料优化，进入过程强化和低碳分离层面。",
+          "weaknesses": "当前最大的局限是信息严重不足：摘要为空，无法确认材料体系、目标气体、性能量级和证据完整性。仅从题名无法排除以下风险：1）“scalable”可能只代表有限面积放大而非工业可制造；2）“quasi-pure”可能意味着仍存在一定杂相或缺陷，其长期稳定性和批次一致性未必充分；3）“energy-efficient”可能是概念性宣称，未必有严格过程模拟支持；4）可能只在理想干燥、单组分或低压实验条件下表现优异，而在真实混合气、湿气、杂质存在和长周期运行下性能下降。",
+          "next_step": "最小可执行动作建议：1）先获取摘要，确认具体MOF名称、分离气体对和核心性能指标；2）进正文后优先查看图1和方法部分，弄清“quasi-pure”的操作定义与制备流程；3）查找是否有面积放大、批次重复、机械稳定性和长期混合气测试；4）记录是否给出Robeson上界、膜领域基准对比或过程能耗模拟；5）若你的方向与膜分离或MOF相关，重点做一张对照表，列出膜面积、厚度、支撑体、渗透率、选择性、运行时长和测试工况，避免只看题名就高估其工程成熟度。"
+        }
+      },
+      "doi:10.1038/s41586-026-10782-3": {
+        "summary": "Quantum statistical plasmonic metacrystals。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Quantum statistical plasmonic metacrystals”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Quantum statistical plasmonic metacrystals”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for doi:10.1038/s41586-026-10782-3: Extra data: line 1 column 2809 (char 2808)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2607.15200v1",
+      "source": "arxiv",
+      "title": "Mask-Aware Policy Gradients for Diffusion Language Models",
+      "authors": [
+        "Haran Raajesh",
+        "Kulin Shah",
+        "Adam Klivans",
+        "Philipp Krähenbühl"
+      ],
+      "published": "2026-07-16T16:57:34Z",
+      "updated": "2026-07-16T16:57:34Z",
+      "abstract": "Reinforcement learning has proven effective for improving reasoning in large language models, but extending it to Masked Diffusion Language Models (MDLMs) remains challenging due to the intractability of the log-likelihood estimation. Existing approaches approximate this log-likelihood by modeling only the token predictions, ignoring the order in which positions are unmasked during generation. We observe that MDLM generation involves two decisions at each step: what tokens to place at each masked position and which positions to remask. We formalize this as a two-stage action MDP, showing that the policy gradient naturally decomposes into a token term and a masking term. Combining optimization of both terms leads to state-of-the-art outcomes on mathematical reasoning and coding benchmarks, with scores of 87.1% on GSM8K and 53.4% on MBPP.",
+      "url": "http://arxiv.org/abs/2607.15200v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.15200v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "language model",
+        "language models",
+        "ai",
+        "diffusion",
+        "mathematical reasoning"
+      ],
+      "score": 67.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.14721v1",
+      "source": "arxiv",
+      "title": "Multimodality as Supervision: Self-Supervised Specialization to the Test Environment via Multimodality",
+      "authors": [
+        "Kunal Pratap Singh",
+        "Ali Garjani",
+        "Rishubh Singh",
+        "Muhammad Uzair Khattak",
+        "Efe Tarhan",
+        "Jason Toskov",
+        "Andrei Atanov",
+        "Oğuzhan Fatih Kar",
+        "Amir Zamir"
+      ],
+      "published": "2026-07-16T08:36:54Z",
+      "updated": "2026-07-16T08:36:54Z",
+      "abstract": "Cross-modal learning, i.e., learning to predict one modality from another, is a fundamental mechanism for self-supervision via leveraging multimodality. Many practical applications, e.g., deploying a household robot, involve devices that are equipped with a rich set of sensors that enable multimodal sensing in their test environment. This presents an opportunity to apply cross-modal learning to the multimodal data sensed by these devices to learn representations. Findings in developmental psychology also suggest that biological agents leverage it to build an effective representation of their surroundings. To study this, we propose a controlled setup, where we restrict a user device to just a given test environment. It results in a specialization setup where we attempt to develop a performant model for this specific test environment. Under this setup, we develop Test-Space Training (TST), which performs multimodal data collection in the test environment and performs self-supervised pre-training on it. We evaluate these models on various downstream tasks in the same environment. Under this setup, we find various interesting insights, such as collecting rich multimodal data only from the test environment and leveraging cross-modal learning, we can achieve competitive results with generalist models (e.g., DINOv2 and CLIP) pre-trained on large-scale internet datasets. This enables an alternative scenario where the need for external Internet-scale datasets for pre-training models is reduced. We also present a set of analyses and ablations that raise intriguing points on substituting data with (multi)modality, and how varying pre-training data enables a tradeoff between a model's abilities to specialise to a test environment, and generalize to held-out spaces.",
+      "url": "http://arxiv.org/abs/2607.14721v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.14721v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "agent",
+        "agents",
+        "rag",
+        "multimodal",
+        "ai",
+        "self-supervised",
+        "environment"
+      ],
+      "score": 67.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.15163v1",
+      "source": "arxiv",
+      "title": "Scaling Behavior Foundation Model for Humanoid Robots",
+      "authors": [
+        "Weishuai Zeng",
+        "Kangning Yin",
+        "Xiaojie Niu",
+        "Shunlin Lu",
+        "Weixiang Zhong",
+        "Jiahe Chen",
+        "Feiyu Jia",
+        "Xiao Chen",
+        "Zirui Wang",
+        "Furui Xu",
+        "Ming Zhou",
+        "Kailin Li",
+        "Weinan Zhang",
+        "He Wang",
+        "Li Yi",
+        "Dahua Lin",
+        "Jiangmiao Pang",
+        "Jingbo Wang"
+      ],
+      "published": "2026-07-16T16:08:27Z",
+      "updated": "2026-07-16T16:08:27Z",
+      "abstract": "Humanoid control requires natural whole-body coordination, precise real-time responses to control signals, and robust generalization across diverse environmental contexts, making it a cornerstone for generalist embodied agents. Behavior Foundation Models (BFMs) have recently emerged as a promising solution to address these challenges by leveraging large-scale behavioral data to achieve superior expressiveness, versatility and generalization. However, despite growing interest in scaling BFMs to further improve their capabilities, it remains unclear how key factors, including the learning paradigm, behavioral data and model architecture should be coordinated to enable effective scaling. In this work, we revisit the scaling recipe for BFMs and demonstrate that substantial performance gains can be achieved through the coordination of three core components: 1) the learning paradigm of motion tracking that reformulates diverse humanoid control problems as the reproduction of integrated whole-body behaviors in the global frame; 2) the strategic synergy between on-policy rollout quantity and reference motion diversity; and 3) the expressive and scalable model architecture termed Humanoid Transformer that facilitates the natural emergence of structured behavioral representations. Through extensive experiments in both simulation and real-world deployment, we demonstrate that our approach yields significant improvements in control fidelity and task generalization, reducing Mean Per-Keypoint Position Error (MPKPE) on the test set by over 10% in local mode and 82% in global mode compared with existing humanoid controllers. These results establish BFM as a principled and effective foundation for scalable and general-purpose humanoid control.",
+      "url": "http://arxiv.org/abs/2607.15163v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.15163v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "foundation model",
+        "foundation models",
+        "agent",
+        "agents",
+        "rag",
+        "ai",
+        "transformer",
+        "environmental",
+        "environment"
+      ],
+      "score": 66.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.14777v1",
+      "source": "arxiv",
+      "title": "SEED: Self-Evolving On-Policy Distillation for Agentic Reinforcement Learning",
+      "authors": [
+        "Jinyang Wu",
+        "Shuo Yang",
+        "Zhengxi Lu",
+        "Fan Zhang",
+        "Yuhao Shen",
+        "Lang Feng",
+        "Haoran Luo",
+        "Zheng Lian",
+        "Shuai Zhang",
+        "Zhengqi Wen",
+        "Jianhua Tao"
+      ],
+      "published": "2026-07-16T09:57:18Z",
+      "updated": "2026-07-16T09:57:18Z",
+      "abstract": "Large language models are increasingly trained as interactive agents for long-horizon tasks involving multi-turn interaction, tool use, and environment feedback. Outcome-based reinforcement learning (RL) provides a practical optimization paradigm, but its sparse trajectory-level rewards offer limited guidance on intermediate decisions, leaving a supervision gap between episode-level outcomes and token-level policy learning. We propose SEED (SElf-Evolving On-Policy Distillation), a self-evolving framework that converts completed on-policy trajectories into training-time hindsight skills and distills their behavioral effect back into the policy model. SEED first fine-tunes the policy to analyze completed trajectories and generate natural-language skills that capture reusable workflows, decisive observations, or failure-avoidance rules. During RL, the current policy both collects trajectories and serves as the analyzer that extracts hindsight skills from them. Policy updates therefore improve subsequent decision making and skill analysis together, allowing hindsight supervision to evolve with the policy. SEED then re-scores the sampled actions under ordinary and skill-augmented contexts, converting the skill-induced probability shift into a dense token-level on-policy distillation signal. This signal is jointly optimized with outcome-based RL, keeping the auxiliary supervision aligned with the current trajectory distribution. Extensive experiments on text-based and vision-based agentic tasks show that SEED consistently improves performance and sample efficiency, exhibiting robust generalization to unseen scenarios. Our code is available at https://github.com/jinyangwu/SEED.",
+      "url": "http://arxiv.org/abs/2607.14777v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.14777v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "tool use",
+        "ai",
+        "environment"
+      ],
+      "score": 66.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aei9741",
+      "source": "science",
+      "title": "Lymph nodes now optional",
+      "authors": [
+        "William K. Decker"
+      ],
+      "published": "2026-07-16",
+      "updated": "2026-07-16",
+      "abstract": "A subset of dendritic cells orchestrates the formation of tertiary lymphoid structures in tumor tissues",
+      "url": "https://doi.org/10.1126/science.aei9741",
+      "pdf_url": "",
+      "doi": "10.1126/science.aei9741",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6808",
+        "page": "242-243",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aei9741"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeh9302",
+      "source": "science",
+      "title": "Parallel independent voltage computing along dendrites of CA3 pyramidal neurons",
+      "authors": [
+        "Asako Noguchi",
+        "Satoshi Terada",
+        "George N. Zakka",
+        "Cliodhna O’Toole",
+        "Luke Reynolds",
+        "Michelle Ann Land",
+        "Balázs J. Rózsa",
+        "François St-Pierre",
+        "Attila Losonczy"
+      ],
+      "published": "2026-07-16",
+      "updated": "2026-07-16",
+      "abstract": "Dendritic computation contributes to information processing in cortical circuits. Hippocampal CA3 plays a central role in navigation, but how the dendrites of CA3 pyramidal neurons process information in vivo remains largely unknown. Using voltage imaging across dendrites and somata of CA3 pyramidal neurons during virtual reality–guided navigation in mice, we found that the dendritic arbor comprises multiple independent computational units that can dynamically couple to or dissociate from somatic activity, depending on behavioral conditions. Dendritic activity shapes subcellular representations of space, reward, and context through conditional coupling to the somatic output. Furthermore, spatially cotuned dendrites retain their coordination during sharp-wave ripples. These findings demonstrate that past, present, and future representations coexist within the dendritic arbor of CA3 pyramidal neurons, collectively shaping behaviorally relevant neuronal coding.",
+      "url": "https://doi.org/10.1126/science.aeh9302",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeh9302",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6808",
+        "page": "306-312",
+        "reference_count": 50,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeh9302"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeg6638",
+      "source": "science",
+      "title": "Robust single-electron memory with quantum states manipulation",
+      "authors": [
+        "Chunsen Liu",
+        "Yutong Xiang",
+        "Chong Wang",
+        "Peng Zhou"
+      ],
+      "published": "2026-07-16",
+      "updated": "2026-07-16",
+      "abstract": "The ultimate goal of information storage is single-electron memory. Quantum mechanics predicts that two distinguishable quantum states can be realized by confining a single electron within an ultrasmall space. However, scaling down such devices paradoxically amplifies fringe capacitance effects, which hinders the experimental observation of single-electron memory. We report a two-dimensional single-electron memory device based on a coplanar drain-channel-source structure that suppressed fringe capacitance, exhibiting a nonvolatile threshold voltage shift of 0.5 volts after the change of a single electron. Two intriguing quantum behaviors have also been verified regarding the programming voltage. Additionally, we have predicted and observed a distinctive quantum memory effect: A quantum state is cut off by density of states scissors.",
+      "url": "https://doi.org/10.1126/science.aeg6638",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeg6638",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6808",
+        "page": "294-299",
+        "reference_count": 47,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeg6638"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10780-5",
+      "source": "nature",
+      "title": "A Bayesian framework for longitudinal EHR and genetic discovery",
+      "authors": [
+        "Sarah M. Urbut",
+        "Yi Ding",
+        "Tetsushi Nakao",
+        "Satoshi Koyama",
+        "Anika Misra",
+        "Xilin Jiang",
+        "Achyutha Harish",
+        "Leslie Gaffney",
+        "Whitney E. Hornsby",
+        "Jordan W. Smoller",
+        "Alexander Gusev",
+        "Pradeep Natarajan",
+        "Giovanni Parmigiani"
+      ],
+      "published": "2026-07-15",
+      "updated": "2026-07-15",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10780-5",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10780-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 56,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10780-5"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10655-9",
+      "source": "nature",
+      "title": "Scalable quasi-pure MOF membranes for energy-efficient gas separations",
+      "authors": [
+        "Shizheng Song",
+        "Dong Fan",
+        "Xilin Jia",
+        "Zhe Zhou",
+        "Alejandro Diaz-Marquez",
+        "Zhihao Liu",
+        "Lingzhi Huang",
+        "Shuo Liu",
+        "He Wen",
+        "Yanjie Wang",
+        "Dahua Yao",
+        "Guillaume Maurin",
+        "Yu Han",
+        "Haihui Wang",
+        "Mohamed Eddaoudi",
+        "Sheng Zhou"
+      ],
+      "published": "2026-07-15",
+      "updated": "2026-07-15",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10655-9",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10655-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 57,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10655-9"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10782-3",
+      "source": "nature",
+      "title": "Quantum statistical plasmonic metacrystals",
+      "authors": [
+        "Chenglong You",
+        "Riley B. Dawkins",
+        "Jannatul Ferdous",
+        "Mohammed Mehedi Hasan",
+        "Aadi Singh",
+        "Ziang Zhuang",
+        "Addison Wilberg",
+        "Ian Baum",
+        "Benjamin Bertoni",
+        "Mingyuan Hong",
+        "Omar S. Magaña-Loaiza"
+      ],
+      "published": "2026-07-15",
+      "updated": "2026-07-15",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10782-3",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10782-3",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 48,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10782-3"
+      }
+    }
+  ]
+}
