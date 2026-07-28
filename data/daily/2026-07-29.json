@@ -1,0 +1,622 @@
+{
+  "date": "2026-07-29",
+  "stats": {
+    "fetched": 461,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 56,
+      "science": 105
+    },
+    "deduped": 461,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 56,
+      "science": 105
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 263,
+    "keyword_filtered_by_source": {
+      "arxiv": 263
+    },
+    "keyword_optional_included": 138,
+    "keyword_optional_included_by_source": {
+      "nature": 47,
+      "science": 91
+    },
+    "ranked": 198,
+    "ranked_by_source": {
+      "arxiv": 37,
+      "nature": 56,
+      "science": 105
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 131,
+    "selected_by_source": {
+      "arxiv": 4,
+      "nature": 3,
+      "science": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文里，最值得优先阅读的主线集中在“面向真实任务链条的LLM/agent评测与训练”上，且都明显从传统单轮问答转向了有环境、有状态变化、有多步依赖、可自动评估的代理问题。第一优先级建议放在两篇benchmark/agent论文：SIREN与E-Bench。SIREN把极端天气预警从零散子任务推进到warning-to-action的端到端流程，重点价值在于它试图贴近真实业务链，并引入“历史案例经验”作为agent决策锚点；如果摘要所述成立，它不只是做天气问答，而是在检验LLM能否沿着跨步骤依赖关系完成预警程序。E-Bench则把多步工具使用能力放到真实产品风格、可状态验证的环境中，优势是评测定义更清晰，数据库状态差分提供了较强的确定性打分基础。这两篇合起来，代表了agent研究中一个很明确的转向：不是继续堆开放式主观评测，而是尽量构造可执行环境、信息缺口和工具缺口，用任务完成与环境变化来衡量能力。\n\n第二条高优先主线是“如何为开放式LLM能力构造可验证奖励”。RLSVR提出通过任务变换，把开放式任务嵌入可自验证的多智能体环境，用环境规则而非人类偏好模型或LLM裁判来提供奖励。这一点与前两篇benchmark论文高度呼应：三者共同反映出当前LLM研究正在寻找比主观打分、静态答案比对更稳健的训练与评测闭环。若你关注agent训练而非仅评测，这篇值得跟进，因为它试图回答一个更基础的问题：开放任务能否通过环境化改写变得“可强化学习”。\n\n第三条主线是“RAG/本地模型在高风险知识管理场景中的工程化约束”。监管知识管理那篇并不追求通用智能体炫技，而是聚焦内网、本地部署、低算力、可溯源、可审计这些现实约束。它的重要性在于提醒我们，很多高风险场景真正需要的不是更会写的模型，而是更可控的知识访问和出处追踪。如果你的工作更偏应用落地，这篇的阅读优先级甚至可高于部分agent论文，因为它直接对应“如何在没有高端GPU、又必须审计”的组织环境中部署LLM能力。\n\n其余Nature/Science条目里，多数与今天的AI主线关联较弱，且几篇只有题名级或极简摘要信息，适合做领域扫描而非深入解读。需要特别区分的是，Nature那则Editorial Expression of Concern不是新研究成果，而是文献可靠性预警，阅读价值主要在科研判断与引用风险管理。另几篇生命科学、化学、成像和病毒学论文从题名看各自重要，但当前给定信息不足，不宜在每日总览里做过强结论。\n\n如果按今日阅读顺序排序：面向LLM/agent研究者，建议先读SIREN，再读E-Bench，再读RLSVR，随后读监管知识管理RAG论文；面向AI落地和治理研究者，可把监管知识管理RAG提到前二；面向综合科研情报跟踪者，则补充留意Nature的关注声明，因为它影响的是既有结论的可信度，而不是新增知识点。总体看，今天最清晰的趋势不是“模型更大”，而是“把模型放回真实流程、真实环境、真实约束中重新定义能力”。",
+    "themes": [
+      "从静态问答转向可执行环境中的端到端代理评测，强调状态变化、任务链依赖与确定性评分",
+      "用历史案例检索、经验grounding或外部知识接入来弥补LLM在高风险决策流程中的事实与程序缺口",
+      "通过任务变换把开放式生成问题改写为可自验证环境，为agent/LLM强化学习寻找无需人工裁判的奖励来源",
+      "高风险组织场景中的LLM部署开始突出本地化、低算力、可追溯和可审计，而非单纯追求通用生成能力",
+      "科研阅读中需并行关注“新结果”和“结果可靠性预警”：编辑关注声明会直接影响文献引用与机制接受程度"
+    ],
+    "research_ideas": [
+      {
+        "idea": "做一个跨基准的“环境可验证性”对照综述，比较SIREN-Bench、E-Bench与RLSVR/SpyRL各自如何定义任务状态、信息缺口、工具缺口和自动奖励",
+        "why": "这三篇实际上在回答同一类核心问题：如何让agent能力评测或训练脱离主观裁判。把它们并列分析，有机会提炼出下一代agent benchmark/训练环境的共性设计原则",
+        "first_step": "先只基于摘要和公开页面整理一个对照表，列出任务类型、环境是否有状态、是否可自动评分、评分信号来自数据库差分/投票规则/流程结果中的哪一类，再决定是否深入读原文",
+        "risk": "目前信息主要来自摘要，细节可能不足；不同论文目标不完全一致，强行横比可能导致概念过度统一"
+      },
+      {
+        "idea": "复现一个最小版“经验锚定天气agent”原型，用公开极端天气案例和结构化气象证据做小样本检索增强问答",
+        "why": "SIREN最有新意的点似乎是把历史案例经验引入预警流程。即使不复现完整系统，也可以先验证‘相似案例检索是否显著改善预警解释与步骤一致性’这一更小问题",
+        "first_step": "收集10到20个公开极端天气事件案例，手工整理事件类型、证据、结论和行动建议字段，再构造少量测试问题，对比无检索与案例检索增强输出的差异",
+        "risk": "没有原始基准与流程定义时，容易把任务简化成普通RAG问答，无法真正验证端到端预警链能力"
+      },
+      {
+        "idea": "在本地低算力条件下做一个监管文本RAG小实验，比较‘纯本地LLM’与‘本地LLM+检索+引用’在事实一致性和可追溯性上的差异",
+        "why": "这篇监管知识管理论文的价值高度工程化，适合快速验证。对于很多团队而言，可审计性比模型上限更重要，且复现实验门槛相对较低",
+        "first_step": "选取一组公开法规或政策文件，构建一个最小检索库，设计10到20个需要条文定位和解释的问题，人工记录两种系统的答复是否给出可核查依据、是否出现编造",
+        "risk": "评估容易主观；若问题设计过于简单，RAG优势会被高估或低估"
+      },
+      {
+        "idea": "设计一个开放任务到自验证任务的微型转换案例，检验RLSVR思路是否能迁移到非游戏式任务",
+        "why": "RLSVR的真正研究价值不在具体SpyRL环境，而在‘任务变换’这一一般方法。若能找到一个更贴近现实工作的微型例子，就能测试其外延",
+        "first_step": "挑选一个原本难打分的开放任务，如多方协作文档总结或情报整合，尝试把它改写成带隐藏信息和可验结果的多代理环境，并先手工定义奖励规则",
+        "risk": "任务变换可能改变原任务本质；构造出的可验证目标可能只奖励策略性行为，而不真正提升开放式能力"
+      },
+      {
+        "idea": "围绕今日条目做一次‘文献可靠性分层’整理，把原始研究、评论/社论、编辑关注声明分开管理",
+        "why": "今天列表里既有AI研究论文，也有评论、新闻和编辑关注声明。若不区分证据层级，容易把不同类型文献混作同等研究证据，这对综述和引用管理有现实风险",
+        "first_step": "给每篇条目补一个证据类型标签：原始研究、benchmark/方法、评论/新闻、编辑声明，并记录当前摘要完整度与是否适合进入正式文献综述",
+        "risk": "这种整理不会直接产生新科学结果，更像研究流程改进；短期学术产出感较弱"
+      },
+      {
+        "idea": "检查今天AI论文中是否都存在‘从真实流程抽象为环境’的共通叙事，并评估这是否只是benchmark包装，还是确实引入了新的能力要求",
+        "why": "当前agent论文常强调‘真实世界’‘真实产品’‘业务流程’，但其中一部分可能只是换了场景名词。做一次批判性比较，有助于识别哪些工作真正增加了环境复杂度与评价可信度",
+        "first_step": "逐篇提取摘要中的环境要素：外部工具、隐藏信息、状态变化、长程依赖、自动评分、历史经验接入，然后标记哪些是实质性新增约束，哪些只是任务表述变化",
+        "risk": "由于缺少全文与实验细节，结论容易停留在框架层面，难以下到严格实证判断"
+      }
+    ],
+    "papers": {
+      "arxiv:2607.24588v1": {
+        "summary": "这篇论文围绕“极端天气端到端早期预警”这一具体任务，提出了一个基于大语言模型智能体的框架 SIREN，并构建了名为 SIREN-Bench 的基准来评测从单个预警环节到完整预警链条的自动化能力。根据摘要信息，作者关注的不只是单一气象科研任务，而是将异构天气证据、历史案例经验和多步骤预警流程整合到 warning-to-action 的连续过程里。",
+        "contribution": "核心贡献可能有两部分：一是提出 SIREN-Bench，这是一套包含 600 个问答样例、覆盖 19 个任务、涉及 4 个独立预警程序及端到端预警链条的综合评测基准；二是提出 SIREN，一个“经验锚定/经验驱动”的 LLM agent 框架，受专家依赖历史案例进行研判的工作方式启发，试图把异构气象证据整合、任务链式执行和经验检索结合起来，用于自动化极端天气预警。摘要还暗示其实验发现现有 weather agent framework 在该基准上存在明显能力缺口，因此 SIREN 的价值在于面向真实业务流程而非孤立子任务进行系统设计。",
+        "details": "从题名和摘要看，研究对象非常明确：不是一般天气问答，也不是单步预报，而是“极端天气早期预警”的端到端自动化流程。这里的关键科学/工程问题在于，现实预警工作并非单一预测模型输出即可完成，而是由若干相互依赖的环节构成，例如信息获取、风险识别、研判解释、预警生成、可能还有行动建议或 warning-to-action 的衔接。作者认为现有基于 LLM 的天气智能体工作多集中于孤立科学任务，难以覆盖业务链条中的跨步骤依赖，因此提出更贴近业务流程的评测和系统框架。\n\n方法线索方面，摘要给出的证据较具体。首先，SIREN-Bench 的规模是 600 个 QA 实例、19 个任务，覆盖 4 个独立 warning procedures 和一个 end-to-end warning chain。这说明作者将极端天气预警拆解为多个可评测任务，并且既考察局部能力，也考察跨任务串联能力。其次，SIREN 被描述为“experience-grounded”，灵感来自专家使用历史案例。这意味着系统很可能包含某种历史案例检索、相似事件匹配、经验知识注入或案例增强推理模块，而不是仅依赖通用 LLM 的零样本能力。再次，摘要提到“agentic execution environment integrating heterogeneous weather evidence”，说明它可能接入多源天气信息与工具环境，例如数值预报、雷达/卫星、站点观测、预警规则、历史个例文本或结构化记录等，并通过 agent 机制进行多步调用和整合。\n\n如果你的研究方向涉及 LLM4Science、智能体、AI for weather、风险治理或人机协同决策，这篇论文值得关注，因为它把“任务自动化”推进到“流程自动化”，而且强调经验 grounding，这一点在高风险领域很关键。相比纯问答或单模型分类，它更像是把预警业务工作流 formalize 成 agent benchmark 和 agent system。其潜在意义在于：一，给 weather agent 研究提供更像 operational setting 的评测对象；二，把历史案例作为专家经验载体引入 LLM agent 决策；三，探索从 forecast/warning 到 action 的链条自动化，这对防灾减灾应用更直接。\n\n但基于目前元数据，也有若干必须核对的信息。摘要被截断，很多关键点未知：第一，四个“individual warning procedures”具体是什么；第二，19 个任务如何定义，是生成、分类、排序还是工具调用；第三，600 个样本的来源、标注方式、天气类型覆盖面、地域范围和语言环境；第四，SIREN 中“experience-grounded”具体是 retrieval-augmented generation、case-based reasoning，还是带记忆的 agent；第五，评测指标是什么，是否涉及 factuality、时效性、可操作性、链路成功率或人工专家评分；第六，所谓“substantial capability gaps”具体体现在哪些任务上，与哪些 baseline 比较；第七，端到端预警是否真的包含 action recommendation，还是只到 warning text generation。阅读正文时应重点核对这些。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、weather、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何让大语言模型智能体不仅完成孤立的天气相关子任务，而是能沿着极端天气预警业务中的相互依赖步骤，完成从证据整合、风险研判到预警输出、乃至 warning-to-action 衔接的端到端早期预警；同时，如何用一个足够贴近业务流程的基准来衡量这种能力。",
+          "method": "从摘要推测，作者先构建了 SIREN-Bench 作为评测基础：600 条问答实例，覆盖 19 个任务、4 个独立预警程序和完整预警链。随后提出 SIREN 框架，其方法核心可能包括：1）一个可执行的 agent 环境，用于调用和整合异构天气证据；2）历史案例或经验库，用于相似事件检索与经验 grounding；3）围绕多步预警流程的任务编排与链式推理；4）在基准上与现有 weather agent framework 进行对比评测，以显示现有方法缺口并验证新框架效果。",
+          "strengths": "最值得关注的亮点有三点。第一，问题设定贴近真实预警工作流，不局限于单点任务，强调链式依赖和端到端流程。第二，SIREN-Bench 的任务覆盖度较高，至少从摘要看，已经超出常见 weather QA/forecast 单任务评测，对社区可能具有基准价值。第三，SIREN 采用“基于历史案例经验”的思路，这与高风险领域专家决策习惯一致，可能比纯通用知识驱动的 LLM 更适合处理极端事件预警中的罕见情形、解释需求和决策一致性问题。",
+          "weaknesses": "基于当前题录和截断摘要，局限与风险主要在信息缺失。尚不清楚 benchmark 的样本是否足够代表真实业务复杂度，600 条样本对 19 个任务而言平均到每类可能并不多。也不清楚所谓端到端链条是否覆盖真实时序约束、跨源数据质量问题和人类审签环节。经验 grounding 虽有吸引力，但若历史案例库存在区域偏差、事件分布不均或检索失准，可能导致错误类比。另一个需要警惕的问题是，LLM agent 在高风险预警场景中的幻觉、置信度校准和责任归属，在摘要中尚未体现如何处理。",
+          "next_step": "最小可执行动作：1）先获取全文并补读完整摘要，确认 4 个预警程序和 19 个任务的具体定义；2）优先查看 benchmark 构建部分，记录数据来源、天气类型、标注流程与评价指标；3）查看系统框架图，确认 SIREN 的经验 grounding 是检索式、案例推理式还是长期记忆式；4）检查对比基线和分任务结果，特别关注哪些环节最难、端到端相对单任务下降多少；5）若你做相关研究，可立即建立一个对照表：任务类型、输入证据源、输出形式、评估指标、是否需要多工具调用、是否用历史案例，以便判断其方法能否迁移到你的场景。"
+        }
+      },
+      "arxiv:2607.24352v1": {
+        "summary": "这篇论文围绕“监管知识管理”这一具体任务，考察将本地部署的大语言模型与RAG结合后，是否能把原本独立的生成模型转变为具备更高认知可靠性的认知计算架构组件。摘要显示其重点场景是对法律法规文本进行持续分析、解释与溯源，且部署条件限定在无高端GPU的本地/内网环境。",
+        "contribution": "核心贡献在于提出并初步验证一种面向监管管理流程的混合认知架构：由本地LLM承担语义理解与解释，由RAG层连接外部知识库以提供受控检索、上下文化和信息来源可追踪性。论文还给出了较明确的工程落地线索，包括Ollama、LM Studio、本地波兰语模型Bielik与PLLuM、以及消费级硬件上的运行可行性；从摘要表述看，其主要结论是RAG增强改善了事实一致性、领域适配性与可解释/可审计性。",
+        "details": "仅依据题名、摘要与元数据，这项工作研究的不是通用聊天性能，而是一个很具体的企业/机构场景：监管知识管理，尤其是需要持续解读法律行为、规范更新和合规要求的流程。作者试图回答的关键问题是：如果把LLM放到严格约束的本地基础设施中，并通过RAG接入外部法规知识库，是否能让其从“会生成文本的模型”转变成“可作为认知计算基础设施部件使用的系统”，并在认识论可靠性上更可信。\n\n从方法线索看，系统架构应是典型但强调治理性的RAG流水线：本地部署的LLM负责语义解析、问答或法规解释，RAG层负责从知识仓库中检索相关法规或条款，将检索结果拼接为上下文，再由模型生成回答，同时保留来源引用与溯源路径。摘要中特别强调“on-premises”“without high-end GPU accelerators”，说明论文的重要卖点之一是低门槛、数据不出域、适合受监管组织内网部署。执行环境写到Ollama和LM Studio，模型写到Bielik和PLLuM，说明作者可能比较关注波兰语法规文本处理和中小规模本地模型的实用性，而不是追求SOTA大模型能力。\n\n证据线索方面，摘要称“implementation was validated”并指出RAG显著提升了事实一致性、领域相关性以及来源可追踪性，但当前提供的信息不足以判断：1）是否有定量评测；2）评测任务到底是法规问答、条款定位、摘要、变更检测还是解释生成；3）知识库规模、更新机制和检索算法是什么；4）“epistemic reliability”如何操作化度量；5）Bielik与PLLuM之间是否做了系统对比。换言之，论文看起来更接近“面向监管场景的架构验证与工程实证”，而不是纯算法创新论文。\n\n如果你的研究方向涉及RAG、领域知识管理、法务AI、私有化部署或低资源语言模型，这篇论文的相关性较高，因为它提供了一个很具体的应用组合：本地LLM + 受控检索 + 法规知识库 + 可追溯输出 + 消费级硬件部署。尤其值得注意的是，它把RAG的价值表述为提升“认知可靠性”和“基础设施组件化”，这比常见的“提高问答准确率”更偏系统论和治理框架。\n\n需要重点核对的信息包括：实验数据是否真实来自法规语料；是否有人工标注或专家评审；RAG检索单元是整篇法律文档、章节还是条款级；检索使用向量索引、BM25还是混合检索；回答是否强制引用出处；本地硬件的CPU/GPU/内存配置；延迟与吞吐是否满足实际监管流程；以及对幻觉、过时法规、法规冲突和多文档推理等高风险问题是否有专门分析。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：在监管知识管理这一高风险任务中，能否通过把本地LLM与RAG结合，使系统不仅能生成语言，还能稳定地完成法律法规的检索、解释、上下文化与来源追踪，从而提升事实可靠性并适合作为认知计算架构中的实际组件。更细一点说，它关注的是受监管组织在内网、低算力条件下，如何让模型参与持续性的法规分析与合规支持。",
+          "method": "可能的方法是构建一个本地化RAG系统：使用Ollama或LM Studio作为模型运行环境，调用Bielik和PLLuM这类波兰语LLM；外接法规或政策知识库，对法律文本进行索引；用户提出合规或法规解释类问题后，系统先检索相关条款/文档，再把检索片段与问题一并输入模型生成回答，并附带来源。验证方式可能包括若干监管/法律场景示例、人工对回答事实性与相关性的评估、以及对有无RAG时输出质量的对比。由于摘要未展开，是否使用向量检索、混合检索、重排序、引用约束提示词或模板化输出，均需进一步核对。",
+          "strengths": "亮点一是应用对象非常明确，不是泛泛讨论RAG，而是锁定法规知识管理与法律文本解释。亮点二是部署约束真实：本地、内网、无高端GPU，更接近机构落地环境。亮点三是强调来源可追踪性，这对监管和法律任务尤为关键。亮点四是选用了波兰语模型Bielik和PLLuM，说明工作可能覆盖英语以外的本地语言法规处理。亮点五是从“认知计算架构组件”的角度定义LLM+RAG，可能对系统架构、治理和可信AI讨论有参考价值。",
+          "weaknesses": "局限主要来自当前信息不足。首先，摘要没有给出明确评测集、样本规模、评价指标和统计结果，因此“显著改善”是否有严格证据尚不清楚。其次，论文可能更偏工程集成而非算法创新，若关注检索/生成新方法，贡献可能有限。再次，监管知识管理高度依赖法规时效性、版本控制和冲突消解，但摘要未说明如何处理法规更新、废止条款或多来源矛盾。另一个风险是本地小模型在复杂法律推理、多跳检索和长文档理解上的能力边界可能较强。最后，认识论可靠性这一概念如果没有清晰可操作定义，容易停留在概念性表述。",
+          "next_step": "最小可执行动作：第一，拿到全文后先看系统架构图和实验设置表，确认知识库类型、检索策略、硬件配置、任务定义。第二，重点查有无“无RAG vs 有RAG”“Bielik vs PLLuM”“不同运行环境”的对照。第三，记录所有评价维度是否包含事实一致性、领域相关性、引用准确率和延迟。第四，如果你做相关研究，可直接复现一个最小原型：用本地模型+法规文档库做条款级检索问答，并测试是否能稳定输出来源。第五，特别核对论文是否提供失败案例，例如检索错条款、引用不完整、对过时法规给出错误解释等。"
+        }
+      },
+      "arxiv:2607.23722v1": {
+        "summary": "这篇论文提出 E-Bench，一个用于评测多步工具使用智能体的合成基准，任务集中在 Honor of Kings、QQ Music 和 Tencent Meeting 三类真实产品场景中的状态变更操作。基准包含 323 个任务，强调智能体需要先发现隐藏信息、再组合多次工具调用，最终通过数据库状态差分进行确定性评分。",
+        "contribution": "从摘要看，核心贡献包括：提出面向“多步工具使用”而非单次 API 调用的基准定义；构建了一个环境合成与任务合成解耦的基准生成框架；在三个产品域中提供 323 个可控、可扩展、可确定性评测的状态变化任务；并用 11 个前沿大模型进行基准测试，以展示多步工具使用仍然具有明显挑战。",
+        "details": "研究对象非常具体：不是通用对话能力，而是 LLM 作为 agent 在有状态环境中跨多步完成任务的能力，尤其是在产品型系统里先收集未显式给出的信息、再发起多次工具调用、最后提交状态修改。摘要给出的三个场景分别是 Honor of Kings、QQ Music、Tencent Meeting，这说明任务并非抽象 toy API，而是模拟真实软件产品中的结构化操作流。方法线索也比较清楚：作者将“环境合成”和“任务合成”分离。环境侧用 graph-guided database filling 构建可复用、无孤儿记录的产品数据库环境，意味着他们关心数据库实体关系完整性和状态转移合法性；任务侧用 generator-solver asymmetry 设计任务，使任务天然包含 information gap 和 tool gap，也就是智能体不能直接从题面拿到全部关键信息，且不能靠一次工具调用完成，必须主动探索并组合工具链。评测侧采用数据库状态 diff 来做确定性打分，这比依赖开放式文本匹配更适合状态修改任务，也更利于可重复比较。证据线索主要来自摘要中的 benchmark 设定和实验描述：11 个 cutting-edge LLM 被测试，且结论指向“多步工具使用仍然……”说明当前强模型在这种基准上依然存在显著失败空间，不过摘要被截断，具体是失败在长轨迹规划、信息发现、工具组合，还是状态提交鲁棒性，需要看正文。与科研工作者的关系在于：如果你关注 agent benchmark、tool-use、workflow automation、stateful interaction、synthetic environment generation 或 deterministic evaluation，这篇工作提供了一个较成体系的基准设计样例。尤其值得核对的信息包括：323 个任务如何分布在三域上；平均轨迹长度、工具数、实体数、隐藏信息比例等难度统计；所谓 orphan-free environment 的形式化定义；generator-solver asymmetry 的具体实现；11 个模型的评测协议是否统一使用相同工具描述、上下文预算和推理回合；以及与已有工具调用基准相比，E-Bench 的新增难点究竟主要来自状态性、信息缺口还是工具缺口。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、tool use、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：如何系统评测 LLM 智能体在真实产品风格、有状态、需多步交互的环境中完成任务的能力。现有基准往往偏向单次 API、短轨迹或难以规模化控制的环境，因此不足以反映智能体在“先找信息、再串联工具、最终改变系统状态”这类真实工作流中的能力差异。",
+          "method": "从摘要推测，方法分为三层。第一层是环境构建：在三个产品域内以图结构约束数据库填充，生成关系完整、可复用且无孤立实体的状态环境。第二层是任务构建：通过 generator-solver asymmetry 生成任务，使出题器掌握比求解器更多的环境信息，从而人为制造 information gap；同时限制单步完成路径，制造 tool gap，迫使 agent 进行多工具组合。第三层是评测：让模型在这些环境中执行状态改变任务，并以执行前后的数据库状态差分作为自动、确定性的正确性判据。实验部分应当是对 11 个大模型做统一 benchmark。",
+          "strengths": "亮点之一是任务目标具体且可验证，聚焦数据库状态改变而不是模糊文本回答。亮点之二是环境合成与任务合成解耦，这种设计有利于分别控制环境复杂度与任务规模。亮点之三是使用产品域场景而非纯玩具环境，使 Honor of Kings、QQ Music、Tencent Meeting 三类任务更接近真实软件代理工作流。亮点之四是确定性评分机制，数据库 diff 相比人工标注或语义匹配更稳定。亮点之五是明确引入 information gap 与 tool gap，这比只考察“会不会调 API”更接近真实 agent 的信息搜集与规划难题。",
+          "weaknesses": "基于题录与摘要，需要警惕几个边界。第一，基准是 fully synthetic，虽然场景名称来自真实产品，但环境与任务是否足够贴近真实业务分布仍需核对。第二，只有 323 个任务，规模相较部分大基准不算大，是否足以支撑细粒度统计需要看任务难度分布。第三，摘要未给出与已有基准的直接对比数字，也未说明模型失败模式。第四，所谓 generator-solver asymmetry 和图引导数据库填充如果规则过强，可能让任务结构带有模板性。第五，三个域都来自腾讯生态，领域多样性仍有限，外推到更广泛企业软件或开放网络工具时需谨慎。",
+          "next_step": "最小可执行动作：先看论文中的任务示例、环境 schema 图和评分定义，确认一个任务到底需要多少步、哪些信息是隐藏的、数据库 diff 如何判定成功；再查 323 个任务在三域中的分布、平均工具调用次数和各模型得分表；最后对照你熟悉的 agent benchmark，记录 E-Bench 新增的难点究竟来自状态性、信息发现还是工具组合。"
+        }
+      },
+      "arxiv:2607.23802v1": {
+        "summary": "这篇论文提出RLSVR（Reinforcement Learning with Self-Verifiable Rewards），试图把原本难以自动评估的开放式LLM任务，通过任务变换转成可验证的代理环境，从而在无需人类偏好模型或LLM裁判的情况下进行强化学习。作者用受“谁是卧底”启发的多智能体自博弈环境SpyRL作为实例，让带有非对称信息的代理完成同一目标任务并互相投票识别“spy”，利用预先已知的身份与交互结果自动生成奖励。",
+        "contribution": "核心贡献很可能有两层：一是提出一种从RLVR扩展到开放式任务的新训练范式RLSVR，其关键思想不是直接评估开放式答案质量，而是构造一个可自验证的代理任务环境来间接产生奖励；二是给出SpyRL这一具体多智能体自博弈实例，把开放式能力训练嵌入带隐藏身份、协作与博弈并存的交互过程，使奖励由环境规则和投票结果自动决定，规避人工标注、奖励模型和LLM judge带来的偏差、能力瓶颈与推理成本。",
+        "details": "从摘要看，研究对象是开放式任务上的大语言模型强化学习，而不是数学、代码这类天然可判定任务。作者的切入点很具体：现有RLVR依赖“可验证奖励”，所以在数学与编程中能大规模优化，但在开放式任务里，答案往往没有唯一真值，只能依赖人类偏好、奖励模型或LLM评审，这会带来评价偏差、评审能力上限以及额外推理成本。为此，论文借鉴自监督学习中的pretext task思想，不直接给开放式任务打分，而是先把任务变成一个内部规则明确、结果可自动验真的代理环境。摘要里给出的实例SpyRL具有较清晰的结构：多代理、自博弈、信息非对称、所有代理执行同一目标任务、最后通过投票找出指定spy；由于spy身份预先设定，环境交互结果天然可转成奖励。这里可推测奖励不一定来自单轮输出文本质量本身，而更可能来自“是否成功完成任务且未暴露身份/是否成功识别spy/团队与个体博弈结果”等环境级信号。\n\n从证据线索看，论文应当会主张：开放式能力可以通过这种“任务变换”获得间接但可扩展的训练信号。关键词里既有agent、environment、self-supervised，也有LLM和mathematical reasoning，说明作者可能希望把这种机制视为对RLVR的泛化，而不局限于某个单一聊天任务。SpyRL的设计特别适合训练几类能力：在共享目标下根据私有信息进行表达控制、从他人发言中做身份推断、兼顾协作与欺骗、在长期交互中进行策略优化。这类能力与开放式对话、社交推理、多轮规划、角色扮演一致性等方向相关，因此如果你的关注点是“如何在缺少可靠标注器时训练开放式LLM能力”，这篇论文值得重点看。\n\n但目前仅依据题名与摘要，还需要核对很多关键问题。首先，任务变换是否真的保留了原开放式任务所需能力，还是只学会适应特定游戏机制，这是最核心的外部效度问题。其次，SpyRL中的“same target task”具体指哪些任务类型：是开放式问答、创作、讨论、规划，还是一个更抽象的文本生成目标？再次，奖励函数怎样分解到个体agent、序列级还是回合级，是否使用组队奖励、反事实信用分配或过程奖励？还要看训练对象是单一LLM共享参数扮演不同角色，还是多个模型共同训练；是否采用GRPO/PPO类RL算法；以及实验上是否与RLHF、RLAIF、judge-based RL或直接SFT做了系统比较。若论文宣称提升开放式任务表现，则必须检查评估集、人工评测设置、跨任务泛化以及是否出现“只会玩SpyRL、不一定会做真实任务”的环境过拟合现象。总之，这篇工作概念上很新，重点不在发明另一个judge，而在于重新设计任务结构，使奖励从环境中自发涌现；真正价值取决于这种结构化代理任务能否稳定迁移到真实开放式LLM能力。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai、self-supervised、environment、mathematical reasoning。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：如何把RLVR从数学、代码等“答案可确定验证”的封闭任务，推广到没有唯一标准答案的开放式LLM任务，同时避免依赖人类偏好标注、奖励模型或LLM裁判。更细一点说，它要回答的是：能否通过任务变换，把开放式任务嵌入一个可自动验真的交互环境，从环境规则而非外部裁判中获得奖励信号。",
+          "method": "可能的方法路径是提出RLSVR框架：先为开放式任务构造一个self-verifiable的代理环境，再在该环境中对LLM做强化学习。具体实例SpyRL应是一个多智能体自博弈系统，代理拥有非对称信息，其中一名或多名代理被指定为spy；所有代理围绕同一目标任务进行生成与交互，随后进行身份投票。奖励可能由预先设定的spy身份、任务完成情况、投票结果和交互规则自动计算。训练上大概率采用现有LLM RL算法对策略进行更新，并与传统judge-based或preference-based方法比较。实验数据可能不是固定标注数据集，而是在线生成的多轮交互轨迹；评估则可能同时包含环境内胜率/识别率和环境外开放式任务表现。",
+          "strengths": "最值得关注的亮点是“通过任务结构设计来制造可验证奖励”，这比单纯换一个更强的judge更根本。SpyRL的多智能体、非对称信息、自博弈设置，使奖励依赖真实交互后果而非单点文本评分，理论上更接近策略学习。它还有潜在工程价值：如果奖励可由环境自动产生，就能减少人工偏好数据和LLM评审成本，并降低评审偏差。对于开放式任务训练，这是一个很有启发性的方向，因为它把自监督学习中的pretext-task思想迁移到了RL对齐/能力提升场景。",
+          "weaknesses": "基于摘要需要警惕几类局限。第一，代理环境的奖励是否与真实开放式能力充分对齐仍未知，存在“在游戏里优化成功，但对真实任务迁移有限”的风险。第二，SpyRL这类身份博弈环境可能天然偏向社交推理、欺骗检测、表达控制，不一定覆盖一般开放式生成能力。第三，多智能体在线自博弈的训练成本、稳定性、信用分配与模式坍塌问题没有在摘要中体现。第四，若评估仍依赖人工或LLM judge来证明环境外收益，则“摆脱judge”的论点需要更细致区分训练阶段与评估阶段。第五，摘要截断，尚看不到具体实验规模、基座模型、对照方法和显著结果，因此不能预设其效果强弱。",
+          "next_step": "最小可执行动作：第一，优先查看论文中RLSVR和SpyRL的正式定义、奖励函数和训练流程图，确认“任务变换”到底如何实现。第二，定位实验表，检查环境内指标与环境外开放式任务指标是否同时提升，以及是否有对RLHF/RLAIF/LLM-judge RL的直接对照。第三，记录三类关键问题：奖励是否可泛化、是否存在环境过拟合、训练成本是否可接受。第四，如果做复现，可先实现一个简化版多代理“谁是卧底”文本环境，用共享参数模型和自动投票奖励跑小规模实验，观察是否能学出稳定的隐藏/识别策略。第五，若你的研究方向是agent或开放式对齐，可进一步比较该框架与程序化环境奖励、AI feedback、自博弈训练之间的关系。"
+        }
+      },
+      "doi:10.1038/s41586-026-10931-8": {
+        "summary": "这篇Nature论文从题名判断，研究对象是有机硼环中发生的“纠缠式双位点迁移”现象，核心任务可能是揭示一种经由boracycle rearrangement（硼杂环重排）实现双中心协同迁移的新反应模式。由于提供记录中摘要为空，目前只能基于题名和期刊元数据做有限解读，不能确认具体底物范围、机理证据或合成用途。",
+        "contribution": "从题名推测，论文的核心贡献可能是提出并证实一种不同于传统单次1,2-迁移或独立连续迁移的硼参与重排机制，即两个迁移位点在同一重排事件中表现出耦合/纠缠关系；这类工作若成立，通常会同时贡献新的有机硼反应机理图景与新的骨架编辑策略。但摘要缺失，具体贡献强度、适用体系和证据等级均需核对。",
+        "details": "已知信息只有题名、作者、期刊和DOI，缺少摘要，因此不能判断这项工作究竟是偏反应发现、机理解析、理论计算，还是面向复杂分子合成的方法学开发。题名中的关键词“Entangled dual-site migration”提示迁移不是简单串联步骤，而可能涉及两个原子/基团迁移事件的协同关联；“via boracycle rearrangement”则明确把硼杂环重排作为关键中间过程或决定步骤，说明研究对象大概率是有机硼中间体、硼杂环结构或硼促进的重排反应。若按当前有机硼化学的一般研究路径推测，作者可能通过底物设计生成特定boracycle中间体，再借助产物分布、同位素标记、动力学实验、立体化学结果以及DFT计算来论证双位点迁移的耦合特征，并与经典boronate rearrangement、1,2-metallate shift或其他硼迁移过程做对比。对科研读者而言，最值得关注的是：双位点究竟迁移的是两个碳基团、碳/氢、碳/杂原子，还是两个键重组位点；“entangled”是严格的机理术语还是作者为强调协同性提出的新概念；boracycle是预制底物、原位生成中间体，还是可分离物种；该重排是热驱动、Lewis酸/碱促进、过渡金属参与，还是光化学触发。目前最需要核对的信息包括：1）反应底物与产物的具体结构；2）迁移步的可逆性与速率控制步骤；3）是否存在高对映/非对映选择性；4）机理证据主要来自实验还是计算；5）该方法相对现有硼化学在官能团耐受性、区域选择性和骨架创新上的真实提升。若你的研究方向涉及有机硼试剂、骨架重排、迁移反应或机理计算，这篇论文可能值得优先查看其主图、机理图和补充信息中的计算部分。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名推测，是在有机硼/硼杂环体系中是否存在一种由boracycle rearrangement驱动的双位点耦合迁移机制，以及这种机制能否被用于可预测地重塑分子骨架。更细一点说，作者可能在回答：为什么某些硼杂环中间体不会遵循常规单位点迁移，而会表现出两个迁移事件彼此关联的重排路径。",
+          "method": "在缺少摘要的前提下，可能的方法路径包括：设计能够形成硼杂环中间体的底物；通过反应优化建立可重复的重排条件；利用底物变体考察迁移位点、区域选择性和立体化学后果；使用同位素标记或交叉实验区分同步与逐步迁移；通过单晶、NMR或捕获实验支持boracycle中间体存在；结合DFT计算比较传统迁移与“dual-site migration”路径的能垒和过渡态特征。由于发表在Nature，也可能包含较广的底物展示或概念性很强的机理图景。",
+          "strengths": "题名显示的最大亮点是概念新颖性：把“dual-site migration”和“boracycle rearrangement”直接绑定，暗示作者不仅发现新反应，而且试图重定义一类硼参与重排的机理框架。如果文章提供了清晰的结构-反应性关系、严谨的机理证据链和可拓展的合成实例，那么其价值会同时体现在基础机理与方法学应用两端。发表在Nature也提示该工作可能具有较强普适性、反直觉现象或较高的概念影响力。",
+          "weaknesses": "当前最主要的局限是信息严重不足：摘要为空，无法确认研究对象、实验范围、产率水平、选择性、底物普适性和机理证据质量。题名中的“entangled”带有较强概念色彩，需警惕是否只是对复杂连续迁移的命名包装，而非真正不可分解的协同过程。此外，若该反应依赖高度定制底物、强限制条件或昂贵试剂，其实际方法学价值可能低于题名所传达的概念冲击力。",
+          "next_step": "最小可执行动作：第一，优先获取论文摘要和主文图1，确认反应底物、产物与“dual-site migration”的具体含义；第二，查看机理图和补充信息目录，判断证据主要来自同位素实验、动力学还是DFT；第三，记录一个最关键问题：双位点迁移是同步协同、准同步，还是表观上耦合的逐步过程；第四，将该工作与已知boronate rearrangement、1,2-metallate shift和硼杂环重排文献做一页对照，比较迁移对象、触发条件和选择性控制来源。"
+        }
+      },
+      "doi:10.1038/s41586-026-10923-8": {
+        "summary": "这不是原始研究论文，而是一则Nature于2026-07-28发表的“编辑关注声明”，对应对象是既往论文“Carcinoma-produced factors activate myeloid cells through TLR2 to stimulate metastasis”。仅凭题名和元数据可知，期刊编辑部对该研究中“肿瘤来源因子通过TLR2激活髓系细胞并促进转移”这一机制性结论提出正式关注，但由于摘要为空，无法判断具体争议涉及哪些实验、数据或图像。",
+        "contribution": "其核心作用不是提出新机制，而是向科研界发出文献可靠性预警：原论文关于“carcinoma-produced factors—TLR2—myeloid cells—metastasis”轴线的证据链可能存在需要重新审视的问题。对相关领域研究者的直接贡献在于提示引用、复现、机制外推和后续项目设计时应先核对原文及编辑说明中的具体疑点。",
+        "details": "从题名判断，这篇条目属于对既往高影响力癌症转移机制论文的出版后纠偏/风险提示，而非新的实验研究。被关注的原始命题相当具体：癌细胞或癌组织产生某些因子，作用于髓系细胞上的TLR2，进而激活促转移程序。该命题通常会涉及几个具体层面：一是“肿瘤来源因子”的分离、鉴定或功能归因；二是TLR2是否为关键受体，往往需要受体缺失、阻断抗体或下游信号读出支持；三是被激活的髓系细胞类型，可能包括肿瘤相关巨噬细胞、MDSC或其他先天免疫细胞；四是“促进转移”的证据，通常需要动物模型中的肺转移、肝转移或远处播散读数。由于这里给出的摘要为空，任何关于具体实验体系、样本量、统计显著性、分子身份、信号通路分支或转移模型的描述都不能从当前信息中确认。现阶段最可靠的信息只有：Nature编辑部认为该文存在足以发布Expression of Concern的事项。对做肿瘤免疫、炎症信号、TLR通路、髓系细胞重编程或转移微环境的研究者而言，这意味着原论文曾被视为连接肿瘤分泌物、先天免疫受体和转移促进之间的重要证据，但现在其证据稳健性需要重新评估。需要优先核对的信息包括：编辑关注声明正文点名了哪些图、哪些实验批次、哪些数据类型；是否涉及图像处理、原始数据缺失、重复性不足、样本标注问题或机构调查；原始论文是否已有更正、作者回复、独立复现或后续反驳文献；以及该机制在后续文献中是否被其他队列、模型或实验室独立支持。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "具体科学问题并非新的机制探索，而是：既往关于“癌瘤产生的因子通过TLR2激活髓系细胞以刺激转移”的研究结论是否可靠、哪些证据点存在疑问、这些疑问是否会影响对该转移机制的接受程度。若回到原始研究命题，则核心问题是肿瘤来源信号是否经由TLR2-髓系细胞轴驱动转移。",
+          "method": "就该条目本身而言，方法应是编辑审查而非生物学实验，可能基于读者举报、作者沟通、原始数据核查、机构调查进展或图像/数据完整性审阅后发布声明。若追溯到被关注的原论文，其常见证据路径可能包括：肿瘤细胞条件培养基或分泌因子处理髓系细胞；TLR2敲除/阻断实验；炎症因子表达、NF-κB等信号通路读出；以及小鼠转移模型中的结节计数或生存差异。但这些都只是基于题名推断，当前元数据不足以确认。",
+          "strengths": "最值得关注的价值在于其警示功能非常具体：它直指一个已被广泛传播的肿瘤免疫-转移机制链条，而不是笼统提示论文有问题。对科研人员而言，这种声明能帮助及时标记高风险引用、避免把潜在不稳固的TLR2-髓系细胞促转移机制继续当作既定事实写入综述、基金或实验设计。另一个亮点是发表平台为Nature，说明编辑层面认为该事项对领域认知具有足够重要性。",
+          "weaknesses": "当前信息极其有限。首先，摘要为空，无法知道编辑关注的具体原因与范围。其次，这类声明并不等同于撤稿，也不必然否定全文所有结论，因此不能据此推断原论文全部结果无效。再次，仅凭题名无法确认原研究中的具体癌种、髓系细胞亚群、转移终点、分泌因子身份和实验模型，因此任何进一步机制讨论都必须谨慎。最后，若用户需要科研决策支持，目前最缺的是声明正文、原始论文和后续更正/调查信息。",
+          "next_step": "最小可执行动作：1）立即获取该Expression of Concern全文，记录其指出的具体图号、实验和争议类型；2）同步下载原始研究论文，建立“核心结论—关键证据图—潜在受影响部分”的对照表；3）在文献管理器中把该原论文标记为“有编辑关注声明，引用前复核”；4）检索后续是否有更正、撤稿、作者说明或独立复现实验；5）如果你的课题涉及TLR2、髓系细胞或转移模型，优先用独立文献重新确认该机制链条中的每一环，而不是直接依赖这篇原始论文。"
+        }
+      },
+      "doi:10.1038/s41586-026-10913-w": {
+        "summary": "这篇Nature论文从题名看，聚焦克里米亚-刚果出血热病毒（CCHFV）聚合酶的RNA合成机制，以及底物类似物对该聚合酶的抑制作用。由于提供信息中摘要为空，目前只能确定其核心对象是CCHFV polymerase，核心任务是解析RNA synthesis与substrate analog inhibition这两个直接相关的机制问题。",
+        "contribution": "基于题名推断，论文的核心贡献很可能是把CCHFV聚合酶的RNA合成过程与核苷/底物类似物抑制机制放在同一研究框架下，建立了“病毒聚合酶催化步骤—底物识别—抑制干预”之间的联系。这类工作若证据充分，通常会为抗病毒药物设计、聚合酶选择性抑制和布尼亚病毒相关机制研究提供更具体的结构或生化依据。",
+        "details": "从元数据可明确的是：研究对象是CCHFV polymerase，即克里米亚-刚果出血热病毒的RNA依赖RNA聚合酶；研究任务集中在两部分，一是该酶如何进行RNA synthesis，二是substrate analog如何对其产生inhibition。题名中的“and”提示作者可能不是仅做静态结构描述，而是同时讨论催化过程与抑制剂作用，因而很可能结合了结构生物学与体外生化实验，例如不同底物状态下的复合物解析、引物延伸或去 novo起始相关实验、底物掺入效率比较、抑制后链延伸终止/停滞分析等。不过这些都需要正文和图表核对，当前不能当作既定事实。由于摘要缺失，无法确认论文究竟回答了哪些具体子问题，例如：聚合酶是否解析了起始、延伸、转位或校正样状态；所谓substrate analog是天然NTP类似物、临床候选核苷药物活性三磷酸形式，还是实验性化学探针；抑制机制是竞争性结合、错误掺入后链终止、延迟链终止，还是诱导构象失活。与科研阅读相关的证据线索主要来自题名和刊物层级：Nature通常要求较强的机制深度，因此论文很可能给出较直接的分子层面证据，而不是单纯现象学筛选。若你的方向涉及病毒RNA聚合酶、核苷类似物药物、CCHFV或更广义负链RNA病毒复制机制，这篇文章值得重点检查三个方面：第一，CCHFV聚合酶与其他负链RNA病毒聚合酶在活性位点、底物通道、保守基序上的异同；第二，底物类似物的识别选择性来自糖、碱基还是磷酸部分修饰；第三，抑制是否具有可转移的药物设计原则。当前最需要核对的信息包括：具体实验体系、是否有高分辨率结构、是否比较了多种类似物、抑制效应的定量参数、是否展示细胞或病毒水平验证、以及结论是否能外推到其他奈罗病毒或布尼亚病毒。总之，这是一篇明显面向“病毒聚合酶机制与抗病毒干预”交叉问题的论文，但因摘要为空，任何关于具体发现、分辨率、抑制剂名称和生物学结论的表述都必须在正式阅读后再确认。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题，依据题名，应当是：CCHFV聚合酶如何完成RNA合成，以及底物类似物如何在分子层面抑制这一过程。更细一点，可能涉及RNA合成的起始与延伸机制、底物选择原则、活性位点构象变化，以及底物类似物在何一催化阶段阻断聚合。",
+          "method": "在没有摘要的情况下，最可能的方法路径是：用重组表达的CCHFV聚合酶建立体外RNA合成体系；通过不同RNA模板/引物和天然NTP或底物类似物进行酶学测定；结合结构解析手段观察聚合酶在底物结合、催化前后或抑制状态下的复合物构象。若论文达到Nature层级，常见还会加入突变体验证关键残基、动力学参数测定，以及有限的细胞水平抗病毒验证，但这些目前都只是待核实推断。",
+          "strengths": "最值得关注的亮点可能在于把“机制解析”和“抑制剂作用机制”直接打通：如果作者既说明了CCHFV聚合酶的RNA合成路线，又解释了底物类似物为什么能被接受、拒绝或导致停滞，那么这对抗病毒设计会非常有价值。另一个潜在亮点是研究对象本身：CCHFV是高关注度病原体，其聚合酶机制信息相对稀缺，因此任何高质量的分子机制工作都可能具有较强领域影响力。",
+          "weaknesses": "当前最大的局限是摘要为空，导致无法判断论文的实际证据强度、实验覆盖范围和结论边界。需要特别警惕的缺口包括：是否只有体外生化而缺乏感染相关验证；是否只测试了单一底物类似物却被过度外推；结构是否捕获到真正具有生理意义的催化状态；以及结论能否推广到其他病毒聚合酶。也不能从题名 alone 判断抑制是否具有药理可行性。",
+          "next_step": "最小可执行动作：第一，先获取摘要和主图标题，确认研究中具体使用了哪些底物类似物、哪些聚合酶状态和哪些实验平台；第二，重点查看结构图或机制模型图，记录活性位点关键残基、RNA/底物摆放方式和抑制发生步骤；第三，整理所有定量指标，如Km、IC50、掺入效率或延伸终止比例；第四，把论文中的CCHFV聚合酶关键位点与你熟悉的负链RNA病毒聚合酶保守基序做一页对照表；第五，若考虑复现或延展，优先评估其体外聚合酶实验体系是否可转移到你手头的病毒或药物类似物测试中。"
+        }
+      },
+      "doi:10.1126/science.aeh4808": {
+        "summary": "这篇Science短文/评论类论文围绕“Therabot”这一生成式人工智能心理治疗系统展开，核心任务是讨论如何用生成式AI扩展“精准、循证”的心理治疗服务能力。仅从题名与摘要看，文章焦点不是泛化聊天机器人，而是面向心理治疗这一具体临床任务的AI干预与规模化部署潜力。",
+        "contribution": "基于现有元数据，这篇文章的核心贡献更可能是提出或论证：生成式人工智能有望将精准化、循证化心理治疗从高成本、低可及性的人工服务，扩展为可大规模触达的数字治疗模式；同时以“Therabot”作为具体对象或代表性系统，推动科研界关注AI psychotherapy的临床转化、评估标准与实施边界。",
+        "details": "从题名“The Therabot will see you now”与摘要“Generative artificial intelligence can scale precision evidence-based psychotherapy”判断，研究对象是生成式AI驱动的心理治疗代理/系统，目标任务是提供或辅助提供心理治疗，尤其强调“precision（精准）”和“evidence-based（循证）”两点。这说明作者关注的不是一般情感陪伴，而是如何把已有循证心理治疗框架（例如CBT等，虽然题录未明示，需核对）编码、适配或嵌入到生成式模型中，使其面向个体差异实现更细粒度干预，并提升心理健康服务的可及性与规模。\n\n但需要明确：目前提供的信息极少，且摘要只有一句总体判断，无法确认这是一篇原创研究、政策/观点文章、评论、展望，还是配套新闻解读。Science上的此类标题风格常见于评论、Policy Forum、Perspective或News类文本，而不一定是完整实验论文。因此，不能据此声称作者完成了随机对照试验、真实患者随访、疗效优效性比较、安全性量化或临床部署验证；这些都必须在正式阅读正文后核对。\n\n从证据线索上看，题名中的“Therabot”暗示文章可能围绕某个具体系统、原型或研究计划展开；摘要中的“can scale”则更像可行性与前景论证，而不必然意味着已完成大规模临床验证。如果你的研究方向涉及数字精神健康、医疗大模型、临床AI安全、对话系统评测或心理干预机制，这篇文章的价值主要在于：它可能提供一个高影响力期刊语境下的论述框架，说明为什么生成式AI心理治疗值得研究、需要哪些循证约束，以及未来应如何评估其精准性、有效性、安全性、公平性与实施路径。\n\n现阶段最需要核对的信息包括：1）文章类型；2）Therabot是概念性称呼还是具体产品/模型；3）是否报告真实受试者、临床结局、对照实验或案例；4）“precision”具体指风险分层、个体画像、自适应干预，还是仅指个性化对话；5）“evidence-based psychotherapy”具体映射到哪些治疗学派、操作化流程与质量控制标准；6）作者是否讨论幻觉、危机干预、依赖性、隐私和监管。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题录推断，是：如何将生成式人工智能用于心理治疗这一高专业门槛、资源稀缺的临床任务，并在不脱离循证治疗原则的前提下，实现更大规模、更个体化的干预服务。更细一点说，它可能在问：生成式AI是否能够成为“Therabot”式治疗代理，缓解心理健康服务供给不足，同时保持治疗内容的精准性、规范性与可评估性。",
+          "method": "仅凭元数据无法确认实证方法。可能的路径有两类：第一，若为观点/评论文章，方法主要是综合现有数字心理健康、生成式AI和心理治疗证据，提出框架、应用场景与评估原则；第二，若为研究简报或配套论述，则可能围绕一个名为Therabot的系统，介绍其基于大语言模型的对话生成、治疗原则约束、患者分层或个体化推荐机制，并结合初步用户数据、案例、试点试验或历史研究作论证。当前不能确定是否使用临床数据、问卷量表、对照试验、专家评审或安全红队测试。",
+          "strengths": "最值得关注的亮点是它把研究对象限定在“循证心理治疗”而不是泛心理支持，这意味着文章可能强调临床可验证性和治疗学依据，而不是仅追求自然对话体验。第二个亮点是“precision”这一表述，提示作者可能关注个体化治疗匹配、自适应干预或分层护理，而不仅是统一模板式机器人。第三，发表于Science意味着其议题设置能力强，可能为生成式AI在精神健康领域提供一个高层次、跨学科的研究与转化叙事框架。",
+          "weaknesses": "最大局限是当前信息严重不足：摘要过短，无法支持对模型架构、样本量、研究设计、疗效结果或安全性结论的任何具体判断。其次，题名具有宣传性，容易让读者误以为已有成熟可替代治疗师的系统，但元数据并未证明这一点。再次，如果这是评论/观点而非原创实验，其价值更多在论证与倡议，不一定提供可直接复现的数据或方法。最后，心理治疗AI的关键风险——危机识别、错误建议、长期依赖、隐私、偏见、监管责任——在当前信息中都未展开，必须谨慎。",
+          "next_step": "最小可执行动作：第一，先确认文章类型与栏目，避免把评论当成实证论文解读；第二，下载正文后优先查看是否存在具体系统描述、图示、临床案例或试验表格；第三，记录文中对“precision”和“evidence-based”的操作化定义；第四，查找是否给出Therabot的训练/约束方式、评估指标和安全机制；第五，若你做相关研究，可建立一个对照清单：治疗目标、患者群体、数据来源、临床终点、人工监督、危机升级机制、公平性与隐私保护。"
+        }
+      },
+      "doi:10.1126/science.aeb0822": {
+        "summary": "De novo design of orthogonal far-red, orange, and green fluorophore-binding proteins for multiplexed imaging。摘要要点：Fluorescent proteins and small-molecule dyes offer complementary advantages for biological imaging: proteins are amenable to genetic tagging, whereas dyes provide superior brightness and photostability.",
+        "contribution": "摘要中最具体的线索是：Fluorescent proteins and small-molecule dyes offer complementary advantages for biological imaging: proteins are amenable to genetic tagging, whereas dyes provide superior brightness and photostability. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“De novo design of orthogonal far-red, orange, and green fluorophore-binding proteins for multiplexed imaging”。摘要中可用的信息是：Fluorescent proteins and small-molecule dyes offer complementary advantages for biological imaging: proteins are amenable to genetic tagging, whereas dyes provide superior brightness and photostability. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“De novo design of orthogonal far-red, orange, and green fluorophore-binding proteins for multiplexed imaging”展开；摘要线索显示问题可能与 Fluorescent proteins and small-molecule dyes offer complementary advantages for biological imaging: proteins are amenable to genetic tagging, whereas dyes provide superior brightness and photostability. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aej2688": {
+        "summary": "这是一篇Science新闻/评述性质文章，围绕“紧凑型放射性分子源”这一具体对象展开，讨论其如何把放射性分子带入可实验操控的平台，并用于开展基础物理新检验。基于摘要可判断，文章核心任务不是报告完整实验数据，而是介绍一种能够提供放射性分子的来源或平台及其在精密测量中的潜在用途。",
+        "contribution": "从题名、期刊与摘要看，文章的核心贡献很可能是对一种紧凑型放射性分子源及其科学意义进行提炼和阐释：强调放射性分子从稀缺、难操控样品转变为可在实验台上使用的研究对象，从而推动对基本对称性、核结构相关效应或超出标准模型物理的精密测试。若配套评论的是一篇研究论文，则本篇贡献主要在于明确该技术路线为何重要、它解决了什么实验瓶颈，以及它可能开启哪些新的测量任务。",
+        "details": "基于现有元数据，这篇文章讨论的研究对象是“放射性分子”，更具体地说，是一种“紧凑型放射性分子源”。摘要中的关键词是“compact source”和“new tests of fundamental physics”，这提示其关注点在于样品制备与实验可达性，而非单纯分子光谱学本身。放射性分子在基础物理中通常有独特价值，因为某些放射性核素可能带来增强的宇称/时间反演对称性破缺效应、核八极形变相关增强、或对电子电偶极矩、核自旋相关相互作用、弱相互作用参数等更高灵敏度的探测机会。传统困难往往在于：放射性核素供应受限、产额低、寿命短、分子形成与冷却复杂、实验装置依赖大型设施。摘要称“紧凑型”意味着作者想强调该分子源在体量、部署条件或使用门槛上的下降，这可能使放射性分子从大型加速器或专门同位素设施，走向更常规的精密测量平台。\n\n由于该文发表在Science且只有一句摘要，作者也只有一人Luke Caldwell，题名风格又偏新闻解读，因此高度可能属于新闻与观点类文章，而不是原始研究论文。若如此，文中“方法”主要是科学评述：概述相关研究团队开发的放射性分子生成方案，比较其与既有原子束/分子束源、离子源或在线同位素束系统的差异，并指出哪些具体基础物理测量因此变得可行。可能涉及的具体对象包括某类含重元素或放射性核素的双原子分子，因为这类体系最常见于精密对称性检验。可能的证据线索包括：产额、束流强度、分子形成效率、可冷却性、寿命窗口、谱线分辨率、以及是否兼容激光操控或束阱实验。\n\n对科研读者而言，这篇文章的价值主要在于帮助判断一个新平台是否值得跟进：如果你的方向是AMO精密测量、核物理、分子谱学、EDM搜索或基本对称性检验，那么应重点核对它所对应的原始研究论文，确认具体分子种类、放射性同位素、源的构型、分子通量、实验占空比、背景噪声和系统误差潜力。仅凭当前摘要，不能确认它已经实现了哪类基础物理测试，也不能确认灵敏度是否优于现有分子或原子体系；能确认的只是，该工作被定位为“使放射性分子真正可上实验台”的技术进展，并被认为可开启新的基础物理检验。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇文章聚焦的具体科学问题是：如何获得一种足够紧凑、可部署且可产生放射性分子的源，使放射性分子不再局限于稀有或大型设施环境，而能被纳入精密实验平台，用于开展新的基础物理测试。更深一层的问题是，哪些以往因样品制备受限而无法实施的分子精密测量，会因为这一分子源而变得现实。",
+          "method": "从题录判断，这篇文章本身更可能采用评述/解读路径，而不是直接报告完整实验方法。其所讨论的相关研究方法，可能包括：制备特定放射性同位素，与适配的化学组分结合形成目标分子；利用紧凑型源产生可用的分子束或样品；再与光谱、冷却、俘获或自旋进动测量平台耦合。可预期的技术指标数据包括分子产额、束流亮度、同位素纯度、有效寿命、激光可寻址跃迁以及与精密测量装置的兼容性。文章可能通过对比现有大型同位素束设施或传统分子源来说明其改进意义。",
+          "strengths": "最值得关注的亮点是“紧凑型放射性分子源”本身，因为它直接对应实验可达性的瓶颈突破。若该平台确实能稳定提供目标放射性分子，那么其应用价值很高：一是可能让含放射性核素的分子精密测量从概念走向常规实验；二是可能显著扩展可选分子体系，特别是那些因核结构效应而对新物理更敏感的分子；三是有机会把核物理、分子操控和基础对称性检验连接起来，形成新的实验路线。作为Science上的解读文，它也可能较清楚地交代该进展为何重要、对哪些测量任务最有影响。",
+          "weaknesses": "局限非常明确：当前可用信息只有题名、来源和一句摘要，无法确认具体分子对象、放射性核素、源的工作原理、实验数据、性能指标和实际测得的物理量。还需要警惕文献类型问题：这很可能不是原始研究论文，而是新闻/观点文章，因此其中关于潜在应用的表述可能偏前瞻性，不能直接视为已经完成的实验结果。此外，摘要没有说明该源是否已与冷却、俘获或高精度光谱平台实际联用，也没有给出与现有技术相比的定量提升。",
+          "next_step": "最小可执行动作有四个：第一，先确认该条目是否为Science的News & Views/Research Highlight类文章，并定位它所评论的原始研究论文；第二，记录并核对具体放射性分子和同位素名称，这是后续评估物理价值的关键；第三，重点查原始论文中的图表，提取分子产额、寿命、谱线质量和与精密测量兼容性的定量指标；第四，建立一张对照表，把该体系与现有用于EDM、宇称破缺或核结构增强效应研究的分子平台进行横向比较，判断它真正打开的是哪一类新实验窗口。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for doi:10.1126/science.aeb0822: Extra data: line 1 column 2939 (char 2938)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2607.24588v1",
+      "source": "arxiv",
+      "title": "SIREN: Towards End-to-End Extreme-Weather Early Warning with Experience-Grounded LLM Agents",
+      "authors": [
+        "Hang Ni",
+        "Weijia Zhang",
+        "Fan Liu",
+        "Mengqian Lu",
+        "Hao Liu"
+      ],
+      "published": "2026-07-27T15:53:19Z",
+      "updated": "2026-07-27T15:53:19Z",
+      "abstract": "Early warning of extreme weather is essential for mitigating the societal, economic, and environmental risks posed by hazardous weather events. However, expert-centered warning workflows are costly, labor-intensive, and difficult to scale throughout the warning-to-action process. Although recent advances in Large Language Model (LLM) agents have enabled the automation of weather-related tasks, existing studies remain centered on isolated scientific tasks and overlook the chain of interdependent processes required for operational extreme-weather early warning. To bridge this gap, this study investigates automated end-to-end extreme-weather early warning through LLM agents. We first develop SIREN-Bench, a comprehensive benchmark comprising 600 question-answer instances across 19 tasks, and covering four individual warning procedures and an end-to-end warning chain. Evaluation on SIREN-Bench reveals substantial capability gaps in existing weather agent frameworks. This motivates us to develop SIREN, an experience-grounded agent framework inspired by experts' use of historical cases, which combines an agentic execution environment integrating heterogeneous weather evidence and tools with a family of agent harnesses that exploit historical cases through retrieval, skill distillation, and predictive modeling. Extensive experiments demonstrate that SIREN outperforms weather-agent baselines on both individual warning procedures and end-to-end warning chains.",
+      "url": "http://arxiv.org/abs/2607.24588v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24588v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "weather",
+        "environmental",
+        "environment"
+      ],
+      "score": 81.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.24352v1",
+      "source": "arxiv",
+      "title": "Retrieval-Augmented Large Language Models as Components of Cognitive Computing architecture for Regulatory Knowledge Management",
+      "authors": [
+        "Dariusz Nowak-Nova"
+      ],
+      "published": "2026-07-27T12:31:25Z",
+      "updated": "2026-07-27T12:31:25Z",
+      "abstract": "The aim of this article is to verify whether integrating large language models (LLMs) with the Retrieval-Augmented Generation (RAG) architecture enables their transformation from standalone generative models into components of cognitive computing infrastructure with enhanced epistemic reliability. The study proposes an architectural approach based on locally deployed LLMs operating in on-premises environments without high-end GPU accelerators and examines their applicability in supporting regulatory management processes requiring continuous analysis and interpretation of legal acts. The proposed solution combines local LLMs with external knowledge repositories, creating a hybrid cognitive architecture in which the language model performs semantic interpretation while the RAG layer provides controlled knowledge retrieval, contextualization, and traceability of information sources. The implementation was validated using the Ollama and LM Studio execution environments together with the Polish language models Bielik and PLLuM running on consumer-class hardware. The results demonstrate that augmenting LLMs with RAG significantly improves the factual consistency, domain specificity and normative precision of generated texts while reducing the risk of unsupported content generation. Furthermore, the study shows that integrating RAG introduces auditability, controlled knowledge management and dynamic updating of regulatory information without retraining the language model. The findings indicate that locally deployed LLMs enhanced with RAG should be regarded not merely as text generation tools but as semantic processing modules within cognitive computing infrastructures supporting regulatory compliance and organizational decision-making in environments characterized by high legal and informational volatility.",
+      "url": "http://arxiv.org/abs/2607.24352v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24352v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 78.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.23722v1",
+      "source": "arxiv",
+      "title": "E-Bench: Benchmarking Multi-Step Tool-Use Agents in Real-World Product Scenarios",
+      "authors": [
+        "Weihuang Zheng",
+        "Tianyuan Zou",
+        "Eileen Ye",
+        "Alphet Liu",
+        "Youyong Kong",
+        "Ya-Qin Zhang",
+        "Duran Zheng",
+        "Maxm Pan"
+      ],
+      "published": "2026-07-26T15:38:28Z",
+      "updated": "2026-07-26T15:38:28Z",
+      "abstract": "Large Language Models (LLMs) are increasingly deployed as agents that interact with stateful environments over multiple steps: gathering hidden information, composing tool calls, and committing state changes. We refer to this capability as multi-step tool use. Existing benchmarks have advanced tool-use agent evaluation, but often focus on isolated API calls, short trajectories, or settings that are difficult to scale or control. We introduce E-Bench, a fully synthetic benchmark with 323 state-changing tasks across three product domains: Honor of Kings, QQ Music, and Tencent Meeting. E-Bench decouples environment synthesis from task synthesis: graph-guided database filling builds reusable, orphan-free product environments, while generator-solver asymmetry creates tasks with both an information gap and a tool gap, requiring agents to discover hidden data and compose multiple tool calls before changing state. Outcomes are graded deterministically by database-state diffs. Since both environments and tasks are synthetic, E-Bench is controllable at the environment level and scalable at the task level. Benchmarking 11 cutting-edge LLMs shows that multi-step tool use remains challenging: Pass^3 stays below 60% for the strongest models, and even with code execution in the E-Bench-Code extension, reliability (Pass^3) remains below 70%.",
+      "url": "http://arxiv.org/abs/2607.23722v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.23722v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "tool use",
+        "ai",
+        "environment"
+      ],
+      "score": 74.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.23802v1",
+      "source": "arxiv",
+      "title": "From RLVR to RLSVR: Task Transformation Induces Self-Verifiable Rewards for Open-Ended LLM Self-Improvement",
+      "authors": [
+        "Qinsi Wang",
+        "Jing Shi",
+        "Huazheng Wang",
+        "Kun Wan",
+        "Yiran Wu",
+        "Bo Liu",
+        "Qingyun Wu",
+        "Hai Helen Li",
+        "Yiran Chen",
+        "Handong Zhao",
+        "Wentian Zhao"
+      ],
+      "published": "2026-07-26T19:04:33Z",
+      "updated": "2026-07-26T19:04:33Z",
+      "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has driven recent progress in reasoning-oriented large language models (LLMs) by enabling large-scale optimization. However, its applicability remains largely limited to domains such as mathematics and coding, where correctness can be deterministically verified. Open-ended tasks instead often rely on human preferences, reward models, or LLM-based judges, introducing evaluation bias, judge capability bottlenecks, and additional inference costs.Drawing on the principle of self-supervised learning, which constructs pretext tasks to derive supervision from the data itself, we propose Reinforcement Learning with Self-Verifiable Rewards (RLSVR), a task-transformation-based training paradigm for extending RLVR to open-ended tasks. RLSVR transforms open-ended tasks into verifiable proxy environments whose internal rules and interaction outcomes automatically generate reward signals. We instantiate RLSVR with SpyRL, a multi-agent self-play environment inspired by Who Is the Spy?. Agents receive asymmetric information, complete the same target task, and vote to identify a designated spy. Because the spy identity is predetermined, voting outcomes provide fully verifiable rewards, while successful identification remains closely related to output quality. Experiments on text summarization, creative writing, and mathematical reasoning show that SpyRL outperforms existing self-improvement methods on non-verifiable tasks and yields consistent gains on verifiable reasoning tasks. These results demonstrate that task transformation can extend scalable RLVR-based self-improvement beyond inherently verifiable domains. Models and code have been released at https://github.com/wangqinsi1/SpyRL.",
+      "url": "http://arxiv.org/abs/2607.23802v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.23802v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "self-supervised",
+        "environment",
+        "mathematical reasoning"
+      ],
+      "score": 73.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10931-8",
+      "source": "nature",
+      "title": "Entangled dual-site migration via boracycle rearrangement",
+      "authors": [
+        "Zheng Zhu",
+        "Peiqi Zhang",
+        "Bin Gao",
+        "Kit San Ly",
+        "Hongyi Tao",
+        "Yiyi Fu",
+        "Zhenyang Lin",
+        "Yangjian Quan"
+      ],
+      "published": "2026-07-28",
+      "updated": "2026-07-28",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10931-8",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10931-8",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10931-8"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10923-8",
+      "source": "nature",
+      "title": "Editorial Expression of Concern: Carcinoma-produced factors activate myeloid cells through TLR2 to stimulate metastasis",
+      "authors": [
+        "Sunhwa Kim",
+        "Hiroyuki Takahashi",
+        "Wan-Wan Lin",
+        "Pascal Descargues",
+        "Sergei Grivennikov",
+        "Youngjun Kim",
+        "Jun-Li Luo",
+        "Michael Karin"
+      ],
+      "published": "2026-07-28",
+      "updated": "2026-07-28",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10923-8",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10923-8",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10923-8"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10913-w",
+      "source": "nature",
+      "title": "RNA synthesis and substrate analog inhibition in the CCHFV polymerase",
+      "authors": [
+        "Hengxia Jia",
+        "Bo Tang",
+        "Shunli Liu",
+        "Xin Wen",
+        "Fan Wu",
+        "Xiao Hu",
+        "Hu Zhou",
+        "Tingting Chong",
+        "Lincan Lv",
+        "Qiaojie Liu",
+        "Guibo Rao",
+        "Mingyu Wei",
+        "Xuping Jing",
+        "Sheng Cao",
+        "Fei Deng",
+        "Zhihong Hu",
+        "Bo Shu",
+        "Rui Gong",
+        "Jiqin Wu",
+        "Manli Wang",
+        "Peng Gong"
+      ],
+      "published": "2026-07-22",
+      "updated": "2026-07-22",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10913-w",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10913-w",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10913-w"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeh4808",
+      "source": "science",
+      "title": "The Therabot will see you now",
+      "authors": [
+        "Nicholas C. Jacobson"
+      ],
+      "published": "2026-07-16",
+      "updated": "2026-07-16",
+      "abstract": "Generative artificial intelligence can scale precision evidence-based psychotherapy",
+      "url": "https://doi.org/10.1126/science.aeh4808",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeh4808",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6808",
+        "page": "253-253",
+        "reference_count": 13,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeh4808"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeb0822",
+      "source": "science",
+      "title": "De novo design of orthogonal far-red, orange, and green fluorophore-binding proteins for multiplexed imaging",
+      "authors": [
+        "Long Tran",
+        "Steffen Klein",
+        "David Juergens",
+        "Shajesh Sharma",
+        "Justin Decarreau",
+        "Gyu Rie Lee",
+        "Yujia Wang",
+        "Wei Chen",
+        "Asim K. Bera",
+        "Alex Kang",
+        "Jon Woods",
+        "Emily Joyce",
+        "Dionne K Vafeados",
+        "Nicole Roullier",
+        "Xinting Li",
+        "Bingxu Liu",
+        "Yang Bo",
+        "Edin Muratspahić",
+        "Tim A. Brown",
+        "Jonathan B. Grimm",
+        "Ronak Patel",
+        "Luke D. Lavis",
+        "Julia Mahamid",
+        "Linna An",
+        "David Baker"
+      ],
+      "published": "2026-07-16",
+      "updated": "2026-07-16",
+      "abstract": "Fluorescent proteins and small-molecule dyes offer complementary advantages for biological imaging: proteins are amenable to genetic tagging, whereas dyes provide superior brightness and photostability. To combine these strengths, we used de novo protein design to generate small, nanomolar-affinity, high-selectivity binders (NovoTags) for three cell-permeable dyes spanning the visible spectrum. We show that the NovoTag fluorescent lifetimes can be tuned and demonstrate their application in lifetime and wavelength-based multiplexed fluorescence imaging. We further design a two-chain NovoTag that functions as a chemically induced dimerization system with fluorescent readout in living cells, or as a minimally perturbing proximity probe in fixed cells. Our approach combines the advantages of fluorescent proteins and small-molecule dyes, expanding the toolkit for cellular imaging.",
+      "url": "https://doi.org/10.1126/science.aeb0822",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeb0822",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 65,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeb0822"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aej2688",
+      "source": "science",
+      "title": "Bringing radioactive molecules to the table",
+      "authors": [
+        "Luke Caldwell"
+      ],
+      "published": "2026-07-16",
+      "updated": "2026-07-16",
+      "abstract": "A compact source of radioactive molecules could enable new tests of fundamental physics",
+      "url": "https://doi.org/10.1126/science.aej2688",
+      "pdf_url": "",
+      "doi": "10.1126/science.aej2688",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6808",
+        "page": "246-246",
+        "reference_count": 12,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aej2688"
+      }
+    }
+  ]
+}
