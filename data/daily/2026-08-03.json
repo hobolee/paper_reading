@@ -1,0 +1,589 @@
+{
+  "date": "2026-08-03",
+  "stats": {
+    "fetched": 463,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 64,
+      "science": 99
+    },
+    "deduped": 463,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 64,
+      "science": 99
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 232,
+    "keyword_filtered_by_source": {
+      "arxiv": 232
+    },
+    "keyword_optional_included": 137,
+    "keyword_optional_included_by_source": {
+      "nature": 53,
+      "science": 84
+    },
+    "ranked": 231,
+    "ranked_by_source": {
+      "arxiv": 68,
+      "nature": 64,
+      "science": 99
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 133,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天的条目里，AI/agent 相关论文明显构成主线，而且集中在“让模型在真实交互或长时程任务里更可靠”这一共同问题上，但切入层次不同。最值得优先读的是四篇 arXiv：Albilich 关注数学研究型 agent 的长程证明编排，把 LLM、CAS、检索和持久化 proof state 结合起来，重点不只是解题率，而是把不可持续的一次性推理改造成可协调、可回溯、可人为介入的研究流程；本地 computer-use agents 的推理时扩展研究则提醒我们，给本地 CUA 增加上下文、步数、结构或并行，并不会线性提升成功率，反而会把错误从“卡住/重复”转成“过早误判成功”等新失效模式，这对 agent benchmarking 和 deployment 都很关键；Echoverse 把重点放在训练数据侧，提出可演化的深层有状态环境生成与修复闭环，强调环境质量取决于行为深度、失败针对性和与模型共同演化，而不只是环境数量；OVCSD 则进一步落到训练算法层，试图把 self-distillation 从动作打分改成环境结果验证后的师生轨迹比较学习，更贴近“会不会做成”而不是“老师偏好什么动作”。这四篇合起来，基本勾勒出当前 agent 研究的一条完整链路：环境构建、推理扩展、失败分析、训练蒸馏、再到领域化编排系统，信息密度很高，建议作为今日阅读主优先级。",
+    "themes": [
+      "从一次性回答走向长时程、可持久化的任务编排：Albilich 把 proof state、工具调用和人类引导显式化，说明复杂数学任务需要“过程管理层”而不只是更强模型。",
+      "推理时扩展并非单调增益，而是伴随失败模式迁移：本地 CUA 工作提示，更多上下文、更多步数、更多并行会改变错误结构，因此评测不应只看平均成功率，还应跟踪错误类型转移。",
+      "训练收益越来越依赖环境设计而非单纯模型规模：Echoverse 强调深层、有状态、可数据库判分且能随模型修复的环境，说明 agent 能力上限受环境信号质量强约束。",
+      "监督信号从动作偏好转向结果验证：OVCSD 代表一种更严格的 agent 学习范式，即只保留被环境终局成功验证的教师续写，并围绕关键分歧点蒸馏。",
+      "工具与外部符号系统重新成为 agent 可靠性的关键来源：Albilich 中的 CAS 集成表明，在数学场景里，外部可执行工具不仅提升正确率，也可能显著改变 token 成本与路线搜索结构。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "做一个跨论文的小型综述与对照表，统一整理“agent 可靠性”在环境、推理、训练、工具编排四层的变量与指标。",
+        "why": "今天四篇 AI 论文彼此互补，但社区常把它们分开讨论。把环境深度、推理时扩展、结果验证蒸馏、工具调用编排放进同一框架，有助于识别哪些改进是互补的，哪些只是把错误从一种形式转移到另一种。",
+        "first_step": "先只读四篇摘要和方法/实验部分可见信息，做一个二维表：行是论文，列包括任务类型、主要干预变量、评测指标、是否报告失败模式、是否依赖外部工具、是否有持久化状态、监督是否经环境结果验证。",
+        "risk": "如果只基于摘要和有限笔记，结论需要保持克制，容易停留在概念层，难以下强判断。"
+      },
+      {
+        "idea": "围绕本地 CUA 的 inference-time scaling，复现一个“失败模式迁移”最小分析框架，而不是只复现总成功率。",
+        "why": "这篇工作最有价值的地方可能不是分数，而是指出额外计算会诱发新型错误。很多后续工作如果只报 success rate，会错过真正决定产品可用性的风险。",
+        "first_step": "如果论文代码或日志可得，先定义一个最小错误 taxonomy，例如重复循环、停滞、误判成功、工具误用、状态遗忘，然后对少量任务轨迹做人工标注，比较不同扩展策略下各类错误占比。",
+        "risk": "主要风险是数据和轨迹未公开，或错误类型边界主观，导致复现成本高、标注一致性不足。"
+      },
+      {
+        "idea": "对 Albilich 做一次系统拆解，优先确认 CAS、advisor、verifier、持久化上下文各自的边际贡献叙述是否充分。",
+        "why": "这类数学 agent 很容易把多个组件同时堆叠，最终很难判断性能到底来自哪个模块。若能把组件作用拆清楚，对后续做 theorem proving 或 research assistant 都有直接参考价值。",
+        "first_step": "先根据论文可见实验设置，列出所有已明确出现的 ablation 维度与结果口径；若正文提供表格，再做一个‘组件-指标’矩阵，特别关注求解率、token 使用、拒绝率、人工介入点。",
+        "risk": "风险在于摘要只给出部分结果，若正文没有充分消融，最终只能得到‘作者声称’层面的整理，而无法做严格归因。"
+      },
+      {
+        "idea": "把 Echoverse 与 OVCSD 放在一起，提出一个“环境修复信号能否直接提升结果验证蒸馏质量”的问题设想。",
+        "why": "一个强调环境共演化，一个强调 outcome-verified 监督，二者天然相关：如果环境判分与任务定义更稳，蒸馏监督就更可信；反过来，差环境会污染 outcome verification。这个连接点值得做概念与实验上的桥接。",
+        "first_step": "先做文献阅读型工作，整理 agent 训练中‘验证器/环境噪声’如何影响自蒸馏与偏好学习，建立一个最小因果图：环境质量→结果验证可靠性→监督质量→策略改进。",
+        "risk": "短期内更适合作为问题定义和综述，不一定能立刻做出实验，因为需要可控环境和训练管线。"
+      },
+      {
+        "idea": "做一个面向数学 agent 的小规模案例复盘：外部符号工具究竟是在‘纠错’、‘搜索剪枝’还是‘压缩上下文’。",
+        "why": "Albilich 摘要提到 CAS 对 token 使用和求解率有影响，但这两者背后的机制未必相同。澄清 CAS 的具体作用方式，比简单说‘工具有用’更有研究价值。",
+        "first_step": "从 RealMath 一类可复现实例中挑 3 到 5 个题目，人工比较‘无 CAS 思路链’与‘有 CAS 工具调用’的中间状态差异，记录工具调用是在验证猜想、构造反例、代数化简还是替代长文本推理。",
+        "risk": "如果题目和轨迹不可获得，只能做定性分析；而且不同题型中 CAS 的作用机制可能高度异质，难以统一。"
+      }
+    ],
+    "papers": {
+      "arxiv:2607.27705v1": {
+        "summary": "这篇论文介绍了 Albilich，一个面向数学自动研究的开源 agentic 系统，目标是把大语言模型的长程证明尝试、计算机代数系统（CAS）、文献检索和持久化上下文管理组合起来，用于 RealMath 基准和 Kourovka Notebook 群论开放题。根据摘要，作者报告了在 RealMath 上 10/10（启用 CAS）和 9/10（不启用 CAS）的结果，并在 Kourovka 问题上给出一个反例和一个强化版命题的证明。",
+        "contribution": "核心贡献是提出一个可人为引导的“证明状态编排”框架 Albilich，用 SQLite 持久化上下文来协调长时程数学推理，并把 CAS、检索和多代理协作接入 LLM 证明流程；从摘要看，论文还强调了两类实证贡献：一是 CAS 对 token 使用与求解率的提升，二是 advisor agent 对路线综合与 verifier 拒绝率的影响。",
+        "details": "从题名和摘要看，论文聚焦的是“LLM 如何更稳定地参与数学研究”这一具体问题，尤其不是单次短回答，而是长时程、多阶段、可复现的证明探索与验证。具体对象非常明确：一类是 RealMath benchmark（Zhang et al. 2025）中的数学问题求解任务；另一类是 Kourovka Notebook 中的群论开放问题，摘要点名了 Problem 21.142、Problem 20.2 和 Problem 17.91。方法上，Albilich 似乎不是单一模型改进，而是一个研究编排环境：LLM 负责提出思路、分解子目标和综合证明路线，CAS 负责代数计算/构造/验证，文献检索负责调取已有知识，SQLite 则承担跨轮次、跨尝试的上下文与 proof-state 持久化。题名中的“Steerable Proof-State Orchestration”暗示系统核心可能是对证明状态的显式表示、记录、恢复和人工干预，而不只是普通 agent 调度。证据线索主要来自三类结果：其一，RealMath 上 CAS 与 no-CAS 对比给出 10/10 vs 9/10，说明 CAS 至少在部分题目上提升了解题成功率；其二，在 Kourovka 开放题上，系统不仅“解 benchmark”，而是声称产出了一个反例和一个加强命题证明，这意味着其输出可能具有研究发现性质；其三，两项消融分别针对 CAS 和 advisor agent：Problem 17.91 上启用 CAS 后 token 降低 32.0%，提示 CAS 可能减少纯语言推理搜索；Problem 21.142 上去掉 advisor 后 verifier 拒绝率更高且难以综合 proof routes，说明多代理中的“建议/规划”角色可能对长程证明路线形成很关键。与科研用户的关系在于：如果你关心 LLM+工具的数学研究工作流、证明可复现性、长上下文管理、或群论/符号推理场景，这篇论文值得优先看其系统设计和案例细节。但需要核对的信息也很多：RealMath 的任务范围和难度分布、CAS 的具体后端、verifier 的定义和拒绝准则、advisor agent 与其他代理的交互协议、SQLite 中保存的是自然语言轨迹还是结构化 proof state、Kourovka 结果是否经人工或社区确认、以及“strengthening of Problem20.2”究竟是完全解决、部分解决还是附加条件下的结果。仅根据摘要，不能断言其普适性、严格证明有效性或统计显著性。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在数学研究场景中，LLM 虽然能提出局部有用想法，但长时程证明尝试难以协调、评估和复现；因此需要一种能够管理 proof state、调用 CAS 与检索工具、并允许人类介入引导的系统，使模型可以在较复杂数学任务上持续推进而不是停留在一次性回答。",
+          "method": "根据摘要，可能的方法是构建一个开源 agentic harness，核心组件包括：1）长时程推理代理，用于生成证明草案、分解子问题、维护路线；2）CAS 集成，用于执行符号计算、构造反例、检查代数性质或缩短搜索；3）文献检索，用于引用现有定理、定义与已知方法；4）SQLite 持久化上下文管理，用于保存历史尝试、证明状态、工具输出与中间结论；5）可能存在 advisor agent 与 verifier，前者负责路线综合或策略建议，后者负责过滤不可靠步骤。实验上使用 RealMath benchmark 和 Kourovka Notebook 群论问题，并通过消融比较有无 CAS、以及有无 advisor agent 的差异。",
+          "strengths": "最值得关注的亮点有三点。第一，任务对象具体且层次分明：既有标准 benchmark（RealMath），也有群论开放题，这比只做合成题更能体现研究价值。第二，系统设计强调工具协同与状态持久化，而不是单纯扩大上下文窗口；SQLite 持久化这一点对复现、审计和人类接管都很关键。第三，摘要给出的证据不是只有成功案例，还包括消融现象：CAS 带来 32.0% token reduction，说明其可能改善效率；去掉 advisor 后 verifier rejection rate 上升且无法综合 proof routes，说明编排角色对系统行为有可观测影响。若这些结果在正文中被严谨支持，Albilich 可能对“可控的 AI 数学研究环境”这一方向有较强参考价值。",
+          "weaknesses": "基于题录和摘要，首先需要警惕样本规模与泛化边界：RealMath 只提到 10 个问题级别的结果，开放题也只是少数案例，尚不足以说明对更广泛数学领域都有效。其次，Kourovka 上“产生反例/证明强化版命题”听起来很强，但必须核对是否经过形式化验证、领域专家确认或独立复核。第三，摘要没有说明底层 LLM、CAS 后端、检索语料、verifier 机制、成本开销、失败案例类别，也没有交代与现有数学 agent 系统或 theorem proving 框架的严格对照。第四，“proof-state orchestration”是否真是结构化证明状态管理，还是主要依赖自然语言日志，目前仅凭摘要无法判断。",
+          "next_step": "最小可执行动作建议是：1）优先查看系统架构图，确认有哪些 agent、CAS 和 verifier，proof state 如何表示与存储；2）查 RealMath 的题目清单与评分标准，核对 10/10 和 9/10 分别对应哪些题；3）重点阅读 Problem 21.142、20.2、17.91 的案例页，弄清反例/证明的数学内容、CAS 在哪一步介入、advisor 缺失时失败在哪里；4）记录所有消融设置与底层模型版本，判断结果是方法优势还是模型/提示词偶然性；5）如果你做相关研究，可先复现其 SQLite 持久化+CAS 调用这一最小工作流，而不是直接复现全部开放题结果。"
+        }
+      },
+      "arxiv:2607.28573v1": {
+        "summary": "这篇论文围绕“本地部署的计算机使用代理（local computer-use agents, CUAs）”在严格硬件约束下的推理时扩展问题展开，具体考察上下文、时间、结构和并行四类 inference-time scaling 在 OSWorld 基准上的效果与失效模式变化。根据摘要，作者比较了 Qwen3-VL-8B/30B-A3B、UI-TARS-1.5-7B 和 OpenCUA-7B，发现额外计算通常收益递减，并会把失败从重复/停滞轨迹转移为过早误判成功等新型错误。",
+        "contribution": "核心贡献应是对本地 CUA 推理时扩展进行系统化经验研究，而不是单纯追求更高分数：一是把 inference-time scaling 拆分为 contextual、temporal、structural、parallel 四个维度并进行对比；二是在 OSWorld 上分析多种本地模型的性能—算力权衡；三是强调“增加推理计算会改变失败模式”这一现象，指出历史上下文可改善轨迹稳定性但代价高且会饱和，延长时间范围可减少卡住却未必提升任务成功率。",
+        "details": "从题名和摘要看，论文研究对象非常具体：在本地硬件上运行的 GUI/桌面环境计算机使用代理，它们需要在 OSWorld 这类基准任务中通过多步交互完成操作。作者关注的不是训练时扩展，而是执行阶段额外投入计算是否值得，尤其是在资源受限的本地模型上是否仍像 frontier agent 那样有效。摘要已给出较清晰的实验轴线：模型包含 Qwen3-VL-8B/30B-A3B、UI-TARS-1.5-7B、OpenCUA-7B；扩展维度包括 contextual、temporal、structural、parallel；评测基准是 OSWorld。证据线索主要来自“性能变化 + token/计算成本 + failure mode shift”三类现象：其一，上下文扩展通过提供历史轨迹信息改善 trajectory stability 和 task accuracy，但随着 token 成本增加出现收益饱和；其二，时间扩展能减少达到最大步数仍卡住的 stall，但对最终 task success 提升不显著，说明更长执行往往只是把错误延长，而非纠正；其三，论文特别强调失败模式迁移，例如从 repetitive/stalled trajectories 转向 premature false successes，这对 agent 评测和部署都很关键，因为表面上轨迹更流畅，实际上可能更早宣布完成错误任务。与用户若关注 agent 系统、推理时计算分配、多模态操作模型或本地部署，这篇工作直接相关：它提供的价值可能不在提出新模型，而在揭示“何种额外计算有效、何时无效、无效时会以什么形式失败”。但需要核对的信息也很多：四类 scaling 的操作定义是什么；结构扩展和并行扩展具体如何实现；各模型在不同扩展维度下的成本度量是 token、wall-clock、GPU memory 还是 rollout 数；OSWorld 的任务子类中哪些更受益；摘要后半段被截断，因此关于 structural/parallel scaling 的结论目前并不完整，正式阅读时应优先查实验设置和 failure taxonomy。",
+        "why_read": "来源为 arXiv，关键词匹配：agent、agents、ai、inference-time scaling。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：对于需要本地运行、算力受限的计算机使用代理，在执行时增加额外计算是否真的能稳定提升 OSWorld 等真实交互任务的成功率；如果不能，收益递减点在哪里，不同推理时扩展策略又会引入哪些新的失败模式。更细一点说，它在问：frontier CUA 上观察到的 inference-time scaling 规律，是否能迁移到 7B/8B/30B-A3B 这类更适合本地部署的模型。",
+          "method": "从摘要可推测，方法是系统性基准实验而非新训练范式。作者应当在 OSWorld 上，对 Qwen3-VL-8B/30B-A3B、UI-TARS-1.5-7B、OpenCUA-7B 分别施加四类推理时扩展：1）contextual scaling，可能是加入更长历史轨迹、更多状态或截图上下文；2）temporal scaling，可能是允许更长 rollout、更多交互步或重试步数；3）structural scaling，可能是调整规划/反思/分层决策等推理结构；4）parallel scaling，可能是多候选动作并行采样、投票或分支搜索。然后记录任务成功率、轨迹稳定性、最大步数停滞、token 成本，以及失败类型分布变化。摘要明确提到 failure mode analysis，因此很可能包含按轨迹模式或终止原因的定性/定量分类。",
+          "strengths": "最值得关注的亮点有三点。第一，问题设置贴近实际部署：研究的是 local CUA 而不是云端超大模型，结论对隐私、成本和边缘端可用性更有现实意义。第二，分析维度完整，不只比较“多算一点是否更好”，而是把 inference-time scaling 拆到上下文、时间、结构、并行等不同机制，便于读者理解到底是哪种额外计算在起作用。第三，论文强调失败模式转移而非只看平均成功率，这一点对 agent 很重要，因为系统可能减少明显卡死，却增加“看似完成但其实做错”的 premature false success，这类错误在真实使用中往往更危险。",
+          "weaknesses": "基于当前题录与摘要，局限和待警惕点包括：1）摘要被截断，关于 structural scaling 和 parallel scaling 的具体发现不完整；2）我们无法确认实验是否控制了 wall-clock time、显存和并发开销，因此“compute tradeoff”究竟按什么口径衡量仍需核对；3）OSWorld 虽是常用基准，但其任务分布未必代表所有桌面/浏览器/办公场景，本地部署结论可能受任务类型影响；4）涉及的模型数量虽覆盖数个代表性开源 CUA，但仍不能代表全部架构；5）目前看更偏经验研究，若缺少机制解释，结论可能较强依赖具体 agent 实现与评测协议。",
+          "next_step": "最小可执行动作：第一，打开 arXiv 正文后优先查实验设置表，明确四类 scaling 的操作定义、预算单位和是否控制总计算量。第二，直接找结果图表中 success rate、token cost、max-step stall、false success 的对应曲线，确认“收益递减”和“失败模式迁移”在各模型上是否一致。第三，记录 OSWorld 中哪些任务类别最受 contextual scaling 帮助、哪些任务只是被 temporal scaling 拉长却不增益。第四，如果你做本地 agent，可先复现最便宜的一种 contextual scaling 设置，并加上失败类型标注，验证是否也会从 stall 转向 premature false success。"
+        }
+      },
+      "arxiv:2607.28074v1": {
+        "summary": "这篇论文围绕“用于训练计算机使用智能体的可交互环境”提出 Echoverse：把规格编译成可重置、带数据库判分的有状态应用，并通过环境与模型共同演化来提升训练效果。摘要显示其重点任务是让智能体在登录门槛高、状态会变化的应用中学习真实交互，并分析环境的行为深度、失败针对性和随模型进化这三类因素对性能的影响。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：一是提出 Echoverse 这一大规模生成深层、有状态训练环境的框架，使任务评测直接基于应用自身数据库而非仅靠表面规则；二是提出一个“co-evolution”闭环，把每次已判分 rollout 同时当作环境/任务/验证器修复信号和模型训练信号；三是通过 12 个环境、14 个评测切分的实验，论证环境质量不只在数量，而更取决于行为深度、是否瞄准模型失败交互、以及环境是否随模型共同改进。",
+        "details": "从题名和摘要判断，研究对象非常具体：不是通用网页导航，而是“computer-use agents”在可操作应用中的训练基础设施问题。作者指出，训练这类智能体需要能被执行动作改变、还能被破坏和重置的应用环境；而现实中最重要的应用往往是登录受限且强状态依赖的，因此必须用合成环境替代。与此前“批量生成环境”的思路相比，这篇文章把瓶颈从“环境数量不足”转向“单个环境内部是否足够深、是否能精准覆盖模型失败模式、是否能随着模型进步继续提供有效训练信号”。方法线索上，Echoverse 似乎先从某种规格说明出发，自动编译出带前后端状态和数据库的应用；任务评估不是看文本匹配，而是检查应用自身数据库状态是否满足目标，这意味着它面向的是更接近真实软件操作的结果判定。随后作者引入 co-evolution 循环，对每条已评分 rollout 做双重利用：一方面修补环境、任务和 verifier，说明环境构建不是一次性的，而是会从模型暴露出的漏洞、歧义、错误判分中不断修正；另一方面把这些 rollout 转成训练信号更新模型。证据线索上，摘要给出一个明确结果：在 12 个此类环境上训练后，9B 模型在 14 个评测切分上从 36.5% 提升到 67.1%，与作为教师的更大前沿模型差距缩小到 14 个点以内。另一个重要现象是：浅层环境不仅帮助有限，甚至会把 live-site accuracy 压到低于 base model，这对做 agent 训练的人很关键，意味着环境“像不像真任务”比“量大不大”更重要。对相关研究者而言，这篇工作与网页智能体、GUI agent、tool-use 训练、合成任务生成、自动评测和 self-improving benchmark 都高度相关，尤其适合关注如何建立可持续数据引擎的人。需要核对的信息包括：规格语言具体如何定义；“应用”是网页、桌面还是混合界面；数据库判分如何处理多解与部分完成；co-evolution 中环境修复是人工参与、规则系统还是大模型自动完成；12 个环境和 14 个 split 的领域覆盖；教师模型与学生 9B 模型的具体架构；以及 live-site accuracy 的评测协议和安全边界。",
+        "why_read": "来源为 arXiv，关键词匹配：agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：当我们训练能够像人一样操作软件、网页或应用的智能体时，怎样构建足够真实、可重置、可批量扩展、还能持续提供有效学习信号的训练环境？更细一点，作者试图回答：决定训练收益的到底是环境数量，还是环境的行为深度、对模型失败模式的针对性，以及环境能否随着模型能力一起演化。",
+          "method": "从摘要可推测的方法链路是：先输入某种任务/应用规格，自动生成有状态应用环境；这些环境带有自身数据库，因此任务完成情况可以通过数据库状态核验。然后在训练时收集智能体 rollout，对每条 rollout 进行判分。判分后的轨迹被双重消费：第一路用于修正环境本身、任务定义和验证器，减少环境漏洞、任务歧义和错误评测；第二路作为模型训练数据，提高学生模型能力。实验上，作者在 12 个环境中训练一个 9B 模型，并在 14 个 evaluation split 上汇报整体提升；同时还做因素分析，对比浅层与深层环境，以及静态环境与随模型演进的环境。",
+          "strengths": "最值得关注的亮点有三点。第一，研究问题抓住了 computer-use agent 训练中的真实瓶颈：现实应用难接入、难重置、强状态依赖，而不是单纯缺 benchmark。第二，基于应用数据库的判分方式比表面字符串或动作序列匹配更接近真实任务成败，理论上更适合处理多步状态变更。第三，共同演化闭环很有价值，因为它把模型失败不仅看作训练样本，也看作环境缺陷发现器，这种“环境-模型数据引擎”思路比一次性合成数据更可能持续产生收益。摘要中给出的数值提升也表明这种设计不是概念性框架，而是至少在作者的 12 个环境和 14 个切分上获得了较大增益。",
+          "weaknesses": "仅基于题录和摘要，仍需警惕几个边界。第一，结果主要来自作者生成的环境，外推到真实 live-site 的泛化程度、成本和安全性尚不清楚。第二，摘要虽提到 live-site accuracy，但没有给出完整数字、任务种类和评测设置，也不清楚是否覆盖跨域长程任务。第三，co-evolution 可能引入环境向特定模型过拟合的问题：如果环境总围绕当前模型失败点修补，是否会降低对全新任务的代表性需要核实。第四，数据库判分虽强，但若真实任务含模糊目标、视觉质量或用户偏好，单靠结构化状态可能不足。第五，摘要没有说明环境生成和维护的人力/算力成本，若成本很高，规模化优势可能受限。",
+          "next_step": "最小可执行动作建议是：第一，拿到论文后先重点看系统图和一个完整环境实例，确认“规格→应用→任务→数据库判分”的具体链路；第二，查主结果表，记录 12 个环境名称、14 个 split 的定义、9B 基座模型和教师模型；第三，定位环境深度、targeted interaction、co-evolution 三组消融实验，特别关注“浅层环境导致 live-site accuracy 低于 base model”的具体数字和统计显著性；第四，查看 verifier 设计与失败案例，判断数据库判分是否稳健；第五，如果你做 agent 训练，可尝试把自己领域中的一个小型状态ful任务写成可核验数据库环境，验证这种训练基础设施是否可迁移。"
+        }
+      },
+      "arxiv:2607.27937v1": {
+        "summary": "这篇论文面向LLM智能体在交互环境中的自蒸馏训练，聚焦ALFWorld和We开头的另一类环境任务，提出一种从“给动作打分”转向“依据环境结果验证并比较师生轨迹”的Outcome-Verified Comparative Self-Distillation（OVCSD）方法。其核心思想是在学生失败轨迹上，从学生实际到达的状态调用技能条件化教师，保留经环境结果验证为成功的教师续写，并在师生首次分歧处进行局部比较学习与后缀蒸馏。",
+        "contribution": "核心贡献很可能有三点：第一，指出现有on-policy self-distillation常用的动作级打分监督存在两类缺陷，即教师偏好未被环境结果验证、且没有充分利用学生轨迹、教师轨迹及其行为差异的信息；第二，提出OVCSD框架，将失败学生rollout组织为prefix tree，并从学生到达状态自适应调用skill-conditioned teacher，只保留结果成功的教师continuation作为监督信号；第三，设计基于师生轨迹比较的蒸馏策略，在第一个状态对齐但动作分歧的位置做局部比较学习，同时蒸馏教师分歧后的成功后缀，以促进智能体把外部能力转化为可内化的行动策略。",
+        "details": "从题名和摘要看，论文研究对象不是一般文本LLM，而是需要在环境中执行动作序列的LLM agent，目标是让智能体在不依赖推理时检索外部知识/轨迹的情况下，把技能内化到参数中。作者将问题置于on-policy self-distillation（OPSD）语境下，但对已有“沿学生生成轨迹逐步给动作打分”的监督方式提出批评：一是这种教师评分不一定对应真实环境中的成功结局，二是它把师生交互视为单步标签问题，忽略了完整rollout、尤其是失败学生轨迹与成功教师续写之间的结构性差异。基于这一判断，OVCSD的关键证据线索是“outcome-verified”和“comparative”：前者说明监督样本必须经过环境执行结果筛选，后者说明学习信号来自师生轨迹对比而非孤立动作偏好。方法上，摘要已给出较具体流程：先把失败学生rollout组织成prefix tree，推测这是为了合并共享前缀、减少重复教师调用，并系统化定位学生常失败的状态；然后在这些学生实际到达的状态上，按技能条件调用teacher，说明教师可能不是单一通用策略，而是可根据任务子技能或目标上下文切换；接着只保留那些从该状态继续执行后能够在环境中成功完成任务的教师continuation，作为高置信监督样本；最后在第一个状态对齐的分歧点做localized comparative learning，并蒸馏教师后缀。这里“first state-aligned divergence”很关键，它意味着作者可能避免对整条轨迹做粗粒度优劣比较，而把监督集中在“学生开始走偏的最早决策点”，从而更贴近信用分配问题。实验线索方面，摘要明确提到ALFWorld，另一个数据集/环境名被截断为“We ...”，高概率也是常见的交互式环境或网页/具身任务基准，但目前不能确定具体名称，因此不能臆测结果规模。与智能体训练方向的关系上，这项工作对应当前从外部检索增强、测试时搜索转向训练时能力内化的趋势，尤其适合需要长时序决策、可验证终局成功与失败的环境任务。对科研读者而言，最值得核对的是：教师是谁、如何获得skill-conditioned能力；prefix tree如何构造与裁剪；局部比较学习的损失函数具体是DPO/IPO式偏好损失、ranking loss，还是条件行为克隆；后缀蒸馏是否只在成功教师片段上做监督；以及相较普通行为克隆、trajectory preference optimization、action scoring蒸馏的增益分别来自哪里。由于目前只基于题录和截断摘要，无法确认实验提升幅度、统计显著性、推理成本和泛化表现。",
+        "why_read": "来源为 arXiv，关键词匹配：llm、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在LLM agent的on-policy自蒸馏中，如何从学生自己探索得到的失败/次优轨迹中提炼出可靠监督，使学生不仅学到“教师觉得哪个动作好”，而是真正学到“哪些续行动作能在环境中把任务做成”。更细地说，它试图解决动作级打分监督与环境终局成功之间脱节、以及长轨迹中监督信号无法准确定位关键分歧决策点的问题。",
+          "method": "从摘要可推测的方法流程为：1）让学生在环境中rollout，收集失败轨迹；2）将失败轨迹按共享前缀组织成prefix tree，以压缩重复状态并识别高价值失败节点；3）在学生真实到达的状态上，自适应调用一个skill-conditioned teacher生成后续动作序列；4）把教师续写放回环境执行，只保留那些最终任务成功的continuation，形成outcome-verified监督数据；5）对师生轨迹进行状态对齐，找到首次分歧位置，在该局部位置上施加comparative learning，突出“学生为何在这里偏离成功行为”；6）对分歧后的教师成功suffix继续蒸馏，帮助学生学习完整完成行为。实验任务至少包括ALFWorld，以及另一个名称被截断、可能也是交互环境的基准。",
+          "strengths": "亮点主要在三个层面。其一，监督信号更接近环境真实目标，因为教师建议必须经过结果验证，而非仅靠教师主观评分；这对长时序任务尤其重要。其二，利用师生轨迹之间的结构差异，而不是把学习问题简化为单动作分类，理论上更适合处理信用分配与局部纠偏。其三，prefix tree加上从学生已达状态继续教学的设计，天然贴近“从失败中学习”，也可能比从头生成教师示范更节省采样，并减少分布偏移。若实验充分，这种框架对具身任务、网页代理、文本交互环境等可验证任务都可能有应用价值。",
+          "weaknesses": "基于当前信息需要警惕几类边界。第一，方法依赖环境可验证成功与失败，若任务奖励稀疏、结果难验证或存在长延迟反馈，监督构造可能昂贵。第二，skill-conditioned teacher的来源与质量会强烈影响上限；如果教师本身不稳定，结果验证虽能过滤，但成本可能很高。第三，localized comparative learning是否优于更简单的成功后缀行为克隆，需要消融实证支持。第四，prefix tree组织失败轨迹在大规模连续状态空间中是否仍高效、如何定义状态对齐，也需要看正文细节。第五，摘要未提供具体结果、数据规模、训练代价和泛化场景，因此目前不能判断方法是稳健改进还是仅对特定环境有效。",
+          "next_step": "最小可执行动作：1）先查完整摘要和方法图，确认第二个实验基准到底是什么；2）重点看是否有与action-level scoring、纯行为克隆、trajectory preference/distillation方法的直接对照；3）记录prefix tree构建规则、状态对齐方式、首次分歧定义和损失函数；4）查看消融实验，分离outcome verification、comparative learning、teacher suffix distillation三部分的贡献；5）若你做LLM agent训练，可先在一个有明确终局成功信号的小环境上复现“从失败状态调用教师并只保留成功续写”的数据构造流程，评估其相对普通成功轨迹蒸馏的增益。"
+        }
+      },
+      "doi:10.1126/science.aef3178": {
+        "summary": "该研究围绕一种单独的防御相关逆转录酶DRT4，解析其如何在噬菌体感染中同时执行DNA聚合、外切核酸酶和RNA内切核酸酶功能，并通过RNA切割实现抗噬菌体防御。摘要指出，DRT4可感知感染导致的dNTP升高，转向蛋白引发的ssDNA合成，随后在足够长度ssDNA、噬菌体DNA结合蛋白和dGTP共同作用下被激活去切割宿主和噬菌体RNA。",
+        "contribution": "核心贡献是提出一种非ncRNA依赖的DRT抗病毒机制模型：DRT4先利用DNA聚合/外切活性平衡感知感染状态，再把DNA合成产物及感染相关因子转化为RNA内切酶激活信号，最终通过切除RNA中的3'-GMP终止感染。这将DRT的功能从“转录非编码RNA参与防御”扩展到“耦联DNA合成与RNA降解”的多功能抗噬菌体酶体系。",
+        "details": "从摘要看，研究对象是 defense-associated reverse transcriptase 中的单一成员 DRT4，重点不在经典ncRNA模板转录，而在其独立完成抗噬菌体反应的机制。作者给出的证据链条较清晰：第一层是感染感知，噬菌体感染后细胞内脱氧核苷三磷酸水平升高，使DRT4的DNA聚合活性相对外切活性占优；第二层是产物生成，DRT4进行蛋白引发的单链DNA合成；第三层是效应激活，达到一定长度的ssDNA、噬菌体DNA结合蛋白以及dGTP共同触发一种“异常的”RNA内切酶活性；第四层是防御执行，DRT4从宿主和噬菌体RNA中切除鸟苷3'-单磷酸，造成感染终止。就方法线索而言，论文大概率结合了体外生化活性测定、不同核苷酸条件下的酶活平衡分析、ssDNA长度依赖实验、噬菌体感染表型检测，以及RNA切割产物的鉴定。由于摘要强调“excising guanosine 3′-monophosphate”，正文中很可能有末端化学性质、切割位点偏好或产物质谱/测序证据。对从事抗噬菌体系统、逆转录酶工程、核酸酶机制或分子工具开发的读者，这篇论文值得关注，因为它提示一种由DNA聚合过程直接门控RNA降解的分子开关，可能启发可编程核酸处理工具设计。需要核对的信息包括：DRT4是否真属于逆转录酶样折叠但不依赖RNA模板、其蛋白引发机制的分子基础、RNA切割是否具有序列或结构特异性、宿主RNA被切割后细胞代价如何平衡、防御谱是否局限于特定噬菌体，以及该系统是否需要其他辅助因子。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题是：对于不依赖ncRNA的防御相关逆转录酶，尤其是单个DRT4蛋白，究竟如何识别噬菌体感染并把这一状态转化为有效的抗病毒输出；以及它为何兼具DNA聚合、外切核酸酶和RNA切割功能，这三种活性之间如何串联成完整防御机制。",
+          "method": "根据摘要，可能的方法路径包括：在噬菌体感染条件与未感染条件下比较DRT4相关表型；通过体外酶学实验测量DNA聚合与外切活性的动态平衡，并测试dNTP浓度变化对平衡的影响；检测DRT4是否进行蛋白引发的ssDNA合成以及所需底物条件；构建不同长度ssDNA、加入或去除噬菌体DNA结合蛋白及不同dNTP，观察RNA内切酶活性是否被激活；分析RNA切割产物以确认切除了3'-GMP；再将这些生化现象与抗噬菌体防御结果对应起来。若正文完整，可能还会有突变体分析来拆分三种酶活的功能贡献。",
+          "strengths": "最值得关注的亮点有三点。其一，机制链条具体：从感染引起的代谢信号dNTP升高，到ssDNA生成，再到RNA切割激活，提供了相对闭环的因果模型。其二，功能组合新颖：一个DRT4集成DNA聚合酶、外切酶和RNA内切酶活性，突破了对DRT主要作为逆转录相关因子的既有印象。其三，效应方式独特：并非简单降解核酸，而是从RNA中切除鸟苷3'-单磷酸，提示存在特殊的底物识别和催化化学，这对开发新型DNA/RNA处理工具有潜在价值。",
+          "weaknesses": "基于题录和摘要，当前需要警惕的边界包括：第一，尚不清楚该机制在多少类细菌和噬菌体中普遍存在，还是特定系统的特例；第二，摘要没有说明RNA切割对宿主自身毒性的控制方式，因此防御与自损之间的平衡仍需看正文数据；第三，所谓“异常的RNA内切酶活性”具体异常在哪里，是切割位点、产物化学、底物谱还是催化结构，目前信息不足；第四，尚不清楚抗噬菌体作用的主因是直接切割噬菌体RNA，还是通过广泛宿主RNA损伤诱导感染终止；第五，缺少结构信息线索，因而难以判断三种酶活是否共用活性中心或经构象切换实现。",
+          "next_step": "最小可执行动作：先记录并核对正文中的4类关键图表信息——1）dNTP升高是否在感染中被直接测量；2）蛋白引发ssDNA合成是否有直接生化证据和长度阈值；3）RNA切割产物是否被明确鉴定为3'-GMP释放；4）三种活性对应的失活突变体是否分别丧失防御。若你关注工具开发，可优先整理DRT4激活所需条件列表（ssDNA长度、dGTP、DNA结合蛋白、底物RNA特征），判断其是否可被重构为体外可控的RNA加工系统。"
+        }
+      },
+      "doi:10.1126/science.aej5902": {
+        "summary": "这篇Science论文从题名与摘要看，聚焦“表面脑刺激（surface brain stimulation）”这一具体干预任务，主张利用脑功能环路信息来指导更精准的皮层表面刺激定位与参数设计。基于现有元数据，它更像是在强调“功能回路→刺激靶点/策略”的映射思路，而不是单纯讨论一般性脑刺激。",
+        "contribution": "从提供的信息判断，论文的核心贡献很可能是提出或总结了一种以脑功能环路为依据的精准表面脑刺激框架：不是按粗略解剖区进行刺激，而是依据与目标行为或病理状态相关的功能连接/功能回路来选择刺激位点与可能的刺激方案。",
+        "details": "可用信息非常有限：题名为“Surfacing brain stimulation”，摘要只有一句“Brain functional circuits can guide precision surface brain stimulation”，作者仅列出Jianxun Ren，发表于2026-07-30的Science。仅凭这些线索，论文对象应是皮层表面脑刺激，可能涉及硬膜外/皮层表面的电刺激方案，或更广义的非侵入/半侵入式表面刺激概念；其关键任务是把“脑功能环路”转化为“精准刺激”的依据。这里的“functional circuits”提示研究可能依赖功能成像、功能连接分析、任务态/静息态网络、病理相关回路识别，或者以回路为单位定义刺激靶点，而非仅靠脑区坐标。摘要中的“guide”暗示证据链可能是：先识别与特定症状、认知功能或行为输出相关的功能环路，再据此制定表面刺激位置与模式，最后观察行为、神经活动或临床指标改善。不过，当前没有任何关于具体疾病、受试对象、动物/人类、刺激模态、样本量、评价指标、对照设计、统计结果的信息，因此不能判断这是原创研究、观点评论、展望文章还是技术综述。对科研读者而言，最值得核对的是：论文到底针对什么应用场景（如癫痫、运动障碍、抑郁、感觉/运动恢复或基础认知调控），表面刺激具体指哪种技术，功能环路是如何测量和验证的，以及“precision”体现在空间定位、网络特异性、个体化适配还是闭环控制。若你的研究方向与脑刺激、神经调控、脑网络分析、术中电刺激或BCI有关，这篇文章的价值可能在于提供一个从网络层面重定义刺激靶点的视角，但在未见全文前，不能把它当作已被充分验证的通用方案。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，很可能是：如何让皮层表面脑刺激不再停留于经验性或粗粒度解剖定位，而是基于与目标功能或疾病相关的脑功能环路，实现更精准、更个体化、可能也更有效的刺激干预。换言之，研究焦点不是“是否能刺激”，而是“依据什么回路信息来选靶点和优化刺激”。",
+          "method": "从题名和摘要推测，可能的方法路径包括：1）使用功能成像或电生理数据描绘与目标行为/症状相关的功能环路；2）将这些环路映射到可实施表面刺激的皮层位点；3）通过表面脑刺激干预这些位点，观察神经活动、行为表现或临床结局的变化；4）比较基于功能回路选靶与传统解剖选靶的差异。若是Science中的短评/展望，则方法可能不是原始实验，而是整合近期证据，提出“功能环路指导精准表面刺激”的概念框架。由于摘要过短，具体数据类型、模型、实验系统和统计分析均无法确认。",
+          "strengths": "最值得关注的亮点在于，它把脑刺激的定位单位从单个脑区提升到功能环路层面，这对精准神经调控具有明确方法学意义。如果论文提供了真实案例或实验支持，那么其价值可能体现在：提高刺激靶点选择的生物学合理性、增强个体化定制能力、改善刺激效果解释性，并为临床神经调控或高级脑机接口提供网络层面的决策依据。题名中的“Surfacing”也可能暗示对皮层表面可达性的强调，即在可实施刺激的边界内尽量贴近真实功能网络。",
+          "weaknesses": "当前最大的局限是信息不足。摘要只有一句话，无法确认论文类型、研究对象、具体刺激技术、实验设计、样本量、效应大小和统计显著性，也无法判断“功能环路指导刺激”是概念性主张还是已有严格验证的操作流程。还需警惕“precision”可能只是相对传统方法的表述，而未必意味着已实现稳定、泛化的个体化闭环刺激。若该文是评论或新闻式文章，其证据强度与原创研究完全不同。",
+          "next_step": "最小可执行动作：1）先确认论文类型，是Research Article、Review、Perspective还是Editorial；2）查看摘要全文和首图，记录研究对象（人/动物/患者类型）与刺激模态；3）重点查是否给出“功能环路识别→表面刺激靶点选择→效果验证”的完整证据链；4）若与你的研究相关，建立一个阅读表，逐项记录靶点定义方式、数据模态、对照条件、结局指标和个体化程度；5）特别核对“surface brain stimulation”具体指什么技术，避免与非侵入经颅刺激或植入式深部刺激混淆。"
+        }
+      },
+      "doi:10.1126/science.aec6298": {
+        "summary": "这篇Science论文针对“醇到烷基氟化物转化中，经典Appel卤化不能有效使用氟化物”的具体难题，提出了以台式稳定的新戊氧基膦鎓盐为核心试剂、以KF为氟源的催化Appel氟化体系。摘要显示其适用于多种醇底物，并借助氢键相转移催化实现KF活化与P–F键裂解，指向未来醇类对映选择性氟化的可行路径。",
+        "contribution": "核心贡献在于为长期受阻的“Appel型醇氟化”提供了可行化学解：通过设计新戊氧基膦鎓盐，避免氟离子被不可用的二氟膦烷形式完全封存，而是形成可逆交换的新戊氧基氟膦烷中间体；再结合氢键相转移催化，使廉价KF能够参与对醇底物的立体反转型氟化。若摘要表述成立，这不仅是一个合成方法学突破，也给不对称醇氟化提供了明确机制基础与催化入口。",
+        "details": "从题名和摘要看，研究对象非常明确：以醇为底物、以KF为氟源，发展一种“催化Appel fluorination”方法来制备烷基氟化物。该问题的重要性在于，Appel反应是醇转卤代物的经典工具，但对氟而言一直不理想，关键障碍是氟化物容易被膦试剂体系“锁死”为二氟膦烷，导致不能像Cl/Br那样顺利完成醇的卤代。本文的策略不是简单更换催化剂，而是先在磷试剂层面做结构设计：引入bench-stable neopentoxyphosphonium salts（台式稳定的新戊氧基膦鎓盐），使体系优先形成neopentoxyfluorophosphorane（新戊氧基氟膦烷），且该中间体可与醇底物发生可逆交换，从而绕开不利的二氟膦烷终点。\n\n方法线索也比较具体。摘要指向两个协同模块：第一，膦鎓试剂/膦烷中间体负责把醇转化为可被氟进攻的烷氧基膦鎓离子对；第二，氢键相转移催化剂负责溶解和转运KF中的氟离子，并促进P–F键解离。最终发生的是alkoxyphosphonium fluoride ion pair的stereoinvertive fluorination，即类似SN2特征的立体反转型成键过程。若这一点有实验支持，说明该方法对手性醇尤其值得关注，因为它不仅给出产物，还给出潜在立体化学控制模式。摘要还给出一个关键周转依据：催化剂对氟离子的结合强于对副产膦氧的结合，因此催化循环可以持续，而生成的phosphine oxide还能回收再制备膦鎓试剂。这意味着作者同时考虑了催化活性和试剂可循环性。\n\n证据线索方面，虽然没有正文数据，但摘要已经暗示几类应有证据：一是中间体层面的机理证据，至少需要支持新戊氧基氟膦烷的形成、其与醇的可逆交换、以及相对二氟膦烷生成的偏好；二是催化作用证据，需要表明氢键相转移催化剂既改善KF可用性，也影响P–F键断裂；三是立体化学证据，需要通过手性底物或构型相关实验支持“stereoinvertive fluorination”；四是方法学范围，摘要中的“various alcohols”提示应有底物拓展，可能包括伯/仲醇、官能团兼容性，甚至复杂分子后期修饰，但这些都必须到正文和图表核对。\n\n与科研读者的关系上，这篇文章对有机合成、含氟药化、方法学开发、主族元素反应设计、相转移催化和机理研究方向都较相关。对合成化学家而言，最大吸引力是使用KF这种廉价且常见的氟源直接把醇转成烷基氟；对机理研究者而言，最大看点是如何通过膦中心取代基工程重塑Appel反应网络，避免“氟被困住”；对不对称催化研究者而言，摘要最后一句“offering a pathway to enantioselective fluorination of alcohols”值得重点关注，因为这意味着作者可能尚未完全实现不对称版本，但已建立足够清晰的可演化平台。\n\n需要核对的信息主要包括：具体底物范围和收率；伯醇、仲醇、叔醇及烯丙/苄位醇的差异；是否对复杂药物分子醇有效；是否存在消除、副反应或重排；KF的当量、溶剂、温度、催化剂结构和负载；是否确实催化而非准化学计量；新戊氧基膦鎓盐的制备便捷性和总体原子经济性；立体反转证据是否在多个底物上普适；机理证据是基于NMR观察、动力学、计算还是竞争实验；以及“膦氧可回收”在实际工艺中是否高效。由于目前只有摘要，不能判断该体系对工业可放大性、官能团容忍度和不对称扩展的真实成熟度。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：为什么经典Appel型醇卤化在氟化上失效，以及能否设计一种真正可催化、能直接使用KF把醇转为烷基氟化物的体系。更细一点说，作者要解决的是氟离子在磷试剂体系中被二氟膦烷“截留”的根本机制障碍，并把它改造成可发生底物交换和最终C–F成键的反应网络。",
+          "method": "从摘要推测，方法包括三层：1）设计并使用台式稳定的新戊氧基膦鎓盐作为关键反应试剂；2）在反应过程中生成新戊氧基氟膦烷中间体，并使其与醇底物可逆交换形成烷氧基膦鎓/氟离子对；3）引入氢键相转移催化剂以提高KF中氟离子的溶解与传递，并促进P–F键断裂，使氟对碳中心进行立体反转型进攻。机理论证很可能依赖31P/19F NMR、底物/中间体交换实验、立体化学探针、催化剂结合偏好实验，以及可能的DFT计算。",
+          "strengths": "最值得关注的亮点有三点。第一，这是对一个经典反应框架的“失效原因导向型”修复，不是简单筛条件，而是通过膦试剂结构设计改变中间体命运。第二，使用KF作为氟源具有现实吸引力，若底物普适性足够，将明显提升合成可及性。第三，摘要把催化、机理和立体化学联系得很紧：KF溶解/转运、P–F键活化、烷氧基膦鎓离子对形成、立体反转型氟化、以及催化剂对氟与膦氧的差异结合共同构成了一个相对完整的催化闭环。",
+          "weaknesses": "基于题录和摘要，仍需警惕几个边界。第一，“various alcohols”并不等于广泛普适，尚不清楚对位阻大或易消除底物的表现。第二，摘要提到通向对映选择性氟化的路径，但未明确是否已经实现高ee的不对称实例，因此不能把它直接理解为成熟的不对称方法。第三，所谓可回收膦氧和台式稳定试剂虽有工艺潜力，但整体步骤经济性、试剂制备成本和放大安全性未见数据。第四，KF虽廉价，但常见问题是低溶解度和反应性受限，具体依赖何种催化剂、溶剂和条件窗口仍待核实。",
+          "next_step": "最小可执行动作：1）先查正文图1和反应总览，确认膦鎓盐结构、催化剂类型及标准条件；2）查看底物范围表，记录伯/仲醇、复杂分子和手性底物的收率与构型结果；3）重点读机理图和补充信息中31P/19F NMR证据，核对新戊氧基氟膦烷与二氟膦烷的关系；4）如果你做方法学复现，优先挑一个手性仲醇和一个药物样底物做对照，验证收率、立体反转和副反应；5）若你关注不对称催化，进一步整理文中氢键相转移催化剂的结构信息，评估其是否可替换为手性版本。"
+        }
+      },
+      "doi:10.1038/s41586-026-10766-3": {
+        "summary": "该论文围绕一种基于相干自旋穿梭的硅半导体自旋量子比特架构，演示了可执行最高权重为4的X型与Z型奇偶校验，并据此构造表面码稳定子小单元。摘要还表明作者在一个有效五量子比特处理器上实现了通用控制、生成多种多比特纠缠，并报告了五比特GHZ态的真实多体纠缠。",
+        "contribution": "核心贡献是把“自旋穿梭总线+稀疏自旋量子点阵列”推进到可执行表面码相关稳定子测量的层面：器件包含可相干运输量子比特的shuttling bus，并在4个隔离的bus stops处产生受控相互作用；在多数区域缺乏电荷传感的条件下，仍利用穿梭与量子非破坏自旋测量完成单比特与双比特操作标定；最终选择性实现形成surface-code plaquette所需连接关系，完成最高weight-four的X/Z奇偶校验，并用这些校验生成多比特纠缠，包含五比特GHZ态。",
+        "details": "从题名和摘要看，研究对象非常具体：是硅基门定义半导体自旋量子比特器件，其中一个可相干穿梭电子自旋的“总线”连接多个分离的交互位置（4个bus stops），并形成一个有效的五量子比特处理器。论文要解决的不是单纯展示长距离穿梭，而是证明这种动态连通性足以支持量子纠错中关键的稳定子/奇偶校验操作，尤其是表面码中具有实际意义的四体校验。摘要给出的证据链比较完整：先是动态填充阵列，再在大部分器件缺乏电荷传感的情况下利用穿梭和QND自旋测量去调谐全部单、双比特门；随后实现通用控制；再按需选取连通图构造surface-code stabilizer plaquette；最后执行X型和Z型、最高到weight-four的奇偶校验，并把这些校验作为生成多比特纠缠的工具，覆盖阵列中“所有量子比特组合”，且报告五比特GHZ态的genuine entanglement。对做半导体量子计算、量子纠错架构、可扩展量子互连的人来说，这篇工作的意义可能在于把“穿梭带来远程连接”从器件能力提升为“可服务于稳定子测量与编码结构”的体系级能力。需要重点核对的信息包括：奇偶校验是一次性演示还是重复循环稳定子测量；weight-four校验的保真度、成功率和主要误差源；通用控制具体指哪组门集；五量子比特中是否包含专用辅助比特；GHZ态保真度及真实多体纠缠见证方式；“所有量子比特组合”的纠缠生成是否指两体/多体子集全覆盖；以及无广泛电荷传感条件下的标定流程到底多自动化、多稳健。由于当前只有摘要，无法确认门时序、误差预算、与现有超导/离子/自旋平台相比的量化优势，也不能判断该架构距离容错循环还差哪些关键步骤。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在稀疏硅自旋量子比特阵列中，能否利用相干自旋穿梭提供的动态、长程连通性，构造出符合表面码需求的多体奇偶校验，特别是最高权重为4的X型和Z型稳定子检查；以及在器件多数区域缺少直接电荷传感的现实约束下，是否仍能完成多比特处理器的初始化、门调谐、控制与纠缠生成。",
+          "method": "按摘要推测，方法路径包括：设计一个含shuttling bus和4个bus stops的硅自旋器件；通过相干穿梭在不同站点之间运输电子自旋并建立按需相互作用；使用量子非破坏自旋测量代替或补充电荷传感，完成阵列动态填充与状态读出；在此基础上逐一标定单比特旋转和双比特耦合门，形成有效五量子比特通用控制；然后通过选择不同连通关系，将若干比特布置成surface-code plaquette所需拓扑，执行X/Z奇偶校验序列；最后通过奇偶校验制备和验证多比特纠缠，包括五比特GHZ态，并用纠缠见证或态重构类分析证明真实多体纠缠。",
+          "strengths": "最突出的亮点有四个。第一，论文不是停留在“可以穿梭”的器件演示，而是把穿梭能力用于量子纠错相关任务，直接对接surface code stabilizer plaquette这一明确对象。第二，最高weight-four的X/Z parity checks说明该平台已能处理多体校验，而非仅限于最近邻两比特门。第三，在大部分器件没有电荷传感的条件下仍完成门调谐和控制，说明其校准与操作策略可能更适合大规模稀疏阵列。第四，利用奇偶校验生成覆盖全阵列组合的多比特纠缠，并报告五比特GHZ态的真实多体纠缠，这为架构的非经典相关性与控制完整性提供了较强证据。",
+          "weaknesses": "基于题录/摘要需要警惕几类边界。首先，摘要没有给出关键量化指标，例如单、双比特门保真度，穿梭保真度，weight-four parity check保真度，以及GHZ态保真度，因此暂时无法判断其距离纠错阈值或循环稳定子测量还有多远。其次，摘要强调“demonstrate parity checks”，但未说明是否实现重复轮次、实时反馈或容错所需的连续稳定子提取，所以更可能是原理验证而非完整QEC循环。再次，“effective five-qubit processor”说明系统规模仍较小，能否推广到更大阵列取决于穿梭误差累积、串扰、频漂和标定复杂度。最后，没有全文就无法确认bus stops之间耦合机制、门型、读出链路及QND测量代价，也不能比较其相对其他半导体自旋平台的独特优势。",
+          "next_step": "最小可执行动作可以是五步：1）先查论文主图，确认器件布局、5个量子比特角色分配和4个bus stops的物理位置；2）定位所有与weight-four X/Z parity checks相关的数据图，记录校验序列、保真度、误差条和对照实验；3）整理门集与标定流程，特别标出哪些步骤依赖自旋穿梭、哪些依赖QND测量；4）查GHZ态验证部分，记下所用纠缠见证、保真度阈值和“genuine entanglement”的判据；5）若你的方向与量子纠错架构相关，额外建立一个对照表，把本文与近年的自旋量子比特稳定子测量、电子穿梭、远程耦合工作按“连通性、校验权重、是否重复测量、量子比特数、是否无电荷传感标定”几个维度并排比较。"
+        }
+      },
+      "doi:10.1038/s41586-026-10856-2": {
+        "summary": "该研究聚焦痘病毒代表种牛痘病毒中跨越核心壁的portal complex，利用冷冻电子断层成像、亚断层平均和结构预测，在原位条件下解析其组成与结构，并将其与感染建立期mRNA释放及基因组释放相关过程联系起来。摘要指向一个由E8、E6、L3构成的六聚体门状复合物，并提示病毒解旋酶D5可能与该通道协同参与基因组释放。",
+        "contribution": "核心贡献是为痘病毒核心壁孔道这一长期关键但结构信息不足的装置提供了原位结构框架与组分归属：提出portal complex由E6形成中央腔体并连接核心壁，E8位于外侧形成六聚体附着，L3以“六聚体的二聚体”形式位于内侧；同时把这些保守且必需蛋白的空间组织与mRNA释放、病毒装配、宿主限制及可能的基因组释放机制联系起来。",
+        "details": "从题名和摘要看，论文研究对象非常具体：牛痘病毒成熟颗粒内、跨越核心壁的portal complex。任务不是泛泛描述病毒形态，而是回答这个孔道由哪些病毒蛋白组成、在原位是什么构型、其朝向核心内外两侧的层级关系如何，以及它可能如何支持感染早期的mRNA释放与后续基因组释放。方法线索也较明确：首先用cryo-ET在接近天然状态下观察成熟病毒颗粒，再通过subtomogram averaging提高该局部复合物的分辨率，随后结合structure prediction做亚基归属和装配解释。这说明作者很可能不是单靠单颗粒重构，而是在完整病毒上下文中定位该孔道，因此“in situ structure”是本工作的关键价值。摘要给出的证据链包括：一，portal complex为六聚体架构；二，E8、E6、L3三种保守蛋白分别占据外侧、中央和内侧位置；三，E6与周围核心壁相互作用，适合解释其既参与装配又构成通道中心的双重功能；四，L3位于内侧且是TRIM5α限制靶标，使该结构与宿主限制机制直接挂钩；五，D5作为基因组释放所需解旋酶被进一步纳入模型，提示portal可能不仅是mRNA出口，也参与更晚一步的DNA释放。对科研读者而言，这篇论文最值得关注的是它把多个遗传学上已知“必需但机制不清”的蛋白整合进一个空间上自洽的装配模型，为痘病毒核心重塑、转录产物输出、宿主因子识别提供统一结构坐标系。若你的方向是大DNA病毒装配、病毒侵入后解包被、原位结构生物学或宿主限制因子，那么这项工作可作为痘病毒“功能结构地图”的一个关键节点。需要核对的信息主要有：最终分辨率和局部异质性；亚基归属是依赖实验标记、突变体还是主要依赖预测拟合；D5是否被直接观察到结合portal还是基于邻近密度和功能关联推断；不同成熟阶段或不同病毒粒子中portal数量是否恒定；以及该结构是否足以解释既有关于E6/E8/L3/D5表型的全部遗传学结果。由于只依据摘要，不能确认作者是否进行了功能扰动、互作验证或时间分辨分析。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题是：痘病毒成熟核心壁上的portal complex在原位到底是什么结构、由哪些保守必需蛋白构成、各组分位于通道的哪一侧，以及该结构如何与感染建立期mRNA释放、病毒装配和可能的基因组释放相联系。",
+          "method": "摘要显示主要路径是冷冻电子断层成像获取完整牛痘病毒颗粒的三维原位数据，对portal区域做亚断层平均以提升结构信息，再结合结构预测对E8、E6、L3进行亚基归属和装配解释。文中还可能结合既往遗传学/功能学信息来支撑归属，例如E6的装配必需性、E8/E6/L3在mRNA释放中的作用，以及L3作为TRIM5α限制靶标、D5作为解旋酶与基因组释放的关系。",
+          "strengths": "亮点在于把完整病毒环境中的局部孔道结构解析到可讨论亚基分工的程度，而非脱离背景的体外复合物；给出清晰的空间分层模型：E8外侧、E6中央、L3内侧；把保守必需蛋白的功能表型映射到结构位置上，增强机制解释力；并将portal从单纯“孔”提升为连接病毒装配、早期转录产物释放、宿主限制与DNA释放的多功能节点。对于痘病毒这类复杂大DNA病毒，原位结构证据本身就具有较高方法学与生物学价值。",
+          "weaknesses": "基于摘要需警惕几类边界：第一，亚基归属的直接性未知，若主要依赖结构预测拟合而非标记/缺失突变，仍需谨慎看待；第二，D5与portal的关系在摘要中像是功能关联加部分结构线索，未必代表稳定高占有率复合物；第三，摘要未给出分辨率、样本量、对称性处理和异质性分析，无法判断细节可靠度；第四，研究对象是牛痘病毒，虽称组分在痘病毒中保守，但跨种外推到天花或猴痘仍需后续比较；第五，结构与功能之间的因果验证强度不明，不能仅凭空间邻近就下结论。",
+          "next_step": "最小可执行动作：先查正文和扩展数据中的portal局部重构图、分辨率及亚基拟合证据；重点核对E8/E6/L3归属是否有突变体、标签或抗体支持；记录D5是被直接解析还是推断关联；把摘要提到的四个蛋白分别整理成功能-位置对照表；若你做相关方向，可进一步对照既有E6、L3、D5遗传学文献，看新结构是否解释已知温敏突变、装配缺陷或TRIM5α限制表型。"
+        }
+      },
+      "doi:10.1038/s41586-026-10834-8": {
+        "summary": "这篇Nature论文围绕多烯类抗真菌天然产物的结构重塑，聚焦两类酶促改造任务：通过异常糖基转移酶向多烯骨架引入糖基，以及扩展酰胺转移酶底物/反应范围以改造其羧酸基团。摘要声称，双糖基化结合羧酸修饰可得到毒性更低、活性更强，且可通过发酵或酶法高效获得的新型多烯抗真菌分子。",
+        "contribution": "核心贡献在于提出了一条相较传统全化学合成更清洁、步骤更经济的多烯优化路线：一方面发现并表征此前未描述的多烯生物合成/后修饰通路及其糖基转移酶，另一方面展示酰胺转移酶可被用于把通常与毒性和理化性质相关的羧酸取代基转化为其他官能团。若摘要表述在正文中被充分支持，则该工作的重要贡献是把“多烯药效-毒性权衡”的调控从困难的化学合成，转向更可扩展的发酵和酶催化平台。",
+        "details": "从摘要看，研究对象非常具体，是临床上重要但存在高毒性、低溶解度问题的多烯类抗真菌天然产物。论文试图解决的不是泛泛的“发现新抗真菌药”，而是如何在保留或增强多烯广谱抗真菌能力的同时，降低严重毒性并改善可及性。作者给出的路线是生物合成工程与酶催化改造：首先发现“此前未描述”的多烯及其生物合成路径，尤其是可在多烯骨架上安装糖的“异常”糖基转移酶；其次利用酰胺转移酶扩大反应范围，对多烯上被描述为有害的羧酸取代基进行转化。摘要中特别强调“第二个糖的引入”和“羧酸位点改造”的联合作用，暗示作者不是只做单点修饰，而是在系统评估组合结构改造对活性和毒性的影响。\n\n从方法线索推断，正文大概率包含以下几类证据：第一，天然产物发现与结构鉴定，可能基于产生菌基因簇挖掘、发酵产物分析、质谱/核磁确认新多烯结构；第二，酶学与通路表征，包括糖基转移酶和酰胺转移酶的体外反应、底物谱、产物谱，或异源表达/通路重构；第三，功能评估，至少应包括抗真菌活性比较，以及某种毒性评估，摘要未说明是哺乳动物细胞毒性、溶血性、肾毒性相关替代指标还是动物实验；第四，可制造性证据，即“clean and efficient fermentation or enzymatic routes”需要以产率、步骤数、转化效率或纯化便利性来支撑。\n\n就科研价值而言，这篇工作对天然产物化学生物学、抗真菌药物发现、生物催化和组合生物合成方向都较相关。它的关键科学点不是单纯发现一两个新化合物，而是提示多烯类分子的可编程修饰位点和酶工具箱：糖基数目/类型与羧酸官能团状态可能共同决定药效、选择性、毒性和溶解度。如果你关注抗真菌先导优化，这篇论文值得重点看结构-活性关系；如果你关注酶工程，则应重点看“异常糖基转移酶”到底异常在哪里，是供体选择、受体位置选择性，还是能绕过传统多烯修饰限制；如果你关注工艺放大，则要看发酵与酶法路线是否真正优于半合成。\n\n但目前只能依据题名、摘要和元数据分析，仍有多项关键信息必须核对：具体改造的是哪几类多烯，是否包含两性霉素B、制霉菌素等经典骨架，还是全新家族；新增糖的种类、连接位点和立体化学是什么；羧酸被转成了酰胺、酯、羟肟酸还是其他官能团；“更 potent、reduced toxicity”分别相对哪些母体化合物、在哪些模型中成立；是否同时改善了溶解度和药代；酶的底物广谱性究竟是少数类似底物还是具有平台化潜力。没有这些正文信息，不能进一步断言其临床转化前景或普适性。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：如何对多烯类抗真菌天然产物进行可控结构改造，以同时缓解其临床应用中的高毒性和低溶解度问题，并避免依赖低效、昂贵且原子经济性差的传统化学合成路线。更细地说，它在问两个机制/方法问题：多烯骨架能否通过新型糖基转移酶引入额外糖基；多烯上与不良性质相关的羧酸取代基能否通过酰胺转移酶被定向改造成更优官能团。",
+          "method": "基于摘要，可能的方法路径包括：1）从真菌或放线菌等产生菌中发现并解析新的多烯生物合成基因簇与代谢产物；2）利用LC–MS、MS/MS、NMR等手段完成新多烯及其糖基化/酰胺化衍生物的结构鉴定；3）通过基因敲除、异源表达、体外重组酶反应或通路重构来确认糖基转移酶和酰胺转移酶的功能；4）系统测试单糖、双糖以及不同羧酸替代形式对抗真菌活性和毒性的影响；5）比较化学法与发酵/酶法在步骤效率、清洁度和可扩展性上的差异。",
+          "strengths": "最值得关注的亮点有三点。第一，改造对象和修饰位点很具体：直接针对多烯分子上的糖基装饰和羧酸基团，这比泛泛的随机衍生化更容易形成可解释的结构-性质关系。第二，摘要暗示存在协同效应，即“第二个糖+羧酸改造”联合带来更高活性和更低毒性，这种组合优化若数据充分，会比单一修饰更有说服力。第三，制备路线强调发酵或酶法，若产物可直接通过生物体系获得，将明显提升该类复杂天然产物衍生物的可获得性和后续开发潜力。",
+          "weaknesses": "基于当前信息需要警惕的局限包括：1）摘要没有给出任何定量数据，无法判断活性增强和毒性降低的幅度、统计显著性及实用意义；2）“reduced toxicity”未说明评价体系，若仅为体外细胞或溶血测试，其临床相关性有限；3）未说明改造是否普适于多个多烯骨架，还是只适用于少数分子；4）未交代新增糖基和羧酸改造是否会影响稳定性、膜相互作用、药代或耐药谱；5）虽然强调发酵/酶法高效，但未见产率、滴度、转化率和放大数据，工业可行性仍待核实。",
+          "next_step": "最小可执行动作：1）先查看正文和补充信息中的代表性化合物结构图，记录母体多烯、加第二个糖后的产物、以及羧酸改造后的具体官能团；2）查主活性表和毒性表，做一个母体与衍生物的并排对照，特别记MIC、选择性指数、溶血/细胞毒性指标；3）查酶学图表，确认糖基转移酶和酰胺转移酶的底物范围与位点选择性；4）查发酵或体外酶促产率，判断其是否真优于已知化学半合成；5）如果你的方向相关，优先整理“结构修饰—性质变化”对应关系，作为后续设计类似多烯衍生物的启发。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": []
+  },
+  "papers": [
+    {
+      "id": "arxiv:2607.27705v1",
+      "source": "arxiv",
+      "title": "Albilich: Steerable Proof-State Orchestration for LLM-Based Mathematical Research with CAS Integration",
+      "authors": [
+        "Ting Gong",
+        "Michael Ruofan Zeng",
+        "Yong Yang"
+      ],
+      "published": "2026-07-30T05:41:44Z",
+      "updated": "2026-07-30T05:41:44Z",
+      "abstract": "Large language models can contribute useful ideas to mathematical research, yet long-horizon proof attempts remain difficult to coordinate, evaluate, and reproduce. We present Albilich, an open-source agentic harness for autoresearch in mathematics that combines long-horizon reasoning, computer algebra systems (CAS), literature retrieval, and persistent SQLite-based context management. We evaluate Albilich on the RealMath benchmark (Zhang et al. 2025) and on open problems in group theory from the Kourovka Notebook (Khukhro and Mazurov 2026). It solved 10/10 problems on RealMath with CAS and 9/10 with no CAS. On the Kourovka problems, Albilich produced a counterexample to Problem 21.142 and a proof of a strengthening of Problem20.2. Anablation on Problem 17.91 demonstrates 32.0% token reduction when CAS is enabled. An ablation on Problem 21.142 demonstrates higher verifier-rejection rate and failure to synthesize proof routes in the absence of the advisor agent. These results support Albilich as a human-steerable, CAS-boosted environment for scalable AI-assisted mathematical research.",
+      "url": "http://arxiv.org/abs/2607.27705v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.27705v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "ai",
+        "environment"
+      ],
+      "score": 61.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.28573v1",
+      "source": "arxiv",
+      "title": "Rethinking Inference-Time Scaling in Local Computer-Use Agents: Failure Modes and Compute Tradeoffs",
+      "authors": [
+        "Woongkyu Lee",
+        "Jungwook Choi"
+      ],
+      "published": "2026-07-30T17:36:36Z",
+      "updated": "2026-07-30T17:36:36Z",
+      "abstract": "Deploying autonomous computer-use agents (CUAs) locally is increasingly important for privacy, cost efficiency, and practical usability, yet improving their performance under strict hardware constraints remains challenging. While recent studies show that inference-time scaling can improve frontier computer-use agents through additional computation during execution, its effectiveness for resource-constrained local models remains poorly understood. We present a systematic empirical study of inference-time scaling in local CUAs across contextual, temporal, structural, and parallel dimensions. We evaluate Qwen3-VL-8B/30B-A3B, UI-TARS-1.5-7B, and OpenCUA-7B on the OSWorld benchmark. Our results show that additional computation often yields diminishing returns while changing failure modes. Contextual scaling provides historical grounding that improves trajectory stability and task accuracy, but its gains saturate as token cost increases and failures shift from repetitive or stalled trajectories toward premature false successes. Temporal scaling similarly reduces max-step stalls, yet does not substantially improve task success, indicating that longer horizons often extend erroneous trajectories rather than correct them. We further find that structural decomposition can introduce planning and formatting overhead in local two-stage agents, while parallel scaling partially mitigates these failures at a substantial computational cost. Overall, our findings suggest that efficient local CUAs require selective compute allocation, failure-aware control mechanisms, and agentic frameworks designed around the capabilities and limitations of local models.",
+      "url": "http://arxiv.org/abs/2607.28573v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.28573v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "agent",
+        "agents",
+        "ai",
+        "inference-time scaling"
+      ],
+      "score": 61.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.28074v1",
+      "source": "arxiv",
+      "title": "Echoverse: Deep, Evolving Environments for Training Computer-Use Agents at Scale",
+      "authors": [
+        "Yash Pandya",
+        "Sahil Gupta",
+        "Sarthak Harne",
+        "Archana Yadav",
+        "Kavyansh Chourasia",
+        "Hussein Mozannar",
+        "Vibhav Vineet",
+        "Sara Abdali",
+        "Corby Rosset",
+        "Yash Lara",
+        "Ahmed Awadallah",
+        "Ece Kamar",
+        "Akshay Nambi"
+      ],
+      "published": "2026-07-30T11:48:22Z",
+      "updated": "2026-07-30T11:48:22Z",
+      "abstract": "Computer-use agents learn from what their actions change, so training one needs applications it can act on, break and reset. The applications that matter most are login-gated and stateful, so synthetic environments stand in for them. Recent pipelines generate such environments in bulk, which moves the bottleneck from how many exist to what is inside each one. The returns, we find, come from three properties: how much behavioural depth an environment carries, whether it targets the interaction an agent actually fails, and whether it improves alongside the model. We present Echoverse, which compiles specifications into stateful applications whose tasks are graded against the application's own database, and a co-evolution loop that reads every graded rollout twice: as repairs to the environment, its tasks and its verifier, and as training signal for the model. Trained on twelve such environments, a 9B model improves from $36.5\\%$ to $67.1\\%$ across fourteen evaluation splits, within fourteen points of the much larger frontier model that taught it. We examine each property in turn. On the same domains, shallow environments push live-site accuracy below the base model ($80.0 \\to 75.0$) while deep ones raise it ($80.0 \\to 85.0$ and $48.0 \\to 65.0$); drilling one interface control across many renderings transfers to held-out widget families and to the open web; and repairing a single environment lifts the model trained on it from $16.2\\%$ to $38.5\\%$. The same worlds serve as reinforcement-learning environments, where a reward combining the grounded verifier with a dense per-step judge raises held-out score from $58.8\\%$ to $68.0\\%$. We release four environments as a benchmark, with their applications, seed data and grounded graders. Code: https://aka.ms/echoverse",
+      "url": "http://arxiv.org/abs/2607.28074v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.28074v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 61.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.27937v1",
+      "source": "arxiv",
+      "title": "From Scoring to Acting: Outcome-Verified Comparative Self-Distillation for LLM Agents",
+      "authors": [
+        "Xu Xia",
+        "Jinghua Piao",
+        "Min Yang",
+        "Xiaochong Lan",
+        "Jiaju Chen",
+        "Yong Li"
+      ],
+      "published": "2026-07-30T09:47:58Z",
+      "updated": "2026-07-30T09:47:58Z",
+      "abstract": "Recent work on LLM agents is shifting from external capability elicitation to capability internalization, enabling agents to retain useful skills without retrieval at inference time. On-policy self-distillation (OPSD) offers a promising direction, but many existing methods typically supervise students by scoring actions along student-generated trajectories. Such supervision has two limitations: teacher preferences are not validated by environment outcomes, and action-level scores underuse information from student rollouts, teacher rollouts, and their behavioral relationship. We therefore advocate outcome-verified teacher supervision and comparative learning over teacher-student trajectories. Based on this view, we propose Outcome-Verified Comparative Self-Distillation (OVCSD). OVCSD organizes failed student rollouts into a prefix tree, adaptively invokes a skill-conditioned teacher from student-reached states, and retains only outcome-verified successful continuations. It then applies localized comparative learning at the first state-aligned divergence and distills the post-divergence teacher suffix to transfer completion behavior. Experiments on ALFWorld and WebShop across three model scales show that OVCSD consistently outperforms skill-free RL and existing self-distillation baselines, achieving up to 29.7 and 5.4 absolute success-rate gains over the strongest baselines on ALFWorld and WebShop, respectively, while adding less than 3% privileged interaction during training.",
+      "url": "http://arxiv.org/abs/2607.27937v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.27937v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "llm",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 60.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aef3178",
+      "source": "science",
+      "title": "DNA polymerization activates RNA cleavage of a reverse transcriptase–like antiviral enzyme",
+      "authors": [
+        "Xuejun Rong",
+        "Jun Xiao",
+        "Xinyuan Zhao",
+        "Yan Yan",
+        "Jing Li",
+        "Yifan Chen",
+        "Yihua Fan",
+        "Zhichao Liu",
+        "Yue Cao",
+        "Fan Chen",
+        "Rui Cheng",
+        "Xionglue Wang",
+        "Longfei Wang",
+        "Bin Zhu"
+      ],
+      "published": "2026-07-30",
+      "updated": "2026-07-30",
+      "abstract": "Defense-associated reverse transcriptases (DRTs) transcribe noncoding RNAs (ncRNAs) for antiviral defense, but the mechanisms of ncRNA-independent DRTs remain unclear. In this work, we show that a single DRT4 mediates RNA-targeting antiphage defense by integrating DNA polymerase, exonuclease, and RNA endonuclease activities. First, through an equilibrium between its DNA polymerase and exonuclease activities, DRT4 senses phage infection, as elevated deoxynucleotide triphosphate levels shift the equilibrium toward polymerase activity, thereby promoting protein-primed single-stranded DNA (ssDNA) synthesis. Second, ssDNA of sufficient length, phage DNA binding proteins, and deoxyguanosine triphosphate collectively activate an unusual RNA endonuclease activity of DRT4, excising guanosine 3′-monophosphate from both phage and host RNA to terminate infection. These findings reveal a distinctive immune strategy combining nucleic acid synthesis and degradation, expanding the functional landscape of DRTs for new DNA- and RNA-processing technologies.",
+      "url": "https://doi.org/10.1126/science.aef3178",
+      "pdf_url": "",
+      "doi": "10.1126/science.aef3178",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6810",
+        "page": null,
+        "reference_count": 56,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aef3178"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aej5902",
+      "source": "science",
+      "title": "Surfacing brain stimulation",
+      "authors": [
+        "Jianxun Ren"
+      ],
+      "published": "2026-07-30",
+      "updated": "2026-07-30",
+      "abstract": "Brain functional circuits can guide precision surface brain stimulation",
+      "url": "https://doi.org/10.1126/science.aej5902",
+      "pdf_url": "",
+      "doi": "10.1126/science.aej5902",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6810",
+        "page": "471-471",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aej5902"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aec6298",
+      "source": "science",
+      "title": "Catalytic Appel fluorination of alcohols with potassium fluoride",
+      "authors": [
+        "Anirban Mondal",
+        "Job J. C. Struijs",
+        "Caleb J. N. Doyle",
+        "Zijun Chen",
+        "Zian Wang",
+        "Worawit Tangamornchaipattana",
+        "Christophe Allais",
+        "Paul F. Richardson",
+        "Jared Piper",
+        "Robert S. Paton",
+        "Simon Aldridge",
+        "Véronique Gouverneur"
+      ],
+      "published": "2026-07-30",
+      "updated": "2026-07-30",
+      "abstract": "Appel halogenation reactions are widely used to convert alcohols to alkyl halides but are not suitable to prepare alkyl fluorides because fluoride is sequestered as a difluorophosphorane. In this work, we introduce bench-stable neopentoxyphosphonium salts to solve this enduring challenge. With these reagents, various alcohols undergo fluorination with potassium fluoride under hydrogen bonding phase-transfer catalysis, a manifold offering a pathway to enantioselective fluorination of alcohols. Mechanistically, a neopentoxyfluorophosphorane is formed, which undergoes reversible exchange with the alcohol substrate in preference to difluorophosphorane formation. The catalyst assists with potassium fluoride solubilization and with phosphorus–fluorine bond dissociation, leading to the alkoxyphosphonium fluoride ion pair undergoing stereoinvertive fluorination. Turnover results from stronger binding of the catalyst to fluoride than phosphine oxide, the by-product of the reaction, which is recyclable as starting material for the synthesis of the phosphonium reagents.",
+      "url": "https://doi.org/10.1126/science.aec6298",
+      "pdf_url": "",
+      "doi": "10.1126/science.aec6298",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6810",
+        "page": "514-521",
+        "reference_count": 111,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aec6298"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10766-3",
+      "source": "nature",
+      "title": "Weight-four parity checks in a spin-shuttling architecture",
+      "authors": [
+        "Brennan Undseth",
+        "Nicola Meggiato",
+        "Yi-Hsien Wu",
+        "Sam R. Katiraee-Far",
+        "Larysa Tryputen",
+        "Sander L. de Snoo",
+        "Davide Degli Esposti",
+        "Giordano Scappucci",
+        "Eliška Greplová",
+        "Lieven M. K. Vandersypen"
+      ],
+      "published": "2026-07-29",
+      "updated": "2026-07-30",
+      "abstract": "Abstract Recent advances in coherent spin shuttling have made sparse semiconductor spin-qubit arrays an appealing solid-state platform to realize quantum processors 1–7 . The dynamic and long-range connectivity enabled by shuttling is also essential for many quantum error-correction schemes 8–10 . Here we demonstrate a silicon spin-qubit device comprising a shuttling bus for coherently transporting qubits that can interact at four isolated locations that we call bus stops. We dynamically populate the array and tune all single- and two-qubit operations using shuttling and quantum non-demolition spin measurements, without access to charge sensing in most of the device. We achieve universal control of the effective five-qubit processor and select the connectivity required to form a surface-code stabilizer plaquette that supports X - and Z -type parity checks up to weight four. We use the parity checks to generate multi-qubit entanglement between all qubit combinations in the array and report the genuine entanglement of a five-qubit Greenberger–Horne–Zeilinger state, constituting one of the largest such states constructed with gate-defined semiconductor spins. The protocols developed here lay the groundwork for modular calibration and operation of sparse spin-qubit arrays, and we highlight the feasibility of near-term quantum error-correction experiments with mobile spin qubits.",
+      "url": "https://doi.org/10.1038/s41586-026-10766-3",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10766-3",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "655",
+        "issue": "8125",
+        "page": "1160-1166",
+        "reference_count": 71,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10766-3"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10856-2",
+      "source": "nature",
+      "title": "In situ structure of the poxvirus portal complex",
+      "authors": [
+        "Thomas Calcraft",
+        "Miguel Hernandez-Gonzalez",
+        "Michael Way",
+        "Peter B. Rosenthal"
+      ],
+      "published": "2026-07-29",
+      "updated": "2026-07-29",
+      "abstract": "Abstract Poxviruses are a family of large, complex double-stranded DNA viruses that includes human pathogens such as variola—the cause of smallpox—and monkeypox. Recent outbreaks of mpox underscore the need for a better understanding of poxvirus biology 1,2 . Poxvirus assembly is a conserved process that involves the formation of a biconcave core inside the membrane of the maturing virus 3,4 . Here we use cryo-electron tomography combined with subtomogram averaging and structure prediction to determine the structure and composition of the portal complex—a pore that spans the core wall—in vaccinia virus, the prototypical poxvirus. The hexameric complex consists of the E8, E6 and L3 proteins, which are conserved across poxviruses and essential for mRNA release during the establishment of infection 5–7 . E6, which is also required for virus assembly 8–10 , forms the central chamber of the portal and interacts with the surrounding core wall. A hexamer of E8 attaches to the exterior side of E6. L3, a target of TRIM5α-mediated restriction 11 , binds as a hexamer of dimers to the interior side. Furthermore, the viral helicase D5, which is required for genome release from cores 12 , associates with cytoplasmic cores during infection by docking onto the exterior E8 rim of the portal complex. We propose that the portal complex represents an attractive target for the development of anti-poxvirus therapeutics.",
+      "url": "https://doi.org/10.1038/s41586-026-10856-2",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10856-2",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 78,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10856-2"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10834-8",
+      "source": "nature",
+      "title": "Enzymatic glycosylation and amidation reshapes polyene bioactivity",
+      "authors": [
+        "Saadia N. Mirza",
+        "Alberto Carella",
+        "Joseph W. Thompson",
+        "Deepanjan Panda",
+        "Anna R. I. McDonald",
+        "Matthew D. Crossley",
+        "Wei Li Thong",
+        "Katherine J. Robins",
+        "Sarah. A. Shepherd",
+        "Matthew J. Cliff",
+        "Clara Valero",
+        "Andrew Thom",
+        "Michael Bromley",
+        "Jason Micklefield"
+      ],
+      "published": "2026-07-29",
+      "updated": "2026-07-29",
+      "abstract": "Abstract Fungal diseases are an escalating threat to human health, driven by rising antimicrobial resistance and a lack of new antifungal treatments 1,2 . Polyenes, a class of complex natural products, have been widely used as antifungal agents due to their broad-spectrum activity 3 . However, their clinical use is limited by severe toxicity and poor solubility, making safer and more effective alternatives urgently needed 4 . Previous efforts to generate improved polyenes have relied on costly, step-inefficient and atom-inefficient chemical syntheses 5,6 . Here we describe the discovery and characterization of pathways to previously undescribed polyenes, including unusual glycosyltransferase enzymes that introduce sugars onto polyene scaffolds. We also show how the reaction scope of an amidotransferase enzyme can be expanded to transform the detrimental carboxylate substituent of polyenes to alternative functionality. Introduction of a second sugar combined with carboxylate modifications leads to more potent polyene antifungals, with reduced toxicity, that are accessible by clean and efficient fermentation or enzymatic routes.",
+      "url": "https://doi.org/10.1038/s41586-026-10834-8",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10834-8",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 55,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10834-8"
+      }
+    }
+  ]
+}
