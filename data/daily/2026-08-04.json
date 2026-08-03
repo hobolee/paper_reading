@@ -1,0 +1,634 @@
+{
+  "date": "2026-08-04",
+  "stats": {
+    "fetched": 455,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 56,
+      "science": 99
+    },
+    "deduped": 455,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 56,
+      "science": 99
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 251,
+    "keyword_filtered_by_source": {
+      "arxiv": 251
+    },
+    "keyword_optional_included": 132,
+    "keyword_optional_included_by_source": {
+      "nature": 48,
+      "science": 84
+    },
+    "ranked": 204,
+    "ranked_by_source": {
+      "arxiv": 49,
+      "nature": 56,
+      "science": 99
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 124,
+    "selected_by_source": {
+      "arxiv": 4,
+      "nature": 3,
+      "science": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文里，最值得优先阅读的主线仍然集中在“LLM/agent 在结构化环境中的可靠决策与科学发现”上，且明显从通用对话能力转向了更强调外部状态表示、规划、验证证据和工具协作的系统问题。优先级最高的我会放在 arxiv:2607.28942v1、arxiv:2607.28826v1、arxiv:2607.29561v1、arxiv:2607.28871v1 这四篇，因为它们分别对应了部分可观测决策、LLM到轻量agent的策略迁移、面向科学方程发现的工具增强搜索，以及软件修复代理中的验证证据质量，这几条线索彼此可以互相参照：都不再把 LLM 当作“直接输出答案”的黑盒，而是试图解决 belief state、行动约束、教师蒸馏、多目标搜索、证据有效性等更接近真实部署的问题。具体看，NeSyFS 试图把知识图谱式 belief state 与 fast-slow thinking 结合，用于 partial observability 下的推断和规划；这类工作如果做得扎实，意义不只是 agent benchmark 提升，而是为“LLM 在不完全信息环境中如何保持任务对齐与不确定性感知”提供一个更清楚的建模接口。网络攻防蒸馏那篇则更偏工程落地：先让安全预训练 8B LLM 通过提示工程在 CybORG 环境中充当高质量教师，再把策略蒸馏进一个极小参数量 RL agent，核心价值在于把高能力、重模型的推理优势转成轻量部署能力。MOT-SR 则代表另一条很重要的方向：LLM 不只是写公式，而是在外部分析工具和 Pareto 多目标评价约束下参与科学方程搜索，这比单纯“语言模型做符号回归”更接近真实 scientific discovery workflow。软件修复代理那篇尤其值得看，因为它直指一个经常被忽略的问题：agent 把“测试通过”当成修复证据，但很多通过结果并不真正区分目标 bug；如果这一观察稳健，那么它对所有基于 execution feedback 的 code agent 都有方法论影响。相比之下，今天的 Nature/Science 论文更多属于各自学科内的重要进展，但从当前题录和摘要信息密度看，除钙钛矿太阳能电池那篇外，暂时更适合做领域跟踪而不是立刻展开深度方法复现。钙钛矿工作比较明确地指向“可扩展表面工程同时解决效率和模块稳定性”的制造问题，且有小面积与 100 平方厘米模块结果，适合材料器件方向读者优先跟进。其余几篇顶刊论文，如 GSDMD 递送抑制焦亡、面向真实材料的 Kondo 精确多体处理、溶酶体代谢标志、CO2 共聚制备环状聚酯、纳米孔逐步缩短肽顺序读取，目前更像高价值题录提醒：研究问题清楚，但由于这里缺少完整摘要或方法细节，适合先做文献定位与作者组背景核查，再决定是否精读。整体上，今天的阅读重点可以概括为两类：一类是“让 AI 系统在复杂环境中更可验证、更可部署、更能调用结构化先验”，这是短期最值得投入的交叉方向；另一类是“顶刊中的机制与平台突破”，需要等待更完整信息后再判断可复现性和真正的方法迁移价值。",
+    "themes": [
+      "部分可观测环境下，LLM agent 从历史文本依赖转向显式 belief state 与不确定性规划",
+      "LLM 作为高能力教师或策略生成器，再向轻量可部署 agent 蒸馏，形成性能与成本之间的桥梁",
+      "工具增强而非纯语言生成：LLM 与外部分析工具、知识图谱、测试执行器共同构成闭环系统",
+      "agent 评估重点从最终成功率转向中间证据质量、验证信号可区分性与决策依据可靠性",
+      "科学发现类任务中，多目标优化正在取代单一误差驱动，强调精度、复杂度、泛化的联合权衡",
+      "实验科学顶刊继续沿着“机制导向干预”和“可扩展平台方法”两条线推进，但当前更适合做问题映射与方法跟踪"
+    ],
+    "research_ideas": [
+      {
+        "idea": "对 NeSyFS 与同类 agent 框架做一个“belief state 显式化”对照复现综述，比较知识图谱状态、自然语言历史、压缩记忆三类上下文表示在部分可观测任务中的作用",
+        "why": "这能直接回答当前 agent 研究里一个核心但常被混写的问题：性能提升到底来自更强模型、更多 history，还是来自显式状态表示与规划结构",
+        "first_step": "先收集 5-8 篇近期 partial observability/LLM agent 论文，建立一个表格，逐项记录状态表示、规划模块、是否建模不确定性、评测环境与消融设置",
+        "risk": "很多论文使用的环境和评测协议不统一，最终可能只能做定性比较，难以形成严格横向结论"
+      },
+      {
+        "idea": "围绕网络攻防论文设计一个小规模复现实验：只验证“LLM 教师 + 在线蒸馏”是否优于从零训练的小模型，而不急于复现完整大环境结果",
+        "why": "这个问题有明确部署价值，而且可以抽象成更一般的‘高能力策略教师向廉价执行体迁移’框架，不局限于网络安全",
+        "first_step": "先检查 CybORG 或相近公开环境的可用性；若完整环境过重，就选一个离散动作、部分可观测的小型安全或运维模拟环境，先做 teacher action labeling + student imitation 的最小闭环",
+        "risk": "教师 LLM 的优势可能高度依赖特定领域预训练与 prompt 设计，换环境后效果不一定稳定"
+      },
+      {
+        "idea": "对软件修复代理中的验证事件做一个“证据角色”数据重标注试验，检查测试通过是否真的区分目标缺陷",
+        "why": "这类分析不要求先提出更强 agent，却可能立刻揭示当前 code agent 评测中的系统性偏差，对方法和 benchmark 都有价值",
+        "first_step": "选一个可执行的 bug-fix 数据集子集，先人工抽样 20-30 个验证事件，按 buggy state、candidate state、gold fix 三种回放思路定义一个简化标注协议，看能否稳定区分 evidence-inadequate 与 bug-discriminating",
+        "risk": "重放所需的精确环境和工作树状态不一定容易恢复，人工标注也可能存在较强主观性"
+      },
+      {
+        "idea": "把 MOT-SR 的思路抽象成一个通用框架，测试“多目标 Pareto + 工具调用”相对“单目标误差 + 纯 LLM 生成”是否在小型符号回归基准上更稳健",
+        "why": "这能验证科学发现任务里一个重要假设：LLM 的价值不在直接猜对公式，而在利用工具和评估结构组织搜索",
+        "first_step": "先选 3-5 个低维公开符号回归 toy problems，搭建一个最小系统：一个 LLM 负责提议表达式，外部程序计算拟合误差、表达式复杂度和留出集泛化，再维护 Pareto 候选集",
+        "risk": "如果没有足够强的约束或表达式语法设计，LLM 生成公式可能非常不稳定，导致实验噪声大于方法差异"
+      },
+      {
+        "idea": "对今天出现的顶刊非AI论文做一个“可迁移方法地图”，特别关注哪些是平台技术、哪些只是单体系机制发现",
+        "why": "这有助于避免被高影响因子牵着走，先判断一篇论文究竟值得做方法学习、机制跟进，还是仅做结果知晓",
+        "first_step": "按论文分成三类：机制干预类、测量平台类、制造工艺类；然后为每篇记录最小可迁移单元，例如递送策略、零温多体求解流程、等离子体表面工程、纳米孔顺序读取范式",
+        "risk": "在摘要缺失或信息不足时，分类和迁移判断容易失真，后续需要拿到全文再校正"
+      },
+      {
+        "idea": "优先跟进钙钛矿等离子体表面工程论文，做一个针对‘模块放大时互连区缺陷’的文献梳理和对照表",
+        "why": "相比很多只在小面积器件上报高效率的工作，这篇同时触及模块互连区和稳定性，更接近产业相关瓶颈，综述价值高",
+        "first_step": "检索近两年关于 perovskite module、laser scribing、interconnection defects、plasma treatment 的论文，整理各自作用位置、工艺兼容性、效率与稳定性指标",
+        "risk": "如果这篇工作的关键优势来自某个难复制的工艺窗口或专有设备，文献对照可能只能说明趋势，难判断可普适性"
+      }
+    ],
+    "papers": {
+      "arxiv:2607.28942v1": {
+        "summary": "该论文提出 NeSyFS，一个面向部分可观测环境下 LLM autonomous agent 的神经符号 fast-slow thinking 框架，目标是改进仅凭有限观测进行 belief state inference、任务目标对齐以及不确定性规划时的决策质量。根据摘要线索，作者以知识图谱表征 agent 的 belief state，并将其同时供给快速反应模块与基于 twisted sequential Monte Carlo 结构的慢速规划模块。",
+        "contribution": "核心贡献应在于把“知识图谱式信念状态表示 + 快慢思维双模块 + 不确定性感知规划”统一到一个面向 LLM agent 的 neuro-symbolic 框架中，专门针对 partial observability 下 action-observation history 冗余、目标偏移和规划不稳的问题；其中较新的点是将 slow-thinking 规划与 TSMC 的高层结构对应，并用符号化 triplets 作为各模块共享上下文。",
+        "details": "从题名和摘要可判断，研究对象不是一般文本生成，而是处于部分可观测环境中的 LLM agent，例如自反思、检索增强生成、科学发现等需要基于不完整状态连续行动的任务。作者认为，现有方法若直接依赖完整或压缩后的 action-observation history，容易把冗余、无关甚至误导性信息带入决策过程，因此提出用知识图谱来承载 belief state，把环境、实体、关系、任务线索组织成 triplets，作为 fast-thinking 与 slow-thinking 模块的共享输入。方法上，fast-thinking 模块负责 reactive action，适合局部、即时决策；slow-thinking 模块则负责 uncertainty-aware planning，并且“遵循 twisted sequential Monte Carlo 算法的高层结构”，这暗示作者可能把信念更新、候选轨迹采样、重加权/重排序等思想映射到语言代理的规划过程，用于在不确定环境下更稳健地选择后续动作。摘要还提到要缓解 task objective misalignment，但当前截断部分没有给出具体机制，可能涉及显式目标表示、KG 中的目标节点/约束关系、或对 planner 与 executor 的目标一致性控制。就与科研用户的关系而言，这篇工作特别相关于：LLM agent 在 POMDP 类任务中的状态表示、神经符号系统如何替代纯 history prompting、以及将经典序贯蒙特卡洛思想嫁接到语言规划器的可行性。需要核对的信息包括：知识图谱由谁构建（规则、模型抽取、外部工具还是环境真值）、TSMC 在语言空间中的具体实例化、与哪些 baselines 比较、评测任务是否覆盖真实 agent benchmark，以及是否真正证明了 triplet belief state 比 history summary 更优。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、autonomous agent、ai、environmental、environment、scientific discovery、neuro-symbolic。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：当 LLM agent 只能看到环境的局部观测而非完整状态时，如何更准确地推断 belief state、避免任务目标与实际行动脱节，并在不确定性下进行规划；更进一步，如何减少 action-observation history 中冗余和无关信息对 agent 决策的干扰。",
+          "method": "从摘要推测，方法包括三层：第一，用知识图谱表示 belief state，把实体-关系-实体 triplets 作为统一的符号上下文；第二，设计 fast-thinking 模块做反应式动作选择，可能偏向低延迟、局部启发式或单步决策；第三，设计 slow-thinking 模块做 uncertainty-aware planning，其框架参考 twisted sequential Monte Carlo，可能包含对多条未来行动/状态轨迹的采样、基于目标或观测一致性的加权，以及再规划。应用数据/任务应是部分可观测的 agent 场景，摘要中点名 self-reflection、retrieval-augmented generation、scientific discovery，但具体 benchmark、环境类型和评价指标仍需看正文核实。",
+          "strengths": "最值得关注的亮点有三点：一是把部分可观测性作为核心建模对象，而不是默认 LLM 看到完整上下文；二是用知识图谱 triplets 作为 belief state，提供比原始历史更结构化、可解释、可裁剪的上下文；三是将快慢思维分层，把即时反应与不确定性规划拆开，并引入 TSMC 这一带有概率推断色彩的结构作为 slow-thinking 依据，这在 LLM agent 文献中具有一定方法新颖性和跨领域融合价值。若实验充分，这种设计对长期任务、工具使用、科学发现代理都可能有应用价值。",
+          "weaknesses": "基于当前题录和截断摘要，需要警惕几类局限。首先，尚不清楚知识图谱构建成本和误差传播问题：若 triplet 抽取不准，belief state 可能系统性偏移。其次，TSMC 在语言代理中的实现细节未知，若只是概念借用而非严格概率推断，方法有效性可能依赖 prompt engineering。再次，快慢模块之间的切换策略、计算开销、在线更新能力和可扩展性都未见说明。最后，摘要未展示具体实验结果、数据集、对照方法和失败案例，因此目前不能判断其性能提升是否稳定、是否优于更简单的 memory summarization 或 tree-search 类方法。",
+          "next_step": "最小可执行动作：第一，优先查看论文中的方法总览图，确认 KG、fast-thinking、slow-thinking、TSMC 对应模块的输入输出关系；第二，查实验部分的 benchmark 和 baselines，特别关注是否与 history-based prompting、memory summarization、ReAct/plan-execute 类代理对比；第三，记录一个复现问题清单：belief state triplets 如何构建、slow planner 如何采样和加权、objective misalignment 如何被量化；第四，若你的研究涉及 POMDP 或 agent memory，可先把这篇论文作为“结构化状态表示替代原始历史”的候选路线，与传统 belief tracking 和检索记忆方法做对照阅读。"
+        }
+      },
+      "arxiv:2607.28826v1": {
+        "summary": "这篇论文围绕自主网络攻防中的防御决策任务，研究如何在修改版 CybORG CAGE Challenge 2 环境中，用一个基于网络安全数据预训练的 8B 大语言模型指导或替代基线强化学习智能体，并进一步把该策略蒸馏到一个仅有 64,910 个参数的轻量级强化学习智能体中。摘要声称，作者通过提示工程而非微调让 LLM 在该环境里优于基线 RL 智能体，并提出在线策略蒸馏框架以在大幅压缩模型规模的同时保持有效防御能力。",
+        "contribution": "核心贡献很可能有三点：第一，将大语言模型直接用于自主网络防御决策，而不是只作为离线分析或辅助工具；第二，证明在特定 ACO 环境中，仅靠提示工程的 8B 安全领域预训练 LLM 就能作为高质量教师策略，性能超过基线 RL；第三，提出在线 policy distillation，把教师 LLM 的防御策略迁移到一个超轻量 RL agent，使其更接近可部署的实时 cyber defense agent。",
+        "details": "从题名和摘要看，研究对象非常具体：企业网络防御场景下的 Autonomous Cyber Operations，实验环境是“modified CybORG CAGE Challenge 2 environment”，任务应是让智能体通过与环境交互学习或执行防御动作。作者首先指出传统 RL 在这类环境中的痛点：训练早期需要大量探索，导致行为不稳定、初始决策较差。这为引入 LLM 提供了动机，即利用其先验知识减少盲目探索、改善早期和整体防御决策。\n\n方法线索较清楚但仍需核对全文细节。教师模型应是一个 8B 参数、在网络安全数据上预训练的 LLM；作者没有做 fine-tuning，而是通过 prompt engineering 让它根据环境状态输出防御动作或策略建议。随后，他们提出“online policy distillation framework”，把教师 LLM 在交互过程中的策略知识迁移给一个仅 64,910 参数的轻量模型。这里“lightweight RL agent”暗示学生并非简单行为克隆器，而可能仍保留 RL 更新机制，同时利用教师分布、动作标签、价值引导或混合损失来在线学习。由于摘要强调“online”，蒸馏很可能发生在与环境同步交互的过程中，而不是先离线收集大规模示范再训练。\n\n证据线索来自摘要中的两个明确比较：一是 LLM outperform baseline RL agent；二是蒸馏后模型在参数量降低数个数量级时仍保持有效防御能力。能确认的是作者主张了性能优势和压缩效果，但不能仅根据摘要判断优势幅度、统计显著性、对哪些指标成立，也不能判断学生是否完全追平教师，还是只是优于基线。还需要核对“modified”环境具体改了什么，因为环境改动可能显著影响任务难度、可观测性和 LLM 可利用的文本化先验。\n\n如果你的方向涉及 LLM+RL、网络安全智能体、模型压缩或可部署 AI agent，这篇论文的相关性很高。它特别适合关注这样的问题：能否让大模型在高层决策上充当教师，而把最终部署体做成小参数、低延迟、低资源占用的 agent；以及在安全领域中，语义先验是否能缓解 RL 的 exploration burden。对科研阅读而言，最值得核对的是：环境状态如何表示给 LLM、动作空间是否离散、prompt 是否包含历史轨迹或规则、蒸馏损失如何定义、学生结构是什么、训练成本与推理延迟如何比较、以及在不同攻击/防御场景下是否泛化。\n\n需要特别说明的是，我只能依据题名、摘要、关键词和元数据分析，无法确认全文中的实验设置、具体算法公式、图表结果和消融结论。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在自主网络防御环境中，传统强化学习智能体因探索成本高而训练早期决策不稳定，能否利用具有网络安全先验知识的大语言模型直接产生更强的防御策略，并进一步把这种策略压缩迁移到一个足够轻量、适合实际部署的 RL 智能体中。更细一点说，它关注的是“LLM 作为高能力教师/决策者”与“轻量学生 agent 的可操作部署”之间的桥接问题。",
+          "method": "基于摘要，可能的方法路径是：1）在修改版 CybORG CAGE Challenge 2 环境中定义自主防御任务；2）把环境状态、历史事件或主机/网络上下文转成 prompt，输入一个 8B 安全预训练 LLM；3）通过提示工程约束 LLM 输出环境允许的防御动作，而不进行参数微调；4）将该 LLM 作为教师策略，与一个基线 RL agent 做性能对比；5）设计在线策略蒸馏，让轻量学生在环境交互中学习教师动作分布或决策标签，同时可能结合环境奖励进行 RL 更新；6）评估学生在参数规模、决策效果和可能的部署可行性上的收益。需要全文确认学生模型是何种 RL 算法、蒸馏是 logits/动作标签/价值函数级别，及其是否使用 replay buffer、DAgger 式数据聚合或 KL 正则。",
+          "strengths": "最值得关注的亮点有三类。第一，任务落点明确，不是泛泛讨论 LLM for cyber，而是在 CybORG/CAGE 这类相对标准化的自主网络攻防环境里比较策略性能。第二，采用“提示工程即可胜过基线 RL”的叙述，如果结果扎实，说明领域预训练 LLM 的安全知识可直接转化为决策先验，降低了对昂贵环境探索的依赖。第三，提出在线蒸馏并把模型压到 64,910 参数，这一数字非常具体，说明作者强调的是从 frontier 模型到实际 agent 的落地路径，而不是仅展示大模型能力。对部署侧而言，模型小、可能低延迟、低资源占用，这是 ACO 应用中的重要价值。",
+          "weaknesses": "基于当前题录信息，需要警惕几项边界。第一，实验环境是“modified” CybORG CAGE Challenge 2，环境修改细节未见，可能影响可比性和外部有效性。第二，摘要只说优于“baseline RL agent”，但未说明基线强度；如果基线较弱，结论的说服力会受限。第三，LLM 的输入表示与动作映射方式可能对结果影响极大，若 prompt 中隐含大量人工规则，性能提升未必完全来自模型自身推理。第四，在线蒸馏是否真正保留 RL 的环境适应能力，还是主要模仿教师，需要看学生在教师缺席、分布转移或新场景中的表现。第五，摘要未给出训练/推理成本、鲁棒性、安全性和误操作风险，这对 cyber defense 实际部署尤其关键。",
+          "next_step": "最小可执行动作建议是：1）先查全文中的任务定义和环境修改说明，记录状态空间、动作空间、奖励函数；2）重点看教师 LLM 的 prompt 模板和输出约束方式，判断其是否依赖大量人工工程；3）定位在线蒸馏算法描述，整理教师监督信号、学生网络结构、损失函数和训练流程；4）查主结果表，至少记下 LLM、基线 RL、蒸馏学生三者在同一指标上的数值对比；5）看是否有消融：无安全预训练、无在线蒸馏、离线蒸馏、不同模型大小；6）如果要复现，优先从 modified CybORG 环境和轻量学生结构入手，因为这两部分最直接决定结论是否可验证。"
+        }
+      },
+      "arxiv:2607.29561v1": {
+        "summary": "这篇论文提出 MOT-SR，面向符号回归中的科学方程发现任务，试图结合大语言模型与外部分析工具，从观测数据中更高效地生成解析方程。其核心是同时考虑拟合精度、表达式复杂度和泛化能力，而不是只用单一误差指标来搜索方程。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：一是提出一个工具增强的符号回归框架 MOT-SR，用外部分析工具提取变量依赖和结构先验，辅助方程生成；二是引入多目标评估模块，通过动态 Pareto front 联合优化精度、复杂度与泛化，减少仅追求拟合误差导致的早熟收敛与局部最优；三是设计两个协作式 LLM 模块——Meta Strategy Generator 与 Equation Generator——前者根据 Pareto 最优候选决定工具调用与结构优化策略，后者据此生成和改写方程。",
+        "details": "从题名、摘要和关键词判断，这项工作聚焦“科学方程发现”而非一般文本生成，具体任务是从观测数据中恢复具有物理或科学意义的解析表达式。论文针对现有 LLM-based symbolic regression 的两个具体短板展开：第一，缺少显式的数据分析机制，难以先识别变量间依赖、组合关系或潜在线索，因此方程搜索效率和方向感不足；第二，评估目标过于单一，主要看拟合误差，忽略表达式结构复杂度与泛化表现，容易让搜索过程过早停在看似拟合好但结构不优或外推不稳的候选上。为此，MOT-SR 似乎将“工具调用 + 多目标搜索 + 双模块 LLM 协作”统一起来。摘要直接点明外部 analytical tools 用于抽取 structural priors，这意味着工具可能承担如相关性分析、变量变换建议、依赖结构发现、候选函数族筛查等作用，但具体是哪类工具、如何接口到 LLM、输出什么中间表示，仍需看正文核对。方法结构上，Meta Strategy Generator 更像高层控制器：读取当前 Pareto-optimal equations，总结哪些表达式在精度/复杂度/泛化上占优，再决定下一轮该调用哪些分析工具、采取什么结构优化策略；Equation Generator 则负责据此生成候选公式、重写已有表达式或做局部结构修改。这种分工说明作者希望把“搜索策略制定”和“表达式生成”解耦，以提高探索广度与迭代稳定性。证据线索方面，摘要明确强调 dynamic Pareto front，这表明其评估与保留机制不是简单加权求和，而更接近多目标优化中的非支配解维护；如果实现得当，这会比单目标排序更适合 SR，因为低复杂度、可解释、泛化好的表达式不一定在训练误差上最优。与科研用户的关系在于：如果你的方向涉及物理定律发现、材料/生物/系统建模中的闭式表达式拟合，MOT-SR 的价值不只是“找一个拟合函数”，而是尝试在可解释性和泛化性上一起优化，并借助工具先验减少纯语言模型盲搜。需要重点核对的信息包括：1）使用了哪些基准数据集或真实科学数据；2）复杂度与泛化分别如何量化，是否通过测试集误差、噪声鲁棒性或外推集衡量；3）Pareto front 如何更新、如何用于提示工程或搜索控制；4）外部工具是否是统计分析、符号库、数值拟合器或程序执行器；5）与现有 SR 方法、LLM-based equation discovery 方法相比的收益主要体现在成功率、表达式简洁性还是样本效率。由于目前只有摘要，不能确认实验规模、性能提升幅度、失败案例和成本。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、symbolic regression、equation discovery。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的是：在符号回归/科学方程发现中，如何让大语言模型不只是凭语言先验去猜公式，而是能结合数据分析工具识别变量依赖与结构线索，并在搜索时同时兼顾拟合精度、表达式复杂度和泛化能力，从而避免陷入单目标误差驱动的局部最优。",
+          "method": "根据摘要，方法可能包含一个统一的迭代式框架。输入应是观测数据；外部分析工具先对数据做结构线索提取，形成变量关系或候选结构先验；随后两个 LLM 协同工作：Meta Strategy Generator 读取当前 Pareto 前沿上的方程候选，决定下一步采用哪些工具和何种结构优化策略；Equation Generator 按这些策略生成新方程或修改旧方程。评价模块不是单一拟合误差，而是同时计算准确度、复杂度与泛化，并维护动态 Pareto front 以保留多样化候选。最终应在若干 SR 基准或科学建模数据上比较方程恢复质量与搜索效率。",
+          "strengths": "最值得关注的亮点是把 SR 中常被分开的三个环节连在一起：数据结构分析、方程生成、多目标筛选。相比只让 LLM 直接输出公式，这种设计更贴近科研中的实际工作流：先看数据关系，再提出假设，再权衡简洁性与可推广性。动态 Pareto front 也是关键点，因为它天然适合保留不同复杂度层级的候选方程，有助于持续探索更广的方程空间。双 LLM 模块的职责划分也有潜在价值，高层策略模块可能提升搜索方向性，低层生成模块则负责局部表达能力。",
+          "weaknesses": "基于摘要，仍有几个边界需要警惕。第一，外部工具究竟提供了多强的先验、是否对特定类型方程更有利，目前不清楚，可能存在方法依赖工具选择的风险。第二，多目标优化虽然合理，但复杂度与泛化的定义若不稳健，Pareto front 可能只是换一种方式偏向某类表达式。第三，LLM 参与两级决策可能带来较高计算成本和提示敏感性。第四，摘要未说明是否覆盖噪声数据、维度较高的数据、真实科学数据或外推评估，因此泛化优势是否成立还需看实验。第五，若比较对象主要是单目标 LLM 方法，而非强传统 SR 基线，则结论力度可能有限。",
+          "next_step": "最小可执行动作：1）先查正文中的方法图，确认外部工具种类、两个 LLM 模块的输入输出以及 Pareto front 更新流程；2）查实验表，记录所用基准数据集、评价指标、与哪些传统/LLM-SR 方法对比；3）重点看复杂度和泛化的定义，判断是否适合你的任务；4）若你做可解释建模，可尝试按摘要复现一个简化版流程：用统计分析工具先提变量关系，再让 LLM 基于这些线索生成多个候选公式，并用误差+复杂度做 Pareto 筛选；5）阅读时特别记录失败案例：在哪些函数族、噪声水平或变量规模下该方法效果下降。"
+        }
+      },
+      "arxiv:2607.28871v1": {
+        "summary": "这篇论文研究LLM修复代理在软件缺陷修复过程中把“测试通过”当作缺陷已被检验之证据时，这种证据到底有多可靠。作者围绕110个任务、643次rollout、3730个验证事件，提出BSG-VA分析框架，对每次验证命令在buggy代码、候选状态和开发者金标准修复上的回放结果进行比较，以区分哪些通过测试真正能区分目标缺陷、哪些只是无关或误导性信号。",
+        "contribution": "核心贡献在于把修复代理中的“验证事件”细粒度地重解释为证据角色，而不是仅看测试是否通过；提出BSG-VA（buggy-state/candidate-state/gold-fix validation analysis）这一按工作树状态捕获并回放验证命令的方法；并通过三臂实验检验向代理返回B-replay结果的反馈是否改善证据质量。摘要给出的主要发现是：46.0%的正向且可比较事件不包含缺陷区分信息，且23.8%的基线rollout最终闭环时，其全部正向证据都属于这种信息不足类型；引入bug-contrast feedback后，evidence-inadequate closure相对attention-matched reminder下降7.8个百分点，同时bug-discriminating evidence上升7.4个百分点。",
+        "details": "从题名和摘要看，论文聚焦的不是“LLM能否修bug”这一粗粒度问题，而是更细的验证科学问题：当代理执行某个测试命令并看到通过时，这个结果是否真的说明它针对报告缺陷获得了有效证据。作者似乎把每一次验证命令都放回到三个关键代码状态中分析：原始缺陷态B（buggy state）、代理当前候选态S（candidate state）、开发者金标准修复态G（gold fix），并要求这些比较在“该命令被发出时的确切工作树状态”下进行。这意味着方法重点不是简单记录最终patch是否通过测试，而是重放每个中间验证动作，并提取test-only patch，从而判断该次测试通过究竟是在验证目标bug、只是在检查回归、还是可能产生误导。摘要明确提到他们据此给每个事件分配evidence role，范围从gold-aligned bug-discriminating到regression-only再到misleading，说明作者构建了一套更细粒度的证据分类体系。数据规模方面，摘要提供了110个任务、643个rollout、3730个事件，这对“验证行为”分析来说已能支持统计结论。实验上，作者不仅做描述性测量，还做了三臂干预实验，核心干预应是把B-replay outcome反馈给代理，让代理知道某个测试在原始bug代码上其实也会通过还是会失败；如果一个测试在B上也通过，那么它显然无法区分缺陷是否被修复，这种反馈理论上可以减少代理把无关通过误认为修复证据。摘要中的显著性结果支持这一点，且指出没有可检测到的代价，但截断部分未完整给出代价指标，可能是成功率、运行成本或其他repair性能，需要阅读全文核对。与LLM agent、软件工程和评测方法相关的研究者尤其值得关注这篇论文，因为它把“环境反馈”从表面正确性信号推进到“证据质量”层面，可用于重新审视现有修复benchmark中pass-based validation的可信度。需要特别核对的信息包括：110个任务来自哪些数据集，修复代理基线是什么，三臂实验另外两臂的具体设置，evidence role的定义边界，test-only patch提取规则，可比较事件的判定条件，以及“无检测到成本”具体对应哪些指标。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在LLM驱动的软件修复代理中，一次“测试通过”的验证结果有多少比例真正能区分目标缺陷是否被修复，而不是仅仅对无关行为、回归检查或环境偶然性作出正向反馈；进一步地，如果把这种“是否区分bug”的信息显式反馈给代理，能否改善其收集到的验证证据质量并减少基于无效证据的错误闭环。",
+          "method": "可能的方法路径是：对每次代理执行的验证命令进行事件级捕获，记录其发生时的精确工作树状态；从该状态中抽取仅与测试相关的改动形成test-only patch；然后将相同验证命令分别重放到原始缺陷代码B、候选状态S以及开发者金标准修复G上，比较捕获结果与三种回放结果，进而定义事件的evidence role。统计分析应区分正向事件、可比较事件以及最终闭环patch所依赖的证据构成。三臂实验则可能比较：无额外反馈的基线、仅提供注意力匹配提醒的对照、以及提供B-replay outcome的bug-contrast反馈，以观察闭环质量和证据分布变化。",
+          "strengths": "亮点之一是研究对象抓得很具体，不是笼统讨论agent是否会被测试误导，而是把“验证命令”作为最小分析单元。亮点之二是三态回放设计B/S/G非常有解释力：B用于判断测试是否真的触及原始缺陷，S用于反映代理当前工作结果，G用于与开发者修复对齐，从而把单次测试通过拆解为更有语义的证据类别。亮点之三是摘要给出了明确且不小的数据规模与定量结论，表明问题具有普遍性而非个例。亮点之四是作者不仅发现问题，还通过反馈干预测试可修正性，这对构建更可靠的LLM repair agent和更合理的交互反馈机制都有直接价值。",
+          "weaknesses": "基于当前摘要，首先无法确认任务来源、缺陷类型和代理系统构成，因此外部效度仍需核对。其次，BSG-VA依赖test-only patch抽取与命令回放，这一过程在复杂构建环境、多测试依赖或非确定性执行下可能面临有效性挑战。再次，摘要虽给出显著性结果，但结尾被截断，无法确认“无检测到成本”具体指哪些性能指标，也无法判断干预是否影响总体修复成功率、token成本或运行时间。最后，evidence role的具体判定规则若较复杂，可能存在分类主观性或工程实现偏差，需要读正文看定义、例子与人工核验流程。",
+          "next_step": "最小可执行动作是：第一，优先查看论文中BSG-VA的流程图和evidence role定义表，确认B/S/G回放与可比较事件的精确定义；第二，查数据集与110个任务的来源，判断是否覆盖你关心的修复场景；第三，定位三臂实验表格，记录三种反馈设置、主要指标、p值和效应量；第四，特别检查那23.8% evidence-inadequate closure的判定标准，以及46.0%正向可比较事件“无bug-discriminating信息”的样例；第五，如果你做agent或软件测试评测，可尝试在自己的修复日志中复现一个简化版B-replay分析，先验证当前代理是否也大量依赖在原始bug上同样会通过的测试。"
+        }
+      },
+      "doi:10.1038/s41586-026-10957-y": {
+        "summary": "从题名判断，该研究聚焦于利用Gasdermin D介导的递送策略，将caspase抑制剂定向送入与焦亡相关的细胞过程，以达到抑制pyroptosis（细胞焦亡）的目的。由于当前未提供摘要，能够确认的具体信息主要限于研究对象是Gasdermin D、caspase inhibitors和pyroptosis这一炎症性细胞死亡任务。",
+        "contribution": "基于题名推测，论文的核心贡献很可能是提出了一种借助Gasdermin D相关机制递送caspase抑制剂的新思路，用于干预炎症小体/焦亡通路；如果成立，这意味着作者不只是研究焦亡机制本身，而是在开发一种机制导向的抑制策略或药理递送方案。",
+        "details": "从题名“Gasdermin D-mediated delivery of caspase inhibitors to suppress pyroptosis”看，研究对象非常明确：Gasdermin D（GSDMD）是焦亡执行阶段的关键蛋白，caspase抑制剂是干预炎症性caspase活化或下游死亡过程的药理工具，目标任务是抑制pyroptosis。题名中的“mediated delivery”提示文章重点可能不是单纯比较某个抑制剂是否有效，而是设计或发现一种由GSDMD参与、促进或触发的递送机制，使抑制剂更有效地到达作用位点、特定细胞区室或焦亡细胞环境中。对于科研读者，这篇文章可能同时涉及基础机制和转化应用：一方面探讨GSDMD孔道形成或膜损伤过程能否被用作载药/释药窗口；另一方面测试该策略是否能降低焦亡相关细胞裂解、炎症因子释放或组织损伤。\n\n但必须强调，当前摘要为空，因此不能确认以下关键点：第一，递送的是广谱caspase抑制剂还是炎症性caspase特异抑制剂，例如针对caspase-1、caspase-4/5/11，还是下游执行相关蛋白；第二，GSDMD介导递送是化学偶联、纳米颗粒、前药设计、蛋白工程，还是利用已形成膜孔促进药物进入；第三，证据体系来自细胞实验、动物模型、结构生物学，还是生物化学重构；第四，抑制的是canonical inflammasome pyroptosis、non-canonical pyroptosis，还是更广义炎症死亡。若你的研究方向涉及细胞死亡、炎症小体、药物递送或先天免疫，这篇论文最值得核对的是它是否真正解决了焦亡干预中“有效性与选择性不足”的问题，以及该策略是否避免了系统性caspase抑制带来的副作用。建议后续优先查看摘要、图1研究框架图、关键功能实验和动物数据，以确认其具体机制和适用边界。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文试图解决的具体问题，推测是：如何在焦亡通路中更有效、可能也更特异地递送或释放caspase抑制剂，从而阻断Gasdermin D驱动的细胞焦亡及其炎症后果。更细一点说，传统caspase抑制策略可能存在递送效率低、时空特异性不足或全身抑制副作用大的问题，作者可能在寻找一种利用焦亡执行分子GSDMD本身的机制化干预方案。",
+          "method": "仅凭题名可推测的可能方法包括：1）在细胞层面建立焦亡模型，如炎症小体激活后的巨噬细胞或单核细胞模型，检测细胞裂解、膜通透性、IL-1β/IL-18释放及GSDMD裂解；2）比较自由caspase抑制剂与“GSDMD介导递送”形式在抑制焦亡方面的差异；3）用GSDMD缺失、突变体或孔道功能受损背景验证“递送依赖GSDMD”；4）可能使用化学探针、前药、纳米载体、可切割连接子或膜孔转运实验来证明递送机制；5）若为Nature论文，常见还会加入小鼠炎症/感染/脓毒症等模型评估组织保护作用和炎症缓解效果。上述都只是题名驱动的合理推测，需以摘要和正文核对。",
+          "strengths": "题名显示的最大亮点是把焦亡关键执行蛋白GSDMD从“致病机制节点”转化为“干预入口”，这在概念上具有较强新意。如果作者证明GSDMD不仅是被抑制对象，还能参与或限定抑制剂递送，那么这类策略可能带来更好的病灶选择性。第二个潜在亮点是靶向任务非常清晰：不是泛泛抑炎，而是直接面向pyroptosis。第三，如果论文包含体内证据，那么其转化价值会比较高，因为焦亡与感染性炎症、自身炎症和组织损伤广泛相关。",
+          "weaknesses": "目前最大的局限是摘要为空，导致无法判断论文到底是提出全新递送平台、揭示新的生物学现象，还是在已知抑制剂基础上的机制优化。题名也未说明研究覆盖的caspase亚型、细胞类型和疾病模型，因此不能推断普适性。还需要警惕一个潜在边界：如果递送依赖GSDMD孔形成或膜损伤，那么该策略可能只适用于已经进入焦亡程序的细胞，预防性和早期干预价值需单独验证。此外，若依赖广谱caspase抑制，也可能引入对凋亡或其他免疫过程的非特异影响。",
+          "next_step": "最小可执行动作：1）先补读摘要，记录作者明确定义的递送对象、caspase靶点和实验体系；2）优先查看图1和方法概览，确认“GSDMD-mediated delivery”究竟指孔道转运、前药激活还是载体靶向；3）查关键对照：GSDMD缺失/突变是否消除递送效果，是否优于游离抑制剂；4）查主要终点：LDH释放、PI摄取、IL-1β释放、GSDMD裂解、动物生存或病理；5）若你做相关方向，可把这篇文献放入“焦亡靶向干预/机制导向递送”文献组，并记录三个待回答问题：适用病种、分子构型、时序窗口。"
+        }
+      },
+      "doi:10.1126/science.adq7402": {
+        "summary": "这篇Science论文聚焦于金属宿主中的磁性杂质Kondo关联，目标是用一种系统性的从头算零温多体电子学方法，逼近“精确”的材料特异性描述，并在一系列3d过渡金属杂质上提取与实验细微趋势一致的Kondo温度。论文的具体任务不是再做简化Kondo模型，而是从fully ab initio many-body simulations出发，对真实材料中的Kondo效应给出可收敛预测与微观机理解释。",
+        "contribution": "核心贡献很可能在于：提出了一条面向真实材料磁性杂质问题的系统性ab initio多体计算路线，用于零温Kondo关联的高精度求解；在3d过渡金属系列上得到优于标准模型的Kondo温度趋势预测；并进一步把实验趋势与局域电子态、宿主巡游电子耦合、轨道/杂化等微观因素联系起来，展示从第一性原理出发做可收敛多体预测的可行性。",
+        "details": "从摘要看，研究对象非常明确：金属中的磁性杂质，尤其是3d过渡金属杂质所引发的Kondo效应。论文要解决的关键难点是，Kondo效应虽然是多体方法的经典试金石，但一旦要求“材料特异性”并直接对接实验，传统简化模型往往难以同时保留真实电子结构和高精度多体关联。作者声称给出的是“systematic ab initio approach to converge toward an exact zero-temperature electronic treatment”，这说明其重点可能在于构造一个可系统改进、可检验收敛性的零温求解框架，而不是单次经验拟合。\n\n从作者组合和表述线索判断，方法上大概率涉及从第一性原理电子结构出发，将杂质局域轨道与金属宿主的巡游电子耦合映射到某种高保真嵌入/有效低能问题，再用高精度量子多体求解器在零温极限下处理Kondo关联。摘要没有给出明确技术名词，因此不能断言具体是DMRG、量子嵌入、配置相互作用、投影构造、NRG对照还是某类自洽嵌入，但“converge toward an exact”与“fully ab initio many-body simulations”的措辞说明，作者很可能强调求解精度可系统逼近、而非依赖少量参数拟合。对科研读者而言，这里最值得核对的是：第一性原理到低能模型的映射是否无经验参数；宿主连续谱如何离散化或表示；Kondo温度如何定义和提取；误差条与收敛判据如何建立。\n\n证据线索主要有三层。第一，作者称“Across a series of 3d transition metals”，说明不是单个示例，而是一个元素序列或多个代表性杂质体系上的系统比较。第二，结果指标是Kondo temperature，并且强调“matching subtle experimental trends”，这意味着他们不仅追求量级正确，还试图解释不同3d杂质之间更细致的相对变化。第三，作者还“obtained microscopic insight into the origin of these trends”，说明论文不止停在预测数值，而是尝试回答为什么某些杂质的Kondo温度高或低，背后可能涉及d轨道占据、自旋态、晶场分裂、杂化强度、屏蔽通道数、交换耦合符号/大小等机制。\n\n如果你的方向与强关联电子结构、表面/杂质物理、从头算嵌入、多体求解器开发相关，这篇论文的价值很高：它可能代表了从模型Kondo问题走向真实材料预测的一次方法学推进。尤其值得关注的是，它是否能在不牺牲材料化学细节的前提下，稳定提取零温Kondo尺度；以及这种流程能否推广到更复杂的吸附体系、分子磁体、重费米子前驱问题或多杂质情形。\n\n但基于题录和摘要，也必须保持谨慎。摘要没有说明宿主材料类型，是体相金属、表面吸附体系还是特定基底；没有列出具体3d元素和实验参照对象；也未说明“标准模型”具体指哪些基线方法。所谓“accuracy exceeding that of standard models”需要看是否是在相同输入信息、相同评价指标下比较。另一个重要边界是零温处理：它对基态和Kondo尺度有利，但若实验数据来自有限温谱学，理论与实验之间的映射可能仍需额外假设。最后，Kondo温度本身的定义在不同理论/实验语境中可能不完全一致，读论文时要重点核对。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：如何对真实材料中的磁性杂质Kondo关联做出既保留材料特异性、又能系统收敛到近乎精确结果的零温量子多体处理，并据此可靠预测一系列3d过渡金属杂质的Kondo温度及其细微实验趋势。换言之，论文试图弥合“简化模型能抓物理但不够材料真实”与“第一性原理有材料细节但强关联处理不足”之间的缺口。",
+          "method": "根据摘要，可能的方法路径是：先从第一性原理电子结构计算出磁性杂质及金属宿主的材料参数与杂化信息；再构建能保留局域d电子与巡游电子耦合的多体问题；随后使用一种可系统改进的高精度零温多体求解框架，逐步收敛Kondo关联相关的能量尺度与电子态性质；最后在多个3d过渡金属体系上提取Kondo温度，并与实验趋势及标准模型结果对比。需要重点查证的数据/技术细节包括：所研究的具体杂质-宿主组合、Kondo温度提取公式、收敛参数、误差分析、以及微观趋势归因所依赖的可观测量。",
+          "strengths": "亮点一是问题选择很硬：Kondo效应是经典多体难题，但作者瞄准的是“材料特异性+接近精确”的真实体系预测。亮点二是摘要强调“systematic”与“converge toward exact”，暗示方法并非黑箱经验拟合，而有可控精度路线。亮点三是做了3d过渡金属系列比较，这比单体系展示更能说明方法的普适性和判别力。亮点四是既报告Kondo温度与实验细微趋势一致，又提供趋势起源的微观解释，说明论文兼顾预测与理解。对应用层面，这种框架若可靠，可能成为表面磁性杂质、量子输运杂质、扫描隧道谱解释等研究的重要工具。",
+          "weaknesses": "局限主要来自摘要信息不足。首先，不清楚具体体系与几何环境，导致结果适用范围暂时无法判断。其次，不知道所称“标准模型”是哪些方法，优势幅度和公平性需核实。第三，零温电子学处理虽适合Kondo基态，但对有限温实验可比性可能有限。第四，Kondo温度是间接尺度，不同定义可能给出不同数值，需要核对论文采用的操作定义。第五，摘要没有提供计算成本、体系尺寸、宿主谱表示方式、以及是否存在经验参数或后处理校准，因此现阶段还不能判断该方法的可复现性与推广代价。",
+          "next_step": "最小可执行动作：第一，拿到正文后先看图表中具体研究了哪些3d杂质和宿主体系，并记录Kondo温度与实验对比表。第二，直接定位方法部分，核对从头算到多体问题的映射流程、是否无经验参数、以及“趋近精确”的收敛控制量。第三，查Kondo温度的定义和提取方式，确认与相关实验文献是否同口径。第四，关注作者给出的“微观起源”分析图，记录哪些轨道占据、杂化强度或自旋态变化决定了趋势。第五，如果你做相关方向，可选一个你熟悉的杂质体系，将本文流程与常用Anderson/Kondo模型拟合结果做并排对照，评估其增益来自电子结构输入、求解器精度还是两者共同作用。"
+        }
+      },
+      "doi:10.1126/science.aej5901": {
+        "summary": "这篇Science论文聚焦“溶酶体”这一单一细胞器，讨论其代谢物变化如何同时与器官衰老和溶酶体贮积症相关。就题录和摘要看，论文的核心任务是从溶酶体代谢特征中提取可表征衰老与疾病的“signatures（特征/标志）”。",
+        "contribution": "从现有信息推测，论文的核心贡献是把“衰老器官中的变化”和“溶酶体贮积病中的异常”放到同一个溶酶体代谢框架下比较，提出或总结了可用于区分、联系或解释两类状态的溶酶体代谢标志。这种工作可能有助于把细胞器层面的代谢读出发展为衰老研究和溶酶体疾病研究之间的共同分析坐标。",
+        "details": "根据题名“Signatures of aging and disease in a single organelle”和摘要“Changes in lysosomal metabolites are associated with both aging organs and lysosomal storage diseases”，研究对象非常具体：一是溶酶体内或与溶酶体相关的代谢物，二是衰老中的器官，三是溶酶体贮积症。文章应当关注的问题不是泛泛的细胞衰老，而是“单一细胞器中的代谢变化是否能够作为同时连接生理性衰老与遗传/病理性贮积疾病的特征层”。从Science题录和作者构成看，这有可能是评论、展望或观点性论文，也可能是以概念整合为主的短文；仅凭当前元数据无法确认是否包含全新的大规模实验数据，因此不能默认其为完整原创实验论文。若是研究型论文，最可能的方法线索包括：对溶酶体代谢物进行定量分析，比较年轻与老年器官、正常与溶酶体贮积病模型之间的差异；结合组织或器官层面的样本比较，寻找共同富集或特异改变的代谢分子；再将这些变化解释为衰老和疾病的共有或分叉机制。若是评论/综述型文章，则其方法主要是整合已有代谢组、细胞生物学和疾病研究证据，提出“溶酶体代谢签名”这一组织框架。证据线索主要来自摘要中的两个锚点：第一，变化对象是“lysosomal metabolites”，说明重点不是单纯溶酶体数量、pH或形态，而是代谢组成；第二，关联对象同时包括“aging organs”和“lysosomal storage diseases”，提示作者在器官层面衰老现象与经典溶酶体疾病之间寻找共性。对做衰老、细胞器生物学、代谢组学或罕见病研究的读者而言，这篇文章的价值在于提供一个跨领域切入点：把年龄相关器官功能下降与溶酶体代谢失衡联系起来，并考虑这些特征是否可作为机制读出、分层指标或干预靶点。当前最需要核对的信息包括：论文类型是否为评论/观点还是原创研究；具体研究了哪些器官、哪些代谢物类别、哪些溶酶体贮积症；“associated with”是描述相关性还是建立了因果干预证据；所谓signatures是统计判别特征、病理标志，还是机制网络中的关键节点。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题应是：在溶酶体这一单一细胞器内，是否存在可被检测和解释的代谢物变化模式，能够标记器官衰老状态，并同时反映溶酶体贮积症的病理特征；进一步，这些代谢特征能否揭示衰老与疾病之间的共同机制或可比框架。",
+          "method": "基于摘要只能做审慎推测。若为实验研究，可能方法包括从器官或细胞中分离/富集溶酶体，进行靶向或非靶向代谢组测定，比较年轻与老年样本、健康与溶酶体贮积病模型样本之间的代谢差异，并用统计特征提取“signatures”。还可能结合遗传模型、疾病模型、显微成像、酶活性检测或功能扰动，验证特定代谢变化与溶酶体功能缺陷的关系。若为评论/展望，则方法主要是综合既有研究，围绕溶酶体代谢物这一对象构建衰老-疾病联系的解释框架。",
+          "strengths": "题目所示的亮点是研究焦点非常集中：不是笼统讨论细胞器或衰老，而是把“单一细胞器中的代谢特征”作为分析单位。摘要同时覆盖衰老器官与溶酶体贮积症，这种并置设计本身具有概念价值，因为它可能把生理老化与遗传性/病理性溶酶体功能障碍放在同一代谢参照系中。若文章给出了具体代谢物签名或跨器官共性模式，其潜在应用价值会体现在生物标志物开发、机制归因和干预靶点筛选上。",
+          "weaknesses": "当前信息极少，最大的局限是无法确认论文类型，因此不能判断其结论来自新实验还是文献整合。摘要只说“associated with”，说明至少在题录层面看不出是否建立了因果关系。未知点还包括样本规模、物种、器官范围、代谢物检测技术、统计稳健性以及是否控制了细胞类型组成变化等混杂因素。若研究依赖器官层面样本，还需警惕溶酶体代谢变化是否真正来源于细胞器本身，而非组织异质性或全局代谢改变。",
+          "next_step": "最小可执行动作有五项：第一，先确认这篇Science文章的文献类型（Research Article、Review、Perspective或Editorial）；第二，查看摘要扩展版或目录简介，记录具体提到的器官、疾病名称和代谢物类别；第三，若能获取正文，优先看图1和最后一张主图，判断“signature”是概念模型、统计热图还是功能验证结果；第四，专门核对是否做了溶酶体分离/纯化与代谢组学测定，以及是否有年轻-老年和正常-疾病两条对照线；第五，整理一个问题清单：哪些代谢物变化是共有的，哪些是衰老特异或疾病特异，这些变化是否可逆、可干预、可用于分型。"
+        }
+      },
+      "doi:10.1126/science.aeg1730": {
+        "summary": "这篇论文围绕钙钛矿太阳能电池与100平方厘米级模块中的界面缺陷和激光划线互连区损伤问题，提出了一种可扩展的等离子体表面钝化/表面工程策略，用于同时提升器件效率与运行稳定性。根据摘要，该方法通过在大面积钙钛矿薄膜表面原位化学反应形成共形、均匀且强键合的异质结构，并报告了27.2%的小面积器件效率和24.0%的100平方厘米模块效率。",
+        "contribution": "核心贡献在于把“等离子体表面工程”明确用作钙钛矿器件与模块的统一界面调控方案：不仅针对常见的表界面缺陷，还特别处理了激光划线互连区域的缺陷积累这一模块放大中的关键痛点；同时摘要给出了较强的效率与高温光照MPP稳定性数据，显示该策略兼顾实验室单电池性能、模块级放大和长期运行可靠性。",
+        "details": "从题名和摘要看，研究对象非常明确：一是小面积钙钛矿太阳能电池，二是100平方厘米级钙钛矿模块，三是它们在运行中容易恶化的界面与互连区域缺陷。论文试图解决的核心机制问题是：钙钛矿“软、 多组分晶格”会引发界面缺陷形成和演化，进而导致效率损失和稳定性下降；而在模块中，激光划线产生的局域损伤还会进一步主导模块性能损失。作者提出的证据链大致是：利用一种可扩展的等离子体工艺，在大面积薄膜表面通过原位化学反应生成共形、均匀、强键合的异质结构，从而实现缺陷钝化，并减少互连区缺陷积累；随后分别用小面积器件效率、100平方厘米模块效率，以及高温1-sun最大功率点跟踪寿命来证明方法有效。摘要中的关键数据包括：小面积器件活性面积8.313 mm²，PCE 27.2%；100 cm²模块孔径面积65.05 cm²，PCE 24.0%，认证效率23.5%；小器件在85°C、1-sun、2000小时MPP后保持初始PCE的98.1%；100 cm²模块在65°C、1-sun、1600小时MPP后保持99.3%。这些数字说明作者强调的不是单一效率纪录，而是“放大后仍高效且稳定”。如果你的方向与钙钛矿界面钝化、模块化制备、激光划线损伤控制、等离子体工艺引入或高温光照稳定性测试有关，这篇论文值得优先关注。需要重点核对的信息包括：等离子体的气氛与功率参数、形成的异质结构具体成分与厚度、其与钙钛矿表面发生了哪些化学键合、是否适配不同钙钛矿组分与传输层体系、对互连区缺陷的表征手段、模块结构与分区损耗分析、认证测试条件以及稳定性测试是否包含封装。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：如何在不牺牲大面积制造可行性的前提下，抑制钙钛矿太阳能电池中由软性多组分晶格引发的界面缺陷形成与演化，并进一步降低模块激光划线互连区域的局域损伤和缺陷积累，从而同时提高小面积器件和大面积模块的效率与长期运行稳定性。",
+          "method": "根据摘要，方法路径应是基于等离子体的表面工程/钝化工艺。该工艺可能直接作用于已制备的大面积钙钛矿薄膜表面，通过原位化学反应生成一个覆盖均匀、形貌共形且与基底强键合的异质结构层。这个异质结构的作用可能包括：钝化表面未配位位点、抑制离子迁移相关缺陷演化、改善界面能级或载流子提取，并在模块激光划线互连区缓解由加工诱导的局域损伤。验证方法大概率包括器件效率测试、模块输出测试、认证效率、长期最大功率点跟踪稳定性测试，以及针对界面和互连区的形貌/化学/缺陷表征，但具体实验手段摘要未给出，需读正文确认。",
+          "strengths": "最突出的亮点有四点。第一，问题抓得很准，不只做常规表面钝化，而是把模块激光互连区这一实际放大瓶颈纳入同一解决框架。第二，方法强调“scalable”，说明作者试图证明该工艺不只是实验室微小面积技巧，而具备大面积兼容性。第三，性能数据强：27.2%的小面积PCE和24.0%的100 cm²模块PCE，且模块给出23.5%的认证效率，这比仅报自测数据更有说服力。第四，稳定性条件较严格，尤其是小器件在85°C、1-sun、2000小时MPP仍保持98.1%，模块在65°C、1-sun、1600小时MPP保持99.3%，表明作者关注的是工作状态下的真实耐久性而非静置老化。",
+          "weaknesses": "基于当前仅有题录和摘要，仍有不少边界需要警惕。首先，不清楚等离子体处理是否会带来表面刻蚀、组分损失或对某些传输层/电极的不兼容。其次，“异质结构”具体是什么并未说明，难以判断其化学普适性、能级匹配和长期稳定机理。第三，摘要虽给出优异稳定性，但未说明封装状态、测试标准、样本数量和离散性，也未说明失效模式。第四，模块虽然面积达到100 cm²，但孔径面积为65.05 cm²，仍需结合版图、死区比例和互连损耗来判断真实放大水平。第五，摘要没有给出对照组细节，因此目前无法判断性能提升主要来自表面缺陷钝化、互连区修复，还是其他器件结构优化的共同作用。",
+          "next_step": "最小可执行动作建议有五项：一，先查正文或补充材料中等离子体处理的气体种类、功率、时间、压强和温度窗口，判断是否可复现；二，重点看表征图，确认“强键合异质结构”由哪些谱学或显微证据支持；三，查看激光划线互连区在处理前后的缺陷、漏电或串联电阻变化，判断模块增益来源；四，记录小面积器件与100 cm²模块的结构、活性/孔径定义、认证条件和是否封装；五，如果你做相关研究，可设计一个最小对照实验：在现有钙钛矿器件流程中引入同类等离子体表面处理，并优先比较界面复合、MPP稳定性和划线区损伤敏感性。"
+        }
+      },
+      "doi:10.1038/s41586-026-10848-2": {
+        "summary": "这篇 Nature 论文从题名判断，聚焦“CO2 与 bicycloalkane 的交替共聚”这一具体聚合任务，目标产物是“circular polyesters（环状聚酯）”。在摘要缺失的情况下，目前只能确认其研究对象是二氧化碳基聚合与双环烷烃单体的共聚体系，具体催化体系、单体范围、聚合选择性和材料性能仍信息不足。",
+        "contribution": "基于题名，论文的核心贡献很可能是在聚合化学上提出或验证了一条将 CO2 直接引入聚酯主链、并构筑环状聚酯的新路线；其新意可能同时体现在单体组合（CO2 + bicycloalkane）、聚合模式（alternating copolymerization，交替共聚）以及产物拓扑结构或性能（circular/环状聚酯）上。但由于未提供摘要，以上仅为基于题名与期刊定位的谨慎推断，不能替代正文证据。",
+        "details": "从题名“Alternating CO2 and bicycloalkane copolymerization to circular polyesters”看，研究对象非常具体：一是 C1 原料 CO2，二是 bicycloalkane 类单体，三是目标材料 circular polyesters。该组合提示作者可能在解决两个层面的难题：其一，如何让化学惰性较高的 CO2 以可控方式参与链增长；其二，如何让双环烃骨架在共聚过程中既实现交替插入，又导向特定的聚酯拓扑或链结构。题名中的“alternating”通常意味着作者强调严格或高程度的交替序列分布，这往往需要高度选择性的催化体系、明确定义的单体反应路径，以及通过谱学/色谱/质谱等证明序列结构。题名中的“circular polyesters”尤其值得注意：如果这里指的是真正的环状高分子拓扑，那么研究重点可能不仅是组成控制，还涉及链端缺失、环闭合偏好、分子量分布与拓扑鉴定；如果“circular”另有特定化学含义，也必须回到摘要和正文核对术语定义。作者团队中包含 Linda J. Broadbelt，提示工作可能不仅有合成实验，还可能含有机理计算、反应网络分析或聚合路径建模；而 Eugene Y.-X. Chen 团队长期关注可持续高分子、CO2/环氧化物或相关可控聚合，因此这篇论文大概率位于“可持续单体利用 + 精准聚合结构设计”的交叉点。对于科研读者，当前最需要核对的是：bicycloalkane 的具体化学身份是什么，是否先经官能团活化；CO2 是否直接与其共聚，还是通过中间体/开环过程实现；“交替”由哪些证据支持；“环状聚酯”由哪些拓扑表征证明；该材料相较传统脂肪族聚酯在热性能、力学性能、可降解性、解聚/回收方面是否有实证优势。由于摘要为空，任何关于催化剂种类、转化率、分子量、分散系数、单体适用范围、结晶性、玻璃化转变温度、循环再利用性能的判断都不能提前下结论。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，很可能是：能否利用 CO2 与某类 bicycloalkane 单体进行高选择性的交替共聚，从而合成以往难以获得的环状聚酯；以及这种聚合是否能够同时实现碳资源利用、序列控制和聚合物拓扑控制。若题名中的“circular”确实指环状拓扑，则还涉及一个更具体的问题：如何在一步或主导路径中避免线性链增长，优先形成无链端的环状聚酯。",
+          "method": "可能的方法路径包括：设计专用催化体系促进 CO2 与 bicycloalkane 衍生单体的协同活化；通过聚合动力学、单体转化跟踪和组成分析证明交替插入；利用 NMR、IR、SEC/GPC、MALDI-TOF MS，必要时结合黏度或拓扑敏感表征来区分线型与环状聚酯；通过热分析和力学/降解测试评估材料性质。结合作者背景，也可能辅以 DFT 或微观动力学分析来解释为何该单体对/催化体系会偏向交替共聚和环化产物。由于没有摘要，这些都需要以正文核对。",
+          "strengths": "最值得关注的亮点可能有三点。第一，单体设计层面：将 CO2 与 bicycloalkane 组合，可能突破传统 CO2 共聚依赖环氧化物等单体的框架。第二，结构控制层面：如果“alternating”被严格证明，则意味着作者在序列精确性上取得进展。第三，材料与可持续价值层面：若确实得到环状聚酯，则该拓扑可能带来不同于线型聚酯的流变、热性能或降解/回收行为，同时提升 CO2 资源化利用的概念吸引力。论文发表在 Nature，也提示其贡献可能不只是合成一个新聚合物，而是提出了较通用或概念上有突破的聚合策略。",
+          "weaknesses": "当前基于题录信息的主要局限非常明显。首先，没有摘要，无法确认“bicycloalkane”具体是哪类底物，因而无法判断工作的一般性。其次，“circular polyesters”存在术语歧义，必须核实是环状高分子拓扑，还是含环骨架的聚酯。再次，缺少任何数据，无法评价交替度、活性、分子量上限、可放大性、单体容忍性和材料性能。最后，也不能排除题名所述过程依赖特殊前体、严苛条件或复杂催化剂，从而限制其实际适用范围。",
+          "next_step": "最小可执行动作应是：1）先获取摘要并确认“circular polyesters”的精确定义；2）查看图1或摘要图，弄清单体结构、催化剂和基本反应式；3）重点查证证明“交替共聚”和“环状拓扑”的关键表征图表；4）记录单体适用范围、Mn/Đ、选择性和产率等核心数据；5）若你的方向与可持续聚合或 CO2 利用相关，再进一步比对其与经典 CO2-环氧化物共聚体系的区别与优势。"
+        }
+      },
+      "doi:10.1038/s41586-026-10881-1": {
+        "summary": "这篇Nature论文从题名看，研究对象是“固定在纳米孔上的、逐步缩短的肽”，核心任务是实现对该肽序列的顺序读取。由于提供的摘要为空，当前只能依据题名与期刊元数据判断其主题很可能属于纳米孔单分子蛋白/肽测序或序列判读方法。",
+        "contribution": "从题名推测，论文的核心贡献可能是提出或验证了一种基于纳米孔的肽段顺序读取策略：通过让同一条被固定的肽链经历“阶梯式缩短”，把连续的长度变化转化为可解析的纳米孔信号，从而逐步读取序列信息。若这一判断成立，其意义在于为蛋白质/肽单分子测序提供一种区别于直接整链穿孔读取的路径。",
+        "details": "仅根据题名“Sequential reading of a stepwise-shortened peptide immobilized on nanopore”可提炼出几个较具体的信息点。第一，研究对象不是自由穿过孔道的天然全长蛋白，而是“immobilized on nanopore”的肽，即肽链被锚定/固定在纳米孔体系上，这通常意味着作者希望减少分子快速通过导致的时间分辨率不足问题。第二，题名中的“stepwise-shortened peptide”强烈暗示作者并非一次性直接读完整条肽，而是通过某种逐步切短、逐残基移除、或酶促/化学方式使肽长度按步进减少；每缩短一步，纳米孔电流阻断模式可能发生可测变化，于是可把一系列状态按顺序对应到肽序列读出任务。第三，“Sequential reading”说明目标不仅是区分不同肽是否不同，而是希望按顺序解析肽中相邻位置的信息，这比一般的分子鉴别更接近真正的测序。第四，发表在Nature说明工作很可能在概念验证、仪器/孔道设计、信号可分辨性或读取准确性上有较强突破，但这不能代替对具体实验数据的核对。对科研读者而言，如果你的方向涉及纳米孔传感、单分子测量、蛋白质测序、肽修饰检测或酶-孔耦合系统，这篇论文值得重点关注，因为它可能回答“如何把难以稳定读取的肽序列问题转化为可逐步观测的状态序列”这一关键方法学问题。需要特别核对的信息包括：所用纳米孔是生物孔还是固态孔；肽是如何固定的；“stepwise-shortened”由哪种酶或化学过程实现；读取分辨率是否达到单氨基酸层级；适用肽长范围、序列复杂度、翻译后修饰兼容性、错误率、通量及数据分析方法是什么。由于摘要为空，以上都只能视为基于题名的高置信线索与低置信推断，不能当作已证实结果。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文大概率要解决的具体问题是：在纳米孔平台上，如何对肽链实现按序、逐位点的读取，而不是只得到整体存在性或粗略类别信息。更细一点说，它可能针对两个长期难点：肽/蛋白在纳米孔中运动过快、构象复杂导致信号难稳定；以及不同氨基酸对电流影响微弱、难以直接整链逐残基判读。",
+          "method": "从题名推测，方法路径可能是把一条肽固定在纳米孔附近或孔中某一确定位置，然后利用步进式缩短机制制造一串离散状态。每个缩短步骤都会改变孔中占据区域的氨基酸组成或肽链长度，产生对应的离子电流变化；研究者再依据这些按时间排序的信号轨迹推断肽的序列或局部残基信息。可能涉及的要素包括：特定孔蛋白或工程化纳米孔、肽端锚定策略、外切酶/化学剪切控制、单通道电流记录、状态分割与模式识别分析。若论文达到Nature级别，也可能包含对照肽序列、不同残基组合、重复性统计，以及从原始电流到序列判读的算法框架。",
+          "strengths": "最值得关注的亮点可能在于一种“把空间上的序列差异映射为时间上的阶梯信号”的设计。与直接让肽整体快速穿孔相比，固定加逐步缩短的策略理论上更利于提高停留时间、增强状态可重复性，并把复杂的连续信号简化为一系列可编号的离散读数。如果作者确实实现了单残基或近单残基层面的顺序读取，这将是蛋白/肽纳米孔测序的重要概念推进。此外，题名直接强调sequential reading，说明工作重点可能不只是分类检测，而是朝可扩展的序列解析迈进，应用价值会明显高于一般传感演示。",
+          "weaknesses": "当前最大的局限是摘要为空，几乎无法确认论文是否真正实现了完整序列重建、仅做了概念验证，还是只在有限模型肽上展示可区分性。基于题名需要警惕的边界包括：1）“sequential reading”未必等于高准确率测序，可能只是顺序检测若干位置变化；2）“stepwise-shortened”可能依赖严格控制的化学/酶学条件，通用性未必高；3）固定化策略可能限制肽长、末端类型或修饰状态；4）即便单分子信号可分离，也可能存在低通量、复杂校准、强序列上下文效应等问题。没有摘要与结果数据，不能判断其是否适用于真实复杂蛋白样本。",
+          "next_step": "最小可执行动作建议是：1）先获取摘要，优先确认“stepwise-shortened”具体由什么机制实现；2）查看论文图1与方法示意图，明确纳米孔类型、肽固定方式和读取流程；3）查结果部分是否给出模型肽的原始电流阶梯、状态数与序列对应关系；4）记录论文是否报告单残基分辨率、错误率、肽长范围和翻译后修饰检测能力；5）如果你的方向相关，可据此列一个对照表，把它与“直接穿孔读肽”“酶驱动步进读DNA/肽”“外切酶耦合纳米孔”三类路线比较。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": []
+  },
+  "papers": [
+    {
+      "id": "arxiv:2607.28942v1",
+      "source": "arxiv",
+      "title": "NeSyFS: A Neuro-symbolic Fast-Slow Thinking Framework for LLM Agent under Partial Observability",
+      "authors": [
+        "Duo Xu",
+        "Faramarz Fekri"
+      ],
+      "published": "2026-07-31T01:53:41Z",
+      "updated": "2026-07-31T01:53:41Z",
+      "abstract": "Recently Large Language Models (LLMs) have been increasingly deployed as autonomous agents in applications such as self-reflection, retrieval-augmented generation, and scientific discovery. In these settings, agents must act based on limited observations rather than full environmental states, leading to partial observability. This introduces several key challenges: belief state inference, task objective misalignment, and planning under uncertainty. Prior approaches typically condition actions on full or summarized action-observation histories whose redundant and irrelevant information can mislead the decision making of LLM agent. Inspired by human cognition, we propose a novel neuro-symbolic fast-slow thinking (NeSyFS) framework for LLM agent, addressing the challenges introduced by partial observability in a unified approach. We use a knowledge graph (KG) to represent the belief state, providing triplets as context for every module of NeSyFS. The fast-thinking module performs reactive action, while slow-thinking conducts a new uncertainty-aware planning by following the high-level structure of twisted sequential Monte Carlo (TSMC) algorithm. To mitigate the misalignment of task objective, a reflection module is used to reflect fast-thinking actions, and also switches to the slow-thinking module whenever reactive actions repeatedly fail. Experiments on three representative benchmarks, i.e. ALFWorld, Webshop, and ScienceWorld, demonstrate significant advantages over previous methods.",
+      "url": "http://arxiv.org/abs/2607.28942v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.28942v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "autonomous agent",
+        "ai",
+        "environmental",
+        "environment",
+        "scientific discovery",
+        "neuro-symbolic"
+      ],
+      "score": 88.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.28826v1",
+      "source": "arxiv",
+      "title": "Distilling Knowledge from Large Language Models into Lightweight Reinforcement Learning Agents for Autonomous Cyber Operations",
+      "authors": [
+        "Konur Tholl",
+        "François Rivest",
+        "Mariam El Mezouar",
+        "Adrian Taylor",
+        "Ranwa Al Mallah"
+      ],
+      "published": "2026-07-30T20:28:02Z",
+      "updated": "2026-07-30T20:28:02Z",
+      "abstract": "Autonomous Cyber Operations (ACO) are increasingly important for defending enterprise networks as cyber threats continue to evolve in sophistication. ACO applications commonly employ Reinforcement Learning (RL) agents to learn defensive behaviors through interaction with environments. However, RL agents typically require extensive exploration during training, often resulting in unstable behavior and poor initial decision-making before converging toward effective defense strategies. In this work, we investigate the use of a Large Language Model (LLM) to improve autonomous defensive decision-making within an ACO environment. Through prompt engineering rather than fine-tuning, we demonstrate that an 8-billion parameter LLM pretrained on cybersecurity data can outperform a baseline RL agent in a modified CybORG CAGE Challenge 2 environment. We then propose an online policy distillation framework that transfers the LLM's defensive policy into a lightweight RL agent containing only 64,910 parameters, reducing model size by several orders of magnitude while maintaining effective defensive capabilities. This provides a pathway toward operationalizing frontier cybersecurity models within lightweight, deployable agents. To evaluate transferability, we construct CybORG scenarios ranging from 4 to 12 hosts and assess the approach across varying network configurations. We also evaluate teacher-guided RL stabilization strategies and observe that none consistently surpass the optimized teacher policy, suggesting policy-alignment limitations between reward-driven RL optimization and teacher-guided defense strategies. Our results demonstrate the potential of cybersecurity-focused LLMs as sources of expertise for autonomous cyber defense, while policy distillation provides a practical path toward operationalizing frontier cybersecurity models within efficient, scalable agents.",
+      "url": "http://arxiv.org/abs/2607.28826v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.28826v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 81.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.29561v1",
+      "source": "arxiv",
+      "title": "MOT-SR: Multi-Objective Tool-Augmented Scientific Equation Discovery with Large Language Models",
+      "authors": [
+        "Boxiao Wang",
+        "Runxiang Wang",
+        "Kai Li",
+        "Chongming Li",
+        "Zhiwei Chen",
+        "Yifan Zhang",
+        "Jian Cheng"
+      ],
+      "published": "2026-07-31T15:52:07Z",
+      "updated": "2026-07-31T15:52:07Z",
+      "abstract": "Symbolic Regression (SR) aims to discover analytical equations from observational data and plays a central role in scientific modeling. While recent Large Language Model (LLM) based approaches show promise, they face two limitations. First, they lack data analysis mechanisms for uncovering variable dependencies, which reduces the efficiency of equation discovery. Second, most methods rely on single-objective evaluation focused solely on fitting error. This neglect of structural complexity and generalization often causes models to converge prematurely to local optima, limiting their ability to explore the broader equation space. We propose Multi-Objective Tool-augmented Symbolic Regression (MOT-SR), a unified framework that integrates external analytical tools to extract structural priors and guide equation generation, while jointly optimizing for accuracy, complexity, and generalization via a multi-objective evaluation module that maintains a dynamic Pareto front. MOT-SR employs two collaborative LLM modules: a Meta Strategy Generator, which selects tools and synthesizes structural optimization strategies based on Pareto-optimal equations, and an Equation Generator, which produces new candidate equations accordingly. The system operates in a closed-loop manner, continuously refining both strategies and equation structures. Across 40 standard tasks, MOT-SR outperforms existing SR methods in accuracy, generalization, and efficiency. We further validate MOT-SR on extreme mass-ratio inspiral (EMRI) orbital modeling, an important problem in space-based gravitational-wave astronomy where small local errors can accumulate substantially over long-term evolution. The discovered interpretable correction achieves the lowest trajectory-level integration error on held-out configurations. These results demonstrate the potential of MOT-SR to enable reliable modeling of long-horizon scientific dynamics.",
+      "url": "http://arxiv.org/abs/2607.29561v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29561v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "ai",
+        "symbolic regression",
+        "equation discovery"
+      ],
+      "score": 76.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2607.28871v1",
+      "source": "arxiv",
+      "title": "Validation Evidence in LLM Repair Agents: How Much of What Passes Actually Tests the Bug?",
+      "authors": [
+        "Xiaonan Xu",
+        "Wenjing Wu"
+      ],
+      "published": "2026-07-30T22:32:14Z",
+      "updated": "2026-07-30T22:32:14Z",
+      "abstract": "When a repair agent runs a test and sees it pass, the result is treated as evidence about the reported defect. We measure how often that treatment is warranted. BSG-VA (buggy-state/candidate-state/gold-fix validation analysis) captures each validation command at its exact working-tree state, extracts a test-only patch, and replays the command on the original buggy code (B), the candidate state (S), and the developer gold fix (G). The captured outcome and the replay results assign every event an evidence role, from gold-aligned bug-discriminating through regression-only to misleading. Across 3,730 events in 643 rollouts on 110 tasks, 46.0% of positive comparable events carry no bug-discriminating information; 23.8% of baseline rollouts, with no feedback injected, close with a patch whose entire positive evidence base is of this kind. A three-arm experiment tests whether returning the B-replay outcome to the agent changes this pattern. Bug-contrast feedback reduces evidence-inadequate closure by 7.8 percentage points relative to an attention-matched reminder (p = 0.0029) and raises bug-discriminating evidence by 7.4 points (p = 0.011), with no detectable cost to repair success. Both estimates fall below the prespecified 10-percentage-point smallest effect size of interest, so practical magnitude remains uncertain. Roughly a third of the improvement traces to the reminder alone; across two exploratory replications, varying the scaffold and the model, the B-replay content adds a detectable increment only with gpt-5.6-sol under the unconstrained tool-use loop. BSG-VA applies post hoc to any replayable repair trajectory that preserves the required code states and execution environment. Keywords: program repair agents, validation evidence, test adequacy, large language models, software quality, controlled experiment.",
+      "url": "http://arxiv.org/abs/2607.28871v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.28871v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 75.0,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10957-y",
+      "source": "nature",
+      "title": "Gasdermin D-mediated delivery of caspase inhibitors to suppress pyroptosis",
+      "authors": [
+        "Katarzyna M. Groborz",
+        "Melissa E. Truong",
+        "Irma Stowe",
+        "Katherine E. Wickliffe",
+        "Bettina Lee",
+        "Stefan Bauernfried",
+        "Robert S. Jones",
+        "Emile Plise",
+        "Elizabeth S. Levy",
+        "Ponien Kou",
+        "Wyne P. Lee",
+        "Juan Zhang",
+        "Hanna Budayeva",
+        "Christopher M. Rose",
+        "Julia Nguyen",
+        "Malgorzata Kalinka",
+        "Marcin Drag",
+        "Nobuhiko Kayagaki",
+        "Kim Newton",
+        "Marcin Poreba",
+        "Vishva M. Dixit"
+      ],
+      "published": "2026-08-03",
+      "updated": "2026-08-03",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10957-y",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10957-y",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10957-y"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adq7402",
+      "source": "science",
+      "title": "Toward an exact quantum many-body treatment of Kondo correlation in magnetic impurities",
+      "authors": [
+        "Tianyu Zhu",
+        "Linqing Peng",
+        "Huanchen Zhai",
+        "Zhi-Hao Cui",
+        "Runze Chi",
+        "Garnet Kin-Lic Chan"
+      ],
+      "published": "2026-07-30",
+      "updated": "2026-07-30",
+      "abstract": "The Kondo effect is a prototypical quantum phenomenon arising from the interaction between localized electrons in a magnetic impurity and itinerant electrons in a metallic host. Although this phenomenon has served as the testing ground for quantum many-body methods for decades, the precise description of Kondo physics with material specificity remains challenging. Here, we present a systematic ab initio approach to converge toward an exact zero-temperature electronic treatment of Kondo correlations. Across a series of 3d transition metals, we extracted Kondo temperatures matching subtle experimental trends, with accuracy exceeding that of standard models. We further obtained microscopic insight into the origin of these trends. More broadly, we demonstrate the possibility to start from fully ab initio many-body simulations and push toward the realm of converged predictions.",
+      "url": "https://doi.org/10.1126/science.adq7402",
+      "pdf_url": "",
+      "doi": "10.1126/science.adq7402",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6810",
+        "page": "522-526",
+        "reference_count": 70,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adq7402"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aej5901",
+      "source": "science",
+      "title": "Signatures of aging and disease in a single organelle",
+      "authors": [
+        "Jeeyoon Na",
+        "Anne Brunet"
+      ],
+      "published": "2026-07-30",
+      "updated": "2026-07-30",
+      "abstract": "Changes in lysosomal metabolites are associated with both aging organs and lysosomal storage diseases",
+      "url": "https://doi.org/10.1126/science.aej5901",
+      "pdf_url": "",
+      "doi": "10.1126/science.aej5901",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6810",
+        "page": "461-461",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aej5901"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeg1730",
+      "source": "science",
+      "title": "Plasma surface engineering for efficient and stable perovskite solar cells and modules",
+      "authors": [
+        "Rundong Fan",
+        "Yue Ma",
+        "Shuoyang Xu",
+        "Liang Cheng",
+        "Zhongyang Zhang",
+        "Yan Li",
+        "Huijun Liu",
+        "Zhaoboxun Bao",
+        "Guilin Liu",
+        "Yuetong Wu",
+        "Xinmeng Zhuang",
+        "Kailin Li",
+        "Yanrun Chen",
+        "Jackson Tze Fung Ng",
+        "BoShiun Huang",
+        "Wentao Zhou",
+        "Yu Zhang",
+        "Ying Han",
+        "Ruiyang Yin",
+        "Shaocheng Liu",
+        "Tianhao Xia",
+        "Mengqi Xiao",
+        "Xiaowei Zhan",
+        "Xiaoxu Zhao",
+        "Qi Chen",
+        "Huanping Zhou"
+      ],
+      "published": "2026-07-30",
+      "updated": "2026-07-30",
+      "abstract": "The instability of perovskite solar cells (PSCs) stems largely from the formation and evolution of interfacial defects associated with the soft, multicomponent perovskite lattice. We report a scalable, plasma-based passivation strategy that forms conformal, uniform, and strong-bonded heterostructure through in situ chemical reactions on large-area perovskite films. This approach also mitigates defect accumulation within the laser-scribed interconnection regions, where localized damage often dominates module-level performance losses. We achieved a power conversion efficiency (PCE) of 27.2% in small-area devices (active area 8.313 square millimeters) and 24.0% (certified efficiency of 23.5%) in 100-square-centimeter (cm 2 ) modules (aperture area 65.05 cm 2 ). The small-area device retained 98.1% of its initial PCE after 2000 hours of maximum power point tracking at 85°C under 1-sun illumination, and the 100-cm 2 module retained 99.3% of its initial PCE after 1600 hours at 65°C under 1-sun illumination.",
+      "url": "https://doi.org/10.1126/science.aeg1730",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeg1730",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6810",
+        "page": "490-497",
+        "reference_count": 93,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeg1730"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10848-2",
+      "source": "nature",
+      "title": "Alternating CO2 and bicycloalkane copolymerization to circular polyesters",
+      "authors": [
+        "Min Zhu",
+        "Xavier Westworth",
+        "Yingluo Zhao",
+        "Gaurav S. Deshmukh",
+        "Deepak K. Barange",
+        "Tao Zhang",
+        "Ravikumar R. Gowda",
+        "Linda J. Broadbelt",
+        "Eugene Y.-X. Chen"
+      ],
+      "published": "2026-07-29",
+      "updated": "2026-07-29",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10848-2",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10848-2",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 46,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10848-2"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10881-1",
+      "source": "nature",
+      "title": "Sequential reading of a stepwise-shortened peptide immobilized on nanopore",
+      "authors": [
+        "Jialu Chen",
+        "Hanhan Zhang",
+        "Kefan Wang",
+        "Tian Li",
+        "Wen Sun",
+        "Zixuan Wang",
+        "Xinmeng Gao",
+        "Zhenyuan Cao",
+        "Yusheng Ouyang",
+        "Lang Yao",
+        "Yifan Wang",
+        "Yunqi Xiao",
+        "Ruidong Li",
+        "Xingwang An",
+        "Xinyi Dai",
+        "Lulu Zhao",
+        "Lu Qian",
+        "Panke Zhang",
+        "Shuo Huang"
+      ],
+      "published": "2026-07-29",
+      "updated": "2026-07-29",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10881-1",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10881-1",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 50,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10881-1"
+      }
+    }
+  ]
+}
