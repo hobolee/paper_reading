@@ -1,0 +1,623 @@
+{
+  "date": "2026-08-19",
+  "stats": {
+    "fetched": 444,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 57,
+      "science": 87
+    },
+    "deduped": 442,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 57,
+      "science": 85
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 259,
+    "keyword_filtered_by_source": {
+      "arxiv": 259
+    },
+    "keyword_optional_included": 126,
+    "keyword_optional_included_by_source": {
+      "nature": 56,
+      "science": 70
+    },
+    "ranked": 183,
+    "ranked_by_source": {
+      "arxiv": 41,
+      "nature": 57,
+      "science": 85
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 120,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天最值得优先阅读的是4篇LLM/agent方向论文，因为它们共同指向一个更具体也更成熟的问题簇：当大语言模型从“会回答”转向“会在环境中持续行动”后，真正的瓶颈已不再只是单轮能力，而是状态表示、动作落地、长程可靠性与安全评测。其中国家级别的阅读优先级可分三层。第一优先级是《When State Becomes an Attack Surface》和《From Sequence to Structure》：前者把具身agent的攻击面从传统prompt扩展到环境状态语义本身，后者则试图把agent可靠性从单步不确定性提升到整条轨迹级传播，这两篇分别对应“怎么被攻击”和“怎么发现会失败”，组合起来很像同一技术栈的攻防两面。第二优先级是《AeroCopilotBench》和《HaReCAP》：前者提供了一个高约束、高风险、可量化的交互式安全评测场景，后者则瞄准长时程具身任务中叶节点动作grounding的成本瓶颈，代表agent系统从“能不能做”走向“能否高效稳定做”。如果今天只能精读两篇，建议先看状态语义注入和轨迹级不确定性；如果要补一个偏系统/benchmark视角，则看航空副驾驶基准。其余Science/Nature论文虽然与LLM主线不同，但各自都代表了强机制或强工具型工作：鲨鱼皮齿化石论文提供了“用代理指标重建历史基线并解释恢复潜力”的生态学范式；TRAIP论文是典型的细胞周期调控机制重编程；人工冬眠与记忆保持工作则把“记忆痕迹”从单突触稳定性转向特定连接架构；另外三篇Nature题名显示其可能分别在热带森林抗旱、偏振光高维计算、工程益生菌控糖上给出方法或机制推进，但由于当前缺少摘要，阅读时应先补足摘要与图1再判断投入程度。整体上，今天材料最清晰的主线不是泛泛的“AI很热”，而是agent研究正在从能力展示转向可执行、安全、可审计、可评测、可控成本的工程科学阶段。",
+    "themes": [
+      "具身与交互式LLM agent的核心难题正在转向“状态—动作—轨迹”闭环：状态可被注入，动作grounding昂贵，失败常源于早期步骤并在长轨迹后才暴露。",
+      "安全评测开始从静态问答迁移到带硬约束的交互环境：航空副驾驶基准把“知道程序”与“按程序安全执行”明确区分，说明agent评估正走向任务化与程序化。",
+      "agent效率优化出现保守式规则化路径：HaReCAP并非替代规划主干，而是只在能唯一确定合法动作时用可审计规则跳过叶节点LLM调用，体现‘局部编译、全局回退’的设计趋势。",
+      "可靠性研究从局部置信度转向结构化因果视角：RUPA把推理、工具调用和环境反馈组织成有向轨迹图，反映出agent不确定性量化正在吸收图结构与长程依赖建模。",
+      "多篇非AI论文也共享一个方法学主题：通过代理结构或空间组织解释宏观功能，例如皮齿化石重建鲨鱼历史基线、TTF2定位TRAIP改变底物选择、人工冬眠下突触架构支撑记忆保留。",
+      "若按阅读回报率排序，摘要信息完整且问题定义清晰的论文明显更适合当天精读；仅有题名的Nature论文目前更适合列入待确认清单而非立即深挖。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "做一个“状态语义注入 × 轨迹级风险传播”的小型复现实验框架，把环境状态中的恶意或误导性语义扰动注入到现有agent轨迹中，再观察轨迹级置信估计是否能提前预警失败。",
+        "why": "这能把今天最相关的两篇agent论文直接接起来：一篇定义新的攻击面，一篇提供整轨迹风险建模思路。若两者可结合，将比单独做攻击复现或单独做UQ更有研究增量。",
+        "first_step": "先精读两篇摘要和方法部分，列出各自最小可复现设置；随后选一个公开交互环境，人工构造少量状态描述扰动样例，并记录agent执行日志，检查是否能转成轨迹图并比较攻击前后的风险分数差异。",
+        "risk": "最大风险是两篇论文的方法依赖的实验平台或日志粒度不同，短期内难以无缝对接；另外若原文未开放代码，复现成本会偏高。"
+      },
+      {
+        "idea": "围绕HaReCAP设计一个“规则何时该弃权”的对照实验，系统检查唯一合法动作门控是否真的能在节省token的同时避免错误执行。",
+        "why": "该论文最有价值的不只是省成本，而是其保守门控思想是否成立。验证弃权机制比单纯复现整体成绩更能看出方法是否可靠、可迁移。",
+        "first_step": "先从摘要中提取其核心判据，阅读正文确认规则抽取与匹配条件；然后在一个可控任务环境中统计叶节点上下文、valid-action set规模、规则命中率、唯一决定率以及误命中案例。",
+        "risk": "如果原论文依赖特定ReCAP实现或私有轨迹数据，复现实验可能需要先重建基线；此外规则有效性高度依赖任务分布，跨环境结论可能不稳。"
+      },
+      {
+        "idea": "对AeroCopilotBench做一份“静态知识正确≠交互执行安全”的评测综述或小规模元分析，比较Tier-1和Tier-2之间能力落差的测量设计。",
+        "why": "这类基准未来很可能成为安全关键agent的重要参照。及早梳理其评价协议、硬安全约束定义和成功标准，有助于后续做跨基准比较或提出改进版指标。",
+        "first_step": "先补读该论文摘要、任务定义和评测章节，整理Tier-1与Tier-2各自测什么、共享什么接口、成功条件如何门控；再把这些设计与已有通用agent benchmark做表格对照。",
+        "risk": "风险在于论文可能更偏benchmark发布而非方法创新，若基线不够丰富，短期内能做出的分析主要是协议层面，实验增量有限。"
+      },
+      {
+        "idea": "整理一个“LLM agent失败信号层级”综述草案，按token级、step级、tool级、trajectory级四层划分现有不确定性与可靠性方法，并把RUPA放在trajectory级代表位置。",
+        "why": "今天材料显示agent可靠性研究正在从局部信号走向长程结构化建模。这个综述切口足够具体，适合快速产出，也能为后续选题提供地图。",
+        "first_step": "以RUPA为起点，收集近两年agent UQ、self-evaluation、tool-use confidence相关论文，建立一个二维表：信号来源 × 预测对象，并记录是否显式建模环境反馈和长程依赖。",
+        "risk": "主要风险是领域术语分散，相关工作横跨LLM、机器人、工具调用与可信AI，边界不易统一；若文献搜集不充分，综述结构会显得松散。"
+      },
+      {
+        "idea": "借鉴鲨鱼皮齿论文的方法论，做一篇“代理指标如何重建不可观测基线”的跨学科短综述，把生态学中的沉积代理、神经科学中的结构印迹、AI中的轨迹日志视为不同层面的历史重建证据。",
+        "why": "这能把看似分散的论文连成一个有方法学深度的主题：当直接真值缺失时，科学研究如何通过结构残留或执行痕迹重建过去状态与潜在机制。这个角度新颖，适合形成综述或观点文章。",
+        "first_step": "先分别抽取鲨鱼皮齿、人工冬眠记忆、RUPA三篇中的“观测对象—代理变量—推断目标—验证方式”四元组，检查它们是否能组成统一比较框架。",
+        "risk": "风险是跨学科跨度大，若处理不好会流于类比而缺少实质；需要非常克制地限定为方法论比较，而不是强行统一科学机制。"
+      },
+      {
+        "idea": "对今天信息不完整的Nature题名论文建立一个“快速筛查流程”，验证哪些值得正式纳入阅读池。",
+        "why": "当前三篇Nature论文只有题名级线索，最容易造成阅读投入失衡。建立快速筛查流程本身就是高效科研阅读的一部分。",
+        "first_step": "最小动作是补抓三篇论文的摘要、图1、结论段和方法概览，按‘问题是否清晰、证据类型是否强、是否与当前研究直接相关、是否具备可复现切口’四项打分。",
+        "risk": "风险较小，但需要克制预设判断；题名可能暗示重要性，真实内容却未必适合当前研究方向。"
+      }
+    ],
+    "papers": {
+      "arxiv:2608.16806v1": {
+        "summary": "When State Becomes an Attack Surface: State-Semantic Injection in LLM-Driven Embodied Agents。摘要要点：Large Language Models (LLMs) have demonstrated capabilities in in-context learning, task decomposition, step-by-step reasoning, and code generation, driving their gradual evolution from text generation models into the core of agents capable of perceiving environments, invoking to ...[truncated]",
+        "contribution": "摘要中最具体的线索是：Large Language Models (LLMs) have demonstrated capabilities in in-context learning, task decomposition, step-by-step reasoning, and code generation, driving their gradual evolution from text generation models into the core of agents capable of perceiving environments, invoking to ...[truncated] 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、vision-language、ai、environment。题名指向“When State Becomes an Attack Surface: State-Semantic Injection in LLM-Driven Embodied Agents”。摘要中可用的信息是：Large Language Models (LLMs) have demonstrated capabilities in in-context learning, task decomposition, step-by-step reasoning, and code generation, driving their gradual evolution from text generation models into the core of agents capable of perceiving environments, invoking to ...[truncated] 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“When State Becomes an Attack Surface: State-Semantic Injection in LLM-Driven Embodied Agents”展开；摘要线索显示问题可能与 Large Language Models (LLMs) have demonstrated capabilities in in-context learning, task decomposition, step-by-step reasoning, and code generation, driving their gradual evolution from text generation models into the core of agents capable of perceiving environments, invoking to ...[truncated] 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、large language models、llm、language model、language models、agent、agents、vision-language、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、vision-language、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2608.16447v1": {
+        "summary": "该文面向长时程具身任务中的递归式大语言模型智能体，提出 HaReCAP，用离线提炼的“习惯性叶子动作规则”替代 ReCAP 在叶节点上反复进行的 LLM 动作落地调用，以减少最后一公里动作 grounding 的冗余开销。其核心任务对象很具体：在高层目标分解、环境反馈修正与叶级子目标执行的循环过程中，只在规则能够唯一确定当前合法动作时跳过叶节点 LLM 调用，否则回退到原始 ReCAP。",
+        "contribution": "核心贡献应是对 ReCAP 的低侵入式扩展：把成功轨迹中频繁出现的叶级决策离线编译成可审计、可弃权的一步反射规则，在不改动主干递归规划框架的前提下，专门压缩叶节点动作 grounding 的 LLM 调用与 token 成本。摘要还暗示了一个重要安全/可靠性约束：规则只有在当前 valid-action set 中能够唯一导出合法动作时才生效，这意味着作者试图在效率提升与执行正确性之间建立一个保守的门控机制。",
+        "details": "从题名、摘要与关键词看，论文研究的是具身智能或环境交互型 LLM agent 在长时程任务中的执行效率问题，尤其聚焦于递归规划框架 ReCAP 的叶节点“最终动作落地”环节。作者指出，ReCAP 虽然通过多层任务分解和父节点修正增强了规划稳定性，但每当到达原子子任务时，仍要把完整递归上下文带入 LLM，去判断当前环境下应执行哪一个精确、合法的动作；这一重复过程被作者命名为 last-mile grounding redundancy。HaReCAP 的思路不是重写整个 agent，而是在叶层增加一个“习惯动作”模块：先从成功轨迹中抽取高频叶决策，再离线整理成一步规则；在线执行时，若某条规则结合当前 valid-action set 能唯一映射到一个合法动作，就直接执行，否则放弃规则并回到 ReCAP 的正常 LLM 调用流程。由此推测，方法的关键对象包括成功轨迹库、叶级状态/子目标表征、合法动作集合以及规则匹配与唯一性判定器。摘要给出的证据线索主要是机制层面的：强调低侵入、可审计、可弃权、合法动作约束、仅在唯一确定时跳过 LLM，这些都表明作者关注的是“在不明显损伤原有正确性的前提下节省调用成本”。与常见的策略蒸馏或端到端替代不同，这更像是在递归 agent 中加入一个保守的、局部的 reflex layer。对从事 LLM agent、具身规划、工具调用优化或推理成本控制的读者，这篇论文的价值在于它把“哪些步骤值得继续用 LLM，哪些步骤可以规则化”具体落到了叶级动作 grounding 这一细粒度环节。需要重点核对的信息包括：成功轨迹来自何种环境与任务；规则抽取的表示形式是基于文本模板、状态特征还是子目标-动作对；“唯一确定合法动作”的判定具体如何实现；节省了多少 LLM call 和 token；对成功率、鲁棒性、错误恢复是否有影响；与原始 ReCAP 及其他 context-management/agent optimization 方法相比提升是否稳定。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在长时程具身任务中，递归式 LLM agent 即使已经把高层目标分解到叶节点，仍需频繁调用 LLM 将原子子目标 grounding 为环境允许的精确动作，这会在长序列执行中累积大量调用与 token 开销。作者关心的不是整体规划是否可行，而是递归规划框架最后一跳的动作落地是否存在可被规则化、可被复用的高频习惯决策，从而减少冗余的叶层 LLM 推理。",
+          "method": "根据摘要，可能的方法路径是：1）以 ReCAP 作为基线递归 agent，保留其多层任务分解与父节点 refinement 机制；2）从成功执行轨迹中抽取叶节点决策样本，统计频繁出现的“叶级上下文—动作”对应关系；3）将这些模式离线编译为一步 leaf-reflex rules，且规则需要满足可审计、可弃权；4）运行时读取当前叶级子目标和 valid-action set，先尝试规则匹配；5）若某条规则在当前合法动作集合内唯一决定一个动作，则跳过原本的叶节点 LLM 调用，直接执行；6）若无法唯一决定、动作非法、或规则不适用，则回退到原始 ReCAP 流程。可能的实验会围绕长时程 embodied benchmark、成功率、平均 LLM 调用次数、token 使用量、执行步数以及规则覆盖率/弃权率展开。",
+          "strengths": "最值得关注的亮点有三点。第一，切入点很具体，不是泛泛讨论 agent 成本，而是精准定位到递归框架中的叶节点 grounding 冗余，这种问题定义有助于做出清晰的系统改进。第二，设计偏保守：只有当规则能在当前 valid-action set 中唯一推出合法动作时才替代 LLM，并且允许 abstain 回退，这对具身环境中的安全执行和可维护性都更友好。第三，方法低侵入，意味着它可能容易嫁接到已有 ReCAP 或相近递归 agent 上；如果实验确实显示显著减少 LLM calls/token 且成功率基本不降，那么其实用价值会比较高。此外，“可审计规则”这一点也比黑盒小模型替代更利于研究者分析 agent 的习惯行为。",
+          "weaknesses": "基于现有摘要，需警惕的局限主要包括：1）规则来自成功轨迹，高度依赖训练/收集环境的分布，换任务、换动作空间或换环境表征后能否迁移未知；2）高频叶决策是否足够覆盖真实长时程执行中的复杂尾部情形尚不清楚，规则覆盖不足时收益可能有限；3）如果叶节点动作其实强依赖较长的递归上下文，那么一步 reflex rule 可能只适合非常局部、重复性高的决策，适用范围未必宽；4）摘要没有给出实验基准、规模、消融、错误案例，也没有说明规则抽取成本和维护成本；5）“唯一确定合法动作”虽然保守，但可能带来较高弃权率，从而削弱实际节省幅度。由于当前只有摘要，不能判断其是否在准确率、成功率或泛化上存在代价。",
+          "next_step": "最小可执行动作建议是：1）先查全文中的方法图，确认 HaReCAP 插入 ReCAP 的确切位置，以及 leaf-reflex rule 的输入输出定义；2）重点看实验表中相对 ReCAP 的三类指标：任务成功率、LLM 调用次数、token 成本；3）查看消融，尤其是规则覆盖率、弃权率、唯一性门控是否必要；4）记录规则表示方式和成功轨迹来源，评估是否能迁移到你自己的 agent 环境；5）如果做复现，可先在一个动作空间较小、valid-action set 明确的 embodied benchmark 上实现“规则优先、失败回退 LLM”的叶层替换器，测一次调用节省与成功率变化。"
+        }
+      },
+      "arxiv:2608.16349v1": {
+        "summary": "这篇论文提出了面向航空副驾驶LLM智能体评测的两层基准 AeroCopilotBench，以及一个可复现的交互式虚拟驾驶舱环境 ACOE，用于同时测试模型的航空知识问答能力与在紧急/异常工况下按程序执行、满足最终目标并遵守硬安全约束的能力。基准包含1200道航空多选题和73个依据飞行员操作手册构建的应急异常任务，重点对象是“能否在标准化工具接口下感知座舱状态、诊断故障并安全操纵机载系统”的代理式LLM。",
+        "contribution": "核心贡献应在于：第一，提出了一个从自然语言飞行程序到“可执行状态转移、终态目标条件、硬安全约束”的映射框架，使航空程序性操作可以在交互环境中被系统评测；第二，构建了双层评测体系，把静态航空知识与动态程序执行分开测量；第三，给出安全门控的评估协议，不仅看任务是否完成，还要求全过程不触犯硬安全约束，并区分安全目标推进与轨迹安全；第四，论文很可能提供了多种LLM/agent在虚拟驾驶舱中的基线表现，从而揭示知识正确不等于程序执行可靠。",
+        "details": "从题名和摘要看，论文的研究对象不是通用聊天模型，而是“作为航空副驾驶的LLM agent”。它关心的具体任务也不是单纯答题，而是航空场景里更难的交互式程序执行：模型需要读取当前驾驶舱状态，理解异常情境，调用标准化工具接口操纵系统，并在满足机型/手册程序约束的同时完成应急处置。摘要明确给出两个关键产物。其一是AeroCopilot Operational Environment（ACOE），这是一个可复现的虚拟驾驶舱测试环境，作用像是把原本写在POH中的自然语言处置程序，编译成可执行的环境机制：包括状态如何变化、最终要达成什么条件、哪些行为绝对不能越界。其二是AeroCopilotBench，两层结构分别对应知识与操作。Tier-1有1200道航空多选题，更接近传统知识评测；Tier-2有73个由制造商飞行员操作手册派生出的紧急和异常任务，更接近真实副驾驶辅助的关键能力。摘要中的证据线索很集中：它强调“安全门控 evaluation framework”，说明最终成功标准是严格的合取条件——既要完成全部任务目标，又不能违反任何硬安全约束。这比常见的仅看最终是否完成任务更贴近安全关键行业。还提到会分别衡量 safe goal progress 和 trajectory safety，这意味着评测指标可能至少拆成“目标推进度”和“过程安全性”两个维度，从而识别出一类常见失败：模型看似朝目标前进，但中途采用了不安全动作。对科研读者来说，这篇工作最有价值的地方在于它把“知识正确”与“程序可靠执行”明确剥离，并把后者落地到了可复现实验环境。若你的方向是agent benchmark、tool use、安全约束规划、人机协作或高风险行业AI评测，这篇论文很值得关注，因为航空只是场景，方法上其实是在研究：如何把文本规程转成带约束的交互任务，以及如何定义面向安全的agent评测协议。不过，基于当前仅有的摘要，也有一些必须核对的信息。比如：73个任务覆盖哪些故障类别，环境是否针对单一机型或多机型，标准化工具接口的动作空间有多大，约束来自专家标注还是规则抽取，是否有人类或传统规划器基线，Tier-1与Tier-2表现的相关性如何，不同模型失败主要来自诊断、记忆、长程规划还是工具调用错误，以及环境是否公开可复现。摘要末尾被截断，因此具体实验结果、最强基线、失败模式统计和数据开放情况目前都不能确认。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：现有航空评测多停留在静态知识层面，无法系统测试LLM智能体在交互式驾驶舱环境中执行飞行程序、处理紧急/异常情况并遵守安全约束的能力。那么，如何构建一个可复现、可量化、能体现程序执行与安全合规性的航空副驾驶评测基准？以及，LLM在“知道该做什么”和“能安全地按步骤做出来”之间到底有多大落差？",
+          "method": "从摘要推断，方法路径包括四部分。第一，数据构建：收集并整理航空知识题，形成1200题的Tier-1多选集；从制造商POH中抽取73个紧急/异常操作任务，形成Tier-2。第二，环境建模：在ACOE中把自然语言程序转化为环境可执行形式，至少包括状态转移规则、终态目标条件和硬安全约束。第三，agent接口：为模型提供标准化工具调用接口，使其能够查询/解释驾驶舱状态、诊断问题并操作机载系统。第四，评估协议：采用安全门控规则，只有在全部目标达成且零硬约束违例时才算成功，同时记录安全目标推进和轨迹安全等细粒度指标。若论文含实验，可能会比较不同LLM或agent框架在Tier-1与Tier-2上的差异，以分析知识能力与程序执行能力的不一致。",
+          "strengths": "最值得关注的亮点有四点。其一，评测对象具体而重要：不是泛泛的“航空问答”，而是虚拟驾驶舱中的应急/异常处置。其二，任务来源具体：Tier-2直接来自制造商POH，说明程序设计有较强行业依据。其三，形式化程度高：把自然语言规程转成状态转移、目标条件和硬安全约束，这使评测更可重复，也为后续规划、验证和对比研究打基础。其四，评估理念符合安全关键系统需求：成功必须同时满足任务目标与过程安全，能够避免“结果对了但过程危险”的宽松结论。对agent研究而言，这种双层基准还能帮助分析知识考试成绩与真实交互执行能力之间的断裂。",
+          "weaknesses": "基于摘要需要警惕的边界包括：第一，环境真实性与外部效度未知。虚拟驾驶舱再现了多少真实飞行复杂性、时序耦合和感知噪声，摘要未说明。第二，任务范围虽然有73个，但是否覆盖足够广的故障类型、决策层级和机型差异尚不清楚。第三，从POH到可执行约束的转化可能包含大量人工规则工程，泛化性与维护成本需核对。第四，安全门控很严格，但若只关注硬约束，可能仍遗漏软风险、操作效率、解释质量和人机协作体验。第五，摘要没有给出具体结果，因此目前不能判断基准是否真能拉开模型差距，也无法确认所谓“知识不等于安全执行”在实验上有多显著。第六，摘要被截断，关于指标定义、基线模型和数据/代码开放情况的信息不足。",
+          "next_step": "最小可执行动作建议是：第一，优先查看论文中对ACOE的形式化定义图和任务示例，确认状态、动作、观察和约束是如何表示的；第二，查Tier-2的73个任务清单，记录其故障类别、触发条件和成功标准；第三，核对评测指标表，特别是success、safe goal progress、trajectory safety三者的精确定义和关系；第四，查看基线实验，比较同一模型在Tier-1与Tier-2上的表现差，判断知识分数是否能预测程序执行；第五，若你做agent或安全评测，可尝试把自己的规划/约束解码方法映射到该标准化工具接口，评估是否能降低硬约束违例；第六，记录三个待核对问题：环境是否开源、任务是否多机型、POH到规则的转写是否有人类专家校验。"
+        }
+      },
+      "arxiv:2608.16002v1": {
+        "summary": "这篇论文针对大语言模型智能体在复杂交互环境中的不确定性量化问题，提出了一个面向完整执行轨迹的框架 RUPA，用有向轨迹图刻画推理状态、工具调用和环境反馈之间的依赖，并传播风险信号来评估整条 agent trajectory 的置信度。其核心任务不是单步置信度估计，而是识别那些根因出现在更早推理或交互步骤、但最终才暴露出来的智能体失败。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：第一，把 LLM agent 的执行历史从局部 token/step 视角提升到轨迹级视角，显式建模长程依赖下的误差累积；第二，提出 RUPA，将执行过程表示为带时间边和语义依赖边的有向轨迹图，并在图上进行不确定性传播；第三，将传播后的风险信号与轨迹级行为特征、目标对齐信息结合，输出整条轨迹的置信估计，并在代表性 agent benchmark 上评估其有效性。",
+        "details": "从题名、摘要和关键词判断，这项工作研究的是“LLM agents 在多步推理、工具使用、环境交互中的可靠不确定性量化”。其问题动机非常具体：现有 UQ 往往依赖 token probability、predictive entropy、per-step confidence 等局部信号，这些信号对单步回答可能有效，但对 agent 的长轨迹执行不充分，因为一个早期错误可能经过多轮推理、检索、工具调用或环境反馈后才演化为最终失败。论文因此主张把“序列”提升为“结构”，即把执行历史表示成 directed trajectory graph。图中的节点至少包括三类对象：reasoning states、tool interactions、environment feedback；边则包含 temporal dependency 和 semantic dependency。基于这一表示，RUPA 的关键机制应是在图上做 uncertainty propagation，用于刻画风险如何在交互步骤间累积、转移和放大。最后，模型并不只依赖传播值本身，还结合 trajectory-level behavioral features 与 goal-alignment information，对完整轨迹做 confidence estimate。这意味着作者关心的是 trajectory success/failure、agent reliability 或 failure detection，而不是单 token 校准。\n\n证据线索主要来自摘要中的几个关键词组。第一，“long-range dependencies through which errors accumulate across an execution trajectory”说明作者要处理的是跨步因果链或依赖链上的不确定性传递，而不是独立步的置信聚合。第二，“directed trajectory graph”说明方法层面很可能借鉴图建模或图消息传播思想，可能是规则式传播、图神经网络式传播、或基于边权的风险扩散机制，但仅凭摘要无法确认具体实现。第三，“combined with trajectory-level behavioral features and goal-alignment information”提示最终置信估计应是多源特征融合，可能包含行为统计量，例如步骤数、回溯/重试模式、工具调用成败、环境反馈冲突、目标完成度等，但这些具体特征需要阅读全文核对。第四，“representative agent bench...”说明实验应覆盖若干 agent benchmark，但摘要被截断，无法确认具体数据集、任务形态和评价指标。\n\n与科研读者的关系上，这篇论文尤其适合关注以下方向的人：一是 LLM agent reliability / AI safety / uncertainty estimation，二是工具增强 agent、交互式规划与多步决策，三是错误归因与失败预测。如果你的研究涉及 ReAct、tool-use、web agent、code agent、embodied/text environment agent，这篇论文的价值在于它试图把不确定性从“输出层局部信号”推进到“执行图结构上的关系传播”。如果你的重点是 calibration 或 selective prediction，那么也应关注它是否提升了 trajectory-level calibration、failure detection、abstention 或 reranking 能力。\n\n需要重点核对的信息包括：1）图中“语义依赖边”如何构造，是基于启发式、LLM 判别、检索引用关系，还是监督标注；2）传播机制是解析式还是可学习式，是否需要额外训练标签；3）trajectory-level behavioral features 与 goal-alignment information 的定义和来源；4）实验 benchmark 的具体任务类型，是问答式 agent、网页操作、API 工具使用，还是模拟环境决策；5）评价指标是否包括 AUROC、AUPRC、ECE、Brier score、risk-coverage curve 等 UQ 常用指标；6）是否与强基线比较，如 token entropy、self-consistency、verbalized confidence、step-level confidence aggregation、process reward model 等；7）图构建与传播的计算开销，以及对长轨迹的扩展性；8）方法是否真的能定位“早期根因”，还是仅提升最终失败预测。基于当前摘要，可以确认的是研究问题清晰、对象具体、方法视角新颖；不能确认的是实验规模、性能提升幅度、泛化边界和具体实现细节。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何为 LLM agent 的整条执行轨迹而不是单一步骤进行不确定性量化，并识别那些由早期推理失误、工具调用偏差或环境误读引起、但在多步交互后才表现为最终失败的情况。更细地说，它要弥补现有局部 UQ 信号无法捕捉长程依赖和误差累积的问题。",
+          "method": "从摘要推测，方法流程可能是：先收集 agent 在 benchmark 上的 execution history；将历史转换为有向轨迹图，节点包括推理状态、工具交互、环境反馈，边包括时间顺序边和语义依赖边；随后在图上对初始不确定性或风险信号进行传播，以建模风险转移；再提取轨迹级行为特征与目标对齐相关特征，与传播结果融合；最后输出一个针对完整 trajectory 的 confidence score，并在若干 agent benchmarks 上验证它对失败检测或可靠性评估的效果。摘要没有给出训练范式、监督信号、图传播公式、benchmark 名称和指标，这些都需要核对。",
+          "strengths": "最值得关注的亮点是把 agent UQ 的基本单位从 token/step 提升到了 trajectory，并且显式引入结构化依赖图来处理误差传播，这与真实 agent 失败模式更贴近。另一个亮点是节点类型覆盖 reasoning、tool、environment 三类关键对象，说明它并不只盯住语言模型内部不确定性，而是把外部交互纳入风险建模。若实验充分，这种设计对失败预警、轨迹筛选、是否继续执行/请求人工接管等应用会有直接价值。",
+          "weaknesses": "基于当前题录信息，主要局限是若干关键细节缺失。第一，语义依赖边的构造可能引入较强启发式或额外模型误差；第二，图传播方法若依赖较长轨迹，可能带来计算与噪声累积问题；第三，摘要未说明其是否能泛化到不同 agent 架构和不同环境，还是只在特定 benchmark 上有效；第四，所谓 goal-alignment information 的定义较宽泛，可能在不同任务上不易统一获得；第五，尚不清楚它是真正改善 uncertainty calibration，还是仅改善 failure classification。",
+          "next_step": "最小可执行动作是：1）先拿到全文后优先看方法图和实验表，确认 trajectory graph 的节点/边定义；2）记录其 benchmark 名称、任务类型、UQ 指标和主要对比基线；3）重点查它如何定义初始不确定性、如何做传播、是否可训练；4）如果你做 agent reliability，可把自己的日志数据抽样成“推理-工具-反馈”三类节点，先手工构建一个小型轨迹图，测试简单风险传播是否比 step entropy 聚合更能预测失败；5）阅读时特别记录作者是否提供早期错误定位案例，而不只给最终置信度数值。"
+        }
+      },
+      "doi:10.1126/science.aec2144": {
+        "summary": "该研究以巴拿马地峡两侧珊瑚礁沉积物中保存的鲨鱼皮齿化石为对象，重建约7至3千年前与近百年来的鲨鱼群落基线，比较加勒比海与太平洋珊瑚礁鲨鱼丰度及其对捕捞的长期响应。摘要显示，作者试图说明区域海洋生产力如何塑造鲨鱼自然基线、承载力与恢复潜力，而不仅仅是人类捕捞强度决定现状。",
+        "contribution": "核心贡献在于提出并应用“化石皮齿—沉积记录”这一古生态代理指标来量化珊瑚礁鲨鱼历史基线，并在巴拿马地峡两侧给出跨海盆对照：太平洋礁区在人类显著开发前的鲨鱼丰度约为加勒比海的20倍；加勒比海鲨鱼，尤其远洋类群，自全新世中期以来下降约75%，而太平洋群体在更高捕捞压力下仍可长期持续。基于摘要，论文的关键解释框架是海洋生产力差异决定区域承载力，从而影响鲨鱼群落的脆弱性与恢复上限，这对制定分海区、非统一化的保护目标具有直接意义。",
+        "details": "研究对象非常具体：一是珊瑚礁相关鲨鱼群落，二是其在巴拿马地峡两侧——加勒比海与太平洋——的长期历史状态，三是保存在礁区沉积物中的鲨鱼皮齿化石。论文要解决的不是“鲨鱼是否下降”这一宽泛问题，而是在人类影响前缺乏基线的情况下，如何定量估计不同海区珊瑚礁鲨鱼的自然丰度差异，并进一步判断这些差异是否会改变对捕捞的响应和恢复潜力。\n\n从摘要可推断的分析路径是：作者采集或整合两个时间窗口的沉积记录——约7到3 ka的中晚全新世样品，以及近百年的现代/近期沉积样品；从中分离并鉴定鲨鱼皮齿，利用皮齿数量、类型组成或标准化密度作为鲨鱼相对丰度和群落组成代理指标；再在加勒比与太平洋间进行对照，并结合“特别是远洋种类下降”的表述，推测作者可能对皮齿形态进行了生态功能或类群归类，以区分礁栖与远洋相关鲨鱼信号。证据链的核心是时间对比加空间对比：同一地区古今对比给出下降幅度，两大海区横向对比给出不同基线与不同韧性，再用区域海洋生产力差异解释这些轨迹。\n\n摘要中的关键定量结果值得重点记录：太平洋珊瑚礁在人类显著开发前支持的鲨鱼丰度约为加勒比海的20倍；加勒比海鲨鱼总体自中全新世以来下降75%，且远洋类群受影响尤其明显；太平洋尽管面临更高捕捞压力，却显示出跨千年尺度的持续性。这一组结果支持作者的论点：若区域生产力高，则系统可支持更高鲨鱼承载力，历史上也可能表现出更强的持续能力；若生产力低，则即便人类压力并非最高，也可能更早、更明显地跌破生态基线。对于做海洋生态、古生态基线、渔业管理或保护目标设定的研究者，这篇文章的重要性在于它反对把“当前未开发海区状态”简单外推为普适保护目标，而强调必须把大尺度海洋学背景纳入基线估计。\n\n但基于题录和摘要，仍有多项关键信息需要核对，不能直接视为已证实细节。首先，皮齿与真实鲨鱼丰度之间的定量关系如何建立，是否做了现代校准，决定了“20倍”和“75%”这些数字的稳健性。其次，沉积速率、保存偏差、取样深度、粒径环境、礁相差异是否会影响皮齿保存与可比性。第三，“更高 fishing pressure”如何量化，是历史渔获、人口接近度、考古证据还是现代统计。第四，生产力指标本身来自何种数据：上升流、营养盐、初级生产力重建，还是现代海洋学代理。第五，远洋种类的识别精度如何，是否足以支持类群层面的结论。读全文时应重点核对这些方法细节与不确定性处理。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文聚焦的具体科学问题是：在缺乏直接历史监测的情况下，如何利用珊瑚礁沉积物中的鲨鱼皮齿化石重建人类显著影响前的鲨鱼群落基线；以及为什么巴拿马地峡两侧珊瑚礁鲨鱼在长期尺度上表现出不同的丰度基线、衰退轨迹和恢复潜力。更进一步，作者要检验的是区域海洋生产力能否解释这些差异，而不是把所有地区的鲨鱼下降都简单归因于捕捞强度本身。",
+          "method": "从摘要推测，方法主体应包括四步：第一，在加勒比海和太平洋的珊瑚礁沉积物中采集两个时期的样品，即约7至3 ka的化石沉积与过去一个世纪的近期沉积；第二，从沉积中提取、计数并可能按形态学特征鉴定鲨鱼皮齿，将其作为鲨鱼相对丰度和群落组成的古生态代理；第三，在海区内做古今比较，在海区间做横向比较，估计基线差异和下降幅度，并特别分析远洋相关皮齿类型的变化；第四，将这些变化与两侧海盆的海洋生产力差异联系起来，推断区域承载力及恢复潜力。若看全文，应特别查是否使用放射性定年/铀系定年等方法约束沉积年代，因为作者列表中出现了地球化学与年代学背景学者。",
+          "strengths": "最突出的亮点是把古生态代理直接用于现代保护基线问题，而且对象不是常见的硬组织化石鱼类整体，而是鲨鱼皮齿这一与鲨鱼存在直接相关的沉积信号。第二个亮点是天然“准实验”设计：巴拿马地峡两侧地理相近但海洋学环境不同，使得作者可以在相对可比的珊瑚礁体系中检验生产力与承载力假说。第三个亮点是时间尺度跨越大，从全新世到近百年，可避免仅凭现代监测低估历史丰度。第四个亮点是结果具有管理可转化性：如果不同海区天然基线相差一个数量级以上，那么保护目标、恢复参照系和“健康状态”定义就不能一刀切。",
+          "weaknesses": "仅凭摘要需要警惕几类局限。其一，皮齿丰度是否稳定映射到鲨鱼丰度仍需验证，可能受脱落率、运输、沉积环境和保存选择性影响。其二，化石与近期样品的时间平均效应可能不同，导致古今窗口可比性存在偏差。其三，摘要把差异解释为生产力驱动，但尚不清楚是否充分排除了栖息地结构、礁体面积、连通性、人类定居史和捕捞技术差异等混杂因素。其四，“太平洋在更高捕捞压力下仍持续”这一表述若缺乏独立、可量化的捕捞史证据，解释力可能受限。其五，远洋类群结论依赖皮齿分类精度，若形态重叠明显，类群级推断可能比总体丰度推断更脆弱。",
+          "next_step": "最小可执行动作有五个：1）先查正文或补充材料中皮齿提取、鉴定和标准化流程，确认“20倍”和“75%”的统计定义；2）定位所有采样点地图，记录加勒比与太平洋样点在礁类型、沉积环境和年代覆盖上的可比性；3）查看年代控制方法与误差范围，判断7至3 ka窗口是否足够集中；4）查图表中“生产力”使用的具体代理或数据源，确认是相关性解释还是显式模型检验；5）若你做保护或渔业研究，可把本文的核心问题转写为自己的对照清单：你的研究海区是否也需要先重建区域化基线，而不能直接套用他海区的鲨鱼恢复目标。"
+        }
+      },
+      "doi:10.1126/science.aeh1834": {
+        "summary": "该论文聚焦于细胞在有未完成复制DNA时进入有丝分裂这一高风险情境，解析了E3泛素连接酶TRAIP如何在CDK1磷酸化调控下，从促进复制叉前方障碍清除的“trans-acting”模式，切换为直接泛素化复制体自身的“cis-acting”模式，以触发复制体卸载。摘要提出TTF2被招募到复制体后，其非催化N端将cyclin B-CDK1磷酸化的TRAIP锚定到前导链DNA聚合酶ε附近，从而以合适几何构型实现复制体泛素化，并促进未复制DNA在有丝分裂中的后续处理。",
+        "contribution": "核心贡献是提出并概括了一个“CDK1磷酸开关—TTF2架构重排—TRAIP底物重定向”的机制模型：不是单纯增强TRAIP活性，而是通过有丝分裂期的磷酸化和蛋白空间组织重构，将TRAIP的底物选择从叉前障碍物改写为复制体本身，进而解释复制体在有丝分裂中的卸载、复制叉断裂以及断裂染色体臂连接如何被启动。若摘要表述成立，这一工作的重要价值在于把细胞周期激酶信号、复制体结构重组和未完成复制DNA的应急处置机制连接成一条较完整的因果链。",
+        "details": "从摘要可见，研究对象非常具体：一是复制体相关E3泛素连接酶TRAIP，二是ATP酶/转录终止因子TTF2，三是前导链聚合酶Pol ε，四是cyclin B-CDK1介导的TRAIP磷酸化，五是有丝分裂中未完成复制DNA的处理过程。论文试图解释的不是一般性的“DNA损伤应答”，而是一个更聚焦的问题：为什么TRAIP在间期主要处理复制叉前方障碍，而到了有丝分裂却能转而直接作用于复制体，使其解体并为后续断裂和连接创造条件。摘要给出的答案是一个“磷酸调控的建筑式开关”：TTF2被招募到复制体后，利用其非催化N端把已被CDK1磷酸化的TRAIP定位到Pol ε附近，使TRAIP获得可以泛素化复制体的空间几何关系。这说明作者强调的关键不只是分子修饰本身，还包括复合体内相对定位与构象安排。基于摘要推断，可能的方法路线包括：检测TRAIP在有丝分裂中的磷酸化依赖行为；分析TTF2与TRAIP、Pol ε、复制体成分之间的相互作用；通过缺失或突变TTF2非催化N端、TRAIP磷酸化位点或Pol ε结合界面来观察复制体泛素化、卸载、复制叉断裂和染色体臂连接是否受损；并用细胞周期操纵或有丝分裂进入条件下的生化/细胞学读出建立因果关系。可预期的证据线索会包括：TTF2在有丝分裂复制体上的富集，TRAIP磷酸化依赖的重定位，复制体组分泛素化变化，以及这些事件与未复制DNA处理表型的对应关系。对从事DNA复制、复制压力、基因组稳定性或有丝分裂灾难研究的读者而言，这篇论文的价值在于提供了一个把复制终止失败与有丝分裂补救过程连接起来的具体分子框架。需要特别核对的信息包括：TRAIP的具体磷酸化位点及其是否直接由CDK1催化；TTF2招募到复制体的上游条件；被泛素化的“复制体”具体亚基；复制叉断裂与染色体臂连接的直接证据来自哪类实验；以及该机制适用于普遍复制压力还是特定未复制区域。由于目前只有摘要，不能判断效应大小、适用范围、细胞类型和关键对照是否充分。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：细胞若带着未完成复制DNA进入有丝分裂，TRAIP如何从间期时作用于复制叉前障碍物的模式，切换为在有丝分裂中直接作用于复制体本身，从而触发复制体卸载并启动未复制DNA的后续处理？进一步地，这种切换由什么分子事件和空间组织机制控制？",
+          "method": "依据摘要，可能采用了细胞周期分期下的复制体生化分析与蛋白互作研究，重点比较间期与有丝分裂期TRAIP的状态和底物差异；利用磷酸化相关突变或CDK1调控来测试TRAIP重编程是否依赖cyclin B-CDK1；通过TTF2招募、TTF2非催化N端缺失/截短、以及Pol ε相关干预，分析TRAIP是否被锚定到复制体特定位置；再结合复制体泛素化、复制体卸载、复制叉断裂和染色体臂连接等读出建立机制链条。若有结构或近邻信息，可能还会用复合体装配或空间邻近证据支持“几何构型允许复制体泛素化”这一论点。",
+          "strengths": "亮点在于机制层次较完整且对象明确：一方面把细胞周期激酶CDK1的磷酸化信号与TRAIP底物选择联系起来，另一方面引入TTF2作为非酶学“系留/架构”因子，解释为何同一个E3在不同阶段可表现出不同作用模式。摘要还将复制体泛素化、卸载、复制叉断裂和染色体臂连接串联为连续事件，这种从上游调控到下游后果的叙事若被实验证据支撑，将对理解有丝分裂前基因组完整性维护非常有价值。",
+          "weaknesses": "仅凭题名和摘要，仍有多个边界不清：第一，尚不清楚该机制是否为普适过程，还是只在特定复制压力、特定染色质区域或特定细胞背景中显著；第二，TTF2经典上与转录相关，摘要未说明其复制体招募的必要条件和特异性来源，需警惕间接效应；第三，‘促进复制叉断裂和断裂染色体臂连接’听起来是高风险过程，摘要未展示其如何被限制在有益范围内，避免更大基因组损伤；第四，目前无法判断作者是否区分了直接复制体底物与伴随变化，也无法确认关键因果证据是否来自充分的突变互补与时序实验。",
+          "next_step": "最小可执行动作：1）先查摘要对应的主图和机制图，确认TTF2、TRAIP、Pol ε和CDK1在模型中的方向关系；2）记录并核对TRAIP具体磷酸化位点、TTF2非催化N端的功能证据、以及被泛素化的复制体亚基；3）重点找支持“trans-acting到cis-acting切换”的直接实验，而不只看终末表型；4）若你的方向与复制压力或有丝分裂DNA合成相关，可把这篇论文与既有TRAIP-replisome unloading文献并读，整理该文新增的是‘磷酸开关’、‘TTF2桥接’还是‘Pol ε定位几何’中的哪一层。"
+        }
+      },
+      "doi:10.1126/science.aee7004": {
+        "summary": "这篇Science论文以小鼠人工冬眠模型为对象，试图回答在海马神经元活动显著下降、树突棘和突触大量消失的情况下，长期记忆为何仍能保留。摘要指出，记忆保留并不单纯依赖“大而稳定的树突棘”，而可能与一种在冬眠期间仍被维持的“突触印迹架构”有关，尤其涉及与多突触后连接终末（multisynaptic boutons）相连的一类树突棘。",
+        "contribution": "核心贡献是提出并用人工冬眠这一强扰动范式支持了一个结构性记忆观点：长期记忆的稳定性更可能由特定的突触连接架构维持，而非仅由单个大树突棘的持续存在来解释。具体地，作者将“冬眠期间广泛突触重塑”与“记忆及其海马表征仍完整”并置，并进一步把可保留的结构候选缩小到“与multisynaptic boutons形成接触的树突棘子集”。",
+        "details": "从题名和摘要看，研究对象是小鼠海马回路中的记忆相关突触结构，任务是寻找在大规模网络重塑后仍能支撑记忆保留的结构痕迹。作者利用人工冬眠这一极端生理操控，使海马神经元活动显著降低，并诱发树突棘和突触的广泛消除；这类操控相当于对“记忆痕迹是否必须依赖持续稳定的单突触结构”进行强压力测试。摘要给出的证据链条大致是：第一，冬眠期间海马活动下降；第二，树突棘/突触大量丢失；第三，尽管如此，行为层面的记忆以及与之相关的海马神经元表征仍保持；第四，结构分析发现一类与multisynaptic boutons接触的树突棘在冬眠中被选择性保留；第五，据此提出“synaptic engram architecture”比“大棘稳定性”更能解释长期记忆维持。可能的方法组合包括：人工冬眠诱导，小鼠记忆行为测试，海马神经元活动记录或成像，记忆相关神经元表征追踪，以及树突棘/突触形态学定量，尤其是对multisynaptic boutons相关连接的识别。若你的方向涉及记忆印迹、突触可塑性、connectomics、神经元表征漂移或睡眠/低代谢状态下的记忆稳定性，这篇文章的价值在于它把“结构稳定单元”从单个突触大小，转向了更高阶的连接关系。需要重点核对的信息包括：人工冬眠的具体诱导方式与时程；记忆任务类型及保留时间；“associated hippocampal neuronal representations remained intact”是通过何种记录手段和什么判据定义；树突棘/突触消除的定量幅度；multisynaptic boutons的识别依赖光镜、电镜还是相关成像；保留的究竟是记忆特异性突触还是一种统计富集现象；以及该结论是否局限于海马、特定记忆类型或冬眠这一特殊生理状态。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：当海马神经元表征会漂移、树突棘又具有较高周转率时，长期记忆究竟依赖什么样的物理/突触结构被保留下来？更具体地说，在人工冬眠导致神经活动抑制和大量突触丢失后，什么样的突触结构仍能作为记忆保留的候选“印迹架构”？",
+          "method": "根据摘要推断，研究路径应包括四部分。其一，建立小鼠人工冬眠模型，制造一种可逆但强烈的全局网络重塑条件。其二，在冬眠前后评估海马神经元活动下降，可能使用体内钙成像、电生理或活动标记。其三，量化树突棘和突触的消除，可能结合双光子成像、组织学重建或超微结构分析。其四，在相同个体或同类样本中检测记忆是否保留，并比较记忆相关海马神经元表征是否仍存在；随后把幸存的树突棘进一步按是否与multisynaptic boutons接触进行分类，寻找与记忆保留相关的结构子集。",
+          "strengths": "最值得关注的亮点有三点。第一，人工冬眠提供了一个比常规学习后追踪更强的因果扰动场景：如果记忆在大规模突触丢失后仍存在，那么“记忆必须由多数稳定大棘持续承载”的解释会被明显削弱。第二，摘要同时声称行为记忆与海马表征都保持，意味着证据跨越了行为、回路活动和微观结构三个层次。第三，作者没有停留在否定旧观点，而是提出了更具体的新候选——与multisynaptic boutons相连的树突棘子集，这为后续做定向验证、阻断或connectomic分析提供了更可操作的靶点。",
+          "weaknesses": "基于摘要需要警惕几类边界。第一，当前只能确认存在相关性线索，尚不能从摘要判断这些被保留的树突棘/连接是否对记忆保留具有直接因果必要性。第二，“海马表征保持完整”这一说法依赖严格定义，但摘要未说明是细胞集合重现、解码性能维持，还是表征几何结构保留。第三，人工冬眠是一种特殊生理状态，结论能否外推到自然遗忘、睡眠、麻醉、疾病或一般性学习后的长期保存，还需谨慎。第四，摘要未给出样本量、效应大小、记忆任务类型和时间尺度，无法评估统计稳健性与适用边界。第五，multisynaptic boutons的识别若依赖高分辨率结构方法，则其实验通量、抽样偏差和分类标准都需要看正文与图表核对。",
+          "next_step": "最小可执行动作：第一，优先查看论文图1和方法部分，确认人工冬眠的诱导方案、持续时间及可逆性。第二，查找行为学图表，记录记忆任务类型、测试时间点和保留效应大小。第三，查海马表征相关图，弄清“representation remained intact”的操作定义和分析指标。第四，查树突棘/突触定量图，记下总丢失比例、幸存亚群比例，以及multisynaptic boutons的判定方法。第五，把本文结论整理成一个可检验问题：若选择性破坏或阻断与multisynaptic boutons相关的连接，记忆是否会在冬眠后受损；若你做相关研究，可据此设计针对性对照。"
+        }
+      },
+      "doi:10.1038/s41586-026-10870-4": {
+        "summary": "这篇Nature论文从题名看，聚焦热带森林在干旱条件下的抗性机制，核心对象是“物种内变异”而非仅物种间差异。仅根据题名和元数据可推测，作者试图说明树种内部个体差异如何驱动或显著影响热带森林的抗旱表现，但由于摘要为空，具体证据、尺度和结论强度目前无法确认。",
+        "contribution": "可能的核心贡献是把热带森林干旱抵抗力的解释重心，从传统的物种组成或群落平均性状，推进到“同一物种内部个体差异”这一层级；如果这一点成立，将直接影响干旱脆弱性评估、群落模型参数化以及热带森林对气候变化响应的预测。",
+        "details": "从题名“Species intraspecific variation drives tropical forest drought resistance”判断，论文研究对象应是热带森林中的树木或木本植物群落，具体任务是识别决定森林抗旱能力的关键生物学变异来源。题名中的“drives”暗示作者不仅报告相关性，更可能通过统计分解、比较模型或跨物种/跨样地分析，主张物种内变异对干旱抵抗的解释力高于或独立于物种间差异、群落组成或平均性状。结合作者背景可合理推测，研究可能涉及森林长期监测数据、干旱事件前后存活/生长响应、功能性状测量，尤其可能包含与水力安全、水分运输或叶/木质部抗栓塞相关的指标；但这些都需要正文核实，不能视为已证实事实。证据线索主要来自题名中的三个关键词：一是“intraspecific variation”，提示分析层级至少到种内个体差异、种群差异或局地适应；二是“tropical forest drought resistance”，提示响应变量可能是死亡率下降、功能维持、生产力稳定性或生理耐受性；三是Nature发表，通常意味着样本范围、分析框架或概念推进具有较强普适意义。若你的方向涉及植物功能性状、森林生态学、全球变化生态学或动态植被模型，这篇论文值得重点关注，因为它可能要求模型从“每个物种一个固定参数”转向显式表示种内分布、可塑性或局地环境筛选。当前最需要核对的信息包括：研究区域和样地数量；干旱的定义方式；抗旱性的 operational definition；种内变异具体指哪些性状或表型；是否区分遗传变异与环境诱导可塑性；统计上如何比较种内与种间解释力；结论是否具有跨大陆或跨森林类型普适性。由于摘要为空，现阶段只能做题录层面的高置信度问题定位，不能判断结果方向、效应大小和因果强度。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题，应该是：在热带森林面对干旱时，决定其抗旱能力的关键变异来源究竟是什么？更具体地说，是树种之间的差异、群落组成，还是同一树种内部不同个体/种群的性状差异与响应差异在主导森林层面的抗旱表现。",
+          "method": "可能的方法路径包括：在一个或多个热带森林长期样地中，结合干旱事件记录与树木个体监测数据，分析不同个体、物种或群落在干旱前后的存活、生长或冠层状态变化；测量或整合关键功能性状，尤其是与水分利用和水力安全相关的指标；使用层级模型、方差分解、混合效应模型或结构方程框架，比较种内变异、种间差异和环境因子对抗旱指标的解释度。也可能引入系统发育、遥感或跨站点比较，但这些都需要正文验证。",
+          "strengths": "最值得关注的潜在亮点有三点：第一，把解释尺度下沉到物种内部，有机会突破群落平均性状或单一物种值的简化假设；第二，如果数据覆盖真实干旱事件和大量个体，证据将比单纯温室实验更贴近生态过程；第三，这一结论若稳健，将直接影响森林对未来极端气候响应的预测与模型构建，尤其是如何在生态模型中处理参数分布而非固定均值。",
+          "weaknesses": "基于当前题录信息的主要局限是信息严重不足：摘要为空，无法确认研究样本、变量定义、统计设计和主要结果；“drought resistance”可能包含不同含义，如存活、增长维持或生理耐受，若定义不同，结论外延会显著变化；“种内变异”也可能是遗传差异、表型可塑性或环境异质性造成的表观差异，若未严格区分，机制解释可能受限；此外，Nature题名常强调主结论，但未必反映边界条件，读者需警惕结论是否局限于特定区域、特定类群或特定干旱强度。",
+          "next_step": "最小可执行动作：第一，优先获取摘要并记录研究对象、样地范围、干旱定义和抗旱指标；第二，查看主文图1和结果部分小标题，判断作者如何 operationalize “种内变异驱动”；第三，查方法中是否做了方差分解或层级模型比较，以及是否区分遗传与可塑性；第四，把文中使用的抗旱性指标与你当前研究中的指标逐一对照，判断结论能否迁移；第五，若做模型工作，特别记录作者是否建议用性状分布替代单一物种均值参数。"
+        }
+      },
+      "doi:10.1038/s41586-026-10891-z": {
+        "summary": "该论文围绕“可编程空间调制光的偏振度（degree of polarization, DOP）”这一具体任务，提出并展示了一种利用相位型空间光调制器在微米尺度工程化偏振统计的方法。作者声称可实现超过1,024个空间模式的SOP（偏振态）与DOP联合可编程控制，并将其用于单波长激光中的高维信息编码，如把彩色图像映射到庞加莱球体体积中的“偏振颜色”空间。",
+        "contribution": "核心贡献是把传统主要调相位和偏振态的空间光调制，扩展到对偏振度这一额外自由度的可编程空间调控；如果摘要表述成立，这意味着光场可在SOP之外进一步利用部分偏振/非完全偏振统计结构进行高维编码。论文还可能给出一种基于相位-only SLM实现DOP空间调制的实验路线，并展示其在并行光学计算和光学加密中的应用原型。",
+        "details": "从题名和摘要看，研究对象不是一般的偏振控制，而是“空间分辨、可编程、联合控制SOP与DOP的结构化光场”。现有空间光调制通常擅长相位、振幅或确定性偏振态的塑形，但对DOP这种反映偏振统计混合程度的量，缺少可编程像素级/模式级调制技术。作者声称通过“engineering the polarization statistics at the micrometre scale with a phase-only spatial light modulator”，说明其关键思路可能不是直接硬件上有一个DOP调制器，而是借助相位型SLM生成在空间或时间上可控的偏振统计混合，从而在探测尺度上表现为指定DOP。这里“统计”二字很关键，暗示方法可能依赖子像素复用、快速序列复用、相干/非相干叠加设计，或多模式散射/衍射后对局域Stokes参数进行工程化。摘要给出的一个较强证据线索是“more than 1,024 spatial modes with fully programmable SOP and DOP”，这说明作者至少在模式数、自由度维度和可编程性上做了量化展示，但具体是32×32模式、还是其他分块编码方式，需要看正文图表核对。应用方面，论文把RGB颜色空间与庞加莱球体的体积做一一映射，这比常见把偏振态映射到球面更进一步，因为引入DOP后可从球面扩展到球体内部，形成“偏振颜色”概念。这一设计使单波长激光也能承载类似彩色图像的三维信息编码，潜在适用于高维光计算、光学认证和加密。摘要末尾提到“fully parallel photonic ...”但被截断，因此应用展示的具体任务、基准、是否做了分类/解码/矩阵运算/认证实验目前无法确认。对科研读者而言，这篇工作最相关的价值在于：如果你关注光计算、结构光、偏振成像、物理加密或高维编码，它提供了一个新的信息载体，不再局限于相位、振幅和纯偏振态，而是把部分偏振统计也变成可设计资源。需要重点核对的信息包括：DOP调制的定义与测量方法（是否基于Stokes polarimetry）、空间分辨率与刷新速率、DOP可达范围和精度、模式间串扰、是否需要时间平均探测、在多大程度上依赖系统稳定性和相干性、以及所谓“高维光学计算”究竟是概念验证还是有明确计算任务和性能对比。由于目前只有题录与截断摘要，不能判断其实验误差、稳健性、吞吐量和相对于已有偏振复用方案的实际优势有多大。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：能否像调制相位和偏振态那样，对光场的偏振度DOP进行空间上、可编程、细粒度的控制，并把这种新自由度用于高维信息编码、光学计算和加密任务。更具体地说，它要突破“目前不存在可编程空间DOP调制技术”的限制。",
+          "method": "从摘要推测，方法核心是用相位-only空间光调制器在微米尺度上工程化光的偏振统计，而非直接用专门器件线性设置DOP。可能路径包括：先生成多个具有不同偏振态和相位关系的子模式，再通过空间复用、统计混合或探测平均，在每个输出空间模式上得到目标Stokes向量长度，也就是目标DOP；随后通过偏振层析/斯托克斯参数测量验证超过1,024个空间模式上的SOP与DOP联合可编程；最后构造RGB到庞加莱球体体积的一一映射，在单色激光中编码彩色图像，并展示并行光子任务或加密演示。",
+          "strengths": "亮点之一是把DOP从被动表征量变成主动可编程自由度，这在概念上明显扩展了结构光和偏振调制的设计空间。亮点之二是方法据称只用相位型SLM实现，这意味着可能兼容现有成熟硬件平台，而不必等待全新的专用DOP器件。亮点之三是应用展示较具体：不是抽象地说“高维编码”，而是给出RGB到庞加莱球体体积映射、单波长彩色图像编码，以及并行光计算/加密方向的实例。若1,024模式确有高保真验证，则其可编程规模也具有吸引力。",
+          "weaknesses": "基于现有摘要，最大局限是很多关键性能未给出：DOP调制是否依赖时间平均、是否牺牲速度和能效、空间模式之间是否独立、DOP控制精度和稳定性如何、对探测器和偏振分析链要求多高。其次，所谓“fully programmable SOP and DOP”需要警惕是否是在离散码本上实现，而非连续高精度全空间控制。再次，应用部分摘要被截断，尚不清楚“光学计算”和“加密”是概念演示、图像编码展示，还是有严格任务指标和与现有方法比较。最后，若DOP生成依赖统计混合，其在相干成像、远场传播或不同积分时间条件下的可移植性需要谨慎评估。",
+          "next_step": "最小可执行动作：第一，优先找正文中的系统示意图和测量流程，确认DOP是如何由相位-only SLM间接实现的；第二，查验证图中1,024模式的定义、排布、校准方式以及Stokes/DOP误差条；第三，定位RGB到庞加莱球体体积映射的公式或查找表，判断是否可复现；第四，记录应用实验到底是图像显示、矩阵计算、分类还是加密认证，并看有没有与仅SOP编码或相位编码的对照；第五，若做相关研究，可先尝试在自己的偏振层析平台上复现少量模式的目标DOP生成与测量。"
+        }
+      },
+      "doi:10.1038/s41586-026-10909-6": {
+        "summary": "这篇Nature论文从题名判断，研究对象是“葡萄糖响应型益生菌”，任务是在小鼠和猴模型中实现血糖调节。由于当前提供的摘要为空，现阶段只能据题名和题录推测其核心是构建可感知葡萄糖变化并作出功能输出的工程化益生菌体系。",
+        "contribution": "可能的核心贡献是提出一种面向糖代谢调控的工程益生菌策略，并在至少两类动物模型（小鼠、猴）中验证其血糖调节潜力；如果题名准确反映正文重点，那么该工作还可能体现了从啮齿类到非人灵长类的转化可行性证据。",
+        "details": "根据题名“Glucose-responsive probiotics for glycaemic modulation in mice and monkeys”，研究对象应是经过设计或筛选、能够对葡萄糖浓度变化产生响应的益生菌；研究任务不是一般性的肠道菌群关联分析，而是更偏向功能干预，即利用活体微生物对宿主血糖进行动态调控。题名中的“glucose-responsive”提示该系统很可能包含葡萄糖感知模块、代谢调控模块或受葡萄糖诱导的分泌/表达回路；“glycaemic modulation”则暗示终点指标大概率涉及空腹血糖、餐后血糖、葡萄糖耐量、胰岛素相关指标或连续血糖波动等。就模型层面看，同时出现“小鼠和猴”是重要线索：小鼠通常用于机制验证、剂量探索、定植与安全性初筛，猴模型则常用于增强转化意义，尤其是糖代谢、肠道递送和免疫耐受方面更接近临床。仅凭元数据无法确认其具体菌株类别，可能是常见益生菌底盘如乳酸菌、双歧杆菌或大肠杆菌Nissle类工程菌，但这必须通过正文核对。也无法确认其输出机制究竟是直接消耗肠道葡萄糖、分泌影响胰岛素/GLP-1等激素样因子、改变短链脂肪酸代谢，还是通过合成生物学回路在高糖条件下触发治疗分子释放。题录来自Nature且为2026年8月发表，说明工作很可能强调概念新颖性与跨模型验证，但在没有摘要时，不能判断其效应大小、持续时间、统计学稳健性、安全性、定植稳定性、可逆性和生物封闭设计。对于做合成生物学、微生物治疗、代谢病或转化医学的读者，这篇论文值得重点关注的不是“益生菌可降糖”这一宽泛结论，而是其具体工程设计：感知元件是什么，输出通路是什么，如何避免低血糖风险，如何在复杂肠道环境中保持响应特异性，以及猴实验是否显示出可重复、可停药、可控的血糖改善。当前最需要核对的信息包括：菌株名称与改造位点、葡萄糖响应阈值、体内外响应曲线、给药方式、持续时间、对照组设置、动物数量、猴模型类型、主要终点、是否评估菌体扩散与生物安全。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题，按题名推断，是如何构建一种能在宿主体内感知葡萄糖状态并据此发挥调节作用的益生菌，从而实现对血糖的动态而非静态干预；进一步的问题是这种策略能否不仅在小鼠中有效，还能在更接近临床的猴模型中表现出可转化的血糖调控能力。",
+          "method": "可能的方法路径包括：选择可口服和肠道定植的益生菌底盘；引入葡萄糖感知或代谢响应回路；在体外用不同葡萄糖浓度测试响应特异性、阈值、动力学和输出强度；在小鼠模型中评估菌株存活、定植、血糖曲线、葡萄糖耐量及安全性；再在猴模型中进行给药和代谢表型追踪，以证明跨物种有效性。若为合成生物学设计，文中还可能包括基因电路构建、启动子筛选、代谢通量测试、粪便定植检测和组织学安全评估。",
+          "strengths": "题名显示的最大亮点是“葡萄糖响应”和“小鼠+猴”两个维度同时成立。前者意味着干预可能具有条件触发和自适应特征，理论上优于恒定释放型系统，更有机会降低低血糖或过度干预风险；后者意味着作者可能提供了比单一小鼠实验更强的转化证据。若正文证实其在猴中也有清晰疗效和安全数据，那么该工作会对工程活菌治疗代谢病的可行性具有较强推动作用。",
+          "weaknesses": "当前最大的局限是摘要缺失，导致无法确认研究到底是概念验证、机制研究还是接近临床前开发；也无法确认所用动物是健康模型、糖尿病模型还是饮食诱导代谢异常模型。题名中的“glycaemic modulation”不等于明确的治疗获益，可能只是观察到一定程度血糖波动改变；同样，“probiotics”在题名中未说明是否为天然菌株筛选还是深度工程化菌株，安全边界、监管难度和实际转化路径会完全不同。另一个需要警惕的问题是猴实验样本量往往较小，若仅有少量个体，则外推需谨慎。",
+          "next_step": "最小可执行动作：第一，补齐摘要并优先核对菌株名称、工程回路和主要终点；第二，查正文图1和方法部分，确认“葡萄糖响应”是感知表达、代谢消耗还是治疗分子释放；第三，记录小鼠与猴实验的模型类型、n数、给药方式和效应量；第四，重点看安全性数据，包括定植持续性、撤药后清除、脱靶代谢影响和炎症/组织学结果；第五，如果你的研究方向是工程菌或代谢病，可据其设计框架列一个复现清单：底盘菌、感知元件、输出模块、体外验证指标和体内血糖读数。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for arxiv:2608.16806v1: Extra data: line 1 column 3722 (char 3721)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2608.16806v1",
+      "source": "arxiv",
+      "title": "When State Becomes an Attack Surface: State-Semantic Injection in LLM-Driven Embodied Agents",
+      "authors": [
+        "Jiawei Liu",
+        "Jiacheng Guo",
+        "Tian Zhang",
+        "Yiwei Xu",
+        "Juan Wang",
+        "Jinlin Fan",
+        "Bowen Xiao",
+        "Chi Guo",
+        "Keyan Guo",
+        "Hongxin Hu"
+      ],
+      "published": "2026-08-17T17:02:07Z",
+      "updated": "2026-08-17T17:02:07Z",
+      "abstract": "Large Language Models (LLMs) have demonstrated capabilities in in-context learning, task decomposition, step-by-step reasoning, and code generation, driving their gradual evolution from text generation models into the core of agents capable of perceiving environments, invoking tools, and executing tasks. Traditional LLM Agents typically obtain information through webpages, documents, databases, or external tools and generate corresponding invocation sequences according to user goals; when this technology is further integrated with robotic systems, large language models begin to undertake functions such as task understanding, high-level planning, and behavioral decision-making. SayCan combines the task reasoning capability of language models with the affordances of robotic skills, while Code as Policies and ProgPrompt generate robot task plans through policy code and programmatic prompting, respectively, and VoxPoser uses language models and vision-language models to construct three-dimensional value maps to guide robotic manipulation \\cite{6,7,8,9}. Vision-language-action models such as PaLM-E, RT-2, and GR00T N1 further strengthen the connection among language, visual perception, and robotic actions \\cite{10,11,12}. In such LLM-driven embodied agents, the model not only needs to understand user instructions, but also needs to combine scene states, object attributes, spatial relations, and execution feedback to complete task grounding, and then hand the generated action plan to skill libraries, motion planners, or controllers for execution.",
+      "url": "http://arxiv.org/abs/2608.16806v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.16806v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "vision-language",
+        "ai",
+        "environment"
+      ],
+      "score": 81.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.16447v1",
+      "source": "arxiv",
+      "title": "HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents",
+      "authors": [
+        "Shen Liu",
+        "Zhenguo Xu",
+        "Shaopu Wang",
+        "Yike Gao",
+        "Chunlei Wang"
+      ],
+      "published": "2026-08-17T11:47:03Z",
+      "updated": "2026-08-17T11:47:03Z",
+      "abstract": "Long-horizon embodied tasks require LLM agents to iteratively decompose high-level goals, revise plans in response to environmental feedback, and ground leaf-level subgoals into valid executable actions. Recursive context-management methods such as ReCAP improve planning stability through multi-level task decomposition and parent-node refinement, but still repeatedly invoke the LLM at leaf nodes to ground atomic subtasks into exact valid actions. We refer to this final grounding step as last-mile grounding redundancy, which accumulates into substantial LLM-call and token overhead during long-horizon execution. To mitigate this issue, we propose HaReCAP (Habitual-action Grounded ReCAP), a low-intrusion leaf grounding extension for ReCAP. HaReCAP extracts frequent leaf decisions from successful trajectories and compiles them offline into auditable and abstainable one-step leaf-reflex rules. At runtime, it skips the leaf LLM call only when a rule can uniquely determine a legal action in the current valid-action set; otherwise, it falls back to the original ReCAP. This design avoids repeatedly carrying the full recursive context into the LLM for routine leaf action grounding, while preserving the original recursive control flow. We evaluate HaReCAP on Robotouille and ALFWorld with Qwen3.5-27B as the main model. On tasks solved by both ReCAP and HaReCAP, HaReCAP reduces token consumption by 14.67%, 17.93%, and 20.08% on Robotouille synchronous, Robotouille asynchronous, and ALFWorld, respectively. The results show that HaReCAP can serve as a low-intrusion extension to ReCAP-style recursive context-management frameworks, reducing last-mile grounding redundancy across environments and models on commonly successful trajectories.",
+      "url": "http://arxiv.org/abs/2608.16447v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.16447v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 75.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.16349v1",
+      "source": "arxiv",
+      "title": "AeroCopilotBench: A Two-Tier Benchmark for Evaluating LLM Agents as Aviation Copilots in an Interactive Virtual Cockpit Environment",
+      "authors": [
+        "Yuchen Yuan",
+        "Zhenghuang Wu",
+        "Yuangan Li",
+        "Liang Ma",
+        "Ke Li"
+      ],
+      "published": "2026-08-17T09:53:52Z",
+      "updated": "2026-08-17T09:53:52Z",
+      "abstract": "Large language model (LLM) agents may assist flight crews with complex decisions and task execution, but existing aviation evaluations centered on static knowledge do not support systematic testing of procedural execution and safety compliance in interactive environments. This paper presents the AeroCopilot Operational Environment (ACOE), a reproducible interactive virtual-cockpit test environment, and AeroCopilotBench, a two-tier aviation agent evaluation benchmark. Tier-1 evaluates aviation knowledge using 1,200 multiple-choice questions, while Tier-2 comprises 73 emergency and abnormal tasks derived from the manufacturers' Pilot's Operating Handbooks (POHs) and instantiated in ACOE. ACOE converts natural-language procedures into executable state transitions, final-state goal conditions, and hard safety constraints, enabling models to interpret cockpit state, diagnose faults, and operate aircraft systems through standardized tool interfaces. We establish a safety-gated evaluation framework in which a trajectory succeeds only when all task goals are achieved without violating any hard safety constraint, while safe goal progress and trajectory safety are measured separately. Across 12 models, the highest Tier-2 success rate is 72.6%, while static knowledge performance does not consistently translate into procedural execution. Analysis of 451 failed episodes from 3 representative models identifies recurring failures in procedural completeness, use of state feedback, and long-horizon execution management. These findings motivate state-aware agent orchestration, joint assessment of task completion and trajectory safety, and repeated regression testing. ACOE and AeroCopilotBench provide a reproducible foundation for testing knowledge application, interactive execution, and operational safety in aviation agents.",
+      "url": "http://arxiv.org/abs/2608.16349v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.16349v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 74.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.16002v1",
+      "source": "arxiv",
+      "title": "From Sequence to Structure: Relational Uncertainty Propagation for LLM Agents",
+      "authors": [
+        "Zhengzhao Ma. Boxi Cao",
+        "Yaojie Lu",
+        "Hongyu Lin",
+        "Xianpei Han",
+        "Le Sun"
+      ],
+      "published": "2026-08-17T01:40:14Z",
+      "updated": "2026-08-17T01:40:14Z",
+      "abstract": "Reliable uncertainty quantification (UQ) is essential for deploying large language model (LLM) agents in complex interactive environments. Existing UQ methods largely rely on local signals, such as token probabilities, predictive entropy, or per-step confidence, and therefore overlook the long-range dependencies through which errors accumulate across an execution trajectory. As a result, they may fail to identify agent failures whose causes originate several reasoning or interaction steps before the final answer. We propose RUPA (Relational Uncertainty Propagation for Agents), a trajectory-level UQ framework for LLM agents. RUPA represents an execution history as a directed trajectory graph in which reasoning states, tool interactions, and environment feedback are nodes connected by temporal and semantic dependency edges. It then propagates uncertainty over this graph to capture how execution risk accumulates and transfers across interaction steps. The propagated signal is combined with trajectory-level behavioral features and goal-alignment information to produce a confidence estimate for the full agent trajectory. We evaluate RUPA on representative agent benchmarks, including $τ$-2, Terminal-Bench-2, and GAIA, using 6 open-source LLMs spanning multiple model families. Experimental results show that RUPA consistently outperforms existing UQ methods by providing more accurate uncertainty estimates, enabling earlier failure detection, and improving uncertainty-guided agent execution across diverse agent tasks. These results demonstrate that explicitly modeling relational dependency is crucial to reliable UQ for long-horizon LLM agents, providing a practical foundation for trustworthy agent execution.",
+      "url": "http://arxiv.org/abs/2608.16002v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.16002v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 74.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aec2144",
+      "source": "science",
+      "title": "Fossil denticles reveal how ocean productivity shapes shark baselines and recovery potential",
+      "authors": [
+        "Erin M. Dillon",
+        "Douglas J. McCauley",
+        "Migdonio González",
+        "Sean R. Connolly",
+        "Brígida de Gracia",
+        "Jonathan D. Cybulski",
+        "Richard D. Norris",
+        "María Mercedes Gómez",
+        "Irene García-Pérez",
+        "Nicole D. Leonard",
+        "Jian-xin Zhao",
+        "Kimberly García-Méndez",
+        "Aaron O’Dea"
+      ],
+      "published": "2026-08-13",
+      "updated": "2026-08-13",
+      "abstract": "Shark populations on coral reefs have declined globally, but few baselines exist to quantify natural variability before human impact. Using fossil dermal denticles preserved in reef sediments, we reconstructed shark communities across the Isthmus of Panama before substantial exploitation [~7 to 3 thousand years ago (ka)] and recently (past century). We found differences in shark baselines and responses to fishing between the oceans on either side of the Isthmus. Reefs in the Pacific supported an ~20-fold higher shark abundance than Caribbean reefs before human impact. Caribbean shark populations—particularly pelagic species—have declined by 75% since the mid-Holocene, whereas their Pacific counterparts persisted over millennia despite higher fishing pressure. These contrasting trajectories are consistent with differences in oceanic productivity that dictate regional carrying capacities, highlighting the importance of incorporating oceanographic context into marine conservation targets.",
+      "url": "https://doi.org/10.1126/science.aec2144",
+      "pdf_url": "",
+      "doi": "10.1126/science.aec2144",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6812",
+        "page": "732-735",
+        "reference_count": 84,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aec2144"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeh1834",
+      "source": "science",
+      "title": "A CDK1 phospho-switch reprograms TRAIP to unload replisomes in mitosis",
+      "authors": [
+        "Geylani Can",
+        "Maksym Shyian",
+        "Archana Krishnamoorthy",
+        "Samreen Ahmed",
+        "Yang Lim",
+        "Alex Wu",
+        "Raphael Pavani",
+        "Manal S. Zaher",
+        "André Nussenzweig",
+        "Markus Räschle",
+        "Thomas E. Wilson",
+        "Thomas W. Glover",
+        "Johannes C. Walter",
+        "David Pellman"
+      ],
+      "published": "2026-08-13",
+      "updated": "2026-08-13",
+      "abstract": "Cells entering mitosis with incompletely replicated DNA face catastrophic chromosome segregation failure. During interphase, the replisome-associated E3 ubiquitin ligase TRAIP ubiquitylates barriers in front of the fork to allow replisome progression. In mitosis, TRAIP is reprogrammed from a trans-acting to a cis-acting ligase that can ubiquitylate the replisome itself. This enables the processing of unreplicated DNA by promoting replisome disassembly, fork breakage, and joining of the broken chromosome arms. Here, we describe a mechanism for this reprogramming: The adenosine triphosphatase transcription termination factor 2 (TTF2) is recruited to the replisome, where its noncatalytic N-terminal domain tethers cyclin B-cyclin–dependent kinase 1–phosphorylated TRAIP to the leading strand DNA polymerase ε in a geometry that allows replisome ubiquitylation. Thus, a phosphoregulated architectural switch alters replisome organization in mitosis to safeguard genome integrity before chromosome segregation.",
+      "url": "https://doi.org/10.1126/science.aeh1834",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeh1834",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6812",
+        "page": null,
+        "reference_count": 60,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeh1834"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aee7004",
+      "source": "science",
+      "title": "Artificial hibernation reveals synaptic engram architecture associated with memory retention",
+      "authors": [
+        "Y. J. Lin",
+        "A. Takahashi-Nakazato",
+        "K. Tsutsumi",
+        "T. Takahashi",
+        "D. Mercier",
+        "H. Ashitomi",
+        "M. C. Chiang",
+        "M. Haberl",
+        "M. Uytiepo",
+        "A. Maximov",
+        "Y. Makino",
+        "T. Nemoto",
+        "R. Enoki",
+        "A. Hirano",
+        "K. Soga",
+        "S. Looprasertkul",
+        "N. Ohno",
+        "Y. Kubota",
+        "T. Sakurai",
+        "K. Z. Tanaka"
+      ],
+      "published": "2026-08-13",
+      "updated": "2026-08-13",
+      "abstract": "Memories leave lasting physical changes at the synaptic level. Although stable, larger spines are thought to support memory, the high turnover of dendritic spines and the drifting of neuronal representations after memory formation suggest alternative possibilities. To elucidate the structural trace underlying memory retention, we used a mouse model of artificial hibernation. During hibernation, hippocampal neurons exhibited a substantial reduction in their activity and an extensive elimination of dendritic spines and synapses. Despite these changes, their memory and associated hippocampal neuronal representations remained intact. We found that a subset of spines characterized by synaptic contacts with multisynaptic boutons is maintained during hibernation. These findings suggest that synaptic engram architecture, rather than larger spines per se, is resilient to network remodeling and associated with long-term memory retention.",
+      "url": "https://doi.org/10.1126/science.aee7004",
+      "pdf_url": "",
+      "doi": "10.1126/science.aee7004",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6812",
+        "page": null,
+        "reference_count": 73,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aee7004"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10870-4",
+      "source": "nature",
+      "title": "Species intraspecific variation drives tropical forest drought resistance",
+      "authors": [
+        "Chris M. Smith-Martin",
+        "Robert Muscarella",
+        "Timothy J. Brodribb",
+        "María Uriarte"
+      ],
+      "published": "2026-08-12",
+      "updated": "2026-08-17",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10870-4",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10870-4",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 73,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10870-4"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10891-z",
+      "source": "nature",
+      "title": "Degree-of-polarization modulation for high-dimensional optical computing",
+      "authors": [
+        "Alessandro Petrini",
+        "Claudio Conti",
+        "Davide Pierangeli"
+      ],
+      "published": "2026-08-12",
+      "updated": "2026-08-12",
+      "abstract": "Abstract Spatial light modulation is a cornerstone of modern photonics. Crucial advances in photonic information processing 1–3 rely on the spatial manipulation of the optical phase 4–12 and state of polarization (SOP) 13–27 . The degree of polarization (DOP) 28–30 is a fundamental property that can serve as an extra resource. However, no technology exists at present that can spatially modulate the DOP in a programmable manner 31–34 . Here we demonstrate spatial DOP modulation, thereby achieving control over a new degree of freedom of light. By engineering the polarization statistics at the micrometre scale with a phase-only spatial light modulator, we realize more than 1,024 spatial modes with fully programmable SOP and DOP. This structured light, sculpted in its polarization content to arbitrary shapes, enables direct encoding of information in a high-dimensional space. We encode colour images into a single-wavelength laser by using a one-to-one mapping between the red–green–blue space and the volume of the Poincaré sphere. Polarization colours expand the dimensionality of optical computing and encryption schemes, as demonstrated by (1) fully parallel photonic classification of colour images by a high-dimensional photonic neural network and (2) high-security multidimensional optical encryption. These approaches to optical processing of high-dimensional data highlight the opportunities enabled by DOP modulation in photonics, cryptography and computing.",
+      "url": "https://doi.org/10.1038/s41586-026-10891-z",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10891-z",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 60,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10891-z"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10909-6",
+      "source": "nature",
+      "title": "Glucose-responsive probiotics for glycaemic modulation in mice and monkeys",
+      "authors": [
+        "Ningzi Guan",
+        "Deqiang Kong",
+        "Xianyun Gao",
+        "Lingxue Niu",
+        "Yang Zhou",
+        "Guiling Yu",
+        "Tian Gao",
+        "Mengyao Liu",
+        "Wenbo Ma",
+        "Yiyu Jin",
+        "Jianli Yin",
+        "Shangang Zhao",
+        "Haifeng Ye"
+      ],
+      "published": "2026-08-12",
+      "updated": "2026-08-12",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10909-6",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10909-6",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 63,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10909-6"
+      }
+    }
+  ]
+}
