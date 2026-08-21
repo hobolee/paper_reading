@@ -1,0 +1,649 @@
+{
+  "date": "2026-08-22",
+  "stats": {
+    "fetched": 477,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 69,
+      "science": 108
+    },
+    "deduped": 477,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 69,
+      "science": 108
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 253,
+    "keyword_filtered_by_source": {
+      "arxiv": 253
+    },
+    "keyword_optional_included": 152,
+    "keyword_optional_included_by_source": {
+      "nature": 64,
+      "science": 88
+    },
+    "ranked": 224,
+    "ranked_by_source": {
+      "arxiv": 47,
+      "nature": 69,
+      "science": 108
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 145,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天的论文集合里，最值得科研读者优先关注的主线，仍然是“大模型从通用生成走向受约束、可验证、可落地的代理式系统”。其中有四篇AI相关论文形成了一条很清晰的链条。第一篇 arXiv:2608.19794v1 从综述/框架层面讨论如何把LLM、知识库、推理模块与具身交互统一起来，价值不在于给出已验证系统，而在于为后续研究定义问题边界：单靠LLM不足以支撑可靠具身智能，关键瓶颈在知识闭环、神经-符号推理、感知到动作的落地以及持续学习。第二篇 arXiv:2608.20237v1 把这个抽象问题具体化为“规则约束下的视觉空间规划”，其RuleMaze基准和解耦式规划思路很适合作为检验MLLM是否真的具备规则遵循与可解释规划能力的测试台。第三篇 arXiv:2608.20129v1 进一步把LLM放进自动驾驶这种高风险闭环环境，但采取的是相对审慎的架构：LLM负责常识推理与奖励设计，不直接做低层控制，这代表了当前更现实的工程路线。第四篇 arXiv:2608.20320v1 则展示了agentic workflow在社会感知/行为建模中的另一种落地方式：LLM不一定非要做机器人，也可以嵌入数据采集—结构化处理—预测建模链路，用来比较文本推理模型与传统选择模型、机器学习模型的边界。\n\n如果按阅读优先级排序，第一优先级建议放在 arXiv:2608.20237v1 和 arXiv:2608.20129v1。前者有明确基准、任务定义和方法拆解，最容易转化为可复现评测或后续方法改进；后者对应自动驾驶这一高影响应用，而且体现了“LLM只做高层语义推理，不碰低层控制”的安全化设计思路。第二优先级是 arXiv:2608.19794v1，因为它更像路线图，适合用来重整研究框架、写开题和组织文献，但其结论需要靠更具体论文验证。第三优先级是 arXiv:2608.20320v1，它的样本规模和应用场景较专门，但对“LLM能否在小数据、情景化选择任务上替代部分传统预测器”这个问题有现实参考价值。\n\n除AI之外，今天还有几篇高价值但方向差异较大的自然科学论文。Science 的 229Th 激光穆斯堡尔谱工作明显属于里程碑式实验进展，直接服务于固态核钟材料平台选择，适合量子计量、核物理和固体缺陷研究者优先跟进。另两篇生命科学/方法学论文也值得注意：关于RAD51稳定NETs的Science论文，把DNA重组蛋白引入胞外诱捕网稳定机制，提示局部炎症区室化背后的结构生物学逻辑；关于单细胞mtDNA分析伪影误导谱系重建的Nature论文，则对大量依赖mtDNA做克隆追踪的研究具有方法学警示意义。HydroGym强化学习平台和医疗LLM安全这两篇Nature论文虽然目前只有题名级信息，但从选题上看，一个对应“物理系统RL标准化平台”，一个对应“高风险医疗场景中的LLM治理与攻防”，都值得等摘要和正文后快速补读。\n\n总体上，今天最强的共性信号不是“模型更大”，而是“系统更受约束、评测更可验证、应用更高风险”。对于做AI的科研人员，建议把阅读重点放在三类问题：一是如何设计规则、知识和验证器，把LLM从自由生成器变成可审计组件；二是如何在闭环环境里把高层推理与低层控制解耦；三是如何构建真正暴露失败模式的基准，而不是只看平均准确率。",
+    "themes": [
+      "从LLM中心智能走向“知识库+推理+环境交互”的组合式代理架构：重点不再是单模型能力，而是模块如何形成感知—推理—行动闭环。",
+      "规则遵循正在成为多模态与代理系统的核心评测维度：RuleMaze这类任务强调未见规则泛化、显式约束满足和可执行验证，而不是开放式回答质量。",
+      "高风险场景中的LLM使用趋向分层化与保守化：自动驾驶论文体现出LLM更适合承担常识推理、奖励设计、语义决策支持，而非直接输出连续控制。",
+      "Agentic workflow开始向非机器人领域扩展：交通调查与出行预测工作说明，代理式系统也可以组织数据采集、上下文注入与下游建模，而不仅是执行物理动作。",
+      "方法学反思与平台化建设并行升温：单细胞mtDNA伪影、HydroGym平台、医疗LLM安全都指向同一趋势，即研究社区开始更重视评测基础设施、误差来源和部署边界。",
+      "自然科学中的高影响论文继续体现“精密表征改变系统理解”：229Th固态核环境分辨、RAD51稳定NETs等工作都属于通过更细颗粒度观测改写机制图景。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "复现并扩展“规则约束视觉规划”评测，比较端到端MLLM与“感知-规则解析-验证器”解耦流水线的差异。",
+        "why": "这是今天最容易形成可操作实验的方向，且能直接回答当前MLLM失败究竟来自视觉感知、规则理解还是规划执行。",
+        "first_step": "先系统整理 arXiv:2608.20237v1 中可确认的任务设定与指标；若代码未公开，则自建一个最小迷宫数据生成器，只保留2到3类规则，分别测试直接生成动作序列与带外部规则校验器的两种方案。",
+        "risk": "摘要信息有限，正式任务定义、评价指标和数据生成细节可能与自行实现存在偏差，导致复现实验不可直接对比原文。"
+      },
+      {
+        "idea": "做一篇“小型综述+对照表”，梳理具身/闭环智能中LLM、知识库、符号推理各自承担的功能边界。",
+        "why": "arXiv:2608.19794v1 提供了问题框架，但科研上更需要把不同模块的可替代性、依赖关系和典型失败模式总结清楚，便于后续选题。",
+        "first_step": "围绕“知识调用、规划、验证、记忆、低层控制”五个功能维度，选取近两年10到15篇代表性agent/embodied论文做表格化归纳，标注哪些模块由LLM承担，哪些由外部系统承担。",
+        "risk": "如果只依据摘要和题名，容易把概念框架写得过于抽象；需要补充具体系统论文，否则综述会停留在口号层面。"
+      },
+      {
+        "idea": "针对自动驾驶中的LLM使用方式，设计一个“高层语义建议 vs 直接控制”的风险对照分析。",
+        "why": "arXiv:2608.20129v1 的价值在于其保守架构选择，这正好可以转化为一个重要研究问题：LLM在闭环控制里最安全有效的职责边界在哪里。",
+        "first_step": "先不做新模型，先搭建文献矩阵：把已有自动驾驶LLM工作按“直接控制、轨迹建议、行为规划、场景解释、奖励塑形”分组，记录各组常见优点、时延风险和失效模式。",
+        "risk": "如果缺乏统一基准，不同论文之间难以定量比较；结论可能更多是定性归纳而非严格性能证明。"
+      },
+      {
+        "idea": "复查天气敏感出行预测论文中的LLM增益来源，重点看上下文信息是否真的优于结构化特征。",
+        "why": "arXiv:2608.20320v1 很适合做小规模复现实验，因为它涉及传统离散选择、机器学习和LLM三类方法同台比较，能帮助判断LLM是否只是“文本接口上的随机森林”。",
+        "first_step": "基于摘要先重建最小数据框架：把天气情景、习惯性出行信息、persona/expert framing 作为三类可控输入，做一个消融计划，哪怕先在模拟数据或公开出行选择数据上测试也可以。",
+        "risk": "原始数据可能不可得，而且样本量较小；如果没有原文中的提示模板和标注细节，复现出来的LLM结果波动会很大。"
+      },
+      {
+        "idea": "跟踪“医疗LLM安全”和“规则可验证代理”之间的结合点，提出面向高风险场景的统一评测框架草案。",
+        "why": "今天的AI论文一边强调规则验证，一边出现医疗LLM安全这个高风险主题，两者结合后有潜力形成更强的方法论：不是只测回答对错，而是测规则违背、越权建议和工作流攻击暴露面。",
+        "first_step": "先整理两个清单：一份是规则约束任务中常见的验证机制，一份是医疗LLM常见安全风险类型；再尝试把风险映射成可执行测试项，例如禁忌建议、信息缺失时的过度自信、提示注入后的规则偏离。",
+        "risk": "目前医疗LLM这篇Nature文章缺少摘要，若正文实际偏治理综述而非实证评测，和规则验证框架的对接需要自行补足。"
+      },
+      {
+        "idea": "对单细胞mtDNA谱系研究做一次方法学排雷清单，汇总哪些伪影最可能破坏系统发育解释。",
+        "why": "虽然不是AI方向，但这是很典型的高影响方法学主题；对做单细胞谱系分析的团队而言，一个简洁的伪影检查框架会比单篇阅读更实用。",
+        "first_step": "以题名为起点，收集近年关于单细胞mtDNA变异检测误差、污染、扩增偏差、异质性误判的文献，整理成“伪影类型—表现形式—可能后果—建议检查”的四列表。",
+        "risk": "当前缺少该Nature论文摘要，无法确认作者强调的是实验伪影、计算伪影还是系统发育建树假设本身的问题，前期整理可能需要较多外部文献支撑。"
+      }
+    ],
+    "papers": {
+      "arxiv:2608.19794v1": {
+        "summary": "这是一篇面向“通用具身智能”方向的综述/框架性论文，具体讨论如何把大语言模型、结构化知识库与推理能力结合到具身智能体中，用于感知—推理—行动闭环。论文不是报告某个已实现系统，而是基于LLM架构、知识表示、逻辑推理和物理环境中的智能体学习，提出一个用于指导下一代AI agent设计的概念框架。",
+        "contribution": "从摘要看，论文的核心贡献主要是三方面：第一，系统回顾以LLM为中心的智能系统演化，并把知识库、推理机制和具身智能放到同一分析框架下；第二，提出一个强调LLM、KB、RA与embodiment协同作用的概念模型，试图统一感知、知识调用、推理和动作执行；第三，面向通用具身智能总结出五个关键挑战：高效LLM部署、闭环知识集成、符号-神经混合推理、知觉-动作落地，以及持续学习。",
+        "details": "仅根据题名、摘要和元数据判断，这篇文章更像一篇面向AGI/具身智能交叉方向的路线图式综述，而不是有明确数据集和实验指标的实证论文。其研究对象较具体：以大语言模型为中心的AI agent、外部结构化知识库、推理模块，以及需要在物理环境中学习和行动的具身智能体。摘要中提到会分析LLM architectures、pre-training methods、inference mechanisms，说明文章很可能先梳理语言模型本体能力，再讨论其与外部知识源和结构化推理框架的接口方式，例如检索、知识注入、符号约束或规划型推理。随后文章把这些能力放到embodied intelligence范式中，关注智能体如何在真实或模拟环境内完成感知、决策和执行。证据线索是摘要明确使用了“interaction with external knowledge sources and structured reasoning frameworks”“agents learn and act in physical environments”“synergy among LLMs, KBs, RA, and embodiment”等表述，说明作者的重点不只是做文本推理增强，而是想讨论从语言到世界交互的完整链路。与科研读者的关系上，如果你的方向是LLM agent、机器人、知识增强推理、多模态规划或具身任务建模，这篇文章的价值主要在于帮助梳理问题空间、组件划分和开放挑战，而不是直接提供可复现的SOTA方法。需要特别核对的信息包括：其“概念框架”是否给出了可操作的模块边界；文中是否列举了具体代表性任务，如导航、操作、交互问答、任务规划；是否区分了KB作为静态知识源与环境交互中动态生成知识的不同角色；五个挑战是否配有明确案例、 benchmark 或失败现象。由于摘要没有出现具体数据集、实验设置或性能数字，不能推断其有系统性实验验证。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai agent、ai agents、multimodal、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在走向通用具身智能的过程中，如何把大语言模型的通用表达与规划能力、知识库的显式结构化知识、推理模块的逻辑/符号能力，以及智能体在物理环境中的感知与动作能力整合起来，形成一个能支持适应性、多步决策和环境交互的统一智能体范式。更细一点说，它关注的是LLM-only系统为何不足以支撑可靠具身智能，以及KB和RA应如何补足世界知识、可解释推理与长程任务执行。",
+          "method": "从摘要看，方法主要是综述分析加概念框架建构，而非单一算法实验。可能的分析路径包括：1）回顾LLM架构、预训练与推理机制，比较其在agent场景中的能力边界；2）讨论LLM与外部知识源的连接方式，例如检索增强、知识表示映射、结构化数据库或知识图谱调用；3）梳理结构化推理框架，可能涉及符号推理、逻辑规则、规划或神经-符号混合；4）引入具身智能范式，分析智能体在物理环境中的学习、感知和行动问题；5）最后提出一个概念性协同框架，描述LLM、KB、RA和embodiment在感知—推理—行动闭环中的角色分工。摘要未提及具体数据集、实验平台、机器人系统、仿真环境或benchmark，因此目前只能判断其方法论重心是文献整合与框架提炼。",
+          "strengths": "最值得关注的亮点在于其问题设定比较完整：它没有把LLM agent局限在文本任务，而是明确拉通了知识表示、逻辑推理和物理具身三个常被分开讨论的维度。第二个亮点是提出了较具体的五类挑战，这些挑战直接对应当前系统落地中的瓶颈，例如高效部署关系到端侧/机器人实时性，闭环知识集成关系到环境交互后的知识更新，混合推理关系到可靠规划与可解释性，知觉-动作落地关系到从语言计划到控制执行的鸿沟，持续学习关系到长期运行agent。第三，这类综述如果写得扎实，通常能帮助研究者建立统一术语和模块化视角，便于设计跨LLM、知识图谱、机器人控制、多模态感知的联合系统。",
+          "weaknesses": "基于当前可见信息，需要警惕几方面局限。首先，这篇文章看起来是综述加概念框架，不是工程实现，因此对“下一代AI agents”的论断可能偏前瞻，缺少实证收敛性。其次，摘要没有给出具体评测任务、数据集、案例系统或对比实验，因此难以判断作者提出的框架是否可操作，还是较高层的愿景式整合。再次，“general embodied intelligence”这一目标本身跨度很大，若文章没有严格区分文本代理、数字环境代理、仿真机器人和真实机器人，其讨论可能存在抽象层次混杂的问题。最后，题录信息显示是arXiv预印本，尚不清楚是否经过同行评审；因此其中对领域现状的归纳、代表性工作覆盖和挑战排序都需要读者自行核验。",
+          "next_step": "建议的最小可执行动作是：1）先通读引言和作者提出的“conceptual framework”图，确认四个对象LLM、KB、RA、embodiment之间的输入输出关系；2）定位文中对五个挑战的对应章节，记录每个挑战是否有具体任务、失败案例或代表文献；3）检查论文是否列出典型具身任务，如导航、抓取、操作、交互式规划，避免把纯文本agent误当作具身结论；4）如果你的研究与LLM agent或机器人相关，可据此整理一个自己的系统分解表：哪些模块可由LLM承担，哪些必须由KB或符号推理承担，哪些必须通过感知-控制模型落地；5）若准备进一步跟进，重点核对其参考文献覆盖是否包括近期的多模态agent、robot foundation model、RAG for agents、neuro-symbolic planning与continual embodied learning代表工作。"
+        }
+      },
+      "arxiv:2608.20237v1": {
+        "summary": "这篇论文聚焦多模态大语言模型在“带自然语言规则约束的视觉空间规划”任务上的能力评估与提升，具体通过一个迷宫导航基准 RuleMaze，要求模型在看懂空间布局的同时遵守显式规则完成动作规划。摘要还提出一套规则生成框架和一个解耦式规划方法，目标是提升模型对未见规则的遵循能力与泛化表现。",
+        "contribution": "从摘要看，论文的核心贡献可能有三部分：第一，提出 RuleMaze 基准，将视觉感知、规则理解和受约束行动规划绑定到同一迷宫任务中，专门测量 MLLM 的规则合规空间推理能力；第二，提出 Language-Logic-Function Hybridization，用自然语言规则、逻辑表示与可执行验证器三者联动，系统化生成规则并避免手工规则工程；第三，提出 Disentangled Multimodal Planning，将感知、执行、规则校验拆分为可解释推理原语，以改善规则遵循和对新规则的泛化。",
+        "details": "仅依据题名、摘要和元数据，这篇工作研究的不是一般视觉问答，而是更具体的“在视觉环境中按语言规则做空间规划”。任务对象是迷宫，动作对象应是导航路径或逐步移动决策，约束对象是自然语言描述的规则，且这些规则可能包含显式给定约束或训练时未见的新约束。论文的一个关键信号是，它把问题拆成三个必要能力：一是准确感知迷宫布局、位置关系和可行动空间；二是理解自然语言规则并转成可操作约束；三是在约束下输出有效动作序列。RuleMaze 的价值在于把这些能力绑定成可控基准，因此适合分析失败究竟来自视觉感知错误、规则误解，还是规划失效。方法上，Language-Logic-Function Hybridization 很可能是一种规则编译流水线：先自动生成自然语言规则，再映射为逻辑表达，最后形成可执行验证器，用于自动判定路径是否合规。这意味着数据构造和评测可能具有较高可扩展性，也便于控制规则复杂度、组合性和分布外测试。另一个方法 DMP 则强调“解耦”，从摘要措辞看，作者可能没有让模型直接端到端输出路径，而是显式分离出视觉解析、动作执行和规则验证模块或推理步骤，并借助可解释原语来约束中间过程。对做 MLLM、agent、规划、神经符号推理或可控评测的研究者而言，这篇论文的相关性较强，因为它触及当前多模态模型常见薄弱点：能看图但不一定能长期保持规则一致性，能解释规则但不一定能在行动序列中持续执行。需要特别核对的信息包括：RuleMaze 的迷宫表示形式是2D网格图、图像渲染还是混合输入；规则类型是否覆盖颜色、区域、顺序、禁止访问、条件触发等；DMP 是提示式框架、训练式方法还是外接验证器；实验比较了哪些 MLLM；所谓泛化提升是否指对未见规则组合、未见复杂度层级或未见视觉布局的泛化。由于摘要被截断，当前还不能确认具体实验结果、误差类型分解和性能提升幅度。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、multimodal、mllm、ai、ml、ocean。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：多模态大语言模型在视觉空间环境中，能否在理解迷宫布局的同时正确解释自然语言规则，并规划出满足规则约束的有效导航动作；尤其关注在显式规则和先前未见规则下的合规性与泛化能力。",
+          "method": "可能的方法路径包括两部分。数据与评测方面，作者构建了 RuleMaze 基准，生成带有可控复杂度的迷宫实例、自然语言规则、对应逻辑表示及自动验证器，用于系统评估模型的规则遵循式导航。模型方法方面，提出 DMP，将任务分解为感知、执行、规则校验等中间步骤，借助可解释推理原语减少端到端生成时的规则漂移；同时利用 Language-Logic-Function Hybridization 自动生成规则及其验证程序，以支持大规模训练或评测。",
+          "strengths": "最值得关注的亮点是任务定义非常具体：不是笼统测“多模态推理”，而是测“规则合规的视觉空间规划”，这比常见 VQA 或 caption 更接近 agent 场景。第二个亮点是规则生成与验证的三重表示联动，自然语言、逻辑和可执行函数之间的对齐若做得好，会显著提高数据可控性和评测可靠性。第三个亮点是 DMP 的解耦设计，如果中间表示清晰，可能有助于定位错误来源，并提升对新规则组合的鲁棒性和可解释性。",
+          "weaknesses": "基于当前题录信息，需要警惕几点。第一，RuleMaze 是迷宫场景，环境相对抽象，结论能否迁移到真实视觉导航或更开放的 embodied 任务仍待验证。第二，摘要未给出实验规模、基线模型、规则复杂度分布和提升幅度，暂时无法判断方法收益是否显著。第三，所谓解耦推理若依赖较强的人工设计原语或外部验证器，可能提升了合规性，但也可能削弱方法的通用性。第四，自动生成的自然语言规则是否足够自然、多样、无模板偏置，也需要查看正文和附录。",
+          "next_step": "最小可执行动作建议为：第一，先查正文中的 RuleMaze 任务定义图和样例，确认输入输出形式、规则类别和评价指标；第二，查看 Language-Logic-Function Hybridization 的具体生成链路，判断规则是否真正自动化且可复现；第三，查 DMP 是否需要训练、微调或只是推理时框架；第四，记录实验表中对“未见规则”泛化的设定方式；第五，重点看错误分析，区分失败来自视觉识别、规则解析还是路径规划。"
+        }
+      },
+      "arxiv:2608.20320v1": {
+        "summary": "这篇论文提出一个由三类智能体组成的工作流，把出行行为的主动式数据采集、结构化处理与天气敏感的出行方式预测串联起来，研究对象是学生通勤者在五种预设天气情景下的方式选择。基于454个“受访者-情景”观测，作者比较了多项 logit、逻辑回归、随机森林与9个本地部署大语言模型在多种提示配置下的预测表现，并观察到最佳文本零样本 LLM 可达到与随机森林相近的五分类准确率。",
+        "contribution": "核心贡献在于把“对话式调查收集数据”和“行为预测建模”放进同一个 agentic 流程中统一评估，而不是分别处理；同时给出一个天气情景化、图像增强的 stated-preference 调查设定，并系统比较传统离散选择模型、常规机器学习模型与不同规模/不同提示条件下的本地 LLM。摘要还暗示作者不仅比较准确率，还分析了上下文信息类型的作用，例如 habitual travel 信息最稳定增益、Expert framing 普遍优于 Role-Play、persona 更适用于小模型。",
+        "details": "从题名和摘要看，论文关注的不是单纯“用 LLM 做预测”，而是一个更完整的交通行为研究流水线：先由聊天机器人执行带图像的陈述性偏好调查，再由结构化数据处理模块整理受访者信息与天气情景，最后由行为预测模块对出行方式选择进行建模。这种设计针对当前交通行为研究中“数字化采集”和“预测建模”常常分离开发、分离验证的问题。数据层面，样本是学生通勤者，在五种预定义天气情景下做方式选择，共得到454个 respondent-scenario observations，说明观测单位更像“个体×天气场景”的选择记录，而不是大规模真实出行轨迹。方法层面，作者用 multinomial logit 分析天气相关关联，这对应可解释的行为经济学/离散选择路径；又用 logistic regression 和 random forest 作为机器学习基线；同时评估9个本地部署 LLM，参数规模约2B到35B，在4种 zero-shot prompt-and-context 条件下比较，并进一步扩展到 persona、few-shot、vision-based 配置。结果线索上，随机森林五分类准确率为69.6%，最佳纯文本零样本 LLM 为69.9%，且无需任务特定拟合，这一点如果稳健，意味着在小样本、结构化上下文充分的 stated-preference 任务上，通用本地 LLM 可能具有较强的即用型推断能力。摘要还指出 habitual travel 信息带来最一致的性能提升，说明个体既有通勤习惯可能比单次天气描述更能稳定约束选择；Expert framing 优于 Role-Play，表明提示中的“专家式任务定义”可能比让模型扮演某类 persona 更有效；persona 信息主要对小模型更有帮助，暗示模型容量与上下文脚手架之间存在交互。与用户若关注的方向关系上，这篇论文同时涉及 agent、LLM、multimodal、machine learning 和 weather-sensitive demand prediction，适合用于观察 LLM 在交通行为建模中的角色：它既可能是调查接口，也可能是预测器，还可能充当数据处理代理。需要核对的信息包括：三智能体各自职责是否真有自治协同，还是更接近模块化流水线；五种天气情景具体如何定义；五分类对应哪些交通方式；454个观测对多模型比较是否足够；69.9%的 LLM 准确率是否基于严格划分、是否报告方差；vision-based 配置具体引入了什么图像信息、是否显著优于文本；以及多项 logit 的变量、系数方向与随机森林/LLM 结论是否一致。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、multimodal、ai、machine learning、weather。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：能否把交通调查中的对话式、主动式数据收集与后续出行行为预测整合为统一的 agentic 工作流，并在天气敏感的方式选择任务上比较传统行为模型、常规机器学习和大语言模型的能力；更细一点说，是想知道在学生通勤者的天气情景选择数据上，LLM 是否能在零样本或轻量提示条件下达到可用预测性能，以及哪些上下文信息最能帮助预测。",
+          "method": "依据摘要，可能的方法路径是：1）设计由聊天机器人管理的、图像增强的 stated-preference 调查；2）面向学生通勤者，在五个预设天气情景下收集方式选择，形成454条“个体-情景”观测；3）用 multinomial logit 检验天气变量或天气情景与方式选择之间的关联，获得较强可解释性；4）以 logistic regression 和 random forest 作为监督学习基线，输出五分类预测结果；5）选取9个本地部署 LLM（2B–35B），在四种 zero-shot 提示与上下文组合下进行推断，再扩展 persona、few-shot 和 vision-based 方案；6）比较不同模型准确率，并分析 habitual travel、expert framing、role-play、persona 等信息设计对性能的影响。",
+          "strengths": "最值得关注的亮点有三点。第一，它把问卷采集、数据结构化和预测建模放进同一研究框架，贴近真实研究流程，而不是只在静态表格上比较模型。第二，它同时保留了行为学解释路径和预测路径：multinomial logit 用于解释天气相关行为关联，随机森林和 LLM 用于性能对照，这种双轨设计对交通研究者较实用。第三，摘要给出了较具体的比较维度，不只是“LLM vs baseline”，还包括模型规模、本地部署、zero-shot 条件、persona、few-shot、vision 等，这有助于理解哪些提示和上下文真正有效；尤其是“habitual travel 最稳定增益”和“Expert framing 优于 Role-Play”这类发现，具有直接的方法学启发。",
+          "weaknesses": "基于目前题录和摘要，需要警惕几个边界。第一，样本量只有454个情景观测，且对象限于学生通勤者，外部泛化到其他人群、真实 revealed-preference 数据或更丰富天气条件可能有限。第二，调查数据是 stated-preference，不等于真实出行行为，模型学到的可能是情景化表态而非实际决策。第三，虽然 LLM 准确率与随机森林相近，但摘要未说明数据划分、重复实验、置信区间、类别不平衡和统计显著性，因此不能仅凭单个准确率判断 superiority。第四，所谓 three-agent workflow 在摘要中更像功能分工，是否具有真正的自主协作、反馈闭环和在线主动采样能力，还需看全文定义。第五，vision-based 配置和图像增强调查的具体作用没有在摘要中展开，无法判断多模态信息究竟带来多少独立增益。",
+          "next_step": "最小可执行动作：1）先查全文中的任务定义表，确认五分类方式、五种天气情景、受访者属性与 habitual travel 变量的具体编码；2）查看实验表，记录 random forest 69.6% 与最佳 text-only zero-shot LLM 69.9% 是否基于同一测试集、是否有方差或显著性检验；3）核对 nine LLM 的具体型号、参数规模与本地部署设置，特别是上下文长度和提示模板；4）检查 multinomial logit 的系数表，确认天气变量方向是否与机器学习和 LLM 的重要特征一致；5）如果要复现，可先用“个体属性+习惯出行+天气情景”做一个小型五分类基线，再测试 expert framing 与 role-play 两种提示的差异。"
+        }
+      },
+      "arxiv:2608.20129v1": {
+        "summary": "该论文面向自动驾驶任务，提出一个由编排器协调的多智能体/多模块混合框架，把PPO强化学习与PID控制结合，并在感知—决策链路中引入LLM常识推理以处理多样且未见过的CARLA驾驶场景。论文还强调用LLM迭代改进强化学习奖励函数，目标是在保留结构化控制与安全机制的同时提升复杂动态环境中的上下文决策能力。",
+        "contribution": "从摘要看，核心贡献可能有三点：一是提出“LLM常识推理 + RL控制 + PID控制 + orchestrator编排”的分层自动驾驶框架，而不是让LLM直接输出车辆控制；二是把LLM用于奖励函数的迭代优化，试图改善PPO在动态驾驶环境中的训练目标设计；三是在高随机性的CARLA环境、天气与交通条件下进行评估，论证该混合方案相较纯规则或纯学习方法在复杂情境中的潜力。",
+        "details": "研究对象是自动驾驶中的鲁棒感知与决策，特别是那些传统强化学习或规则方法在“需要上下文理解/常识判断”的场景下容易退化的问题。摘要明确指出作者并不让LLM直接做低层车辆控制，因为那会带来时延和幻觉风险；因此更可能的设计是让LLM处于高层语义推理、场景解释、策略建议或奖励塑形环节，而把执行层交给PPO策略和PID控制器，由一个orchestrator负责在不同模块之间分配职责、切换控制权或融合输出。证据线索包括：出现了“orchestrator”“PPO-trained reinforcement learning”“PID control”“LLM common-sense reasoning”“iteratively refine the RL reward function”“highly randomized CARLA scenarios”等明确对象与方法关键词。\n\n从方法上推测，系统可能包含至少三个层级：第一，环境/多模态输入解析层，LLM接收场景描述、交通参与者状态、道路/天气条件等抽象信息并进行常识性判断；第二，高层决策或奖励设计层，LLM输出行为偏好、风险解释、或对奖励函数的修改建议；第三，底层控制层，由PPO负责策略学习，PID负责稳定轨迹跟踪、转向/速度闭环控制。所谓“multi-agent orchestration”在标题中值得注意，它可能并不一定指多个车辆智能体，也可能指多个功能代理/模块代理的协同编排，这一点需要看全文架构图确认。\n\n实验方面，摘要只给出在CARLA中进行了“高度随机化”的评估，场景变化包含环境与交通条件，但没有给出具体任务，如车道保持、跟车、无保护转弯、交叉路口博弈、紧急避障，或是否涉及多传感器输入。也没有提供量化指标，例如碰撞率、成功率、越线率、舒适性、平均速度、干预次数、延迟开销等。因此目前只能判断其证据方向是：在复杂随机仿真中，混合框架相较直接LLM控制更安全、相较纯RL/规则方法更有上下文适应性，但幅度和统计显著性都需要全文核对。\n\n与相关研究方向的关系较直接：如果读者关注具身智能体、自动驾驶决策、奖励工程、LLM作为规划器/裁判器/评论器、以及安全关键系统中的分层控制，这篇文章值得看。它最重要的思想不是“用LLM替代控制器”，而是“把LLM约束在擅长的常识推理与任务塑形位置”，这对降低幻觉风险和时延风险很关键。\n\n需要重点核对的信息包括：1）LLM的具体输入输出形式，是否用自然语言场景描述、结构化状态，还是多模态视觉输入；2）orchestrator的决策规则是固定逻辑、学习式门控，还是基于风险条件切换；3）PPO与PID的分工边界；4）LLM如何迭代修改奖励函数，是否有人在环审核，是否自动搜索奖励项权重；5）与哪些基线比较，尤其是否比较纯PPO、纯PID/规则、直接LLM控制、以及不带LLM奖励优化的版本；6）推理延迟、token成本、失败案例和安全约束如何处理。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、multimodal、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：在自动驾驶中，如何在不把低层控制完全交给LLM的前提下，利用LLM的常识与上下文推理能力，提升车辆在未见过、动态、随机化场景中的决策鲁棒性；同时避免直接LLM控制引发的时延与幻觉风险。更细一点，是如何把高层语义推理、安全机制和传统控制/强化学习有效编排成一个可运行系统。",
+          "method": "根据摘要，可能方法是一个混合式分层框架：以CARLA为仿真平台，在多样天气、道路和交通扰动下生成高随机性驾驶场景；使用PPO训练策略模块处理部分决策；使用PID执行稳定、可解释的低层控制；使用一个orchestrator在不同模块间协调信息流与控制职责。LLM被用于贯穿系统的常识推理，并以迭代方式修正RL奖励函数，使训练目标更贴近动态驾驶语境。尚不清楚LLM是否直接处理视觉/多模态输入，还是处理由感知模块输出的文本化或结构化场景摘要。",
+          "strengths": "最值得关注的亮点是将LLM限定在高层推理和奖励塑形位置，而非直接输出油门转向，这一设计正面回应了自动驾驶中对时延、稳定性和安全性的顾虑。第二个亮点是把奖励函数优化显式纳入LLM作用范围，这比仅让LLM做一次性规划更贴近强化学习训练瓶颈。第三个亮点是CARLA中的高随机性评估设定，如果设计充分，能较好检验系统在环境变化和交通变化下的泛化能力。",
+          "weaknesses": "基于题录和摘要，目前存在几个明显边界：一是“multi-agent orchestration”含义不明，可能是多功能代理协同，也可能是真正多智能体交互，需防止过度解读；二是没有给出任何定量结果、统计显著性、消融实验或失败案例；三是LLM输入模态、调用频率、推理时延和成本未知，而这些对实时自动驾驶非常关键；四是奖励函数由LLM迭代优化可能带来不可控偏置或奖励漏洞，摘要未说明约束机制；五是CARLA结果的现实迁移性仍需谨慎，仿真中的“常识推理”未必等价于真实道路中的可靠决策。",
+          "next_step": "最小可执行动作：先查全文中的系统架构图和实验表，确认orchestrator、PPO、PID、LLM四者的连接关系；重点寻找奖励函数优化流程图或伪代码，记录LLM具体改了哪些奖励项；再看基线与消融是否包含“去掉LLM”“去掉PID”“不做奖励迭代”的版本；最后整理一张表，记下场景类型、评价指标、延迟/成本、安全约束和失败案例。如果要复现，可先在CARLA中实现不含LLM的PPO+PID基线，再尝试把LLM仅接入奖励设计环节。"
+        }
+      },
+      "doi:10.1126/science.aea7978": {
+        "summary": "这篇论文报道了对掺杂于CaF2晶体中的229Th进行真空紫外激光穆斯堡尔谱研究，把传统核穆斯堡尔谱扩展到光学频段，用于分辨不同掺杂位点并表征其核环境。摘要显示作者识别出4类不同的钍掺杂位点，测得与宿主晶体相互作用产生的特征电场梯度，并对各位点的同质异能态寿命及激光诱导猝灭进行了位点选择性研究。",
+        "contribution": "核心贡献在于建立了针对固体中229Th低能核跃迁的激光穆斯堡尔光谱方案，并将其用于CaF2:229Th这一具体体系，给出掺杂位点分类、局域电场梯度信息以及两种主导微观构型的识别线索。这为固态核钟设计提供了直接材料参数与位点工程依据，尤其涉及位点选择、核环境扰动和异能态动力学。",
+        "details": "从题名和摘要看，研究对象非常明确：229Th核跃迁、CaF2宿主晶体、以及掺杂位点相关的局域核环境。方法上，作者使用真空紫外激光探测229Th的低能核跃迁，这是因为229Th著名的低能异能态位于可由真空紫外光访问的能区；论文的创新点是把“穆斯堡尔谱”概念从常见的伽马/硬X射线核共振扩展到光学或真空紫外范围，并在固体晶体中做位点分辨。摘要中“discovered four distinct doping sites”说明实验谱线应能分解出至少4套对应不同局域晶格环境的核共振特征；“determined the characteristic electric field gradients”表明作者利用了核能级在电场梯度下的超精细分裂或位移信息来反推出局域晶场；“identified the microscopic structure of the two dominant configurations”则提示他们不仅有光谱数据，还可能结合晶体缺陷模型、点电荷模型、第一性原理计算或对称性分析来判断最主要两类位点的原子级构型。进一步，“site-selective laser excitation enabled the study of the isomeric state lifetime and laser-induced quenching for all sites”说明他们能够按位点分别激发并比较异能态寿命与猝灭行为，这对核钟很关键，因为不同位点可能带来不同线宽、频移、退相干与非辐射损失。与用户可能关心的方向关系上，这项工作更偏核光谱、量子计量和固体缺陷工程，但也与“environment”关键词相关：它本质上是在研究宿主晶体局域环境如何影响核跃迁。若从材料设计或量子器件角度阅读，最应关注的是不同掺杂位点占比、各位点对应的电场梯度大小、哪两类主导构型最稳定、是否存在温度或制样依赖、以及猝灭机制是否由电子桥接、缺陷态耦合或杂质电荷补偿引起。需要特别核对的信息包括：具体激光波长/扫描范围、谱线分辨率、四类位点的频移与分裂量、寿命数值、猝灭时间尺度、两种主导构型的结构模型、以及这些结果与未来固态核钟目标线宽和系统频移预算之间的定量联系。由于这里只依据摘要，不能判断实验误差、样品制备细节、理论拟合稳健性和与既有229Th能级值的一致程度。",
+        "why_read": "来源为 Science，关键词匹配：ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在CaF2晶体中掺杂229Th后，低能核跃迁会受到哪些局域晶格位点与电场梯度影响；这些不同掺杂环境能否被激光核共振方式分辨；以及各位点上的异能态寿命和激光诱导猝灭行为如何，从而为固态229Th核钟的材料平台选择提供依据。",
+          "method": "从摘要推断，实验路径应包括：制备229Th掺杂CaF2晶体；用真空紫外激光扫描229Th核跃迁共振；通过类似穆斯堡尔超精细谱分析的方法分解出不同位点对应的共振结构；依据谱线分裂/位移提取电场梯度；再结合晶体学、缺陷补偿模型或计算识别两种主导位点的微观结构；最后利用位点选择性激发测量各位点异能态寿命并观察激光诱导猝灭。",
+          "strengths": "最值得关注的亮点有三点：第一，直接在光学/真空紫外频段实现针对229Th的“激光穆斯堡尔谱”，方法学上很新；第二，不只是看到一个平均核共振，而是分辨出4类掺杂位点并提取电场梯度，说明对固体局域核环境具有较强解析能力；第三，把位点分辨与异能态寿命、猝灭研究结合，直接服务于固态核钟这一明确应用场景，基础物理与器件设计价值都较高。",
+          "weaknesses": "基于题录和摘要，当前信息的边界主要在于：看不到具体谱图、误差条和统计显著性，无法判断4个位点分辨是否唯一；不知道两种主导构型的结构判定有多依赖模型假设；也不清楚寿命和猝灭是否受样品纯度、缺陷浓度、温度、激光功率或电荷补偿机制影响。此外，摘要没有给出任何定量数值，因此尚不能直接用于比较不同材料平台或建立核钟系统误差预算。",
+          "next_step": "最小可执行动作是：首先查正文中的主谱图和补充材料，记录4类位点各自的共振频移、超精细分裂、电场梯度和相对占比；其次找出“两种主导构型”的具体原子模型及其判定依据；再次整理各位点异能态寿命与猝灭时间常数，比较哪一类位点最适合核钟；最后把这些参数与自己熟悉的宿主材料或缺陷工程方案做一个对照表。"
+        }
+      },
+      "doi:10.1126/science.aed9286": {
+        "summary": "该研究围绕中性粒细胞胞外诱捕网（NETs）的分支染色质结构，提出RAD51介导DNA连接并稳定NETs，从而将炎症限制在局部感染部位。摘要显示作者结合真菌性肺部感染、小鼠体内干预和人类曲霉病相关性数据，讨论NET稳定性如何影响全身IL-6、2型炎症和哮喘加重。",
+        "contribution": "核心贡献是把经典DNA重组修复蛋白RAD51引入NET生物学，提出“RAD51通过促进NET分支和结构稳定性来实现炎症区室化”的机制模型；并进一步指出，抑制RAD51虽然可降低肺部局部炎症因子，但可能因NET解体后成分进入循环而诱导单核细胞IL-6，反而加重系统性2型炎症。这一工作把DNA修复、先天免疫结构生物学和感染/哮喘炎症后果连接起来。",
+        "details": "从摘要可提炼出较清晰的证据链。研究对象是NETs的“branched chromatin architecture”，即NET中分支状染色质网络的来源与功能。作者将这一结构特征归因于RAD51，这一蛋白通常与DNA同源重组修复和DNA连接/交叉结构形成相关。就方法线索看，作者应当使用了NET形成条件下的显微成像或超分辨/定量形态分析来评估“branching”；并通过三类扰动支持机制：一是药理学抑制RAD51，二是RAD51 knockdown，三是用GEN1和RuvC这类可切解DNA连接结构的resolvase处理NETs。三者均导致分支减少和NET不稳定，说明作者不仅观察到相关性，还针对DNA结构本身进行了功能拆解。另一方面，不同刺激上调RAD51可产生稳定性不同的NETs，提示RAD51可能不是单纯“有/无”开关，而是决定不同NET状态力学与生物学行为的调节因素。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题是：NETs为何具有分支化染色质结构，这种结构由什么分子机制产生，以及这种结构稳定性是否决定炎症是被限制在局部还是扩散为系统性免疫激活。更细一点，这篇论文试图回答RAD51是否在胞外DNA网络中执行类似于DNA重组中的结构稳定功能，并由此影响感染与炎症结局。",
+          "method": "根据摘要，可能包含以下路径：1）在中性粒细胞诱导NETosis条件下，对NET分支程度和稳定性进行定量成像；2）通过RAD51药理抑制和基因敲低验证RAD51对NET分支的必要性；3）使用GEN1和RuvC resolvase处理NET，测试分支是否依赖可被解开的DNA junctions；4）用不同刺激上调RAD51，比较NET稳定性差异；5）在小鼠肺部曲霉菌感染模型中抑制RAD51，观察肺部NET状态、局部细胞因子、循环NET成分、单核细胞IL-6、2型炎症和哮喘表型；6）在人类曲霉病样本中分析血浆胞外DNA与IL-6、eotaxin的相关性。",
+          "strengths": "亮点主要有三点。第一，机制上新颖：把RAD51这一DNA修复蛋白直接定位到NET分支形成与稳定，而不是泛泛描述NET释放。第二，证据设计有层次：既有RAD51抑制/敲低，也有对DNA junction的酶学切解，因而比单一抑制剂实验更能支撑“分支依赖DNA连接结构”的命题。第三，生物学意义不是停留在结构现象，而是延伸到体内疾病后果：局部肺部炎症下降与系统性IL-6/2型炎症上升并存，提示NET稳定性具有“双刃剑”式免疫调控意义，对感染、哮喘、NET靶向治疗都很重要。",
+          "weaknesses": "基于题录和摘要，需要警惕几类边界。1）尚不清楚RAD51是在NET释放前的核内染色质重塑阶段起作用，还是在NET释放后的胞外DNA网络中持续结合并稳定结构；时序证据需要看正文图表。2）“NET稳定性”如何测量、分支如何定量、是否区分不同NETosis途径，摘要未给出。3）小鼠曲霉感染中RAD51抑制的效应可能涉及中性粒细胞外的细胞类型或DNA修复副作用，特异性需核对。4）人类数据仅提示相关性，不能单独证明因果。5）关于“加重哮喘”的具体模型、时间尺度、效应大小和统计稳健性，摘要没有细节。",
+          "next_step": "最小可执行动作：1）优先查看正文/图中NET分支的成像与定量方法，确认branching和stability的操作性定义；2）核对RAD51抑制剂名称、敲低系统、GEN1/RuvC处理条件及是否有救援实验；3）重点阅读小鼠肺曲霉感染实验，记录肺部细胞因子下降与循环NET成分升高是否来自同一时间点、同一干预；4）查看单核细胞IL-6诱导是否为体外共培养或体内转录证据；5）若与你的方向相关，可整理一个对照表：RAD51水平—NET分支—NET稳定性—局部炎症—系统性炎症，作为后续复现实验或文献比较框架。"
+        }
+      },
+      "doi:10.1126/science.aek1809": {
+        "summary": "这是一篇发表于Science的短评/观点性文章，聚焦“触觉与疼痛等感觉输入如何影响不同脑血管网络，从而改变脑成像所看到的信号精度”这一具体问题。基于摘要，它讨论的对象不是单纯神经活动本身，而是感觉刺激、血管网络与脑成像读出之间的耦合关系。",
+        "contribution": "从题名与摘要看，文章的核心贡献在于强调：不同类型的感觉输入可能调动不同的血管网络，进而影响脑扫描信号的空间/生理特异性与解释精度。这种观点对依赖血流或血氧信号的脑成像研究具有方法学提醒价值，尤其涉及触觉、疼痛及感觉系统任务设计时的结果解读。",
+        "details": "根据现有元数据，这篇文章更像是对一项相关研究或一类研究进展的评述，而非完整原始研究论文。可确认的信息只有：主题围绕触觉（touch）和疼痛（pain）这两类感觉输入，摘要明确指出它们会影响“不同的血管网络”（different blood vessel networks），并进一步影响“brain scans”的精度（precision of brain scans）。因此，文章关注的具体对象应包括感觉刺激范式、脑内不同尺度或类型的血管结构/血流调控网络，以及以血流动力学为基础的脑成像读出，最可能关联fMRI、光学成像或其他神经血管耦合测量。\n\n若从可能的方法路径推断，被评论或讨论的工作很可能比较了不同感觉条件下的血管反应模式，例如触觉刺激与痛觉刺激是否分别驱动不同深浅层、不同口径或不同功能分工的血管网络，并考察这些差异如何映射到成像信号的定位准确性、幅度解释或时间特性。摘要中“affecting the precision of brain scans”提示证据链可能并不止于观察到血管反应差异，还可能进一步讨论成像空间分辨率、信号来源偏倚、血管贡献与神经源性的混杂问题。\n\n对科研读者而言，这篇文章的重要性在于：如果你研究感觉系统、疼痛加工、神经血管耦合、fMRI解释或高分辨率层级成像，那么它提醒你不能将所有感觉诱发的血流信号等同看作统一的神经活动代理。具体来说，同样是外周感觉输入，不同模态可能通过不同微血管或较大血管通路产生可测信号，从而影响激活定位、条件比较和跨任务可比性。\n\n但必须强调，当前信息非常有限。摘要没有提供具体实验对象（人、鼠或其他动物）、成像技术、样本量、刺激参数、比较条件、效应大小，也没有说明“precision”究竟指空间定位精度、时间精度，还是对神经活动推断的准确性。因此，任何关于实验设计、数据类型和结果强度的判断都需要在阅读全文或至少查看正文图表后核对。另一个需要核实的点是文章类型：鉴于Science常发表Perspective/News & Views类短文，作者Laura D. Lewis也常参与神经影像评论性写作，因此这篇文献可能是评论文章，需进一步确认其是否在解读另一篇原始研究。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：触觉与疼痛这类不同感觉输入，是否会通过不同的脑血管网络产生不同的血流/血氧成像响应；如果会，这种差异将如何影响脑成像对神经活动的定位与解释精度。更具体地说，论文试图触及神经血管耦合在不同感觉模态下是否具有网络或血管层级特异性。",
+          "method": "仅凭题录推测，可能的方法不是单一新实验描述，而是基于某项研究结果进行综述或评述。若涉及原始证据，可能包括：在触觉和痛觉刺激任务下记录脑血流动力学信号；区分不同血管网络或血管类型的响应；将这些血管响应与脑成像读出进行对应分析；比较不同感觉条件下成像信号的定位偏差或精度变化。潜在数据来源可能是高分辨率fMRI、双光子/光学血流成像、血管解剖与功能配准，或动物模型中的神经-血管联合测量。",
+          "strengths": "亮点在于问题非常具体且方法学意义强：它不是泛泛讨论‘感觉影响大脑’，而是把焦点放在‘感觉输入如何改变脑成像所依赖的血管网络’。这一点直接关系到fMRI等技术的解释边界。若文章确实建立了触觉与疼痛对应不同血管网络的证据链，那么其价值在于为高精度脑图谱绘制、层级fMRI、疼痛研究和跨模态比较提供更谨慎的生理学依据。",
+          "weaknesses": "局限主要来自当前信息缺失。第一，无法判断这是原始研究还是评论文章；若是评论，其贡献更多是框架整合而非新数据。第二，摘要没有给出任何具体实验细节，无法评估证据强度、统计稳健性与适用物种。第三，‘不同血管网络’的定义不清，可能指不同解剖血管层级，也可能指功能性灌注网络。第四，‘brain scans’过于宽泛，尚不清楚适用的是fMRI、功能超声还是其他血流成像技术。",
+          "next_step": "最小可执行动作：1）先确认文章类型，查看Science页面上是否标注为Perspective、News、Editorial或Research Article；2）阅读摘要扩展信息或首段，记录其评论的是哪篇原始研究；3）重点查找文中是否明确比较‘touch vs pain’的血管响应差异，以及差异对应的具体成像技术；4）若你做fMRI/疼痛研究，建立一个核对清单：任务模态、血管来源、空间定位偏差、是否需要结合神经活动直接测量；5）若后续获得全文，优先看图示中关于血管网络层级、刺激范式和成像精度定义的部分。"
+        }
+      },
+      "doi:10.1038/s41586-026-10777-0": {
+        "summary": "这篇Nature论文从题名可判断，聚焦“单细胞线粒体DNA（mtDNA）分析中的伪影如何误导系统发育树/谱系重建”这一具体方法学问题，目标对象是基于单细胞mtDNA变异进行克隆关系或进化关系推断的分析流程。由于当前未提供摘要，无法确认其使用的是哪类单细胞测序数据、识别了哪些具体伪影，以及这些伪影对系统发育结论造成了何种定量影响。",
+        "contribution": "核心贡献很可能是对单细胞mtDNA谱系分析中的关键误差来源提出系统性警示，并指出这些技术或计算伪影会导致错误的系统发育解释；若论文包含方法学内容，可能还会给出伪影识别、质量控制或更稳健分析框架的建议。但在摘要缺失的情况下，这些都需要以正文和图表核对。",
+        "details": "从题名“Artefacts in single-cell mtDNA analyses misinform phylogenies”看，研究对象非常明确：单细胞层面的mtDNA分析，以及由此构建的系统发育/谱系关系。这里的科学任务不是泛泛讨论单细胞测序，而是针对“用mtDNA变异当作天然条形码追踪细胞谱系”这一具体实践提出质疑或校正。题名中的“artefacts”暗示作者识别到一种或多种非生物学来源的信号，例如扩增偏倚、等位基因缺失、污染、异质性检测误差、NUMTs（核基因组中的线粒体假基因）干扰、覆盖深度不均、单细胞文库构建引入的错误，或者变异调用与系统树建模之间的耦合偏差。这些伪影会让研究者误把技术噪声解释为真实的细胞分支关系，从而“misinform phylogenies”。基于作者阵容和期刊层级，这篇文章大概率属于高影响的方法学批判、再评估或基准研究，可能涉及对现有单细胞mtDNA谱系文献、公开数据集或多个平台的系统复核。对从事肿瘤进化、造血谱系、发育生物学、单细胞多组学、线粒体突变追踪的研究者，这篇论文的相关性很高，因为许多研究都会默认mtDNA突变能稳定、准确地记录细胞历史。当前最需要核对的信息包括：1）作者讨论的是哪一种单细胞技术路线，如scRNA-seq附带mtDNA、scATAC-seq、专门的线粒体富集测序，还是多组学平台；2）伪影发生在湿实验、测序、比对、变异检测还是系统树构建阶段；3）作者是否用正交证据验证，例如bulk测序、克隆追踪、已知家系/细胞系、合成混样或模拟；4）是否提出了可操作的QC指标、过滤阈值或替代分析策略；5）论文结论是在所有单细胞mtDNA分析中普遍成立，还是只针对特定协议、特定覆盖度或特定样本类型。由于摘要为空，现阶段只能给出这些高置信度的题名驱动判断，不能替代对正文证据链的核实。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题应是：在单细胞mtDNA分析中，哪些技术或计算伪影会被误当作真实线粒体突变或谱系分支信号，进而导致错误的系统发育树、克隆结构或细胞祖先关系推断？进一步说，它挑战的是“单细胞mtDNA变异是否总能可靠用于谱系重建”这一方法学前提。",
+          "method": "仅根据题名和元数据推测，可能的方法路径包括：对单细胞mtDNA相关数据集进行重分析；比较不同实验协议或不同变异检测流程的结果一致性；评估可疑变异在覆盖度、细胞类型、批次或平台之间的分布；检查这些变异是否符合真正系统发育信号应有的嵌套结构；用正交数据验证候选突变真伪；分析伪影对树拓扑、分支长度或克隆划分的影响。若论文更偏方法学，可能还提出了过滤规则、错误模型或重新构树策略。",
+          "strengths": "最值得关注的潜在亮点在于：它不是讨论一般性的单细胞噪声，而是直接指向“mtDNA伪影如何误导谱系学结论”这一高影响任务节点；如果文章提供跨平台、跨数据集或跨研究的证据，其说服力会很强；若作者同时给出可执行的QC和分析修正建议，那么对现有依赖mtDNA进行谱系推断的研究群体会有直接方法学价值。",
+          "weaknesses": "当前最大的局限是摘要为空，导致无法确认论文到底是观点/评论、技术报告、基准分析还是原始研究；也不知道伪影类型、数据规模、实验体系、验证强度和适用边界。仅凭题名不能判断作者是否证明了这些伪影广泛存在，还是仅在某些协议下显著；也不能判断论文是在否定mtDNA谱系学本身，还是只是在强调必须采用更严格的质量控制。",
+          "next_step": "最小可执行动作：第一，优先获取摘要并确认研究类型与具体伪影名称；第二，阅读主图标题与图注，重点查找作者使用的数据类型、错误案例和验证设计；第三，把你自己当前使用的单细胞mtDNA分析流程逐项对照：比对参考、NUMTs处理、最小覆盖度、异质性阈值、细胞过滤、批次效应、构树算法；第四，记录3个核对问题：论文指出的伪影是否会出现在你的平台中、是否有正交验证手段、现有结论是否依赖少数关键mtDNA位点。"
+        }
+      },
+      "doi:10.1038/s41586-026-10917-6": {
+        "summary": "这篇 Nature 论文从题名判断，聚焦于名为 HydroGym 的强化学习平台，目标对象是流体动力学中的控制、优化或决策任务。由于给定摘要为空，现阶段只能较可靠地判断其核心任务是为流体动力学问题提供一个可用于强化学习研究与评测的平台，而不能确认具体物理场景、方程、数据规模或性能结果。",
+        "contribution": "基于题名与期刊来源，论文的核心贡献很可能是提出并系统化一个面向流体动力学的强化学习平台 HydroGym，用于统一环境构建、任务定义、算法测试和可能的基准评测，从而降低在 CFD/流动控制中应用强化学习的实验门槛并提升可重复性。但由于缺少摘要与正文，这一判断仍需核对。",
+        "details": "从题名“The HydroGym reinforcement learning platform for fluid dynamics”看，研究对象非常明确：不是单一流体问题本身，而是一个服务于流体动力学任务的强化学习平台。这里的“platform”通常意味着软件框架、标准化接口、可复用环境集合或基准测试套件，而“for fluid dynamics”提示其面向的是受 Navier–Stokes 类动力系统约束的问题，典型可能包括流动控制、减阻、混合增强、尾迹调控、主动/被动控制器设计，或将数值模拟环境包装为 RL agent 可交互的环境。题名中的 HydroGym 还暗示其命名可能借鉴 OpenAI Gym 风格，即把复杂物理系统抽象为 observation-action-reward-dynamics 的交互接口，便于 PPO、SAC、DDPG、model-based RL 或其他控制算法直接调用。\n\n从证据线索看，Nature 发表说明该工作可能不只是工程实现，而可能强调更广泛的方法学意义，例如：把流体动力学这一高维、强非线性、计算昂贵且常受偏微分方程约束的科学问题，转化为标准化强化学习研究对象；或者给出若干具有代表性的流动任务和统一评测协议，推动社区比较不同 RL 策略在科学机器学习/物理控制中的表现。作者名单较长且跨领域特征明显，也支持这可能是一个结合流体力学、数值模拟、机器学习与软件基础设施的团队工作。\n\n但由于摘要为空，很多关键信息都不能确定：第一，不知道平台覆盖的是二维还是三维流动，是层流还是湍流，是可压还是不可压；第二，不知道环境是基于直接数值模拟、降阶模型、代理模型，还是实验闭环系统；第三，不知道 reward 定义、观测空间、动作约束、时间步长和训练成本；第四，不知道是否提供标准基准、公开代码、数据集或算例库；第五，不知道论文的核心证据究竟是展示 RL 在若干经典流动控制任务上的成功，还是提出新的平台设计原则和 benchmark。\n\n如果你的研究方向与科学机器学习、强化学习控制、CFD、流动控制或 AI for science 有关，这篇论文值得优先关注，因为“平台型”工作往往决定后续实验是否可重复、任务是否可比、算法是否能真正进入物理问题场景。尤其应核对它是否解决了流体 RL 中几个长期痛点：高仿真成本、状态不可全观测、奖励延迟、控制稳定性、跨 Reynolds 数泛化、仿真到实验迁移以及不同求解器之间的接口统一。\n\n目前最需要核对的信息包括：HydroGym 的具体组成；支持哪些经典流体任务；是否内置 benchmark 与 baseline；使用哪些数值求解器或硬件；其 RL 平台与传统最优控制、MPC、伴随法、遗传算法相比的定位；是否提供开源实现与复现实验。没有这些信息，不应对论文的实验效果、适用范围或方法新颖性作出确定判断。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题，按题名推断，是如何为流体动力学中的强化学习研究建立一个统一、可操作、可复现的平台，使复杂流动物理系统能够被标准化为 RL 环境，并支持控制、优化或策略学习任务。更细地说，它可能在解决“流体 RL 缺乏标准任务与统一评测接口”这一方法学瓶颈。",
+          "method": "可能的方法路径是：将一个或多个流体动力学系统用数值模拟器或物理近似模型实现为可交互环境；定义状态观测、控制动作、奖励函数和终止条件；提供与 Gym 类似的 API；在若干代表性流动任务上运行标准强化学习算法作为 baseline；比较不同任务难度、训练稳定性、控制效果和计算代价。也可能包含针对 PDE 约束系统的时间推进、传感器布局、执行器建模和并行仿真加速。由于摘要缺失，上述内容都只能视为高可信推测而非事实。",
+          "strengths": "最值得关注的潜在亮点有三类。第一，平台化贡献：如果 HydroGym 统一了流体控制环境定义与评测协议，其价值会超出单一算法论文。第二，跨学科桥接：把 RL 社区常用的环境接口与流体动力学中的高保真模拟连接起来，可能显著降低研究进入门槛。第三，应用潜力：若平台覆盖经典流动控制算例并附 baseline，能够直接服务于减阻、尾迹控制、能效优化等任务的可重复研究。Nature 发表也暗示其影响目标可能是社区基础设施层面。",
+          "weaknesses": "基于当前题录信息，最大局限是信息严重不足：摘要为空，无法确认论文究竟是软件平台论文、方法论文、还是带 benchmark 的综合论文；无法确认其物理覆盖范围、求解精度、训练成本、开放程度和实验结果。还需警惕“platform”类工作常见边界：任务可能偏少，主要针对理想化二维算例；RL 成功可能依赖精心设计的观测和奖励；与传统控制方法的公平对比可能不足；高计算成本可能限制普通实验室复现。现阶段不能声称其优于现有平台或证明了 RL 在流体控制中的普适优势。",
+          "next_step": "最小可执行动作：1）先获取摘要与官网/代码仓库，确认 HydroGym 是否开源以及支持哪些环境；2）优先查看论文首页摘要、图1和方法总览，记录平台架构、任务列表、baseline 算法；3）查是否与 Gymnasium、PettingZoo、JAX/torch CFD 或现有流动控制 benchmark 兼容；4）若你做流动控制，整理一个对照表：任务名称、维度、Reynolds 数、观测/动作、奖励、每回合仿真成本；5）若你做 RL 方法，重点记录其 benchmark 是否支持离线 RL、部分可观测、模型学习或 sim-to-real 评测。"
+        }
+      },
+      "doi:10.1038/s41586-026-10687-1": {
+        "summary": "这篇Nature论文从题名判断，聚焦“大语言模型在医疗场景中的安全与安全保障（safety and security）”问题，研究对象不是通用LLM能力本身，而是其在 healthcare 任务中可能带来的临床风险、误用风险、攻击面或治理需求。由于当前未提供摘要与关键词，无法进一步确认其具体覆盖的是诊断、分诊、病历生成、患者问答、临床决策支持，还是更偏系统安全与监管框架。",
+        "contribution": "基于题名与期刊定位，论文的核心贡献很可能是对医疗领域LLM的双重风险框架进行系统化界定：一类是安全性（如错误建议、幻觉、偏倚、临床不可靠性），另一类是安全保障/对抗安全（如提示注入、数据泄露、模型滥用、越狱、工作流攻击）。如果是Nature研究或综述型文章，可能进一步提出评测维度、风险分类、治理原则、部署要求，或通过案例说明医疗LLM从模型层到临床工作流层的关键脆弱点。",
+        "details": "仅根据题名、作者、期刊与时间信息可做有限分析。题名中的“Safety and security”刻意并列，通常意味着论文不仅讨论模型输出是否正确、稳健、无害，还会讨论系统是否能抵御恶意输入、越权访问、隐私泄露、供应链或集成层攻击。在医疗场景中，这类问题会落到非常具体的任务对象上，例如患者症状问答、临床分诊建议、电子病历总结、医患沟通生成、检验结果解释、用药建议或影像/病理报告辅助生成；但当前没有摘要，无法判断作者究竟分析了哪些任务。\n从作者构成看，可能包含医学、数字健康、患者权益、监管或AI安全相关视角，因此论文也可能不是单纯算法论文，而是面向临床部署的综合性评估、观点综述或政策导向分析。发表在Nature且发表于2026年，说明其潜在价值在于将“医疗LLM风险”从单点性能问题扩展为全链路可信部署问题：模型训练数据、临床外推、用户交互、系统集成、隐私合规、责任归属和人类监督都可能被纳入。\n如果你的研究方向是医学AI评测、临床NLP、AI治理、对抗鲁棒性或数字医疗监管，这篇论文值得重点关注，因为它很可能提供一个可迁移的风险分类框架、评价维度或部署检查清单。尤其需要核对的信息包括：1）论文是原始实证研究、系统综述、评论还是政策/观点文章；2）是否包含具体模型与任务实验；3）是否区分患者端应用与专业临床端应用；4）是否讨论欧盟AI Act、医疗器械监管、HIPAA/GDPR类数据治理要求；5）是否给出真实案例、红队测试、失败模式 taxonomy 或缓解策略；6）“security”部分是否覆盖提示注入、RAG污染、工具调用越权、成员推断、训练数据泄露等现代LLM系统攻击面。由于摘要为空，以上均需在正式阅读时逐项核实，不能视为论文已明确给出。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题，很可能是：在医疗健康应用中，大语言模型面临哪些可预见且高影响的安全性与安全保障风险，这些风险如何分类、评估，并转化为可操作的开发、部署与监管要求。更细一点，它可能试图回答“为什么通用LLM评测不足以证明医疗可用性”“医疗场景下哪些失败模式会直接伤害患者或破坏系统可信性”“如何把模型风险与临床工作流风险统一起来”。",
+          "method": "在没有摘要的情况下，可能的方法路径有几类：第一，综述/评论式方法，基于已有医疗LLM文献、监管文件、案例事件和AI安全研究，构建风险框架；第二，实证评测式方法，对若干LLM在医疗问答、分诊、病历总结或决策支持任务上进行安全测试、红队测试或对抗测试；第三，系统分析式方法，把模型层、应用层、用户层和机构治理层串联起来，分析隐私、鲁棒性、越狱、误导、偏倚和责任问题。若有数据，可能涉及公开医学问答集、临床文本基准、模拟患者案例、攻击样本或专家标注案例。",
+          "strengths": "最值得关注的潜在亮点在于其问题定义非常切中当前医疗LLM落地瓶颈：不是只看准确率，而是同时看患者安全、系统脆弱性和部署治理。如果论文确实把 safety 与 security 清晰区分并建立联系，那么它对医疗AI研究者、医院信息部门、产品开发者和监管方都会有较高参考价值。另一潜在亮点是Nature平台可能促使文章采用跨学科视角，把技术失效、临床后果、患者权益和合规要求放在同一框架中讨论。",
+          "weaknesses": "当前最大局限是摘要为空，信息严重不足，无法确认文章类型、证据强度、任务范围、是否含实验、是否有定量结果，也无法判断其创新点是新数据、新评测、新框架还是仅为观点整合。题名覆盖面很大，存在文章较宏观、定量证据不足或偏原则性讨论的可能。若论文是评论/观点文，其实践可复现性可能有限；若是实证研究，则还需警惕任务选择是否代表真实临床使用场景、评测是否覆盖高风险人群、是否只测模型不测完整工作流。",
+          "next_step": "最小可执行动作：第一，立即补查摘要与文章类型，先确认是 Article、Review 还是 Comment；第二，查看首图、图1或表1，通常可快速获得风险分类框架或研究设计；第三，记录论文是否明确区分 safety 与 security，并把每个风险映射到具体医疗任务；第四，若你做实证研究，优先抽取其提到的失败模式、攻击方式、评测维度和缓解策略，整理成可复用检查表；第五，若你做临床部署或治理，重点查其是否提出监管、审计、人类监督和数据保护要求。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": []
+  },
+  "papers": [
+    {
+      "id": "arxiv:2608.19794v1",
+      "source": "arxiv",
+      "title": "Towards general embodied intelligence: integrating large language models, knowledge bases, and reasoning capabilities to build the next generation of AI agents",
+      "authors": [
+        "Fujiang Yuan",
+        "Xia Huang",
+        "Lusheng Wang",
+        "Jun Ding",
+        "Zhen Tian",
+        "Yuxin Wang",
+        "Shaojie Gu",
+        "Yuki Funabora",
+        "Yanhong Peng",
+        "Zebing Mao"
+      ],
+      "published": "2026-08-20T08:45:51Z",
+      "updated": "2026-08-20T08:45:51Z",
+      "abstract": "The convergence of large language models (LLMs), structured knowledge bases (KBs), and reasoning ability (RA) presents a promising trajectory toward general embodied intelligence (GEI). This paper reviews the evolution of LLM-centered intelligent systems, emphasising their integration with knowledge representation, logical reasoning, and physical embodiment. We analyse LLM architectures, pre-training methods, and inference mechanisms, along with their interaction with external knowledge sources and structured reasoning frameworks. Furthermore, we examine embodied intelligence (EI) paradigms wherein agents learn and act in physical environments. To synthesise these dimensions, we present a conceptual framework that illustrates the synergy among LLMs, KBs, RA, and embodiment, serving as a guiding model for perception, reasoning, and action rather than an implemented engineering architecture. To advance toward GEI, we identify five key challenges: efficient LLM deployment, closed-loop knowledge integration, hybrid symbolic-neural reasoning, perception-action grounding, and continual learning. This survey provides a comprehensive roadmap for developing adaptive, multimodal agents capable of operating in complex, dynamic settings.",
+      "url": "http://arxiv.org/abs/2608.19794v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.19794v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai agent",
+        "ai agents",
+        "multimodal",
+        "ai",
+        "environment"
+      ],
+      "score": 109.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.20237v1",
+      "source": "arxiv",
+      "title": "Rule-Compliant Visual Spatial Planning for Multimodal Large Language Models",
+      "authors": [
+        "Yu Chen",
+        "Ting Lei",
+        "Yaoyi Li",
+        "Jia Cai",
+        "Zhecen Wu",
+        "Yang Liu"
+      ],
+      "published": "2026-08-20T16:28:28Z",
+      "updated": "2026-08-20T16:28:28Z",
+      "abstract": "Multimodal large language models (MLLMs) combine linguistic reasoning with visual perception, yet their ability to perform visual spatial planning under explicit or previously unseen rule constraints remains underexplored. This setting requires models to jointly understand spatial layouts, interpret natural-language rules, and plan valid actions accordingly. To address this gap, we introduce RuleMaze, a controllable benchmark in which MLLMs must navigate mazes while obeying natural-language rules of varying complexity. RuleMaze isolates rule-compliant spatial planning by requiring accurate perception, rule interpretation, and constrained action planning. To enable scalable and systematic rule construction, we propose Language-Logic-Function Hybridization, which automatically generates natural-language rules and translates them into logical representations and executable validators, eliminating manual rule engineering. To improve rule following and generalization, we introduce Disentangled Multimodal Planning (DMP), which separates perception, execution, and rule verification through interpretable reasoning primitives. By disentangling these components, DMP facilitates systematic generalization to more complex and previously unseen rules, while providing transparent intermediate planning traces. Experiments demonstrate that DMP substantially improves rule compliance and planning success compared to end-to-end textual planning baselines. Overall, RuleMaze establishes a principled benchmark for studying grounded and interpretable rule-based spatial planning in MLLMs. Code is available at https://github.com/oceanflowlab/RuleMaze.",
+      "url": "http://arxiv.org/abs/2608.20237v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20237v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "multimodal",
+        "mllm",
+        "ai",
+        "ml",
+        "ocean"
+      ],
+      "score": 89.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.20320v1",
+      "source": "arxiv",
+      "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
+      "authors": [
+        "Narges Ahmadi",
+        "Yubo Jiao",
+        "Jônatas Augusto Manzolli",
+        "Jiangbo Yu",
+        "Luis Miranda-Moreno"
+      ],
+      "published": "2026-08-20T17:57:42Z",
+      "updated": "2026-08-20T17:57:42Z",
+      "abstract": "Travel behavior research increasingly combines digital data collection with predictive modeling, yet these stages are often developed and evaluated separately. This study proposes a three-agent workflow integrating conversational data collection, structured data processing, and behavioral prediction. A chatbot-administered, image-augmented stated-preference survey collected mode choices from student commuters across five predefined weather scenarios, yielding 454 respondent-scenario observations. Weather-related associations were analyzed using a multinomial logit model, while logistic regression and random forest provided machine-learning benchmarks. Nine locally deployed large language models (LLMs), ranging from 2 to 35 billion parameters, were evaluated across four zero-shot prompt-and-context conditions and extended through persona, few-shot, and vision-based configurations. Random forest achieved 69.6% five-class accuracy, while the best text-only zero-shot LLM reached 69.9% without task-specific fitting. Habitual travel information produced the most consistent gains, Expert framing generally outperformed Role-Play, and persona information was most useful when habitual travel information was unavailable. Few-shot prompting improved prediction for several models, with gains stabilizing after a small number of examples. Using the same weather images shown to respondents, the best vision-based configuration reached 71.5% five-class accuracy, indicating that visual context may provide additional predictive information for selected models. Overall, the study shows how conversational surveys, structured data processing, conventional behavioral modeling, machine learning, and multimodal LLM prediction can be coordinated within an auditable multi-agent workflow.",
+      "url": "http://arxiv.org/abs/2608.20320v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20320v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "multimodal",
+        "ai",
+        "machine learning",
+        "weather"
+      ],
+      "score": 77.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.20129v1",
+      "source": "arxiv",
+      "title": "Multi-Agent Orchestration with the Common-Sense Reasoning Capabilities of LLMs for Autonomous Driving",
+      "authors": [
+        "Mehdi Azarafza",
+        "Faezeh Pasandideh",
+        "Ali Ehteshami Bejnordi",
+        "Stefan Henkler",
+        "Achim Rettberg"
+      ],
+      "published": "2026-08-20T14:56:15Z",
+      "updated": "2026-08-20T14:56:15Z",
+      "abstract": "Autonomous vehicles require robust perception and decision-making capabilities to operate in diverse and unseen scenarios. While reinforcement learning and rule-based methods can provide effective control and safety mechanisms, their performance may degrade in situations requiring contextual reasoning. Large Language Models (LLMs) have demonstrated strong capabilities in understanding multimodal information and generating contextual reasoning, however, their use for direct vehicle control can introduce latency and hallucination risks. To address these limitations, a hybrid framework is proposed. This system uses an orchestrator to coordinate PPO-trained reinforcement learning and PID control, with LLM common-sense reasoning applied throughout the framework. LLM reasoning is further employed iteratively to refine the RL reward function for dynamic driving environments. The proposed framework is evaluated in highly randomized CARLA scenarios under diverse environmental and traffic conditions. The results demonstrate the potential of integrating LLM-based reasoning with conventional autonomous driving methods while retaining structured control and safety mechanism.",
+      "url": "http://arxiv.org/abs/2608.20129v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20129v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.MA",
+        "cs.CL",
+        "cs.CV"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "multimodal",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 75.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aea7978",
+      "source": "science",
+      "title": "Laser Mössbauer spectroscopy of 229 Th in CaF 2",
+      "authors": [
+        "Takahiro Hiraki",
+        "Takahiko Masuda",
+        "Sayuri Takatori",
+        "Fabian Schaden",
+        "Michael Bartokos",
+        "Kjeld Beeks",
+        "Yuta Fukunaga",
+        "Andreas Grüneis",
+        "Ming Guan",
+        "Georgy Kazakov",
+        "Thomas LaGrange",
+        "Adrian Leitner",
+        "Ira Morawetz",
+        "Ryoichiro Ogake",
+        "Koichi Okai",
+        "Martin Pimon",
+        "Martin Pressler",
+        "Thomas Riebner",
+        "Noboru Sasao",
+        "Felix Schneider",
+        "Thorsten Schumm",
+        "Kotaro Shimizu",
+        "Luca Toscani de Col",
+        "Tomas Sikorsky",
+        "Akihiro Yoshimi",
+        "Koji Yoshimura"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "abstract": "Mössbauer spectroscopy is widely used in chemistry, geology, and solid-state physics to probe the local physical and chemical environment of nuclei in materials. Here, we extended this technique into the optical range using a vacuum ultraviolet laser to probe the low-energy nuclear transitions of thorium-229 ( 229 Th) doped in calcium fluoride (CaF 2 ) crystals. We discovered four distinct doping sites for the thorium ions, determined the characteristic electric field gradients emerging from the interaction with the host crystal, and identified the microscopic structure of the two dominant configurations. Site-selective laser excitation enabled the study of the isomeric state lifetime and laser-induced quenching for all sites. This technique provides a powerful probe of the nuclear environment, yielding foundational data for designing future solid-state nuclear clocks.",
+      "url": "https://doi.org/10.1126/science.aea7978",
+      "pdf_url": "",
+      "doi": "10.1126/science.aea7978",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "ai",
+        "environment"
+      ],
+      "score": 54.5,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6813",
+        "page": "795-799",
+        "reference_count": 49,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aea7978"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aed9286",
+      "source": "science",
+      "title": "RAD51 stabilizes neutrophil extracellular traps to compartmentalize inflammation",
+      "authors": [
+        "Lorenza Iolanda Tsansizi",
+        "Sophie Yihan Guan",
+        "Iker Valle Aramburu",
+        "Rajvee Shah Punatar",
+        "Thomas J. Williams",
+        "Yihe E. Qiao",
+        "Anna Reed",
+        "Darius Armstrong-James",
+        "Stephen C. West",
+        "Venizelos Papayannopoulos"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "abstract": "Neutrophil extracellular traps (NETs) feature a branched chromatin architecture whose origin and function remain unknown. We found that NET branching is mediated by RAD51, a protein generating DNA junctions during DNA recombination repair. Pharmacological inhibition, RAD51 knockdown, or GEN1 and RuvC resolvase treatment reduced branching and destabilized NETs, whereas RAD51 up-regulation by different stimuli generated NETs with variable stability. RAD51 inhibition during murine pulmonary Aspergillus fumigatus infection dismantled NETs and reduced lung cytokines. However, the increased accumulation of NET components in the circulation led to interleukin-6 (IL-6) induction in circulating monocytes that exacerbated type 2 inflammation and asthma. Extracellular plasma DNA correlated with IL-6 and eotaxin in human aspergillosis. By structurally stabilizing NETs, RAD51 compartmentalizes inflammation to thwart aberrant systemic immune activation, linking DNA repair to inflammation.",
+      "url": "https://doi.org/10.1126/science.aed9286",
+      "pdf_url": "",
+      "doi": "10.1126/science.aed9286",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6813",
+        "page": null,
+        "reference_count": 59,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aed9286"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aek1809",
+      "source": "science",
+      "title": "Touch and pain shape what brain imaging sees",
+      "authors": [
+        "Adiya Rakymzhan",
+        "Laura D. Lewis"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "abstract": "Sensory inputs influence different blood vessel networks, affecting the precision of brain scans",
+      "url": "https://doi.org/10.1126/science.aek1809",
+      "pdf_url": "",
+      "doi": "10.1126/science.aek1809",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 47.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6813",
+        "page": "760-761",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aek1809"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10777-0",
+      "source": "nature",
+      "title": "Artefacts in single-cell mtDNA analyses misinform phylogenies",
+      "authors": [
+        "Caleb A. Lareau",
+        "Michael Spencer Chapman",
+        "Livius Penter",
+        "Tal Nawy",
+        "Dana Pe’er",
+        "Leif S. Ludwig"
+      ],
+      "published": "2026-08-19",
+      "updated": "2026-08-20",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10777-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10777-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "656",
+        "issue": "8128",
+        "page": "E25-E31",
+        "reference_count": 15,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10777-0"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10917-6",
+      "source": "nature",
+      "title": "The HydroGym reinforcement learning platform for fluid dynamics",
+      "authors": [
+        "Christian Lagemann",
+        "Sajeda Mokbel",
+        "Miro Gondrum",
+        "Mario Rüttgers",
+        "Yuning Wang",
+        "Pol Suárez",
+        "Ludger Paehler",
+        "Deniz A. Bezgin",
+        "Aaron B. Buhendwa",
+        "Jared L. Callaham",
+        "Samuel Ahnert",
+        "Nicholas Zolman",
+        "Xiao Shao",
+        "Jean-Christophe Loiseau",
+        "Nikolaus A. Adams",
+        "Matthias Meinke",
+        "Wolfgang Schröder",
+        "Kai Lagemann",
+        "Esther Lagemann",
+        "Ricardo Vinuesa",
+        "Steven L. Brunton"
+      ],
+      "published": "2026-08-19",
+      "updated": "2026-08-20",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10917-6",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10917-6",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 64,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10917-6"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10687-1",
+      "source": "nature",
+      "title": "Safety and security of large language models in healthcare",
+      "authors": [
+        "Jan Clusmann",
+        "Oscar Freyer",
+        "Max Ostermann",
+        "Dyke Ferber",
+        "Narmin Ghaffari Laleh",
+        "Lars Hilgers",
+        "Fiona R. Kolbinger",
+        "Carolin V. Schneider",
+        "Andrea Downing",
+        "Magdalena Katharina Wekenborg",
+        "Stephen Gilbert",
+        "Sebastian Foersch",
+        "Daniel Truhn",
+        "Isabella C. Wiest",
+        "Jakob Nikolas Kather"
+      ],
+      "published": "2026-08-19",
+      "updated": "2026-08-19",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10687-1",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10687-1",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "656",
+        "issue": "8128",
+        "page": "577-589",
+        "reference_count": 190,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10687-1"
+      }
+    }
+  ]
+}
