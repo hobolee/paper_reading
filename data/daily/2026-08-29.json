@@ -1,0 +1,644 @@
+{
+  "date": "2026-08-29",
+  "stats": {
+    "fetched": 467,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 59,
+      "science": 108
+    },
+    "deduped": 467,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 59,
+      "science": 108
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 255,
+    "keyword_filtered_by_source": {
+      "arxiv": 255
+    },
+    "keyword_optional_included": 144,
+    "keyword_optional_included_by_source": {
+      "nature": 54,
+      "science": 90
+    },
+    "ranked": 212,
+    "ranked_by_source": {
+      "arxiv": 45,
+      "nature": 59,
+      "science": 108
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 136,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天的论文集合呈现出两个最强主线。第一条主线是“面向真实环境复杂性的智能体与用户模拟”：LiveSim、SPT、DuMateBench、Decoupling Planning and Control 四篇都在推动研究对象从静态、干净、可完全定义的任务，转向会被环境扰动、跨文件依赖、历史状态、社会互动或实时控制约束持续塑形的系统。它们分别对应用户行为模拟、agentic 模型训练数据、真实工作流评测，以及具身智能体架构设计，彼此能拼出一条较完整的方法链：先用更接近真实技能结构的数据训练，再在保留上下文与噪声的环境里评测，并进一步研究在高互动生态中个体行为如何被环境重塑。第二条主线是“从高维数据中恢复隐含生物机制并走向可干预设计”：Science/Nature 的几篇论文虽然分属 RNA 设计、肺部 RNA 递送、免疫系统解析、复杂性状遗传调控和生殖细胞重组，但共同特点是都在试图把以往难观测、难设计或难解释的过程，转成可验证的结构、图谱或工程对象。\n\n如果按阅读优先级排序，AI/Agent 方向里最值得先读的是 DuMateBench 与 LiveSim。前者很可能直接影响今后大家如何声称“agent 在真实工作流中有效”，因为它触及评测外推性这个根问题；后者则切中一个常被忽略的难点：在高社会影响场景中，用户不是固定画像，而是被环境不断塑造，这对风控、推荐和平台干预模拟都很关键。SPT 值得紧随其后阅读，因为它可能提供比昂贵轨迹监督更可扩展的 agentic mid-training 数据路线；Decoupling Planning and Control 则更适合具身与多智能体研究者优先跟进，看其解耦是否真的带来泛化与实时性收益。\n\n生物方向里，信息最完整、方法与结论最明确的优先项是“Long-read sequencing reveals pre-meiotic gene conversion in sperm”和“Nonviral delivery of chemically modified tRNA rescues nonsense mutations in cystic fibrosis”。前者可能改写对人类 NCO 来源的理解，后者则是很典型的“分子工程 + 递送工程”耦合推进转化的工作。RNA pseudoknot 设计论文也值得高度关注，因为它代表一种很重要的方法学立场：不必等 3D 预测完全解决，也可以先在高难二级结构设计上取得可实验验证的进展。其余两篇 Nature 题目很强，但当前摘要不足，更适合先做信息补全后再决定是否深读。\n\n整体上，今天最值得科研人员关注的不是某个单点 SOTA，而是一个更清楚的趋势：无论 AI 还是生物，研究正在从“在理想化表征上做预测”走向“在真实约束下构造、检验并迭代修正可操作的机制假设”。这意味着后续阅读时应优先盯住三类证据：一是环境复杂性是否被保留下来而非被清洗掉，二是方法是否允许从偏差中更新机制假设，三是评测或实验是否真正支持外推到新环境、新用户或新样本。",
+    "themes": [
+      "从静态画像/静态任务转向“环境持续塑形”的动态系统：LiveSim 关注用户行为随直播互动不断被重塑，DuMateBench 强调真实工作流中的历史状态与噪声，具身工作则把语言规划与实时控制置于陌生环境中联合考察。",
+      "Agent 研究的瓶颈正从单次推理能力转向数据组织、环境保真评测与系统架构：SPT 解决训练数据来源，DuMateBench 解决评测真实性，Decoupling Planning and Control 解决规划-执行耦合失衡。",
+      "“真实结构不能丢”成为跨论文共识：SPT 强调多文件技能包的跨引用关系，DuMateBench 保留会话上下文和工作区状态，LiveSim 把环境-行为模式写入集体记忆，生物方向则通过长读长、化学映射、冷冻电镜等保留关键结构信息。",
+      "从观测偏差中反推缺失机制：LiveSim 用真实/模拟轨迹偏差挖掘遗漏的环境因素；精子长读长研究从与 PRDM9/DMC1 图谱不一致的模式提出减数分裂前基因转换；政策评论则直接指出结论可能建立在选择性假设和证据解释不一致上。",
+      "生成式与深度学习方法正更多承担“设计”和“提出候选机制”而非只做预测：RNA pseudoknot 论文是直接设计可实验验证的分子，SPT 用技能包塑造 agentic 能力，具身工作用 VLM 产生高层计划。",
+      "转化研究越来越依赖多层工程协同：CF 的 sup-tRNA 工作不是单纯改 RNA 分子，也不是单纯改 LNP，而是分子活性与器官递送共同优化，这种耦合式设计值得跨领域借鉴。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "对比“技能包中期训练”与“工具轨迹监督”在 agent 泛化上的相对收益，做一个小规模复现实验",
+        "why": "SPT 的核心主张是可用公开技能资源替代昂贵轨迹数据，但真正关键的问题是这种收益来自技能内容本身，还是来自样本组织方式。一个小规模复现可帮助判断该路线是否值得投入更大训练预算。",
+        "first_step": "选一个开源基础模型和少量公开 skill package，构造两套 mid-training 数据：一套保留多文件引用结构，一套打散为平铺文本；在同一后训练 recipe 下比较简单工具使用基准和通用能力基准。",
+        "risk": "公开 skill package 的清洗和组装成本可能很高；若模型过小或训练步数不足，差异可能不显著。"
+      },
+      {
+        "idea": "基于现有用户行为日志，做“静态画像模型 vs 环境修正模型”的离线偏差分析",
+        "why": "LiveSim 提出的关键命题是环境因素会持续重塑用户行为。很多团队已有静态用户画像或序列模型，但未系统检验误差是否集中来自环境状态变化。这个分析成本低、回报高。",
+        "first_step": "在一个已有日志数据集上，先训练只看个体历史的基线模型，再加入直播间互动强度、他人行为、平台干预等上下文变量，比较不同时间窗口和不同风险事件上的预测误差分解。",
+        "risk": "如果日志中环境变量记录不全，可能只能看到相关性而难以支撑“塑形因素”解释；离线评估也不能完全替代模拟质量验证。"
+      },
+      {
+        "idea": "搭建一个“保留会话历史与工作区状态”的轻量 agent 评测集，检验现有基准是否高估能力",
+        "why": "DuMateBench 提醒我们，很多 agent 在清洁环境里表现好，但遇到历史状态、配置残留和噪声就失效。即使无法直接使用其数据，也可以在本地任务中验证这一点。",
+        "first_step": "从团队内部或公开教程任务中选取 20-30 个多步任务，分别构造“干净重置版”和“带历史状态版”，用同一 agent 配置对比完成率、重试次数和错误类型。",
+        "risk": "样本量较小时结论可能不稳；内部任务的复杂度和代表性可能不足，难与公开基准对齐。"
+      },
+      {
+        "idea": "做一个解耦式具身/软件 agent 原型：高层语言规划器 + 低层确定性执行器，测试是否优于端到端单代理",
+        "why": "规划与控制解耦不一定只适用于机器人，也可能适用于复杂软件工作流。高层负责生成稀疏计划，低层执行器负责状态跟踪和快速重试，可能提升稳定性与可解释性。",
+        "first_step": "在一个桌面自动化或网页任务集合上，实现高层 LLM 只输出子目标列表，低层脚本执行器负责动作与恢复；与单一 ReAct 式 agent 比较成功率和 token/时间成本。",
+        "risk": "任务若过于简单，解耦优势不明显；若低层执行器过弱，系统会因为接口设计不当而表现更差。"
+      },
+      {
+        "idea": "整理“RNA 设计不依赖精确 3D 预测也能成功”的证据链，形成一篇短综述或组会报告",
+        "why": "RNA pseudoknot 工作背后的方法论价值很高：先抓住可验证中间层结构，再逐步逼近 3D。这个思路对蛋白、材料和合成生物设计都可能有启发。",
+        "first_step": "收集该论文及其引用/被引中关于二级结构驱动设计、化学映射验证、补偿性突变验证的代表工作，按‘设计目标—模型约束—实验验证’三栏做文献表。",
+        "risk": "若不阅读全文，容易把个案夸大为普遍规律；跨领域类比也可能过度。"
+      },
+      {
+        "idea": "做一个“分子工程 + 递送工程”协同优化案例库，比较哪些转化项目真正受益于双轮驱动",
+        "why": "CF sup-tRNA 论文很适合作为转化研究范式案例。系统整理类似工作，可帮助识别哪些项目失败是因为只优化了分子而忽略递送，或反之。",
+        "first_step": "从近三年 RNA/LNP、寡核苷酸、基因编辑递送论文中各选 10-20 篇，编码其优化维度、体内外验证层级和功能终点，做一个简单矩阵比较。",
+        "risk": "不同治疗模态之间可比性有限；文献中的负结果发表偏倚会影响归纳。"
+      }
+    ],
+    "papers": {
+      "arxiv:2608.26849v1": {
+        "summary": "这篇论文提出 LiveSim，一个面向直播生态系统的 LLM 用户行为模拟框架，目标是在多智能体直播场景中模拟会被互动环境持续塑造的用户行为。其核心任务不是仅依赖静态用户画像做个体预测，而是通过真实轨迹与模拟轨迹的偏差，逐步修正用户行为假设，并支持平台风险演化与干预效果分析。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：第一，将直播用户表示为可编辑的“行为假设”，而不是固定画像，以适应高社交强度环境下行为随场景变化而重塑的特点；第二，提出基于轨迹对齐/偏差发现的迭代修正机制，把模拟与观测轨迹之间的差异解释为缺失的环境塑形因素；第三，进一步把这些因素抽取为可迁移的“环境-行为模式”，存入集体行为记忆，用于提升个体级行为保真度，并支撑生态级风险控制分析与平台干预评估。",
+        "details": "研究对象非常具体：直播平台中的多智能体生态系统，尤其是用户行为会被主播、弹幕互动、平台氛围、风控措施等环境因素持续影响的场景。摘要明确指出，现有方法通常从历史观测中推断静态用户画像，但这在直播这种强互动、快反馈、社会影响显著的环境里不足，因为用户偏好、表达方式、参与强度甚至风险行为都会被现场情境重塑。论文因此尝试用 LLM 建立一种可被在线修订的用户模拟器。\n\n方法线索也较具体。作者把用户表示成“editable behavioral hypotheses”，可理解为：对每个用户当前行为机制给出一个可修改的文字化或结构化假设，然后让该假设在“trajectory-grounded interactions”中接受检验。这里的轨迹应当是用户在直播场景中的行为序列，例如进入直播间、停留、互动、消费、评论、触发风控信号等；模拟轨迹与真实观测轨迹不一致时，系统将差异归因为尚未建模的环境塑形效应，例如群体情绪、主播策略、他人行为感染、平台规则提示或风险事件刺激。随后，框架把这类差异信号提炼成可迁移的环境-行为模式，并保存在“collective behavioral memory”中，供其他用户或后续场景调用。这意味着它不仅做单用户拟合，也在积累跨用户、跨情境的行为知识。\n\n证据线索方面，摘要说明实验基于“real-world live-stream risk-control data”，说明应用背景与风险控制直接相关，可能涉及异常互动、诱导消费、刷量、违规传播或用户风险扩散等任务。作者声称该方法提升了用户级行为保真度，并能进行生态级的风险演化和平台干预效果分析。需要注意，这里我们只能确认论文报告了这些方向的有效性，无法从摘要得知具体指标、对比基线、数据规模、风险类型定义或干预实验设计。\n\n与用户方向的关系很强：这不是一般的 agent 仿真，而是关注“用户如何被环境塑造”这一用户建模问题。对做人机交互、推荐系统、平台治理、计算社会科学、风险控制的人而言，这篇论文的价值在于把用户建模从静态属性预测推进到动态情境适应，并试图把微观个体行为与宏观生态演化连接起来。\n\n但有几项关键信息仍需阅读全文核对：1）“行为假设”到底是纯文本 persona、规则模板，还是带结构槽位的可编辑状态；2）环境-行为模式如何抽取，是否由 LLM 直接归纳，还是结合显式统计/检索；3）集体行为记忆的组织形式是什么，如何避免错误迁移与记忆污染；4）用户级保真度的评测指标是什么，是序列相似度、事件命中率、风险标签预测，还是人工评估；5）生态级分析如何验证，是否有反事实干预实验、离线回放或真实平台策略对照；6）风险控制数据是否存在隐私、偏差和外推边界问题。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在直播这种高互动、强社会影响、多主体耦合的环境中，如何模拟会被实时情境持续塑造的用户行为。更细地说，作者关注传统基于历史数据构建的静态用户画像为何不足，以及如何让模拟器在看到真实行为轨迹后，识别出遗漏的环境影响因素，进而提升个体行为仿真和整体生态分析能力。",
+          "method": "根据摘要，可能的方法流程是：先为每个用户建立一个可编辑的行为假设；再在直播多智能体场景中生成模拟交互轨迹，并与真实观测轨迹对齐；对模拟与观测之间的偏差进行归因，挖掘用户行为中尚未被建模的环境塑形因素；把这些因素抽象为可复用的环境-行为模式，写入集体行为记忆；随后在新用户或新场景中检索和迁移这些模式，继续修正行为假设。实验数据应来自真实直播平台的风控数据，任务可能包括用户行为序列拟合、风险演化分析、平台干预效果模拟等。",
+          "strengths": "最值得关注的亮点有三点。第一，它明确针对直播生态这一环境塑形强、静态画像失效明显的对象，问题定义贴近真实平台。第二，它把“模拟偏差”从单纯误差转化为发现缺失环境因素的信号，这个思路有助于把 LLM 模拟从黑箱生成推进到可迭代修正。第三，它引入集体行为记忆，意味着不仅优化单个用户拟合，还试图沉淀跨用户共享的环境-行为知识，从而支撑生态级风险分析和策略评估，这对平台治理和计算社会科学都很有应用价值。",
+          "weaknesses": "仅从题录和摘要看，需要警惕几类局限。第一，LLM 生成的行为假设与环境模式是否真实可解释、可验证，尚不清楚。第二，直播风控数据通常带有强平台偏置和任务特异性，因此方法的可迁移性、外部效度需要核对。第三，所谓生态级分析和干预效果评估如果仅基于离线仿真，可能难以证明反事实结论可信。第四，集体行为记忆可能带来错误模式传播、用户异质性被过度平均、以及风险标签放大偏见等问题。第五，摘要没有给出具体基线、指标和消融设计，因此当前无法判断性能提升来自动态修正机制本身，还是来自更大模型、更丰富提示或更强数据工程。",
+          "next_step": "最小可执行动作：第一，阅读全文时优先查方法图，确认“行为假设—轨迹偏差—环境模式—集体记忆”的具体数据流。第二，记录实验部分的任务定义、数据规模、风险类型、对比基线和评价指标，尤其看用户级保真度如何量化。第三，重点检查是否有消融实验验证可编辑假设、环境模式抽取和集体记忆三者各自贡献。第四，查看案例分析中环境塑形因素的具体例子，例如主播话术、群体互动或平台干预如何改变用户轨迹。第五，如果你关注用户建模或平台治理，可把这篇论文与静态 persona 仿真、agent-based simulation、反事实平台干预评估方法做一页对照笔记。"
+        }
+      },
+      "arxiv:2608.26563v1": {
+        "summary": "该论文提出Skill Pre-Training（SPT），面向会调用工具的agentic语言模型，在后训练之前利用公开技能包（skill packages）作为中期训练数据，以提升工具使用与多步代理任务表现。摘要显示其核心对象是包含多文件结构的SkillCorpus及其用于保持文件间关联的Reference Insert组装策略，并在多模型规模和多种post-training recipe下评估agentic性能与通用能力保持。",
+        "contribution": "核心贡献可能有三点：一是提出将公开“技能”而非仅工具调用轨迹用作agentic模型预训练/中期训练数据的新范式SPT；二是构建或整理了SkillCorpus这类多文件技能包语料，并强调其中编码了可复用的工具语义与工作流；三是提出Reference Insert这一参考感知的样本组装方法，把支持性文件插入到主指令相关位置附近，以保留包内跨文件关系，从而在agentic任务上优于仅用通用数据或轨迹数据的mid-training，同时尽量不损伤一般能力。",
+        "details": "从摘要看，论文关注的不是传统纯文本语言建模，而是“agentic/tool-using language models”在训练数据来源上的瓶颈：当前主要依赖工具调用轨迹和agent交互轨迹做后训练，这类数据带有直接行为监督，但生成成本高，因为需要真实任务环境、执行过程和结果验证。作者提出绕开这一瓶颈，转而使用公开可得的“技能”作为训练资源；这些技能以多文件包的形式存在，内部可能包含主说明、API/工具文档、辅助脚本、配置、示例等，能显式表达工具语义、调用约束和工作流结构。方法上，SPT似乎是一个mid-training阶段的因果语言建模方案，即在基础模型与后续agentic post-training之间插入一个专门阶段，使用SkillCorpus，且可与general data混合。为了避免把多文件技能包简单拼接导致跨文件引用关系丢失，作者又设计了Reference Insert：当主 instruction 或主文件中提到某个支持文件时，把该支持文件放在相关提及附近，而不是固定顺序平铺，这说明其重点是提升模型对“说明—依赖文件—工具语义”之间局部对齐的学习效果。证据线索来自摘要中的几类实验：多模型规模、多种post-training recipes、与general或trajectory data mid-training的比较、以及skill与general annealing数据混合实验。可确认的现象是：SPT“一致”提升agentic performance，并且“大体保留”general performance；同时skill data与general annealing的混合还有额外收益。与用户可能关心的方向关系上，这项工作直接相关于工具学习、代理LM训练数据构造、从文档/代码/技能资产中蒸馏工具使用能力，也和把推理时上下文知识前移为训练知识的思路有关。如果你关注agent、tool use、RAG式外部知识利用、或低成本扩展工具覆盖，这篇论文值得细看。需要核对的信息包括：SkillCorpus的具体来源与规模；“skill package”定义是否偏代码仓库、插件、自动化脚本还是教程；Reference Insert的具体算法与对照组；agentic评测基准具体是什么；“general annealing”混合策略的调度方式；以及“largely preserving general performance”对应哪些通用基准和下降幅度。",
+        "why_read": "来源为 arXiv，关键词匹配：language model、language models、agent、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：如何在不大量依赖昂贵的工具调用轨迹、环境执行与结果验证的前提下，为agentic语言模型提供覆盖更广工具与任务的训练数据，并有效提升其工具使用和代理式任务能力？更具体地说，作者在问：公开可得的技能资源能否作为训练信号，而不仅仅是推理时提示上下文；以及多文件技能包中的跨文件引用关系应如何组织，才能被因果语言模型有效吸收。",
+          "method": "可能的方法路径是：先收集公开技能包形成SkillCorpus，每个样本可能由主说明文件和若干支持文件组成；然后在基础模型上进行一个mid-training阶段，训练目标为causal language modeling。训练数据可以是纯skill数据，或与general data混合。为保留包内结构信息，作者提出Reference Insert，对多文件内容进行reference-aware assembly：识别主instruction中提到的辅助文件，并把对应文件内容插入到相邻位置，从而增强局部可学习性。实验上，作者应在多个模型规模上比较三类中期训练数据：general-only、trajectory-like data、skill data；再接不同的post-training recipes，测试agentic benchmarks，同时监测通用语言能力；另有数据混合/annealing实验，观察skill与general配比对结果的影响。",
+          "strengths": "亮点之一是训练数据视角的转变：把公开技能包视为可复用的“行为先验”，降低了对真实环境交互数据的依赖，若成立将显著改善工具覆盖扩展的成本结构。亮点之二是对象很具体，不是泛化的网页文本，而是编码工具语义与workflow的技能资产，这与agentic任务高度贴近。亮点之三是Reference Insert针对多文件引用关系这一实际难点给出专门组装策略，说明作者注意到数据结构而非仅数据量。亮点之四是摘要宣称跨模型规模、跨post-training recipe都有效，若实验扎实，则表明SPT不是某个模型/流程上的偶然技巧。亮点之五是“提升agentic性能且大体保持通用性能”这一平衡很有应用价值，因为agent专项训练常会牺牲一般语言能力。",
+          "weaknesses": "基于当前题录与摘要，首先无法判断SkillCorpus的数据质量、许可证、领域偏置与去重情况；若技能包多来自某些开发生态，模型可能学到的是特定工具栈而非普适agent能力。其次，摘要没有给出绝对提升幅度、统计显著性、以及最关键的评测任务名称，因而“一致提升”目前仍是作者主张，需要看表格核实。第三，SPT与trajectory data的比较可能受数据量、质量和阶段位置影响；如果对照不严格，结论可能混入训练token数或配方差异。第四，Reference Insert是否真正带来因果上的改进，还需看独立消融；否则效果可能主要来自更多相关上下文暴露而非引用保持本身。第五，所谓“保留general performance”需要警惕是否只在少量通用基准上成立，或是否存在长尾能力退化。最后，这项方法可能更适合文档化充分、可包化的工具技能，对需要实时环境反馈的决策型agent任务未必同样有效。",
+          "next_step": "最小可执行动作：第一，打开arXiv原文优先查三处内容——SkillCorpus定义/来源、Reference Insert示意图、主结果表；第二，记录对照组是否包含general mid-training、trajectory mid-training、skill+general mixture以及无Reference Insert版本；第三，核对agentic benchmark名称、提升幅度和通用能力基准；第四，如果你做agent训练，可尝试先在自己的工具文档或技能仓库上复现一个小规模SPT数据管线，把单文件拼接与reference-aware插入做A/B测试；第五，特别记录论文是否讨论与RAG/推理时技能检索的关系，因为这决定SPT是替代还是补充现有agent框架。"
+        }
+      },
+      "arxiv:2608.26546v1": {
+        "summary": "这篇论文提出了DuMateBench，一个基于真实生产平台匿名化用户会话重建的自主智能体评测基准，用于评估智能体在复杂真实工作流中的完成能力。基准包含200个任务、8类场景和17类细粒度能力，并在带有“信息不足、环境不稳定、噪声干扰”三类真实复杂性的Docker隔离环境中测试多种agent框架与LLM组合。",
+        "contribution": "从摘要看，论文的核心贡献在于把自主智能体评测从“按单一应用/单一能力切分、环境较干净稳定”的传统设置，推进到“保留真实历史交互、持久配置和工作区状态”的真实会话重建评测；同时设计了带现实环境扰动的执行环境，并采用“确定性规则+LLM裁判”的混合评估协议，对多种代表性agent框架和前沿LLM进行系统比较。",
+        "details": "研究对象非常具体：不是一般性的LLM问答或单轮工具调用，而是“复杂、真实世界、多工具协同工作流中的自主智能体”。从题名和摘要看，DuMateBench的任务来源于一个大规模生产级agent平台中的真实用户会话，这意味着任务分布更接近真实部署场景，而非研究者手工构造的理想化脚本。论文特别强调每个任务会保留“与解题相关的前序交互历史、持久化配置、工作区状态”，这说明其评测单位可能是一个带上下文依赖的完整session片段，而不是脱离上下文的单步目标。数据规模上，200个任务横跨8个宽场景与17个细粒度能力类别，且多数任务需要多能力协同，这一点直接指向agent系统中的组合泛化与流程编排问题。方法线索上，作者似乎先对真实会话做匿名化和隐私筛查，再进行任务重建，并通过人工验证确保任务可用性；执行时把任务部署到隔离的Docker容器，并注入三种现实复杂性：Insufficient、Unstable、Noisy。仅凭摘要无法完全确定三者的操作化定义，但可合理推断：Insufficient可能对应信息、依赖、权限或说明不充分；Unstable可能对应服务/接口/环境状态波动；Noisy可能对应日志、文件、对话或工作区中的干扰信息。评测方面，混合使用确定性指标和LLM-as-Judge，说明部分任务可通过脚本、状态检查或输出匹配自动判分，而另一些更开放的任务需要语义层面的裁判。实验对象包括5种代表性自主agent框架与4个SOTA LLM，摘要称结果显示存在“显著差距”，但当前元数据没有提供具体数值、排名、误差范围或失败类型，因此不能进一步声称谁最好。与科研读者的关系在于：如果你的方向是智能体、工具使用、真实环境评测、工作流自动化或鲁棒性测试，这篇论文很值得优先关注，因为它同时涉及真实任务来源、环境复杂性注入和跨框架对比。需要重点核对的信息包括：8个场景与17类能力的具体定义；200个任务的分布是否均衡；三类复杂性的精确定义与注入方式；混合评估协议的一致性、可重复性和裁判偏差控制；五种agent框架和四个LLM的具体名单及配置；所谓“substantial gap”是相对人类、相对任务上限，还是模型之间的差距。",
+        "why_read": "来源为 arXiv，关键词匹配：llm、agent、agents、autonomous agent、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：现有自主智能体基准往往把任务按应用或能力拆开评测，且运行环境过于干净稳定，无法反映生产中真实用户工作流的上下文依赖、多工具协同和环境扰动；因此需要一个能重建真实session、保留历史状态并显式注入现实复杂性的评测基准，以更可靠地衡量agent在真实工作流中的能力与短板。",
+          "method": "从摘要推测，方法路径包括四步。第一，从大规模生产agent平台收集匿名化、经过隐私筛查的真实用户会话，并重建为可评测任务。第二，为每个任务保留关键上下文，包括前序交互历史、持久配置和工作区状态，再由人工验证任务有效性。第三，在隔离Docker容器中执行任务，并人为注入三类环境复杂性：信息/条件不足、环境不稳定、噪声干扰。第四，使用混合评测协议：对可结构化验证的结果采用确定性判分，对开放性结果使用LLM-as-Judge；然后在5个agent框架×4个LLM的组合上开展对比实验。",
+          "strengths": "最值得关注的亮点有四点。其一，任务来源于真实生产会话，而非纯人工合成，提升了生态有效性。其二，任务不仅给目标，还保留历史交互、配置和工作区状态，更接近agent实际面对的长期上下文问题。其三，显式注入Insufficient、Unstable、Noisy三类复杂性，使评测从“能力展示”转向“现实鲁棒性测试”。其四，覆盖8类场景、17类能力且多数任务要求多能力协同，这比单能力benchmark更能暴露规划、检索、工具使用、状态管理和容错恢复之间的耦合问题。",
+          "weaknesses": "仅根据题录和摘要，需要警惕几个边界。第一，200个任务对真实世界广泛工作流是否足够覆盖仍需看任务分布和难度层次。第二，真实生产会话的重建虽然真实，但也可能带来平台特定偏置，跨平台泛化性需要核对。第三，LLM-as-Judge在开放任务中可能存在裁判漂移、偏好和一致性问题，需查看校准方法。第四，三类复杂性的定义和注入强度如果不透明，可能影响结果解释。第五，摘要提到性能存在显著差距，但未给出具体失败模式，因此目前还不能判断瓶颈更偏向规划、工具调用、上下文记忆还是环境恢复。",
+          "next_step": "最小可执行动作：第一，拿到论文后优先查任务构建流程图、8个场景/17个能力的定义表、样例任务和评分协议。第二，记录三类复杂性的精确定义与注入实现，判断是否能迁移到你自己的agent评测环境。第三，查看5个agent框架和4个LLM的完整名单、超参和工具配置，避免把结果误解为纯模型能力差异。第四，重点找错误分析图表，确认失败主要发生在哪些场景和复杂性条件下。第五，如果你做agent benchmark或工作流自动化，可先尝试复现其中一个Docker任务模板和一种复杂性注入方式，作为本地评测扩展的起点。"
+        }
+      },
+      "arxiv:2608.26788v1": {
+        "summary": "这篇论文围绕“可被语言指挥的具身智能体”提出一种将高层规划与低层控制解耦的系统 Instruct-to-Act：用预训练、指令微调的视觉语言模型负责从指令和观测生成稀疏的高层文本计划，再由世界模型控制器在陌生环境中以高频率将这些文本指令落实为低延迟动作序列。根据摘要，作者在七个具身环境上评测该框架，其中包含三个多智能体环境，重点考察语言规划器与快速控制器在相同观测/动作空间下的协同效果。",
+        "contribution": "从摘要可见，论文的核心贡献可能有三点：第一，提出一种明确解耦规划与控制的具身代理架构，把VLM的开放式任务指导能力与世界模型控制器的快速闭环控制能力组合起来；第二，为了让控制器能够“听懂”高层语言指令，作者通过对控制器 rollout 片段进行合成指令重标注，并将行为克隆目标与原有的奖励最大化、世界建模目标联合优化；第三，将该方法扩展到多智能体场景，使多个VLM规划器能够通过语言协调，而训练得到的控制器充当各自执行器，这对多体协作任务具有较强方法学意义。",
+        "details": "从题名和摘要判断，这篇工作针对的不是“让大模型直接端到端输出动作”，而是更具体地解决一个在具身任务中很常见的失配问题：VLM擅长根据自然语言和视觉输入给出高层计划，但其动作输出往往延迟高、控制不稳定、在新环境中鲁棒性不足；相反，世界模型类控制器能够以高频率从观测映射到动作，但缺乏开放词汇、开放任务的指令接口。论文的研究对象因此是一个分层具身系统，其中高层是文本规划器，低层是可被文本条件化的控制器。\n\n方法线索比较明确。作者似乎首先保留了已有世界模型控制器的训练目标，包括奖励最大化和世界建模；然后额外引入“语言可指挥性”的训练信号：把控制器策略 rollout 的片段用合成文本指令进行重标注，再通过行为克隆让控制器学习在给定这些高层文本时复现合适行为。这意味着训练数据很可能不需要大规模人工语言标注，而是依赖程序化或模型生成的 instruction relabeling。推测其核心输入输出形式是：规划器低频地产生稀疏文本子目标/子策略描述，控制器在若干时间步内条件于该文本和当前观测自主执行。\n\n证据线索主要来自摘要中的几个具体点。其一，作者强调“sparse, higher-latency, and high-level text instructions”与“fast observation-to-action control”的结合，说明系统设计重点在于时序尺度分离：高层慢、低层快。其二，评测覆盖七个 embodied environments，且包含三个 multi-agent environments，说明论文不仅想验证单智能体中的控制稳定性，也想验证语言作为跨智能体协调接口的可扩展性。其三，摘要提到“under matched observation and action spaces, our decoupled approach...”，虽然后半句被截断，但可合理推断作者在尽量公平的设定下与某些端到端基线进行了比较，强调在相同感知和动作条件下，解耦式方案更优或更稳。\n\n如果你的研究方向与语言模型智能体、机器人控制、世界模型、分层强化学习或多智能体协作有关，这篇论文值得关注的原因在于：它没有把语言模型硬塞进低层控制环，而是把语言模型放在更适合的位置——做高层语义规划，再让专门训练的控制器实现低延迟执行。这种设计对真实机器人和仿真具身系统都很实用，因为它兼顾开放任务泛化与控制频率要求。同时，利用合成指令重标注把已有控制策略“语言化”，也是一个有潜力的训练范式，可能适合迁移到已有RL或world-model agent上。\n\n但基于现有元数据，仍有多处必须核对。首先，不清楚世界模型控制器具体是哪一类：是Dreamer系、latent dynamics model、MPC式世界模型，还是别的控制器。其次，合成指令如何生成、粒度如何定义、是否依赖额外VLM/LLM、生成指令的质量如何控制，这会直接影响方法可复现性。第三，七个环境的具体名称、任务难度、观测模态、动作空间形式、是否有真实机器人实验，目前都未知。第四，多智能体设置中“VLM planners coordinate through language”究竟是共享全局视角还是局部观测、是显式通信协议还是自由文本交流，也需要读正文核对。第五，摘要没有给出定量结果，因此目前不能判断相对提升幅度、样本效率、推理延迟和失败模式。第六，还需要确认所谓“matched observation and action spaces”比较的是哪些基线：纯VLM policy、纯world-model policy、分层RL，还是其他语言条件控制方法。",
+        "why_read": "来源为 arXiv，关键词匹配：language model、language models、agent、agents、vision-language、vlm、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：在具身环境中，如何让智能体既能理解开放式自然语言任务并做高层规划，又能在陌生环境里稳定、快速地执行低层动作？更具体地说，它要解决VLM规划能力强但动作控制不可靠、世界模型控制快但难以接受开放式任务指导之间的矛盾，并探索这种解耦框架是否同样适用于多智能体语言协调任务。",
+          "method": "从摘要推断，方法由两个主要模块组成。高层模块是预训练且指令微调过的VLM planner，输入可能包括用户指令和环境观测，输出稀疏的高层文本指令或子目标。低层模块是world-model controller，在每个高频控制步接收当前观测以及最近一次高层文本指令，自主产生动作。训练上，作者似乎使用控制器已有的世界建模与奖励优化目标，并额外对控制器的策略 rollout 片段进行 synthetic instruction relabeling，再加上 behavior cloning 目标，让控制器学会把文本指令映射为可执行行为。实验上，论文在七个具身环境中测试该系统，并包含三个多智能体环境，在那里多个VLM规划器通过语言协调，各自控制器负责执行。",
+          "strengths": "最值得关注的亮点有三点。第一，方法抓住了具身系统中“语义规划”和“实时控制”时序需求不同这一关键事实，用解耦架构避免让VLM直接承担高频控制。第二，语言可指挥控制器的训练方式较实用：通过对已有rollout进行合成语言重标注，可能减少人工配对数据需求，使现有控制器更容易接入自然语言接口。第三，多智能体扩展很有价值，因为语言天然适合作为协调信道；如果控制器已学会执行文本子目标，那么VLM之间的协作规划就能与底层执行模块较自然地组合。",
+          "weaknesses": "基于摘要需要警惕的点包括：第一，缺少具体实验结果，无法判断提升是否显著、稳健还是仅在特定环境有效。第二，synthetic instruction relabeling 的质量和覆盖度可能成为瓶颈，若指令与真实可执行语义不一致，控制器可能只学到表面相关性。第三，分层系统往往依赖高层指令更新频率、文本粒度和子目标分解质量，这些超参数可能强烈影响性能。第四，多智能体场景虽吸引人，但若环境较简化，语言协调的结论未必能直接外推到现实机器人协作。第五，目前不知道比较基线是否充分，尤其是否和强端到端分层策略、语言条件RL或其他VLM-agent控制方法做了公平对照。",
+          "next_step": "最小可执行动作建议是：第一，先查看论文正文中的系统框图和训练目标公式，确认VLM planner与world-model controller的接口形式以及联合优化项。第二，定位七个环境和三个多智能体环境的具体名称、观测/动作设定和评测指标，记录哪些是导航、操控、协作或游戏类任务。第三，重点查 synthetic instruction relabeling 的实现：指令模板来源、自动生成流程、是否使用额外模型、示例指令长什么样。第四，核对摘要中“matched observation and action spaces”对应的基线和定量结果表。第五，如果你做复现，可先抽取单个环境做简化版验证：固定一个高层文本子目标生成器，只实现语言条件控制器，测试稀疏文本提示是否能稳定驱动高频动作。"
+        }
+      },
+      "doi:10.1126/science.aeb0054": {
+        "summary": "这篇Science论文聚焦囊性纤维化中由无义突变导致的CFTR功能缺失，提出用经位点特异化学修饰的抑制型tRNA（sup-tRNA）结合肺部递送优化的脂质纳米颗粒（LNP），在细胞、动物和患者来源类器官中促进PTC读穿并恢复CFTR表达与功能。其核心任务是同时解决sup-tRNA体内活性不足和肺部非病毒递送效率低这两个转化瓶颈。",
+        "contribution": "核心贡献在于把两条技术路线耦合起来：一是通过在sup-tRNA中引入N1-甲基腺苷提升无义密码子读穿、氨酰化效率、作用持续时间并降低先天免疫激活；二是通过高通量离子化脂质筛选与配方优化，得到适配sup-tRNA货物的肺部LNP，实现对CFTR无义突变的功能性救援。若摘要表述成立，这项工作把“化学工程化tRNA+器官定向LNP递送”推进为可扩展的无义突变治疗平台，而不仅是单一CFTR案例。",
+        "details": "从摘要看，研究对象非常明确：疾病是囊性纤维化，分子靶点是携带提前终止密码子（PTC）的CFTR转录本，治疗分子是抑制型tRNA，递送场景是肺部。论文试图跨越两个已知障碍：第一，sup-tRNA本身读穿活性、稳定性和生物相容性不足；第二，RNA类货物在肺内体内递送效率有限。作者的解决方案不是单纯提高剂量，而是对tRNA分子和LNP载体同时做工程化设计。摘要中最具体的化学线索是“N1-甲基腺苷”被位点特异性引入sup-tRNA，这一修饰带来了四类效果：提高PTC读穿、增强tRNA氨酰化、延长功能持续性、降低先天免疫激活。这说明作者至少建立了化学修饰位点设计与功能读出的因果联系，且评价指标不仅包括终点蛋白恢复，也包含更靠近机制层的tRNA装载/加工与免疫反应。递送部分则通过“高通量离子化脂质筛选和配方优化”获得面向sup-tRNA货物的肺部LNP，提示他们并非沿用通用mRNA-LNP，而是针对tRNA这一较小、结构高度折叠、带有特殊化学修饰的RNA货物做专门配方开发。证据链按摘要可分为三级：在支气管上皮细胞中恢复CFTR表达和功能；在小鼠模型中证明肺部递送和体内救援；在患者来源类器官中验证与临床相关的功能恢复。对于从事RNA治疗、递送系统、无义突变疾病或CFTR研究的读者，这篇文章值得重点关注的不是“readthrough”概念本身，而是化学修饰tRNA与肺靶向LNP之间是否存在协同优化，以及这种平台能否推广到其他PTC疾病。需要核对的信息包括：具体针对哪些CFTR无义突变位点、sup-tRNA识别的是哪类终止密码子、N1-甲基腺苷修饰的精确位置与数量、LNP肺部富集和细胞类型分布、功能恢复幅度与持续时间、安全性窗口、与小分子读穿药物或基因编辑方案的直接对照。由于目前只有题名和摘要，无法判断其统计规模、效应量、重复性和长期毒理结论。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：如何让抑制型tRNA在体内，尤其是肺部，有足够高的递送效率、读穿活性和持续性，从而有效纠正囊性纤维化中CFTR无义突变造成的提前终止，而又不过度诱导免疫反应。更细一点说，它针对的是sup-tRNA临床转化中的两个卡点：分子层面的功能不足，以及非病毒肺递送体系与该类RNA货物不匹配。",
+          "method": "根据摘要，方法路线大致包括两部分。第一部分是sup-tRNA化学工程：对抑制型tRNA进行位点特异化学修饰，关键修饰为N1-甲基腺苷，然后评估其对PTC读穿、tRNA氨酰化、功能持续时间和先天免疫激活的影响。第二部分是递送工程：开展离子化脂质高通量筛选，并进一步做LNP配方优化，目标是得到适配sup-tRNA的肺部递送系统。验证体系至少覆盖支气管上皮细胞、小鼠模型和患者来源类器官，终点包括CFTR表达恢复和功能恢复；功能读出很可能涉及离子转运相关测定，但摘要未给出具体实验名称。",
+          "strengths": "亮点之一是把RNA货物本身的化学修饰与纳米载体筛选联动优化，而不是只在单一层面改进。亮点之二是摘要给出的机制和表型证据较完整：既有更近端的氨酰化和免疫激活指标，也有更远端的CFTR表达与功能恢复。亮点之三是验证层级较强，覆盖细胞、小鼠和患者来源类器官，说明作者试图建立从机制到转化相关模型的连续证据链。亮点之四是应用场景明确，肺部LNP直指囊性纤维化主要受累器官，具备较清晰的临床转化指向。",
+          "weaknesses": "基于题录和摘要，首先无法判断效应量到底有多大，例如CFTR功能恢复到正常水平的百分比、是否达到潜在临床获益阈值、作用维持多久。其次，sup-tRNA诱导读穿可能带来非目标终止密码子的误读风险，摘要未说明全转录组或蛋白组层面的脱靶评估。第三，肺部递送虽然高相关，但不同肺细胞类型摄取差异、黏液屏障影响、重复给药耐受性和慢性炎症背景下的表现均未在摘要中体现。第四，患者来源类器官虽有临床相关性，但样本数、突变谱覆盖度和个体间差异未知。第五，N1-甲基腺苷修饰的普适性边界不清楚：是否适用于不同sup-tRNA骨架、不同终止密码子以及不同疾病基因，还需要正文和补充材料核实。",
+          "next_step": "最小可执行动作建议有五个：第一，优先查看摘要对应的主图和扩展数据，记录N1-甲基腺苷修饰位点、sup-tRNA类型及其对应的终止密码子。第二，查明LNP筛选终点是什么，是肺组织总递送、特定上皮细胞递送，还是功能性CFTR恢复。第三，提取所有功能恢复的定量数据，特别是支气管上皮细胞、鼠肺和患者类器官中的恢复幅度与持续时间。第四，专门找安全性和脱靶证据，包括免疫激活、重复给药、正常终止密码子误读评估。第五，如果你的方向是RNA递送或无义突变治疗，可建立一个对照表，把该工作与小分子readthrough、AAV递送sup-tRNA、碱基编辑/prime editing在CFTR无义突变中的优缺点并列比较。"
+        }
+      },
+      "doi:10.1126/science.aeg6829": {
+        "summary": "这篇Science论文聚焦RNA假结二级结构的从头设计，主张在尚未准确解决RNA三维结构预测的情况下，借助深度学习与生成式AI也能设计出能形成正确假结并进一步折叠为有序3D结构的RNA分子。论文以一个包含57个假结目标的Eterna盲测竞赛为核心场景，比较AI与资深人类设计者，并用单核苷酸分辨率化学映射、补偿性突变和冷冻电镜提供验证线索。",
+        "contribution": "核心贡献在于提出并初步验证了一条不同于“先解决RNA 3D预测再做设计”的路线：直接针对困难的RNA假结二级结构进行生成式设计，并利用一个基于既有化学映射数据训练的RNet基础模型来提高成功率。若摘要表述成立，其贡献不仅是设计出一批具体假结RNA，还显示AI在盲设计任务中可接近有经验的人类设计者，且设计得到的分子能够自发形成设计时未显式建模的非经典三级相互作用与有序三维折叠。",
+        "details": "从题名和摘要看，研究对象非常明确：是含假结(pseudoknot)的RNA，而不是一般无假结RNA；任务也很具体：在盲测条件下做de novo设计，使目标RNA获得正确的假结二级结构，并进一步观察其是否形成稳定、有序的三维构象。摘要强调RNA设计长期受限于3D结构预测准确性不足，因此本文的重要方法学立场是“绕开对完整3D可预测性的依赖”，先利用当前深度学习工具解决更可操作但又很难的假结设计问题。方法线索上，论文似乎结合了生成式AI方法与一个名为RNet的foundation model；后者训练数据不是结构数据库本身，而是“prior chemical mapping data”，说明模型可能学习了序列-结构-化学探针响应之间的统计规律，并被用于筛选、评分或指导候选序列设计。证据链方面，摘要给出三层验证：其一，单核苷酸分辨率化学映射，说明至少对二级结构匹配进行了较细粒度评估；其二，补偿性突变，说明作者试图检验配对关系的因果性而非仅凭单一样本表型判断；其三，冷冻电镜，说明至少部分代表性分子被观察到具有“well-ordered 3D folds”，把设计成功从二级结构层面推进到三维有序折叠层面。一个很值得科研读者注意的现象是：这些AI生成的RNA在设计阶段并未显式建模非经典三级相互作用，但实验上却出现了由这些相互作用稳定的三维折叠，这意味着模型可能通过学习实验数据中的隐含统计模式，间接捕捉了有利于高级折叠的序列/局部结构特征。与相关研究方向的关系上，如果读者从事RNA设计、结构生物学、化学探针映射、生成模型或Eterna众包设计，这篇工作可能代表一个转折点：对某些设计任务而言，经验性高通量数据驱动模型也许能先于精确物理建模发挥实用价值。不过基于目前仅有摘要，仍需重点核对若干信息：57个假结目标的难度分布如何；“matched experienced human designers”具体是整体成功率相近、头部任务相近，还是在“most blind challenges”中达到可比水平；RNet在整个流程中是生成器、判别器、重排序器还是联合优化器；冷冻电镜验证了多少个构型、分辨率多高、是否存在构象异质性；以及所谓“当前深度学习工具”是否包括多个模型、是否与规则法或传统能量模型进行了系统对照。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在RNA三维结构预测仍不够准确的前提下，是否仍然能够对最具挑战性的RNA假结二级结构进行从头设计，并得到在实验上真实形成目标配对关系、甚至进一步折叠成稳定有序三维结构的RNA序列；同时，它也在问生成式AI能否在此类盲设计任务中达到资深人类设计者的水平。",
+          "method": "从摘要可推断的方法路径大致为：先构建或调用生成式AI设计流程，面向57个Eterna假结盲挑战生成候选RNA序列；再借助RNet基础模型进行指导，RNet的训练基础是既有化学映射数据，因此可能用于预测候选序列是否会产生与目标结构一致的实验响应或折叠特征；随后通过单核苷酸分辨率化学映射验证目标二级结构，通过补偿性突变测试关键碱基配对的稳健性与可恢复性，并对部分成功案例使用冷冻电镜考察是否形成有序3D折叠及相关非经典三级相互作用。",
+          "strengths": "最突出的亮点有四点。第一，任务选择很硬：假结是RNA设计中的经典难点，较能体现方法上限。第二，评估场景是Eterna盲测而非纯回顾性基准，减少了只在已知数据上拟合的说服力不足问题。第三，证据链跨越二级结构到三维结构，且包含化学映射、补偿性突变和冷冻电镜，说明作者意识到“设计成功”不能只靠单一预测指标。第四，RNet以化学映射数据为训练基础这一点很有价值，暗示实验数据驱动的基础模型可能比单纯依赖结构计算更早在RNA设计中落地。",
+          "weaknesses": "基于题录和摘要，仍需警惕几个边界。第一，摘要没有给出定量成功率、显著性、失败案例类别和与基线方法的具体差距，因此“matched experienced human designers”与“solving most blind challenges”的强度需要原文核实。第二，冷冻电镜只说明存在有序3D折叠，不代表所有设计都达到高分辨率或单一构象。第三，设计目标聚焦假结二级结构，能否推广到更大RNA、功能RNA或多稳定态RNA仍未知。第四，RNet训练于既有化学映射数据，可能存在数据分布偏倚、实验条件依赖性或对特定家族结构更有利的问题。第五，摘要强调未显式建模非经典三级相互作用却得到稳定折叠，这很吸引人，但也可能意味着成功依赖训练数据中隐含先验而非可解释设计原则。",
+          "next_step": "最小可执行动作建议有五个。第一，拿到正文后先查主结果图和补充材料，记录57个假结目标的逐项成功/失败情况与评分标准。第二，重点定位RNet在流程中的角色，画出“生成—筛选—实验验证”的方法框图。第三，查看是否有与传统RNA能量模型、无RNet版本、纯人类Eterna设计的对照表，提取可复述的定量指标。第四，检查冷冻电镜只覆盖哪些代表性分子、分辨率与构象异质性如何，以免把个例误当普遍结论。第五，如果你做相关研究，可选取一两个公开的假结目标，尝试复现实验前的计算设计与化学映射预测流程，评估该思路对自己体系是否可迁移。"
+        }
+      },
+      "doi:10.1126/science.aef0464": {
+        "summary": "Correcting the logic behind the 2026 US vehicle emissions standard rollback。摘要要点：Correction of selective assumptions and inconsistent interpretations of evidence would overturn policy justification",
+        "contribution": "摘要中最具体的线索是：Correction of selective assumptions and inconsistent interpretations of evidence would overturn policy justification 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Correcting the logic behind the 2026 US vehicle emissions standard rollback”。摘要中可用的信息是：Correction of selective assumptions and inconsistent interpretations of evidence would overturn policy justification 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Correcting the logic behind the 2026 US vehicle emissions standard rollback”展开；摘要线索显示问题可能与 Correction of selective assumptions and inconsistent interpretations of evidence would overturn policy justification 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-10753-8": {
+        "summary": "这是一篇发表于Nature、题为“Systems vaccinology and the architecture of human immunity”的论文，从题名判断，主题聚焦于用系统疫苗学框架解析人类免疫系统的组织架构，并讨论疫苗诱导免疫反应的多层级特征。由于当前未提供摘要、关键词和正文信息，无法确认其具体研究对象是某类疫苗、某个人群队列，还是一篇综述/观点性文章。",
+        "contribution": "基于题名和期刊来源，论文的核心贡献很可能是把“系统疫苗学”与“人类免疫架构”联系起来，尝试提出一套关于人类免疫反应如何被高维组学、细胞网络和疫苗应答共同刻画的框架性认识；但在摘要为空的情况下，无法确定其是提出新数据、新模型、新分析流程，还是对既有证据的综合评述。",
+        "details": "从题名看，研究对象非常明确地指向“人类免疫系统”以及“疫苗诱导的免疫应答”，任务则是理解免疫系统的“architecture”，即组成层级、网络关系、个体差异来源及其与疫苗应答之间的映射。作者为Bali Pulendran，其学术背景通常与先天免疫、疫苗免疫学和系统层面的免疫分析相关，因此该文很可能围绕系统疫苗学中的多组学测量、免疫细胞状态、早期分子特征与后续抗体/细胞免疫结局之间的联系展开。可能的方法线索包括：在接种前后收集人群样本，整合转录组、蛋白组、细胞因子谱、流式/单细胞免疫表型、抗体滴度、T细胞反应等数据；使用网络分析、机器学习、纵向统计建模或免疫特征降维来识别与保护性免疫或应答异质性相关的模式。如果这是综述或观点文章，则更可能总结过去系统疫苗学如何揭示年龄、性别、既往感染史、微生物组、代谢状态和遗传背景对疫苗免疫的影响，并提出“人类免疫架构”的概念框架。与科研人员的关系在于：如果你的方向涉及疫苗免疫学、转化医学、多组学分析、免疫表型建模或精准免疫干预，这篇文章可能提供问题定义和分析框架；但目前最需要核对的信息是文章类型、具体数据来源、研究人群、疫苗种类、主要终点、是否有新的预测模型，以及证据究竟来自原始实验还是文献综合。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，从题名推测，是如何用系统疫苗学的方法去刻画和理解“人类免疫的架构”：也就是不同免疫组分、分子通路、细胞群体和个体差异因素如何共同决定疫苗应答。更具体地说，可能包括两个层面：一是能否从高维免疫数据中提炼出稳定的人体免疫组织原则；二是这些原则能否解释或预测不同人对疫苗的免疫结局差异。",
+          "method": "在没有摘要的前提下，只能做保守推测。若为原始研究，可能采用人群接种队列的纵向采样设计，在接种前、早期先天免疫激活阶段和后期适应性免疫形成阶段采集血液或相关样本；数据层面可能包括bulk RNA-seq、单细胞转录组、质谱流式/常规流式、血清学、细胞因子检测、BCR/TCR特征或蛋白组学；分析路径可能是构建跨时间和跨数据模态的关联网络，识别早期分子签名与后续抗体滴度或T细胞应答的关系。若为综述/评论，则方法主要是整合既有系统疫苗学研究，归纳共同规律并提出概念模型。",
+          "strengths": "题名本身显示出较强的整合性和框架性：它不是只关注单一疫苗或单一免疫指标，而是试图从“系统”层面解释“人类免疫架构”，这对建立可迁移的免疫学认知非常重要。若文章确实来自Pulendran团队的代表性研究脉络，其潜在亮点可能是把早期先天免疫信号、细胞网络状态和后续疫苗保护性免疫联系起来，强调机制解释与预测能力的结合。发表于Nature也提示其可能具有较高概念价值或领域总结价值。",
+          "weaknesses": "当前最大的局限是信息缺失：摘要为空，关键词为空，无法判断这篇文章究竟是原创研究、综述、评论还是观点文章；也无法确认是否包含新实验、新队列、新算法或仅为概念性讨论。因此任何关于样本量、疫苗类型、统计显著性、关键通路、验证方式和结论强度的表述都必须保持审慎。题名中的“architecture”较为宏观，也意味着文章可能更偏框架总结而非提供可直接复现的数据资源。",
+          "next_step": "最小可执行动作是先核对文章类型和摘要：1）打开DOI页面确认Nature文章栏目；2）读取摘要，记录研究对象是否为特定疫苗、人群或数据集；3）如果是原始研究，优先查样本量、时间点、主要终点和图1/图2；4）如果是综述，优先整理作者给出的免疫架构分层框架、关键图示和未解决问题；5）针对你的研究方向，建立一个核对清单：涉及哪些组学层、哪些免疫结局、哪些可迁移分析方法、哪些结论需要外部队列验证。"
+        }
+      },
+      "doi:10.1038/s41586-026-10577-6": {
+        "summary": "这篇Nature论文从题名判断，聚焦“细胞类型特异性eQTL”这一具体遗传调控对象，试图解释复杂性状的遗传结构如何通过不同细胞类型中的基因表达调控效应被组织起来。由于提供的摘要为空，目前只能较有把握地确认其核心任务是将复杂性状遗传学与细胞类型分辨率的eQTL图谱联系起来，具体结果和证据仍信息不足。",
+        "contribution": "基于题名，论文的核心贡献很可能是提出或系统验证：相较于整体组织水平eQTL，细胞类型特异性eQTL能更直接地解释复杂性状相关遗传变异的作用位点、作用细胞环境或性状遗传结构；也可能包含新的统计框架、整合分析流程，或跨性状/跨细胞类型的定量比较。",
+        "details": "从题名“Cell-type-specific eQTLs underlie the genetic architecture of complex traits”看，研究对象应是复杂性状相关遗传变异、基因表达数量性状位点（eQTL）以及其在不同细胞类型中的特异效应。文章很可能处于统计遗传学、功能基因组学与单细胞/细胞分辨率表达调控交叉点，重点不是泛泛地做eQTL定位，而是问：复杂性状GWAS信号究竟在哪些细胞类型中通过基因表达调控发挥作用，以及这种细胞类型特异性是否构成复杂性状遗传结构的重要基础。\n\n结合作者构成与期刊定位，可以推测其方法路径可能包括：整合GWAS汇总统计与eQTL数据；使用单细胞RNA测序、单核RNA测序，或由bulk RNA-seq解卷积得到的细胞类型特异表达/调控图谱；建立或应用细胞类型特异eQTL检测模型；进一步通过富集分析、共定位分析、精细定位、遗传相关分解、效应大小建模等方式，量化不同细胞类型eQTL对复杂性状遗传力或风险位点解释度的贡献。题名中的“underlie”暗示作者可能不仅报告个例共定位，而是试图在体系层面说明：复杂性状遗传架构可由细胞类型特异调控效应来解释。\n\n如果你的研究方向是GWAS后解析、单细胞功能注释、因果基因优先排序或疾病相关细胞类型鉴定，这篇论文潜在价值较高。它可能回答两个关键问题：第一，传统组织层面eQTL为何常常不足以解释GWAS信号；第二，是否能用细胞类型特异eQTL把“变异—调控—细胞类型—性状”这条链路连接得更清楚。对方法学读者，还值得关注其如何处理细胞类型样本量不足、稀有细胞统计功效低、个体间组成差异与表达效应混杂、以及多细胞类型共享/特异效应的区分。\n\n但必须明确：当前摘要为空，因此所有关于数据类型、分析框架和实证发现的判断都只是基于题名、作者与期刊语境的谨慎推断，不能当作论文已证实内容。真正需要核对的信息包括：研究使用的是哪类细胞图谱；覆盖哪些组织、细胞类型和人群；eQTL是直接估计还是借助统计解卷积；复杂性状的范围是广泛多性状还是聚焦某些疾病；“underlie”是通过遗传力富集、共定位比例、因果中介模型还是其他证据得出的。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题，推测是：复杂性状GWAS发现的大量关联位点，是否主要通过特定细胞类型中的基因表达调控效应起作用；如果是，细胞类型特异eQTL在多大程度上比传统组织平均eQTL更能解释复杂性状的遗传结构、风险位点定位和候选致因基因识别。",
+          "method": "可能方法包括：1）构建或调用细胞类型特异eQTL数据集，来源可能是单细胞/单核转录组配合基因型，或bulk转录组加细胞组成建模；2）将这些eQTL与大量复杂性状GWAS结果整合；3）使用共定位、TWAS/PrediXcan类分析、遗传力分层富集、精细定位或效应共享模型，评估不同细胞类型中调控变异与性状信号的对应关系；4）比较细胞类型特异eQTL与组织水平eQTL、泛细胞eQTL在解释GWAS方面的增益。若有方法学创新，可能体现在提高细胞类型eQTL检出功效、建模共享与特异效应，或在跨性状框架下量化调控架构。",
+          "strengths": "最值得关注的潜在亮点有三点。第一，把复杂性状遗传学解析推进到细胞类型层面，直接提升GWAS生物学解释力。第二，如果论文是系统性分析多个性状和多个细胞类型，而非个别案例，将更有说服力地支持“细胞类型特异调控构成遗传架构”的总体论断。第三，若同时给出统计框架与资源图谱，其应用价值会很高，可直接用于后续疾病细胞类型优先排序、变异功能注释和因果基因筛选。",
+          "weaknesses": "基于当前题录信息，主要局限是信息缺失严重。摘要为空，无法确认样本规模、组织范围、细胞类型数量、统计显著性标准、主要发现的稳健性以及是否有独立验证。还需警惕几个常见边界：细胞类型特异eQTL的统计功效通常受限；稀有细胞容易不稳定；不同细胞状态、发育阶段和环境刺激会被“细胞类型”概念部分掩盖；GWAS与eQTL共定位不等于严格因果；若样本主要来自特定祖源，结论的泛化性也可能受限。",
+          "next_step": "最小可执行动作：1）先获取摘要和正文图1，确认研究数据来源是单细胞、单核还是解卷积eQTL；2）记录其纳入的性状数、组织数、细胞类型数和样本量；3）重点查是否做了共定位/精细定位以及与组织水平eQTL的直接对照；4）若你做GWAS后注释，可立即把文中最显著的细胞类型-性状配对整理成对照表，与自己研究对象比对；5）若你偏方法学，优先阅读方法部分关于细胞类型特异效应估计和多重检验控制的具体模型。"
+        }
+      },
+      "doi:10.1038/s41586-026-10901-0": {
+        "summary": "该研究利用单条高保真长读长测序直接在人类精子中同时捕获交换与非交换重组事件，重点分析了15份精子样本中2,382个候选非交换基因转换事件。摘要指出作者发现了一类不同于PRDM9诱导减数分裂重组的稳定成分，并提出其更可能与减数分裂前事件及基因组脆弱位点相关。",
+        "contribution": "核心贡献在于提出并展示了一种基于精子单分子HiFi长读长的重组检测框架，使得单个男性供体即可获得近乎任意规模的重组事件观测；同时识别出一类性质上区别于经典PRDM9/DMC1相关减数分裂双链断裂修复的非交换基因转换信号，并在血液样本及家系中的父源非交换事件中看到相似特征，从而支持“减数分裂前基因转换”这一解释。",
+        "details": "从题名和摘要看，论文聚焦于人类男性生殖系中的非交换基因转换(non-crossover gene conversion, NCOGC)这一长期难以高分辨率研究的对象。传统上，人类重组研究更容易描绘交换(crossover, CO)图谱，而非交换事件因片段短、频率高、难以在常规短读长或有限子代家系中稳定检测而受限。作者声称单条高保真长读长测序 reads 来自精子即可同时捕获CO和NCO，这意味着检测单位从“后代传递结果”转向“配子分子本身”，样本量瓶颈显著下降。摘要给出的具体数据是13位供体的15份精子样本、2,382个候选NCO事件，并将同类分析扩展到12份血液样本。结果层面，作者区分出一个“稳定成分”，其性质不同于经典PRDM9诱导重组：它不与DMC1结合定义的减数分裂双链断裂位点相关，不随交叉重组图谱富集，也不符合GC-biased gene conversion模式，但与基因组脆弱位点相关。再结合家系数据中的父源NCO事件也呈现类似特征，以及血液样本中也可见相似NCO而几乎不见CO，摘要所支持的主要解释是：观测到的这部分NCO并非典型减数分裂重组副产物，而可能源于减数分裂前、甚至体细胞/生殖祖细胞阶段的转换过程。对科研读者而言，这篇论文的重要性在于它既是方法学推进，也是对重组生物学框架的修正：部分此前可能被默认为减数分裂NCO的信号，实际可能混入了发生时相不同的事件。需要核对的信息包括：候选事件的判定标准、长读长错误与相位错误如何控制、血液中NCO信号是否可能受克隆性体细胞事件影响、所谓“consistent component”具体是通过混合模型/富集分析/长度分布等何种统计框架识别、供体间差异的量化方式，以及题名中的“pre-meiotic”是否为作者直接结论还是摘要证据支持下的解释。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题有两层。第一，能否利用单分子高保真长读长在单个男性的精子中直接、大规模地检测人类交换与非交换重组事件，尤其是长期难测的NCO事件。第二，精子中观测到的NCO是否全部来自经典减数分裂重组通路，还是存在一类与PRDM9、DMC1热点、交叉图谱及GC偏向转换不一致、可能发生在减数分裂前的基因转换事件。",
+          "method": "根据摘要，可能的方法路线是：对精子样本进行高保真长读长测序，利用单条read跨越多个杂合位点的能力，在单分子层面识别局部单倍型切换，从而判定CO或短片段NCO事件；在13位供体的15份精子样本中汇总2,382个候选NCO。随后将这些候选事件与多个外部功能图谱做关联分析，包括PRDM9诱导重组相关特征、DMC1结合定义的减数分裂双链断裂位点、已有的人类交叉重组图谱、GC-biased gene conversion信号以及基因组脆弱位点。作者还将相同分析迁移到12份血液样本，作为非减数分裂背景的参照；并与家系数据中的父源NCO模式进行比较，以支持事件时相推断。摘要还提到供体间差异，说明可能做了个体层面的事件率或谱系特征比较。",
+          "strengths": "最突出的亮点是检测对象从后代或群体统计信号转向单个精子分子，若方法可靠，将显著提高人类重组研究的通量与可分辨率。第二个亮点是证据链不是停留在“发现NCO”，而是通过负相关/不相关证据系统地区分其与经典减数分裂重组标志的关系，再通过血液样本和家系父源事件做横向验证，形成“非经典、可能减数分裂前”的解释。第三，题名和摘要都暗示该框架同时能检测CO与NCO，因此对于重组图谱、个体差异、突变生成机制、脆弱位点相关DNA修复研究都可能有应用价值。",
+          "weaknesses": "仅根据摘要，当前最需要警惕的是候选NCO的真实性与特异性。长读长虽然可跨越多个杂合位点，但短小的单倍型切换也可能受测序错误、局部比对错误、结构变异、体细胞嵌合或相位偏差影响。摘要未给出事件长度分布、验证策略、假阳性率控制、不同供体和样本深度的一致性，也未说明血液样本中的类似NCO信号如何排除体细胞克隆扩增或DNA损伤修复伪影。另一个边界是“pre-meiotic”更像机制解释而非直接观测时相，真正因果归属仍需结合细胞阶段样本或独立功能实验。最后，摘要提到供体差异但截断了后半句，无法判断差异是生物学真实还是技术/覆盖度驱动。",
+          "next_step": "最小可执行动作：第一，优先查看正文或图中对2,382个候选NCO的定义、事件长度、支持杂合位点数和过滤流程。第二，核对其与DMC1热点、CO图谱、GC偏向和脆弱位点关联的具体统计量与对照集构造。第三，查看血液样本中“类似NCO但极少CO”的原始证据，因为这是支持减数分裂前解释的关键对照。第四，记录供体间差异的指标、效应大小和批次控制。第五，如果你的方向与重组或长读长变异检测相关，可尝试复现一个简化版判定逻辑：在已相位的长读长数据中搜索局部单倍型切换，并与公开重组热点和脆弱位点做富集对照。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for doi:10.1126/science.aef0464: Extra data: line 1 column 3141 (char 3140)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2608.26849v1",
+      "source": "arxiv",
+      "title": "LiveSim: Simulating Environment-Shaped Users in Multi-Agent Live-Stream Ecosystems",
+      "authors": [
+        "Jiaqi Xu",
+        "Yiran Qiao",
+        "Jing Chen",
+        "Qiwei Zhong",
+        "Xiang Ao",
+        "Xueqi Cheng"
+      ],
+      "published": "2026-08-27T09:16:29Z",
+      "updated": "2026-08-27T09:16:29Z",
+      "abstract": "User behavior simulation with large language models~(LLMs) is increasingly used to support multi-agent ecosystem simulation. Existing simulators typically rely on static user profiles inferred from historical observations, which become inadequate in socially intensive environments such as live streaming where interaction dynamics continuously reshape user behavior. We propose \\textbf{LiveSim}, an LLM-based framework for live-stream ecosystem simulation. It represents users as editable behavioral hypotheses and progressively refines them through trajectory-grounded interactions, where discrepancies between simulated and observed trajectories reveal missing environmental shaping effects. These signals are further extracted as transferable environment-behavior patterns and accumulated in a collective behavioral memory to improve user-level behavioral fidelity and support ecosystem-level simulation. Experiments on real-world live-stream risk-control data validate the effectiveness of LiveSim in improving user-level behavioral fidelity and enabling ecosystem-level analysis of risk evolution and platform intervention effects.",
+      "url": "http://arxiv.org/abs/2608.26849v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.26849v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.MA"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 69.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.26563v1",
+      "source": "arxiv",
+      "title": "SPT: Skills as Pre-Training Data for Agentic Language Models",
+      "authors": [
+        "Yufei Sun",
+        "Yudong Li",
+        "Yiming Cheng"
+      ],
+      "published": "2026-08-27T03:08:31Z",
+      "updated": "2026-08-27T03:08:31Z",
+      "abstract": "Agentic (tool-using) language models are mainly trained on tool-call traces and agent trajectories during post-training. These data provide direct behavioral supervision, but producing them requires task environments, execution, and verification, making broad tool and task coverage expensive. Publicly available skills offer another source of training data: they encode reusable tool semantics and workflows but are typically used only as inference-time context. We introduce Skill Pre-Training (SPT), a mid-training method that applies causal language modeling to SkillCorpus, a collection of public multi-file skill packages, optionally mixed with general data. To preserve relations among files within each package, we also introduce Reference Insert, a reference-aware assembly strategy that places supporting files near their mentions in the primary instruction. Experiments across multiple model scales and post-training recipes show that SPT consistently improves agentic performance over mid-training on general or trajectory data, while largely preserving general performance. Data mixture experiments show additional benefits from combining skill data with general annealing corpora. These results indicate that skill packages are a valuable data source for pre-training agentic language models.",
+      "url": "http://arxiv.org/abs/2608.26563v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.26563v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "language model",
+        "language models",
+        "agent",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 68.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.26546v1",
+      "source": "arxiv",
+      "title": "DuMateBench: Evaluating Autonomous Agents in Complex Real-World Workflows",
+      "authors": [
+        "Zechun Niu",
+        "Yukun Zhao",
+        "Jiaxin Zhang",
+        "Xu Shen",
+        "Jinhua Si",
+        "Han Tian",
+        "Can Xu",
+        "Yunfan Song",
+        "Jiaxin Mao",
+        "Yansong Gao",
+        "Yuchen Li",
+        "Jianmin Wu",
+        "Lingyong Yan",
+        "Shuaiqiang Wang",
+        "Dawei Yin"
+      ],
+      "published": "2026-08-27T02:36:23Z",
+      "updated": "2026-08-27T02:36:23Z",
+      "abstract": "Autonomous agents are increasingly adopted to complete complex, multi-tool workflows in real-world settings. However, existing benchmarks typically separate tasks by application or capability and evaluate agents in environments that are cleaner and more stable than those encountered in practice. We introduce DuMateBench, a real-session benchmark reconstructed from anonymized and privacy-screened user sessions collected from a large-scale production agent platform. Each task preserves the relevant pre-solution interaction history, persistent configurations, and workspace state, and is then validated through human verification. The resulting benchmark comprises 200 tasks spanning 8 broad scenarios and 17 fine-grained capability categories, with most tasks requiring multiple capability coordination. We execute these tasks in isolated Docker containers injected with three forms of real-world environmental complexity: Insufficient, Unstable, and Noisy, and assess performance using a hybrid deterministic and LLM-as-Judge evaluation protocol. Experiments across five representative autonomous-agent frameworks paired with four state-of-the-art LLMs reveal substantial gaps in strict task completion. Complementary robustness, efficiency, and diagnostic analyses further show that performance under environmental perturbations is jointly shaped by the capabilities of the LLM and the surrounding agent framework. The code and data are publicly available at https://dumatebench.com/.",
+      "url": "http://arxiv.org/abs/2608.26546v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.26546v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "llm",
+        "agent",
+        "agents",
+        "autonomous agent",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 67.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2608.26788v1",
+      "source": "arxiv",
+      "title": "Decoupling Planning and Control for Instructable Agents",
+      "authors": [
+        "Zineng Tang",
+        "Kelsey R. Allen",
+        "Sjoerd van Steenkiste",
+        "Ishita Dasgupta",
+        "Alane Suhr"
+      ],
+      "published": "2026-08-27T08:17:58Z",
+      "updated": "2026-08-27T08:17:58Z",
+      "abstract": "Recent work shows that pre-trained, instruction-tuned vision-language models (VLMs) perform well at mapping from instructions and observations to high-level plans, but struggle to realize such plans as reliable low-latency action sequences in unfamiliar environments. At the same time, world-model controllers excel at fast observation-to-action control, but lack open-ended task guidance. In this work, we combine these strengths into a single system, Instruct-to-Act, where we train a world-model controller to act autonomously at high frequency when conditioned on sparse, higher-latency, and high-level text instructions generated by a VLM planner. To train controllers to be language-instructable, we relabel segments of controller policy rollouts with synthetic instructions and jointly optimize a behavior-cloning objective along with existing reward-maximizing and world-modeling objectives. We evaluate our proposed approach across seven embodied environments, including three multi-agent environments where VLM planners coordinate through language while trained controllers serve as their actuators. Under matched observation and action spaces, our decoupled approach consistently outperforms controller-only and direct VLM action-generation variants, preserves fast control, and lets us swap in different pretrained VLM planners without fine-tuning, while remaining competitive with strong vision-language-action and multi-agent RL baselines on six of seven tasks.",
+      "url": "http://arxiv.org/abs/2608.26788v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.26788v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.MA",
+        "cs.RO"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "vision-language",
+        "vlm",
+        "ai",
+        "environment"
+      ],
+      "score": 65.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aeb0054",
+      "source": "science",
+      "title": "Nonviral delivery of chemically modified tRNA rescues nonsense mutations in cystic fibrosis",
+      "authors": [
+        "Jingan Chen",
+        "Muye Zhou",
+        "Songtao Dong",
+        "Fanglin Gong",
+        "Rasangi Tennakoon",
+        "Breanna Y. Seto",
+        "Ziyan Rachel Chen",
+        "Zhichang Peter Zhou",
+        "Jingyi Pan",
+        "Yue Xu",
+        "Sijin Luozhong",
+        "Colette Maya Macarios",
+        "Santiago Tijaro-Bulla",
+        "Tanja Gonska",
+        "Jim Hu",
+        "Haissi Cui",
+        "Bowen Li"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-28",
+      "abstract": "Suppressor transfer RNAs (sup-tRNAs) can rescue disease-causing nonsense mutations by promoting readthrough of premature termination codons (PTCs). Their clinical translation is limited by suboptimal activity and inefficient in vivo delivery. In this work, we combined site-specific chemical modification of sup-tRNAs with cargo-tailored pulmonary lipid nanoparticle (LNP) engineering to overcome these barriers. Incorporation of N 1 -methyladenosine in sup-tRNAs improved PTC readthrough, enhanced tRNA aminoacylation, prolonged functional persistence, and reduced innate immune activation. High-throughput ionizable lipid screening and formulation optimization identified a sup-tRNA–tailored LNP that efficiently delivered chemically modified sup-tRNAs to the lung. This approach restored cystic fibrosis transmembrane conductance regulator (CFTR) expression and function in bronchial epithelial cells, mouse models, and patient-derived organoids. Thus, LNP-delivered, chemically engineered sup-tRNAs represent a potential therapeutic platform for treating nonsense mutations.",
+      "url": "https://doi.org/10.1126/science.aeb0054",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeb0054",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": null,
+        "reference_count": 98,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeb0054"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeg6829",
+      "source": "science",
+      "title": "De novo design of RNA pseudoknots with deep learning",
+      "authors": [
+        "Jill Townley",
+        "Wipapat Kladwang",
+        "David Baker",
+        "Hamish M. Blair",
+        "Christian A. Choe",
+        "Gina El Nesr",
+        "Andrew Favor",
+        "Eli Fisker",
+        "Daniel B. Haack",
+        "Shujun He",
+        "Jason Hingey",
+        "Po-Ssu Huang",
+        "Rui Huang",
+        "Chaitanya K. Joshi",
+        "Thomas Karagianes",
+        "Andrew Kubaney",
+        "Pietro Liò",
+        "Adamo Mancino",
+        "Jonathan Romano",
+        "Boris Rudolfs",
+        "Nicholas Spellmon",
+        "Navtej Toor",
+        "Jigyasa Verma",
+        "Vivian Wu",
+        "Zhiheng Yu",
+        "Eterna Participants",
+        "Rhiju Das"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-28",
+      "abstract": "RNA design has been hindered by the limited accuracy of three-dimensional (3D) structure prediction. In this study, we show that intricate RNA structures can be generated with current deep learning tools through accurate de novo design of pseudoknot secondary structures. In an Eterna competition involving 57 pseudoknots, generative artificial intelligence (AI) methods matched experienced human designers in solving most blind challenges, evaluated by single nucleotide–resolution chemical mapping, compensatory mutagenesis, and cryo–electron microscopy. AI-generated molecules with accurate secondary structures formed well-ordered 3D folds stabilized by noncanonical tertiary interactions not modeled during design. Success was guided by an RNet foundation model trained on prior chemical mapping data, suggesting that some difficult RNA design tasks may be tractable without first solving RNA 3D structure prediction.",
+      "url": "https://doi.org/10.1126/science.aeg6829",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeg6829",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "931-937",
+        "reference_count": 58,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeg6829"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aef0464",
+      "source": "science",
+      "title": "Correcting the logic behind the 2026 US vehicle emissions standard rollback",
+      "authors": [
+        "Antonio M. Bento",
+        "Kenneth T. Gillingham",
+        "Mark R. Jacobsen",
+        "Christopher R. Knittel",
+        "Benjamin Leard",
+        "Joshua Linn",
+        "David S. Rapson",
+        "James M. Sallee",
+        "Arthur A. van Benthem",
+        "Kate S. Whitefoot"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "abstract": "Correction of selective assumptions and inconsistent interpretations of evidence would overturn policy justification",
+      "url": "https://doi.org/10.1126/science.aef0464",
+      "pdf_url": "",
+      "doi": "10.1126/science.aef0464",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 44.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "869-871",
+        "reference_count": 14,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aef0464"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10753-8",
+      "source": "nature",
+      "title": "Systems vaccinology and the architecture of human immunity",
+      "authors": [
+        "Bali Pulendran"
+      ],
+      "published": "2026-08-26",
+      "updated": "2026-08-26",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10753-8",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10753-8",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "656",
+        "issue": "8129",
+        "page": "833-842",
+        "reference_count": 150,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10753-8"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10577-6",
+      "source": "nature",
+      "title": "Cell-type-specific eQTLs underlie the genetic architecture of complex traits",
+      "authors": [
+        "Minhui Chen",
+        "Xinpei Wang",
+        "Lena Krockenberger",
+        "Rika Tyebally",
+        "Jeremy J. Berg",
+        "Sebastian Pott",
+        "Jonathan Flint",
+        "Joseph E. Powell",
+        "Brunilda Balliu",
+        "Xuanyao Liu",
+        "Andy Dahl"
+      ],
+      "published": "2026-08-26",
+      "updated": "2026-08-26",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10577-6",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10577-6",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 73,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10577-6"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10901-0",
+      "source": "nature",
+      "title": "Long-read sequencing reveals pre-meiotic gene conversion in sperm",
+      "authors": [
+        "Regev Schweiger",
+        "Sangjin Lee",
+        "Chenxi Zhou",
+        "Tsun-Po Yang",
+        "Stacy Li",
+        "Rashesh Sanghvi",
+        "Matthew Neville",
+        "Katie Smith",
+        "Kirsty Roberts",
+        "Ayrun Nessa",
+        "Sam Wadge",
+        "Kerrin S. Small",
+        "Peter J. Campbell",
+        "Kristian Almstrup",
+        "Peter H. Sudmant",
+        "Raheleh Rahbari",
+        "Richard Durbin"
+      ],
+      "published": "2026-08-26",
+      "updated": "2026-08-26",
+      "abstract": "Abstract Meiotic recombination is a fundamental process that generates genetic diversity by creating new combinations of existing alleles 1 . Whereas crossovers in humans are well characterized 2 , the more frequent non-crossovers that lead to gene conversion remain challenging to study. Here we show that single high-fidelity long sequencing reads from sperm can capture both crossovers and non-crossovers, which enables effectively arbitrary sample sizes for analysis from a single male. We analysed 2,382 candidate non-crossovers in 15 sperm samples from 13 donors, and identified a consistent component with properties distinct from PRDM9-induced recombination. This phenomenon was not associated with meiotic double-strand break sites identified by DMC1 binding, the crossover recombination map or GC-biased gene conversion, but was associated with genomic fragile sites. This component is also seen in paternal non-crossover gene conversions in pedigree data 3 . Applying the same analysis to 12 blood samples 4 , we observed non-crossover gene conversions with similar properties, but very few crossover events. Further, we demonstrate variation between donors for the different types of recombination, even when they share the same PRDM9 genotype. We suggest that a substantial fraction of the non-crossover gene conversion events seen in sperm arise prior to meiosis.",
+      "url": "https://doi.org/10.1038/s41586-026-10901-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10901-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 68,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10901-0"
+      }
+    }
+  ]
+}
