@@ -1,0 +1,601 @@
+{
+  "date": "2026-09-02",
+  "stats": {
+    "fetched": 131,
+    "fetched_by_source": {
+      "nature": 47,
+      "science": 84
+    },
+    "deduped": 131,
+    "deduped_by_source": {
+      "nature": 47,
+      "science": 84
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 0,
+    "keyword_filtered_by_source": {},
+    "keyword_optional_included": 110,
+    "keyword_optional_included_by_source": {
+      "nature": 42,
+      "science": 68
+    },
+    "ranked": 131,
+    "ranked_by_source": {
+      "nature": 47,
+      "science": 84
+    },
+    "source_warnings": 3,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 123,
+    "selected_by_source": {
+      "science": 5,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文/评论呈现出一个很清晰的共同特征：都不是在已有范式内做小幅优化，而是在各自领域把“关键瓶颈”往更可用、更可验证、或更接近真实应用的一步推进。按阅读优先级，最值得先读的是四篇具有明显方法学和平台级外溢价值的工作：其一是铁催化[1+1+1]环丙烷化，亮点不只是新反应，而是把“外球、连续加成到配体/底物”的叙事推进到三组分、双卡宾顺序偶联层面，若机理证据扎实，会对第一排过渡金属催化与卡宾多组分偶联都有启发；其二是二维半导体单晶金属接触，直接对接2D器件长期痛点，且给出接近Schottky–Mott极限、超低接触电阻和高短沟道电流，工程意义非常强；其三是Bi/InSe异质结构TFET，重点在于不再只展示“亚60 mV/dec”的概念性曲线，而把I60和开关比推到更接近IRDS需求的组合指标；其四是片上高光谱微系统 Hypervision，它把高光谱计算成像从“离线重建算法”推进到“端侧在线视频速率系统”，对计算成像、专用AI硬件和场景部署三方都有参考价值。第二优先级是两篇天文行星方向论文：火星潮汐层析利用时变重力场三阶分量识别与地壳二分性对齐的地幔热异常，属于把传统整体参数反演推进到横向非均一结构识别；银河中心新恒星S301则把观测目标从Schwarzschild级相对论效应进一步推向对Sgr A*自旋敏感的Kerr修正，可视为未来十年高精度银河中心动力学的关键靶标。第三优先级是UGC 9050-Dw1外部星系球状星团恒星流证据和tRNA药物递送评论：前者的重要性在于把“恒星流约束暗晕”的工具尝试扩展到银河系外、甚至超弥散星系；后者虽然更像观点文章，但对核酸药物递送研究者很值得快速浏览，因为它提出了一个实际而常被忽略的问题：货物类别变了，载体设计逻辑不能照搬mRNA/siRNA经验。总体看，今天最突出的三类信号分别是：化学与器件侧在追求“便宜材料/简单工艺但不牺牲性能”；成像与传感侧在推动“算法-芯片-系统一体化”；天文行星侧则在把新型观测量真正转化为可区分内部结构或时空几何的约束。",
+    "themes": [
+      "从“现象展示”转向“工程可用指标”：TFET强调I60与开关比，2D接触强调接触电阻和短沟道电流，高光谱系统强调视频速率、功耗和独立运行，而不只是一项单点性能。",
+      "从“贵金属/传统路径”转向“低成本或非经典机理”：铁催化外球[1+1+1]环丙烷化代表用第一排过渡金属和非常规键构建路径处理以往更依赖贵金属或内球并合的问题。",
+      "从“离线分析”走向“在线系统”：Hypervision最典型，但火星潮汐层析和银河中心恒星轨道也体现出观测数据积累已开始支持更细粒度、实时性更强或更高阶物理量的识别。",
+      "界面与异质结构成为性能决定因素：Bi/InSe TFET依赖带对齐和洁净界面，2D半导体单晶金属接触依赖抑制二次成核与弱钉扎界面，高价值进展都落在界面工程而非单一材料名词上。",
+      "“新探针”正在打开旧问题：火星时变重力三阶潮汐分量、S301轨道对黑洞自旋的灵敏度、银河系外球状星团恒星流，都是用新观测探针切入长期难题。",
+      "生物递送中的‘货物决定载体’逻辑被重新强调：tRNA药物提示核酸递送不能把RNA视作同质化货物，这对LNP设计、包封策略和胞内命运分析都有方法学含义。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "做一份“外球多组分卡宾偶联”小型机制综述与反应图谱，重点梳理铁/碱金属体系中‘连续加成到配体或底物’的证据强弱，而不是按金属分类罗列反应。",
+        "why": "铁催化[1+1+1]环丙烷化的真正影响力取决于机理是否站得住。若能系统比较外球与内球叙事在卡宾化学中的判据、常见伪证据和关键对照，将直接帮助判断这篇工作是否代表机制范式转移。",
+        "first_step": "先围绕该论文题名和摘要提到的关键词，整理近5年第一排过渡金属/碱金属催化、酯重组装、硅烯醚中间体、卡宾顺序偶联相关文献，建立一个包含金属、底物、关键中间体证据、是否有独立回投实验的表格。",
+        "risk": "仅凭摘要容易高估‘外球’新意；若正文机理证据有限，综述可能最后只能得到一个‘叙事多于定论’的结论。"
+      },
+      {
+        "idea": "复盘2D半导体金属接触文献中“单晶金属接触是否系统性降低费米能级钉扎”的证据链，做一个以Bi/MoS2、Pd/WSe2为中心的对照分析。",
+        "why": "这篇工作若成立，价值不只在工艺创新，而在于它可能把接触改进从‘局域洁净/低损伤’推进到‘可预测的近Schottky–Mott行为’。这对后续器件设计、接触金属选择和工艺兼容性都有直接意义。",
+        "first_step": "收集近三年MoS2/WSe2接触电阻、功函数均匀性、热稳定性、界面表征的代表文献，按金属沉积方式分类，对比直接蒸发、多晶接触、转移接触、半金属接触等路线的指标和表征方法。",
+        "risk": "不同论文接触电阻提取方法与测试条件差异很大，横向比较容易失真，需要先统一筛选标准。"
+      },
+      {
+        "idea": "针对Bi/InSe TFET，做一个“超越Boltzmann极限但仍有工程意义”的评价框架，重点统一亚阈值摆幅、I60、开关比、温度依赖和测试窗口。",
+        "why": "TFET领域长期存在‘曲线看起来很陡，但导通弱、窗口窄、可复现性差’的问题。该论文恰好强调更工程化指标，适合借机建立一套更严格的评估模板。",
+        "first_step": "整理近几年高影响力TFET论文的I60、Ion/Ioff、最小SS、平均SS、测量温度和栅压窗口，形成一个统一数据库，并标记材料体系、异质结构类型和界面制备方式。",
+        "risk": "很多论文并不完整报告I60或平均SS，数据抽取会受限；同时不同器件尺寸和电压条件也会带来可比性问题。"
+      },
+      {
+        "idea": "把Hypervision作为案例，做一次“计算成像专用NPU化”的复现式系统分析，关注网络压缩是否真正服务于端侧重建而非离线精度。",
+        "why": "高光谱计算成像往往论文里算法和硬件是分裂的，而这篇工作把传感器、NPU、结构化剪枝和系统集成放在一起，非常适合作为端侧科学成像系统设计范例。",
+        "first_step": "先不追求芯片级复现，而是从公开摘要中的两种分辨率/通道/帧率配置出发，反推重建吞吐需求，再查找典型高光谱重建网络规模，评估拓扑感知剪枝可能削减的算子类型和带宽瓶颈。",
+        "risk": "缺少正文和补充材料时，很多关键硬件细节、网络结构和数据流信息不可得，分析可能停留在架构层面。"
+      },
+      {
+        "idea": "围绕火星潮汐层析，做一个“从球对称潮汐参数到横向非均一结构反演”的文献脉络整理，并列出三阶潮汐分量可能受哪些系统误差影响。",
+        "why": "这篇工作如果稳健，意味着行星内部结构研究出现了新的观测维度；但这种结论对轨道数据处理、球谐分解和非唯一性极其敏感，值得尽快做批判性阅读准备。",
+        "first_step": "整理MGS、Mars Odyssey、MRO时变重力场和火星潮汐Love数相关代表研究，重点标出过去工作主要能约束哪些阶次、哪些参数，以及横向非均一性何时开始成为可讨论问题。",
+        "risk": "没有正文前难以判断三阶异常的统计显著性、反演稳健性和替代解释，容易把一个模型依赖性结果过早当成确定发现。"
+      },
+      {
+        "idea": "对tRNA药物递送做一份问题清单式短综述：把tRNA与mRNA/siRNA在尺寸、折叠、修饰、稳定性、胞内定位需求上的差异，逐项映射到LNP设计变量。",
+        "why": "这类评论虽然不一定提供新数据，但往往能定义接下来两三年的问题空间。对从事RNA药物的人来说，提早把‘货物属性—载体参数’映射关系梳理出来，能帮助避免简单照搬mRNA-LNP方案。",
+        "first_step": "建立一个对照表，列出mRNA、siRNA、tRNA在长度、二级三级结构、天然修饰程度、预期作用位点、对内涵体逃逸和胞质释放的要求差异，再把这些差异对应到可电离脂质、辅脂、PEG脂和粒径设计。",
+        "risk": "如果原文只是短评，信息密度有限；此外tRNA药物本身仍处早期阶段，很多设计原则可能还停留在假说而非可验证规则。"
+      }
+    ],
+    "papers": {
+      "doi:10.1126/science.aej0194": {
+        "summary": "该论文报道一种铁催化的[1+1+1]环丙烷化反应：通过让一个酯与两个卡宾前体顺序偶联，合成环丙醇/其前体硅烯醚，并强调这是基于外球序列加成而非传统内球金属中心并合的多组分偶联。摘要还指出该过程可先高立体/区域/化学选择性地产生硅烯醚，相当于一种“无痕、定向烯化”，从而支持以往方法难以实现的后续转化。",
+        "contribution": "核心贡献在于把近年来较少见的“碱金属/第一排过渡金属外球反应”概念推进到三组分层面：用铁催化实现酯与两个卡宾单元的迭代偶联，构建环丙醇相关骨架，并在机理表述上突出“连续加成到配体而不是金属中心”的外球键构建模式。若摘要表述准确，这不仅提供了贵金属替代方案，也给多组分卡宾化学、酯的选择性重组装以及硅烯醚定向合成提供了新策略。",
+        "details": "从题名和摘要看，研究对象非常具体：底物核心是“一个酯”和“两个卡宾”，产物核心是“cyclopropanols（环丙醇）”，同时反应早期或中间阶段可获得“silyl enol ethers（硅烯醚）”。作者试图解决的不是一般性的环丙烷化，而是多组分、外球型、铁催化的[1+1+1]拼接问题：传统贵金属催化常依赖金属中心内球方式同时协调并连接底物，而该工作试图证明第一排金属体系也能通过连续外球反应完成更复杂的三组分耦合。\n\n方法线索上，摘要没有给出具体底物范围、铁源、配体、卡宾前体类型或条件，但“ester to two carbenes”“iterative outer-sphere reactions”“traceless, directed olefination”这些词给出几条重要推断。第一，卡宾前体很可能是可在铁体系下生成亲电/亲核型金属相关卡宾等效体的试剂，常见候选可能包括重氮化合物、腙盐/重氮转移产物、或其他可释卡宾试剂，但这需要正文核对。第二，“directed olefination”暗示酯可能先经历与一个卡宾单元相关的定向成烯过程，生成具有高选择性的硅烯醚，再由第二个卡宾单元进一步转化为环丙醇骨架，或者硅烯醚是可分离/可截获中间体。第三，“serial additions to the ligand, not the metal”提示真正发生键形成的反应位点可能在催化剂配体框架上，或经由配体承担电子/自由基中继功能；这与近年来“redox-active ligand”“metal-ligand cooperativity”“ligand-centered radical/polar reactivity”方向高度相关。\n\n证据线索方面，若要支撑摘要中的强机理主张，正文通常应包含：底物普适性表，显示不同酯和卡宾前体的兼容性；对比实验，证明铁优于贵金属或无金属条件、并区分内球/外球路径；中间体或分流产物（尤其硅烯醚）的分离、原位监测或独立转化实验；立体化学和区域选择性数据；必要时还会有同位素标记、自由基钟、动力学、DFT 或光谱证据去支持“连续外球加成到配体”的路径。\n\n与科研读者的关系上，如果你关注有机合成方法学、第一排过渡金属催化、卡宾化学、多组分偶联或非经典金属-配体协同，这篇文章值得重点看。它的潜在价值不只在于替代贵金属，更在于提供一种新的键连接逻辑：把酯作为可编程的三碳环前体构建节点，先定向生成硅烯醚，再进入传统方法难以到达的环丙醇化学空间。对从事复杂分子合成的人，最需要确认的是该方法对官能团、位阻、对映/非对映控制、以及放大反应是否足够实用。\n\n需要核对的信息很多：题名说“cyclopropanation”，摘要说“synthesis of cyclopropanols”，两者之间的准确产物关系要看正文；摘要未说明是否直接得到游离环丙醇、其硅醚、还是经后处理得到；“published 2026-08-27”与当前获取渠道是否为正式在线版也需留意；此外，摘要没有给出收率、底物数、失败案例、机理证据强度，因此不能据此判断方法是否已达到普适、可扩展、可不对称化或工业相关水平。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题是：能否用廉价铁催化剂而不是传统贵金属，通过外球、迭代式反应路径，把“一个酯 + 两个卡宾单元”在多组分条件下顺序偶联，选择性地构建环丙醇相关骨架；以及这种外球三组分耦合是否能实现可控的立体、区域与化学选择性。",
+          "method": "基于摘要，可能的实验路径是：以酯为底物、以两当量或两类卡宾前体为C1来源，在铁催化体系中先发生一次受导向控制的烯化，形成硅烯醚中间体或可分离产物，再经第二次卡宾相关转化闭合为环丙醇骨架。机理分析上，作者大概率会结合对照实验、中间体截获、独立合成硅烯醚回投、立体化学结果、以及计算或光谱研究，来支持“反应通过配体上的连续外球加成发生，而不是多个底物在金属中心内球并合”。",
+          "strengths": "最值得关注的亮点有三点。其一，反应模式新：把双组分外球偶联扩展到三组分[1+1+1]构建。其二，催化体系有吸引力：采用铁催化，若条件温和且底物兼容性好，则对可持续合成和成本控制有意义。其三，产物设计有层次：不仅终点是环丙醇，过程中的硅烯醚还被描述为高选择性、可进一步利用的合成中间体，这意味着方法可能兼具骨架构建和后续多样化改造价值。",
+          "weaknesses": "仅凭摘要存在几个明显边界。第一，不清楚卡宾前体的安全性、可得性和底物适用范围，可能限制普适性。第二，“外球、配体参与”的机理主张较强，但摘要未展示证据强度，需警惕只是工作假说或部分体系成立。第三，摘要强调选择性，却没有任何定量数据、底物数量或复杂分子示例，无法判断实用程度。第四，题名与摘要在“环丙烷化/环丙醇合成/硅烯醚生成”之间的层级关系需要正文澄清，否则容易误读真实产物与步骤。",
+          "next_step": "最小可执行动作：第一，拿到正文后优先看反应总览图和机理示意图，确认酯、两个卡宾单元、硅烯醚和环丙醇之间的真实转化顺序。第二，检查底物范围表，记录酯类型、卡宾前体类型、最佳收率、选择性和失败底物。第三，专门查支持外球机理的关键证据：中间体截获、回投实验、同位素/动力学/计算。第四，如果你的研究涉及卡宾或铁催化，可先挑一个最简单底物组合，整理所需铁盐、配体、硅试剂和卡宾前体，评估是否具备复现实验条件。"
+        }
+      },
+      "doi:10.1126/science.aek3835": {
+        "summary": "这是一篇发表于Science的评论/观点性文章，聚焦“新型转运RNA（tRNA）药物”的递送问题，核心任务是指出现有脂质纳米颗粒（LNP）体系可能需要针对tRNA这一货物类型重新设计。基于题名“Rethink the cargo, rethink the carrier”和摘要可判断，文章强调药物载荷性质变化会反向决定载体设计逻辑，具体对象是tRNA medicines与其LNP递送平台的匹配关系。",
+        "contribution": "从现有元数据看，本文的核心贡献更可能是提出并论证一个递送设计框架：当治疗性核酸货物从常见mRNA/siRNA扩展到tRNA时，不能简单沿用既有LNP配方，而应围绕tRNA的分子尺寸、结构、修饰状态、稳定性需求和胞内作用位点重新思考载体组成与递送策略。由于摘要极短且无实验信息，暂不能确认其是否包含新数据，更大概率是面向领域研究者的观点整合、问题重述或配套评述。",
+        "details": "根据题名、期刊、摘要与作者信息，这篇文章应处在RNA药物递送与LNP工程交叉点。研究对象非常具体：不是泛指“核酸药物”，而是“新型tRNA药物”及其“重新设计的脂质纳米颗粒递送系统”。摘要只给出一句话——“New transfer RNA medicines require redesigned lipid nanoparticles for delivery”，这意味着作者的论证重心可能不是证明tRNA本身有效，而是指出tRNA作为货物在物理化学属性和生物学命运上与既有RNA载荷不同，从而导致递送瓶颈与载体优化目标发生变化。可推测其证据线索可能包括：tRNA相较mRNA/siRNA具有不同长度范围、二级/三级结构、更高折叠性、天然修饰丰富、可能存在不同免疫识别特征、以及更特定的胞内定位或功能需求；这些差异会影响LNP中的包封效率、颗粒形成、组织分布、内吞后逃逸、胞内释放、降解路径和活性保持。题名中的“rethink the cargo, rethink the carrier”进一步暗示作者在做一个领域层面的设计原则提醒：载荷不是可互换的，被递送分子的结构与功能会决定载体材料化学、离子化脂质选择、辅助脂质比例、PEG脂质、制备条件以及适应症场景。与科研读者的关系上，如果你从事RNA疗法、递送系统、核酸化学修饰、LNP筛选或精准给药，这篇文章最有价值之处可能在于提供“为什么tRNA需要单独建模和优化递送”的问题框架，而非给出完整技术答案。当前必须核对的信息包括：1）文章类型是Review/Editorial/Perspective还是Research Article；2）是否讨论特定tRNA药物类别，例如抑制无义突变、补充缺陷tRNA、工程化tRNA或线粒体相关递送；3）是否提出明确的LNP设计参数或仅做概念性呼吁；4）是否引用或评论了具体实验数据，如体内分布、包封率、翻译恢复、毒性或免疫原性比较。由于摘要极简，任何关于实验体系、模型动物、具体配方和定量结果的判断都不能下结论，只能作为阅读全文时的核对清单。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇文章想解决的具体问题是：当治疗载荷变成tRNA而不是更常见的mRNA或siRNA时，现有LNP递送平台为什么可能不再适配，以及应该围绕哪些分子与药代层面的差异重新设计载体。更细一点说，文章关心的不是“LNP能否递送RNA”这一泛问题，而是“tRNA这一特定RNA类别对递送系统提出了什么新的工程约束和设计目标”。",
+          "method": "仅凭题录信息，更可能的方法路径是观点综述或评述式分析，而非完整原始研究。可能的分析材料包括：已有tRNA药物概念与早期实验进展、经典mRNA/siRNA-LNP递送经验、不同RNA货物在结构和功能上的差异比较，以及由这些差异推导出的LNP重设计原则。如果正文是评论文章，常见做法会是整合前沿文献、提炼关键瓶颈、比较不同核酸载荷对包封与胞内递送的要求，并提出未来实验路线图；若附带数据，也可能只是引用近期研究中的代表性配方和性能指标，而不一定是作者本人系统实验。",
+          "strengths": "亮点首先在于问题定义具体且前沿：把“tRNA medicines”单独拎出来讨论，说明作者敏锐捕捉到RNA药物从单一主流货物向多样化货物演化后的递送失配问题。第二，题名直接把“cargo”和“carrier”绑定，体现出递送设计中的共优化思想，这对从事LNP开发的研究者具有方法论价值。第三，作者包括Drew Weissman，这一作者背景提高了文章在mRNA/LNP与RNA药物转化语境下的参考价值，但这属于作者与领域影响力线索，不等于本文必然提供新实验数据。第四，发表在Science表明其议题具有较强领域代表性，可能适合作为进入tRNA药物递送方向的快速定位文献。",
+          "weaknesses": "局限非常明确：目前可用信息只有题名和一句摘要，信息密度不足以判断文章是否包含原始实验、系统综述还是短评。其次，摘要没有给出任何具体对象细分，例如哪一类tRNA药物、针对何种疾病、在何种组织或细胞递送，也没有提供任何方法、模型、数据指标或结论强度。再次，若本文是评论性文章，其价值主要在框架与观点，而非可直接复现的实验方案；读者不能从当前元数据推断具体LNP组成、粒径、电荷、给药途径或疗效数据。最后，“require redesigned lipid nanoparticles”是方向性判断，不代表所有tRNA药物都必须采用全新LNP，也不排除某些现有平台经过局部优化即可适配，这一点需在正文中核实。",
+          "next_step": "最小可执行动作是先确认文章类型和版式信息：进入DOI页面或Science页面，查看它是否被标注为Editorial、Perspective、Review还是Research。随后带着五个问题速读摘要扩展信息或首段：1）文中说的tRNA medicines具体指什么；2）作者列出的tRNA与mRNA/siRNA的关键差异有哪些；3）他们认为LNP需要重设计的参数是包封、稳定性、组织靶向还是内吞逃逸；4）是否提到具体疾病场景或体内模型；5）是否引用关键实验图表或代表性论文。若你做递送研究，可立刻建立一张对照表，列“货物类型—结构特征—递送障碍—LNP待优化参数”，把tRNA与mRNA、siRNA并排比较，以便判断本文观点与你现有体系的关联度。"
+        }
+      },
+      "doi:10.1126/science.aef8268": {
+        "summary": "这篇论文围绕“在线、视频速率的高光谱计算成像”这一具体任务，提出了一个与 HyperspecI 传感器集成的片上高光谱微系统 Hypervision，通过定制 NPU 与轻量化重建网络，在可见光到近红外范围实现 512×512、61 通道下 32.9 fps，或 1024×1024、16 通道下 24.6 fps 的实时成像。摘要显示其目标不是单纯提升重建精度，而是把传统依赖离线计算的大规模空间-光谱数据立方重建，推进到无需外部供电和外部算力的独立在线感知系统。",
+        "contribution": "核心贡献应在于把高光谱成像中的“传感-重建-部署”链条做成了完整的硬件化闭环：一是设计并流片了 16-bit INT16、9.3 TOPS 的神经处理器作为专用硬件加速器；二是提出与硬件拓扑适配的结构化剪枝策略，压缩高光谱重建网络；三是与 HyperspecI 传感器集成成约 950 克、功耗约 25.3 W 的独立微系统；四是在智能驾驶和空地监测场景中展示了从离线高光谱计算成像走向在线实时感知的应用潜力。",
+        "details": "从题名和摘要看，论文研究对象非常明确：不是一般意义上的光谱仪，也不是纯算法型高光谱重建，而是“片上高光谱微系统”的系统级实现，重点解决高光谱成像长期存在的计算瓶颈。高光谱成像通常要处理大体积空间-光谱数据立方，若采用计算成像路线，重建网络往往计算量大、延迟高、难以边缘部署。作者给出的方案线索包括：定制一颗 NPU 芯片，峰值算力 9.3 TOPS（INT16）；再结合 topology-aware structured pruning，即面向芯片拓扑结构的结构化剪枝，把原本较重的重建网络压缩到适合片上运行；随后与 HyperspecI 传感器集成为独立系统。摘要中的关键证据是几组部署级指标：512×512、61 通道下 32.9 fps；1024×1024、16 通道下 24.6 fps；系统功耗约 25.3 W；能效约 367 GOPS/W；整机约 950 g，且不需要外部电源和外部计算资源。这些指标说明作者强调的是端侧实时性、功耗和系统独立性，而非只在服务器上做高吞吐演示。对从事计算成像、边缘 AI 芯片、光电融合系统或实时遥感/自动驾驶感知的读者，这篇工作的重要性在于它把高光谱重建从“传感后离线算”转向“传感同时在线算”，尤其适合关注软硬件协同设计、任务特定推理加速以及传感器-网络-芯片联合优化的人。基于当前仅有摘要，仍需重点核对的信息包括：HyperspecI 传感器本身的编码机制或光路形式；重建网络的具体架构、参数量和剪枝比例；NPU 的存储带宽、片上缓存和数据流；实时帧率对应的具体重建质量指标；61 通道与 16 通道两种模式的光谱采样策略；“无需外部供电”具体是电池供电还是其他能源方案；以及在智能驾驶和空地监测中的任务评价是定性展示还是定量对比。由于没有全文，不能判断其相对既有快照型高光谱相机、压缩感知高光谱成像方案或 FPGA/GPU 边缘部署方案的性能优势是否全面成立。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：高光谱计算成像在重建和处理大规模空间-光谱数据立方时计算开销过大，导致系统往往依赖外部计算平台、难以做到端侧实时在线工作。作者关心的不是单点算法精度，而是如何把可见光到近红外高光谱成像做成一个可独立运行、视频速率输出的片上微系统。",
+          "method": "按摘要推测，方法路径是“传感器 + 专用 NPU + 轻量重建网络 + 系统集成”。硬件侧，作者设计并制造了一颗 16-bit 整数计算的 NPU，峰值 9.3 TOPS，用于执行高光谱重建。算法侧，作者提出 topology-aware structured pruning，说明剪枝不是通用压缩，而是面向芯片拓扑、算子映射或并行结构进行裁剪，以便网络结构更适合 NPU 部署。系统侧，将该硬件与 HyperspecI 传感器结合，形成可见-近红外高光谱微系统。实验侧，摘要给出两种分辨率/通道配置下的实时帧率和功耗，并通过智能驾驶、空地监测两个场景展示在线感知能力。",
+          "strengths": "最值得关注的亮点有四个。第一，系统完整性强：不仅有重建算法，还有流片硬件和实际微系统集成，说明工作落点在可部署性。第二，指标具体且面向应用：32.9 fps@512×512×61 通道、24.6 fps@1024×1024×16 通道、25.3 W、367 GOPS/W，这些都是判断边缘系统价值的关键量。第三，软硬件协同明显：结构化剪枝直接围绕硬件拓扑展开，意味着作者可能解决了高光谱网络在存储访问、并行映射和算子规则性上的部署难点。第四，应用牵引明确：智能驾驶和空地监测说明系统面向动态场景，而不是静态实验室采集，这与“online video-rate computational imaging”的题名相呼应。",
+          "weaknesses": "基于题录和摘要，当前需要警惕几类边界。首先，尚不清楚重建质量如何，摘要没有给出光谱保真度、空间分辨率保持、SNR、PSNR、SAM、分类精度等指标，因此实时性是否以牺牲质量为代价仍需核对。其次，61 通道和 16 通道两种模式差异较大，可能反映传感模式、重建难度或应用目标不同，但摘要未解释。再次，NPU 的 9.3 TOPS 与系统实际吞吐之间的关系尚不透明，不能仅凭峰值算力推断真实利用率。另一个限制是应用演示可能只是 showcase，若没有与传统离线重建、GPU 平台或其他边缘硬件做严格对照，则其优势边界难以判断。最后，题录未提供成本、量产性、环境鲁棒性和长期稳定性信息，对于实际部署仍是空白。",
+          "next_step": "最小可执行动作是按四个问题去查全文图表和补充材料。第一，先看系统框图和芯片架构图，确认 HyperspecI 的成像机制、NPU 数据流和存储组织。第二，查重建网络细节，记录剪枝前后参数量、MACs、精度变化以及 topology-aware structured pruning 的具体约束。第三，查性能表，核对 32.9 fps 和 24.6 fps 对应的画质/光谱质量指标，并寻找与 GPU、FPGA 或已有快照型高光谱系统的对照。第四，查应用实验部分，区分智能驾驶和空地监测是定性成像展示，还是包含检测、分类、分割等下游任务评价。若你的研究方向偏向边缘计算成像，可进一步整理一张“传感器编码方式—网络规模—硬件算力—帧率—功耗—质量指标”的对比表。"
+        }
+      },
+      "doi:10.1126/science.adx6059": {
+        "summary": "该论文围绕隧穿场效应晶体管（TFET）的关键瓶颈，报道了一种基于铋/硒化铟（Bi/InSe）异质结构的器件，目标是在突破玻尔兹曼热发射极限的同时实现可接受的亚阈值导通电流与高开关比。根据摘要，该器件实现了最高约10微安/微米的I60和大于10^7的电流开关比，指向低电压、低功耗逻辑器件应用。",
+        "contribution": "核心贡献是提出并展示了一种Bi/InSe异质结构TFET，通过材料精确设计、真空下洁净界面制备以及基于亚阈值摆幅物理的能带工程，达到摘要所称满足IRDS下一代集成电路要求的性能组合。若摘要表述可靠，其贡献不只是“亚60 mV/dec”现象展示，更在于把TFET评价推进到更具工程意义的I60和开关比两个指标上。",
+        "details": "从题名和摘要看，研究对象非常具体：一种铋/硒化铟异质结隧穿场效应晶体管，用于解决TFET长期存在的“虽然可出现亚玻尔兹曼摆幅，但导通电流太低、实际开关窗口不足”的问题。摘要特别强调I60这一指标，即器件切换到60 mV/dec亚阈值摆幅水平时的电流水平，这说明作者试图避开仅凭最小摆幅值评估TFET的局限，转而用更接近器件可用性的指标衡量性能。给出的数据线索包括I60最高约10 μA/μm，以及电流开关比超过10^7；若这些数值是在可比偏压、明确沟道宽度归一化和稳定测试条件下获得，那么在TFET文献中属于相当有竞争力的结果。方法上，摘要透露出三条主线：第一是“precise material design”，大概率对应异质结材料选择、层厚或晶向控制，以获得有利于带间隧穿的能带排列；第二是“clean interfaces fabricated under vacuum”，说明界面污染、氧化层或陷阱态被视为性能瓶颈，真空集成工艺可能是实现陡峭开关和高电流的关键；第三是“band engineering based on subthreshold swing physics”，意味着器件设计可能围绕源-沟道隧穿窗口、带边对齐、栅控效率与寄生热注入的抑制展开。对相关研究方向而言，这篇文章的价值主要体现在二维/准二维异质结构逻辑器件、低功耗开关器件、后CMOS器件评估指标三个层面：它可能提供了一个把新材料TFET从“物理可行”推进到“路线图可讨论”的案例。需要重点核对的信息包括：I60定义与提取方式是否与现有TFET标准一致；>10^7开关比对应的漏压、栅压范围和温度；是否给出完整转移曲线与统计分布；亚阈值区是否排除了陷阱辅助隧穿、迟滞或扫描速率伪影；Bi/InSe能带对齐属于何种类型及其理论支持；以及“满足IRDS要求”具体对应哪些年份节点和指标表。仅凭摘要无法确认器件尺寸、工作温度、重复性、接触电阻、工艺兼容性和电路级演示情况。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：如何构建一种TFET，使其不仅在概念上表现出低于玻尔兹曼热发射极限的开关特性，而且在工程上同时具备足够高的I60和足够大的电流开关比，从而真正接近下一代低电压逻辑器件需求。更具体地说，作者要解决的是传统TFET常见的“陡但弱”问题，即亚阈值摆幅可观但导通电流偏低、可用开关窗口有限。",
+          "method": "可能方法包括：制备Bi/InSe异质结构沟道或源沟异质结器件；在真空环境下完成材料堆叠或电极/界面构建，以降低界面污染和缺陷态；通过电学转移特性测试提取亚阈值摆幅、I60和开关比；结合能带工程分析解释高性能来源，可能辅以能带示意、第一性原理或半经典/量子输运计算来说明Bi与InSe之间的带对齐和隧穿条件优化。摘要中的“subthreshold swing physics”提示作者可能从SS与隧穿窗口形成机制出发设计结构，而不仅是经验性选材。",
+          "strengths": "亮点在于对象和指标都很聚焦。第一，Bi/InSe异质结构是明确的材料平台，说明结果不是泛泛而谈的TFET概念。第二，摘要给出两个关键性能量：I60约10 μA/μm和开关比>10^7，这比单独报告最小亚阈值摆幅更有器件意义。第三，作者把性能归因于材料设计、洁净界面和能带工程三者协同，表明其改进可能不是单点优化，而是围绕TFET瓶颈的系统设计。第四，如果其确实达到IRDS相关门槛，则对低功耗逻辑器件路线图讨论具有较高参考价值。",
+          "weaknesses": "基于摘要的主要局限是关键信息仍不足。首先，不清楚这些性能是在何种偏压、温度、扫描方向与扫描速率下获得，因而难判断是否存在迟滞、陷阱辅助机制或测试条件选择带来的乐观结果。其次，未看到统计样本量、器件一致性和成品率信息，无法判断可重复性。再次，I60虽然重要，但仍需结合绝对导通电流、接触电阻、输出特性、频率响应和电路级验证评估实用性。最后，Bi/InSe体系的工艺兼容性、环境稳定性和大面积制造可行性在摘要中没有体现。",
+          "next_step": "最小可执行动作：第一，下载正文后优先查看转移曲线、I60定义图和性能对比表，确认I60提取标准及测试条件；第二，查器件结构示意和能带图，记录Bi/InSe异质结的带对齐类型、层数/厚度和栅结构；第三，核对是否提供多器件统计、温度依赖和迟滞测试，以排除伪亚阈值陡峭现象；第四，把文中I60、Ion/Ioff、工作电压与近年代表性TFET文献做并排对照，判断其“beyond Boltzmann thermionic limit”究竟是物理演示还是工程上显著推进。"
+        }
+      },
+      "doi:10.1126/science.aee3132": {
+        "summary": "这篇Science论文聚焦二维半导体单层MoS2和WSe2的金属接触瓶颈，提出一种原子尺度逐步蒸发方法，直接在单层半导体上生长洁净界面的单晶金属接触。摘要显示其目标是将接触行为推进到接近Schottky–Mott极限，并在Bi/MoS2与Pd/WSe2晶体管中实现超低接触电阻和大于1.1 mA/μm的短沟道电流。",
+        "contribution": "核心贡献在于：1）提出并强调一个可抑制二次成核、促进横向并合的生长动力学窗口，用于在2D半导体上直接蒸发单晶金属；2）展示该策略可用于多种金属（Bi、Ag、In、Au、Pd）与MoS2/WSe2体系的van der Waals外延接触；3）将这种单晶、洁净界面金属接触与更弱费米能级钉扎、空间均匀功函数、超薄导电和更好热稳定性联系起来；4）给出器件层面的关键指标：单层MoS2的n型接触电阻36 Ω·μm、单层WSe2的p型接触电阻145 Ω·μm。",
+        "details": "从题名和摘要看，研究对象非常明确：不是一般的2D材料生长，而是“二维半导体器件中的金属接触形成”这一关键瓶颈，重点材料为单层MoS2和WSe2，重点任务为构建低损伤、低钉扎、低电阻的金属源漏接触。作者提出的“atomic-scale step-by-step evaporation”应是对传统热蒸发/电子束蒸发接触制备路径的工艺重构，核心不只是蒸发金属，而是通过精细控制沉积速率、表面扩散、成核与并合过程，进入一个特定的动力学生长窗口，使金属在2D半导体表面更倾向于侧向扩展和单晶并合，而不是形成多晶岛、界面污染或粗糙接触。摘要中“directly grow single-crystal metals on monolayer semiconductors with clean interfaces”说明作者将“单晶金属+洁净界面”作为接触性能提升的结构基础。证据线索方面，摘要暗示至少有三层证据链。第一层是结构与生长证据：需要有单晶性、外延关系、二次成核被抑制、横向并合发生的表征，按常见Science论文写法，正文大概率会给出显微结构、衍射或原子分辨图来支撑“single-crystal”“van der Waals epitaxy”“clean interfaces”等判断。第二层是物理机制证据：作者声称单晶金属具有超薄导电、空间均匀功函数和更强热鲁棒性，并且作为接触时“minimal Fermi-level pinning, approaching the Schottky–Mott limit”，这意味着正文中应有功函数均匀性测量、温度稳定性测试，以及接触势垒/钉扎因子相关分析，可能通过不同金属功函数与器件极性/势垒变化的对应关系来证明接近Schottky–Mott行为。第三层是器件性能证据：Bi接触单层MoS2实现36 Ω·μm n型接触电阻，Pd接触单层WSe2实现145 Ω·μm p型接触电阻，且短沟道电流均超过1.1 mA/μm，这些数值说明作者不仅关注接触电阻的极小化，还在短沟道器件中证明了驱动能力。对于做2D电子学、接触工程、界面物理或后端集成的读者，这篇论文的价值在于它把“蒸发金属接触”从通常被视为损伤源、无序界面来源的工艺，转化为一种可实现单晶van der Waals接触的工程方案。如果摘要表述成立，这将直接影响低功耗二维CMOS、接触极限分析、接触-沟道协同优化，以及不同功函数金属在单层TMD上的极性选择。需要核对的信息也很明确：第一，接触电阻提取方法是什么，是否为TLM、四探针或建模外推，是否严格可比；第二，短沟道电流的测试偏压、沟道长度、栅介质与是否有自热影响；第三，所谓“minimal Fermi-level pinning”是否有定量钉扎因子S值或势垒高度随功函数变化的系统数据；第四，这种逐步蒸发方法的工艺窗口宽度、可重复性、晶圆级均匀性与兼容性如何；第五，多种金属虽被展示，但真正达到最佳接触性能的是否主要仍局限于Bi和Pd两个案例。仅依据摘要，论文很强，但仍需正文和图表确认其普适性、统计显著性与工艺可扩展性。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文要解决的具体问题是：如何在单层二维半导体，尤其是MoS2和WSe2上，形成既洁净、低损伤、低费米能级钉扎，又能提供极低接触电阻和高短沟道驱动电流的金属接触。更细一点说，它试图突破传统蒸发金属接触常见的多晶、粗糙、界面污染和钉扎严重等问题，使金属/2D半导体接触更接近理想Schottky–Mott行为。",
+          "method": "按摘要推测，方法核心是原子尺度“逐步蒸发”工艺，通过调控沉积过程进入一个特殊生长动力学窗口：抑制表面二次成核、增强金属原子的横向生长和并合，从而在单层MoS2与WSe2上实现多种金属的van der Waals外延单晶生长。实验路径大概率包括：在单层TMD表面沉积Bi、Ag、In、Au、Pd等金属；用结构表征确认单晶性和洁净界面；用表面电势或功函数表征验证空间均匀性；做热稳定性对比测试；再制备晶体管，通过接触电阻提取和短沟道输运测试来评估Bi/MoS2与Pd/WSe2的n型和p型接触性能。机制推理则是把单晶、均匀功函数和洁净界面与弱钉扎、低势垒和高电流联系起来。",
+          "strengths": "最值得关注的亮点有四点。第一，研究对象抓住了2D器件最关键的工程瓶颈之一：接触，而不是只展示材料生长本身。第二，摘要中的方法论信息较强，不是简单换一种金属，而是指出了一个可操作的生长动力学窗口，这意味着潜在可推广性。第三，材料覆盖面较广，包含Bi、Ag、In、Au、Pd与两种代表性TMD，说明作者试图证明方法并非单一材料偶然成功。第四，器件结果具体且有说服力：36 Ω·μm和145 Ω·μm分别对应单层MoS2和WSe2的优异n/p型接触，同时短沟道电流都超过1.1 mA/μm，表明接触改进确实转化为器件性能增益。",
+          "weaknesses": "基于题录和摘要，需要警惕几类边界。第一，摘要没有给出工艺温度、沉积速率、真空条件、基底处理和重复性统计，因此尚不清楚该方法是否容易复现、是否适合大面积制造。第二，虽然提到多种金属，但真正给出接触电阻极值的是Bi和Pd，其他金属在器件层面的效果可能未必同样突出。第三，“approaching the Schottky–Mott limit”是很强的结论，需要正文中的系统功函数-势垒关系和钉扎因子定量支持，否则只能视为摘要层面的主张。第四，短沟道电流很高，但如果缺少沟道长度、栅结构、接触长度、测试偏压与自热分析，就难与其他工作严格横向比较。第五，题名强调direct evaporation of single-crystal metal contacts，但尚不清楚接触区域之外的覆盖控制、图形化兼容性和边缘效应是否已解决。",
+          "next_step": "最小可执行动作：1）先查正文或补充材料中的图，重点找单晶金属在MoS2/WSe2上的结构表征图、界面高分辨图和外延关系示意；2）记录Bi/MoS2的36 Ω·μm与Pd/WSe2的145 Ω·μm是如何提取的，确认测试温度、偏压和器件几何；3）查是否给出了费米能级钉扎因子、势垒高度与金属功函数关系；4）把该文与传统蒸发接触、转移金属接触、半金属Bi接触等已有路线做一页对照，尤其比较接触电阻、可扩展性和热稳定性；5）如果你的方向是2D器件工艺，可优先摘录其“动力学生长窗口”的具体参数，因为这部分最可能决定是否可复现。"
+        }
+      },
+      "doi:10.1038/s41586-026-10893-x": {
+        "summary": "该研究针对火星季节性潮汐响应与内部结构反演这一具体任务，利用MGS、Mars Odyssey和MRO的跟踪数据分析火星时变重力场，指出三阶潮汐分量显著偏离球对称模型预测，并据此推断火星南北地壳二分性之下存在现今仍保存的地幔热异常。摘要给出的核心结论是：与地表地壳二分性空间对齐的南北向地幔有效剪切模量变化大于20%，对应南部高地之下约200–400°C的温度异常。",
+        "contribution": "核心贡献在于把“潮汐层析成像”用于火星内部结构约束：不是仅估计整体潮汐参数，而是利用时变重力场的三阶空间分量识别横向非均一性，并将其与火星地壳二分性联系起来。这一工作可能提供了对火星现今地幔热结构仍具区域性差异的直接动力学证据，并为解释南部高地长期热演化、区域地幔对流或厚壳保温效应提供新的观测约束。",
+        "details": "从题名和摘要看，研究对象非常具体：火星在偏心轨道和自转轴倾角共同作用下产生的季节性潮汐强迫，以及这种强迫引起的时变重力场。作者使用三颗轨道器MGS、ODY和MRO的精密跟踪数据，重点检验时变重力场中三阶项是否符合球对称内部结构模型。关键观测现象是：三阶分量与既有球对称预测相比最多可偏离300%，说明仅用径向分层模型无法解释火星的潮汐响应。随后作者提出一个横向非均一解释，即地幔有效剪切模量呈大致南北向变化，幅度超过20%，并且这一空间格局与火星表面的地壳二分性高度一致。基于这种相关性，作者进一步把力学异常解释为热异常，推断南部高地下方至今仍存在约200–400°C的地幔温度偏高或温差结构。摘要还给出两种可能机制：区域性地幔对流，或南部高地厚地壳在数十亿年尺度上的隔热保温。对科研读者而言，这篇论文的价值主要在三个方面。第一，方法上，它提示行星潮汐响应不仅能约束平均内部结构，也能用于识别横向热-流变异常，属于从传统Love number估计走向“潮汐层析”的方向。第二，科学上，它把长期争议的火星地壳二分性与现今深部热结构联系起来，暗示该二分性并非仅是早期形成遗迹，而可能仍影响当前地幔状态。第三，数据上，它整合多任务轨道器跟踪信息，说明火星重力时间变化中可提取比全球平均参数更高阶的空间信息。需要核对的信息也很明确：这里的“effective shear modulus”是通过何种参数化反演得到；三阶分量具体对应哪些球谐项；300%偏差相对于哪些参考模型和误差条带；热异常深度范围与温度换算依赖何种流变关系；以及作者如何排除轨道系统误差、非潮汐质量迁移或大气/极冠季节负载等替代解释。若你的研究方向涉及行星内部结构、重力反演、潮汐耗散、火星热演化或地壳-地幔耦合，这篇论文值得重点关注，因为它看起来提供了一个把轨道重力观测直接连接到横向地幔温度结构的案例。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题是：火星季节性潮汐引起的时变重力场，是否能够揭示火星内部并非球对称，而存在与地壳二分性相关的横向地幔流变/热结构异常；进一步说，火星南部高地下方今天是否仍保留可观的深部热异常。",
+          "method": "依据摘要，可能的方法链条是：先利用MGS、Mars Odyssey和MRO的无线电/轨道跟踪数据反演火星时变重力场；再提取与季节性潮汐强迫相关的球谐分量，特别是三阶分量；将观测结果与球对称内部结构模型预测进行比较；若出现系统性偏差，则构建含横向变化的地幔有效剪切模量模型，寻找能够解释三阶异常的空间分布；最后再通过剪切模量与温度、流变之间的关系，把力学异常换算为200–400°C量级的热异常，并结合其与地壳二分性的空间相关性讨论成因。",
+          "strengths": "最值得关注的亮点是把时变重力场中的高阶潮汐信号作为横向内部结构探针，而不只是估计整体潮汐参数。摘要中“最多300%的三阶偏差”如果稳健，将是非常强的非球对称证据。另一个亮点是空间对齐关系：推断出的南北向地幔剪切模量变化与地表地壳二分性相吻合，这使深部异常与表面地质构造建立了可检验联系。第三，使用多轨道器长期跟踪数据，意味着信号提取可能具有较高时间覆盖和观测冗余度。",
+          "weaknesses": "仅从摘要看，仍需警惕几个边界。第一，结论高度依赖模型反演与参数化，横向剪切模量变化是否唯一、是否存在其他质量负载或动力学机制可产生类似三阶信号，尚不清楚。第二，热异常200–400°C的定量估计依赖流变假设、频率依赖性和成分假设，可能存在较大模型不确定性。第三，摘要没有说明异常的深度分辨率，因而“位于地幔何处”可能并不精确。第四，题录信息不足以判断观测误差控制、统计显著性、模型选择准则以及与既有InSight地震约束是否一致。",
+          "next_step": "最小可执行动作建议是：第一，优先查看正文或扩展数据中关于三阶潮汐球谐项的图和表，记录具体异常模式、误差条和对应的球谐系数；第二，核对作者如何从轨道器跟踪数据分离潮汐信号与其他季节性质量变化；第三，把文中推断的剪切模量变化、温度异常和空间分布与InSight给出的地壳厚度、地幔Q值和核参数约束做一个对照笔记；第四，若做复现，可先从公开火星重力场和轨道跟踪文献入手，重建球对称潮汐预测，再测试引入简单南北向模量非均一后对三阶分量的影响。"
+        }
+      },
+      "doi:10.1038/s41586-026-10894-w": {
+        "summary": "这篇Nature论文报告在银河系中心黑洞人马座A*附近发现一颗新的暗弱主序星S301，并指出其8.7年轨道与很小的近心距使其运动对黑洞自旋产生的Kerr时空效应敏感。论文的核心任务是利用该恒星轨道作为测试粒子，推动从已测得的Schwarzschild级相对论修正进一步迈向对Sgr A*自旋相关效应的直接探测。",
+        "contribution": "核心贡献是提出并初步确立了S301作为目前最有前景的“自旋敏感”银河中心恒星之一：其峰值速度约25,000 km/s、近黑洞程度高、轨道周期短，理论上可在现有近红外干涉测量与未来超大望远镜光谱能力配合下，约束人马座A*的自旋大小及可能的自旋方向相关效应。相较既有S星主要测到β^2量级的引力红移、横向多普勒效应和Schwarzschild进动，这项工作把观测目标推进到β^3量级的Kerr修正。",
+        "details": "从题名和摘要可判断，研究对象非常具体：银河系中心4.3×10^6太阳质量的人马座A*周围一颗新发现恒星S301。该星是暗弱主序星，K波段星等mK=19.3，轨道周期8.7年，近心距足够小，近心速度达到约25,000 km/s。这种轨道几何使其成为检验旋转黑洞Kerr度规效应的候选探针，而不只是像此前一些S星那样测量Schwarzschild势下的红移和近日点进动。摘要给出的证据线索包括：一，作者强调“discovery”与“on an 8.7-year orbit”，说明他们应已基于多历元天体测量数据拟合出了轨道；二，现有近红外干涉测量能力被明确点出，暗示关键数据源很可能来自VLTI/GRAVITY一类高精度银河中心位置测量；三，未来极大望远镜光谱被提及，说明现阶段可能已具备高精度位置轨道信息，但径向速度与更完整相对论效应分解仍需后续设施支持。论文与高角分辨率天体测量、黑洞广义相对论检验、银河中心恒星动力学、黑洞自旋约束等方向直接相关。需要核对的信息包括：S301的轨道半长轴、偏心率、轨道倾角、近心时刻、与S2等已知S星相比的相对优势；作者是报告“已能探测到”自旋效应，还是报告“具备灵敏度/未来可探测”；他们如何处理牛顿背景势、扩展质量分布、参考系系统误差、源混叠以及自旋-轨道几何退化；所谓“直接敏感”具体指轨道平面Lense–Thirring进动、近心进动修正、红移项还是联合拟合中的费舍尔预测。仅凭摘要不能确认是否已经得到Sgr A*自旋参数的数值约束，也不能确认统计显著性和误差预算。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题是：在银河系中心已能测到β^2量级相对论效应的基础上，是否存在一颗轨道更紧、速度更高的恒星，可使观测进入对旋转黑洞Kerr度规β^3量级修正敏感的区间，从而用恒星轨道来约束人马座A*的自旋及相关时空拖拽效应。",
+          "method": "可能的方法路径是：利用多年近红外高分辨率成像/干涉天体测量数据在Sgr A*附近识别新暗星S301，进行轨道关联和开普勒+相对论轨道拟合，估计其轨道周期、近心距和峰值速度；再基于Kerr时空下的轨道摄动或观测量模拟，评估其对黑洞自旋参数的灵敏度。结合摘要表述，数据上大概率依赖当前近红外干涉仪对银河中心拥挤场的高精度位置测量，未来再通过超大望远镜获得径向速度光谱以打破参数退化并提升自旋约束。",
+          "strengths": "最值得关注的亮点有三点。第一，目标对象非常强：S301既周期短又近心速度高，是罕见地把恒星轨道测试推进到自旋敏感区间的天然探针。第二，任务具有明确的相对论层级推进意义：从已建立的Schwarzschild检验迈向Kerr检验，科学增量清楚。第三，观测可行性被摘要直接连接到现有和近期设施，说明这不是纯理论假设，而是可能在可预见时间内实施的观测计划，对银河中心精密动力学和强引力场检验都有高价值。",
+          "weaknesses": "基于题录与摘要需要警惕的局限包括：摘要未给出完整轨道参数、误差条、时间基线和显著性，尚不能判断轨道解是否稳健；未说明是否已实际探测到任何自旋信号，还是仅证明S301具备未来探测潜力；未见对系统误差来源的描述，例如星场拥挤导致的混叠、参考系漂移、扩展质量分布、其他恒星摄动等；也不清楚自旋约束是否严重依赖未来ELT光谱，如果依赖很强，则当前结果更接近“发现关键目标+预测能力”而非“完成测量”。",
+          "next_step": "最小可执行动作是：第一，查论文正文或补充材料中S301的完整轨道六要素、近心时刻和误差预算；第二，对照S2、S4711等已知近黑洞恒星，记录S301在周期、近心距离、峰值速度和自旋灵敏度上的定量优势；第三，重点查看作者是否给出Kerr项可观测量的数量级图、费舍尔矩阵/模拟结果或真实拟合残差；第四，若你的方向与轨道拟合或相对论检验相关，可据摘要先建立一个简化模型：以4.3×10^6太阳质量黑洞、8.7年轨道、25,000 km/s峰值速度估算β、β^2和β^3量级，判断所需天体测量与光谱精度是否与GRAVITY/ELT能力匹配。"
+        }
+      },
+      "doi:10.1038/s41586-026-10878-w": {
+        "summary": "本文研究超弥散星系 UGC 9050-Dw1 中一条候选球状星团恒星流，利用深度哈勃空间望远镜成像及生成式恒星流建模，提出迄今首个银河系外球状星团恒星流的观测证据。研究目标是借助该恒星流的形态和动力学约束宿主超弥散星系的暗物质晕及其可能的子结构。",
+        "contribution": "论文的核心贡献是报告一个位于银河系之外、宿主为超弥散星系 UGC 9050-Dw1 的候选球状星团恒星流，并将其形态、颜色、紧致源关联和表面亮度模拟共同用于支持球状星团前身解释。摘要还表明，作者采用直接拟合恒星流形态的生成式动力学建模，以探索外部星系暗物质含量和结构的可约束性。",
+        "details": "研究对象是 UGC 9050-Dw1 内一条细长的恒星流及其可能的球状星团前身，科学背景是利用潮汐剥离形成的恒星流追踪宿主星系的暗物质晕和暗物质子结构。数据主要来自深度哈勃空间望远镜成像；摘要明确提到的证据包括恒星流的形态、颜色、与紧致源的表观关联，以及基于球状星团恒星种群模拟得到的表面亮度。动力学方面，作者使用生成式恒星流建模，将动力学模型直接拟合到恒星流形态上，以约束宿主系统的相关参数，但所提供摘要在模型参数、后验结果和不确定度处被截断，无法判断具体约束精度。该工作与星系暗物质、超弥散星系、恒星流动力学和银河系外低表面亮度结构研究直接相关；用户未提供具体研究方向，因此无法进一步定制关联。阅读全文时需要核对恒星流的距离、长度、宽度、表面亮度和颜色测量，紧致源是否确实为球状星团的判据，背景源或前景污染的排除方法，恒星种群模拟的假设，动力学模型采用的宿主势形式，以及最终对暗物质晕质量、形状、轨道和子结构的定量约束。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文试图回答：UGC 9050-Dw1 中观测到的细长低表面亮度结构是否是一条由球状星团潮汐瓦解形成的恒星流；如果是，能否利用其形态和动力学信息约束超弥散星系的暗物质含量及暗物质晕结构。更广泛的问题是，球状星团恒星流是否能够作为银河系之外星系暗物质研究的探针。",
+          "method": "研究使用深度哈勃空间望远镜成像识别并表征 UGC 9050-Dw1 中的候选恒星流，比较其形态和颜色，并检查其与一个紧致源的表观空间关联。作者还模拟球状星团恒星种群，以检验是否能够再现观测到的恒星流表面亮度；随后采用生成式恒星流建模，将动力学模型直接拟合至恒星流形态，从而推断宿主星系及其暗物质晕的性质。摘要未提供观测曝光、数据处理、模型参数化、先验、采样方法和完整拟合结果。",
+          "strengths": "最值得关注的设计是将多种相互独立程度不同的线索结合起来：恒星流的细长形态、颜色、紧致源关联和球状星团恒星种群的表面亮度预测，共同检验球状星团前身解释。研究对象位于超弥散星系中，因此具有直接探测这类星系暗物质含量的潜在应用价值；生成式恒星流建模直接针对观测形态进行动力学推断，也为从银河系外恒星流提取宿主势信息提供了方法路径。",
+          "weaknesses": "目前只能依据题名和不完整摘要，不能确认该结构是否已被排除为背景星系、前景恒星叠加、星系内部其他恒星形成结构或成像伪影，也不能确认紧致源的物理关联和球状星团身份是否达到确定性证据标准。摘要没有给出信噪比、距离和尺度测量、恒星流寿命、轨道参数、宿主暗物质晕质量及其不确定度，也未说明模型对宿主星系质量分布、轨道、恒星流初始条件和系统误差的敏感性。此外，题录中的摘要在“约束 m ...”处截断，核心定量结论和比较基线缺失，因此不应据此声称已获得可靠的暗物质参数测量。",
+          "next_step": "首先获取全文及补充材料，核对恒星流和紧致源的图像、颜色测量、尺度与统计显著性；其次记录生成式恒星流模型的参数、先验、宿主势假设和后验约束；最后重点查阅表面亮度模拟与污染排除分析，并将论文报告的暗物质晕约束与不含恒星流、不同宿主势模型及其他超弥散星系研究进行对照。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "arXiv page failed at start=0, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=0&max_results=50&sortBy=sub...",
+      "arXiv page failed at start=50, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=50&max_results=50&sortBy=su...",
+      "arXiv fetch stopped after 2 consecutive page failure(s)."
+    ]
+  },
+  "papers": [
+    {
+      "id": "doi:10.1126/science.aej0194",
+      "source": "science",
+      "title": "Iron-catalyzed [1+1+1] cyclopropanation by sequential coupling of an ester to two carbenes",
+      "authors": [
+        "Lingran Kong",
+        "Kevin Zong",
+        "Marcus Hopfengärtner",
+        "Brandon J. Orzolek",
+        "Ryan Shenvi"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "abstract": "Traditional precious metal catalysis benefits from well-characterized inner-sphere elementary steps in which a single complex binds and unites substrates at the metal center. By contrast, base metal catalysts have recently demonstrated competence in cross-coupling transformations through iterative outer-sphere reactions in which product bond formation occurs by serial additions to the ligand, not the metal. Despite the emerging diversity of two-component outer-sphere reactions, comparable multicomponent outer-sphere couplings remain rare. In this study, we describe an iron-catalyzed [1+1+1] synthesis of cyclopropanols through iterative outer-sphere reactions between two carbenes and an ester. This reaction initially generates silyl enol ethers stereo-, regio-, and chemoselectively through a traceless, directed olefination that can be further exploited to enable transformations unavailable to prior methods.",
+      "url": "https://doi.org/10.1126/science.aej0194",
+      "pdf_url": "",
+      "doi": "10.1126/science.aej0194",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "910-916",
+        "reference_count": 67,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aej0194"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aek3835",
+      "source": "science",
+      "title": "Rethink the cargo, rethink the carrier",
+      "authors": [
+        "Jacob W. Myerson",
+        "Drew Weissman"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "abstract": "New transfer RNA medicines require redesigned lipid nanoparticles for delivery",
+      "url": "https://doi.org/10.1126/science.aek3835",
+      "pdf_url": "",
+      "doi": "10.1126/science.aek3835",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "862-863",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aek3835"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aef8268",
+      "source": "science",
+      "title": "Hypervision: An on-chip hyperspectral microsystem for online video-rate computational imaging",
+      "authors": [
+        "Liheng Bian",
+        "Qinghao Meng",
+        "Lianjie Li",
+        "Zhen Wang",
+        "Yibo Feng",
+        "Xuan Peng",
+        "Jiajun Zhao",
+        "Jingyi Wang",
+        "Zhu Yang",
+        "Jun Zhang"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "abstract": "In this work, we tackled the long-standing challenge of the massive computation for hyperspectral imaging that is required to reconstruct and process large-volume spatial-spectral data cubes. Specifically, we designed a hardware accelerator, fabricated as a neural processing unit (NPU) capable of 9.3 tera operations per second at 16-bit integer (INT16), alongside a topology-aware structured pruning strategy for a lightweight reconstruction network. Through integration with our HyperspecI sensor, we demonstrate a fully standalone visible–near-infrared hyperspectral microsystem (~950 grams) that requires neither external power nor computing resources. The microsystem achieved real-time hyperspectral imaging at 32.9 frames per second (512×512, 61 channels) or 24.6 frames per second (1024×1024, 16 channels) and consumed only ~25.3 watts (367 giga–operations per second per watt). Application demonstrations in intelligent driving and air-to-ground monitoring highlight its practical potential advancing computational hyperspectral imaging from offline processing to integrated online perception.",
+      "url": "https://doi.org/10.1126/science.aef8268",
+      "pdf_url": "",
+      "doi": "10.1126/science.aef8268",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "888-894",
+        "reference_count": 100,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aef8268"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adx6059",
+      "source": "science",
+      "title": "Tunnel field-effect transistors exhibiting performance beyond the Boltzmann thermionic limit",
+      "authors": [
+        "Zehan Wu",
+        "Ke Yang",
+        "Wanqing Meng",
+        "Weizhen Wang",
+        "Yifei Zhao",
+        "Fumei Yang",
+        "Ran Ding",
+        "Hui Li",
+        "Yudong Peng",
+        "Zongmeng Yang",
+        "Yee Sin Ang",
+        "Songhua Cai",
+        "Ming Yang",
+        "Jiannong Wang",
+        "Lain-Jong Li",
+        "Jianhua Hao"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "abstract": "The International Roadmap for Devices and Systems (IRDS) has identified the tunnel field-effect transistor (TFET) as the most promising next-generation logic device that enables sustainable downscaling in driving voltage and power consumption. Demonstrating an acceptable sub–Boltzmann-limit ON current (namely I 60 , the current level when a TFET switches to a subthreshold swing level of 60 millivolts per decade) and current-switching ratio has presented a formidable challenge. We report a TFET based on a bismuth/indium selenide (Bi/InSe) heterostructure that exhibits an I 60 of up to ~10 microamperes per micrometer and a current-switching ratio of >10 7 . We attribute such promising TFETs to precise material design, clean interfaces fabricated under vacuum, and band engineering based on subthreshold swing physics. Our results demonstrate a high-performance basic building block that meets the IRDS requirements for next-generation integrated circuits.",
+      "url": "https://doi.org/10.1126/science.adx6059",
+      "pdf_url": "",
+      "doi": "10.1126/science.adx6059",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "917-922",
+        "reference_count": 69,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adx6059"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aee3132",
+      "source": "science",
+      "title": "Direct evaporation of single-crystal metal contacts for 2D semiconductors",
+      "authors": [
+        "Ying Zhang",
+        "Chang Liu",
+        "Huiting Wang",
+        "Guichen Teng",
+        "Yilu Qin",
+        "Wencheng Niu",
+        "Shuimei Ding",
+        "Binmin Wu",
+        "Shuaiqin Wu",
+        "Yan Chen",
+        "Ni Yang",
+        "Tie Lin",
+        "Hong Shen",
+        "Xiangjian Meng",
+        "Yuan Liu",
+        "Xuming Zou",
+        "Xudong Wang",
+        "Lei Liao",
+        "Junhao Chu",
+        "Lain-Jong Li",
+        "Jianlu Wang"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "abstract": "Metal contacts remain one of the key bottlenecks in two-dimensional (2D) semiconductor electronics. We developed an atomic-scale step-by-step evaporation method to directly grow single-crystal metals on monolayer semiconductors with clean interfaces. This method accesses a distinct growth-kinetic window that suppresses secondary nucleation and promotes lateral coalescence, enabling van der Waals epitaxy of diverse metals—including bismuth, silver, indium, gold, and palladium—on molybdenum disulfide (MoS 2 ) and tungsten diselenide (WSe 2 ). The single-crystal metals support ultrathin conduction, provide spatially uniform work functions, and exhibit improved thermal robustness. As contacts, they show minimal Fermi-level pinning, approaching the Schottky–Mott limit. With bismuth and palladium contacts, monolayer MoS 2 and WSe 2 transistors achieved ultralow n- and p-type contact resistances of 36 and 145 ohm-micrometers, respectively, and short-channel currents both above 1.1 milliampere per micrometer.",
+      "url": "https://doi.org/10.1126/science.aee3132",
+      "pdf_url": "",
+      "doi": "10.1126/science.aee3132",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "393",
+        "issue": "6814",
+        "page": "938-943",
+        "reference_count": 53,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aee3132"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10893-x",
+      "source": "nature",
+      "title": "Tidal tomography reveals a thermal anomaly beneath Mars’s crustal dichotomy",
+      "authors": [
+        "Alexander Berne",
+        "Nicholas Wagner",
+        "Isamu Matsuyama",
+        "Sander Goossens",
+        "Antonio Genova",
+        "Marc Rovira-Navarro",
+        "Amirhossein Bagheri",
+        "Chuan Qin",
+        "Angela Marusiak",
+        "Douglas Hemingway",
+        "Harriet C. P. Lau",
+        "Kar Wai Cheng",
+        "Shijie Zhong",
+        "Francis Nimmo"
+      ],
+      "published": "2026-08-26",
+      "updated": "2026-08-26",
+      "abstract": "Abstract Mars undergoes seasonal tidal forcing as a result of its eccentric orbit and the tilt of its rotation axis relative to the Sun 1 . Response to this forcing produces temporal variations in the Martian gravity field and is sensitive to the internal structure of the planet 2–4 . Using tracking data from the Mars Global Surveyor (MGS), Mars Odyssey (ODY) and Mars Reconnaissance Orbiter (MRO) spacecraft 5–7 , we demonstrate that degree-3 components of the time-variable gravity field of Mars differ by up to 300% from predictions for a spherically symmetric planet 8–10 . These deviations can be explained if the effective shear modulus of the mantle varies by >20% over a roughly north–south pattern that closely aligns with the surface expression of the Martian crustal dichotomy 11 . On the basis of this correlation, we infer preservation of a 200–400 °C thermal anomaly in the present-day mantle below the southern highlands of Mars. This temperature variation could reflect regional mantle convection 12,13 or insulation by the thick southern highlands crust of Mars that has persisted over several billion years 14,15 .",
+      "url": "https://doi.org/10.1038/s41586-026-10893-x",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10893-x",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "656",
+        "issue": "8129",
+        "page": "848-853",
+        "reference_count": 81,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10893-x"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10894-w",
+      "source": "nature",
+      "title": "Discovery of a star sensitive to the spin of Sagittarius A*",
+      "authors": [
+        "K. Abd El Dayem",
+        "R. Abuter",
+        "N. Aimar",
+        "P. Amaro-Seoane",
+        "A. Berdeu",
+        "J.-P. Berger",
+        "G. Bourdarot",
+        "W. Brandner",
+        "A. Burkert",
+        "D. Caldéron",
+        "C. Correia",
+        "J. Cuadra",
+        "R. Davies",
+        "D. Defrère",
+        "L. Delit",
+        "A. Drescher",
+        "F. Eisenhauer",
+        "L. Esteras Otal",
+        "M. Fabricius",
+        "H. Feuchtgruber",
+        "S. Flesch",
+        "N. M. Förster Schreiber",
+        "A. Foschi",
+        "Q. Fournier",
+        "P. Garcia",
+        "R. Garcia Lopez",
+        "A. Generozov",
+        "R. Genzel",
+        "S. Gillessen",
+        "F. Gonté",
+        "X. Haubois",
+        "S. F. Hönig",
+        "M. Houllé",
+        "S. Joharle",
+        "A. Kaufer",
+        "J. Kammerer",
+        "P. Kervella",
+        "J. Kolb",
+        "L. Kreidberg",
+        "L. Labadie",
+        "S. Lacour",
+        "O. Lai",
+        "R. Laugier",
+        "J.-B. Le Bouquin",
+        "J. Leftley",
+        "R. Li",
+        "B. Lopez",
+        "D. Lutz",
+        "F. Mang",
+        "A. Mérand",
+        "F. Millour",
+        "M. Montargès",
+        "N. Morujão",
+        "H. Nowacki",
+        "M. Nowak",
+        "S. Oberti",
+        "J. Osorno",
+        "T. Ott",
+        "T. Paumard",
+        "C. Paladini",
+        "S. Pappert",
+        "H. B. Perets",
+        "K. Perraut",
+        "G. Perrin",
+        "R. Petrov",
+        "P. O. Petrucci",
+        "T. Piran",
+        "N. Pourré",
+        "S. Rabien",
+        "D. C. Ribeiro",
+        "S. Robbe-Dubois",
+        "M. Sadun Bordoni",
+        "J. Sanchez-Bermudez",
+        "D. Santos",
+        "R. Sari",
+        "J. Sauter",
+        "S. Scheithauer",
+        "J. Scigliuto",
+        "J. Shangguan",
+        "T. T. Shimizu",
+        "F. Soulez",
+        "J. Stadler",
+        "C. Straubmeier",
+        "E. Sturm",
+        "M. Subroweit",
+        "C. Sykes",
+        "L. J. Tacconi",
+        "P. Thévenet",
+        "I. Urso",
+        "F. Vincent",
+        "J. Woillez",
+        "G. Zins",
+        "J.-B. Le Bouquin"
+      ],
+      "published": "2026-08-19",
+      "updated": "2026-08-19",
+      "abstract": "Abstract Residing in the centre of the Milky Way, Sagittarius A* (Sgr A*) is the closest massive black hole 1 (MBH). Its vicinity has allowed measuring individual stellar orbits around it 2–4 . The stars act as test particles and probe the gravitational potential around the 4.3 × 10 6 M ⊙ MBH. These observations have determined the central mass to sub-per-cent precision 5 , and the mildly relativistic motions of stars have given access to the dominant relativistic corrections, the gravitational redshift 6,7 , the transverse Doppler effect and the prograde precession imposed by the Schwarzschild metric nature of the potential 8 . These effects are of order β 2 = ( v / c ) 2 (for velocity v and speed of light c ). The Kerr metric for a rotating black hole leads to corrections of order β 3 . Here, we report the discovery of a faint main-sequence star ( m K = 19.3), S301, on an 8.7-year orbit and with small enough a pericentre distance, such that the peak velocity of the star reaches 25,000 km s −1 . Within the measurement abilities of current near-infrared interferometry and future spectroscopy on an extremely large telescope, the motion of S301 is directly sensitive to the spin of Sgr A*. The high eccentricity of S301 suggests that it is the captured component of a binary that was torn apart by the Hills mechanism.",
+      "url": "https://doi.org/10.1038/s41586-026-10894-w",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10894-w",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 74,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10894-w"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10878-w",
+      "source": "nature",
+      "title": "Evidence for the first globular cluster stellar stream beyond the Milky Way",
+      "authors": [
+        "Julie Kiel Holm",
+        "Sarah Pearson",
+        "Jacob Nibauer",
+        "David J. Sand",
+        "Adrian M. Price-Whelan",
+        "Tjitske Starkenburg",
+        "David Hendel",
+        "Catherine Fielder"
+      ],
+      "published": "2026-08-12",
+      "updated": "2026-08-26",
+      "abstract": "Abstract The dark matter content of ultra-diffuse galaxies (UDGs) is the subject of considerable debate 1–5 . Stellar streams, which form when a host galaxy tidally strips stars from an orbiting stellar system, provide a powerful technique to constrain the dark matter content of external galaxies 6 . The stripped stars form long, thin leading and trailing tidal arms that persist for billions of years. Stellar streams from globular clusters (GCs) are particularly sensitive probes of dark matter halos and substructure 7–10 . GC streams are expected to exist in a variety of host galaxy types 11,12 but, so far, they have only been observed in the Milky Way (MW). Here we present evidence for the first, to our knowledge, extragalactic GC stellar stream, identified in deep Hubble Space Telescope (HST) imaging of the UDG UGC 9050-Dw1. The stream’s morphology, colour and apparent association with a compact source support the GC progenitor interpretation observationally and we reproduce the observed surface brightness with simulated GC stellar populations. We use generative stream modelling, which fits dynamical models directly to the stream morphology, to constrain the mass of the progenitor and present the first stream-based halo constraint for an UDG. The stream models point to a GC origin and suggest a massive dark matter host halo. By extending the reach of GC stream analysis to external galaxies, this work opens a new chapter in dark matter science.",
+      "url": "https://doi.org/10.1038/s41586-026-10878-w",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10878-w",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 38.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "656",
+        "issue": "8129",
+        "page": "843-847",
+        "reference_count": 71,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10878-w"
+      }
+    }
+  ]
+}
