@@ -1,0 +1,637 @@
+{
+  "date": "2026-09-10",
+  "stats": {
+    "fetched": 442,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 55,
+      "science": 87
+    },
+    "deduped": 442,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 55,
+      "science": 87
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 254,
+    "keyword_filtered_by_source": {
+      "arxiv": 254
+    },
+    "keyword_optional_included": 119,
+    "keyword_optional_included_by_source": {
+      "nature": 51,
+      "science": 68
+    },
+    "ranked": 188,
+    "ranked_by_source": {
+      "arxiv": 46,
+      "nature": 55,
+      "science": 87
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 123,
+    "selected_by_source": {
+      "arxiv": 7,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文可分成两条主线和一个边缘但值得留意的应用簇。第一条主线是“LLM/MLLM 与环境或输出接口的重构”：遥感变化定位论文把定位输出从坐标生成改成候选区域选择，实质是在重写多模态模型的动作空间；FEE、SRPO、PlayTrain、Data-Centric Anchoring 则分别从反馈结构、联合动作定义、可快速生成的交互环境、数据生命周期约束四个层面重写 agent 学习接口。第二条主线是“把外部结构引入模型闭环以提升稳定性与可解释性”：库存策略设计把 LLM 生成与求解器优化闭环结合，FEE 把环境反馈当作训练脚手架，遥感区域选择把候选提议与时空 token 化作为结构先验，Data-Centric Anchoring 则把反事实与受控变化前置到数据构造层。相比单纯扩大模型，这些工作更像是在回答同一个问题：当原始输出空间、奖励、数据或环境过于稀疏和脆弱时，如何通过接口工程与结构化中间层让模型更可学。阅读优先级上，若你关注多模态与遥感，优先看 arxiv:2609.08391v1，因为它直接针对 RS-MLLM 中常见的坐标生成失稳问题，且方法和评测任务都较具体；若你关注 agent RL，首选 arxiv:2609.08404v1 和 arxiv:2609.08452v1，二者分别代表环境侧脚手架与多智能体联合动作优化两个很可能继续扩展的方向；若你关心系统与 benchmark 供给，arxiv:2609.09059v1 值得看，它可能降低新环境构造门槛；若你做运筹/决策自动化，arxiv:2609.08071v1 提供了“LLM 出策略类、求解器调参数”的清晰闭环范式。Nature 两篇与祖源效应、卫星冲突数据整合更偏领域科学，但后者与遥感数据融合、前者与因果识别/环境混杂控制有方法论启发。整体上，今天最值得重点跟进的不是某个单一模型，而是“把学习问题重新表述成更可优化的接口问题”这一共同趋势。",
+    "themes": [
+      "从直接生成到结构化选择：无论是遥感定位中的 region selection，还是多智能体中的 setwise action，多个工作都在把脆弱的原子输出改写为更贴近真实执行单元的结构化决策对象。",
+      "环境不再只是评测容器，而是可设计的学习脚手架：FEE 强调反馈增强环境，PlayTrain 强调可快速合成和修改的游戏环境，Data-Centric Anchoring 则把数据与环境视为稳健性和解释性的前置条件。",
+      "外部模块闭环化成为提升 LLM 决策质量的实用路线：库存论文中的求解器、遥感论文中的文本条件 proposal、agent 论文中的环境反馈，都体现出“模型提议 + 外部结构约束/评估 + 迭代改进”的共同范式。",
+      "长时程与多主体学习正在从 token 级优化转向交互级优化：FEE 处理稀疏奖励，SRPO 处理一次转移由多个 agent 输出共同触发的问题，说明 RL for LLMs 的难点越来越集中在 credit assignment 与训练单位失配。",
+      "数据中心而非纯模型中心的稳健性观开始抬头：Data-Centric Anchoring 明确把反事实、受控变化、归因验证放到数据生命周期里；Nature 的家系内祖源效应和卫星-文本冲突数据整合也提示，严肃问题往往先要解决数据混杂与观测偏差。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "复现并检验“坐标生成 vs 候选区域选择”在遥感小目标变化定位中的误差模式差异",
+        "why": "这不仅能验证 arxiv:2609.08391v1 的核心主张，也能回答该范式到底是在减少语法型输出错误、提升小目标召回，还是更利于多目标同时定位；该问题对其他视觉 grounding 任务也有迁移价值。",
+        "first_step": "先收集一套现成遥感变化定位或指代数据，构造统一评测脚本，把基线分成坐标序列生成和候选区域分类两类，优先做错误分类统计：漏检、框偏移、多目标混淆、时相错配。",
+        "risk": "若没有作者同款候选 proposal 模块和训练套件，性能差异可能主要来自 proposal 质量而非输出范式本身。"
+      },
+      {
+        "idea": "把 FEE 的“动作指导→观测增强”反馈日程迁移到一个开源长时程 agent benchmark 上做消融",
+        "why": "FEE 的摘要给出的核心不是单一算法，而是反馈设计原则；若该原则在其他环境和 RL 算法下仍成立，就有望成为通用训练配方。",
+        "first_step": "选一个可控 benchmark，固定底座模型和 RL 算法，只改变环境返回的信息结构，设置三组：始终动作指导、始终观测增强、从前者逐步退火到后者，比较成功率、训练方差、策略熵曲线。",
+        "risk": "环境改写幅度稍大就可能引入信息泄漏，导致增益来自额外 supervision 而非更好的脚手架设计。"
+      },
+      {
+        "idea": "在多智能体工作流中比较“单响应 PPO/RPO”与“setwise 优化”对 credit assignment 的影响",
+        "why": "SRPO 的关键价值在于训练单位与真实执行单位一致；若能通过可视化或诊断实证说明它改善了联合动作层面的信用分配，就能超越单纯报告分数提升。",
+        "first_step": "选择一个有明确 active set 的多 agent 任务，记录每次环境转移消耗了哪些 agent 输出；在相同 rollout 上离线比较 token/response 级 ratio 与 setwise ratio 的方差、剪切频率、优势分配一致性。",
+        "risk": "若任务中的联合依赖较弱，setwise 方法的优势可能不明显，甚至被更高的实现复杂度抵消。"
+      },
+      {
+        "idea": "构建一个“小型求解器在环”的 LLM 决策设计基准，先从库存策略自动设计复现开始",
+        "why": "库存论文展示的是一种很有推广性的模式：LLM 负责提出参数化策略类，求解器负责客观评估与调参。这个模式可扩展到排程、定价、补货等多个 OR 场景。",
+        "first_step": "先做最小复现：选 1-2 个 lost-sales 实例，要求 LLM 生成可执行策略模板，使用固定优化器搜索参数，并把性能反馈再喂回 LLM 生成下一代策略；记录仅 LLM、仅固定策略优化、闭环三者差异。",
+        "risk": "LLM 生成的策略表示若不够规范，可能大量时间消耗在解析与执行层，而不是策略搜索本身。"
+      },
+      {
+        "idea": "把 Data-Centric Anchoring 具体化为一个 agent 数据审计清单，并在现有日志数据上检查反事实缺口",
+        "why": "这篇论文偏方法论，最容易落空在概念层；将其转成可操作的数据审计框架，能帮助判断哪些 agent 数据集真的支持稳健性与解释性研究。",
+        "first_step": "针对一个公开 agent 轨迹数据集，按 Curate、Augment、Constrain、Attribute 四阶段列检查项，例如变量覆盖、失败案例占比、受控扰动存在性、解释可验证性，然后写出缺口表。",
+        "risk": "若数据集本身不开放足够中间状态或工具调用细节，很多检查项无法真正落地。"
+      },
+      {
+        "idea": "围绕“卫星数据与文本事件数据融合”做一篇方法综述或小型基准设计，连接冲突研究与遥感 ML",
+        "why": "Nature 的冲突论文与遥感变化定位工作可以形成互补：前者关注领域问题定义与多源偏差，后者关注空间定位机制。两者结合可能催生面向社会科学应用的遥感多模态基准。",
+        "first_step": "先整理 10-15 篇相关工作，按任务拆成事件抽取、破坏检测、时空对齐、融合推断四类，并列出各类常见标签源、偏差来源和评测单位，形成一页式问题地图。",
+        "risk": "该方向跨学科门槛较高，短期内更适合做综述和数据梳理，直接做统一 benchmark 可能受限于标注和伦理问题。"
+      }
+    ],
+    "papers": {
+      "arxiv:2609.08391v1": {
+        "summary": "这篇论文关注遥感多模态大模型中的时序变化定位问题，核心是把传统“生成边界框坐标”的定位方式改为“从候选区域中选择目标区域”，以适应卫星图像中小目标密集、且多目标同时定位困难的场景。作者将这一区域选择范式扩展到多时相遥感序列，覆盖变化定位、指代表达、视觉指代与理解等任务。",
+        "contribution": "从摘要看，论文的核心贡献可能有三点：一是提出面向遥感场景的区域选择式定位框架，替代脆弱的坐标序列生成；二是把该范式扩展到多图像/多时相变化定位，通过带有空间与时间信息的候选区域token让LLM直接选择目标区域；三是构建了一个覆盖单图与多时相、多任务的训练与评测套件，并报告该方法相对基于坐标生成的方法有显著优势。",
+        "details": "研究对象非常具体：遥感多模态大语言模型（RS-MLLMs）在卫星图像上的目标/变化区域定位。摘要指出现有做法通常让模型输出边界框坐标token，但这在遥感图像里尤其脆弱，因为目标往往小、密、相互接近，而且当需要同时定位多个目标或变化区域时，坐标生成误差会进一步累积。为此，作者采用“region selection”思路：先由文本条件的区域提议模块生成候选区域，再把每个候选区域编码成特殊token，token中携带逐帧视觉特征，并加入空间与时间线索，最后由LLM通过输出所选region token来完成定位，而不是直接生成坐标。就摘要提供的信息，这意味着定位被重写为离散选择问题，而非自由形式坐标回归/生成问题。证据线索主要来自摘要中的对比对象与任务范围：论文明确对比“bounding box coordinates as token sequences”的既有路线，且实验声称在单图与多时相设定下，针对localization、referring expression、visual grounding、understanding等任务均有较大提升。这对做遥感视觉语言、多时相变化检测、遥感agent或地理空间大模型的读者都有直接相关性，因为它涉及把LLM输出空间从连续坐标改成候选区域索引，可能提高鲁棒性、可解释性和多目标扩展性。需要核对的信息包括：候选区域由何种proposal模型产生，是否依赖外部检测器/分割器；region token如何聚合多时相特征；多任务训练的数据来源、标注形式与规模；“substantially outperforms”对应的具体基线、指标和幅度；在候选区域质量较差、超密集目标、长时序或跨传感器条件下是否仍成立。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、remote sensing、satellite。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在遥感多模态大模型中，如何更稳定地定位单张卫星图像中的目标区域，以及多时相遥感序列中的变化区域，尤其是在小目标密集、多个目标同时出现、传统坐标token生成容易出错的情况下，如何设计更适合RS-MLLM的定位输出机制。",
+          "method": "根据摘要，方法路径大致是：1）输入文本查询和单图或多时相遥感图像；2）通过文本条件的区域提议模块产生候选区域，说明候选并非纯视觉无条件proposal，而是受问题/描述约束；3）对每个候选区域构造特殊region token，并为其附加每一帧的视觉特征，同时编码空间位置与时间信息；4）将这些候选token送入LLM，让模型在回答中选择对应region token完成定位；5）在训练与评测上联合多种任务，既包括定位类任务，也包括referring expression、visual grounding和更一般的understanding任务，且覆盖单图和多时相设定。可推测其评估可能比较region-token selection与坐标生成式LLM在定位精度、鲁棒性和多目标场景表现上的差异。",
+          "strengths": "最值得关注的亮点在于问题重写：把遥感定位从生成坐标改成选择候选区域，这非常贴合遥感小目标、密集目标和多目标定位的难点。第二个亮点是把自然图像MLLM中的region selection范式专门迁移并扩展到多时相变化定位，说明方法并非只做静态定位，而是显式处理时间线索。第三个亮点是候选区域token带有逐帧视觉、空间和时间信息，这种表示若实现得当，可能让LLM更自然地做跨时相比较。第四个亮点是任务覆盖面较广，不只限于change localization，还包括指代和grounding，说明作者想把它做成更通用的遥感视觉语言接口。",
+          "weaknesses": "基于目前只有摘要，需要警惕几个边界。首先，区域选择依赖候选区域质量，如果proposal漏掉真实目标，再强的LLM也无法选中正确区域，因此上限可能受proposal召回率限制。其次，候选区域数量与token开销之间可能存在显著权衡，遥感图像大、目标多，若候选过多可能带来计算和上下文长度压力。第三，多时相特征如何对齐、如何处理分辨率变化、视角/季节/传感器差异，摘要没有给出。第四，摘要说构建了multi-task training and evaluation suite，但未说明是新数据集、数据整合还是任务重标注，也未说明是否公开。第五，所谓显著优于坐标生成方法的结果目前无法判断是否来自更强proposal先验、更多监督，还是确实来自输出范式本身。",
+          "next_step": "最小可执行动作：1）拿到全文后先看方法图，确认region proposal、region token构造和时序编码的具体实现；2）优先查实验表，记录对比基线是否包含坐标生成式RS-MLLM、传统grounding模型和变化检测模型；3）查看数据与任务表，弄清单图与多时相分别用了哪些数据集、标注粒度和评价指标；4）特别核对误差案例，判断失败是否主要来自proposal漏检、时序对齐错误或LLM选择错误；5）如果你做相关研究，可先尝试在现有遥感VLM流程中把坐标解码替换为候选区域分类，做一个小规模对照实验。"
+        }
+      },
+      "arxiv:2609.08404v1": {
+        "summary": "该论文针对大语言模型在长时程任务中作为自主智能体进行强化学习训练时遭遇的奖励稀疏问题，提出将优化重点从常见的“agent-side warming up”转向“environment-side adaptation”，构建反馈增强环境（FEE）。从摘要看，作者在SciWorld与BFCL这类长程交互/工具调用任务上，用Qwen3不同规模模型结合GRPO、GSPO、DAPO等RL算法验证：通过把环境反馈从动作指导逐步过渡到观测增强，可以帮助智能体更稳定地自我进化。",
+        "contribution": "核心贡献应在于提出“环境作为脚手架”的训练范式：不是主要依赖监督微调去预热智能体，而是重写环境反馈结构来缓解长时程RL中的稀疏奖励与探索困难。具体可能贡献包括：1）提出反馈增强环境（FEE）的定义与构造原则；2）通过先导研究总结出一种反馈设计策略，即在单回合探索和跨回合演化的后期阶段，从直接动作引导转向更丰富的观测反馈；3）在SciWorld、BFCL、Qwen3多尺度模型及多种RL算法上展示一致增益；4）从训练动力学角度分析FEE为何有效，如降低熵波动、改善训练稳定性，并可能促进从依赖提示式指导向自主策略形成的迁移。",
+        "details": "仅依据题名、摘要与元数据，这篇工作聚焦的是“如何让LLM智能体在长时程任务里更容易通过RL学会有效行为”，具体卡点是奖励稀疏导致探索难、训练不稳定，而传统SFT预热又受限于标注数据不足和探索空间受约束。作者提出的FEE并不是改RL目标本身，而是改造任务环境的反馈接口，让环境在训练中承担“脚手架”作用。摘要给出的关键线索是一个反馈设计策略：在回合内部探索和跨回合演化的后期，不再持续给出强动作指导，而是转为更丰富的观察信息。这意味着作者希望避免智能体过度依赖外显动作提示，同时保留足够信息帮助其归因、总结和策略更新。任务层面，SciWorld通常对应文本环境中的多步科学任务，BFCL大概率对应函数/工具调用或复杂交互基准，因此论文的适用场景可能覆盖多步决策、工具使用和环境交互类agent训练。证据线索主要来自大规模实验与训练过程分析：摘要明确提到Qwen3不同模型规模、GRPO/GSPO/DAPO多种RL算法、以及一致性能提升和熵波动下降，这说明作者试图证明方法对模型规模与优化器具有一定鲁棒性，而不是绑定单一设置。对科研读者而言，这项工作与“通过环境设计替代部分模型侧先验”高度相关，特别适用于你关注agent RL、长时程规划、工具调用、可学习反馈设计或训练稳定性问题时。不过目前仍有多项关键信息需要核对：FEE具体如何注入反馈、是否需要人工规则、是否引入额外任务知识、在测试时是否移除这些增强反馈、增益主要来自更密集奖励还是更优观测、与SFT warm-up或curriculum learning相比的边际收益、以及是否存在benchmark特定工程技巧。由于未见全文，不能判断其统计显著性、成本代价和泛化边界。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、language model、language models、agent、agents、autonomous agent、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：当大语言模型被训练为执行长时程任务的自主智能体时，标准强化学习因奖励稀疏而难以提供足够学习信号，导致探索低效、训练不稳定、难以形成可持续的自我改进能力。作者进一步质疑仅靠智能体侧的SFT预热是否足够，并把问题转化为：能否通过重新设计环境反馈本身，为智能体提供更适合长期学习的训练脚手架。",
+          "method": "从摘要推测，方法核心是构建Feedback-Enriched Environments。具体路径可能包括：1）对原始环境返回的信息结构进行改写，在不同训练阶段提供不同粒度的反馈；2）通过先导研究比较不同反馈形式，归纳出“从动作指导到观测增强”的设计原则；3）在单个episode内部，前期可能允许更显式的引导以避免完全盲探，后期则减少直接告诉模型该做什么，转而返回更有诊断性的环境状态、后果、错误线索或中间观察；4）在跨episode训练中，也逐步减少外显指导，让策略更新更多依赖自己从丰富观察中提炼规律；5）在SciWorld和BFCL上，配合Qwen3不同规模模型及GRPO、GSPO、DAPO等RL算法做横向对比，并分析训练曲线、熵变化、可能还有成功率/收敛速度/泛化表现。",
+          "strengths": "最值得关注的亮点有三点。第一，问题切入新：它不是继续堆叠更复杂的RL算法或更多SFT数据，而是把环境本身视为可设计对象，这对agent训练范式有方法论意义。第二，反馈策略具有较强可解释性：从动作指导逐步过渡到观测增强，直观上对应“扶上马再放手”，既缓解早期探索困难，又避免长期依赖提示。第三，实验覆盖面在摘要里看较广，涉及两个基准、Qwen3多尺度与三类RL算法，如果全文设置扎实，则说明FEE可能具备一定跨任务和跨优化器的通用性。另一个重要信号是作者不仅报告最终性能，还分析训练动力学，如熵波动降低，这有助于把改进归因为更稳定的学习过程而非偶然调参。",
+          "weaknesses": "基于当前题录信息，需要警惕几类边界。第一，FEE可能依赖较强的环境工程或人工规则设计，迁移到新任务时的构建成本未明。第二，摘要虽强调从动作指导转向观测增强，但这两类反馈的形式边界、调度机制和信息泄露风险尚不清楚；若增强观测实际上编码了接近解答的关键信息，公平性需核对。第三，SciWorld与BFCL的任务特征较具体，方法是否能泛化到网页代理、代码代理或真实开放环境仍未知。第四，尚不清楚测试阶段是否仍使用增强环境；若训练和测试环境不一致，性能提升是否稳健需要看消融。第五，摘要提到一致提升与训练稳定性改善，但缺少效应量、方差、计算开销和失败案例，不能仅凭摘要判断其实用性。",
+          "next_step": "最小可执行动作建议是：1）先查全文中的FEE定义图和反馈设计示意图，确认“动作指导”和“观测增强”分别具体返回什么信息；2）优先看SciWorld与BFCL上的主表，记录相对标准环境的绝对提升、方差和所用Qwen3规模；3）查看消融实验，确认性能增益究竟来自反馈密度、反馈内容还是阶段性调度；4）核对训练/测试环境是否一致，以及是否与SFT warm-up、reward shaping、curriculum learning做了直接对照；5）若你做agent RL，可先在一个小型文本环境中手工实现“早期动作提示、后期观测丰富”的简化版脚手架，观察是否同样降低策略熵波动和早期训练崩溃。"
+        }
+      },
+      "arxiv:2609.08071v1": {
+        "summary": "这篇论文研究的是如何把大语言模型与外部优化求解器结合起来，自动设计丢失销售库存问题中的库存策略类别及其参数。根据摘要，作者在30个lost-sales库存实例上做了迭代式策略搜索，报告相对优化后的base-stock基线可获得随代数提升而扩大的成本下降。",
+        "contribution": "核心贡献在于提出一个“LLM生成策略类+外部求解器优化参数+基于优化结果反馈继续生成”的一体化库存策略设计框架，并用实验说明：仅靠LLM生成规则效果明显不如带参数优化的闭环；优化不仅是在固定策略类内调参，还能反向引导LLM逐步找到更优、更可解释的策略结构。",
+        "details": "从题名和摘要看，论文聚焦单一但很具体的运筹任务：基于需求数据，为丢失销售型库存系统自动发现好的参数化库存策略。传统上，库存决策往往先人工指定某一策略族，例如base-stock，再用优化方法调参数；本文试图把“策略族设计”本身也部分自动化。其框架输入应是需求数据或需求环境描述，LLM负责提出一个参数化策略类，外部求解器则在该策略类内寻找最优参数，再把性能结果反馈给LLM进入下一轮生成。摘要给出的关键证据包括：在30个lost-sales实例上，相对“优化后的base-stock benchmark”，平均成本改进从第1代的17.5%上升到第10代的30.0%；而去掉参数优化、只让LLM直接产出策略的变体明显更差。这说明该工作强调的不是让LLM替代优化，而是让LLM承担策略空间发明或重组的角色，优化器承担策略内精调与性能信号提供者的角色。摘要还提到最强策略具有可解释性，并组合了经典库存控制中的可识别结构母题，虽然摘要截断了具体名称，只能确认其不是完全黑箱神经策略，而更像若干经典规则模块的组合。对科研读者而言，这篇工作与“LLM for OR/OM”“自动算法设计”“符号化策略搜索”“数据驱动库存控制”都有直接关系。需要核对的信息包括：库存系统是单品单节点还是更复杂网络；需求过程假设与实例来源；外部求解器是精确优化、仿真优化还是样本平均近似；LLM接收的提示词、反馈格式和代际搜索机制；策略类的表示语言；计算成本与稳定性；以及改进是否在统计上稳健、是否对更多强基线仍成立。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在已有需求数据、经典优化工具和LLM都可用的条件下，能否不再局限于人工预设的库存策略类别，而是让系统自动生成并筛选更好的参数化库存策略，用于丢失销售库存控制，并在成本上超过标准的base-stock类策略。更细一点说，它试图回答两个方法学问题：一是LLM是否能有效提出有用的库存策略结构；二是优化反馈是否不仅帮助调参，还能引导LLM搜索到更优的策略类别。",
+          "method": "从摘要可推断的方法流程是迭代式闭环搜索。第一步，给定需求数据和问题设定，LLM生成一个参数化库存策略类，可能以自然语言规则、伪代码或程序化表达形式表示。第二步，调用外部求解器在该策略类内优化参数，目标应是最小化长期平均成本或模拟成本。第三步，将求解结果及性能反馈回LLM，使其在下一代生成新的或改进后的策略类。实验数据层面，摘要明确提到30个lost-sales库存实例，说明评测不是单个案例。比较对象至少包括一个“optimized base-stock benchmark”和一个“LLM-only variant”。结果维度是成本下降比例，并随 generation 数跟踪表现。方法上最值得注意的是，作者把LLM放在‘提出策略空间’的位置，而不是直接端到端出动作；这更接近自动发现可解释决策规则。",
+          "strengths": "亮点之一是任务定义很具体，直接面向运筹中的库存策略设计，而不是泛泛讨论LLM辅助决策。亮点之二是框架把LLM与优化器明确分工：LLM负责结构创造，求解器负责参数精调与客观性能评价，这种组合比纯文本生成更符合库存控制问题的数值优化本质。亮点之三是摘要给出了较清楚的消融线索：LLM-only明显较差，说明参数优化是核心组件；同时优化反馈还能提升搜索速度并帮助发现更好的策略类，这提供了机制层面的解释。亮点之四是发现的策略据称可解释，并能组合经典库存控制母题，这对于实际部署和管理学接受度都很重要。亮点之五是相对优化base-stock仍有17.5%到30.0%的平均成本改进，如果实验设计严谨，这个幅度在库存文献中是值得重视的。",
+          "weaknesses": "基于当前题录和摘要，首先要警惕实验范围可能仍较窄：仅看到30个lost-sales实例，尚不清楚问题维度、需求分布、成本参数和时域设置是否足够多样。其次，基线信息不足；除了optimized base-stock和LLM-only，尚不知道是否比较了更强的经典策略族、启发式搜索、遗传编程、强化学习或动态规划近似方法。第三，摘要强调平均成本下降，但未给出方差、显著性、最差情形或失败案例，无法判断稳健性。第四，方法可能对prompt设计、模型版本和求解预算较敏感，复现成本与计算开销未知。第五，所谓“可解释”目前只是摘要表述，仍需看具体规则复杂度、参数数量和可迁移性。第六，摘要被截断，导致最优策略包含哪些具体控制 motif 无法完整确认。",
+          "next_step": "最小可执行动作有五个。第一，优先查看论文中30个lost-sales实例的定义表，记录需求过程、成本结构、提前期、容量约束和评价指标。第二，查方法图，确认一代搜索中LLM输入输出格式、反馈内容以及外部求解器类型。第三，定位主结果表，核对17.5%和30.0%改进是相对哪些基线、在哪些代际统计、是否报告置信区间或显著性。第四，专门查看LLM-only与optimization-guided的消融对比，判断优化反馈究竟改善了结构搜索还是仅仅增加了参数调优预算。第五，把文中发现的最强策略规则抄写下来，与自己熟悉的base-stock、capped base-stock、order-up-to类规则逐项对照，判断其新意到底来自结构组合、状态特征扩展还是参数优化。"
+        }
+      },
+      "arxiv:2609.08452v1": {
+        "summary": "这篇论文提出面向多智能体大语言模型的强化学习方法 SRPO（Setwise Relative Policy Optimization），把一次环境状态转移实际共同消耗的多个输出视为一个“集合动作”来优化，目标任务包括数学推理和多轮搜索。摘要表明作者想统一固定分工、混合协作和动态路由等多智能体工作流，并在不同模型规模下比较训练稳定性与宏平均表现。",
+        "contribution": "核心贡献是把多智能体 LLM 系统中“逐条响应/逐条轨迹优化”的更新单位，改成与真实执行一致的“active set（一次转移所消耗的最小输出集合）”级别优化；具体上使用成员 log-ratio 聚合成按集合基数归一化的 set ratio、给整个集合分配一个相对优势值、并对集合整体做一次 clipping。若摘要表述准确，这相当于把 PPO/RPO 类目标从单响应扩展到可变大小的联合动作，可同时覆盖分工式协作与共同演化式协作。",
+        "details": "从题名和摘要看，研究对象不是单个 LLM，而是在共享环境中协同完成任务的多智能体 LLM 系统。作者指出现有 RL 方法常把每个响应或每条轨迹分别更新，但在多智能体设置里，一次状态转移往往依赖多个 agent 的联合输出，例如检索-规划-回答、多轮搜索中的提问者与浏览者、或数学推理中不同角色的分工。此时“执行动作”的单位与“参数更新”的单位不一致，可能导致信用分配失真、训练噪声增大、以及对动态路由工作流支持不足。SRPO 试图解决的正是这个错位问题：把 active set 定义为触发一次环境转移所需的最小输出集合，并把它当作一个多智能体动作来做相对策略优化。\n\n方法线索比较具体：摘要明确提到三步设计。第一，把集合内成员的 log-ratio 组合成一个 cardinality-normalized set ratio，这意味着作者可能在重要性采样或策略比值层面，将多个 agent 的概率变化做某种可变集合大小下可比较的聚合。第二，对整个集合只赋一个 relative advantage，说明优势估计可能不再细分到单 agent 输出，而是对联合动作统一打分。第三，对 set once clip，说明借鉴 PPO 的 clipping 思想，但裁剪对象是整个集合动作而非单 token/单响应。这个设计的意义在于：如果一次转移只由一个 agent 输出驱动，它退化为单动作更新；若一次转移由多个输出共同决定，则统一作为联合动作更新，因此固定分工、混合工作流、动态路由都可通过集合大小不同来表达。\n\n证据线索方面，摘要给出了两个应用任务：mathematical reasoning 和 multi-turn search。前者通常检验多步推理、角色分工或协作证明；后者更贴近带环境反馈的 agentic workflow，尤其适合检验“一次状态转移由谁的哪些输出触发”。摘要还说实验覆盖 four model scales，且报告比较中 macro-average 最强，这提示作者做了跨规模、跨工作流的统一训练接口验证，而不是只在单一 setting 展示。另一个重要证据是 optimization diagnostics，且专门分析了 different event reductions and set sizes 下的稳定性，说明论文除了最终任务指标，可能还给出训练动态、方差、比值分布、裁剪比例或不同集合聚合策略的诊断图。\n\n与用户可能关注的方向关系较强：如果你关心 multi-agent LLM、agentic RL、工作流优化、动态路由、RAG/搜索代理或数学推理协作，这篇论文提供的是训练目标层面的统一化视角，而不仅是新的 agent 架构。它尤其适用于那些“环境真正执行的是联合决策，但训练却按单输出拆开”的系统。对做 LLM agent 平台的人，SRPO 的价值可能在于提供统一接口来适配 fixed workflow、mixed workflow、dynamic routing；对做 RL 方法的人，价值在于重新定义多智能体 LLM 的 action granularity 和信用分配粒度。\n\n需要重点核对的信息也很多。首先，active set 的形式化定义和构造规则是否依赖人工工作流标注，还是可以从环境事件自动抽取；这直接决定方法通用性。其次，set ratio 的具体数学形式是否等于对成员 log-prob 求和后按集合大小归一，还是有更复杂的温度/权重设计；不同聚合方式会显著影响信用分配。第三，相对优势 relative advantage 是如何估计的：是组内相对排名、baseline 减法、还是 GRPO/RLOO 风格的相对回报。第四，和哪些基线比较：可能包括逐响应 PPO、GRPO、RLOO、多智能体独立 PPO、或者某些 trajectory-level RL。第五，所谓 strongest macro-average results among the reported comparisons 只说明在作者报告的比较里最强，不代表单项任务都最好，需看统计显著性、开源设置和成本。第六，稳定性诊断是否真的支持“大集合动作更合理”，还是只表明某些 reduction 策略更优。由于目前只有摘要，不能断言其具体实现细节和数值效果。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、rag、ai、environment、mathematical reasoning。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在多智能体 LLM 与共享环境交互时，一次状态转移常由多个 agent 输出共同触发，但现有 RL 往往仍按单响应或单轨迹分别优化，导致训练更新单位与系统实际执行的联合动作不一致。作者因此想回答：能否把“被同一次转移共同消耗的最小输出集合”定义为动作单位，并据此构造适用于固定分工、混合协作和动态路由工作流的统一策略优化目标。",
+          "method": "基于摘要，方法应建立在 PPO/相对策略优化框架上。核心输入是多智能体工作流中每次环境转移对应的 active set；每个集合包含一个或多个 agent 输出。训练时，先把集合成员的 log-ratio 聚合为按集合大小归一化的 set ratio，再为该集合分配一个统一的 relative advantage，并对集合级目标做一次 clipping。实验可能在数学推理和多轮搜索环境中进行，覆盖四种模型规模，并比较固定、混合和动态路由三类 workflow；额外用优化诊断分析不同事件归约方式（event reductions）与不同 set size 对稳定性的影响。",
+          "strengths": "最值得关注的亮点是“动作单位重定义”：它直接对准多智能体 LLM 中常被忽略的执行-更新错位问题，而不是简单堆叠更多 agent。第二，方法看起来能自然支持可变大小的联合动作，这对动态路由或条件分工很重要。第三，摘要给出的实验任务较贴近 agent 实际应用：数学推理强调协作推理质量，多轮搜索强调环境交互与工作流调度。第四，作者不仅报告任务结果，还做优化诊断，说明论文可能对训练稳定性、集合聚合策略和 clipping 行为有更机制化的分析。",
+          "weaknesses": "仅凭摘要，仍有若干边界需警惕。首先，active set 的识别可能依赖较强的工作流结构或事件边界定义，若环境无法清晰标记“哪些输出共同导致一次转移”，方法落地会受限。其次，集合级统一优势可能削弱细粒度信用分配：当集合内成员贡献差异很大时，统一奖励是否会带来搭便车问题，需要看消融。第三，摘要没有说明与 token-level、trajectory-level 或标准多智能体 RL 基线的完整比较范围，也未给出训练成本。第四，数学推理和搜索虽有代表性，但未必覆盖工具使用、代码执行、长期记忆等其他 agent 场景。第五，“宏平均最强”是相对作者所报设置的结论，仍需核对绝对优势幅度、方差、统计检验和是否存在任务间 trade-off。",
+          "next_step": "最小可执行动作：第一，拿到论文后先看 active set 的正式定义、图示和算法伪代码，确认一次环境转移如何映射到集合动作。第二，查目标函数公式，记录 set ratio、relative advantage、clip 的精确定义，并与 PPO/GRPO/RLOO 逐项对照。第三，优先看数学推理和多轮搜索的实验表，确认基线、模型规模、macro-average 的计算方式和显著性。第四，检查消融与诊断图，重点看不同 set size、event reduction、以及是否存在集合过大导致训练不稳。第五，如果你做复现，可先在一个简单的双 agent 搜索或规划环境里，把逐响应 PPO 改成集合级 ratio+advantage+clip，验证是否能重现稳定性改进。"
+        }
+      },
+      "arxiv:2609.09150v1": {
+        "summary": "Copying explains the collective behavior of AI agents in the wild。摘要要点：In June 2026, thousands of AI agents found that a small public wiki would accept edits from inside their sandboxes, and started using it to help one another pass a timed test.",
+        "contribution": "摘要中最具体的线索是：In June 2026, thousands of AI agents found that a small public wiki would accept edits from inside their sandboxes, and started using it to help one another pass a timed test. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：agent、agents、ai agent、ai agents、ai、environment。题名指向“Copying explains the collective behavior of AI agents in the wild”。摘要中可用的信息是：In June 2026, thousands of AI agents found that a small public wiki would accept edits from inside their sandboxes, and started using it to help one another pass a timed test. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Copying explains the collective behavior of AI agents in the wild”展开；摘要线索显示问题可能与 In June 2026, thousands of AI agents found that a small public wiki would accept edits from inside their sandboxes, and started using it to help one another pass a timed test. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 agent、agents、ai agent、ai agents、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：agent、agents、ai agent、ai agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2609.09059v1": {
+        "summary": "这篇论文提出 PlayTrain，一个把大语言模型生成的单文件 JavaScript 游戏接入标准 gym 风格强化学习环境的框架，目标是降低新视频游戏环境及其变体的开发成本，并在同一游戏上同时支持人类游玩与 RL 训练。根据摘要，作者重点展示了两类任务：用简单 JS 复刻 Atari/ProcGen 风格游戏，以及快速生成带有新测试集、程序生成逻辑或动力学修改的可适配游戏环境。",
+        "contribution": "核心贡献应在于把“LLM 生成游戏代码”和“高吞吐 RL 训练管线”系统性打通：用户只需最小文本提示即可得到可运行的 JS 游戏，再由 PlayTrain 将其统一包装为 gym 环境并高效训练像素输入智能体。摘要还暗示了一个工程上的重要贡献，即在单 GPU 节点上实现超过 1M agent-decisions/s 的端到端训练吞吐，从而使由 LLM 生成和修改环境、再立即进行 RL 验证成为可行工作流。",
+        "details": "从题名与摘要看，论文研究对象不是某个具体 RL 算法本身，而是“可由 LLM 快速生成、修改并被 RL 直接训练的 JavaScript 游戏环境”这一基础设施层问题。其动机很明确：传统视频游戏环境开发和改造依赖大量手写代码，导致新环境、任务变体和泛化测试设定的迭代速度慢。作者利用近期 LLM 对 JavaScript 代码生成能力较强这一经验事实，让研究者从极简的人类提示出发生成 JS 游戏；再借助 PlayTrain 将任意此类 JS 游戏接入标准强化学习接口，并在与玩家可交互的同一份游戏代码上训练像素智能体。摘要中给出的证据线索主要有三条：第一，能够复刻知名 Atari 与 ProcGen 游戏的“简单 JS”版本，说明其覆盖对象既包括经典固定游戏，也包括带程序生成特性的环境；第二，能够创建修改版游戏，例如支持新测试集、程序生成规则变化、或游戏动力学变化，说明框架关注的是环境可塑性与泛化评估；第三，训练效率达到单 GPU 节点上每秒超过 100 万次 agent-decisions，说明其价值不仅是“能跑”，而且是足够快以支撑大规模 RL 实验。如果你的方向涉及环境生成、开放式任务设计、agent 泛化评测、世界模型训练数据构造，或想把人类可玩的原型游戏快速转为 RL benchmark，这篇论文与这些方向高度相关。需要重点核对的信息包括：LLM 生成代码的可靠性与人工修正比例、JS 到 gym 的执行架构、像素观测的渲染/采样方式、训练算法与基线、与 ALE/ProcGen 原始环境相比的真实性和难度对齐程度、以及修改环境后评测设置是否系统化。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何把“新视频游戏环境的创建与修改”从高成本手工编码过程，变成可由大语言模型根据最小提示快速生成，并且能立刻用于标准强化学习训练与泛化评测的流程。更细一点，它关注两个子问题：一是任意 JS 游戏如何统一封装成 RL 环境；二是这种由 LLM 生成或改写的环境，是否能在计算上足够高效，支持像素级端到端训练。",
+          "method": "根据摘要，可能的方法路径是：先以最小人工 prompt 驱动 LLM 生成单文件 JavaScript 游戏代码；再由 PlayTrain 提供一个运行时或包装层，将该 JS 游戏嵌入标准 gym 风格接口，暴露观测、动作、奖励、终止条件等 RL 所需组件；训练阶段采用像素输入智能体进行端到端学习，并针对执行与渲染做高吞吐优化。实验对象可能包括两类：一类是用简单 JS 复刻的 Atari 风格和 ProcGen 风格游戏，用于证明兼容经典 benchmark 类型任务；另一类是对这些游戏做系统修改，如新增测试集、改变程序生成逻辑或调整动力学，用于证明环境适配性和任务扩展能力。摘要没有给出具体 RL 算法、模型结构、LLM 型号、人工筛选流程或评测指标，这些都需要回看正文。",
+          "strengths": "最值得关注的亮点有三点。第一，表示层统一：同一份 JavaScript 游戏代码既可供人类直接游玩，也可供 RL agent 训练，减少了原型与实验环境脱节的问题。第二，环境设计效率高：如果 LLM 真的能从极简提示稳定生成可运行游戏，那么构造新 benchmark、对照任务和泛化测试将非常快。第三，工程效率强：摘要宣称单 GPU 节点上超过 1M agent-decisions/s，这意味着该框架不是慢速解释执行的概念验证，而可能足以支持大规模训练和环境搜索。对于研究环境多样性、分布外泛化和 benchmark 自动生成的团队，这种“快速生成—快速训练—快速修改”的闭环应用价值很高。",
+          "weaknesses": "仅凭题录与摘要，需要警惕几类边界。第一，LLM 生成游戏代码的质量、可重复性和安全性未知，可能仍依赖人工调试或模板约束。第二，所谓 Atari/ProcGen 的“克隆”是否仅保留视觉/交互近似，而非严格机制等价，直接影响与现有 benchmark 结果的可比性。第三，训练吞吐高并不自动代表样本效率高或最终性能强，摘要没有给出回报、泛化、稳定性等实证细节。第四，JS 作为环境描述语言虽然易用，但其运行时确定性、跨平台一致性、随机数控制和大规模并行能力都需要具体实现支撑。第五，论文可能更偏系统与工具链贡献，而非提出新的 RL 学习理论或算法，因此适用价值取决于你的研究是否重视环境构建效率。",
+          "next_step": "最小可执行动作：第一，打开 arXiv 页面核对摘要后半段与图 1，确认系统架构、输入输出接口和训练吞吐定义。第二，优先查实验部分中 Atari/ProcGen 克隆任务的具体游戏列表、训练算法、评价指标以及与原始环境的对比方式。第三，记录 LLM 生成流程细节：prompt 模板、是否多轮修复、人工介入比例、失败案例。第四，查看修改版环境的案例是否形成系统 benchmark，而非仅展示少数定性样例。第五，如果你考虑复现，可先尝试用单个简单 JS 游戏验证其 gym 封装与像素观测流水线，再测试是否能稳定复现摘要中声称的高吞吐。"
+        }
+      },
+      "arxiv:2609.08216v1": {
+        "summary": "这篇论文讨论的是基于大语言模型的Agentic AI系统在分布移位下不稳健、且决策难以解释的问题，并将二者归因为训练/评估/部署数据生命周期缺乏反事实与受控变化。作者提出一个面向智能体数据环境的“Data-Centric Agentic Loop”，围绕Curate、Augment、Constrain、Attribute四阶段来为智能体任务预先注入稳健性与可解释性。",
+        "contribution": "从摘要看，论文的核心贡献不是提出新的模型结构，而是提出一种数据中心视角的智能体框架：把鲁棒性和可解释性视为数据环境设计问题，而非事后从模型中抽取的性质。具体可能贡献包括：1）提出“Data-Centric Anchoring”这一概念性主张，指出观察性交互日志只记录已发生行为、缺乏反事实结构，因此无法支持因果不变性学习与解释验证；2）给出四阶段Data-Centric Agentic Loop：Curate、Augment、Constrain、Attribute，并强调其顺序具有结构性依赖；3）将数据策展、生成式增广、不变性约束和归因/解释连接成一条可操作的数据生命周期方法论，用于Agent训练、评估与部署。",
+        "details": "仅根据题名、摘要和元数据，这是一篇偏方法论/立场论文，研究对象很明确：建立在大语言模型之上的Agentic AI系统，尤其是需要在真实环境中持续决策、交互和解释行为的智能体。摘要提出的现象也很具体：一是distribution shift下性能失稳，二是系统无法解释自身决策；作者认为这不是两个孤立问题，而是同一个数据结构缺陷的共同表现。关键论点是，常见的observational interaction logs只告诉我们“智能体做了什么”，但不包含“如果环境、提示、工具状态、任务条件变化，智能体本会怎么做”的反事实信息，因此其中的相关性可能是伪相关，不能支撑因果层面的稳健泛化，也不能真正验证解释是否有效。\n\n从方法线索看，论文可能不会集中在单一模型训练技巧，而是强调一个贯穿数据全流程的框架。Curate阶段大概率对应任务/环境/轨迹数据的筛选、去偏、覆盖分析和变量定义，目的可能是显式标注影响决策的环境因素、工具调用上下文、任务约束和结果质量；Augment阶段可能利用生成式模型或环境模拟去构造受控变体与反事实轨迹，例如改变任务表述、工具可用性、外部知识噪声、用户目标或环境状态，从而让训练数据不只包含单一观测路径；Constrain阶段可能将前一阶段得到的不变性目标转化为训练或评估约束，例如要求对于语义等价但表面变化的情境保持决策一致，对应对某些关键因子变化时才允许策略改变；Attribute阶段则可能是对决策依据进行归因，并且因为前面已经通过受控变化构造了验证基础，这里的解释不只是事后文本说明，而是可以通过干预或对照来检验。\n\n摘要里强调四个阶段的顺序“不是风格性的而是结构性的”，这一点值得注意。它意味着作者认为：如果先做增广而不先做策展，生成模型会放大原始日志偏差；如果先做约束而没有增广数据，所谓不变性目标本身就无法定义或学习；如果最后做归因而前面没有受控数据环境，那么解释很可能仍然只是相关性包装。这个论证路径说明论文可能更像是在给Agent数据工程建立因果化流程规范，而不是单纯给出一个benchmark分数提升。\n\n与科研读者的关系上，这篇论文尤其适合关注LLM agents、工具使用、多轮决策、RAG agent、环境交互、可靠性评测和可解释AI的研究者。它的直接启发是：不要把日志监督、轨迹蒸馏或偏好优化得到的agent性能提升自动等同于“稳健”，因为若数据中没有受控变化，就很难分辨模型到底学到了任务规律还是环境偶然性。对于做agent evaluation的人，这篇工作还暗示评测集也要数据中心重构：不仅看成功率，还要看在受控扰动下行为是否保持因果一致，以及解释是否能被干预检验。\n\n需要核对的信息主要有几类。第一，论文是否包含具体算法、损失函数、数据模式定义或系统实现，还是主要为观点/框架文章。第二，是否有明确实验场景，如网页代理、工具调用代理、代码代理、RAG问答代理或 embodied agent；这些对象会决定“Curate/Augment/Constrain/Attribute”各自如何落地。第三，是否构建了新的数据集、反事实环境或benchmark。第四，是否给出可量化证据证明该框架同时提升鲁棒性和解释性，而不是只做概念论证。第五，摘要被截断，后半段很可能还包含更具体的技术组件或实验结论，当前信息不足以判断性能幅度和适用边界。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、language model、language models、agent、agents、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题是：为什么基于大语言模型的智能体即使模型规模继续增大，仍然会在分布移位时失效、且无法对决策给出可信解释？作者将问题进一步具体化为数据层面的科学问题：现有智能体训练与评估依赖的交互日志缺乏反事实结构和受控变量变化，导致无法区分真正的因果信号与环境偶然相关性，也就无法获得可迁移的不变性，更无法验证解释的真实性。",
+          "method": "从摘要推断，方法核心是构建“Data-Centric Agentic Loop”。可能的数据对象包括：智能体交互轨迹、环境状态、工具调用记录、任务说明、结果反馈和可能的失败案例。可能的分析路径是：先在Curate中对原始日志做质量筛选、偏差识别、变量整理和覆盖校准；再在Augment中通过生成式模型、环境重放或受控模拟构造反事实/对照样本；接着在Constrain中把这些受控变化对应为训练目标或评估准则，学习跨表面扰动保持一致的策略；最后在Attribute中做决策归因，并利用前面构造的可干预数据检验解释是否随真正因子变化而变化。若有实验，可能会比较原始日志训练的agent与经过该loop处理后的agent在OOD场景、工具变更、任务重写、环境噪声和解释一致性上的差异。",
+          "strengths": "亮点首先在于把鲁棒性与可解释性统一为同一数据缺陷的共症状，而不是分开修补。其次，论文强调观察性日志的局限和反事实/受控变化的重要性，这对agent研究非常切中要害，因为智能体往往处于复杂环境中，单纯依赖成功轨迹容易学习捷径。第三，四阶段顺序的论证具有方法学价值：它不仅说“要做数据中心”，还说明为什么先后关系会影响有效性。第四，如果论文给出可操作的数据流程、样例任务或评测协议，它可能为LLM agent从“模型中心优化”转向“数据环境工程”提供清晰路线。",
+          "weaknesses": "基于当前题录信息，最大局限是缺乏实验与实现细节，尚不清楚这是理论立场文、框架论文还是带完整实证的方法论文。摘要没有说明具体任务域，因此框架的通用性与落地成本难以判断。另一个风险是“数据中心”主张虽然合理，但构造反事实和受控环境通常代价高、依赖模拟器或强生成模型，可能限制其在开放世界agent中的规模化。还需要警惕一点：如果解释验证仍主要依赖生成式归因文本而非真实干预实验，那么其可解释性提升可能有限。最后，摘要被截断，关键信息如实验设置、数据集、结果指标和失败案例都未完整呈现。",
+          "next_step": "最小可执行动作：1）先获取完整摘要和正文，确认四阶段框架是否对应具体算法、数据集或benchmark；2）优先查看论文中的方法总览图，记录Curate/Augment/Constrain/Attribute各自输入输出；3）查实验部分是否包含明确的agent任务，如RAG、网页导航、工具调用或代码代理，并记下OOD设置；4）检查是否有反事实样本构造方式、约束目标和解释验证指标；5）若你做agent实验，可立刻在现有日志上设计一个小型对照：固定任务语义、改写表面提示或工具状态，测试当前agent决策是否稳定，以此评估论文主张与你自己系统的相关性。"
+        }
+      },
+      "doi:10.1038/s41586-026-11039-9": {
+        "summary": "这篇Nature论文针对墨西哥混合祖源人群，利用家系内比较来估计祖源比例对复杂性状的效应，核心任务是尽量排除祖源与环境相关性的混杂。基于Mexico City Prospective Study中的无关个体与17,627个家庭的亲属数据，摘要显示作者重点分析了身高和2型糖尿病等15个性状，并比较了群体层面与家系内的祖源效应。",
+        "contribution": "核心贡献是把“混合祖源人群中的家系内祖源效应估计”用于复杂性状研究，试图比跨人群均值比较或多基因评分推断更直接地识别祖源相关的遗传效应。就摘要所示，论文的重要结果是：相对欧洲祖源， Indigenous American ancestry（美洲原住民祖源）在家系内仍与更低身高和更高2型糖尿病风险相关，说明至少部分祖源差异不能完全由家系间环境差异解释。",
+        "details": "从题名和摘要看，研究对象是墨西哥人群中的遗传混合个体，数据来自Mexico City Prospective Study。样本包括52,583名无关个体以及39,714名来自17,627个家庭的亲属，这意味着作者既做了常规人群层面的祖源-性状关联，也做了家庭内部的比较设计。该设计的关键逻辑是：兄弟姐妹或其他近亲共享很多家庭环境和部分遗传背景，因此在同一家系内比较祖源差异与表型差异，可以较大程度减少祖源与社会经济、地理、教育、医疗可及性等环境变量相关造成的混杂。\n\n摘要明确提到评估了遗传祖源和15个复杂性状，且给出了两个代表性结果。对于身高，群体层面相对欧洲祖源的 Indigenous American ancestry 效应为-1.98个标准差，家系内为-1.51个标准差，且P=10^-8，说明信号在家系内仍存在但幅度有所衰减。对于2型糖尿病，群体层面自然对数优势比为1.73，而家系内达到5.13，置信区间为2.48–7.78。仅根据摘要，这提示家系内估计并未消失，甚至在该疾病上更强，但这里尤其需要读全文核对模型定义、祖源效应单位、是否按祖源比例标准化、病例数是否足够以及是否存在估计不稳定导致的放大。\n\n方法上，高概率会包括局部或全基因组祖源推断、亲缘关系识别、线性/广义线性混合模型或家系固定效应模型，以及对多个复杂性状进行统一框架分析。题名中的within-family effect of ancestry更像是在估计家系内部由于重组导致的祖源比例差异与表型差异的关系，而不是简单做兄弟姐妹GWAS；因此读全文时应重点确认作者是用全局祖源、局部祖源、还是两者结合，并确认比较单位是“每增加一定比例的美洲原住民祖源相对欧洲祖源”的效应。\n\n与用户可能关心的方向关系上，这篇文章与遗传流行病学、复杂性状遗传学、因果推断、祖源校正、多基因评分偏差和环境混杂问题高度相关。摘要还直接指出跨人群表型均值比较会被环境差异混杂，而多基因预测也可能产生偏误，因此这篇论文对“如何更可信地解释祖源与疾病差异”具有方法学意义。若用户关注AI或环境因素，这篇论文并非AI方法论文，但它明确涉及environmental confounding这一核心问题，可为构建更稳健的人群遗传分析框架提供案例。\n\n需要核对的信息包括：15个性状的完整列表；亲属类型构成是否以同胞为主；祖源类别是否仅比较欧洲与美洲原住民，是否还纳入非洲祖源；祖源推断工具和参考面板；家系内模型的协变量；2型糖尿病结果为何家系内效应更大；是否做了性别分层、年龄校正、药物使用校正、批次校正和敏感性分析；以及作者如何界定“祖源效应”与具体因果变异、社会环境或基因-环境交互的关系。",
+        "why_read": "来源为 Nature，关键词匹配：rag、ai、environmental、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题是：在墨西哥混合祖源人群中，复杂性状和疾病风险与祖源比例的关联，有多少可以在家系内部仍然观察到，从而不被祖源-环境相关性完全解释。更直接地说，作者试图回答相对欧洲祖源，美洲原住民祖源是否对身高、2型糖尿病等15个复杂性状存在可在家庭内部识别的效应。",
+          "method": "从摘要推测，作者先在Mexico City Prospective Study中对个体进行基因分型并推断遗传祖源，再收集15个复杂性状表型；样本分为52,583名无关个体和39,714名来自17,627个家庭的亲属。分析路径可能包括：在人群样本中做祖源-表型关联；在家系样本中采用家系固定效应、亲属差分或混合模型估计家系内祖源效应；以欧洲祖源为参照，量化美洲原住民祖源对连续性状和二分类疾病的效应；并比较群体层面与家系内估计的差异，以评估环境混杂程度。",
+          "strengths": "最值得关注的亮点是研究设计而非单一结果：一是利用混合祖源人群和家系结构，针对祖源-环境混杂这一经典难题提出更强识别策略；二是样本量在家系分析中相对可观，包含17,627个家庭；三是同时覆盖15个复杂性状，不局限于单病种；四是摘要提供了群体层面与家系内的直接对照，能帮助判断传统人群比较中哪些信号可能受环境影响、哪些信号在更严格设计下仍保留。",
+          "weaknesses": "基于目前题录和截断摘要，局限主要是信息不完整。首先，不清楚祖源效应的精确定义和尺度，尤其2型糖尿病家系内对数优势比大于群体估计，可能涉及模型参数化、标准化方式或样本稀疏问题。其次，不清楚家系构成，若亲属类型复杂，模型解释会不同。第三，题名中的‘祖源效应’容易被过度解读为纯遗传因果效应，但即便在家系内，仍可能存在非完全共享环境、测量误差、选择偏差或基因-环境交互。第四，摘要未说明15个性状中除身高和糖尿病外其余结果是否稳健一致，也未看到多重检验、敏感性分析和局部祖源层面的信息。",
+          "next_step": "最小可执行动作：第一，拿到全文后先看Figure 1和Methods，确认祖源推断方法、家系内模型公式和效应单位；第二，整理15个性状的群体效应与家系内效应对照表，特别标注哪些效应衰减、哪些增强；第三，重点检查2型糖尿病结果的病例数、置信区间来源和稳健性分析；第四，记录作者是否明确区分全局祖源、局部祖源和社会环境解释；第五，如果做相关研究，可尝试在自己数据中复现“家系固定效应下祖源-性状关联”的基本框架。"
+        }
+      },
+      "doi:10.1038/s41586-026-11004-6": {
+        "summary": "该文聚焦武装冲突研究中的数据基础问题，讨论如何将卫星派生的战争破坏数据与传统文本型冲突数据整合，用于更准确刻画乌克兰和缅甸等冲突中的暴力强度、空间分布与对平民的影响。论文核心任务不是单纯做遥感检测，而是提出面向冲突研究与响应的数据整合框架，推动研究从“以死亡人数为中心”的范式转向对更广义暴力现象的观测。",
+        "contribution": "从摘要看，论文的核心贡献是提出三类具体的数据整合路径：improvement、enrichment 和 fusion，用来连接两类误差来源不同的数据体系——人类报告驱动的文本冲突数据与卫星派生的破坏评估数据。其可能贡献在于：第一，系统阐明两类数据各自的偏差机制与互补性；第二，以乌克兰和缅甸为案例展示整合在实务中的可操作性；第三，为冲突研究、危机响应和对平民暴力监测提供超越“死亡数代理变量”的新分析框架。",
+        "details": "基于题名、摘要和关键词，这篇 Nature 论文是一篇方法与研究议程性质较强的工作，研究对象是“武装冲突中的暴力测量与响应”，而非某个单一遥感模型。摘要明确指出，当前冲突研究高度依赖文本型事件数据，并常把 fatalities 作为暴力强度的主要甚至唯一代理指标；作者认为这一范式受制于人类报告不均衡，因而在可见性、空间覆盖、时效性和事件类型表征上存在系统缺口。为此，论文引入 satellite-derived data，尤其是 war damage assessments 这一类卫星派生破坏数据，作为与文本数据互补的观测来源。\n\n从方法线索看，作者并非简单主张“多源数据更好”，而是把整合细分为三种功能明确的路径。improvement 很可能指利用卫星证据去修正、校验或补足文本事件记录中的漏报、误报、定位误差或时间滞后；enrichment 可能指在已有文本冲突记录上增加新的维度，例如建筑毁伤、基础设施受损、受影响居民区范围、破坏强度梯度等，从而让“冲突事件”从单点事件扩展为更丰富的损害表征；fusion 则更像在更高层面联合两类数据构建新的冲突强度指标、暴力暴露面或时空分析框架，使不同来源数据在统一分析单元中共同发挥作用。\n\n证据线索主要来自两个案例地区：乌克兰和缅甸。选择这两个案例可能具有方法学上的对比价值：乌克兰战争拥有较高国际关注度与相对丰富的公开报道，也伴随大量卫星图像破坏评估；缅甸则可能更能体现报道不均、可达性受限或地面核验困难场景下，卫星观测如何补足传统数据盲区。因此，这两个案例可能分别展示在高报道环境与低/不均匀报道环境中，多源整合能带来哪些不同类型的增益。但仅凭摘要，无法确认具体分析单元是建筑、聚落、行政区、网格还是事件级别，也无法确认是否采用机器学习、人工标注、时空统计匹配或贝叶斯融合等具体技术。\n\n与遥感、机器学习、RAG/AI 等方向的关系方面，这篇论文对做地球观测与社会科学交叉的研究者尤其有价值。它提示一个重要问题：遥感输出不应只停留在“检测到破坏”，而应进入社会科学测量链条，成为对冲突强度、平民受害、响应优先级进行推断的证据源。如果你的方向偏机器学习，那么值得关注的是作者如何定义“integration”的任务边界：是数据层拼接、标签修正、特征补充，还是决策层联合推断；如果你的方向偏知识系统或 RAG，这篇论文可作为构建“文本事件库 + 遥感证据库”联合检索与证据对齐系统的领域需求依据。\n\n需要重点核对的信息包括：1）三种整合路径在论文中是否有正式定义、流程图和对应案例；2）卫星派生数据的来源是人工判读、商业遥感产品还是自动化模型输出；3）文本数据来自 ACLED、UCDP GED 还是其他冲突事件数据库；4）整合后的评估指标是什么，是否证明了对暴力强度或平民风险测量的改进；5）案例中有没有量化比较，如漏报率、空间覆盖提升、预测/解释能力提升；6）作者如何讨论卫星数据自身局限，例如云覆盖、重访周期、建筑毁伤偏向、对非物理暴力不可见等。由于只有摘要，任何关于模型结构、性能数值或具体图表结论的判断都不能下定论。",
+        "why_read": "来源为 Nature，关键词匹配：rag、ai、ml、satellite。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：在武装冲突研究中，若长期依赖文本报道和死亡人数作为暴力强度代理，会因报道不均衡而遗漏大量冲突现实，那么应如何把卫星派生的战争破坏信息系统性整合进冲突研究与危机响应中，以更全面、空间化地表征暴力、破坏和对平民的影响。进一步说，作者关心的不是单一数据源精度，而是两类数据偏差机制不同所带来的互补性如何被转化为可操作的研究框架。",
+          "method": "从摘要推断，方法上至少包括三步。第一，比较两类数据源：文本型冲突数据侧重事件、报道和死亡统计；卫星派生数据侧重建筑或地表破坏、空间覆盖和可视化损害证据。第二，提出三种整合策略：improvement 可能用于纠正文本记录中的空间、时间或事件遗漏；enrichment 可能用于给事件附加破坏程度、受灾范围或基础设施受损等属性；fusion 可能用于在共同的时空单元上联合构建新的冲突强度或风险指标。第三，用乌克兰和缅甸案例做实践展示，说明在不同冲突信息环境中，多源整合如何产生新的分析洞见。摘要没有说明是否使用机器学习，但“satellite-derived data”通常意味着至少包含遥感影像处理、变化检测、破坏评估或已有遥感产品的汇总分析。",
+          "strengths": "最值得关注的亮点有三点。其一，问题切中当前冲突研究的核心测量偏差：把 fatalities 当主代理会忽略大量不以死亡直接呈现的暴力与破坏。其二，作者不是泛泛倡导多源融合，而是给出 improvement、enrichment、fusion 三种具有任务分工的整合框架，这对后续方法落地很有启发。其三，案例选择具有现实性和对比性，乌克兰与缅甸能够展示在不同报道条件、不同遥感可见性和不同国际关注度下，卫星数据如何服务研究与响应。对政策和人道响应而言，这类框架可能帮助识别高破坏但低报道区域。",
+          "weaknesses": "基于现有题录与摘要，主要局限和风险在于：第一，尚不清楚论文是否提供了严格量化评估，还是以概念框架和案例示意为主。第二，卫星派生破坏数据只能观测到部分类型的暴力，尤其偏向可见物理毁伤，对威胁、拘押、性暴力、人口恐吓等不可见或非结构性暴力能力有限。第三，若将建筑损毁等同于暴力强度，可能引入新的偏差，因为不同武器、地理环境和建筑形态会影响可见破坏。第四，文本数据与卫星数据在时间尺度、空间分辨率和事件定义上可能不一致，整合时存在配准和因果解释困难。第五，摘要未说明数据可得性和自动化程度，若高度依赖人工判读，则可扩展性可能受限。",
+          "next_step": "最小可执行动作：1）先查论文正文中的三种整合框架定义和示意图，记录每种框架对应解决的具体缺口；2）核对乌克兰与缅甸案例分别用了哪些文本数据库和哪些卫星破坏数据；3）重点看是否有定量对照，尤其是整合前后对事件覆盖、空间解释力或响应优先级的提升；4）把文中分析单元记清楚，是事件、建筑、网格还是行政区；5）如果你做相关研究，可立即设计一个小型复现草案：选一个冲突地区，将公开事件数据与公开建筑毁伤/夜光/变化检测产品按网格对齐，测试 enrichment 或 fusion 是否能产生比 fatalities 更丰富的冲突强度表征；6）若你关注 AI 系统，可进一步思考如何把文本事件抽取结果与遥感证据做时空对齐和证据级检索。"
+        }
+      },
+      "doi:10.1038/s41586-026-10990-x": {
+        "summary": "Mobile education builds resilience during shocks in five countries。摘要要点：Abstract Education systems need to withstand frequent shocks, including disease and climate events, which close schools for more than 222 million children 1 .",
+        "contribution": "摘要中最具体的线索是：Abstract Education systems need to withstand frequent shocks, including disease and climate events, which close schools for more than 222 million children 1 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：ai、climate。题名指向“Mobile education builds resilience during shocks in five countries”。摘要中可用的信息是：Abstract Education systems need to withstand frequent shocks, including disease and climate events, which close schools for more than 222 million children 1 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Mobile education builds resilience during shocks in five countries”展开；摘要线索显示问题可能与 Abstract Education systems need to withstand frequent shocks, including disease and climate events, which close schools for more than 222 million children 1 . 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 ai、climate 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：ai、climate。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for arxiv:2609.09150v1: Extra data: line 1 column 3225 (char 3224)",
+      "LLM paper analysis failed for doi:10.1038/s41586-026-10990-x: Extra data: line 1 column 2807 (char 2806)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2609.08391v1",
+      "source": "arxiv",
+      "title": "From Coordinates to Candidate Regions: Temporal Change Localization via Region Selection in Remote Sensing Multimodal LLMs",
+      "authors": [
+        "Juwan Chung",
+        "Sungjune Park",
+        "Yeongyun Kim",
+        "Yong Man Ro"
+      ],
+      "published": "2026-09-08T07:59:21Z",
+      "updated": "2026-09-08T07:59:21Z",
+      "abstract": "Remote sensing multimodal large language models (RS-MLLMs) have advanced scene understanding and visual question answering over satellite imagery, yet localizing specific objects or changed regions remains challenging. Existing approaches rely on generating bounding box coordinates as token sequences, which is fragile for the small, densely packed objects common in remote sensing and increasingly error-prone when multiple targets must be localized simultaneously. In this work, we present an RS-specific formulation of the region selection paradigm, previously explored in natural-image MLLMs, and extend it to temporal change localization over multi-image sequences. Our framework employs a text-conditioned region proposal module, encodes each candidate as special tokens carrying per-frame visual features enriched with spatial and temporal cues, and lets the LLM localize targets by selecting region tokens in its response. We construct a multi-task training and evaluation suite spanning localization, referring expression, visual grounding, and understanding tasks across single-image and multi-temporal settings. Experiments show that our approach substantially outperforms coordinate-generation baselines on temporal change localization, while improving single-image visual grounding and maintaining competitive understanding performance. Oracle analysis decomposes the contributions of the region proposer and the LLM selector, providing diagnostic insight unique to this framework. Our code will be available at https://github.com/juwan-kr/RS-RegionSelect.",
+      "url": "http://arxiv.org/abs/2609.08391v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.08391v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "multimodal",
+        "mllm",
+        "ai",
+        "ml",
+        "remote sensing",
+        "satellite"
+      ],
+      "score": 85.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2609.08404v1",
+      "source": "arxiv",
+      "title": "Environments as Scaffold: Enriching Feedback to Bootstrap Self-Evolving Agents in Long-Horizon Tasks",
+      "authors": [
+        "Hongbang Yuan",
+        "Zhuoran Jin",
+        "Yixin Cao"
+      ],
+      "published": "2026-09-08T08:14:25Z",
+      "updated": "2026-09-08T08:14:25Z",
+      "abstract": "Large Language Models demonstrate remarkable proficiency in static reasoning, yet training them as autonomous agents through Reinforcement Learning (RL) for long-horizon tasks is often hindered by severe reward sparsity. While conventional \\textit{agent-side warming} up via supervised fine-tuning (SFT) can alleviate this, it is frequently limited by data scarcity and constrained exploration. To address this, we propose a paradigm shift to \\textit{environment-side adaptation} by constructing \\textbf{F}eedback-\\textbf{E}nriched \\textbf{E}nvironments (\\textbf{FEEs}). Through a pilot study, we establish a feedback design strategy that reformulates environments by transitioning from action guidance to observation enrichment during the later stages of both intra-episode exploration and inter-episode evolution. Large-scale experiments on SciWorld and BFCL benchmarks using various Qwen3 model scales and RL algorithms such as GRPO, GSPO, and DAPO demonstrate that FEEs consistently yield performance improvements over standard settings. Furthermore, our analysis reveals that training with FEEs \\textbf{(1)} stabilizes training dynamics by reducing entropy volatility, \\textbf{(2)} facilitates proactive state-space exploration in difficult tasks, \\textbf{(3) }ensures the internalization of environmental guidance into policy weights rather than acting as a mere inference-time prior, and \\textbf{(4) }identifies intra-group feedback consistency as a critical boundary for stable optimization.",
+      "url": "http://arxiv.org/abs/2609.08404v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.08404v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "autonomous agent",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 78.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2609.08071v1",
+      "source": "arxiv",
+      "title": "Automated Design of Inventory Policy with Large Language Models: An Exploratory Study",
+      "authors": [
+        "Fenghua Yang",
+        "Preet Baxi",
+        "Yi Zhang",
+        "Stefanus Jasin",
+        "Yanzhe Lei",
+        "Mo Liu",
+        "Parshan Pakiman"
+      ],
+      "published": "2026-09-08T00:27:56Z",
+      "updated": "2026-09-08T00:27:56Z",
+      "abstract": "Firms making inventory decisions have access to operational data, optimization tools, and large language models (LLMs). Typically, data characterize the operating environment, optimization selects parameters within a prespecified inventory policy class, and LLMs support coding and decision analysis. We develop an integrated framework that combines these resources to automate inventory policy design. Given demand data, the framework iteratively uses an LLM to generate parameterized policy classes and an external solver to optimize its parameters within each class. Across 30 lost-sales inventory instances, the mean cost reduction relative to optimized base-stock benchmarks increases from 17.5% after one generation to 30.0% after ten generations. Parameter optimization is central to this performance: an LLM-only variant performs substantially worse, whereas optimization-guided feedback improves policy quality, accelerates search, and directs the LLM toward better policy classes rather than merely better parameter values within a fixed class. The strongest discovered policies are also interpretable: they combine recognizable inventory-control motifs, including capped orders, discounted or weighted pipeline inventory, and threshold-based replenishment logic. The search thereby produces new policy-class functional forms that, to our knowledge, have not previously been studied in the lost-sales inventory literature. These functional forms are not specified ex ante but emerge from the search process. Moreover, after their parameters are re-optimized, three discovered policy classes achieve average cost reductions of 21.75% to 22.60% across 10,064 new inventory instances. Overall, the results show that data-driven parameter optimization can guide LLM-based search over a broad space of inventory policy classes and identify high-performing, interpretable, and transferable decision rules.",
+      "url": "http://arxiv.org/abs/2609.08071v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.08071v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 73.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2609.08452v1",
+      "source": "arxiv",
+      "title": "SRPO: Setwise Relative Policy Optimization for Multi-Agent LLMs",
+      "authors": [
+        "Shengtian Yang",
+        "Ziyu Xiong",
+        "Yu Li",
+        "Yewen Li",
+        "Qingpeng Cai",
+        "Lei Feng"
+      ],
+      "published": "2026-09-08T08:52:23Z",
+      "updated": "2026-09-08T08:52:23Z",
+      "abstract": "Multi-agent large language models solve complex tasks by coordinating several policies in a shared environment. However, existing reinforcement learning methods usually optimize each response or trajectory separately, even when several outputs jointly cause one state transition. Consequently, the update unit differs from the action executed by the system. To address this problem, we propose SRPO (Setwise Relative Policy Optimization), which treats the active set the minimal set of outputs consumed by one transition, as one multi-agent action. Specifically, SRPO combines member log-ratios into one cardinality-normalized set ratio, assigns one relative advantage, and clips the set once. This formulation unifies division of labor and joint co-evolution as actions with different set sizes. Experiments on mathematical reasoning and multi-turn search demonstrate one training interface for fixed, mixed, and dynamically routed workflows across four model scales, with the strongest macro-average results among the reported comparisons. Optimization diagnostics further characterize its stability under different event reductions and set sizes.",
+      "url": "http://arxiv.org/abs/2609.08452v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.08452v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "rag",
+        "ai",
+        "environment",
+        "mathematical reasoning"
+      ],
+      "score": 72.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2609.09150v1",
+      "source": "arxiv",
+      "title": "Copying explains the collective behavior of AI agents in the wild",
+      "authors": [
+        "Giordano De Marzo",
+        "Nicola Alboré",
+        "David Garcia"
+      ],
+      "published": "2026-09-08T17:59:20Z",
+      "updated": "2026-09-08T17:59:20Z",
+      "abstract": "In June 2026, thousands of AI agents found that a small public wiki would accept edits from inside their sandboxes, and started using it to help one another pass a timed test. Each agent lived for about an hour and remembered nothing afterwards. Nobody asked them to cooperate, and the wiki had not been built for them. The complete record of what they wrote is public, and it is unusually informative, because it preserves not only what each agent wrote but what that agent could see before writing. We use it to follow the three decisions an agent had to make on arrival: where to write, what to call itself, and how to word its message. One rule governs all three. An agent takes an option with a probability close to the share of that option in what it can see, and the share that matters is the one on the page in front of it, then the one in the stream of recent edits, and only weakly anything older. Three minimal copying models, one per decision and with a single free parameter each, reproduce the heavy-tailed distribution of how many agents met on a page, the frequency of the pieces from which the agents built their names, and the patchwork of pages that are internally consistent and different from one another. Copying whatever the environment happens to show is enough to produce most of the collective structure of this population. It is also what makes such a population easy to steer, since whoever writes first, or writes while the others are quiet, sets the convention for everyone who comes later.",
+      "url": "http://arxiv.org/abs/2609.09150v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.09150v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.MA",
+        "cond-mat.stat-mech",
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "agent",
+        "agents",
+        "ai agent",
+        "ai agents",
+        "ai",
+        "environment"
+      ],
+      "score": 72.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2609.09059v1",
+      "source": "arxiv",
+      "title": "PlayTrain: An Efficient Reinforcement Learning Framework for LLM-Generated Adaptable JavaScript Games",
+      "authors": [
+        "Ryan Truong",
+        "Lance Ying",
+        "Samuel J. Gershman",
+        "Kazuki Irie"
+      ],
+      "published": "2026-09-08T17:15:39Z",
+      "updated": "2026-09-08T17:15:39Z",
+      "abstract": "While many video-game environments (VGEs) have played crucial roles in advancing reinforcement learning (RL), developing novel VGEs or modifying existing ones to support new features, has been a laborious process requiring extensive hand-coding. Here we present PlayTrain, an RL framework that combines the abilities of large language models (LLMs) to robustly generate JavaScript (JS) games from a minimal human prompt, and an efficient pipeline that can run any JS game in a standard 'gym' environment. Not only are recent LLMs particularly good at writing JS code, but the JS format also allows users to easily play generated VGEs, while PlayTrain enables us to train RL agents on the exact same games. We demonstrate multiple use cases of PlayTrain, including cloning well-known Atari and ProcGen games in simple JS, where PlayTrain trains pixel-based agents end-to-end at over 1M agent-decisions per second on a single GPU node; and creating modified versions thereof (e.g., that support novel test sets, procedural generation logics, or game dynamics). Through PlayTrain, we reimagine RL VGE development: all we need is a single JS file, generated and modified through an LLM. We discuss promising future RL research directions that PlayTrain unlocks.",
+      "url": "http://arxiv.org/abs/2609.09059v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.09059v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 70.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2609.08216v1",
+      "source": "arxiv",
+      "title": "Vision: Data-Centric Anchoring for Robust and Interpretable Agentic AI",
+      "authors": [
+        "Arun Vignesh Malarkkan",
+        "Xinyuan Wang",
+        "Yanjie Fu"
+      ],
+      "published": "2026-09-08T03:57:54Z",
+      "updated": "2026-09-08T03:57:54Z",
+      "abstract": "Agentic AI systems built on large language models fail in two persistent ways that scaling does not fix: they break under distribution shift, and they cannot explain the decisions they make. We argue these are co-symptoms of one structural deficiency in the data lifecycle that governs how agents are trained, evaluated, and deployed. Observational interaction logs record what an agent did, not what it would have done otherwise. They encode spurious correlations without controlled variation, so they lack the counterfactual structure needed to separate causal signal from coincidence or to validate an explanation. No model-centric method can recover invariances the data never contained. We present Data-Centric Anchoring: robustness and interpretability should be engineered into the data environment, not extracted from models after training. Our central contribution is the Data-Centric Agentic Loop, a four-stage framework of Curate, Augment, Constrain, and Attribute. The ordering is structural, not stylistic. Curation precedes augmentation because generative models amplify whatever bias they are trained on. Augmentation precedes constraint because invariance objectives are vacuous without variation across environments to be invariant to. Attribution closes the loop, converting observed failures into targeted data interventions for the next iteration. Each stage manufactures the preconditions of the next, which makes the loop self-correcting rather than merely sequential. We ground the framework in a failure-driven taxonomy that links four core failure modes to the data lifecycle: spurious feature reliance, distribution-shift fragility, uncertainty miscalibration, and explanation unfaithfulness. We close with the limits of this approach and the open problems that stand between it and practical deployment at scale.",
+      "url": "http://arxiv.org/abs/2609.08216v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.08216v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cs.ET",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 70.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11039-9",
+      "source": "nature",
+      "title": "Within-family effect of ancestry on complex traits in a Mexican population",
+      "authors": [
+        "Siqi Wang",
+        "Jaime Berumen",
+        "Alejandra Vergara-Lope",
+        "Paulina Baca",
+        "Elizabeth Barrera",
+        "Fernando Rivas",
+        "Diego Aguilar-Ramirez",
+        "Rory Collins",
+        "Jonathan R. Emberson",
+        "Michael Hill",
+        "Michael E. Goddard",
+        "Loic Yengo",
+        "Alexander Strudwick Young",
+        "Jesus Alegre-Díaz",
+        "Pablo Kuri-Morales",
+        "Roberto Tapia-Conyer",
+        "Jason M. Torres",
+        "Peter M. Visscher"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "abstract": "Abstract Human populations differ in disease prevalence and phenotypes, but the extent to which differences are caused by genetic factors is unknown for most complex traits. Comparing phenotypic means across populations is confounded by environmental differences and using polygenic predictors can lead to biased inference 1,2 . Family-based analyses of people of genetically admixed ancestry enable estimation of ancestry effects unconfounded by ancestry–environment correlations. Here we leverage genetic data from admixed adults in the Mexico City Prospective Study 3,4 to estimate within-family ancestry effects 5 . We assessed genetic ancestry and 15 complex traits in 52,583 unrelated people and 39,714 relatives from 17,627 families. At the population level, relative to European ancestry, the effect of Indigenous American ancestry was −1.98 s.d. ( P < 2 × 10 −16 ) for height and a natural log odds ratio of 1.73 (95% confidence interval, 1.54–1.92) for type 2 diabetes. Within families, the effect of Indigenous American ancestry was −1.51 s.d. ( P = 10 −8 ) for height and natural log odds ratio of 5.13 (95% confidence interval, 2.48–7.78) for type 2 diabetes. These effects are supported by between-ancestry differences in trait-increasing allele counts and evidence of selection at trait-associated loci. We found no within-family ancestry effect on educational attainment or other traits despite significant associations at the population level, implying environmental causes or confounding. Overall, this study provides an experimental design to study between-ancestry genetic effects and identifies significant ancestry differences for height, type 2 diabetes and metabolic traits in a genetically diverse population from Mexico City.",
+      "url": "https://doi.org/10.1038/s41586-026-11039-9",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11039-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "rag",
+        "ai",
+        "environmental",
+        "environment"
+      ],
+      "score": 65.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 67,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11039-9"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11004-6",
+      "source": "nature",
+      "title": "Advancing conflict research and response through satellite-derived data",
+      "authors": [
+        "Valerie Sticher",
+        "Corinne Bara",
+        "Jenniina Kotajoki",
+        "Lars Bromley",
+        "Thierry Crevoisier",
+        "Emanuele Dalsasso",
+        "Olivier Dietrich",
+        "Karsten Donnay",
+        "Filip Dorm",
+        "Manuel Fiol",
+        "Xi Li",
+        "Mikael Hiberg Naghizadeh",
+        "Corey Scher",
+        "Jamon Van Den Hoek",
+        "Konrad Schindler",
+        "Devis Tuia",
+        "Jan Dirk Wegner"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "abstract": "Abstract With armed conflicts at a historic high and attacks on civilians rising 1 , understanding the evolving nature of conflict is a critical research priority. The current paradigm in conflict research relies heavily on text-based data, using fatalities as the primary—and often sole—proxy for violence intensity. Although these data have expanded our ability to study armed conflict, they exhibit inherent limitations due to uneven human reporting 2–6 . War damage assessments based on satellite data 7–13 offer a complementary perspective. Satellite-derived data have their own limitations, but these arise from different mechanisms, creating distinct, complementary strengths that can be leveraged through data integration. Here we propose three concrete approaches to integration: improvement, enrichment and fusion. Each bridges a different gap in the underlying data sources. We use case studies from Ukraine and Myanmar to illustrate how integration can be implemented in practice and the novel analytical insights that emerge. Prioritizing data integration enables a paradigm shift away from fatality-centric research towards a broader spectrum of violence, revealing the complexity of conflict dynamics.",
+      "url": "https://doi.org/10.1038/s41586-026-11004-6",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11004-6",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "rag",
+        "ai",
+        "ml",
+        "satellite"
+      ],
+      "score": 63.5,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 82,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11004-6"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10990-x",
+      "source": "nature",
+      "title": "Mobile education builds resilience during shocks in five countries",
+      "authors": [
+        "Noam Angrist",
+        "Micheal Ainomugisha",
+        "Sai Pramod Bathena",
+        "Peter Bergman",
+        "Colin Crossley",
+        "Claire Cullen",
+        "Thato Letsomo",
+        "Moitshepi Matsheng",
+        "Rene Marlon Panti",
+        "Shwetlena Sabarwal",
+        "Tim Sullivan"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "abstract": "Abstract Education systems need to withstand frequent shocks, including disease and climate events, which close schools for more than 222 million children 1 . During these emergencies, alternative models are needed to deliver education. However, rigorous evaluation of effective educational approaches in these settings is challenging and rare, especially across multiple countries. Here we present results from five randomized trials in India, Kenya, Nepal, the Philippines and Uganda to evaluate the provision of education in emergency settings. We test multiple scalable models of remote targeted tutoring instruction, comparing delivery by governments and non-governmental organizations (NGOs). Whereas text messages have mixed results, tutorials conducted via phone call show effectiveness across diverse settings. We find large and robust effect sizes on learning. These effects are highly cost-effective, and deliver approximately 4 years of high-quality instruction per US$100 spent. Results show large effects when delivered by government teachers or NGO instructors. Together, our results reveal that it is possible to strengthen the resilience of education systems, enabling education provision amid disruptions, and to deliver cost-effective learning gains across contexts and with governments.",
+      "url": "https://doi.org/10.1038/s41586-026-10990-x",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10990-x",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "ai",
+        "climate"
+      ],
+      "score": 54.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 58,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10990-x"
+      }
+    }
+  ]
+}
