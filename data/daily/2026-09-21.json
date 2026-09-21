@@ -1,0 +1,600 @@
+{
+  "date": "2026-09-21",
+  "stats": {
+    "fetched": 143,
+    "fetched_by_source": {
+      "nature": 54,
+      "science": 89
+    },
+    "deduped": 143,
+    "deduped_by_source": {
+      "nature": 54,
+      "science": 89
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 0,
+    "keyword_filtered_by_source": {},
+    "keyword_optional_included": 120,
+    "keyword_optional_included_by_source": {
+      "nature": 49,
+      "science": 71
+    },
+    "ranked": 143,
+    "ranked_by_source": {
+      "nature": 54,
+      "science": 89
+    },
+    "source_warnings": 3,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 135,
+    "selected_by_source": {
+      "nature": 8
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组 Nature 论文呈现出很强的方法学推进与机制分辨并行的特征，且覆盖植物免疫、神经调制、基因编辑、复制压力、分子计算、核光谱与光子集成等多个方向。若按“信息完整度+潜在影响+可立即进入深读”的标准排序，第一优先级建议放在两篇水杨酸/NPR1 转录激活机制与 cohesin-复制叉三维接触重塑这两类工作：前者直接把植物免疫激素感知、转录共激活和负调控因子纳入统一分子框架，后者则把复制叉保护问题推进到局部染色质拓扑层面，并伴随新方法 Repli-C，二者都兼具机制深度和后续可操作性。第二优先级是蓝斑去甲肾上腺素系统的拓扑结构-投射-功能耦合研究，它可能重塑对 LC“统一广播”模型的经典理解，对神经调制回路与行为编码领域都很关键。第三优先级可放在 prime assembly、Th-229 连续波激光吸收光谱和热力学有利的 DNA 分子计算机：这几篇分别代表可编程基因组结构工程、核钟关键谱学里程碑以及分子计算范式转换，但当前给定信息里有的摘要不完整，因此更适合作为跟踪型精读对象。单晶纳米膜异质光子集成也可能是重要平台论文，不过目前仅能确认主题，需等待更完整信息后再判断其技术突破边界。整体上，今天最清晰的主线不是某一学科热点，而是“如何把原本粗粒度的功能描述推进为可重构、可测量、可编程的中观机制”：植物中是激素受体到 Mediator 的组装逻辑，神经系统中是空间位置到投射与行为编码的对应，复制领域中是三维接触到叉命运的联系，工程侧则体现为对基因组、核跃迁、分子反应网络和光子材料平台的更精细控制。",
+    "themes": [
+      "植物免疫信号正在从“受体感知”推进到“转录机器装配机制”：SA、NPR1、MED15A 与 NIMIN1 被放入同一激活/拮抗框架，重点不再只是谁感知激素，而是激素如何稳定并变构组织促转录复合物。",
+      "神经调制系统的经典“弥散广播”模型受到拓扑化修正：LC 去甲肾上腺素神经元的细胞体位置、基因表达梯度、投射靶区与行为信号编码被联系起来，提示调制系统内部存在可解析的空间分工。",
+      "复制压力研究开始显式引入局部三维基因组拓扑：cohesin 环挤出不只是染色体结构背景因素，而可能直接参与停滞复制叉减速、回退和 ssDNA 限制，方法创新 Repli-C 是这一转向的关键支撑。",
+      "基因组工程正在从小编辑走向结构级重写：prime assembly 的题名指向定点整合与重排控制，反映编辑领域的目标已从碱基/短片段精修扩展到可编程基因组结构设计。",
+      "精密物理与信息处理方向都在追求更接近平衡态或更低扰动的控制范式：Th-229 连续波吸收光谱减少对脉冲源和慢荧光读出的依赖，热力学有利的 DNA 计算则试图把计算嵌入自发趋向稳定的分子过程。",
+      "平台型材料与器件整合仍是光子学核心瓶颈之一：单晶纳米膜异质光子集成虽信息不足，但题名已表明其目标是同时保留高材料质量与片上兼容制造能力。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "对两篇水杨酸受体/SA 转录调控论文做并列核对，整理 NPR1-MED15A-NIMIN1 机制图并标出已证实与待证实环节。",
+        "why": "当前列表中同日出现两篇主题高度接近的 Nature 论文，其中一篇信息较完整、一篇仅有题名；这很可能意味着同一问题存在互补视角。先做机制对照可快速识别共识、冲突和空白，利于后续选题或组会汇报。",
+        "first_step": "获取 doi:10.1038/s41586-026-11123-0 的摘要与图题，与已给出的 NPR1-SBD/MED15A-KIX/NIMIN1 模型逐项比对，输出一页“证据矩阵”。",
+        "risk": "第二篇若研究对象并非同一受体子集或侧重点不同，直接并列比较可能产生过度对应。"
+      },
+      {
+        "idea": "围绕 cohesin 与复制叉工作，做一个“Repli-C 能回答什么、不能回答什么”的方法复现性评估。",
+        "why": "这篇论文的潜在影响不仅在机制，也在方法。若 Repli-C 真能稳定读取 nascent DNA 接触，它可能成为复制压力研究的新工具；但其解释边界、分辨率、偏差来源需要尽早梳理。",
+        "first_step": "收集摘要中提到的 Repli-C、Micro-C、复制纤维、iPOND 等方法的原理与典型 readout，先写出一个最小方法比较表，列出各自针对‘叉回退、姐妹叉接触、局部拓扑改变’的可观测量。",
+        "risk": "在缺少正文和补充材料时，方法细节不足，早期评估容易停留在概念层面。"
+      },
+      {
+        "idea": "把 LC 论文中的“细胞体位置—投射—基因表达—行为编码”整理成可检验的拓扑模型，并提出一个最小重分析方案。",
+        "why": "这项工作若成立，价值不仅在发现差异，而在提出一种连续拓扑组织原则。最适合的下一步不是泛泛重复，而是检验这些关联到底是离散分群、连续梯度，还是任务依赖重映射。",
+        "first_step": "等待或获取论文图表后，优先查看单细胞转录组与空间坐标的耦合分析方式，尝试复述成一个最简统计模型框架，例如位置变量能解释多少投射与功能方差。",
+        "risk": "若原文依赖专有数据采集与复杂行为范式，公开可重分析的数据未必充分。"
+      },
+      {
+        "idea": "针对 prime assembly，先做文献定位：它相对现有 prime editing、HDR 插入和重排工程的真正新增能力是什么。",
+        "why": "题名极具吸引力，但当前信息不完整，最容易发生概念性高估。先做边界澄清，能帮助判断它是通用平台、局部增量，还是只在特定报告系统中有效。",
+        "first_step": "检索该论文摘要与相关新闻材料，建立一个比较清单：可插入片段大小、是否需要双链断裂、能否做倒位/易位/缺失、检测手段是否包含长读长验证。",
+        "risk": "若缺乏实测效率和副产物谱，短期内仍难评估其真实可用性。"
+      },
+      {
+        "idea": "围绕 Th-229 连续波吸收光谱，做一份“离核钟更近了多少”的技术路径审读。",
+        "why": "该工作看似里程碑式，但核钟可行性不只取决于激发方式，还取决于线宽、环境扰动、位点异质性和读出速度。把这些指标拆开看，能避免被单一突破点掩盖系统瓶颈。",
+        "first_step": "按摘要先列出四个核心判据：连续波激发、吸收读出、不同 Th 中心分辨、低电场梯度中心识别；随后查找过往脉冲激发/荧光探测方案做对照表。",
+        "risk": "若关键定量指标未在摘要中给出，早期判断仍会偏粗。"
+      },
+      {
+        "idea": "对“热力学有利的 DNA 分子计算机”做一个小型综述草图，重点比较其与传统 strand displacement 或酶驱动分子计算的能量学与纠错逻辑。",
+        "why": "这篇工作代表的是范式问题：不是单个程序做成了什么，而是是否证明了计算可以依赖趋向平衡的自发过程。这个问题适合通过综述式梳理快速形成判断。",
+        "first_step": "先把摘要中出现的几个展示任务、‘无需纠错/冗余’、‘可重复使用’、‘1 分钟内完成小规模实例’提炼成对照维度，再补查传统 DNA 计算平台在驱动方式与错误控制上的共性。",
+        "risk": "若没有正文中的能量地形设计与实验误差数据，仅凭摘要容易高估其普适性。"
+      }
+    ],
+    "papers": {
+      "doi:10.1038/s41586-026-11021-5": {
+        "summary": "这篇 Nature 论文聚焦植物免疫激素水杨酸（SA）如何通过受体 NPR1 激活转录，具体解析了 NPR1 的 SA-binding domain（SBD）在 SA 和 Mediator 复合体亚基 MED15A 共同作用下形成促转录复合物的机制。摘要表明作者结合互作筛选、结构预测、生化重构、冷冻电镜和氢氘交换质谱，提出 SA 通过稳定 NPR1 并促进其与 MED15A-KIX 结合来驱动植物免疫相关转录激活，同时 NIMIN1 作为拮抗因子抑制这一过程。",
+        "contribution": "核心贡献是为 SA-NPR1 信号通路提供了一个更具体的转录激活分子模型：SA 不只是被 NPR1 感知，还通过稳定 NPR1 的 SA 结合核心并变构促进其招募 Mediator 亚基 MED15A；而 MED15A 反过来又增强 NPR1 对 SA 的亲和力，形成协同正反馈式的三元复合物装配逻辑。另一个重要贡献是将抑制因子 NIMIN1 纳入同一机制框架，说明其通过竞争或干扰关键互作来拮抗 SA 信号，这对理解植物系统获得性抗性中的转录开关很关键。",
+        "details": "从题名和摘要看，研究对象非常明确：植物防御激素水杨酸、其受体/关键信号节点 NPR1、Mediator 复合体亚基 MED15A，以及抑制因子 NIMIN1。论文要解决的核心问题是：NPR1 如何在分子层面感知 SA，并将激素信号转化为免疫相关基因的转录激活。摘要给出的证据链较完整：先利用 NPR1 的近邻互作组（proxiome）和 AlphaFold 结构预测锁定 NPR1 与 MED15A 的直接互作，并进一步定位到 MED15A 的 KIX 结构域；随后通过重组蛋白实验显示 NPR1 对 MED15A 的招募依赖 SA，且 MED15A 结合会反向提高 NPR1 对 SA 的亲和力；再借助 cryo-EM 和 HDX-MS 说明 SA 与 MED15A-KIX 通过不同界面共同稳定 NPR1-SBD 的 SA-binding core，从而促进三元复合物形成；最后将 NIMIN1 作为负调控因子纳入模型，说明其通过竞争性机制阻断 SA-NPR1 通路。对做植物免疫、激素信号转导、转录调控或蛋白变构的人来说，这篇工作的重要性在于它把“激素感知—辅因子招募—转录激活”串成了一个可结构化检验的机制链条。需要核对的信息包括：具体研究物种是否为拟南芥；NPR1-SBD 的边界定义；MED15A 是否为主效亚基还是存在家族冗余；SA 亲和力变化的定量幅度；NIMIN1 是竞争 SA 位点、竞争 MED15A 位点，还是改变 NPR1 构象；以及体内遗传证据是否足以支撑体外重构所得机制。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题是：植物激素 SA 被 NPR1 感知后，NPR1 如何在结构和生化层面被激活并进一步连接到转录机器，尤其是如何招募 Mediator 复合体从而驱动系统获得性抗性相关基因表达；同时，负调控因子 NIMIN1 又如何在这一过程中抑制信号输出。",
+          "method": "从摘要推断，方法路径包括：1）利用 NPR1 proxiome 寻找近邻或候选互作蛋白；2）结合 AlphaFold 结构预测提出 NPR1 与 MED15A-KIX 的直接互作模型；3）用重组蛋白开展体外结合/招募实验，比较有无 SA 时 NPR1 对 MED15A 的结合，并测定 MED15A 对 SA 结合亲和力的影响；4）通过 cryo-EM 获得 NPR1-SBD、SA、MED15A-KIX 相关复合物的结构信息；5）用 HDX-MS 描述 SA 和 MED15A 分别稳定 NPR1 哪些区域、是否经由不同界面产生协同效应；6）对 NIMIN1 做竞争或复合物干扰实验，以证明其拮抗机制。若结合 Nature 常规标准，论文还很可能包含遗传学、转录读出、突变体验证和体内功能实验，但摘要未完整展开，需要核对正文。",
+          "strengths": "亮点之一是机制闭环较强：不是停留在“发现互作”，而是同时给出配体 SA、受体 NPR1、转录共激活组分 MED15A、抑制因子 NIMIN1 四者之间的功能逻辑。亮点之二是证据层次跨越计算预测、体外生化、结构生物学与动态构象分析，尤其 cryo-EM 与 HDX-MS 的组合有助于解释“变构促进”而非仅仅静态结合。亮点之三是提出互惠协同模型：SA 稳定 NPR1，MED15A 又增强 NPR1 对 SA 的亲和力，这种双向耦合非常适合解释激素信号如何实现敏感而特异的转录激活。若体内遗传数据充分，这会是对植物免疫转录起始机制的实质推进。",
+          "weaknesses": "基于目前仅有摘要，局限主要是信息不完整。第一，摘要没有给出关键定量数据，例如 SA 结合亲和力提高多少倍、MED15A 互作强度如何变化、突变体对免疫表型和转录输出的影响幅度。第二，尚不清楚该机制在体内是否为主导机制，还是多条 SA-NPR1 下游路径中的一条。第三，MED15A 作为 Mediator 亚基可能存在家族成员或并行亚基冗余，摘要未说明专一性。第四，NIMIN1 的拮抗机制在摘要里只看到“竞争”线索，但竞争对象和结构基础未完全展开。第五，摘要截断，后半部分可能包含遗传、转录组或病原挑战证据，当前不能替代全文判断。",
+          "next_step": "最小可执行动作：1）先查正文图题，重点看 NPR1-SBD 与 MED15A-KIX 的结构图、HDX-MS 覆盖图和 SA 依赖的结合曲线；2）记录所有关键突变位点，区分 SA 接触界面、MED15A 接触界面和 NIMIN1 竞争界面；3）核对研究物种、体内遗传证据和病原抗性表型；4）如果你的方向涉及植物免疫或转录调控，可优先整理一张机制图：SA 稳定 NPR1-SBD→促进 MED15A 招募→增强 SA 亲和力→转录激活，外加 NIMIN1 的阻断位置；5）若考虑复现或延伸，可从体外重组 NPR1-SBD/MED15A-KIX 结合测定和关键界面突变验证开始。"
+        }
+      },
+      "doi:10.1038/s41586-026-11026-0": {
+        "summary": "这篇Nature论文基于小鼠蓝斑（locus coeruleus, LC）去甲肾上腺素能神经元，研究其细胞体空间位置、基因表达、单细胞轴突投射范围与行为相关活动之间的对应关系。摘要指出，LC并非统一广播式系统，而是具有背腹拓扑组织：背侧、投射到等皮层的神经元在连续学习任务中携带换选与奖励预测误差信号，腹侧神经元则在动物忽略潜在奖励线索时表现出更高背景活动。",
+        "contribution": "核心贡献是提出并初步证明了LC去甲肾上腺素系统存在“拓扑化的结构—分子—投射—功能耦合”：单个神经元虽有广泛轴突，但主要限于部分脑区；这种投射模式与LC内细胞体位置及渐变式基因表达相关；并且不同空间子群在灵活行为学习任务中承载不同信号。这一工作可能将传统上被视为全脑弥散调制的LC系统，重构为具有空间分工和功能专门化的调制网络。",
+        "details": "从摘要可提炼出四条主要证据线索。第一，研究对象是小鼠LC去甲肾上腺素能神经元，重点不是总体放电，而是单细胞层面的形态、转录特征和行为活动。第二，形态学结果强调“individual neurons”的轴突投射非常广，但并非平均覆盖全脑，而是“largely confined to subsets of brain regions”，说明作者大概率做了单神经元重建、稀疏标记或全脑投射追踪，并据此否定了过于简单的统一广播模型。第三，轴突投射与“graded gene expression”都和LC内细胞体位置相关，提示作者可能结合了空间转录组、单细胞转录组映射、原位杂交或多重分子标记，且观察到的是连续梯度而非离散细胞类型。第四，在一个“requiring continuous learning from actions”的行为任务中，背侧LC、尤其投射至isocortex的神经元，在小鼠切换选择时被激活，并表现出驱动学习的reward-prediction-error样信号；而腹侧LC神经元在动物忽略提示潜在奖励可获得性的刺激时背景活动更高。这说明作者不仅做了解剖和分子分型，还进行了投射定义或位置定义的在体记录，可能涉及双光子/微型显微镜钙成像、光纤记录、电生理，结合行为建模来提取RPE、switching、engagement/ignorance等变量。\n\n如果你的方向是神经调质、强化学习、脑区投射特异性或空间转录组，这篇论文值得重点看，因为它把LC功能异质性落实到可操作的坐标系：LC内位置—基因梯度—投射靶区—行为变量。尤其值得核对的是：1）“reward-prediction-error signals”是正负双向RPE、无符号惊奇，还是模型回归中的相关项；2）“ignored stimuli”对应的是觉醒/注意缺失、动机低下，还是策略性忽略；3）isocortex投射神经元是通过逆行标记定义，还是通过重建后归类；4）背腹差异是否独立于投射靶区、放电基线、动物状态；5）所谓“graded gene expression”涉及哪些关键基因，是否与已知Adrenergic/发育轴一致。\n\n仅根据题名、摘要和元数据，还不能确认样本量、记录技术、统计效应大小、因果操控是否存在，也不能确定论文是否证明了这些LC子群对学习具有必要性或充分性。阅读正文时应优先查图：单细胞重建图、LC空间坐标与投射热图、分子梯度图、行为任务结构、神经活动回归模型，以及是否有光遗传/化学遗传干预来测试功能因果性。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文试图解决的具体问题是：蓝斑去甲肾上腺素能系统是否真的以传统理解的“全脑统一广播”方式工作，还是在LC内部存在可用空间位置描述的拓扑组织，使得不同神经元子群在分子表达、远程投射靶区和行为相关编码上呈系统对应；进一步地，在需要根据行动结果持续更新策略的任务中，哪些LC子群携带学习相关信号，哪些子群与忽略奖励线索或低参与状态相关。",
+          "method": "从摘要推测，方法路径至少包括三部分。1）单细胞形态/投射：对LC去甲肾上腺素神经元进行稀疏标记、全脑成像与轴突重建，统计每个神经元覆盖的脑区子集，并将其与细胞体在LC中的背腹或其他空间坐标关联。2）分子表征：通过单细胞RNA测序、空间映射、原位杂交或组合标记分析基因表达梯度，检验基因表达是否沿LC空间轴连续变化，并与投射特征对应。3）功能记录：在小鼠执行连续学习任务时，对背侧/腹侧LC神经元，或特定投射群如isocortex-projecting LC神经元进行在体活动记录；再用行为事件和计算模型变量回归神经活动，提取换选、奖励预测误差、对奖励可得性线索的忽略等信号。若论文更完整，可能还包含逆行示踪、交叉遗传策略和因果操控。",
+          "strengths": "最突出的亮点是把多个层级的信息串起来：单神经元投射形态、基因表达梯度、LC内空间位置和行为编码。相比仅做平均群体记录，这种设计更有机会回答LC异质性的来源。第二个亮点是任务选择上强调“continuous learning from actions”，这比简单的被动刺激任务更适合识别RPE和策略切换信号，从而把LC与灵活行为直接联系。第三个亮点是摘要已经给出功能分工的具体方向：背侧等皮层投射群与换选/RPE相关，腹侧群与忽略奖励线索时的背景活动升高相关，这种结果如果统计扎实，会对调质系统组织原则产生较大影响。",
+          "weaknesses": "基于摘要需要警惕几类边界。第一，摘要强调相关性，尚不清楚是否有因果干预证明背侧或腹侧LC子群分别驱动学习更新或 disengagement。第二，LC神经元活动很容易混入唤醒、瞳孔、运动、舔水、压力和总体状态变量；若回归模型控制不足，RPE或忽略信号可能被这些共变项解释。第三，摘要中的“graded gene expression”说明细胞类型可能是连续谱而非离散簇，这虽然有生物学意义，但也可能让分类边界依赖分析参数。第四，单神经元轴突“广泛但限于部分脑区”的表述需要看定量标准：覆盖多少脑区算子集、是否存在重建偏差、不同脑区轴突密度如何定义。第五，研究对象是小鼠，且LC在不同物种、不同任务和不同状态中的功能映射未必完全可推广。",
+          "next_step": "最小可执行动作：先读摘要对应的主图和补图标题，重点记录四件事——1）LC神经元投射是否按背腹位置形成连续拓扑；2）分子梯度由哪些基因定义；3）行为任务的具体结构、学习变量和RPE计算方式；4）神经活动分析是否控制运动/觉醒混杂。若你做相关研究，可进一步整理一个对照表：LC子群定义方式（位置、投射、基因）× 编码变量（switch、RPE、baseline、ignore）× 是否有因果证据。若准备复现思路，优先从行为建模和事件回归框架入手，而不是先尝试单细胞全脑重建。"
+        }
+      },
+      "doi:10.1038/s41586-026-11123-0": {
+        "summary": "该论文题名表明其研究对象是水杨酸受体，核心任务是解析这些受体如何介导转录调控机制。由于当前提供的摘要为空，能确认的只有研究主题聚焦于植物免疫相关小分子信号水杨酸及其受体的转录调控作用机制，具体分子、实验体系和结论仍信息不足。",
+        "contribution": "从题名和期刊来源推测，论文的核心贡献很可能是把“水杨酸受体”与“转录调控”之间的因果链条进一步机制化，可能涉及受体复合体、DNA结合调控因子、共抑制/共激活模块、染色质状态变化或受体构象转换等具体层面。但在摘要缺失的情况下，不能确认其实际贡献点、证据强度和创新边界。",
+        "details": "基于题名“Mechanisms of Transcriptional Regulation by Salicylic Acid Receptors”，这篇论文大概率位于植物免疫与激素信号转导交叉领域。水杨酸是经典植物防御信号分子，相关受体通常与病程相关基因激活、系统获得性抗性以及转录重编程有关，因此该文很可能试图回答：水杨酸受体不是仅仅“感知信号”，而是如何在分子层面驱动或解除特定基因的转录调控。若结合该领域既有知识，可能会涉及NPR家族相关蛋白、TGA类转录因子、转录抑制子/泛素化降解途径、受体-辅因子复合物组装，或者通过结构生物学、生化互作、染色质结合与转录组数据建立机制闭环。题录来自Nature，说明论文可能提供较强机制深度和多层证据整合，例如蛋白结构、突变体表型、病原挑战实验、RNA-seq、ChIP-seq/CUT&Tag、报告基因分析、体内外结合实验等。不过这些都只是基于题名和领域背景的合理推测，不应当当作已知事实。对于从事植物免疫、激素信号、转录调控、受体生物学或作物抗病研究的读者，这篇论文潜在价值在于：一是澄清水杨酸受体是否直接参与转录调控复合体；二是界定不同受体家族成员的功能分工；三是为抗病性工程改造提供可操作靶点。当前最需要核对的信息包括：具体研究物种是否为拟南芥；受体具体指哪些蛋白；转录调控是直接DNA相关机制还是经由转录因子间接实现；是否给出结构证据；是否在免疫表型与转录机制之间建立了因果联系。由于摘要为空，任何关于实验结果、定量效应、适用范围和结论强度的表述都必须保留。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "具体科学问题应是：水杨酸受体如何把激素/免疫信号转化为特定基因表达变化？更细的子问题可能包括受体是否直接参与转录复合物、受体与哪些转录因子或辅因子互作、受体结合水杨酸后发生何种构象或活性切换、不同受体成员在激活与抑制防御基因中是否有分工，以及这些分子事件如何对应植物抗病表型。",
+          "method": "在没有摘要的前提下，只能推测其可能采用多层方法路径：1）遗传学：受体突变体、互补材料、功能缺失/获得材料；2）分子互作：酵母双杂、Co-IP、pull-down、质谱鉴定复合体；3）转录调控证据：RNA-seq、qPCR、报告基因、转录激活/抑制实验；4）染色质层面：ChIP-seq、ChIP-qPCR或类似方法检测受体相关因子在靶基因位点的占据；5）结构与生化：解析受体与配体或蛋白伙伴的结合机制，测定亲和力、竞争关系或构象变化；6）表型验证：病原接种、抗性测定、免疫标志基因分析。具体是否全部包含，需要查看摘要和正文。",
+          "strengths": "仅从题名与期刊判断，最值得关注的亮点可能是把经典水杨酸信号通路从“受体感知”推进到“转录执行机制”层面。如果论文确实整合了结构、生化、遗传和转录组证据，那么其价值会在于形成从配体识别到基因表达再到免疫表型的完整证据链。此外，若研究区分了不同水杨酸受体或受体状态在转录激活与抑制中的角色，则可能对领域内长期存在的模型分歧提供统一解释。",
+          "weaknesses": "当前最大的局限是摘要为空，导致无法判断论文到底研究了哪些具体受体、在哪个物种中开展、使用了哪些关键技术、是否包含结构证据、样本规模与统计设计如何、结论是否具有普适性。另一个需要警惕的边界是，题名中的“mechanisms”可能既可能是高分辨率分子机制，也可能是相对宏观的调控模型；在未见摘要前不能默认其达到原子结构或直接转录复合体层面的证明。",
+          "next_step": "最小可执行动作：1）先获取摘要，确认研究物种、受体名称、核心发现和主要技术；2）优先查看题目对应的主图和图注，记录是否有结构图、互作图、转录组和病原表型；3）检索作者团队过往关于salicylic acid receptor、NPR family、transcriptional regulation的代表工作，用于建立连续研究脉络；4）列出三个待核对问题：受体是否直接参与DNA邻近调控、关键互作蛋白是谁、免疫表型是否由特定转录靶基因介导；5）若与你的方向相关，可准备一个对照表，将本文潜在机制与已有SA-NPR-TGA模型逐项比对。"
+        }
+      },
+      "doi:10.1038/s41586-026-11011-7": {
+        "summary": "这篇Nature论文聚焦于钍-229核低能跃迁在掺钍氟化钙晶体中的连续波激光吸收光谱：作者声称用148 nm窄线宽连续波固体激光、亚纳瓦功率即可激发核跃迁，并通过吸收而非荧光读出核共振。论文同时表征了CaF2晶体中两类不同的钍中心，并测得它们之间的核异能位移，其中一类中心对应极小的静态电晶场梯度。",
+        "contribution": "核心贡献在于把Th-229核激发从以往依赖脉冲148 nm光源、通过慢荧光衰减检测的方案，推进到连续波窄带激光激发和吸收式探测，从而更接近可快速读出的固态光学核钟实现路径。摘要还暗示作者识别并区分了两种掺钍中心，给出它们的isomeric shift，并发现一个高对称、低电场梯度中心，这对降低环境扰动、改善核钟稳定性具有直接意义。",
+        "details": "根据题名、摘要和元数据，这项工作研究的具体对象是掺钍CaF2晶体中的Th-229核低能异能态跃迁，任务是实现更适用于频标/核钟的激发与读出方案。摘要给出的关键方法线索很具体：使用148 nm波长、连续波、窄带宽、固体激光源，在亚纳瓦功率下直接驱动核共振；探测上不再依赖核荧光，而是观察吸收信号。这里的物理意义很明确：以往脉冲激光只有一小部分光子落在极窄核线宽内，效率受限，而连续波窄线宽光源与窄核线更匹配；同时吸收读出绕开了慢核荧光寿命，意味着更快的信号采集和更现实的钟锁定循环。摘要还说明作者“characterize two different thorium centres in a calcium fluoride crystal and measure the isomeric shift between them”，表明实验并不仅是看到一个共振峰，而是进一步解析了晶体内至少两类局域配位/缺陷相关的Th中心，并比较其核跃迁频移。尤其值得注意的是，其中一类中心的静态电晶场梯度小于0.1 V/Å^2，远低于此前报道的约100 V/Å^2量级，这强烈指向更高局域对称性和更弱电四极扰动；对于固态核钟，这类中心可能对应更小不均匀展宽、更弱系统频移和更好的可重复性。对科研读者而言，这篇论文最相关的证据线索包括：吸收信号如何与背景吸收或杂散效应区分、两类Th中心如何通过谱线或样品条件区分、isomeric shift的量级与不确定度、以及低电场梯度的推断是来自实验拟合还是结构模型。由于当前只有摘要，仍需核对的关键信息包括：吸收线宽、共振对比度、扫描范围、样品掺杂浓度、温度与磁/电环境控制、连续波VUV光源的实现细节、信噪比、锁钟相关稳定度估计，以及该“高对称中心”在样品中所占比例和可重复制备性。若你的方向涉及精密光谱、固态量子缺陷、频标或Th-229核钟，这篇文章的价值在于它把“可激发”推进到“可连续驱动且快速读出”，并把材料中心工程直接引入核钟系统误差控制。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何在掺钍晶体中更高效、更实用地激发并探测Th-229核低能跃迁，从而摆脱脉冲VUV激光与慢核荧光探测的限制；以及在CaF2中究竟存在哪些不同的钍局域中心、它们对核跃迁频率和晶场扰动有何影响。",
+          "method": "从摘要推断，实验路径包括：在掺Th的CaF2晶体上用148 nm连续波窄带宽固体激光进行扫频或定频照射；通过吸收光谱而非延迟荧光记录共振；比较至少两类Th中心的谱学特征并提取它们之间的isomeric shift；结合谱线分裂/位移或模型分析，估计局域静态电晶场梯度，并据此判断某类中心具有较高对称性。",
+          "strengths": "最突出的亮点是把核共振探测从荧光读出转为吸收读出，这对快循环、实用化核钟非常关键；其次，连续波、窄线宽、亚纳瓦功率驱动本身说明光源与跃迁匹配度显著提升；再次，材料层面识别出低电场梯度中心，为降低固态环境导致的频移与展宽提供了明确方向；最后，发表在Nature且摘要中给出与既有工作1–6的直接对照，说明其结果很可能是在先前脉冲激发基础上的重要方法学推进。",
+          "weaknesses": "仅凭摘要仍无法判断吸收信号的绝对强度、谱线宽度、重复性和系统误差；“sub-nanowatt power”是样品处有效功率还是源输出后某处测得，需要核实；两类Th中心的具体结构归属、形成机制和样品可控性在摘要中未交代；低电场梯度是否意味着整体钟性能显著改善，还取决于温度漂移、浓度效应、应力与杂质等其他固态扰动；此外，摘要被截断，关于高对称中心的完整论述与结论条件目前不完整。",
+          "next_step": "最小可执行动作是先查看正文中的主图和补充材料，重点记录四类信息：1）148 nm连续波光源的线宽、功率与频率校准方式；2）吸收共振的线形、对比度、扫描时间和背景扣除方法；3）两类Th中心的频率位置、isomeric shift数值及不确定度；4）电晶场梯度<0.1 V/Å^2的提取依据。若要做对照阅读，可与摘要中引用的早期脉冲激发/荧光探测工作逐项比较读出速度、线宽、效率和材料中心选择。"
+        }
+      },
+      "doi:10.1038/s41586-026-11024-2": {
+        "summary": "这篇Nature论文从题名看，聚焦于利用“prime assembly”实现靶向基因组整合与基因组重排，研究任务具体指向在基因组中按目标位置写入较大DNA片段或重构染色体级序列结构。由于提供信息中摘要为空，当前只能依据题名与期刊元数据判断其主题属于基因编辑方法学扩展，不能确认其具体实验体系、效率或适用边界。",
+        "contribution": "基于题名推测，论文的核心贡献很可能是提出或系统化了一种名为prime assembly的基因编辑策略，使prime editing从以小尺度替换/插入为主，扩展到更复杂的靶向整合与序列重排任务，例如定点插入、片段拼装式写入、缺失/倒位/易位类重排控制，或其组合。若这一判断成立，该工作的重要性在于把“精准小编辑”推进到“可编程基因组结构工程”。",
+        "details": "从元数据可见，论文发表于Nature，题名为“Targeted genomic integration and rearrangement using prime assembly”，作者团队包含基因编辑与计算分析背景研究者，因此大概率是一篇方法学论文，目标是发展一种新型可编程基因组改写平台。题名中的两个关键词尤其关键。第一，“targeted genomic integration”通常指将外源或设计序列定点写入基因组特定位点，区别于随机整合，也区别于仅数个碱基的小编辑；这暗示研究对象可能包括较长DNA载荷、功能模块、标签、调控元件甚至治疗性片段。第二，“rearrangement”指对基因组结构进行重构，常见包括大片段缺失、倒位、重复、插入、替换或跨位点重接。若prime assembly确实能够同时支持整合与重排，那么它面对的不是单一编辑事件，而是更复杂的DNA端点设计与连接逻辑。\n\n就方法线索而言，“prime assembly”这一命名很可能与prime editing同源或衍生。prime editing传统上依赖Cas9 nickase与逆转录酶，以及pegRNA指定写入序列。如果这里使用“assembly”，可能意味着通过多个可编程编辑单元在基因组内原位“拼装”目标序列或重接多个切口/编辑端点，从而实现单一pegRNA难以完成的复杂改写任务。也可能涉及多pegRNA协同、分段模板、序列重叠拼接设计、双位点或多位点同步编辑，或者通过迭代/级联prime editing构建更长插入片段与精确重排。不过，这些都只是从题名出发的合理推断，不能当作已证实内容。\n\n如果你关注基因编辑工具开发，这篇文章的潜在价值在于：它可能试图解决HDR依赖型定点整合效率低、细胞周期依赖强、双链断裂诱发副产物多、大片段写入困难等长期问题；也可能提供了一种比传统CRISPR切割+供体模板更可控的方案，用于构建疾病模型、功能基因组学编辑、细胞治疗载荷定点写入，或模拟/纠正结构变异。若你关注结构变异研究，它可能还涉及如何工程化地产生致病相关重排，以便建立癌症、血液病或发育病模型。\n\n目前信息不足最明显的地方包括：不知道prime assembly究竟是全新编辑系统、prime editing的算法/设计框架、实验流程组合，还是特定递送与模板架构；不知道验证对象是HEK293等标准细胞、iPSC、原代细胞还是体内模型；不知道整合片段长度范围、重排类型覆盖面、编辑纯度、旁观者编辑、副产物谱、indel负担、染色体异常风险以及测序验证深度；也不知道是否与HDR、HITI、PASTE、TwinPE、integrase耦合策略或转座系统进行了正面对比。由于摘要为空，任何关于“显著提高效率”“实现大载荷插入”“低脱靶”等说法都必须等待原文核对。\n\n对科研读者而言，当前最应带着问题去读的是：该方法的编辑化学本质是什么，是否仍避免双链断裂；所谓assembly是在DNA层面原位拼接、在转录产物层面逆转录拼接，还是在多个编辑事件后获得结构重排；它能处理的最大有效载荷有多大；成功事件如何被无偏鉴定；失败模式是部分整合、串联重复、反向插入还是复杂重排；以及作者是否给出了设计规则和可泛化的软件工具。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名推断，是如何在预定基因组位点实现更复杂的工程化改写：不仅能精确定点整合目标DNA序列，还能按设计生成基因组重排事件。更细一点说，它针对的可能是现有prime editing偏向小编辑、HDR型整合对双链断裂和供体模板依赖较强、而复杂结构变异难以可编程构建的问题。",
+          "method": "可能的方法路径是以prime editing框架为基础，设计一种“assembly”式编辑体系，通过一个或多个pegRNA/辅助RNA、可编程切口布局、逆转录模板分段或端点同源/重叠逻辑，在基因组内完成目标序列的拼接式写入或多端点重接。数据上大概率会包含靶向扩增测序、长读长测序、克隆级基因分型、流式或荧光报告系统，以及不同位点/不同载荷/不同细胞类型的效率比较。若涉及重排，可能还会用PCR跨接、ddPCR、FISH、karyotype或全基因组测序排查非预期结构变异。",
+          "strengths": "最值得关注的潜在亮点有三点。其一，任务层级高：从单碱基或短插入缺失扩展到定点整合和结构重排，若成立则方法学跨度很大。其二，若基于prime editing而非经典双链断裂途径，理论上可能降低随机插入、大片段indel和非目标重接。其三，若作者给出通用设计规则并在多个位点、不同长度载荷和多种重排类型中验证，那么其应用价值会直接体现在疾病模型构建、功能元件敲入和基因治疗平台开发上。",
+          "weaknesses": "基于当前题录信息，最大的局限是摘要为空，导致无法确认方法定义、实验范围和核心证据。需要警惕的边界包括：prime assembly是否真的能处理大载荷，还是仅限中短片段；“rearrangement”是否只是局部重构而非染色体级结构变异；是否需要双链断裂或额外重组酶/整合酶参与；成功率是否只在易编辑细胞系中较高；副产物是否包含复杂拼接、部分整合、多拷贝串联或染色体不稳定。题名很吸引人，但没有摘要时不能预设其已全面优于HDR、HITI或其他定点整合体系。",
+          "next_step": "最小可执行动作是先获取摘要和首图。优先核对四件事：1）prime assembly的分子组成与编辑流程；2）作者展示的具体任务类型，分别有哪些整合和重排；3）每类任务的定量指标，如编辑效率、准确率、插入长度上限和副产物谱；4）与现有方法的直接对照对象。若你准备做复现或跟踪，可先建立一个表格，记录目标位点、细胞类型、载荷长度、测序方法、成功定义和失败模式，避免被题名误导。"
+        }
+      },
+      "doi:10.1038/s41586-026-11034-0": {
+        "summary": "该论文围绕复制压力下的DNA复制叉，研究cohesin介导的环挤出如何重塑新生DNA之间的染色质接触，从而促进复制叉减速与回退并维持基因组稳定性。基于摘要信息，作者重点建立并应用了面向新生DNA接触捕获的Micro-C衍生方法Repli-C，结合AID降解和功能分离突变体解析cohesin在受阻复制叉处的作用。",
+        "contribution": "核心贡献可能有三层：一是提出复制压力条件下复制叉三维接触重构这一具体机制问题，并将其与cohesin环挤出直接关联；二是开发Repli-C，用于捕获新生DNA相关的染色质接触，给出复制叉邻近拓扑变化的实验读出；三是通过cohesin快速降解与分离功能突变体，提示“可挤出环的cohesin在停滞复制叉积累，限制单链DNA并促进叉减速/回退”，从而把三维基因组结构调控与复制叉稳定性、耐受压力和基因组稳定联系起来。",
+        "details": "从题名和摘要看，研究对象非常具体：不是一般性的复制调控，而是“复制压力下的复制叉接触关系”以及“cohesin环挤出是否在停滞复制叉处发挥保护作用”。问题背景是，化疗相关复制压力会导致单链DNA积累和DNA合成减速，而复制叉的结构可塑性决定其稳定性和后续复制完成。现有知识已知cohesin通过环挤出组织三维基因组并影响复制起始位点，但在复制叉受压时，姐妹叉或新生链之间的接触是否有功能意义、以及cohesin在其中的作用尚不清楚。摘要表明作者把这一空白具体化为：cohesin是否在复制叉停滞时改变新生DNA接触图谱，并进一步影响叉减速、叉回退和基因组稳定。\n\n方法线索较明确。作者使用auxin-inducible degron，说明他们可在较短时间尺度上去除关键蛋白，减少慢性缺失带来的间接效应；使用separation-of-function mutants，说明并非只比较有无cohesin，而是尝试区分cohesin不同功能模块，尤其可能区分“环挤出”与“其他黏连/装载相关功能”；最关键的技术是新开发的Repli-C，它是基于Micro-C的接触组方法，但特异针对nascent DNA，因此读出重点不是全基因组平均染色体构象，而是正在复制区域或新生链相关接触。若摘要原文中的截断部分延续通常Nature摘要写法，后面大概率还会给出单链DNA、叉回退、核酸酶/重组因子或电子显微镜/纤维分析等证据，但在当前信息下不能替作者补全具体实验结果。\n\n就证据链而言，摘要已明确给出几个重要现象：第一，loop-extruding cohesin accumulates at stalled replication forks，说明有空间定位或富集证据；第二，limiting single-stranded DNA，说明cohesin缺失或失去环挤出功能时，受压复制叉可能更易暴露ssDNA；第三，题名已点出aid fork slowing and reversal，提示cohesin并非单纯促进前进，而是在压力条件下帮助复制叉主动减速并发生回退，这通常被视为保护性反应。若这些结论成立，那么论文的重要性在于把“复制叉保护”从传统的核酸代谢因子层面，扩展到“局部三维染色质力学/拓扑重排”层面。\n\n与相关研究方向的关系上，这篇工作对以下人群尤其值得关注：研究DNA复制压力、ATR/CHK1通路、BRCA/FANCD2/RAD51介导叉保护、SMC复合物、三维基因组与复制耦联、以及化疗药物应答机制的科研人员。它可能提供一个解释框架：某些复制叉保护表型并不只取决于经典重组修复酶，也取决于cohesin是否能在局部持续挤出环并重排新生DNA接触。如果你的方向涉及拓扑结构、复制时空程序或抗癌药敏，这篇文章可能提示新的干预靶点或新的表型读出方式。\n\n但基于当前仅有摘要，也有几项必须核对的信息。首先，实验体系未完全明确：需要确认是人细胞、酵母还是其他真核系统；不同系统中cohesin、WAPL、PDS5、CTCF依赖性和复制叉回退机制差异很大。其次，需要确认复制压力来源，是HU、APH、CPT还是临床相关药物，不同药物引发的叉减速和ssDNA表型不同。第三，需要确认Repli-C究竟如何富集nascent DNA，是EdU标记后点击化学富集，还是与Micro-C连接后再进行选择性回收；其时间分辨率、空间分辨率、背景噪音和与Hi-C/Micro-C/OK-seq/iPOND的互补关系都需要看方法和图。第四，需要核对“cohesin积累”是否是全基因组普遍现象，还是局限于受阻复制区域、复制工厂或特定染色质环境。第五，需要核对叉回退证据是直接形态学证据还是间接分子标记；若仅由蛋白依赖性和动力学推断，则力度会弱于电子显微镜或高分辨结构读出。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "具体科学问题是：在复制压力导致复制叉停滞时，新生DNA之间或姐妹复制叉之间的三维接触是否会被主动重塑；这种接触重塑是否依赖cohesin的环挤出功能；以及这种结构变化是否直接帮助复制叉减速、回退、限制单链DNA积累并最终维持基因组稳定。更细一点说，论文试图把“复制叉保护”这一经典问题，转化为“局部染色质接触拓扑如何影响复制叉命运”的机制问题。",
+          "method": "根据摘要，可能的核心方法组合包括：1）AID系统对cohesin相关因子进行快速降解，以观察复制压力下的即时表型；2）separation-of-function突变体，用于区分cohesin不同功能，尤其是环挤出能力与其他结构功能；3）Repli-C，这是一种基于Micro-C的新方法，用于捕获nascent DNA相关的染色质接触，可能依赖新生DNA标记和接触组测序；4）复制压力处理后比较接触图谱、ssDNA水平、复制叉速度及回退表型；5）可能辅以复制纤维、iPOND、ChIP类富集、显微成像或EM等，以证明cohesin在停滞叉积累并影响叉结构，但这些需要正文核实。数据层面，最关键的将是受压与未受压、cohesin完整与降解/失功能之间，新生DNA接触模式和叉保护指标的配对比较。",
+          "strengths": "最值得关注的亮点有三点。第一，问题切得很新：不是泛泛研究cohesin与复制，而是聚焦“受压复制叉局部接触重排”这一具体层次。第二，方法学上Repli-C如果确实能高特异地读取新生DNA接触，将为复制研究提供不同于传统Hi-C/Micro-C的窗口，有潜力成为研究复制时局部拓扑变化的工具。第三，证据设计上若AID、功能分离突变体和复制叉表型读出能够相互闭环，那么对于证明“环挤出功能本身”而非其他伴随效应导致复制叉保护会很有说服力。此外，这项工作把三维基因组组织与基因组稳定性、化疗应答机制连接起来，潜在转化意义较强。",
+          "weaknesses": "基于当前题录与截断摘要，主要局限是信息不完整。首先，不清楚实验模型和压力条件，因而结论的普适性与临床相关性暂时无法判断。其次，尚不清楚Repli-C的技术噪音、分辨率、定量能力和重复性，方法本身可能存在偏倚，例如对活跃复制区域、开放染色质或特定片段长度的偏好。第三，“促进叉回退”既可能是保护性，也可能在某些背景下增加脆弱性，需看遗传背景和终点指标。第四，cohesin操控往往引发广泛转录、复制起始和染色质结构改变，若时间控制不够精细，复制叉表型可能混有间接效应。第五，题名强调fork contacts，但接触变化与功能结果之间是否为因果而非相关，需要依赖更严格的遗传分离和救援实验来支持。",
+          "next_step": "最小可执行动作建议如下：1）先查论文摘要完整版和图1，确认Repli-C的实验流程、nascent DNA富集策略及首个代表性接触图；2）记录作者用于制造复制压力的具体药物/剂量/时间，因为这直接决定表型解释；3）重点看是否有区分“总cohesin存在”与“环挤出能力”的突变或救援设计；4）查证ssDNA、叉减速和叉回退分别由哪些实验读出支撑，尤其是否存在直接叉回退证据；5）如果你的研究涉及复制压力或SMC复合物，可将本文与已知fork protection因子如BRCA1/2、RAD51、SMARCAL1、HLTF、ZRANB3做一张机制对照表，判断cohesin处于上游结构重塑层面还是与经典回退/保护通路并行。"
+        }
+      },
+      "doi:10.1038/s41586-026-10996-5": {
+        "summary": "这篇 Nature 论文报告了一种“热力学上有利”的支架化 DNA 分子计算机（Scaffolded DNA Computer, SDC），并在乘以 3、除以 2、8 位奇偶校验以及 25 位数加法等 10 个程序上进行了展示，其中包含一次 100 位计算任务。论文要点是：与通常依赖非平衡驱动和纠错的分子/生物计算不同，该体系被设计为朝向热力学更稳定的平衡态自发演化，从而完成计算。",
+        "contribution": "核心贡献应在于提出并实验实现了一类可编程 DNA 计算介质，使“计算嵌入到趋向平衡的能量地形松弛过程”这一理论构想有了具体分子实现。摘要还表明作者试图同时证明三点：一是 SDC 为何在热力学上有利；二是它为何不需要传统意义上的纠错或冗余；三是它为何具有较简单实验流程、可重复使用数十次、且小规模实例可在 1 分钟内运行完成的操作优势。",
+        "details": "仅依据题名、摘要与元数据可判断，研究对象非常具体：作者构建的是一种以 DNA 为材料、带有“支架化”结构约束的分子计算平台，而不是泛指 DNA 逻辑门或链置换电路。其科学问题是：能否把计算过程设计成一个系统沿着热力学更优的能量景观自然放松到平衡终态的过程，并且在真实分子体系中保持可编程性、可读出性与足够低的错误率。摘要将其与常见计算和生命体系作对比：通常计算在非平衡条件下运行，错误需要通过校对、纠错、冗余等代价高昂的动力学控制来抑制；而本文希望避免这一点。\n从方法线索看，SDC 很可能依赖 DNA 杂交网络、序列可编程性和空间支架/模板来工程化自由能景观，使正确输出态在热力学上更稳定，错误态则相对不利。题名中的“molecular computer”和摘要中的“programmable medium amenable to energy landscape engineering”都说明其关键不只是做出若干 DNA 反应，而是对状态空间及其能量排序进行程序化设计。所谓“Scaffolded”提示计算组分可能被组织在某种骨架、模板或局部化结构上，以减少错误配对、提升有效浓度控制或限定反应路径，但具体支架是何种分子架构、是否为 DNA origami/链状模板/表面固定体系，摘要未给出，需要查正文和图示确认。\n证据线索方面，摘要给出了较强的任务级演示：10 个程序，涵盖乘以 3、除以 2、8-bit parity detection，以及 25-bit numbers addition。这里最值得注意的是“25 位数加法——100 位计算”。这意味着作者可能把输入、进位、输出或中间表示累计成 100 位规模，说明体系不只是单门演示，而是面向相对复杂算法实例。对于科研读者，这些任务的价值在于它们覆盖了不同计算模式：比例变换、移位/整除、全局奇偶性质检测、以及需要进位传播的算术运算。若这些都在统一架构上实现，说明 SDC 可能具有一定通用性或至少较好的程序族扩展性。\n摘要还强调“小实例在 1 分钟内运行”“可复用数十次”“实验协议简单”。这与既有 DNA 计算常见痛点直接相关：反应慢、一次性消耗体系、操作流程复杂、依赖外部循环驱动或洗涤步骤。如果这些表述在正文中有数据支撑，那么该工作对分子计算走向可操作平台会很关键。不过当前不能据此推断其绝对吞吐量、错误率、能耗或与电子计算的可比性。\n与相关方向的关系上，这篇论文对 DNA 计算、分子编程、非平衡热力学、化学反应网络物理实现、以及“计算是否必须依赖耗散维持”的基础问题都很相关。它也与机器学习/搜索中利用能量最小化求解的思想形成呼应，但作者强调现有这类算法通常仍跑在高能耗非平衡硬件上，而这里是在分子层面更直接地实现“朝最优平衡态收敛即计算”的范式。\n需要重点核对的信息包括：1）“热力学上有利”在文中是定性主张还是有定量自由能、平衡分布、误差概率分析；2）错误抑制是否真不依赖任何纠错，还是通过序列设计、空间局域化和反应阈值实现一种隐式的物理纠偏；3）10 个程序的编程规则是否统一；4）“可复用数十次”具体指同一分子装置多次装载输入，还是同一实验流程重复运行；5）100 位计算的读出方式、成功率和时间尺度；6）体系的可扩展性瓶颈是序列设计、支架尺寸、泄漏反应还是读出复杂度。总之，这是一篇从摘要上看非常值得精读的分子计算论文，但目前不能超出摘要去判断其真实误差水平、可扩展上限和理论证明的严格程度。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：能否在真实可编程分子体系中，把计算编码为一个朝向热力学更稳定平衡态的自发松弛过程，从而避免传统分子计算和生物信息处理中常见的高能耗非平衡驱动、校对、纠错或冗余机制；并进一步验证这种范式是否足以执行具体算法任务，如奇偶校验和多位二进制加法。",
+          "method": "从摘要推测，方法上作者构建了一个支架化 DNA 计算平台，通过 DNA 序列设计和空间组织来工程化反应网络的能量景观，使目标输出态成为热力学上偏好的终态。实验验证应当包括多个预先定义的程序实例，输入可能以 DNA 链或位模式编码，输出通过某种分子读出手段检测；同时辅以数学、物理与计算机科学分析，说明体系为何热力学上有利、为何无需传统纠错以及为何能够扩展到包括 25 位数加法在内的任务。",
+          "strengths": "最突出的亮点有三点。第一，概念上把“平衡态偏好”从理论命题推进到可编程 DNA 分子实现，这是基础意义很强的跨学科贡献。第二，任务展示较具体且不单一：乘以 3、除以 2、8 位奇偶校验、25 位数加法、总计 10 个程序，说明不仅是单个逻辑门或玩具反应。第三，摘要声称协议简单、可复用数十次、小规模运行时间低于 1 分钟，这些指标如果成立，会显著提升该平台相对既有 DNA 计算方案的可用性。",
+          "weaknesses": "基于现有题录信息，主要局限是关键性能参数缺失。摘要没有给出错误率、成功率、自由能差量化、输入规模与运行时间如何随程序增长、读出成本、复用条件、以及不同程序是否需要重新设计大量序列。其次，“不需要纠错或冗余”的表述需要谨慎理解，因为序列优化、支架约束和热力学偏置本身也可能承担类似误差抑制功能。最后，100 位计算听起来重要，但其确切含义、是否真正体现可扩展通用计算能力，还必须依赖正文图表核对。",
+          "next_step": "最小可执行动作：先查论文主图和方法图，确认 SDC 的物理结构、输入输出编码方式与“支架化”的具体含义；再记录 10 个程序中每个任务的规模、时间、正确率和是否共用同一设计规则；重点截取与“25 位数加法/100 位计算”“可复用数十次”“under a minute”对应的图表或补充数据；最后整理一个核对清单，专门验证热力学论证、误差来源和扩展性瓶颈。"
+        }
+      },
+      "doi:10.1038/s41586-026-11000-w": {
+        "summary": "这篇Nature论文从题名看，聚焦“single-crystalline nanomembranes（单晶纳米薄膜/纳米膜）”的“heterogeneous photonic integration（异质光子集成）”任务，目标很可能是把高质量单晶材料以纳米膜形式集成到光子平台上。由于当前提供信息中摘要为空，无法确认其具体材料体系、器件类型、性能指标和实验结果。",
+        "contribution": "基于题名推测，论文的核心贡献很可能在于提出或验证了一种面向光子器件的单晶纳米膜异质集成策略，用于兼顾材料晶体质量与片上光子平台兼容性；但具体贡献点（如集成工艺、器件类别、损耗/效率/良率提升）必须依赖摘要或正文核对。",
+        "details": "从题名“Heterogeneous photonic integration of single-crystalline nanomembranes”可提炼出几个明确对象：一是研究对象不是一般薄膜，而是单晶纳米膜；二是任务不是单纯材料制备，而是面向光子学的异质集成；三是工作发表在Nature，通常意味着作者可能展示了不仅是工艺概念，还包括器件级或平台级验证。题名暗示该研究可能试图解决这样一类瓶颈：许多优异光学材料在本征晶体质量、非线性、电光、发光或低损耗特性上表现突出，但难以直接与成熟的片上光子平台兼容制造；若能把单晶材料做成可转移/可键合/可层压的纳米膜，再与硅、氮化硅、绝缘体上硅或其他光子基底异质整合，就有机会在保留材料高品质的同时实现可扩展器件制造。可能的方法路径包括：单晶薄膜的剥离或外延释放、晶圆键合、干/湿法转移、图形化加工、与波导/谐振腔/调制器/探测器/光源结构耦合，以及通过显微表征、光谱测试和器件性能评估证明集成有效。由于摘要缺失，目前无法判断单晶纳米膜具体属于哪类材料，例如III-V族半导体、锂铌酸盐、钽酸锂、金刚石、碳化硅、钙钛矿、二维材料之外延单晶膜等；也无法确认论文更偏向有源器件、无源低损耗器件、非线性频率转换、电光调制、量子光子学还是多材料协同平台。对科研读者而言，这篇论文最值得核对的证据线索应包括：集成前后晶体质量是否保持、界面缺陷和应力如何控制、与底层波导的模式耦合方式、器件尺寸与工艺窗口、性能相对单一平台的增益、以及是否具备晶圆级可扩展性。如果你的方向是集成光子学、异质材料平台、低损耗波导、电光/非线性器件或片上量子光学，这篇论文很可能具有方法学参考价值；但在没有摘要和正文的前提下，任何关于性能突破、器件指标和适用场景的判断都只能停留在题名层面的合理推测。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名判断，是如何将单晶纳米膜这一高材料质量单元，与现有片上光子平台进行异质集成，从而同时获得单晶材料的优良光学/电学特性与可制造、可扩展的光子器件架构。更细一点说，潜在科学与方法问题可能包括：单晶材料难以直接在目标光子基底上高质量生长；多材料平台之间晶格、热膨胀、加工兼容性不匹配；以及高性能有源或非线性材料与低损耗波导平台之间缺乏稳定、低缺陷、可批量化的集成路径。",
+          "method": "可能方法上，这项工作大概率围绕“单晶纳米膜制备/释放 + 异质转移/键合 + 片上光子器件加工 + 光学表征”展开。可预期的数据与证据可能包括：材料显微结构表征（晶体质量、厚度、表面粗糙度、界面完整性）、器件显微图、波导或谐振结构中的光传播/谐振/调制/发光谱线、插入损耗或品质因数、耦合效率、器件一致性和良率等。若论文强调平台性，方法中还可能包含多芯片/晶圆尺度转移、对准工艺、后端兼容流程，或与CMOS/硅光工艺兼容的制程设计。",
+          "strengths": "按题名推测，最值得关注的亮点可能有三类。第一，材料层面：使用单晶纳米膜而不是多晶或非晶薄膜，意味着作者可能追求更低缺陷、更低光学损耗或更强有源/非线性响应。第二，系统层面：异质光子集成本身面向的是“把最合适的材料放在最合适的位置”，如果论文展示了跨平台集成并保持高性能，这会直接提升片上光子系统设计自由度。第三，应用层面：若该方法具备可扩展性，则对片上激光、调制器、频率转换器件、量子发射/探测平台等都可能有现实价值。由于期刊层级较高，作者也可能提供了相对完整的工艺—材料—器件闭环验证。",
+          "weaknesses": "当前最大局限不是论文本身，而是可用信息极少：摘要为空，关键词缺失，因此无法确认材料体系、器件类型、关键性能、实验规模与对比基线。基于题名阅读时需要警惕几类边界：一，题名中的“integration”可能只是工艺概念验证，不一定已达到大规模制造；二，“single-crystalline nanomembranes”可能只在特定材料或厚度窗口内成立，未必通用于所有光子材料；三，即使器件性能突出，也可能依赖复杂转移工艺、低吞吐量流程或严格对准条件；四，若没有长期稳定性、热循环、封装兼容性和统计一致性数据，实际落地价值仍需谨慎评估。",
+          "next_step": "最小可执行动作有五个。第一，先补查摘要和新闻稿，确认单晶纳米膜的具体材料种类、目标器件和主性能指标。第二，优先查看论文首页图和方法图，判断核心创新究竟在材料制备、转移键合还是器件设计。第三，记录所有可量化指标：损耗、Q值、调制效率、非线性效率、发光强度、耦合效率、良率、面积和可扩展性。第四，找对照对象：与同材料直接外延、与传统薄膜沉积、与其他异质键合集成方案相比是否有明确优势。第五，如果你的研究涉及某一具体平台，如硅光、SiN、LNOI、III-V或量子光子学，重点核对其工艺是否真正兼容你的基底、温度预算和器件流程。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "arXiv page failed at start=0, max_results=50: HTTP 406 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=0&max_results=50&sortBy=sub...",
+      "arXiv page failed at start=50, max_results=50: HTTP 406 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=50&max_results=50&sortBy=su...",
+      "arXiv fetch stopped after 2 consecutive page failure(s)."
+    ]
+  },
+  "papers": [
+    {
+      "id": "doi:10.1038/s41586-026-11021-5",
+      "source": "nature",
+      "title": "Transcriptional activation of plant immunity by salicylic acid",
+      "authors": [
+        "Songwen Zhang",
+        "Madeline Gish",
+        "Huan Li",
+        "Thomas R. Hinds",
+        "Haibin Mao",
+        "Moira Cornell",
+        "Massi Silvetti",
+        "Sydney Klucas",
+        "Clint Vorauer",
+        "Charlie C. Mundorff",
+        "Smita Yadav",
+        "Miklos Guttman",
+        "Ning Zheng"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "Abstract The plant defence hormone salicylic acid (SA) triggers systemic acquired resistance by signalling through its receptor, NON-EXPRESSOR OF PATHOGENESIS-RELATED GENE 1 (NPR1), leading to widespread transcriptional reprogramming 1,2 . However, the molecular mechanism by which NPR1 senses SA and activates transcription remains unresolved. Here we show that SA stabilizes the SA-binding domain (SBD) of NPR1 and allosterically promotes its interaction with MED15A, a subunit of the Mediator complex. Leveraging the NPR1 proxiome and AlphaFold structural predictions, we identify a direct interaction between NPR1 and the kinase-inducible domain interacting (KIX) domain of MED15A. We show that recombinant NPR1 recruits MED15A in an SA-dependent manner, and that MED15A binding reciprocally enhances the affinity of NPR1 for SA. Cryo-electron microscopy and hydrogen–deuterium exchange mass spectrometry reveal that SA and the MED15A KIX domain cooperatively potentiate NPR1-SBD for ternary complex formation by stabilizing its SA-binding core via separate interfaces. We further demonstrate that NIMIN1, a repressor of the SA–NPR1 pathway, antagonizes SA signalling by competing with MED15A for the same NPR1-SBD docking site and allosterically blocking hormone binding. In line with previous genetic evidence establishing a critical role of MED15A in SA signalling, our findings provide a mechanistic resolution to the longstanding question of how SA promotes transcriptional activation during plant immune responses.",
+      "url": "https://doi.org/10.1038/s41586-026-11021-5",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11021-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 71,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11021-5"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11026-0",
+      "source": "nature",
+      "title": "Topographic structure and function of locus coeruleus noradrenaline neurons",
+      "authors": [
+        "Zhixiao Su",
+        "Polina Kosillo",
+        "Kanghoon Jung",
+        "Shuonan Chen",
+        "Mathew T. Summers",
+        "Alex Piet",
+        "Han Hou",
+        "Kenta M. Hagihara",
+        "Drew Friedmann",
+        "Olivia Ho-Shing",
+        "Matthew I. Becker",
+        "Thomas Chartrand",
+        "Xinxin Yin",
+        "Peter Grotz",
+        "Ella Hilton-VanOsdall",
+        "Margaret Lee",
+        "Rajvi Javeri",
+        "Samantha L. Tuggle",
+        "Naveen Ouellette",
+        "Holly Myers",
+        "Judith Baka",
+        "Camilo Laiton",
+        "Kaelin Wulf",
+        "John Rohde",
+        "Alessio P. Buccino",
+        "Cameron Arshadi",
+        "Di Wang",
+        "Sharmishtaa Seshamani",
+        "Sonya Vasquez",
+        "Carolyn M. Eng",
+        "Douglas R. Ollerenshaw",
+        "Nick Dee",
+        "Tamara Casper",
+        "Windy Ho",
+        "Matthew Jungert",
+        "Atlas Jordan",
+        "Elliot Phillips",
+        "Anish Bhaswanth Chakka",
+        "Kamiliam Nasirova",
+        "Krista Blake",
+        "Audrey McCutcheon",
+        "Megan Koch",
+        "Maria Camila Vergara",
+        "Kimberly A. Smith",
+        "Tim Jarsky",
+        "Nicholas Lusk",
+        "Mara C. P. Rue",
+        "Xiaoyin Chen",
+        "Joshua H. Siegle",
+        "Adam K. Glaser",
+        "Brian R. Lee",
+        "Karel Svoboda",
+        "Yoh Isogai",
+        "Jayaram V. Chandrashekar",
+        "Jeremiah Y. Cohen"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "Abstract Noradrenaline (also known as norepinephrine) is released throughout most of the central nervous system by neurons in the locus coeruleus 1–4 . Here we identified a relationship between the morphologies, gene expression and activity of noradrenergic neurons in locus coeruleus in mice. Axonal projections of individual neurons were extensive but largely confined to subsets of brain regions. Axonal projections and graded gene expression correlated with locations of cell bodies in locus coeruleus. In a behavioural task requiring continuous learning from actions, dorsal locus coeruleus neurons projecting to isocortex were activated when mice switched choices and by reward-prediction-error signals that drive learning. Background activity of neurons in ventral locus coeruleus was higher when mice ignored stimuli indicating potential reward availability. These observations reveal a topographically organized structure and function of a neurotransmitter system and show that it contains learning signals for flexible behaviour.",
+      "url": "https://doi.org/10.1038/s41586-026-11026-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11026-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 126,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11026-0"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11123-0",
+      "source": "nature",
+      "title": "Mechanisms of Transcriptional Regulation by Salicylic Acid Receptors",
+      "authors": [
+        "Yujun Peng",
+        "Hainan Tian",
+        "Zhenhua Ming",
+        "Tongjun Sun",
+        "Jiuyang Yu",
+        "Mingsong Wu",
+        "Danyi Huang",
+        "Yihan Zhang",
+        "Zhenhui Zhong",
+        "Xin Li",
+        "Yuelin Zhang"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11123-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11123-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11123-0"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11011-7",
+      "source": "nature",
+      "title": "Continuous-wave laser absorption spectroscopy of the thorium-229 nucleus",
+      "authors": [
+        "I. Morawetz",
+        "T. Riebner",
+        "L. Toscani De Col",
+        "F. Schneider",
+        "N. Sempelmann",
+        "F. Schaden",
+        "M. Bartokos",
+        "G. A. Kazakov",
+        "S. Lahs",
+        "K. Beeks",
+        "B. Gerstenecker",
+        "A. Grüneis",
+        "M. Pimon",
+        "T. Schumm",
+        "V. Lal",
+        "G. Zitzer",
+        "V. Petrov",
+        "J. Tiedau",
+        "M. V. Okhapkin",
+        "E. Peik"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "Abstract The low-energy nuclear transition in thorium-229 (Th-229) has been excited in thorium-doped crystals with laser light 1–3 , opening the path towards a highly stable and robust solid-state optical nuclear clock 4 . The required laser radiation at 148-nm wavelength has so far been produced using pulsed laser systems, in which only a small fraction of the incident photons has been resonant with the narrow nuclear transition. Here we show that the nucleus can be excited with a continuous-wave (CW), narrow-bandwidth, solid-state laser source 5 at sub-nanowatt power and that the nuclear resonance signal can be detected in absorption rather than fluorescence. This eliminates the slow nuclear fluorescence decay from the detection process, allowing for clock operation with fast signal acquisition. We characterize two different thorium centres in a calcium fluoride (CaF 2 ) crystal and measure the isomeric shift between them. One of the centres shows a very small static electric crystal field gradient <0.1 V Å −2 compared with gradients in the range of 100 V Å −2 observed previously 3,6 . This indicates a centre with high symmetry of the ions surrounding the thorium nucleus, promising nuclear resonance lines that are nearly independent of the lattice spacing.",
+      "url": "https://doi.org/10.1038/s41586-026-11011-7",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11011-7",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "657",
+        "issue": "8132",
+        "page": "626-631",
+        "reference_count": 48,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11011-7"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11024-2",
+      "source": "nature",
+      "title": "Targeted genomic integration and rearrangement using prime assembly",
+      "authors": [
+        "Sébastien Levesque",
+        "Nozomu Kawashima",
+        "Gue-Ho Hwang",
+        "Jing Zeng",
+        "Vasil Toskov",
+        "Timothy Barry",
+        "William Mannherz",
+        "Luke Homfeldt",
+        "Basheer Becerra",
+        "Vivien A. C. Schoonenberg",
+        "Luca Pinello",
+        "Suneet Agarwal",
+        "Daniel E. Bauer"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11024-2",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11024-2",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 74,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11024-2"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11034-0",
+      "source": "nature",
+      "title": "Cohesin reshapes replication fork contacts to aid fork slowing and reversal",
+      "authors": [
+        "Daniel González-Acosta",
+        "Daniel Giménez-Llorente",
+        "Melani Rodrigues",
+        "Moses Aouami",
+        "Orhi Barroso-Gomila",
+        "Javier Muñoz",
+        "Ana Cuadrado",
+        "Ana Losada",
+        "Massimo Lopes"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "Abstract DNA replication forks can be challenged by cancer chemotherapeutic treatments, leading to accumulation of single-stranded DNA and slowdown of DNA synthesis. The marked plasticity of replication forks under replication stress ensures fork stability, damage tolerance and complete genome duplication 1 . Initiation and progression of replication forks occur in a three-dimensionally organized genome. DNA loop extrusion by the cohesin complex organizes the genome 2 and regulates the initiation and positioning of DNA replication origins 3,4 . Although transient interaction of sister forks was recently reported during unperturbed replication 5 , the functional relevance of fork contacts during replication stress and the role of cohesin in this context remain unknown. Here we show that cohesin-mediated loop extrusion rearranges nascent DNA contacts at stressed replication forks to promote genome stability. Using auxin-inducible degron 6 , separation-of-function mutants 7–9 and a newly developed Micro-C-based technique to capture chromatin contacts at nascent DNA (Repli-C), we found that loop-extruding cohesin accumulates at stalled replication forks, limiting sister-fork coupling in favour of inter-replicon contacts. This process promotes active fork slowing and reversal by preventing PRIMPOL action on single-stranded DNA 1 . These findings show that the replication stress response is not merely an accumulation of individual regulatory events, but is topologically integrated across the genome through cohesin loop extrusion. While providing a new function for loop-extruding cohesin, our results indicate the potential impact on cancer therapy of frequent cohesin mutations in tumours 10 .",
+      "url": "https://doi.org/10.1038/s41586-026-11034-0",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11034-0",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 67,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11034-0"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10996-5",
+      "source": "nature",
+      "title": "A thermodynamically favoured molecular computer",
+      "authors": [
+        "Tristan Stérin",
+        "Abeer Eshra",
+        "Constantine Glen Evans",
+        "Janet Adio",
+        "Damien Woods"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "Abstract Computers, like life, are usually out of equilibrium 1,2 . Undesired error states are thwarted by energetically costly kinetic control processes: proofreading of biological polymers, error correction in computing and redundancy in molecular programming. Unlike life as we know it, theory shows that computation can be embedded in a system relaxing to a thermodynamically favoured equilibrium state 3,4 . Machine learning and search algorithms use this idea 5,6 , although executed on non-equilibrium architectures at enormous energy cost. Physically implementing thermodynamically favoured computation requires a programmable medium amenable to energy landscape engineering. Here we demonstrate a thermodynamically favoured Scaffolded DNA Computer (SDC) on 10 programs, including Multiplication -by-3, Division -by-2, 8-bit Parity -detection and A ddition of 25-bit numbers—a 100-bit computation. SDC algorithms have simple experimental protocols, can be reused dozens of times and small instances run in under a minute. Mathematical, physical and computer science principles explain why the SDC is thermodynamically favoured, why it does not require error-correction or precise kinetic control, and how it is programmable and scalable. This work creates a new way to think about equilibrium computation in all manner of synthetic systems.",
+      "url": "https://doi.org/10.1038/s41586-026-10996-5",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10996-5",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "657",
+        "issue": "8132",
+        "page": "646-652",
+        "reference_count": 60,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10996-5"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11000-w",
+      "source": "nature",
+      "title": "Heterogeneous photonic integration of single-crystalline nanomembranes",
+      "authors": [
+        "Yuan Meng",
+        "Wenbo Mao",
+        "Zhihao Xu",
+        "Di Jia",
+        "Mengxin Lin",
+        "Jisung Seo",
+        "Bora Kim",
+        "Xinyuan Zhang",
+        "Eugene Park",
+        "Seokje Lee",
+        "Jekyung Kim",
+        "Sangmoon Han",
+        "Ji-Yun Moon",
+        "Weijie Xu",
+        "Qian Zhang",
+        "Xiaoqing He",
+        "Mingfeng Chen",
+        "Sang Hyun Nam",
+        "Jianqi Hu",
+        "Justin S. Kim",
+        "Sejin Lee",
+        "Sanggeun Bae",
+        "Soo Ho Choi",
+        "Tae Hyung Kim",
+        "Yunseok Choi",
+        "Seung-Il Kim",
+        "Kyubeen Kim",
+        "Minho Jin",
+        "Chen Jiang",
+        "Yiheng Zhang",
+        "Young-Hoon Kim",
+        "Jae-Hyun Lee",
+        "Hobeom Kim",
+        "Sheng Ran",
+        "Xi Wang",
+        "Cheng-Wei Qiu",
+        "Frances M. Ross",
+        "Jeehwan Kim",
+        "Minjoo Larry Lee",
+        "Hyunseok Kim",
+        "Tobias J. Kippenberg",
+        "Lan Yang",
+        "Sang-Hoon Bae"
+      ],
+      "published": "2026-09-16",
+      "updated": "2026-09-16",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11000-w",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11000-w",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": "657",
+        "issue": "8132",
+        "page": "638-645",
+        "reference_count": 94,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11000-w"
+      }
+    }
+  ]
+}
