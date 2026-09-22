@@ -1,0 +1,162 @@
+{
+  "date": "2026-09-22",
+  "stats": {
+    "fetched": 139,
+    "fetched_by_source": {
+      "nature": 50,
+      "science": 89
+    },
+    "deduped": 139,
+    "deduped_by_source": {
+      "nature": 50,
+      "science": 89
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 0,
+    "keyword_filtered_by_source": {},
+    "keyword_optional_included": 116,
+    "keyword_optional_included_by_source": {
+      "nature": 45,
+      "science": 71
+    },
+    "ranked": 139,
+    "ranked_by_source": {
+      "nature": 50,
+      "science": 89
+    },
+    "source_warnings": 3,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 138,
+    "selected_by_source": {
+      "nature": 1
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天的单篇笔记高度集中在计算化学与AI for synthesis交叉方向，核心信号非常明确：逆合成研究正在从“单模型在标准基准上追求命中率”转向“多归纳偏置集成以提升化学家可接受性与实际工作流适配性”。就现有信息看，这篇Nature论文最值得优先阅读的原因，不是已经能确认其具体算法细节，而是它可能代表评价目标的上移：从单步预测准确率，转向更贴近专家决策、路线可用性与人机协同的“chemist alignment”。如果你关注合成规划、反应预测、分子设计到实验执行链条中的最后一公里问题，这篇应列为高优先级；如果你更关注纯方法学，则优先核查其“多样归纳偏置”究竟指哪些模型家族、如何集成、以及是否真的带来超越单模型的稳健增益。当前摘要缺失，阅读策略上应先验证三件事：一是“alignment”是否被明确定义并可量化；二是集成收益来自模型互补，还是主要来自更强重排序/搜索；三是评价是否超出公开数据集，涉及真实化学家偏好、项目分子或实际合成约束。总的来说，今天的材料提示一个重要趋势：逆合成领域的竞争点，正在从预测任务本身，扩展到偏好建模、可用性评价与异质模型协同。",
+    "themes": [
+      "逆合成评价目标从预测准确率转向化学家偏好对齐",
+      "利用不同归纳偏置的异质模型集成来提升反应模式覆盖与结果稳健性",
+      "单一建模范式在实践可用性上的局限，尤其是化学可行与实验优选之间的落差",
+      "人机协同合成规划中的重排序、校准与候选融合可能成为关键瓶颈",
+      "标准基准表现与真实项目场景表现之间的外部有效性问题"
+    ],
+    "research_ideas": [
+      {
+        "idea": "系统梳理逆合成中的“chemist alignment”评价定义与现有替代指标",
+        "why": "如果该论文确实把对齐化学家判断作为核心目标，那么当前领域可能缺少统一、可复用的评价框架。先做定义整理，有助于判断这是新瓶装旧酒，还是指标体系真的发生了变化。",
+        "first_step": "收集近3-5年逆合成、路线规划和CASP论文中涉及human preference、expert evaluation、route practicality、synthesizability的指标与实验设置，做一页对照表。",
+        "risk": "文献中对“alignment”的用词可能不统一，导致整理成本高且难形成严格可比结论。"
+      },
+      {
+        "idea": "复现一个最小异质集成基线：模板法 + SMILES序列模型的候选合并与重排序",
+        "why": "题名强调“diverse inductive bias models”，最直接可验证的问题是：即使只用两类差异明显的经典模型，是否已经能观察到互补收益。",
+        "first_step": "选择一个公开逆合成数据集，分别运行一个模板检索基线和一个seq2seq基线，比较单模型top-k与简单候选并集/加权重排后的变化。",
+        "risk": "公开实现和数据清洗差异可能使复现结果波动较大，且简单集成未必能代表论文中的真正方法强度。"
+      },
+      {
+        "idea": "检查集成增益究竟来自模型多样性还是来自搜索/重排序策略",
+        "why": "很多“集成有效”实际上可能是后处理更强，而不是归纳偏置互补本身。分离这两部分贡献，对后续方法设计很关键。",
+        "first_step": "设计消融：固定候选生成器，仅替换重排序器；再固定重排序器，仅增加异质候选源，比较两类操作对top-k与路线质量的贡献。",
+        "risk": "如果缺少人工偏好标签，只靠自动指标可能难准确归因“alignment”收益来源。"
+      },
+      {
+        "idea": "做一次失败案例分类，识别单模型逆合成建议与化学家偏好不一致的主要类型",
+        "why": "题名暗示现有系统的痛点在于“不符合化学家判断”。先把不一致具体化，才能知道集成应该补什么。",
+        "first_step": "从公开模型输出中抽取若干失败样例，按保护基策略、原料可得性、步骤经济性、官能团兼容性、反应先例稀缺等维度进行人工分类。",
+        "risk": "需要一定化学背景进行标注，且分类标准可能带有主观性。"
+      },
+      {
+        "idea": "评估不同数据域上的外部有效性：标准反应数据集 versus 项目型复杂分子",
+        "why": "如果论文强调chemist-aligned，其价值很可能体现在超出教科书式基准的数据域上。验证域外表现比重复基准分数更有意义。",
+        "first_step": "整理一个公开标准测试集和一个更贴近药化/复杂分子的分子集合，对同一批模型比较候选多样性、已知先例覆盖和人工可接受性。",
+        "risk": "高质量项目型测试集难获取，人工评价成本也较高。"
+      },
+      {
+        "idea": "撰写一篇短综述或组内报告：逆合成中“归纳偏置多样性”有哪些具体实现路径",
+        "why": "题名中的关键信号不是泛泛的ensemble，而是“diverse inductive bias”。把不同偏置来源讲清楚，有助于后续提出更有针对性的组合方案。",
+        "first_step": "按表示与推理方式整理模型类型，如模板、序列、图、反应中心、检索、树搜索，并总结各自偏好、盲点和可能互补关系。",
+        "risk": "若只停留在分类罗列，容易流于概念化，需要结合具体案例才能形成可操作结论。"
+      }
+    ],
+    "papers": {
+      "doi:10.1038/s41586-026-11160-9": {
+        "summary": "这篇Nature论文从题名看，聚焦有机合成中的逆合成规划任务，目标是通过集成具有不同归纳偏置的模型，生成更符合化学家判断与工作流的逆合成方案。由于当前未提供摘要与关键词，能够确认的具体信息主要限于任务对象是“chemist-aligned retrosynthesis（化学家对齐的逆合成）”以及方法主轴是“ensembling diverse inductive bias models（集成多种归纳偏置模型）”。",
+        "contribution": "从题名推断，核心贡献很可能是提出一种面向逆合成推荐的模型集成框架，不再依赖单一建模范式，而是组合多类具有不同结构假设或表示偏好的模型，以提升路线建议与化学家经验的一致性。另一个可能贡献是将“模型性能”之外的评价目标显式转向“chemist alignment”，即更强调生成结果的可接受性、可解释性或实用性。",
+        "details": "基于题名，这项工作研究的具体对象是计算机辅助合成设计中的逆合成问题：给定目标分子，系统需要提出前体、断键方案或多步合成路线。题名中的“chemist-aligned”表明作者并不只追求算法基准上的Top-k命中率，而可能试图解决现有模型常见的问题，例如提出在统计上可行但不符合化学家直觉、实验可操作性不足、保护/脱保护策略不合理，或路线选择偏离实际合成习惯等。题名中的“ensembling diverse inductive bias models”则是最关键的方法线索，说明作者可能不是简单做同构模型投票，而是有意组合不同归纳偏置来源的模型，例如模板式与模板自由模型、序列模型与图模型、反应中心预测与全反应生成模型、数据驱动模型与带规则约束模型等。这里“diverse inductive bias”的价值在于，不同模型会偏好不同类型的化学变换、表示方式和搜索路径，集成后可能覆盖更丰富的反应模式，并减少单一模型的系统性偏差。证据线索方面，作为Nature论文且题名强调“aligned”，正文大概率会提供人工评测或专家盲评，而不仅是离线数据集分数；也可能报告与化学家选择、文献路线、专利路线或实验成功率相关的评价。还可能有案例研究，展示集成模型在复杂分子、药物样分子或实际项目分子上的路线建议优于单模型。与科研读者的关系取决于方向：如果你做AI for chemistry，这篇文章值得关注其“归纳偏置多样性如何定义、如何量化、如何融合”；如果你做合成化学，更值得看其“对齐”的评价协议是否真的反映实验室决策；如果你做机器学习，则可关注这是一个关于多模型互补性和人类偏好对齐的应用案例。需要明确核对的信息很多，因为摘要为空：一是集成的具体模型族；二是输入输出层级是单步逆合成还是全路线规划；三是是否引入化学规则、搜索算法或实验反馈；四是“chemist-aligned”的操作化定义与评价标注来源；五是比较基线是现有最强单模型、商业CASP系统还是人工专家；六是是否有真实实验验证。总之，基于现有元数据，可以较有把握地判断这是一篇关于“用多归纳偏置模型集成来提高逆合成建议与化学家偏好一致性”的方法论文，但任何关于具体实验结果、数据规模和性能优势的陈述都必须等待摘要或全文核实。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，应该是当前逆合成模型虽然能在标准数据集上给出候选前体或路线，但其建议未必符合化学家的选择标准，因此需要一种既能保持预测能力、又能更贴近化学家决策逻辑的逆合成方法。更细一点说，问题可能包括：单一模型归纳偏置过强导致反应模式覆盖不足；模型输出在化学上可行但在实践上不优；评价指标未能反映人类专家偏好。",
+          "method": "从题名推断，方法上很可能构建了一个由多类逆合成模型组成的集成系统。数据方面，大概率使用大规模反应数据库训练基础模型，并在标准逆合成基准或内部项目分子上测试。模型方面，可能故意选取归纳偏置差异明显的成员，如反应模板检索模型、基于SMILES的序列到序列模型、分子图神经网络模型、反应中心识别模型或路线搜索模型。集成策略可能包括候选合并、重排序、加权投票、校准打分、专家偏好驱动的重评分，或者在树搜索/束搜索中联合多个模型分数。若强调chemist alignment，还可能加入人工标注偏好数据、专家反馈、规则约束或可解释性过滤步骤。",
+          "strengths": "最值得关注的亮点，一是把研究目标从单纯“预测正确”推进到“与化学家对齐”，这更贴近真实合成设计使用场景；二是强调“多样归纳偏置”的集成，而不是简单堆模型数量，意味着作者可能认真利用了不同建模范式的互补性；三是如果文中确有专家评审或真实案例，这会比单一离线指标更有说服力；四是发表在Nature，通常意味着不仅有方法创新，也可能有较强的应用展示或跨学科意义。",
+          "weaknesses": "当前最大局限是摘要为空，信息严重不足，无法确认研究到底是单步逆合成、全路线规划还是路线重排序，也无法确认是否有实验验证。其次，题名中的“chemist-aligned”概念虽然吸引人，但也可能存在定义主观、标注成本高、跨团队不可迁移的问题。再者，模型集成常见代价包括计算成本增加、推理延迟上升、系统复杂度提高，以及性能提升是否主要来自模型数量而非归纳偏置设计，这些都需要正文证据支持。",
+          "next_step": "最小可执行动作是先补齐摘要与图1/方法总览，重点记录三件事：第一，集成了哪些具体模型，各自归纳偏置是什么；第二，chemist alignment如何量化，是否有专家盲评或偏好数据；第三，主结果表中相对最强单模型和现有CASP系统提升了哪些指标。若你准备复现或借鉴，可进一步只抓一个最小问题：把论文中的集成策略抽象成“候选生成+重排序”流程，判断它能否迁移到你自己的反应预测或分子设计任务中。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "arXiv page failed at start=0, max_results=50: HTTP 406 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=0&max_results=50&sortBy=sub...",
+      "arXiv page failed at start=50, max_results=50: HTTP 406 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=50&max_results=50&sortBy=su...",
+      "arXiv fetch stopped after 2 consecutive page failure(s)."
+    ]
+  },
+  "papers": [
+    {
+      "id": "doi:10.1038/s41586-026-11160-9",
+      "source": "nature",
+      "title": "Chemist-aligned retrosynthesis by ensembling diverse inductive bias models",
+      "authors": [
+        "Krzysztof Maziarz",
+        "Guoqing Liu",
+        "Felix Pultar",
+        "John Gardner",
+        "Tobias Gensch",
+        "Jean Helie",
+        "Hubert Misztela",
+        "Austin Tripp",
+        "Junren Li",
+        "Aleksei Kornev",
+        "Piotr Gaiński",
+        "Holger Hoefling",
+        "Mike Fortunato",
+        "Rishi Gupta",
+        "Andrew Baxter",
+        "Darren L. Poole",
+        "Jennifer M. Elward",
+        "Adrian Krzyzanowski",
+        "Peter Pogány",
+        "Stephen D. Pickett",
+        "Ian D. Wall",
+        "Christopher M. Bishop",
+        "Philip G. Humphreys",
+        "James A. Lumley",
+        "Mario P. Wiesenfeldt",
+        "Marwin H. S. Segler"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11160-9",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11160-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11160-9"
+      }
+    }
+  ]
+}
