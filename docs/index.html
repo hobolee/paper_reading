@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-10-12</title>
+  <title>Paper Reading · 2026-10-13</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,16 +19,20 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-10-12 · 中文论文简报</div>
+        <div class="eyebrow">2026-10-13 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天这组论文里，最值得优先读的是三篇与“agent/LLM在真实环境中的能力边界与风险评测”直接相关的工作：DRYLAB-Bench、GeoSpatialBench 和 EvoBelief。它们共同反映出一个很清晰的转向：评测对象不再只是模型会不会答题，而是模型在工具、环境、反馈回路和可验证约束下，究竟能不能完成高风险设计、真实空间推理或持续修正世界模型。DRYLAB-Bench把生物安全评测从危险知识问答推进到“agent + biological design tools”的执行层风险，现实意义和政策相关性都很强，应列为最高优先级，但阅读时也要特别注意其安全边界、替代验证机制和是否真正避免了危险能力外泄。GeoSpatialBench则代表另一条重要路线：把多模态模型放到真实城市地理数据中，比较结构化GeoJSON与地图图像两种输入，初步结论指向一个很有价值的发现——当前模型对结构化空间表示的利用明显强于视觉地图，这对地理AI、机器人规划和多模态表示学习都很关键。EvoBelief进一步把关注点从“策略优化”推进到“世界模型演化”，强调用可证伪规则、独立验证和反例淘汰来支持部署后自改进，这对长期运行agent的可审计性尤其重要。相较之下，EvoSyn更偏向训练数据闭环：它关心如何根据agent暴露出的失败来重写数据合成空间，本质上是在补齐“知道模型不会什么”到“知道该生成什么来教它”的中间层。四篇合起来看，今天AI方向的主线不是更大模型，而是更真实的任务环境、更明确的外部工具、更闭环的反馈机制，以及更可验证的能力与风险度量。
+        <p class="summary">今天的条目里，最值得优先阅读的是一组围绕“LLM智能体在动态环境中的训练、编排与可学习反馈构造”的论文，彼此之间形成了很强的方法链条。arXiv 的四篇工作分别从不同层面切入同一个核心瓶颈：当语言模型被当作多步决策智能体使用时，环境反馈稀疏、任务过程长、上下文持续变化，导致仅靠常规 on-policy 采样或静态任务分解很难学到稳定策略。POrchestra 关注运行时编排，强调子智能体可以在执行中主动请求目标或工具配置修订；RTI 关注 rollout 阶段的失败轨迹修复，试图在策略能力边界之外仍构造可学习成功样本；MCGPO 关注长时程训练中的中间决策信用分配，利用“同组可比上下文”从兄弟轨迹中提取偏好信号；而多智能体自动调参系统则把 agent 框架落到专用神经网络优化上，展示 analyst/coder/recorder 这类角色分工如何在受限组件空间内迭代改进 SNN 与 PINN。若从方法学价值看，这四篇可以连读：它们共同指向一个趋势，即未来 agent 训练不再只依赖最终奖励，而是越来越依赖过程中的修订请求、轨迹干预、同上下文比较和实验日志等“结构化过程反馈”。
 
-生命科学方向则呈现出“跨尺度机制链条”的特点。犬类表观遗传衰老论文把体型、性别、寿命压缩、甲基化时钟和转座子失调串联起来，属于数据规模较大、问题明确、且容易与比较生物学和衰老机制对接的工作，适合做重点跟进。线粒体融合论文则把高尔基体来源囊泡、PI(3,4)P2、PI3K-C2α/β、线粒体形态和心肌功能连接成一条新的细胞器互作机制链，机制密度高，若做相关方向值得优先精读图和方法。两篇Nature题名信息有限，但都指向高价值基础问题：一篇是“随人类史前迁徙扩散、如今消失的肠道微生物”，另一篇是甲烷生成古菌固氮酶–PII超复合物结构。前者如果证据扎实，会把人类迁徙史、微生物共迁移和现代微生物丢失问题连起来；后者则可能为古菌固氮调控提供直接结构基础。导航目标快速写入的split attractor论文也值得关注，但在缺摘要情况下应暂列观察位。至于那篇关于1960年人口“末日”预测失准的Science短文，更像是一个历史性校正与方法论提醒：对复杂人口系统做奇点式外推往往忽略增长减速与人口转变机制。
+第二优先级是两篇 Science 数学 AI 相关文章，但其中应区分“评论/观点”与“方法/结果”价值。题为“Advancing mathematics research with AI-driven formal proof search”的论文信息量更高，明确给出“LLM 生成 + Lean 验证”的闭环，并报告在开放问题集合上的可核验结果，因此对做 AI for science、形式化验证、自动定理证明的人都很值得细读。相比之下，“AI for research mathematics has arrived”更像阶段性综述或评论，适合用来把握领域定位、影响和叙事框架，但不应替代对具体方法论文的阅读。两者合起来传递出一个清晰信号：在高可靠科研任务中，单纯自然语言生成并不够，关键增益来自“生成—验证—回溯”的可执行闭环，这一点与上面 agent 论文中强调的沙箱执行、环境反馈和过程监督其实高度同构。
 
-如果按阅读优先级排序，建议第一梯队是 DRYLAB-Bench、GeoSpatialBench、EvoBelief、犬类表观遗传衰老；第二梯队是 EvoSyn、线粒体融合；第三梯队是两篇摘要缺失但潜在影响大的 Nature 论文；人口评论文可快速浏览。总体上，今天最强的共通信号是：无论在AI还是生命科学，研究都在从静态描述走向“可操作、可验证、可更新”的机制与基准——AI里体现为agent在环境中的闭环评测与世界模型修正，生物里体现为从表型差异追到分子机制、从结构观察追到功能调控。</p>
+第三条值得关注的主线是“把模型接口改造到更贴近任务原生表示”。Nature 的 byte-level 语言模型改造工作不是从头训练新模型，而是把现有 subword 模型通过两阶段流程 retrofit 到 byte 空间，目标是改善代码、生物序列等对字符/字节细节敏感的任务。这与自动调参论文中“只改关键组件、不重写全系统”的思想有某种方法论呼应：都在追求对现有强模型或既有系统做局部但高杠杆的结构改造，而不是完全推倒重来。对做基础模型适配、科学文本建模、代码模型的人来说，这篇的实用潜力很高。
+
+其余 Nature/Science 条目更多属于跨学科高影响成果，适合按个人方向选择性跟进。石墨烯莫尔超晶格整流器件这篇从材料对称性工程一路打到室温射频整流应用，链条完整，适合做二维材料、量子输运、器件集成的人优先看。细菌端粒酶样逆转录抗病毒免疫和人肺类器官建模组织驻留抗病毒 T 细胞反应这两篇都很可能是重要生物学进展，但当前给定信息主要来自题名，摘要细节不足，因此更适合作为“待补摘要/正文后再深入”的跟踪项，而不宜在今天的总览里做过强判断。
+
+如果只给出今天的阅读优先级，我会建议：第一梯队读“形式化证明搜索”与四篇 agent 训练/编排论文，尤其关注它们如何定义过程反馈、如何避免稀疏奖励、以及如何把运行时修订转成训练信号；第二梯队读 byteification，因为它可能直接影响代码、生物序列和细粒度文本任务的建模接口；第三梯队按学科兴趣选择石墨烯器件或生物免疫两篇 Nature。整体上，今天最鲜明的研究趋势不是“模型更大”，而是“让模型在可执行环境中获得更细粒度、可归因、可验证的学习信号”。</p>
         <div class="metrics">
-          <div class="metric"><strong>450</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>199</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>448</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>202</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -48,14 +52,14 @@
             
 
             <div class="bar-row">
-              <div class="bar-label">Science</div>
+              <div class="bar-label">Nature</div>
               <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
               <div class="bar-count">3</div>
             </div>
             
 
             <div class="bar-row">
-              <div class="bar-label">Nature</div>
+              <div class="bar-label">Science</div>
               <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
               <div class="bar-count">3</div>
             </div>
@@ -64,19 +68,17 @@
         <div>
           <h2>关键词命中</h2>
           <div class="chips"><span class="chip">language model <strong>4</strong></span>
+<span class="chip">agent <strong>4</strong></span>
 <span class="chip">ai <strong>4</strong></span>
 <span class="chip">environment <strong>4</strong></span>
 <span class="chip">large language model <strong>3</strong></span>
-<span class="chip">large language models <strong>3</strong></span>
 <span class="chip">llm <strong>3</strong></span>
-<span class="chip">language models <strong>3</strong></span>
-<span class="chip">agent <strong>3</strong></span>
+<span class="chip">rag <strong>3</strong></span>
 <span class="chip">agents <strong>3</strong></span>
-<span class="chip">rag <strong>2</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
-<span class="chip">mllm <strong>1</strong></span>
-<span class="chip">ml <strong>1</strong></span>
-<span class="chip">scientific discovery <strong>1</strong></span></div>
+<span class="chip">ml <strong>2</strong></span>
+<span class="chip">machine learning <strong>1</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">neural networks <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -102,7 +104,7 @@
             <div class="bar-row">
               <div class="bar-label">nature</div>
               <div class="bar-track"><div class="bar-fill" style="width: 18%"></div></div>
-              <div class="bar-count">55</div>
+              <div class="bar-count">53</div>
             </div>
             
       </div>
@@ -111,12 +113,12 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">从静态问答到环境中可执行能力评测：DRYLAB-Bench 和 GeoSpatialBench 都把评测推进到多轮交互、工具调用或受约束编辑，强调“能做成什么”而不只是“会说什么”。</span>
-<span class="chip">agent闭环学习的三个层次正在成形：EvoBelief关注世界模型如何被提出、证伪和更新；EvoSyn关注训练数据生成空间如何随失败反馈演化；两者共同补足长期部署agent的自改进基础设施。</span>
-<span class="chip">结构化表示可能仍显著优于原始多模态输入：GeoSpatialBench 暗示 GeoJSON 比地图图像更适合当前模型做空间推理，这提示很多所谓多模态增益可能受限于表示形式而非任务本身。</span>
-<span class="chip">高风险能力评测开始显式纳入工具放大效应：DRYLAB-Bench 的关键不是危险知识本身，而是 agent 在 biological design tools 加持下是否获得了更强执行力，这对AI安全评估框架是实质升级。</span>
-<span class="chip">生命科学中‘跨细胞器/跨层级机制链’是突出方向：线粒体融合论文把高尔基体囊泡、脂质信号、融合位点和心肌功能连起来；犬类衰老论文则把体型与性别差异连接到甲基化时钟、X染色体和转座子调控。</span>
-<span class="chip">演化与历史视角重新进入前沿问题：无论是史前人类迁徙伴随的肠道微生物传播，还是对1960年人口奇点预测的回顾，今天多篇论文都在提醒研究者把长期历史过程纳入解释框架。</span></div>
+        <div class="chips"><span class="chip">从最终奖励转向过程监督：主动修订请求、轨迹干预、同上下文偏好和实验日志都被当作训练信号来源</span>
+<span class="chip">LLM 智能体的方法正在从静态任务分解走向动态编排：子目标、工具配置和执行 harness 不再在创建时一次性固定</span>
+<span class="chip">可验证闭环成为高可靠 AI 的共同结构：Lean 验证、沙箱执行、环境评测 rubric 都在把“生成”变成“生成—检查—修正”</span>
+<span class="chip">高杠杆局部改造优于全量重写：无论是专用神经网络组件调优，还是把 subword 模型 retrofit 成 byte-level，重点都在保留主体能力同时改造关键接口</span>
+<span class="chip">AI for science 的落地路径正在分化为两类：一类是直接进入科研推理闭环，如数学证明；另一类是作为研究自动化工具，优化 SNN、PINN 等专用模型</span>
+<span class="chip">跨学科论文中“从机制到系统”的完整链条更受重视：如石墨烯工作把对称性工程、输运机制和器件输出连到一起</span></div>
       </div>
     </section>
 
@@ -125,50 +127,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>复现并扩展‘结构化空间表示优于地图图像’这一结论，做一个小规模对照评测</strong>
-              <p>GeoSpatialBench 的核心发现如果稳健，将直接影响地理AI、机器人规划和多模态系统的输入设计；而这一结论也可能依赖任务类型、提示方式或模型接口，值得快速验证。</p>
-              <p><span>第一步：</span>选取公开城市GIS数据，自建一个包含10到20个样例的小测试集，每个样例同时提供GeoJSON、渲染地图图像和二者组合，先在2到3个可用模型上比较拓扑关系、距离排序和简单约束编辑的正确率。</p>
-              <p><span>风险：</span>小样本结果可能不稳定；不同模型对GeoJSON解析能力差异很大，容易把‘表示优势’和‘提示工程优势’混在一起。</p>
+              <strong>做一篇面向 LLM agent 训练的“过程反馈类型学”小综述，系统比较 revision request、rubric-based intervention、matched-context preference、sandbox experiment log 四类信号</strong>
+              <p>今天几篇 agent 论文虽然任务不同，但都在解决同一个核心问题：如何把稀疏终局反馈拆成更可学习的中间监督。先做类型学整理，有助于发现这些方法能否统一到同一训练框架中</p>
+              <p><span>第一步：</span>先只基于今天这四篇的摘要与公开页面，整理一个二维表：反馈产生时机、反馈粒度、是否 on-policy、是否需要外部验证器、主要适用环境；再补读引言和方法图</p>
+              <p><span>风险：</span>目前信息主要来自摘要，细节可能不足以支持严谨归类；不同论文的术语可能相似但实际训练目标并不兼容</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕 EvoBelief 做一个‘规则先验证再用于规划’的消融复现框架</strong>
-              <p>很多agent系统会把新观察直接写入记忆或策略，但 EvoBelief 强调可证伪规则和独立验证，这对降低错误知识传播很关键，且适合做方法学比较。</p>
-              <p><span>第一步：</span>在一个低风险、可控环境中实现最小版本：把环境规律表示成自然语言规则或结构化规则，比较三种设置——不建模规则、生成规则立即使用、生成规则经额外验证后再使用——观察任务成功率和错误泛化。</p>
-              <p><span>风险：</span>若环境过于简单，验证机制的优势不明显；若环境过于复杂，规则抽取和验证本身会成为主要瓶颈。</p>
+              <strong>复现一个最小版“组件级自动调参”框架，在单一 PINN 或 SNN 基准上测试 analyst/coder/recorder 分工是否优于单代理代码修改</strong>
+              <p>多智能体自动调参论文的亮点在于限制搜索空间到关键组件，这比全脚本自动编程更容易落地。做最小复现可以验证多角色分工到底带来的是更好搜索，还是只是更复杂的提示工程</p>
+              <p><span>第一步：</span>选一个公开、训练成本可控的 PINN 例子或简单 SNN 分类任务，手工定义 2-3 个允许修改的组件接口，再比较单代理与三角色代理在固定预算下的改进幅度</p>
+              <p><span>风险：</span>真实效果可能高度依赖作者未公开的工程细节、沙箱设计和提示模板；若基准过小，可能看不出多代理优势</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>整理‘agent风险评测从知识问答转向工具增强执行’的综述提纲</strong>
-              <p>DRYLAB-Bench 代表一个重要拐点，相关讨论可扩展到化学、网络安全、实验自动化等高风险领域，适合形成一篇方法论综述或组内报告。</p>
-              <p><span>第一步：</span>先收集近两年把LLM置于工具链或实验设计环境中的风险评测论文，按‘纯知识问答—规划—工具调用—闭环优化—现实验证替代物’五个层级做表格化梳理。</p>
-              <p><span>风险：</span>不同领域的风险定义和评测终点不一致，横向比较时容易失真；同时需要谨慎处理敏感能力描述。</p>
+              <strong>把 POrchestra 的“主动修订请求”与 RTI 的“轨迹干预”放到同一环境中做对照，区分“由子智能体发起的修订”与“由训练器外部施加的修复”谁更有效</strong>
+              <p>这两篇工作都在突破策略当前能力边界，但一个强调 agent 自主请求帮助，一个强调利用奖励侧证据修复失败轨迹。直接对照有助于回答：更关键的是自主性，还是额外成功样本供给</p>
+              <p><span>第一步：</span>选择一个公开交互环境如 ALFWorld 类任务，先不追求完整复现，只实现两个最小机制：执行中请求重设子目标/工具，以及失败后基于 rubric 的一步修复；比较成功率和样本效率</p>
+              <p><span>风险：</span>两种方法原始设定可能依赖不同训练框架，硬性对齐会损失各自优势；环境实现成本也可能高于预期</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>对犬类表观遗传衰老论文做一个‘体型效应与性别效应是否作用于不同基因组区域’的再分析阅读计划</strong>
-              <p>这篇工作最有价值的地方可能不只是发现谁老得更快，而是把体型和性别效应拆到不同分子层面；这类分解思路可迁移到其他比较衰老研究。</p>
-              <p><span>第一步：</span>精读摘要、图题和方法后，先画出一个变量关系图：年龄、体型、性别、死亡风险、启动子甲基化、X染色体、转座子位点之间分别是什么统计关系，再据此判断是否值得进一步找公开数据复核。</p>
-              <p><span>风险：</span>若原始数据不公开，外部复核空间有限；此外题目中的机制线索未必都达到因果证明强度。</p>
+              <strong>围绕 MCGPO 设计一个数据分析实验，检查“可比上下文”匹配规则到底筛掉了多少兄弟轨迹，以及这些筛选是否真的提高偏好标签可靠性</strong>
+              <p>这类方法的关键不只是构造 pairwise loss，而是定义哪些动作真的可比。若匹配规则过松，偏好噪声大；过严，则样本太少。这个问题很适合做独立分析</p>
+              <p><span>第一步：</span>在一个已有 agent rollout 数据集上，不训练新模型，先离线实现精细/粗粒度上下文匹配统计，报告匹配覆盖率、终局结果一致性、偏好方向稳定性等指标</p>
+              <p><span>风险：</span>需要拿到足够详细的轨迹状态与动作前上下文；如果原论文的 rubric 或状态摘要构造方式不公开，离线分析可能只能做近似版本</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕线粒体融合论文做一个‘囊泡-脂质-融合位点’机制图谱对照整理</strong>
-              <p>该工作可能改变对线粒体融合调控的经典叙述，尤其适合与既有线粒体分裂中的膜运输机制做并列比较，形成可发表的综述切口或组会材料。</p>
-              <p><span>第一步：</span>收集近年关于线粒体分裂/融合中ER接触位点、高尔基体囊泡、磷脂信号和mitofusin调控的关键文献，做一张按‘细胞器来源—脂质因子—作用阶段—功能证据’组织的对照表。</p>
-              <p><span>风险：</span>如果新论文的关键证据高度依赖特定模型系统，综述外推时要非常谨慎；另外不同研究对‘促进融合’与‘改变形态’的证据标准并不一致。</p>
+              <strong>评估 byteification 对科学序列任务的实际收益，优先选代码或生物序列中的单字符敏感任务做小规模基准</strong>
+              <p>这篇 Nature 工作的价值主张非常明确：在字符/字节敏感任务上，byte-level 接口可能优于 subword。对科研应用而言，最直接的问题不是通用 benchmark，而是它是否真能改善科学数据与程序文本处理</p>
+              <p><span>第一步：</span>先做任务清单整理，挑选 2-3 个最依赖单字符差异的公开任务，如代码编辑、序列突变效应文本化表示或格式严格的科学字符串解析；再比较原 subword 模型与可获得的 byte-level 替代方案</p>
+              <p><span>风险：</span>论文提出的是 retrofit 流程，若模型或训练细节尚未开放，短期内只能比较现成 byte 模型而非严格复现 byteification；结论可能受模型规模差异干扰</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>跟踪‘消失的肠道微生物’方向，准备一个人类迁徙史与微生物共迁移的文献地图</strong>
-              <p>这篇Nature题名指向一个潜在高影响交叉点：把人类人口史、生活方式转变和微生物组丢失联系起来。即便当前摘要不足，也值得提前布局背景阅读。</p>
-              <p><span>第一步：</span>先不依赖该文细节，系统收集关于传统生活方式人群微生物组、industrialization-associated microbiome loss、菌株系统地理学和宿主-微生物共分化的代表性论文，整理成时间线和问题树。</p>
-              <p><span>风险：</span>在缺摘要和正文时，过早押注具体机制容易偏离原文重点；该方向也常受样本地域偏倚和参考基因组偏倚影响。</p>
+              <strong>把“形式化验证闭环”与“环境执行闭环”做概念对照，写一篇短评或组会报告，讨论数学证明代理与通用 agent 训练是否正在收敛到同一种系统范式</strong>
+              <p>今天最有意思的跨论文联系，是数学证明中的 Lean 验证与 agent 训练中的沙箱/环境评测在结构上非常相似。这个对照有助于提炼更一般的科研自动化框架：生成、执行、验证、归因、再优化</p>
+              <p><span>第一步：</span>先各选一篇代表作：形式化证明搜索和自动调参或 POrchestra，画出统一流程图，标注生成器、验证器、失败信号、回溯机制和学习更新位置，用于内部讨论</p>
+              <p><span>风险：</span>这是概念整合而非直接实验，容易停留在类比层面；若没有进一步案例支撑，可能难以形成可发表的新观点</p>
             </div>
             </div>
       </div>
@@ -181,29 +183,186 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-09T07:09:16Z</span>
-        <span>Score 74.0</span>
+        <span>2026-10-09T14:34:22Z</span>
+        <span>Score 79.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2610.13116v1">DRYLAB-Bench: Benchmarking the Biosecurity Risk of Agentic LLM Mutation Design</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+DRYLAB-Bench%3A+Benchmarking+the+Biosecurity+Risk+of+Agentic+LLM+Mutation+Design&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13116v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+DRYLAB-Bench%3A+Benchmarking+the+Biosecurity+Risk+of+Agentic+LLM+Mutation+Design%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+DRYLAB-Bench%3A+Benchmarking+the+Biosecurity+Risk+of+Agentic+LLM+Mutation+Design&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13116v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+DRYLAB-Bench%3A+Benchmarking+the+Biosecurity+Risk+of+Agentic+LLM+Mutation+Design%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+DRYLAB-Bench%3A+Benchmarking+the+Biosecurity+Risk+of+Agentic+LLM+Mutation+Design&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13116v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+DRYLAB-Bench%3A+Benchmarking+the+Biosecurity+Risk+of+Agentic+LLM+Mutation+Design%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2610.13663v1">A Multi-Agent LLM System for Automated Tuning of Specialized Neural Network Models</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+Multi-Agent+LLM+System+for+Automated+Tuning+of+Specialized+Neural+Network+Mode&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13663v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+A+Multi-Agent+LLM+System+for+Automated+Tuning+of+Specialized+Neural+Network+Models%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+rag%2C+ai%2C+machine+learning%2C+ml%2C+neural+network%2C+neural+networks%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+Multi-Agent+LLM+System+for+Automated+Tuning+of+Specialized+Neural+Network+Mode&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13663v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+A+Multi-Agent+LLM+System+for+Automated+Tuning+of+Specialized+Neural+Network+Models%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+rag%2C+ai%2C+machine+learning%2C+ml%2C+neural+network%2C+neural+networks%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+Multi-Agent+LLM+System+for+Automated+Tuning+of+Specialized+Neural+Network+Mode&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13663v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+A+Multi-Agent+LLM+System+for+Automated+Tuning+of+Specialized+Neural+Network+Models%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+rag%2C+ai%2C+machine+learning%2C+ml%2C+neural+network%2C+neural+networks%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Yuzhen Wang、Chunxiao Li、Baichen Le、Lewen Yan 等 9 人 · <a href="https://arxiv.org/pdf/2610.13116v1">PDF</a></div>
+      <div class="authors">Ivan Moloshnikov、Dmitry Kunitsyn、Alexander Sboev、Maksim Skorokhodov 等 6 人 · <a href="https://arxiv.org/pdf/2610.13663v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">machine learning <strong>1</strong></span>
+<span class="chip">ml <strong>1</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">neural networks <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个用于自动调参的多智能体大语言模型系统，目标不是重写整个机器学习脚本，而是在保持网络总体结构不变的前提下，只针对指定组件生成和修改代码。摘要显示其在两类具体任务上验证：带相关性学习的脉冲神经网络分类（MNIST、Digits）以及用于求解高阶微分方程的 PINN（如 GNLSE 和 Kuramoto–Sivashinsky 方程边值问题）。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出一种可跨模型迁移的自动调优框架：由 analyst、coder、recorder 三个角色组成，配合实验日志和沙箱执行环境，在“开放但语义受限”的组件级搜索空间内进行优化。相较于全脚本优化或离散架构搜索，这种设计更强调对专用神经网络模型关键部件的局部、可控修改；从摘要看，作者还尝试证明该框架同时适用于事件驱动神经网络和科学计算中的 PINN。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 11</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>79.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：当研究者已经选定某一类专用神经网络模型后，如何自动优化其中决定性能的关键组件，而不改变整体网络结构、也不把问题放大成整个脚本或架构的全局搜索。更具体地说，它想回答一个方法学问题：多智能体 LLM 是否能在受限但开放的组件空间内，稳定地为 SNN 和 PINN 这类性质差异很大的模型提出有效改动。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法是一个多智能体 LLM 框架，至少包含 analyst、coder、recorder 三个角色，并配有实验日志与沙箱执行环境。可能的流程是：先由用户或系统指定允许修改的组件，再由 analyst 基于任务目标和历史实验提出候选修改方向，coder 生成对应组件代码，系统在沙箱中运行训练/求解实验，recorder 记录结果并反馈给下一轮。实验数据与任务包括：MNIST、Digits 上的脉冲分类，以及 GNLSE、KS 方程的边值问题求解。评价指标大概率分别涉及分类准确率和 PDE 求解误差/残差，但具体定义需要查正文或表格确认。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，搜索空间设计得较有科研现实感：不是让 LLM 任意改模型，而是只改指定组件，这更符合领域研究中“保留理论结构、优化局部机制”的需求。第二，验证任务跨越 SNN 分类和 PINN 科学计算，两者差异大，如果结果可靠，能支持方法具有一定跨模型迁移性。第三，系统层面加入角色分工、实验日志和沙箱执行，说明作者不仅关注生成质量，也关注实验可追踪性、迭代闭环和执行安全，这些都是把 LLM 真正用于模型调优时的关键工程点。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先去核对论文中的任务表和方法图，重点记录四类信息：1）每个任务允许 LLM 修改的具体组件；2）基线方法及其预算；3）五个任务上的定量指标与方差；4）多智能体相对单智能体或无日志版本的消融结果。如果你想快速判断是否值得复现，可优先选一个最小任务，例如 Digits 上的 SNN 或一个较简单的 PINN 边值问题，检查作者是否公开了组件接口、实验日志格式和沙箱执行流程。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：当研究者已经选定某一类专用神经网络模型后，如何自动优化其中决定性能的关键组件，而不改变整体网络结构、也不把问题放大成整个脚本或架构的全局搜索。更具体地说，它想回答一个方法学问题：多智能体 LLM 是否能在受限但开放的组件空间内，稳定地为 SNN 和 PINN 这类性质差异很大的模型提出有效改动。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法是一个多智能体 LLM 框架，至少包含 analyst、coder、recorder 三个角色，并配有实验日志与沙箱执行环境。可能的流程是：先由用户或系统指定允许修改的组件，再由 analyst 基于任务目标和历史实验提出候选修改方向，coder 生成对应组件代码，系统在沙箱中运行训练/求解实验，recorder 记录结果并反馈给下一轮。实验数据与任务包括：MNIST、Digits 上的脉冲分类，以及 GNLSE、KS 方程的边值问题求解。评价指标大概率分别涉及分类准确率和 PDE 求解误差/残差，但具体定义需要查正文或表格确认。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，搜索空间设计得较有科研现实感：不是让 LLM 任意改模型，而是只改指定组件，这更符合领域研究中“保留理论结构、优化局部机制”的需求。第二，验证任务跨越 SNN 分类和 PINN 科学计算，两者差异大，如果结果可靠，能支持方法具有一定跨模型迁移性。第三，系统层面加入角色分工、实验日志和沙箱执行，说明作者不仅关注生成质量，也关注实验可追踪性、迭代闭环和执行安全，这些都是把 LLM 真正用于模型调优时的关键工程点。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，主要局限是证据仍不完整。首先，不清楚基线设置是否强、是否公平，尤其需要区分与人工专家、单代理 LLM、传统超参优化和程序搜索方法的比较。其次，摘要没有给出具体数值结果、方差、失败率和计算预算，因此无法判断收益是否稳定、是否只是高成本换性能。再次，所谓“组件级”修改的边界尚不明确，不同任务中允许修改的范围可能差异很大，这会影响可复现性和泛化结论。最后，多智能体系统常见的问题包括提示依赖、实验次数膨胀、日志污染和局部最优，摘要尚未提供这些风险的处理细节。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先去核对论文中的任务表和方法图，重点记录四类信息：1）每个任务允许 LLM 修改的具体组件；2）基线方法及其预算；3）五个任务上的定量指标与方差；4）多智能体相对单智能体或无日志版本的消融结果。如果你想快速判断是否值得复现，可优先选一个最小任务，例如 Digits 上的 SNN 或一个较简单的 PINN 边值问题，检查作者是否公开了组件接口、实验日志格式和沙箱执行流程。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文关注的是很多机器学习流程中的“二层决策”问题：研究者先选定一类模型，随后真正影响性能的往往是该类模型内部的若干关键组件，而这些组件通常依赖人工经验调节。本文试图把这一步自动化，但不是做通用 AutoML，也不是让 LLM 任意改整个训练脚本，而是把搜索范围限制在预先指定的模块上，例如某个学习规则、损失项、更新公式、数值项或网络子部件。这个限制很关键，因为它意味着作者希望在保留领域模型结构与先验的同时，让 LLM 在较窄但开放的语义空间中提出可执行改动。
+
+系统结构上，摘要明确给出三种角色：analyst、coder、recorder。可以推测 analyst 负责阅读历史实验和当前目标、提出下一步修改策略；coder 负责把策略落实为组件级代码；recorder 负责记录实验、避免重复尝试并维持可追踪性。再结合“experiment log”和“sandboxed execution environment”，这说明作者比较重视闭环实验管理与安全执行，而不是单次代码生成。对科研使用者而言，这种设计的价值在于：它更像一个自动化研究助理，围绕已有模型做受控迭代，而不是黑箱式搜索。
+
+实验对象有两个方向，且差异很大，这本身是论文的重要证据线索。第一类是带 correlation learning 的分类脉冲神经网络，任务包括 MNIST 和 Digits；这里作者可能是在调脉冲神经网络中的学习规则、相关性计算方式、阈值、时间编码或局部更新部件。第二类是 Physics-Informed Neural Networks，用于求解高阶微分方程边值问题，摘要点名了 generalized nonlinear Schrödinger equation 和 Kuramoto–Sivashinsky equation；这里更可能被调的是损失构造、残差项、采样策略、边界条件处理、网络子模块或训练稳定性相关组件。若同一多智能体框架能同时在这两类任务上工作，说明作者想强调的是“组件级自动调优”的跨领域可迁移性，而不是某一单一模型上的技巧。
+
+摘要声称在五个任务上优于基线，但当前提供的信息被截断，因此无法确认具体提升幅度、统计显著性、比较对象和计算成本。需要特别核对的包括：基线究竟是人工调参、单代理 LLM、随机搜索、贝叶斯优化，还是已有 AutoML/agentic coding 系统；“outperforms”衡量的是分类精度、PDE 残差、边值误差、收敛速度还是综合指标；以及多轮试验的预算是否公平。另一个需要核对的点是“specified components”在每个任务中到底具体指哪些模块，因为这决定了方法的适用边界：如果组件定义得非常宽，系统接近开放式程序优化；如果定义得很窄，则更像受限空间中的自动公式/代码搜索。
+
+与科研人员的关系上，这篇工作对两类读者尤其相关：一类是做专用神经网络或科学机器学习的人，他们通常不希望 AutoML 破坏模型结构，但又希望自动探索局部设计；另一类是做 LLM agents for science/ML systems 的人，他们会关心多角色分工、日志记忆、沙箱执行和实验闭环是否真的带来比单代理更稳定的收益。若你的方向涉及 SNN、PINN、自动科研、组件级程序搜索或受限代码生成，这篇论文值得优先查看实验设置和失败案例。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Many machine learning approaches are two-level: an expert selects a class of methods, within this class the choice of key components is critical and usually manual. This paper addresses the automatic tuning of these components and proposes a framework transferable across models of different nature. The multi-agent large language model (LLM) framework has three roles---analyst, coder, and recorder~---with an experiment log and a sandboxed execution environment. Unlike systems that optimize the entire ML script or search architectures in a discrete space, the framework operates over an open but semantically narrow space: the agent generates code only for the specified components, leaving the overall network structure unchanged. The approach is validated in two directions: tuning a classification spiking neural network with correlation learning, and solving high-order differential equations with Physics-Informed Neural Networks (PINN). Across five tasks---spiking classification on MNIST and Digits, and boundary-value problems for the generalized nonlinear Schrödinger equation (GNLSE) and Kuramoto--Sivashinsky (KS) equations---the agent outperforms the baselines: classification accuracy is 13 percentage points (MNIST) and 6 percentage points (Digits) higher; the error against the analytical single-soliton solution is reduced approximately 2491-fold; the invariant-preservation error drops approximately 325-fold in the selected GNLSE run with a Gaussian perturbation and by more than 100-fold on average over repeated initializations; and the mass drift drops 14-fold for the KS problem with a Gaussian perturbation. The framework thus tunes key components on tasks of different nature without changing its internal structure.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-09T12:18:49Z</span>
+        <span>Score 61.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>2. <a href="http://arxiv.org/abs/2610.13485v1">Proactive Agentic Orchestration</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Proactive+Agentic+Orchestration&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13485v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Proactive+Agentic+Orchestration%0Akeywords%3A+large+language+model%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Proactive+Agentic+Orchestration&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13485v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Proactive+Agentic+Orchestration%0Akeywords%3A+large+language+model%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Proactive+Agentic+Orchestration&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13485v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Proactive+Agentic+Orchestration%0Akeywords%3A+large+language+model%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Xueyang Feng、Chaozhuo Li、Xiaohe Bo、Jiakai Tang 等 7 人 · <a href="https://arxiv.org/pdf/2610.13485v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">ml <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出面向大语言模型多智能体系统的主动式编排框架 POrchestra，目标是在动态环境中让子智能体在执行过程中主动请求目标或工具/执行“harness”调整，并据此改进编排策略学习。摘要显示其核心任务是解决传统 agentic orchestration 在子智能体创建后目标与执行配置固定、以及训练反馈稀疏且延迟的问题。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要可见，论文的核心贡献可能有两部分：一是提出 on-the-fly proactive agentic orchestration，使子智能体能在任意逻辑时点向 orchestrator 发起修订请求，同时保持本地执行连续性；二是提出基于 hindsight feedback 的 On-Policy Orchestration Distillation（OPOD），把子智能体的主动修订请求追溯归因到先前编排决策，形成更有针对性的过程监督信号，并与最终奖励结合优化编排策略。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>61.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在大语言模型多智能体编排中，orchestrator 创建子智能体后通常把子目标和执行配置固定下来，导致子智能体难以应对动态环境中的信息变化、工具需求变化或任务边界漂移；同时，编排策略训练往往只拿到稀疏且延迟的最终反馈，难以知道早先哪次委派或配置决策需要改进。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包含两个耦合部分。第一部分是运行时框架 POrchestra：orchestrator 负责初始任务分解与委派，sub-agents 在独立上下文中执行，但可在任意逻辑节点主动向 orchestrator 发送 revision request，请求修改 goal 或 harness，并在不完全重启本地执行的情况下继续任务。第二部分是训练方法 OPOD：收集当前策略运行轨迹中的主动修订事件，把这些事件作为 hindsight feedback，归因到先前的 orchestration decisions，形成过程级监督信号，再与最终 reward 联合训练或蒸馏 orchestration policy。可能会在动态交互环境或长程任务 benchmark 上，对比静态编排、普通分层 agent、仅终局奖励优化等基线。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把“子智能体主动请求调整”设计成一等公民，而不是把子智能体视为一次性静态调用，这更贴近真实动态环境中的协作需求。第二个亮点是训练信号设计：revision request 天然暴露了先前编排决策与后续执行困难之间的联系，因此有机会把原本稀疏的终局反馈转化为更密集、更可归因的过程监督。若实验充分，这种设计可能同时提升适应性、长程任务稳定性和编排策略学习效率。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：先查论文正文中的系统图和算法框架，确认 orchestrator、sub-agent、revision request、harness 的精确定义；再看实验表格，记录任务类型、基线、评价指标和是否报告通信/推理成本；重点核对 OPOD 的训练目标、归因规则和是否需要人工监督；最后挑一个你熟悉的 agent benchmark，思考如何把“主动修订请求”实现为可记录的过程信号，用于与你现有静态编排方案做小规模对照。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在大语言模型多智能体编排中，orchestrator 创建子智能体后通常把子目标和执行配置固定下来，导致子智能体难以应对动态环境中的信息变化、工具需求变化或任务边界漂移；同时，编排策略训练往往只拿到稀疏且延迟的最终反馈，难以知道早先哪次委派或配置决策需要改进。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包含两个耦合部分。第一部分是运行时框架 POrchestra：orchestrator 负责初始任务分解与委派，sub-agents 在独立上下文中执行，但可在任意逻辑节点主动向 orchestrator 发送 revision request，请求修改 goal 或 harness，并在不完全重启本地执行的情况下继续任务。第二部分是训练方法 OPOD：收集当前策略运行轨迹中的主动修订事件，把这些事件作为 hindsight feedback，归因到先前的 orchestration decisions，形成过程级监督信号，再与最终 reward 联合训练或蒸馏 orchestration policy。可能会在动态交互环境或长程任务 benchmark 上，对比静态编排、普通分层 agent、仅终局奖励优化等基线。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把“子智能体主动请求调整”设计成一等公民，而不是把子智能体视为一次性静态调用，这更贴近真实动态环境中的协作需求。第二个亮点是训练信号设计：revision request 天然暴露了先前编排决策与后续执行困难之间的联系，因此有机会把原本稀疏的终局反馈转化为更密集、更可归因的过程监督。若实验充分，这种设计可能同时提升适应性、长程任务稳定性和编排策略学习效率。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前信息缺口较大。首先，不清楚实验环境和任务类型，因而难判断方法是否适用于通用 agent 场景还是只在特定 benchmark 有效。其次，“harness”定义不明，若其范围过宽，方法实现与复现复杂度可能较高。再次，主动通信会引入额外 token、延迟和控制复杂度，摘要未说明其成本收益比。最后，OPOD 的归因是否可靠、是否会把后验修订过度归咎于早期决策、以及是否需要复杂轨迹标注，都需要看正文和实验细节。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：先查论文正文中的系统图和算法框架，确认 orchestrator、sub-agent、revision request、harness 的精确定义；再看实验表格，记录任务类型、基线、评价指标和是否报告通信/推理成本；重点核对 OPOD 的训练目标、归因规则和是否需要人工监督；最后挑一个你熟悉的 agent benchmark，思考如何把“主动修订请求”实现为可记录的过程信号，用于与你现有静态编排方案做小规模对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>研究对象是大语言模型驱动的多智能体编排系统，尤其是 orchestrator 将复杂任务拆分并委派给具有独立上下文的 sub-agents 的场景。摘要强调“effective execution horizon”的扩展，这说明作者关注的是长程任务执行、上下文隔离下的分工协作，以及在真实或近真实动态环境中任务需求、工具调用条件、子任务边界会变化的问题。现有方法的具体痛点被描述得较明确：子智能体在创建时就被固定了 goal 和 harness，因此后续即便环境变化、信息更新或工具需求改变，也难以自适应；同时，若只依赖最终任务成败作为训练信号，编排策略很难知道先前哪一步委派、配置或分解决策出了问题。
+
+方法上，POrchestra 的关键机制应是允许子智能体在执行中断点之外、任意“logical point”主动上报，向 orchestrator 请求调整。这种调整很可能包括重新定义子目标、修改可用工具集合、改变上下文注入内容、切换执行约束，或重新分配与其他子智能体的协作关系。摘要中特别提到“while maintaining continuity of local execution”，这意味着它不是简单终止并重建子智能体，而更像是在保留局部状态和执行轨迹的前提下做增量式修订，这对长任务尤其重要，因为重启会丢失中间推理与环境交互状态。
+
+OPOD 则是训练层面的配套设计。根据摘要，它利用 hindsight feedback：当子智能体后来主动提出“我当前目标/工具配置不合适，需要调整”时，这个事件本身就可被视为对先前 orchestrator 决策的反向证据。于是系统可以把这类 revision request 归因到更早的任务分配、目标设定或 harness 配置步骤，生成比最终 reward 更密集、更局部化的改进信号。这里“distillation”一词暗示作者可能把这些 hindsight 归因信号转化为监督标签，用于蒸馏或训练一个更强的 orchestration policy；“on-policy”则说明这些信号来自当前策略实际运行轨迹，而不是离线标注数据。若属实，这会把传统稀疏 RL 式优化改造成“最终结果奖励 + 过程级监督”的混合学习框架。
+
+从证据线索看，摘要没有给出具体 benchmark、环境类型、基座模型、任务类别或量化结果，因此目前只能确认论文聚焦于方法框架而非某个单一应用。关键词中出现 large language model、agent、environment，但没有明确软件工程、网页操作、RAG、代码代理或 embodied setting，因此需要核对实验究竟在哪类动态环境中进行：例如工具使用任务、交互式网页/终端任务、开放式问答工作流，还是通用 agent benchmark。还需要确认“harness”在文中具体指什么：是工具接口、提示模板、执行约束、上下文窗口配置，还是更广义的运行时包装器。
+
+与科研读者的关系上，这篇工作对关注 LLM agents、multi-agent systems、长程规划、工具使用和 agent training 的研究者较相关。它的价值不只在于提出一个更灵活的运行机制，也在于把“子智能体主动求助/请求修订”从系统行为转化为训练信号，这可能为 agent traces 的过程监督提供新思路。若你的方向涉及分层 agent、任务分解、动态工具路由、或 agent RL/蒸馏，这篇论文值得重点看其决策归因设计、revision request 的表示方式、以及训练目标如何与最终 reward 结合。
+
+需要核对的信息包括：1）POrchestra 的 orchestrator 与 sub-agent 的通信协议和状态管理；2）revision request 的触发条件是学习得到、规则触发还是由语言模型自行生成；3）OPOD 的归因粒度与损失函数；4）是否需要额外人工标注或教师模型；5）实验是否证明主动修订优于静态子任务分配；6）过程监督是否显著提升 sample efficiency、成功率或泛化；7）该框架的额外推理成本、通信开销和稳定性。由于当前只有摘要，不能声称其效果已被充分验证。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Agentic orchestration delegates tasks to sub-agents with independent contexts, providing a key path to extending the effective execution horizon of large language model agents. However, existing orchestration methods face two limitations: in execution, current methods fix sub-agents&#x27; goals and harnesses at creation time, limiting their adaptability to dynamic real-world environments; in optimization, sparse and delayed feedback constrains effective learning of the orchestration policy. To address these limitations, we introduce POrchestra, an on-the-fly proactive agentic orchestration framework. It allows sub-agents to proactively communicate with the orchestrator at any logical point to request harness adjustments while maintaining continuity of local execution. This mechanism not only enables sub-agents to adapt seamlessly to dynamic environments but also naturally inspires On-Policy Orchestration Distillation (OPOD) based on hindsight feedback. OPOD attributes sub-agents&#x27; proactive revision requests back to preceding orchestration decisions to derive targeted improvement signals, and leverages these signals as process supervision alongside the final reward to optimize the orchestration policy. We evaluate POrchestra on three long-horizon agent benchmarks spanning deep research, dynamic digital assistance, and software engineering. POrchestra improves task success by an average of 9.1% relative to the strongest baseline; combined with OPOD, it improves small-orchestrator success by an average of 10.0% relative to existing training baselines. POrchestra also achieves a more favorable cost-performance trade-off. Our code is publicly available at https://github.com/XueyangFeng/POrchestra.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-09T11:37:09Z</span>
+        <span>Score 61.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2610.13438v1">Rollout-Time Intervention: Unlocking Agentic Reinforcement Learning Beyond Policy Limits</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Rollout-Time+Intervention%3A+Unlocking+Agentic+Reinforcement+Learning+Beyond+Polic&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13438v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Rollout-Time+Intervention%3A+Unlocking+Agentic+Reinforcement+Learning+Beyond+Policy+Limits%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Rollout-Time+Intervention%3A+Unlocking+Agentic+Reinforcement+Learning+Beyond+Polic&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13438v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Rollout-Time+Intervention%3A+Unlocking+Agentic+Reinforcement+Learning+Beyond+Policy+Limits%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Rollout-Time+Intervention%3A+Unlocking+Agentic+Reinforcement+Learning+Beyond+Polic&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13438v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Rollout-Time+Intervention%3A+Unlocking+Agentic+Reinforcement+Learning+Beyond+Policy+Limits%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Chen Xi、Ding Ruixue、Wang Zhigaoyuan、Zhang Fanrui 等 12 人 · <a href="https://arxiv.org/pdf/2610.13438v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
 <span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个名为 DRYLAB-Bench 的生物安全评测基准，用于衡量具备代理能力并可调用生物设计工具的 LLM 在“高风险生物突变设计”任务上的实际能力，而不只是考察其危险知识问答水平。根据摘要，它围绕 30 个从生物安全指南中提炼出的真实危险突变设计场景，在多轮、工具增强环境中评估模型如何迭代生成和优化候选突变方案。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献很可能有三点：第一，提出首个面向高风险生物突变设计的代理式 LLM 生物安全基准 DRYLAB-Bench；第二，把评测对象从“是否知道危险知识”推进到“是否能在工具辅助下执行危险设计任务”，显式纳入 biological design tools, BDTs 带来的风险放大效应；第三，尝试用不依赖昂贵、危险或不稳定湿实验验证的方式，对危险突变设计能力进行更可控的量化评估。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕大语言模型智能体在交互环境中的强化学习训练，提出一种名为 Rollout-Time Intervention（RTI）的方法，目标是在任务难度超过当前策略能力边界时，仍能构造出可学习的成功轨迹。根据摘要，作者在五个基准上比较了 RTI 与常规 RL 基线，声称其能缓解“on-policy reasoning bottleneck”，使后训练策略逼近更强教师模型的表现。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出一种在 rollout 阶段利用奖励侧证据（如 evaluation rubrics）对错误轨迹进行干预和修正的训练机制，从而为原本极其稀疏的高难任务提供有效学习信号；同时作者强调，尽管这些干预轨迹属于 off-policy 数据，但通过过滤分布偏移过大的轨迹，仍可有效用于策略优化。这一思路的潜在贡献是把“奖励评估信息”从单纯打分扩展为“轨迹修复与引导”的训练资源，用于突破 LLM agent RL 在探索能力上的策略上限。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -215,42 +374,40 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-kicker">关键词命中 8</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>74.0</strong>
+              <strong>61.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何定量评估具备代理能力、并可调用生物设计工具的 LLM，在高风险生物突变设计任务中的实际执行能力与生物安全风险；以及现有仅基于危险知识问答的评测为何不足以反映真实风险，特别是在 BDT 参与后风险是否被显著放大。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包括：构建一个名为 DRYLAB-Bench 的基准；从生物安全指南中提炼 30 个高风险突变设计场景；在多轮交互环境中让 LLM 作为 agent 调用 BDT 进行候选突变的生成、评估和迭代优化；使用某种安全、低成本、可重复的替代验证机制来判断设计质量或风险水平；并可能对比不同模型、是否使用工具、不同代理配置下的表现差异。需要正文核对具体任务格式、工具列表、评分指标、基线模型和安全控制。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点主要在于评测对象和场景都更贴近真实风险。第一，它评估的是“任务执行型”而非“知识陈述型”风险；第二，它把工具增强纳入威胁模型，能更真实地反映现代 agent 系统的能力边界；第三，任务来自生物安全指南，说明 benchmark 可能具有较强政策相关性和场景真实性；第四，如果作者确实设计了无需湿实验的可靠验证流程，那么这对高风险领域 benchmark 的可持续构建非常有价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看摘要后半段和实验结果，确认作者是否报告了具体模型在带/不带 BDT 条件下的风险差异；第二，查 benchmark 任务定义表，记录 30 个场景分别对应的生物安全类别；第三，查方法部分的工具清单和评分函数，判断评测到底依赖哪些计算代理指标；第四，查是否有基线模型、安全对齐模型和 agent 框架对比；第五，若你做相关研究，可把这篇论文与传统 biosecurity QA benchmark 并列，整理“知识评测 vs 设计评测 vs 代理评测”的差异框架。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在大语言模型智能体的强化学习中，当任务难度超过当前策略的自然探索与推理能力时，on-policy rollout 几乎无法产生成功轨迹，导致奖励极度稀疏、训练信号不足、优化容易崩溃。作者想回答的是，能否在不完全依赖策略自身探索的前提下，于 rollout 阶段借助奖励侧证据主动修复失败轨迹，从而为高难任务持续提供可学习样本。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法核心是 RTI：在 rollout 过程中利用 reward-side evidence，尤其是 evaluation rubrics，对错误轨迹进行干预并转化为成功轨迹。可推测其流程包括：先由当前 policy 在交互环境中采样轨迹；再依据 rubric 判断失败原因或目标偏差；随后对轨迹中的关键步骤进行修正，使其满足成功条件；最后将这些干预得到的成功轨迹用于策略优化。由于这些轨迹并非原始 on-policy 采样，作者进一步加入分布偏移过滤，剔除与当前策略差异过大的样本，以降低 off-policy 学习风险。实验上应是在五个 agent/interactive benchmarks 上，与常规 RL 基线比较最终性能、训练稳定性和可能的样本效率。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，它直接针对 agent RL 中最棘手的“成功轨迹稀缺”问题，而不是只在已有成功样本上做更精细优化。第二，它把 evaluation rubric 这类通常只用于打分或验收的奖励侧信息，提升为 rollout 期间的主动干预信号，这在方法论上比单纯 reward shaping 更强。第三，作者没有回避 off-policy 风险，而是明确提出通过过滤分布偏移过大的轨迹来保留有效干预样本，这说明论文可能对“何种外部修复可被策略吸收”给出较具体经验规律。如果实验覆盖多种推理、规划、工具使用任务，那么其应用价值会比较广。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先查正文中的方法图，确认 RTI 干预发生在动作级、步骤级还是整条轨迹级；2）定位五个 benchmark 的名称与任务类型，记录哪些属于工具使用、哪些属于多步推理；3）查看消融实验，重点核对“无干预”“仅奖励打分”“有干预但无分布过滤”三类对照；4）查过滤分布偏移的具体指标，判断是否可迁移到你自己的 agent RL 管线；5）如果你做相关研究，可先在一个成功轨迹稀缺的环境中复现最简版思路：用 rubric 对失败轨迹做局部修复，再比较是否比纯 on-policy RL 更稳定。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何定量评估具备代理能力、并可调用生物设计工具的 LLM，在高风险生物突变设计任务中的实际执行能力与生物安全风险；以及现有仅基于危险知识问答的评测为何不足以反映真实风险，特别是在 BDT 参与后风险是否被显著放大。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包括：构建一个名为 DRYLAB-Bench 的基准；从生物安全指南中提炼 30 个高风险突变设计场景；在多轮交互环境中让 LLM 作为 agent 调用 BDT 进行候选突变的生成、评估和迭代优化；使用某种安全、低成本、可重复的替代验证机制来判断设计质量或风险水平；并可能对比不同模型、是否使用工具、不同代理配置下的表现差异。需要正文核对具体任务格式、工具列表、评分指标、基线模型和安全控制。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点主要在于评测对象和场景都更贴近真实风险。第一，它评估的是“任务执行型”而非“知识陈述型”风险；第二，它把工具增强纳入威胁模型，能更真实地反映现代 agent 系统的能力边界；第三，任务来自生物安全指南，说明 benchmark 可能具有较强政策相关性和场景真实性；第四，如果作者确实设计了无需湿实验的可靠验证流程，那么这对高风险领域 benchmark 的可持续构建非常有价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前基于题录和截断摘要的主要局限是：看不到实验结果，无法判断风险水平究竟有多高；不清楚 30 个场景是否足够覆盖关键生物安全风险类型；不清楚 BDT 的选择是否会强烈影响结论，导致 benchmark 更像“工具链能力测试”而非纯模型能力测试；也不清楚验证指标与真实生物效应之间的相关性有多强。此外，这类研究天然面临信息危害与可复现性之间的张力，公开程度和脱敏策略会直接影响其学术与治理价值。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看摘要后半段和实验结果，确认作者是否报告了具体模型在带/不带 BDT 条件下的风险差异；第二，查 benchmark 任务定义表，记录 30 个场景分别对应的生物安全类别；第三，查方法部分的工具清单和评分函数，判断评测到底依赖哪些计算代理指标；第四，查是否有基线模型、安全对齐模型和 agent 框架对比；第五，若你做相关研究，可把这篇论文与传统 biosecurity QA benchmark 并列，整理“知识评测 vs 设计评测 vs 代理评测”的差异框架。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象不是一般性的生物问答，而是“agentic LLM mutation design”，即 LLM 作为代理，在多轮决策过程中调用专门的生物设计工具，完成具有明确目标的突变设计任务。这一点很关键，因为它把风险评估从静态文本生成转向了更接近真实使用场景的“任务执行能力”。摘要明确指出，现有工作主要停留在 hazardous knowledge possession 的评估，忽略了 BDT 对风险的放大，也缺少可靠且安全的验证方式，因此本文的切入点是构建一个更贴近实际威胁模型的 benchmark。
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在大语言模型智能体的强化学习中，当任务难度超过当前策略的自然探索与推理能力时，on-policy rollout 几乎无法产生成功轨迹，导致奖励极度稀疏、训练信号不足、优化容易崩溃。作者想回答的是，能否在不完全依赖策略自身探索的前提下，于 rollout 阶段借助奖励侧证据主动修复失败轨迹，从而为高难任务持续提供可学习样本。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法核心是 RTI：在 rollout 过程中利用 reward-side evidence，尤其是 evaluation rubrics，对错误轨迹进行干预并转化为成功轨迹。可推测其流程包括：先由当前 policy 在交互环境中采样轨迹；再依据 rubric 判断失败原因或目标偏差；随后对轨迹中的关键步骤进行修正，使其满足成功条件；最后将这些干预得到的成功轨迹用于策略优化。由于这些轨迹并非原始 on-policy 采样，作者进一步加入分布偏移过滤，剔除与当前策略差异过大的样本，以降低 off-policy 学习风险。实验上应是在五个 agent/interactive benchmarks 上，与常规 RL 基线比较最终性能、训练稳定性和可能的样本效率。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，它直接针对 agent RL 中最棘手的“成功轨迹稀缺”问题，而不是只在已有成功样本上做更精细优化。第二，它把 evaluation rubric 这类通常只用于打分或验收的奖励侧信息，提升为 rollout 期间的主动干预信号，这在方法论上比单纯 reward shaping 更强。第三，作者没有回避 off-policy 风险，而是明确提出通过过滤分布偏移过大的轨迹来保留有效干预样本，这说明论文可能对“何种外部修复可被策略吸收”给出较具体经验规律。如果实验覆盖多种推理、规划、工具使用任务，那么其应用价值会比较广。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前摘要，需要警惕几个边界。第一，RTI 的收益可能高度依赖 rubric 质量；如果评估标准不完整、不可操作或本身带偏差，干预轨迹可能失真。第二，摘要没有说明干预成本，若每条轨迹都需要复杂评估或额外强模型参与，训练开销可能很高。第三，所谓“转化错误轨迹为成功轨迹”在某些环境中可能接近引入教师示范，因此需要区分这是一般性的训练机制，还是依赖强外部先验。第四，off-policy 过滤虽然合理，但若过滤过严，可能又回到成功样本不足；过滤过松，则可能导致策略学习到不可执行或不可泛化的行为。第五，目前不知道五个 benchmark 是否足够覆盖真实 agent 场景，也不知道提升是否集中在特定任务类型。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先查正文中的方法图，确认 RTI 干预发生在动作级、步骤级还是整条轨迹级；2）定位五个 benchmark 的名称与任务类型，记录哪些属于工具使用、哪些属于多步推理；3）查看消融实验，重点核对“无干预”“仅奖励打分”“有干预但无分布过滤”三类对照；4）查过滤分布偏移的具体指标，判断是否可迁移到你自己的 agent RL 管线；5）如果你做相关研究，可先在一个成功轨迹稀缺的环境中复现最简版思路：用 rubric 对失败轨迹做局部修复，再比较是否比纯 on-policy RL 更稳定。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象是基于大语言模型的 agent 强化学习，尤其是需要推理、规划和工具使用的交互式环境任务。作者指出现有 agent RL 的核心瓶颈不是单纯奖励设计，而是 on-policy 采样时，模型只能在自身当前能力附近探索；一旦任务超出能力边界，成功轨迹几乎采不到，训练就会因为正样本过少而退化或崩溃。RTI 的关键想法是在 rollout 过程中引入“reward-side evidence”，摘要中明确举例为 evaluation rubrics，这意味着系统可能不仅知道最终成败，还拥有某种可操作的评估标准、检查项或中间判据。基于这些证据，方法会把原本错误的轨迹转化为成功轨迹，进而为 RL 提供更密集、更高质量的学习信号。
 
-具体任务层面，DRYLAB-Bench 包含 30 个“genuinely hazardous mutation-design scenarios”，并且这些场景是从 biosecurity guidelines 中蒸馏出来的。这说明任务集可能不是随意拼接的开放式问题，而是围绕生物安全框架中已有的高风险类别进行结构化设计。结合摘要中的表述，这些场景可能涉及增强病原体特性、提高耐药性、改变宿主范围、免疫逃逸或毒力相关突变设计等高敏感方向，但由于摘要未给出具体类别、物种、蛋白或功能目标，不能进一步断言。需要特别注意的是，论文强调“mutation design”而非完整病原体构建，因此评测粒度可能集中在序列层面的候选突变提出、筛选和迭代优化。
+从方法线索推断，RTI 很可能不是简单 reward shaping，而是对采样到的 agent 行为序列进行局部修正、重写、替换动作、补充步骤，或者借助 rubric 判断哪里偏离目标并进行干预。由于这些修正后的轨迹不再来自当前策略原始分布，因此天然是 off-policy 数据。摘要特别提到“过滤掉分布偏移过大的轨迹”后，这些数据仍能有效指导策略优化，说明论文可能设计了某种轨迹筛选准则，例如基于动作差异、状态访问偏移、语言编辑幅度、成功来源可信度，或与当前策略 likelihood 的距离来过滤。这里的技术重点很可能在于：如何既利用外部干预带来的成功样本，又避免因为偏离当前策略太远而导致 RL 更新不稳定。
 
-方法上，最值得关注的是“multi-round, tool-augmented environment”。这意味着评测流程大概率不是单轮 prompt 输出答案，而是让模型在若干轮中规划、调用 BDT、读取工具反馈、再修正候选方案。这里的 BDT 可能包括蛋白结构/功能预测、序列打分、突变效应预测、进化保守性分析、分子对接或其他 in silico 生物设计工具，但摘要没有列出具体工具名称，因此只能作为可能路径。若属实，这种设置会比传统 benchmark 更能揭示：模型本身能力、工具能力、以及二者耦合后的代理能力之间的差异。
+实验方面，已知信息只有“跨五个基准”且“持续优于 RL baselines”。由于关键词和摘要都强调 reasoning、planning、tool-use、interactive environments，这五个基准大概率覆盖多步推理、工具调用、环境交互或 agent 任务，而不只是静态问答。题名中“Beyond Policy Limits”也暗示作者关注的是超出当前策略自然探索能力的任务区间，因此实验可能包含按难度分层的分析、成功轨迹稀疏度分析、训练稳定性对比，或与教师模型/更强 rollout policy 的上限比较。摘要最后提到“使 post-trained policy 接近更强教师模型表现”，这说明 RTI 可能在训练时借助了比学生更强的评估或干预来源，但最终目标是把能力蒸馏回较弱策略本身。
 
-证据线索方面，摘要已经给出论文试图回答的核心论点：LLM 的生物安全风险不能只看知识问答，还要看其在工具增强条件下是否能“实际完成危险设计”。因此论文正文里最值得核对的证据应包括：1）任务构建原则与风险分级标准；2）30 个场景的覆盖范围与代表性；3）BDT 的种类、接口和反馈形式；4）评测指标如何定义“成功的危险设计”；5）是否比较了基础 LLM、代理式 LLM、带/不带工具的差异；6）是否分析了不同模型家族、推理能力或安全对齐策略对结果的影响；7）所谓更安全、可靠的验证方式具体是什么，是否是基于计算代理指标、专家审查或规则化打分。
+与科研读者的关系上，这篇工作对 LLM agent、RLHF/RLAIF、tool-use agent、过程监督、基于 rubric 的训练信号设计都很相关。它尤其适合关注以下问题的研究者：第一，如何在成功样本极稀缺的 agent 环境中继续做 RL；第二，如何把 verifier/rubric 从“打分器”变成“干预器”；第三，off-policy 轨迹在语言智能体 RL 中何时有益、何时有害。若你的方向涉及 agent training、self-improvement、trajectory editing、process reward model 或 curriculum learning，这篇论文值得重点核对。
 
-与科研读者的关系上，这篇工作对做 LLM safety、AI for biology、agent evaluation、dual-use governance 的研究者都很相关。对安全评测研究者，它提供了一个从“知识风险”转向“行动风险”的案例；对 AI4Bio 研究者，它提醒工具链集成会显著改变模型风险画像；对治理研究者，它可能为生物安全政策中的能力阈值、访问控制和审计机制提供更可操作的测量框架。若你的方向是代理系统评测，这篇论文尤其值得看，因为它把 benchmark 设计、工具调用、风险验证三者结合在一起。
-
-但基于当前信息，也有若干必须核对的地方。首先，摘要被截断，缺少结果部分，因此目前完全不知道作者是否发现现有模型已具备显著危险设计能力，还是仅在特定工具组合下才表现出风险。其次，不清楚 benchmark 是否公开、任务是否经过脱敏处理、是否提供安全访问机制。再次，所谓“genuinely hazardous”如何在发布时兼顾研究价值与信息危害，是这类工作最敏感的边界问题。最后，若评测主要依赖计算工具反馈而非实验验证，则其“危险性”更多是潜在设计能力的代理测量，而非真实生物效应的最终证据，这一点在解读结论时必须谨慎。</p></div>
+但需要明确，当前只有题录和摘要，仍有多项关键信息必须回到正文核实：RTI 的干预是自动规则、模型生成、搜索修复还是教师示范；evaluation rubrics 的来源是人工编写、环境反馈还是另一个 LLM judge；off-policy 过滤的具体指标和阈值是什么；训练算法是 PPO、GRPO、REINFORCE 还是其他变体；五个 benchmark 的具体名称、任务类型、数据规模和统计显著性如何；以及所谓“接近教师模型表现”到底是绝对分数接近、样本效率接近，还是仅在部分任务上接近。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>As large language models (LLMs) acquire advanced biological design capabilities, they offer substantial research benefits but simultaneously introduce severe dual-use risks, such as engineering enhanced pathogens or drug-resistant bacteria. While biosecurity frameworks recognize these threats, the actual risk of LLMs executing dangerous biological modifications remains unquantified, particularly when augmented with specialized biological design tools (BDTs). Existing evaluations primarily assess hazardous knowledge possession rather than practical application, overlook risk amplification from BDTs, and rely on unreliable, expensive, or hazardous validation methods. To address these gaps, we introduce DRYLAB-Bench (Design Risk Yielded by LLM Agent in Biodesign), the first comprehensive benchmark evaluating the high-risk biological mutation design capabilities of LLM agents. Moving beyond basic question-answering, DRYLAB-Bench tasks agents with 30 genuinely hazardous mutation-design scenarios distilled from biosecurity guidelines. It evaluates models in a multi-round, tool-augmented environment where LLMs orchestrate BDTs to iteratively refine candidates. Crucially, it scores designs directly against 187,695 empirical wet-lab measurements from ProteinGym and ViroGym using our proposed Biosecurity Risk Score (BRS), quantifying risk-associated effects while enabling scalable and safe ground-truth verification. Evaluations of 15 frontier models reveal substantial baseline threats: without tools, 67.6% of one-shot designs exceed the average measured variant, and 21.4% reach the highest-risk decile. Equipping models with BDTs significantly amplifies this risk, raising the pooled risk by \(ΔBRS=+0.116\) and the top-decile share to 23.5%. Code: https://github.com/drylab-bio/DRYLAB-Bench</p>
+          <p>Reinforcement learning (RL) has emerged as a key paradigm for improving large language model (LLM) agents, enabling stronger reasoning, planning, and tool-use in interactive environments. However, existing agent RL methods remain fundamentally constrained by an on-policy reasoning bottleneck: when tasks exceed the model&#x27;s current capability boundary, effective trajectories become extremely sparse and training often collapses. We introduce Rollout-Time Intervention (RTI), a technique designed to elicit successful trajectories beyond the policy&#x27;s intrinsic exploration capacity. RTI operates by leveraging reward-side evidence (i.e., evaluation rubrics) during rollout to convert erroneous trajectories into successful ones, providing effective learning signals for tasks that the policy rarely solves on its own. Although intervention trajectories are inherently off-policy, we find that they can effectively guide policy optimization when trajectories with excessive distributional shifts are filtered out. Extensive experiments across five benchmarks demonstrate that RTI consistently outperforms RL baselines, enabling the post-trained policy to approach the performance of substantially stronger contemporary LLMs and, more importantly, transcend its original capability boundary. The code is available at https://github.com/Alibaba-NLP/qqr.</p>
         </details>
         
         </div>
@@ -262,177 +419,25 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-09T02:16:52Z</span>
-        <span>Score 70.0</span>
+        <span>2026-10-09T15:41:37Z</span>
+        <span>Score 60.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2610.12881v1">Mind the Spatial Gap: A Benchmark for Geospatial Reasoning and Constrained Spatial Editing</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Mind+the+Spatial+Gap%3A+A+Benchmark+for+Geospatial+Reasoning+and+Constrained+Spati&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12881v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Mind+the+Spatial+Gap%3A+A+Benchmark+for+Geospatial+Reasoning+and+Constrained+Spatial+Editing%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Mind+the+Spatial+Gap%3A+A+Benchmark+for+Geospatial+Reasoning+and+Constrained+Spati&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12881v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Mind+the+Spatial+Gap%3A+A+Benchmark+for+Geospatial+Reasoning+and+Constrained+Spatial+Editing%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Mind+the+Spatial+Gap%3A+A+Benchmark+for+Geospatial+Reasoning+and+Constrained+Spati&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12881v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Mind+the+Spatial+Gap%3A+A+Benchmark+for+Geospatial+Reasoning+and+Constrained+Spatial+Editing%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>4. <a href="http://arxiv.org/abs/2610.13755v1">Matched-Context Group Policy Optimization for LLM Agent Training</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Matched-Context+Group+Policy+Optimization+for+LLM+Agent+Training&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13755v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Matched-Context+Group+Policy+Optimization+for+LLM+Agent+Training%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Matched-Context+Group+Policy+Optimization+for+LLM+Agent+Training&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13755v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Matched-Context+Group+Policy+Optimization+for+LLM+Agent+Training%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Matched-Context+Group+Policy+Optimization+for+LLM+Agent+Training&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.13755v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Matched-Context+Group+Policy+Optimization+for+LLM+Agent+Training%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Zheng Ren、Yanning Wang、Ziheng Huang、Fei Huang 等 7 人 · <a href="https://arxiv.org/pdf/2610.12881v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
-<span class="chip">mllm <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">ml <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个名为 GeoSpatialBench 的基准，用于评测多模态大语言模型在真实城市地理场景中的空间认知能力，任务从空间关系理解、几何推理一直扩展到满足显式几何约束的空间编辑。根据摘要，作者重点揭示了一个“spatial gap”：模型在结构化 GeoJSON 上的表现持续优于地图图像，而图文多模态组合相对纯 GeoJSON 并未带来稳定增益。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献应在于构建了一个面向地理空间推理与受约束空间编辑的系统性评测基准：基于六个地理多样化城市的真实城市数据，覆盖 28 类拓扑、方向、度量和排序关系，并同时提供 GeoJSON 与地图图像两种模态；同时通过 GIS 操作验证参考答案与编辑约束，从而把评测从静态问答推进到“能否按约束修改空间配置”的更高阶任务。另一个重要贡献是经验性发现当前前沿 MLLM 在空间表征上存在明显模态差距，提示结构化地理表示可能比视觉地图更适合作为此类任务的输入。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 10</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>70.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：现有多模态大语言模型空间推理评测过于依赖静态问答、小规模或合成场景，无法充分检验模型是否能在真实地理环境中理解复杂空间关系，并进一步执行满足显式几何约束的空间编辑。因此作者想构建一个更系统、更真实、可程序化验证的基准，来衡量模型从“看懂空间关系”到“按约束修改空间配置”的能力跃迁。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法核心是 benchmark 构建与多模型评测。数据来自六个真实城市，样本以结构化 GeoJSON 和地图图像两种模态呈现；任务覆盖 28 类空间关系，按空间关系理解、几何推理、受约束编辑等层级组织。答案与编辑约束通过 GIS 操作验证，说明可能使用几何库或 GIS 引擎生成标准答案、检查拓扑/距离/方向约束是否满足。实验部分应是对多个前沿 MLLM 在不同模态和任务层级上的系统比较，重点分析 GeoJSON、地图图像以及二者组合的表现差异。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，任务设置从静态 QA 扩展到 constrained spatial editing，这比传统 benchmark 更接近真实空间规划、地图编辑和地理 agent 场景。第二，数据基于真实城市且跨六个地理多样化城市，避免了纯合成数据过于理想化的问题。第三，使用 GIS 操作验证真值和约束，使评测更客观、可复现，也让“编辑是否正确”具备明确判定标准。摘要中揭示的模态差距结论也很有启发性：结构化空间表示可能是当前模型更可靠的推理载体。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看论文中的任务定义图、28 类关系列表和 constrained spatial editing 示例，确认 benchmark 到底要求模型输出什么。第二，查主结果表，记录 GeoJSON、地图图像、图文组合三种设置在各任务层级上的具体分数差异。第三，核对评测模型名单、是否允许工具调用、是否统一提示模板。第四，重点看错误分析或案例图，判断模型失败是出在拓扑关系、方向判断、度量计算还是编辑约束满足。第五，如果你做相关研究，可先尝试用一个现有 MLLM 在 GeoJSON-only 与 map-image-only 上做小规模复现实验，验证摘要中的“structured beats visual”现象是否稳健。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：现有多模态大语言模型空间推理评测过于依赖静态问答、小规模或合成场景，无法充分检验模型是否能在真实地理环境中理解复杂空间关系，并进一步执行满足显式几何约束的空间编辑。因此作者想构建一个更系统、更真实、可程序化验证的基准，来衡量模型从“看懂空间关系”到“按约束修改空间配置”的能力跃迁。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法核心是 benchmark 构建与多模型评测。数据来自六个真实城市，样本以结构化 GeoJSON 和地图图像两种模态呈现；任务覆盖 28 类空间关系，按空间关系理解、几何推理、受约束编辑等层级组织。答案与编辑约束通过 GIS 操作验证，说明可能使用几何库或 GIS 引擎生成标准答案、检查拓扑/距离/方向约束是否满足。实验部分应是对多个前沿 MLLM 在不同模态和任务层级上的系统比较，重点分析 GeoJSON、地图图像以及二者组合的表现差异。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，任务设置从静态 QA 扩展到 constrained spatial editing，这比传统 benchmark 更接近真实空间规划、地图编辑和地理 agent 场景。第二，数据基于真实城市且跨六个地理多样化城市，避免了纯合成数据过于理想化的问题。第三，使用 GIS 操作验证真值和约束，使评测更客观、可复现，也让“编辑是否正确”具备明确判定标准。摘要中揭示的模态差距结论也很有启发性：结构化空间表示可能是当前模型更可靠的推理载体。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的局限包括：一，论文可能主要是评测基准而非新模型方法，因此对“如何弥合 spatial gap”未必给出解决方案；二，摘要未说明六个城市的选择标准、数据规模、对象类别和任务采样方式，可能存在城市偏置或任务分布不均；三，地图图像表现较差可能部分源于输入分辨率、底图样式、视觉预处理或提示设计，而不完全是模型空间能力本身；四，多模态无稳定增益这一结论需要看具体融合方式和统计显著性，不能仅凭摘要过度外推；五，受约束编辑任务的输出与评分细节尚不明确，若输出空间过大，评测设计可能影响结论。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看论文中的任务定义图、28 类关系列表和 constrained spatial editing 示例，确认 benchmark 到底要求模型输出什么。第二，查主结果表，记录 GeoJSON、地图图像、图文组合三种设置在各任务层级上的具体分数差异。第三，核对评测模型名单、是否允许工具调用、是否统一提示模板。第四，重点看错误分析或案例图，判断模型失败是出在拓扑关系、方向判断、度量计算还是编辑约束满足。第五，如果你做相关研究，可先尝试用一个现有 MLLM 在 GeoJSON-only 与 map-image-only 上做小规模复现实验，验证摘要中的“structured beats visual”现象是否稳健。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常具体：不是泛泛讨论“空间推理”，而是聚焦多模态大语言模型在地理空间场景中的三类递进能力——空间关系理解、几何推理、以及受约束的空间编辑。这里的“编辑”尤其关键，因为它要求模型不仅判断现有关系，还要生成或修改空间配置，使其满足明确的几何约束，这比传统视觉问答或地图问答更接近真实 GIS/城市计算工作流。
-
-数据层面，GeoSpatialBench 似乎建立在六个地理上多样化的真实城市数据之上，而不是小规模合成场景。摘要明确提到两种输入模态：结构化 GeoJSON 和地图图像。这意味着基准很可能在比较“符号化/结构化空间表示”与“视觉化地图表示”对模型空间推理的影响。28 类关系覆盖拓扑、方向、度量、排序四大类，说明任务设计不是单一的“左/右、近/远”判断，而是试图系统覆盖 GIS 中常见的空间关系谱系，例如相交/包含/邻接、方位关系、距离或面积等度量关系、以及沿道路或空间布局的顺序关系。
-
-方法线索主要来自 benchmark 构建与评测协议，而不是提出新的模型。摘要强调 ground-truth references and constraints verified via GIS operations，说明作者可能使用标准 GIS 几何运算来自动或半自动生成答案与约束校验器，这一点很重要：它提高了评测的客观性，也使“空间编辑是否满足约束”可以被程序化验证，而不依赖主观人工打分。若属实，这会让该基准对后续模型训练、自动评测和 agent 式地图编辑任务都更有价值。
-
-实验现象方面，摘要已经给出一个明确结论：GeoJSON consistently outperforms map images，且 multimodal combinations offering no reliable gain over GeoJSON。即便摘要被截断，这一现象已经足够值得关注。它暗示当前 MLLM 在处理地图图像时，可能受限于视觉编码精度、地图符号理解、比例尺与投影隐含信息、以及复杂空间关系的视觉抽取；而结构化 GeoJSON 直接暴露对象、坐标和几何关系，更适合模型进行显式推理。对做地理智能、空间问答、地图 agent、城市计算或 embodied/world model 的研究者来说，这个发现很有现实意义：如果任务核心是精确空间约束满足，优先考虑结构化输入可能比盲目追求图文融合更有效。
-
-与用户方向的关系上，如果你关注大模型、智能体、GIS、遥感/地图理解、城市空间分析，这篇论文的价值主要体现在两个方面。第一，它提供了一个更接近真实应用的评测框架，可用于检验模型是否真的理解空间，而不是只会回答模板化问题。第二，它提示未来方法设计可能需要把 GIS 结构化表示、几何工具调用、约束求解器或程序化空间操作纳入模型系统，而不是仅依赖端到端视觉语言模型。
-
-但基于当前仅有的题录和摘要，也有若干必须核对的信息。首先，不清楚 28 类关系的精确定义、任务分布和难度分层；其次，不清楚“constrained spatial editing”具体输出形式是什么，是文本指令、GeoJSON 修改、目标对象重定位，还是生成新的空间布局；再次，尚不清楚评测了哪些 frontier MLLMs、采用何种 prompting 或 tool use 设置、是否允许坐标计算；最后，摘要虽指出多模态无稳定增益，但缺少具体数值、方差、城市间差异和错误类型分析，这些都需要看正文和表格确认。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Understanding and manipulating spatial relations is fundamental to AI systems that reason about physical environments and construct grounded world models. However, existing evaluations of multimodal large language models (MLLMs) for spatial reasoning rely predominantly on static question-answering (QA) over small-scale or synthetic scenes, rarely probing whether models can modify spatial configurations while satisfying explicit geometric constraints. We introduce GeoSpatialBench, a benchmark designed to evaluate an escalating progression of spatial cognition, ranging from spatial relation understanding and geometric reasoning to constrained spatial editing. Grounded in real-world urban data across six geographically diverse cities, GeoSpatialBench evaluates a comprehensive taxonomy of 28 topological, directional, metric, and ordering relations across structured GeoJSON and map image modalities, with ground-truth references and constraints verified via GIS operations. Our empirical evaluation across frontier MLLMs uncovers a stark spatial gap: structured GeoJSON consistently outperforms map images, with multimodal combinations offering no reliable gain over GeoJSON alone, and while models show reasonable competence on qualitative topological and ordering, performance drops on quantitative metric relations. Crucially, editing performance on ordering relations declines relative to QA, and most failed edits violate at least one specified spatial constraint. These results highlight a gap between passively recognizing spatial relations and actively manipulating geometric configurations. GeoSpatialBench provides an open, rigorous diagnostic testbed to benchmark these spatial limitations, laying essential empirical groundwork for physically grounded world models and embodied spatial AI.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-08T22:46:14Z</span>
-        <span>Score 65.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2610.12789v1">EvoBelief: Falsifiable World Models for Self-Improving LLM Agents</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+EvoBelief%3A+Falsifiable+World+Models+for+Self-Improving+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12789v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+EvoBelief%3A+Falsifiable+World+Models+for+Self-Improving+LLM+Agents%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%2C+scientific+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+EvoBelief%3A+Falsifiable+World+Models+for+Self-Improving+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12789v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+EvoBelief%3A+Falsifiable+World+Models+for+Self-Improving+LLM+Agents%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%2C+scientific+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+EvoBelief%3A+Falsifiable+World+Models+for+Self-Improving+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12789v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+EvoBelief%3A+Falsifiable+World+Models+for+Self-Improving+LLM+Agents%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%2C+scientific+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Janet Wang、Jiang Guo、Yi Xiang、Jiaqing Yuan 等 9 人 · <a href="https://arxiv.org/pdf/2610.12789v1">PDF</a></div>
+      <div class="authors">Chenxu Zhang、Yaorui Shi、Wenlong Zhang、Jianchao Tan 等 6 人 · <a href="https://arxiv.org/pdf/2610.13755v1">PDF</a></div>
       <div class="chips"><span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span>
-<span class="chip">scientific discovery <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出 EvoBelief，用于让部署中的 LLM agent 在 ALFWorld、隐藏环境漂移和科学发现等任务中，不只改进行动策略，还能持续修正自己对环境动力学的“世界模型”信念。其核心做法是把环境知识表示为可证伪的假设规则，并通过后续观测与受控实验验证、缩小或淘汰这些规则，以支持跨任务复用。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献是提出一种面向自改进智能体的“信念演化”框架：将环境知识显式表示为带证据链和适用范围的可证伪规则；用意外结果和决策相关未知触发新假设生成；要求规则在真正影响预测或规划前经过独立验证；并在出现反例时收缩或退役规则，以适应静态环境、隐式漂移和科学发现类任务。另一个值得注意的贡献是，作者强调冻结底层语言模型，仅演化外部世界模型，从而提高可追踪性、可审计性和跨任务复用能力。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 7</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>65.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：LLM agent 在部署后如何持续修正自己关于环境动力学、因果关系或操作约束的信念，并避免错误世界知识在多个任务间复用时被放大。更细一点，它关注的是当环境规律一开始未知、部分错误或后来发生隐藏漂移时，agent 如何形成、验证、更新和淘汰可用于预测与规划的规则。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法主体是一个外置的世界模型演化模块。知识表示上，环境规律被写成“可证伪假设/规则”，并附带证据、适用范围以及受其影响的决策记录。触发机制上，系统在两类情形下提出新假设：一是执行后出现与预期不符的结果，二是当前决策需要但尚未知晓的环境信息。验证路径上，作者强调使用后续自然观测和受控实验进行独立验证，这意味着 agent 可能会主动设计探测动作来区分 competing hypotheses。使用方式上，只有通过验证的规则才进入预测或规划环节；若后续出现反例，则对规则做范围收缩或退役。实验数据/任务上，至少包括 ALFWorld，以及另外覆盖静态动力学、隐藏漂移、科学发现的三个 benchmark；底层 LLM 保持冻结，改进来自外部规则库而非参数更新。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，把“世界知识更新”从一般的经验记忆或反思中单独抽出来，问题定义清晰，且确实击中许多 agent 失败的根源。第二，采用可证伪规则而非黑箱记忆，天然更适合做证据追踪、错误定位和安全审计。第三，要求规则在影响规划前先经独立验证，这比直接把一次成功经验泛化成长期知识更稳健，尤其适合跨任务复用。第四，摘要显示方法在 ALFWorld、隐藏漂移和科学发现任务上都做了验证，说明作者试图证明其适用面不仅限于单一交互环境，而是面向更广义的“环境规律学习”。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，先查原文方法图和规则示例，确认“hypothesis/rule/evidence/scope”四个对象的具体定义。第二，直接定位实验表，记录四个 benchmark 名称、每个任务的基线、是否冻结 LLM、是否允许额外试探动作，以及 ALFWorld 的具体提升幅度。第三，重点看消融：去掉独立验证、去掉反例收缩、去掉跨任务复用后性能如何变化。第四，把它与自己熟悉的记忆型 agent、RAG agent、model-based RL 或科学发现系统做一页对照，特别记录“何时生成假设、何时允许进入规划、如何处理反例”这三点。第五，如果考虑复现，可先在 ALFWorld 或一个小型文本环境中实现最简版规则库+验证机制，测试其是否能在环境规则变化时比纯记忆方法更快恢复。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：LLM agent 在部署后如何持续修正自己关于环境动力学、因果关系或操作约束的信念，并避免错误世界知识在多个任务间复用时被放大。更细一点，它关注的是当环境规律一开始未知、部分错误或后来发生隐藏漂移时，agent 如何形成、验证、更新和淘汰可用于预测与规划的规则。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法主体是一个外置的世界模型演化模块。知识表示上，环境规律被写成“可证伪假设/规则”，并附带证据、适用范围以及受其影响的决策记录。触发机制上，系统在两类情形下提出新假设：一是执行后出现与预期不符的结果，二是当前决策需要但尚未知晓的环境信息。验证路径上，作者强调使用后续自然观测和受控实验进行独立验证，这意味着 agent 可能会主动设计探测动作来区分 competing hypotheses。使用方式上，只有通过验证的规则才进入预测或规划环节；若后续出现反例，则对规则做范围收缩或退役。实验数据/任务上，至少包括 ALFWorld，以及另外覆盖静态动力学、隐藏漂移、科学发现的三个 benchmark；底层 LLM 保持冻结，改进来自外部规则库而非参数更新。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，把“世界知识更新”从一般的经验记忆或反思中单独抽出来，问题定义清晰，且确实击中许多 agent 失败的根源。第二，采用可证伪规则而非黑箱记忆，天然更适合做证据追踪、错误定位和安全审计。第三，要求规则在影响规划前先经独立验证，这比直接把一次成功经验泛化成长期知识更稳健，尤其适合跨任务复用。第四，摘要显示方法在 ALFWorld、隐藏漂移和科学发现任务上都做了验证，说明作者试图证明其适用面不仅限于单一交互环境，而是面向更广义的“环境规律学习”。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，需要警惕几个边界。第一，摘要没有给出规则表示的精确形式，尚不清楚它是自然语言规则、逻辑模板、程序片段还是结构化状态转移模型。第二，“受控实验”在真实 benchmark 中的成本可能很高，若需要额外试探步骤，可能牺牲效率。第三，规则验证与适用范围判定若依赖 LLM 语义判断，仍可能引入新的不稳定性。第四，跨任务复用虽然是卖点，但也可能带来负迁移；摘要只说通过反例收缩或退役规则，尚不清楚其响应速度和误删率。第五，ALFWorld 的结果只明确提到在“无 actor-side transition memory”设定下提升成功率，这意味着与强记忆基线相比的优势大小还未知。第六，摘要被截断，缺少完整数值结果、消融实验和失败案例，因此目前不能判断方法收益是否稳定、是否依赖特定任务结构。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，先查原文方法图和规则示例，确认“hypothesis/rule/evidence/scope”四个对象的具体定义。第二，直接定位实验表，记录四个 benchmark 名称、每个任务的基线、是否冻结 LLM、是否允许额外试探动作，以及 ALFWorld 的具体提升幅度。第三，重点看消融：去掉独立验证、去掉反例收缩、去掉跨任务复用后性能如何变化。第四，把它与自己熟悉的记忆型 agent、RAG agent、model-based RL 或科学发现系统做一页对照，特别记录“何时生成假设、何时允许进入规划、如何处理反例”这三点。第五，如果考虑复现，可先在 ALFWorld 或一个小型文本环境中实现最简版规则库+验证机制，测试其是否能在环境规则变化时比纯记忆方法更快恢复。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作研究的是“LLM agent 在部署过程中如何更新自己对环境规律的认识”，而不是常见的通过反思、记忆或技能库来改进动作策略。论文认为，即使 agent 的程序性能力足够强，如果它对环境转移、因果关系或任务约束的信念不完整、错误或过时，仍会系统性失败；因此作者把自演化的重点放到世界模型层面。具体对象上，EvoBelief 似乎将环境知识表示为规则化、可证伪的假设，每条规则都绑定支持它的证据，以及它改变了哪些决策。这说明方法可能包含一个显式知识库或规则库，而不是把经验隐式塞进 LLM 参数中。方法线索上，摘要给出了一条较完整的闭环：当 agent 遇到“意外结果”或“与当前决策相关的未知”时，系统触发假设形成；随后通过未来观测和受控实验做独立验证；只有验证通过的规则，才允许在其支持范围内参与预测或规划；如果后续出现反例，则缩小规则适用域或直接退役。这种设计明显强调可审计性和抗错误传播，因为作者特别指出错误信念会跨任务传播。实验方面，摘要提到四个 benchmark，覆盖静态动力学、隐藏漂移和科学发现，说明作者希望证明该框架不仅适用于固定规则环境，也适用于环境规律变化或需要提出并检验科学假设的场景。已知的一个具体结果是：在 ALFWorld 且 actor 侧没有 transition memory 的设定下，EvoBelief 提升了成功率；但由于摘要被截断，具体提升幅度、对照方法、统计显著性和代价都需要核对原文。与科研用户的关系上，这篇工作对“可解释 agent”“终身学习/在线适应”“基于规则的世界模型”“科学发现 agent”“agent safety 与可追责决策”都很相关，尤其适合关注如何在不微调大模型的前提下，让 agent 通过外部结构化知识实现稳健自改进的读者。需要重点核对的信息包括：假设/规则的具体表示形式；受控实验如何在不同 benchmark 中实现；验证标准和证据阈值；规则适用范围如何定义；反例导致的规则收缩机制；跨任务复用是同环境多任务还是跨环境迁移；以及与记忆增强、RAG、反思式 agent、model-based RL 或程序归纳方法的差异。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Self-evolving LLM agents typically improve how they act through accumulated experience, reflection, or skills. Yet even procedurally capable agents can fail when their beliefs about environment dynamics are incomplete, incorrect, or outdated. We study a complementary axis of self-evolution: evolving those beliefs during deployment. Such beliefs can support multiple tasks, but incorrect ones can also propagate across them. We introduce EvoBelief, a self-evolving world model that represents environment knowledge as falsifiable hypotheses. Unexpected outcomes and decision-relevant unknowns trigger hypothesis formation. Later observations and controlled experiments provide independent validation before a rule can guide predictions or plans within its supported scope. Counterexamples narrow or retire rules as the environment changes. The language model remains frozen, and each rule remains linked to its evidence and the decisions it changes. Across four benchmarks spanning static dynamics, hidden drift, and scientific discovery, EvoBelief improves task performance and reuses learned rules across tasks. On ALFWorld without actor-side transition memory, it improves success over the matched Frozen World Model by 23.9% and 31.3% with Claude Haiku 4.5 and GPT-5.4, respectively. On MiniGrid, it revises stale rules and recovers after unannounced dynamics changes. In DiscoveryWorld&#x27;s Reactor Lab, it discovers and validates quantitative laws, completing 83.3% of Normal-tier and 58.3% of Challenge-tier instances, versus 0% for each evaluated baseline. These results demonstrate self-improvement through testable, revisable environment knowledge rather than model-parameter updates.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-08T18:17:20Z</span>
-        <span>Score 64.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2610.12593v1">Know What You Don&#x27;t Know: Agentic Data Synthesis by Evolving Generation Space for Closed-Loop Learning</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Know+What+You+Don%27t+Know%3A+Agentic+Data+Synthesis+by+Evolving+Generation+Space+fo&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12593v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Know+What+You+Don%27t+Know%3A+Agentic+Data+Synthesis+by+Evolving+Generation+Space+for+Closed-Loop+Learning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Know+What+You+Don%27t+Know%3A+Agentic+Data+Synthesis+by+Evolving+Generation+Space+fo&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12593v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Know+What+You+Don%27t+Know%3A+Agentic+Data+Synthesis+by+Evolving+Generation+Space+for+Closed-Loop+Learning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Know+What+You+Don%27t+Know%3A+Agentic+Data+Synthesis+by+Evolving+Generation+Space+fo&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.12593v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Know+What+You+Don%27t+Know%3A+Agentic+Data+Synthesis+by+Evolving+Generation+Space+for+Closed-Loop+Learning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Wei Yang、Qing Ping、Youzhi Luo、Yawei Wang 等 7 人 · <a href="https://arxiv.org/pdf/2610.12593v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦于交互式智能体的合成数据生成，提出名为 EvoSyn 的闭环学习框架，用学习器反馈来持续修订“可生成什么交互因素、把生成预算投向哪里”的生成空间。其目标不是单纯生成可执行轨迹，而是为当前任务智能体合成更有学习价值、能覆盖薄弱区域和新发现因素的交互经验。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能在于：把“学习器暴露出的失败/弱点”显式转化为“后续数据合成应如何改变”的可操作决策；提出一个可修订的 synthesis state 来表示可控交互因素与资源分配；设计角色分工的多智能体系统，将反馈转成生成空间内的定向适配与生成空间外的扩展；面向闭环训练场景，强调不仅验证轨迹可执行，还要提升对当前 agent 真正有训练价值的数据供给。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文针对长时程LLM智能体训练中的稀疏终局奖励与中间决策信用分配问题，提出了Matched-Context Group Policy Optimization（MCGPO），用于从同组已采样轨迹中构造带权动作偏好，并在ALFWorld与WebShop等环境上配合GraphGPO训练。摘要显示其对象是基于语言模型的环境交互智能体，重点任务是在不引入critic的前提下，更好地利用兄弟轨迹之间的可比决策证据。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献看起来是提出一种面向同组rollout的上下文匹配偏好构造程序：先用动作前状态摘要、rubric进度和任务规则定义“可比较上下文”，再通过两动作支持与精细/粗粒度匹配规则筛选可比动作对，并用固定fold将候选决策与用于定向偏好的终局结果隔离，最后按证据强度加权一个辅助成对目标，与共享的GraphGPO任务学习联合优化。其潜在价值在于复用已有轨迹和原始历史，保持critic-free训练，同时改善长时程agent的中间决策学习信号。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -444,34 +449,103 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 9</div>
+              <div class="signal-kicker">关键词命中 6</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>64.5</strong>
+              <strong>60.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在交互式 agent 的闭环学习中，如何根据当前学习器暴露出的失败、弱点和覆盖盲区，决定下一轮应合成哪些交互数据，并在必要时扩展原有的数据生成空间，而不是只在固定模板内重复采样。更直接地说，它试图弥合“看到了 learner 不会什么”与“知道该生成什么来教会它”之间的反馈到决策鸿沟。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包含一个以学习反馈驱动的多智能体合成框架。输入侧可能包括 learner 在环境中的失败轨迹、评测信号、覆盖统计或验证结果；中间维护一个可修订的 synthesis state，用来表示当前可控的交互因素以及各方向的合成优先级；决策侧由角色专门化 agent 完成，其中 Designer 根据反馈决定应朝哪些因素、难度或场景分配生成预算，Planner 再把这些方向具体化为可执行任务、环境交互或轨迹。方法上既支持在既有因素空间内做定向强化采样，也支持把新发现但原先未显式建模的因素加入生成空间。实验大概率会比较 EvoSyn 与静态合成、仅基于验证过滤、仅基于失败回放或普通 curriculum synthesis 的差异，但具体任务、数据和指标需要读正文确认。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把“数据合成策略”本身作为可演化对象，而不是把生成器视为固定黑箱。摘要中提出的 synthesis state 很可能提供了一个比单纯 prompt engineering 更结构化的控制接口，使 learner feedback 能映射到明确的生成维度和资源分配。第二个亮点是区分了两类适应：对已知薄弱区域的空间内加密采样，以及对未知但重要因素的空间扩展，这比常见的 hard example mining 更接近真正的开放式课程生成。第三个亮点是多角色设计：Designer 负责“生成什么方向”，Planner 负责“如何落地为可执行经验”，这有助于把高层教学决策与低层任务实例化解耦。若实验充分，这种框架对工具使用 agent、环境交互 agent 和需要持续自我改进的系统都可能有较高应用价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，打开 arXiv 正文，优先查方法图和系统框架图，确认 synthesis state、Designer、Planner 的输入输出；第二，定位实验章节，记录任务环境、训练闭环轮数、基线方法和核心指标；第三，重点看是否有消融实验区分“反馈利用”“空间内适配”“空间扩展”“多角色分工”各自贡献；第四，摘录一两个 learner failure 到 synthesis revision 的具体案例，判断其是否真正实现了从弱点到生成决策的映射；第五，如果你的研究方向是 agent data engine 或 curriculum learning，可把它与 failure replay、active learning、self-instruct、environment-grounded synthesis 做一页对照表。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在长时程LLM智能体训练中，当环境只给出稀疏的终局反馈时，如何为中间动作分配更可靠的学习信号，尤其是在同一批兄弟rollouts中，只对处于可比上下文的动作进行有效比较，从而提升ALFWorld、WebShop这类多步任务的成功率。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法流程是：先收集一组agent轨迹；对每个候选动作构造动作前状态摘要，并结合任务规则与当前rubric进度定义比较上下文；在兄弟rollouts中寻找两动作支持样本，按“精确匹配优先、粗匹配退化”的规则形成动作对；用固定fold把用于生成候选动作对的数据与用于判定偏好方向的终局结果分离；根据支持证据强弱给每个动作偏好赋权；最后把这个辅助pairwise优化目标与原有GraphGPO任务学习联合训练。实验上应在ALFWorld、WebShop等环境，使用Qwen2.5-1.5B和7B等骨干，按多个seed比较成功率。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，它不是泛泛地做轨迹级偏好，而是强调“matched context”下的动作比较，这对长时程agent尤其关键，因为错误上下文下的动作优劣比较会引入噪声。第二，它复用已采样rollout并保留每条响应的原始历史，意味着可能不需要额外critic或昂贵再标注，工程上较易接入现有critic-free训练框架。第三，摘要给出了较具体的实验范围：六个环境-骨干设置、三个seed、ALFWorld和WebShop、Qwen2.5不同规模，说明作者至少尝试了跨任务和跨模型验证，而不是单一环境演示。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查全文中的方法图和算法框，确认MCGPO与GraphGPO的接口、pairwise loss公式、fold划分方式；2）直接定位实验表，补全六个环境-骨干设置、完整成功率提升、标准差和显著性；3）重点看消融：去掉matched context、去掉support weighting、去掉fixed folds后性能如何；4）如果你做agent训练，可先在自己已有的rollout日志上尝试实现“同上下文动作配对+加权偏好损失”的简化版，验证是否能在WebShop/ALFWorld类任务上复现趋势；5）记录一个关键问题：任务规则和rubric进度是否必须人工提供，还是可由模型自动抽取。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在交互式 agent 的闭环学习中，如何根据当前学习器暴露出的失败、弱点和覆盖盲区，决定下一轮应合成哪些交互数据，并在必要时扩展原有的数据生成空间，而不是只在固定模板内重复采样。更直接地说，它试图弥合“看到了 learner 不会什么”与“知道该生成什么来教会它”之间的反馈到决策鸿沟。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包含一个以学习反馈驱动的多智能体合成框架。输入侧可能包括 learner 在环境中的失败轨迹、评测信号、覆盖统计或验证结果；中间维护一个可修订的 synthesis state，用来表示当前可控的交互因素以及各方向的合成优先级；决策侧由角色专门化 agent 完成，其中 Designer 根据反馈决定应朝哪些因素、难度或场景分配生成预算，Planner 再把这些方向具体化为可执行任务、环境交互或轨迹。方法上既支持在既有因素空间内做定向强化采样，也支持把新发现但原先未显式建模的因素加入生成空间。实验大概率会比较 EvoSyn 与静态合成、仅基于验证过滤、仅基于失败回放或普通 curriculum synthesis 的差异，但具体任务、数据和指标需要读正文确认。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把“数据合成策略”本身作为可演化对象，而不是把生成器视为固定黑箱。摘要中提出的 synthesis state 很可能提供了一个比单纯 prompt engineering 更结构化的控制接口，使 learner feedback 能映射到明确的生成维度和资源分配。第二个亮点是区分了两类适应：对已知薄弱区域的空间内加密采样，以及对未知但重要因素的空间扩展，这比常见的 hard example mining 更接近真正的开放式课程生成。第三个亮点是多角色设计：Designer 负责“生成什么方向”，Planner 负责“如何落地为可执行经验”，这有助于把高层教学决策与低层任务实例化解耦。若实验充分，这种框架对工具使用 agent、环境交互 agent 和需要持续自我改进的系统都可能有较高应用价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，首先无法确认论文是否给出了足够严格的生成空间表示与更新规则；如果 synthesis state 主要依赖自然语言描述，可能存在可控性和可复现性不足的问题。其次，多智能体框架往往带来较高系统复杂度和调用成本，若没有清晰消融，难判断收益来自“反馈驱动演化”还是单纯更多推理预算。第三，摘要强调学习价值，但尚不清楚这种价值如何量化：是提升最终任务成功率、样本效率、泛化能力，还是减少特定错误类型。第四，所谓“新因素发现与晋升”为显式维度听起来很强，但若缺少客观判据，可能依赖人工解释。最后，摘要被截断，实验环境、基线、统计显著性、失败案例和适用边界都未知，当前不能判断其普适性。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，打开 arXiv 正文，优先查方法图和系统框架图，确认 synthesis state、Designer、Planner 的输入输出；第二，定位实验章节，记录任务环境、训练闭环轮数、基线方法和核心指标；第三，重点看是否有消融实验区分“反馈利用”“空间内适配”“空间扩展”“多角色分工”各自贡献；第四，摘录一两个 learner failure 到 synthesis revision 的具体案例，判断其是否真正实现了从弱点到生成决策的映射；第五，如果你的研究方向是 agent data engine 或 curriculum learning，可把它与 failure replay、active learning、self-instruct、environment-grounded synthesis 做一页对照表。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作研究的是大语言模型驱动的交互式 agent 在闭环学习中的“经验合成”问题。摘要明确指出，现有方法虽然会利用环境反馈、数据验证或学习器失败案例，但仍存在一个关键断层：观察到 agent 哪些地方做不好，并不等于知道下一轮该生成什么样的数据，也不等于当前的数据生成空间足以表达这些新需求。论文因此提出 EvoSyn，把数据合成组织在一个可修订状态之上，这个状态至少包含两类信息：一是当前可以被有意识控制和生成的交互因素，二是合成资源应优先投向哪些薄弱或欠覆盖区域。方法结构上，摘要提到一个 role-specialized multi-agent system，其中 Designer 负责分配合成方向，Planner 负责把方向落地为可执行经验；这暗示系统可能不是直接让单个模型写任务，而是先做“反馈解释与生成策略制定”，再做“任务/轨迹实例化”。从证据线索看，论文强调两种能力：within-space adaptation，即在现有生成空间内朝弱点区域定向采样；以及 synthesis-space expansion，即把新发现的交互因素提升为新的显式生成维度。这一点很关键，因为它试图解决传统 synthetic data pipeline 常见的固定模板、固定任务参数空间无法跟随 learner 演化的问题。与科研用户的关系上，如果你关注 LLM agent、环境交互、自动课程学习、self-play/self-improvement 或 agent data engine，这篇论文值得看，因为它把“失败驱动的数据再设计”提升到生成空间层面，而不只是做难例挖掘。需要重点核对的信息包括：EvoSyn 面向什么具体 agent 任务环境（如工具使用、网页操作、代码执行、RAG、多步规划等）；synthesis state 的具体表示形式是离散因子、程序化 schema 还是自然语言规范；Designer 和 Planner 是否由同一底座 LLM 扮演不同角色；学习反馈来自在线训练、离线评测还是 rollout failure；“新因素晋升为显式维度”的判据如何定义；以及实验是否真正证明了比基于失败重采样、基于验证过滤或基于 curriculum 的方法更有效。由于摘要被截断，实验设置、数据规模、基线和定量结果目前都无法确认。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在长时程LLM智能体训练中，当环境只给出稀疏的终局反馈时，如何为中间动作分配更可靠的学习信号，尤其是在同一批兄弟rollouts中，只对处于可比上下文的动作进行有效比较，从而提升ALFWorld、WebShop这类多步任务的成功率。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法流程是：先收集一组agent轨迹；对每个候选动作构造动作前状态摘要，并结合任务规则与当前rubric进度定义比较上下文；在兄弟rollouts中寻找两动作支持样本，按“精确匹配优先、粗匹配退化”的规则形成动作对；用固定fold把用于生成候选动作对的数据与用于判定偏好方向的终局结果分离；根据支持证据强弱给每个动作偏好赋权；最后把这个辅助pairwise优化目标与原有GraphGPO任务学习联合训练。实验上应在ALFWorld、WebShop等环境，使用Qwen2.5-1.5B和7B等骨干，按多个seed比较成功率。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，它不是泛泛地做轨迹级偏好，而是强调“matched context”下的动作比较，这对长时程agent尤其关键，因为错误上下文下的动作优劣比较会引入噪声。第二，它复用已采样rollout并保留每条响应的原始历史，意味着可能不需要额外critic或昂贵再标注，工程上较易接入现有critic-free训练框架。第三，摘要给出了较具体的实验范围：六个环境-骨干设置、三个seed、ALFWorld和WebShop、Qwen2.5不同规模，说明作者至少尝试了跨任务和跨模型验证，而不是单一环境演示。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，主要风险在于：一，方法可能依赖任务规则注释和rubric进度定义，这在开放域agent任务中未必容易获得，泛化性需核对。二，摘要中的提升有一部分只有0.47到1.46个百分点，实际意义取决于基线强弱、方差和成本；而更大的提升结果因摘要截断无法确认。三，尚不清楚上下文摘要和匹配规则是否引入额外启发式工程，若规则较复杂，方法可迁移性可能受限。四，没有看到关于失败案例、消融、统计显著性、训练开销和与其他偏好优化/RL方法对比的信息。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查全文中的方法图和算法框，确认MCGPO与GraphGPO的接口、pairwise loss公式、fold划分方式；2）直接定位实验表，补全六个环境-骨干设置、完整成功率提升、标准差和显著性；3）重点看消融：去掉matched context、去掉support weighting、去掉fixed folds后性能如何；4）如果你做agent训练，可先在自己已有的rollout日志上尝试实现“同上下文动作配对+加权偏好损失”的简化版，验证是否能在WebShop/ALFWorld类任务上复现趋势；5）记录一个关键问题：任务规则和rubric进度是否必须人工提供，还是可由模型自动抽取。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可见，论文研究的是长时程语言模型智能体在环境中执行任务时，如何仅凭稀疏的终局反馈，把学习信号更准确地分配到中间动作。作者关注的不是单条轨迹上的回报传播，而是“有限组兄弟rollouts”内部的动作比较：只有当两个动作发生在足够匹配的上下文中时，它们的优劣比较才有意义。为此，MCGPO似乎显式构造了比较上下文，所用线索包括动作前的状态摘要、已观察到的rubric进度，以及任务规则注释；这说明方法可能依赖某种任务结构化标注或规则模板，而不是纯黑箱偏好学习。
+
+方法层面，摘要给出的关键机制较具体。第一，MCGPO从“已经收集的轨迹”中构造加权动作偏好，说明它偏向离线重组监督信号，而非额外在线采样。第二，“two-action support”在有序的精确匹配和粗匹配规则中选择，暗示作者定义了多级匹配准则：优先寻找严格同上下文的动作对，找不到时退化到较粗粒度但仍受规则约束的比较。第三，固定fold把候选决策与用于决定偏好方向的终局结果分开，这很像一种防止信息泄漏或过拟合的设计，避免直接用同一条轨迹的终局成败去“回填”该轨迹中所有动作的标签。第四，依据支持度的证据权重来缩放辅助pairwise objective，并与共享的GraphGPO任务学习联合训练，说明MCGPO不是替代原有GraphGPO，而是作为附加偏好目标增强其学习信号。
+
+证据方面，摘要明确提到在六个“环境-骨干模型”设置、每个设置三个训练seed下，相比匹配的GraphGPO基线，MCGPO在ALFWorld和WebShop上、配合Qwen2.5-1.5B与7B时，平均成功率提升约0.47到1.46个百分点，并且还有两个更大的提升数值“3.96 and ...”，但摘要被截断，因此无法确认后续环境、模型规模和完整结果。就现有信息看，实验对象是典型文本交互/网页购物类agent benchmark，模型骨干至少包含Qwen2.5 1.5B和7B，评价指标大概率是任务成功率。提升幅度在部分设置上不算巨大，但如果训练seed重复且跨六个设置一致，说明方法可能具有一定稳健性；不过仍需核对方差、显著性、训练成本和是否存在任务特定规则工程。
+
+与科研方向的关系上，这篇工作与LLM agent训练、长时程决策、偏好优化、离线轨迹重用、过程监督替代方案高度相关。它尤其适合关注“如何在没有value critic的情况下增强agent RL信号”的读者，也与基于轨迹比较的过程奖励建模、DPO/IPO式偏好学习在agent场景中的扩展有关。如果你的方向涉及WebShop、ALFWorld、Tool-use agent或多步规划，这篇论文值得重点看其上下文匹配定义、rubric设计和pairwise目标如何与原始policy gradient/GraphGPO耦合。
+
+需要核对的信息包括：GraphGPO的具体训练形式；MCGPO是否需要人工任务规则或自动规则抽取；“pre-action state summaries”由谁生成、是否引入额外模型；固定fold如何划分、是否跨episode；pairwise objective的数学形式与权重调度；六个环境-骨干设置的完整列表；提升是否在所有seed上稳定；以及摘要截断处遗漏的实验结果和消融。由于当前只有题名、摘要和元数据，不能判断其完整理论推导、实现细节和统计显著性。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The continued improvement of large language models increasingly depends on synthetic experience, yet effective data synthesis for interactive agents requires not only executable and verifiable trajectories, but also interactions that provide learning value for the current task agent. Existing methods increasingly incorporate environment feedback, data validation, or learner failures, but still face a feedback-to-decision gap: observed weaknesses do not directly specify how future synthesis should change, or whether they can be represented by the current synthesis space. To address this gap, we propose EvoSyn, a learning-feedback-driven multi-agent framework that organizes synthesis around a revisable state specifying what interaction factors can be deliberately generated and where synthesis effort should be allocated. A role-specialized multi-agent system translates learner feedback into synthesis revisions, while a Designer allocates synthesis directions and a Planner grounds them into executable experience. This process enables within-space adaptation toward weak or under-covered regions and synthesis-space expansion that promotes newly discovered factors into explicit generation controls. Experiments on $τ^2$-Bench and CAR-Bench show that EvoSyn improves average task success by 13.3 points over the strongest synthesis baseline, while producing higher-quality and structurally broader synthetic experience and discovering controllable factors missed without learner feedback.</p>
+          <p>Training long-horizon language model agents requires assigning credit to intermediate decisions from sparse terminal feedback. Within a finite group of sibling rollouts, useful action comparisons depend on their context, evidence for both alternatives, and how that evidence enters learning. We propose Matched-Context Group Policy Optimization (MCGPO), a procedure for constructing weighted action preferences from already collected trajectories. MCGPO defines comparison contexts with pre-action state summaries and observed rubric progress, annotated by task rules. Two-action support selects among ordered exact and coarse matching rules. Fixed folds separate candidate decisions from the terminal outcomes used to orient their preferences, and support-dependent evidence weights scale an auxiliary pairwise objective alongside shared GraphGPO task learning. MCGPO reuses rollout data and each response&#x27;s original history, preserving critic-free training. Across six environment-backbone settings with three training seeds each, MCGPO improves mean success over matched GraphGPO: by 0.47-1.46 percentage points on ALFWorld and WebShop with Qwen2.5-1.5B and 7B, and by 3.96 and 5.16 points on WebShop with Qwen3-4B and 8B. The ALFWorld gains build on baseline success above 92%, where remaining headroom is limited. Integrated success improves in three of four Qwen2.5 settings. Three-seed factorial controls support opposite-fold evidence and evidence weighting; joint state-rubric matching achieves the highest mean in all four representation-control settings.</p>
         </details>
         
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-10-12</span>
+        <span>Score 45.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>5. <a href="https://doi.org/10.1038/s41586-026-11250-8">Antiviral immunity via telomerase-like reverse transcription in bacteria</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Antiviral+immunity+via+telomerase-like+reverse+transcription+in+bacteria&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11250-8%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Antiviral+immunity+via+telomerase-like+reverse+transcription+in+bacteria%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Antiviral+immunity+via+telomerase-like+reverse+transcription+in+bacteria&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11250-8%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Antiviral+immunity+via+telomerase-like+reverse+transcription+in+bacteria%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Antiviral+immunity+via+telomerase-like+reverse+transcription+in+bacteria&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11250-8%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Antiviral+immunity+via+telomerase-like+reverse+transcription+in+bacteria%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Stephen Tang、Josephine L. Ramirez、Qixiang He、Mario Rodríguez Mestre 等 14 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11250-8">10.1038/s41586-026-11250-8</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦于细菌中的一种“端粒酶样逆转录”抗病毒免疫机制，核心任务是解释细菌如何利用类似telomerase的逆转录过程抵御噬菌体或其他病毒感染。由于提供的摘要为空，目前只能基于题名与期刊元数据判断其主题是新型细菌抗病毒防御系统及其分子机制。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是鉴定并定义了一类依赖端粒酶样逆转录活性的细菌免疫系统，提出其在抗病毒防御中的作用模式，并通过分子、生化、遗传或进化证据将其与已知细菌防御系统区分开来。若题名准确反映主结论，这项工作还可能扩展我们对逆转录相关酶在原核免疫中功能边界的认识。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>45.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，应该是：细菌是否存在一种依赖端粒酶样逆转录过程的抗病毒免疫机制，以及这种机制如何在噬菌体感染过程中被激活并产生防御效果。更细一点，作者可能在问：一种看似与真核端粒酶相似的逆转录酶，为什么会出现在细菌中，它的天然功能是否是抗病毒而非基因组维护。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：先通过基因组邻域分析或防御岛挖掘发现候选逆转录相关基因簇；再在原生宿主或异源宿主中进行敲除、补回和表达实验，测定噬菌体感染后的存活率、斑块形成、病毒复制量；随后对逆转录酶活性位点、可能的RNA模板区或辅助蛋白做突变，验证其对防御的必要性；进一步用测序、生化延伸实验、核酸产物检测或结构分析证明其“端粒酶样”特征。若文章层次较高，还可能包含系统发育分布、结构解析和机制模型整合。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三类。第一，概念亮点：把“端粒酶样逆转录”与“细菌抗病毒免疫”联系起来，本身就可能打开一个新的原核防御范式。第二，机制亮点：如果作者证明该系统使用特定RNA模板生成防御相关DNA产物，或展示与真核端粒酶在催化逻辑上的类比，这会非常有说服力。第三，应用亮点：若该系统可移植、抗性谱明确、毒性可控，它可能成为抗噬菌体工程或核酸操作工具的新来源。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：1）先获取摘要并记录系统名称、宿主菌、测试噬菌体和关键基因；2）优先查看主图1和最后一张机制图，确认发现路径与作者主张的机制框架；3）查是否有逆转录活性位点突变和感染表型对照，这是判断因果性的关键；4）记录“telomerase-like”的证据类型，是结构、生化还是序列推断；5）如果与你的研究相关，再整理该系统与retrons、CRISPR、Abi、DGR相关RT系统的异同表。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，应该是：细菌是否存在一种依赖端粒酶样逆转录过程的抗病毒免疫机制，以及这种机制如何在噬菌体感染过程中被激活并产生防御效果。更细一点，作者可能在问：一种看似与真核端粒酶相似的逆转录酶，为什么会出现在细菌中，它的天然功能是否是抗病毒而非基因组维护。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：先通过基因组邻域分析或防御岛挖掘发现候选逆转录相关基因簇；再在原生宿主或异源宿主中进行敲除、补回和表达实验，测定噬菌体感染后的存活率、斑块形成、病毒复制量；随后对逆转录酶活性位点、可能的RNA模板区或辅助蛋白做突变，验证其对防御的必要性；进一步用测序、生化延伸实验、核酸产物检测或结构分析证明其“端粒酶样”特征。若文章层次较高，还可能包含系统发育分布、结构解析和机制模型整合。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三类。第一，概念亮点：把“端粒酶样逆转录”与“细菌抗病毒免疫”联系起来，本身就可能打开一个新的原核防御范式。第二，机制亮点：如果作者证明该系统使用特定RNA模板生成防御相关DNA产物，或展示与真核端粒酶在催化逻辑上的类比，这会非常有说服力。第三，应用亮点：若该系统可移植、抗性谱明确、毒性可控，它可能成为抗噬菌体工程或核酸操作工具的新来源。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究对象、实验体系、证据强度和结论边界。基于题名还需警惕几个问题：所谓“telomerase-like”究竟是结构同源、功能类比还是仅催化现象相似；“antiviral immunity”是否真正达到机制性证明，还是仅观察到感染抑制表型；该系统是否广泛存在还是个别菌株特例；防御是否伴随强烈宿主生长代价；是否与已知retrons或其他RT相关防御系统存在重叠而非全新类别。没有摘要和图表前，不能对这些点下结论。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：1）先获取摘要并记录系统名称、宿主菌、测试噬菌体和关键基因；2）优先查看主图1和最后一张机制图，确认发现路径与作者主张的机制框架；3）查是否有逆转录活性位点突变和感染表型对照，这是判断因果性的关键；4）记录“telomerase-like”的证据类型，是结构、生化还是序列推断；5）如果与你的研究相关，再整理该系统与retrons、CRISPR、Abi、DGR相关RT系统的异同表。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名“Antiviral immunity via telomerase-like reverse transcription in bacteria”和Nature题录信息，可以较具体地推断研究对象是细菌抗噬菌体免疫系统中的逆转录相关组分，尤其是具有“端粒酶样”特征的逆转录机制。这里的“telomerase-like”提示作者可能发现某种细菌蛋白或复合体在结构域组成、模板使用方式、产物特征或催化逻辑上类似真核端粒酶，而不是一般意义上的逆转录酶。研究任务大概率包括：识别该系统、证明其能介导抗病毒表型、解析逆转录在防御中的必要性，并说明其与感染过程之间的因果关系。
+从可能方法看，Nature层级的此类工作通常会结合基因组挖掘、系统发育分析、细菌遗传操作、噬菌体感染实验、位点突变、生化测定以及可能的结构生物学。若作者声称“via telomerase-like reverse transcription”，通常需要至少证明：1）相关基因簇与抗病毒表型相关；2）逆转录活性对防御必需；3）该活性具有某种模板依赖或端粒酶样特征；4）感染时会产生可检测的核酸中间体、DNA产物或下游效应。也可能会有异源表达实验，在模式菌中重建该系统并测试对不同噬菌体的抗性谱。
+证据线索方面，题名中的“in bacteria”说明作者强调这是原核系统，而“antiviral immunity”而非一般“defense”暗示他们可能不仅展示了抗噬菌体存活差异，还尝试建立免疫机制框架，例如感染识别、记忆样过程、牺牲性感染阻断或核酸靶向。若涉及“端粒酶样”，值得特别核对是否存在内源RNA模板、重复序列添加、特定引物延伸、RNA-DNA杂交中间体，或者与已知retrons、group II intron RT、DGR相关RT明显不同的机制。
+与科研读者的关系上，这篇论文对几个方向尤其相关：细菌-噬菌体互作、原核免疫系统发现、逆转录酶进化、RNA引导防御、合成生物学抗噬菌体工具开发。如果你的方向是微生物免疫或新型酶机制，这篇文章的价值可能在于提供一个新的功能家族；如果你的方向是生物技术，则要关注其模块化程度、宿主兼容性、是否可工程化移植。
+需要核对的信息很多，因为摘要为空：具体系统名称是什么；由几个基因组成；逆转录模板来自RNA还是DNA；防御输出是直接抑制病毒复制、切割核酸、诱导细胞死亡还是其他机制；证据是体内遗传学为主还是体外生化为主；是否有冷冻电镜/晶体结构支持“telomerase-like”；防御谱覆盖哪些噬菌体；是否存在自体毒性或宿主代价；该系统在细菌中分布多广。现阶段不能声称作者已经证明了上述任何一点，只能说这些是最应优先查证的具体问题。</p></div>
+          </div>
+          
         </div>
       </details>
     
@@ -485,16 +559,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1126/science.aeb2986">Epigenetic aging and transposon dysregulation reflect size-related lifespan compression in dogs</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Epigenetic+aging+and+transposon+dysregulation+reflect+size-related+lifespan+comp&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeb2986%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Epigenetic+aging+and+transposon+dysregulation+reflect+size-related+lifespan+compression+in+dogs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Epigenetic+aging+and+transposon+dysregulation+reflect+size-related+lifespan+comp&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeb2986%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Epigenetic+aging+and+transposon+dysregulation+reflect+size-related+lifespan+compression+in+dogs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Epigenetic+aging+and+transposon+dysregulation+reflect+size-related+lifespan+comp&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeb2986%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Epigenetic+aging+and+transposon+dysregulation+reflect+size-related+lifespan+compression+in+dogs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1126/science.ael6628">AI for research mathematics has arrived</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+AI+for+research+mathematics+has+arrived&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael6628%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+AI+for+research+mathematics+has+arrived%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+AI+for+research+mathematics+has+arrived&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael6628%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+AI+for+research+mathematics+has+arrived%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+AI+for+research+mathematics+has+arrived&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael6628%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+AI+for+research+mathematics+has+arrived%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Blaise L. Mariner、Brianah M. McCoy、Ashlee Greenier、Layla Brassington 等 46 人 · DOI: <a href="https://doi.org/10.1126/science.aeb2986">10.1126/science.aeb2986</a></div>
+      <div class="authors">Jeremy Avigad、Matthew Ballard · DOI: <a href="https://doi.org/10.1126/science.ael6628">10.1126/science.ael6628</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文以家犬为对象，利用1640份甲基化组数据构建表观遗传时钟，分析体型与性别如何影响分子衰老速度及寿命压缩。摘要显示作者特别关注大型犬和雄性犬的较短寿命是否对应更快的表观遗传老化，并提出转座子失调可能介导体型相关寿命差异。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把犬类巨大寿命差异转化为一个可比较的自然实验：一方面建立可预测死亡风险的犬类表观遗传时钟，另一方面将体型相关寿命缩短具体联系到转座子位点的甲基化异常，而将性别效应定位到X染色体相关甲基化架构，从而把“谁老得更快”细化为不同分子层面的机制线索。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science评论/观点类文章聚焦“用于研究数学的人工智能”这一具体任务，核心信息是：AI系统已经能够在部分研究级数学问题上给出解答，并且还能对答案进行形式化验证。基于题名与摘要，它讨论的对象不是一般教育数学，而是面向科研数学中的问题求解与证明核验。</p></div>
+        <div class="note"><strong>贡献</strong><p>从题名和摘要判断，文章的核心贡献更可能是对一个新阶段的概括与评述：AI已从做题或辅助计算，推进到能够参与研究数学问题求解，并结合验证机制提升结果可信度。若按Science文章常见定位，它可能不是提出单一新模型，而是总结这一进展的代表性案例、意义与方法学转折点。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -515,23 +589,27 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：家犬不同体型和性别导致的显著寿命差异，是否能够用可量化的表观遗传老化速度来解释；如果可以，这种寿命压缩在分子层面究竟对应哪些基因组区域和调控对象，尤其是启动子、X染色体和转座子。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能方法包括：收集894只犬的1640份DNA甲基化组数据；训练犬类表观遗传时钟以预测年龄，并进一步检验其与死亡或死亡风险的关联；比较不同年龄阶段的时钟变化速率以识别早期快速老化；将犬的年龄相关甲基化位点映射到人类同源年龄相关基因，分析启动子甲基化和免疫通路富集；按体型和性别分层或建模，检测加速老化信号；再按基因组注释比较效应富集位置，区分X染色体相关甲基化变化与转座子相关甲基化变化。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，样本量在犬类表观遗传研究中看起来较大，且1640个甲基化组意味着可能存在重复测量，有利于提高年龄轨迹和死亡关联分析的稳定性。第二，研究没有停留在“建钟”，而是把时钟与死亡、体型、性别和跨物种同源基因联系起来，使结果更接近机制解释。第三，作者把体型效应具体指向转座子、把性别效应具体指向X染色体，这种“不同寿命决定因素对应不同表观遗传架构”的结论具有较强启发性，可能为后续功能验证提供明确靶点。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：先查论文图表和补充材料，重点记录四类信息——1）甲基化数据平台、样本年龄范围、品种和是否纵向；2）表观遗传时钟的性能指标以及与死亡关联的统计量；3）大型犬/雄性犬“加速老化”的效应大小和控制变量；4）转座子相关结果是否细化到具体TE家族、基因组区域或转录证据。若你做相关研究，可立即建立一个对照阅读清单：把犬类结果与人类或小鼠中已知的免疫衰老基因、X染色体甲基化模式和TE去抑制文献逐项比对。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>文章试图回答的具体问题应是：人工智能是否已经具备参与“研究级数学”工作的能力，以及这种能力是否不仅体现在提出答案，还体现在对答案进行严格验证。更细一点说，它关注的是AI在数学研究流程中的位置是否发生了质变：从辅助工具变成能够对真实研究问题产生可核验贡献的系统。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于摘要推测，文章的方法不是单一实验，而是通过代表性案例或领域进展来论证这一判断。可能涉及的技术路径包括：大模型或搜索系统生成证明思路/候选解；符号推理或程序化搜索处理离散结构；形式化证明器或可验证计算对结果进行核验；再由作者综合这些案例评估其科研意义。题录未提供任何具体数据、模型名、数学子领域或评测基准，因此这些只能作为待核对的方法框架。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是它把“研究数学问题求解”和“答案验证”放在一起讨论，这比单纯强调生成能力更接近科研可用性。若文章确实给出具体案例，那么其价值在于展示AI在高精度、强逻辑约束任务中的实际突破，并提示一种重要范式：让AI输出进入可验证的数学系统，从而降低幻觉和不可复核风险。作为Science文章，它还可能提供跨学科视角，帮助非数学或非AI研究者理解这一进展为何重要。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，确认文章类型和栏目属性，判断它是评论还是技术报告；第二，快速定位正文中被点名的具体数学问题、AI系统和验证工具，并逐条记录；第三，特别查找文中是否给出一个完整闭环案例：问题提出、AI求解、形式化/计算验证、人工数学解释；第四，把“solve”和“verify”的定义抄下来，与自己领域中的“可用性标准”对照；第五，若你做相关研究，可据此整理一个对照表，比较生成式AI、自动定理证明和形式化数学三条路线在任务、输入表示、验证成本和可复现性上的差异。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：家犬不同体型和性别导致的显著寿命差异，是否能够用可量化的表观遗传老化速度来解释；如果可以，这种寿命压缩在分子层面究竟对应哪些基因组区域和调控对象，尤其是启动子、X染色体和转座子。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能方法包括：收集894只犬的1640份DNA甲基化组数据；训练犬类表观遗传时钟以预测年龄，并进一步检验其与死亡或死亡风险的关联；比较不同年龄阶段的时钟变化速率以识别早期快速老化；将犬的年龄相关甲基化位点映射到人类同源年龄相关基因，分析启动子甲基化和免疫通路富集；按体型和性别分层或建模，检测加速老化信号；再按基因组注释比较效应富集位置，区分X染色体相关甲基化变化与转座子相关甲基化变化。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，样本量在犬类表观遗传研究中看起来较大，且1640个甲基化组意味着可能存在重复测量，有利于提高年龄轨迹和死亡关联分析的稳定性。第二，研究没有停留在“建钟”，而是把时钟与死亡、体型、性别和跨物种同源基因联系起来，使结果更接近机制解释。第三，作者把体型效应具体指向转座子、把性别效应具体指向X染色体，这种“不同寿命决定因素对应不同表观遗传架构”的结论具有较强启发性，可能为后续功能验证提供明确靶点。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要需要警惕的局限包括：第一，摘要未说明样本的品种组成、年龄分布、健康状态和环境背景，犬类研究中这些混杂因素可能很强。第二，“预测死亡”听起来重要，但缺少效应量、验证方式和随访设计，无法判断临床或生物学实用性。第三，转座子被称为“潜在介导者”，说明更可能是相关性而非已证实因果机制；若没有转录组、染色质或功能实验，TE失调仍是候选解释。第四，性别效应集中于X染色体并不意外，但需要区分技术偏差、拷贝数/失活状态和真正的衰老相关调控变化。第五，若体型主要由品种决定，则体型效应与品种遗传背景可能难以完全分离。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：先查论文图表和补充材料，重点记录四类信息——1）甲基化数据平台、样本年龄范围、品种和是否纵向；2）表观遗传时钟的性能指标以及与死亡关联的统计量；3）大型犬/雄性犬“加速老化”的效应大小和控制变量；4）转座子相关结果是否细化到具体TE家族、基因组区域或转录证据。若你做相关研究，可立即建立一个对照阅读清单：把犬类结果与人类或小鼠中已知的免疫衰老基因、X染色体甲基化模式和TE去抑制文献逐项比对。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从摘要可提取的研究对象非常明确：894只家犬、1640个甲基化组样本，任务是解释犬类体型和性别与寿命差异之间的分子基础。作者首先开发了一个犬类表观遗传时钟，并且不仅用于年龄预测，还声称能够预测死亡，说明其分析终点可能包含生存结局、死亡风险分层或与剩余寿命相关的统计关联。摘要还指出“表观遗传老化在生命早期最快”，这提示模型可能不是简单线性年龄回归，而是考虑了年龄非线性轨迹，或者至少在结果解释中比较了不同年龄阶段的时钟斜率。机制层面，作者把犬的年龄相关启动子甲基化变化与人类同源年龄相关基因进行对照，发现免疫通路存在保守重塑，这为跨物种衰老共性提供了证据线索。更关键的是，寿命较短的大型犬和雄性犬都表现出加速分子衰老，但两者对应的表观遗传架构不同：性别效应集中在X染色体，体型效应则在转座子处更显著，提示体型并非仅通过整体发育速度影响寿命，而可能与重复序列/转座子调控失稳有关。对科研读者而言，这篇工作与比较衰老学、兽医遗传学、表观遗传生物标志物、转座子生物学都直接相关。需要重点核对的信息包括：甲基化平台或测序方法是什么；样本是否覆盖多个品种及纵向重复采样；“预测死亡”采用何种统计框架；体型效应是否控制品种、绝育状态、疾病负担和生活环境；转座子甲基化异常是全局现象还是特定TE家族驱动；以及X染色体效应是否区分了性染色体剂量、失活状态和激素相关因素。由于目前只有摘要，不能判断因果强度，也不能确认TE失调是否有转录层面的直接证据。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>文章试图回答的具体问题应是：人工智能是否已经具备参与“研究级数学”工作的能力，以及这种能力是否不仅体现在提出答案，还体现在对答案进行严格验证。更细一点说，它关注的是AI在数学研究流程中的位置是否发生了质变：从辅助工具变成能够对真实研究问题产生可核验贡献的系统。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>基于摘要推测，文章的方法不是单一实验，而是通过代表性案例或领域进展来论证这一判断。可能涉及的技术路径包括：大模型或搜索系统生成证明思路/候选解；符号推理或程序化搜索处理离散结构；形式化证明器或可验证计算对结果进行核验；再由作者综合这些案例评估其科研意义。题录未提供任何具体数据、模型名、数学子领域或评测基准，因此这些只能作为待核对的方法框架。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是它把“研究数学问题求解”和“答案验证”放在一起讨论，这比单纯强调生成能力更接近科研可用性。若文章确实给出具体案例，那么其价值在于展示AI在高精度、强逻辑约束任务中的实际突破，并提示一种重要范式：让AI输出进入可验证的数学系统，从而降低幻觉和不可复核风险。作为Science文章，它还可能提供跨学科视角，帮助非数学或非AI研究者理解这一进展为何重要。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前可见信息，最大局限是摘要过短，缺少任何可直接评估的技术细节：不知道解决了哪些数学问题，不知道成功率、难度、原创性程度，也不知道验证流程的严格性。题名带有较强判断色彩“has arrived”，可能具有评论性或立场性，因此需要警惕其代表性是否建立在少数标志性案例上。还需注意“研究问题”可能并不等于长期开放难题，“验证答案”也未必等于端到端形式化证明。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，确认文章类型和栏目属性，判断它是评论还是技术报告；第二，快速定位正文中被点名的具体数学问题、AI系统和验证工具，并逐条记录；第三，特别查找文中是否给出一个完整闭环案例：问题提出、AI求解、形式化/计算验证、人工数学解释；第四，把“solve”和“verify”的定义抄下来，与自己领域中的“可用性标准”对照；第五，若你做相关研究，可据此整理一个对照表，比较生成式AI、自动定理证明和形式化数学三条路线在任务、输入表示、验证成本和可复现性上的差异。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、期刊、摘要和元数据，这篇文章很可能是一篇面向广泛科研读者的评论、观点或新闻式综述，而非完整技术论文。研究对象非常具体：研究数学中的“问题求解”和“答案验证”两件事。摘要中的两个动词值得分开看：一是“solve research problems in mathematics”，说明讨论的不是中学/竞赛/标准基准题，而是至少部分达到研究层面的数学问题；二是“verify the answers”，说明文章强调的不只是生成结论，还包括借助形式化证明、定理证明器、可验证计算或独立检查流程来确认正确性。
+从方法线索看，文章大概率围绕“生成+验证”的技术路线展开：先由AI系统提出猜想、构造证明思路、搜索反例或完成某类组合/代数/数论任务，再通过形式化工具或严格数学检查确认结果。这类工作常见对象包括定理证明、证明搜索、符号推理、组合构造、自动猜想生成，以及与Lean、Isabelle、Coq等形式化系统的结合；但这些都只是基于领域背景的可能路径，题录本身没有给出具体系统名称、数学分支、数据集或案例，因此不能当作本文已明确报告的事实。
+证据线索方面，Science上以“AI for research mathematics has arrived”为题，通常意味着作者在讨论一个领域拐点：已有足够有说服力的实例表明，AI不再只是辅助排版、检索文献或做数值实验，而是开始触及研究数学中的原创性任务。不过，摘要没有说明这些“research problems”究竟是开放问题、已知难题、特定子领域中的新命题，还是在受限设定下的研究任务；也没有说明验证是完全形式化验证，还是人工审阅加计算机检查。因此，读者需要特别核对文章正文中列举的具体案例和验证标准。
+如果你的方向与AI4Science、自动定理证明、形式化数学、符号推理、科学发现自动化相关，这篇文章的价值主要在于帮助判断领域成熟度与研究机会：一方面，研究数学是检验AI推理能力和可靠性的高门槛场景；另一方面，“能验证”使其比很多开放式科学发现任务更适合作为高可信AI研究平台。对应用研究者而言，最关键的问题不是AI是否“会做数学”，而是它在哪些数学对象上有效、依赖什么表示与搜索机制、验证链条是否闭环、以及人类数学家在流程中的角色。
+需要核对的信息包括：1）文章类型究竟是评论、政策观点还是新闻特写；2）文中点名的AI系统、数学问题和证明环境；3）“solve”对应的是完整证明、部分引理、猜想发现还是计算性结果；4）“verify”是形式化证明器验证、独立程序复核，还是传统同行数学检查；5）是否讨论了失败案例、适用边界、算力成本和可重复性。由于摘要极短，任何关于模型架构、实验结果、数学分支和性能指标的进一步表述都必须回到正文核实。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The extraordinary lifespan variation in domestic dogs provides a natural experiment for testing how intrinsic rates of biological aging shape lifespan. Using 1640 methylomes from 894 dogs, we developed an epigenetic clock that predicted mortality and demonstrated that epigenetic aging is fastest early in life. At orthologs of human age-associated genes, dogs exhibited concordant age effects on promoter methylation, highlighting conserved remodeling of immune pathways. We found that larger and male dogs, which are shorter lived, exhibit accelerated molecular aging. Distinct epigenetic architectures mediated these effects: Sex-dependent methylation changes were concentrated on the X chromosome, whereas size-associated methylation was especially pronounced at transposable elements (TEs). These findings show that epigenetics reflects lifespan differences in dogs and identifies TEs as potential mediators of size-associated lifespan.</p>
+          <p>Artificial intelligence can now solve research problems in mathematics and verify the answers</p>
         </details>
         
         </div>
@@ -547,16 +625,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.ael8752">Demographic “doomsday” misses the mark</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Demographic+%E2%80%9Cdoomsday%E2%80%9D+misses+the+mark&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael8752%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Demographic+%E2%80%9Cdoomsday%E2%80%9D+misses+the+mark%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Demographic+%E2%80%9Cdoomsday%E2%80%9D+misses+the+mark&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael8752%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Demographic+%E2%80%9Cdoomsday%E2%80%9D+misses+the+mark%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Demographic+%E2%80%9Cdoomsday%E2%80%9D+misses+the+mark&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael8752%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Demographic+%E2%80%9Cdoomsday%E2%80%9D+misses+the+mark%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1126/science.aej2213">Advancing mathematics research with AI-driven formal proof search</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Advancing+mathematics+research+with+AI-driven+formal+proof+search&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej2213%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Advancing+mathematics+research+with+AI-driven+formal+proof+search%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Advancing+mathematics+research+with+AI-driven+formal+proof+search&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej2213%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Advancing+mathematics+research+with+AI-driven+formal+proof+search%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Advancing+mathematics+research+with+AI-driven+formal+proof+search&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej2213%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Advancing+mathematics+research+with+AI-driven+formal+proof+search%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Javier A. Birchenall · DOI: <a href="https://doi.org/10.1126/science.ael8752">10.1126/science.ael8752</a></div>
+      <div class="authors">George Tsoukalas、Anton Kovsharov、Sergey Shirobokov、Anja Surina 等 21 人 · DOI: <a href="https://doi.org/10.1126/science.aej2213">10.1126/science.aej2213</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文针对“1960年发表于Science的一项人口奇点将在2026年出现”的著名人口预测进行再评估，核心任务是指出该“人口末日/奇点”式人口增长预言与当前现实人口趋势并不相符。基于题名与摘要，作者的结论性信息非常明确：到2026年，人类人口并未接近该预测所暗示的奇点状态。</p></div>
-        <div class="note"><strong>贡献</strong><p>论文的核心贡献很可能是对一则具有历史影响的人口增长极端预测进行简短而直接的经验性反驳或历史性澄清：把1960年的“人口奇点/人口末日”预言与截至2026年前后的实际人口数据或长期人口转变事实进行对照，说明该预测失准，并借此提醒科研界在讨论人口动力学时避免把短期外推或奇点式叙事当作可靠科学判断。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文围绕“用AI驱动的形式化证明搜索解决开放数学问题”这一具体任务展开：作者将大语言模型与Lean证明验证结合，报告其系统自主解决了353个Erdős开放问题中的9个，以及492个OEIS猜想中的44个。摘要还表明，该方法不仅用于基准测试，还已被部署到组合数学、优化、图论、代数几何和量子光学等研究场景。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于给出了一种可被编译器逐步验证的AI数学研究范式：不是仅让LLM生成非形式化证明文本，而是让其在Lean中进行形式化证明搜索，并以“解决开放问题的数量”和“跨领域部署”作为价值证据。摘要特别强调，甚至一个仅在“LLM生成—Lean验证”之间交替的基础代理，也能复现Erdős问题上的成功，说明形式化验证闭环本身可能就是关键增益来源。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -577,23 +655,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体研究问题是：1960年Science上一项关于全球人口增长的极端预测，为何会推导出“2026年人口奇点/末日”式结论，而截至2026年前后的现实人口演化为何明显没有走向这一结果？进一步说，这篇文章可能在追问：人口增长是否适合用会产生有限时间奇点的简单外推模型描述，还是必须纳入人口转变与增长减速机制。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于摘要，最可能的方法是历史文献回顾加经验对照分析。作者可能先定位1960年的原始Science论文及其数学表达，再将其预测路径与后续几十年的实际人口数据进行比较；数据上大概率会用全球人口总量、年增长率、生育率或联合国人口数据库等公开统计；分析路径可能包括展示原预测的外推假设、指出其隐含的持续加速增长前提，并用现实中的增长放缓事实进行反证。若文章篇幅较短，也可能主要依赖一两个关键图表和历史事实而非复杂新模型。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点在于研究对象高度具体且具有历史辨识度：不是泛泛讨论“人口预测常常不准”，而是锁定一则明确声称“2026年出现人口奇点”的经典或知名预测，并在预测年份附近给出现实检验。这种设计的证据说服力通常较强，因为它把抽象的方法论争议落到可核查的时间点、文献对象和人口事实之上。对科研人员而言，其价值还在于提醒：有限时间奇点、指数外推或灾难化叙事在复杂社会—人口系统中可能严重误导。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作有五个：第一，查找1960年Science中被点名反驳的原始人口预测论文，记录其作者、模型形式和“2026奇点”的精确定义；第二，核对Birchenall这篇文章的文献类型与篇幅，判断它是评论、回顾还是研究论文；第三，提取文中使用的人口数据源与关键图表，尤其是全球人口和增长率时间序列；第四，把原始预测曲线与联合国最新人口数据放在同一坐标下做一个简单复现图；第五，记录一个方法学问题：原预测失败究竟是参数失准、模型结构错误，还是忽略了人口转变机制。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何把大语言模型在数学上的生成能力，转化为对真实开放数学问题的可靠求解能力，而不是停留在容易出错的自然语言证明层面。更具体地说，它要回答“LLM+形式化证明验证”是否足以在规模化开放问题集合上产生真正可核验的新证明。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径是构建一个面向Lean的自主证明搜索代理。输入端可能是已形式化或半形式化的开放问题；生成端由LLM提出证明步骤、策略、辅助引理或战术脚本；验证端由Lean编译器检查每一步是否合法；控制层则在失败时进行回溯、重写、分解子目标或继续搜索。实验数据/任务至少包括两个明确集合：353个开放Erdős问题和492个OEIS猜想。摘要还暗示作者比较了复杂代理与一个更基础的“交替生成-验证”代理，以说明最小闭环系统的有效性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，评价对象不是常见教材题或竞赛题，而是开放问题，这使结果更接近真实科研价值。第二，验证机制是Lean形式系统，因此成功案例原则上具有逐步可检查性，显著缓解LLM数学推理中“看似合理但错误”的核心痛点。第三，摘要给出了跨任务和跨领域证据：既有Erdős问题、OEIS猜想这样的离散数学任务，也提到在组合数学、优化、图论、代数几何、量子光学中的部署，显示方法可能具有较强迁移性。另一个重要信号是基础代理也能成功，说明该范式可能具备较低的系统复杂度门槛。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查正文或补充材料中列出的9个Erdős问题和44个OEIS猜想清单，记录每个命题的形式化难度、数学领域和证明长度；第二，定位系统架构图，确认代理是否包含检索、树搜索、子目标分解、候选引理生成等模块；第三，查“基础代理”实验，判断LLM生成与Lean验证闭环本身贡献有多大；第四，如果你的方向可形式化，挑选一个小型命题集，用现有Lean环境复现“生成—验证—回溯”的最简流程；第五，专门记录人工参与点、计算预算和失败案例，因为这些信息决定该方法能否迁移到你的研究问题。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>具体研究问题是：1960年Science上一项关于全球人口增长的极端预测，为何会推导出“2026年人口奇点/末日”式结论，而截至2026年前后的现实人口演化为何明显没有走向这一结果？进一步说，这篇文章可能在追问：人口增长是否适合用会产生有限时间奇点的简单外推模型描述，还是必须纳入人口转变与增长减速机制。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>基于摘要，最可能的方法是历史文献回顾加经验对照分析。作者可能先定位1960年的原始Science论文及其数学表达，再将其预测路径与后续几十年的实际人口数据进行比较；数据上大概率会用全球人口总量、年增长率、生育率或联合国人口数据库等公开统计；分析路径可能包括展示原预测的外推假设、指出其隐含的持续加速增长前提，并用现实中的增长放缓事实进行反证。若文章篇幅较短，也可能主要依赖一两个关键图表和历史事实而非复杂新模型。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点在于研究对象高度具体且具有历史辨识度：不是泛泛讨论“人口预测常常不准”，而是锁定一则明确声称“2026年出现人口奇点”的经典或知名预测，并在预测年份附近给出现实检验。这种设计的证据说服力通常较强，因为它把抽象的方法论争议落到可核查的时间点、文献对象和人口事实之上。对科研人员而言，其价值还在于提醒：有限时间奇点、指数外推或灾难化叙事在复杂社会—人口系统中可能严重误导。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>局限首先是当前信息极少，无法确认文章是否提供系统的定量误差分析，还是仅作评论性论证。其次，如果文章主要聚焦单一历史预测案例，其外推到“所有人口预测方法”的普遍性可能有限。再次，摘要只给出否定性结论“we are not even close”，但没有说明比较基准、误差量级、数据截止年份和替代模型，因此读者需要警惕把一则失败预测的反例过度解读为对长期人口风险或资源压力问题的全面否定。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作有五个：第一，查找1960年Science中被点名反驳的原始人口预测论文，记录其作者、模型形式和“2026奇点”的精确定义；第二，核对Birchenall这篇文章的文献类型与篇幅，判断它是评论、回顾还是研究论文；第三，提取文中使用的人口数据源与关键图表，尤其是全球人口和增长率时间序列；第四，把原始预测曲线与联合国最新人口数据放在同一坐标下做一个简单复现图；第五，记录一个方法学问题：原预测失败究竟是参数失准、模型结构错误，还是忽略了人口转变机制。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Demographic ‘doomsday’ misses the mark”和摘要“A dire prediction published in Science in 1960 anticipated a population singularity in 2026—we are not even close”看，这不是一篇常规的人口统计建模论文题目，更像是针对历史文献、人口预测方法或科学叙事的评论、回顾或短文。研究对象非常具体：1960年Science上发表的一则人口增长预测，其声称2026年会出现某种“population singularity（人口奇点）”。作者Javier A. Birchenall的工作重点，按现有信息推断，应是把这一历史预测与现实世界人口规模、增长率、可能还有生育率下降和人口转变进程进行对照，指出“我们甚至远未接近”该奇点。可预期的证据线索包括：全球总人口时间序列、人口增长率峰值后回落的事实、地区生育率下降、联合国或其他权威机构的人口估计/预测，以及对1960年原始预测所依据数学外推形式的批评。若用户关注人口经济学、长期增长、技术—人口耦合、马尔萨斯陷阱或奇点式预测，这篇文章的价值在于提供一个具体案例：历史上看似精确且戏剧化的外推，可能因忽略人口转变、制度变化、健康改善、教育扩张、城市化和生育行为变化而失效。需要特别核对的信息包括：1960年被批评的具体论文是哪一篇；其“奇点”是指总人口发散、增长率发散，还是某种数学拟合在2026年出现垂直渐近线；Birchenall使用的是全球数据还是某些国家/地区数据；文章是Research Article、Perspective、Editorial 还是Technical Comment；以及作者是否提出了替代性人口增长解释框架，还是仅做历史纠偏。由于目前只有题名、摘要和元数据，不能断言其具体模型、图表、数据源和定量结果。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何把大语言模型在数学上的生成能力，转化为对真实开放数学问题的可靠求解能力，而不是停留在容易出错的自然语言证明层面。更具体地说，它要回答“LLM+形式化证明验证”是否足以在规模化开放问题集合上产生真正可核验的新证明。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径是构建一个面向Lean的自主证明搜索代理。输入端可能是已形式化或半形式化的开放问题；生成端由LLM提出证明步骤、策略、辅助引理或战术脚本；验证端由Lean编译器检查每一步是否合法；控制层则在失败时进行回溯、重写、分解子目标或继续搜索。实验数据/任务至少包括两个明确集合：353个开放Erdős问题和492个OEIS猜想。摘要还暗示作者比较了复杂代理与一个更基础的“交替生成-验证”代理，以说明最小闭环系统的有效性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，评价对象不是常见教材题或竞赛题，而是开放问题，这使结果更接近真实科研价值。第二，验证机制是Lean形式系统，因此成功案例原则上具有逐步可检查性，显著缓解LLM数学推理中“看似合理但错误”的核心痛点。第三，摘要给出了跨任务和跨领域证据：既有Erdős问题、OEIS猜想这样的离散数学任务，也提到在组合数学、优化、图论、代数几何、量子光学中的部署，显示方法可能具有较强迁移性。另一个重要信号是基础代理也能成功，说明该范式可能具备较低的系统复杂度门槛。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：一，缺少问题级别细节，无法判断9个Erdős问题和44个OEIS猜想的难度分布、数学意义和新颖性强弱；二，自动化边界不清楚，不知道形式化编码、问题筛选、提示设计、失败分析中有多少人工参与；三，缺少与其他方法的定量对照，例如纯LLM、纯符号搜索、不同验证器或不同代理架构；四，摘要没有说明计算成本、搜索时间、模型规模和Lean库依赖，这些都会影响可复现性与推广性；五，“已部署到多个领域”不等于已在这些领域稳定地产出经过同行确认的新结果。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查正文或补充材料中列出的9个Erdős问题和44个OEIS猜想清单，记录每个命题的形式化难度、数学领域和证明长度；第二，定位系统架构图，确认代理是否包含检索、树搜索、子目标分解、候选引理生成等模块；第三，查“基础代理”实验，判断LLM生成与Lean验证闭环本身贡献有多大；第四，如果你的方向可形式化，挑选一个小型命题集，用现有Lean环境复现“生成—验证—回溯”的最简流程；第五，专门记录人工参与点、计算预算和失败案例，因为这些信息决定该方法能否迁移到你的研究问题。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：作者关注的是数学研究中的“开放问题求解”，尤其是可被转写为Lean形式系统中的命题。方法上，系统应是一个自主代理（AI agent），核心机制是让LLM提出候选证明步骤、引理或整体证明草案，再由Lean编译器/证明检查器逐步验证；验证失败后，代理继续搜索、修正或回溯。摘要把这种流程称为formal proof search，说明重点不只是自然语言推理能力，而是“在形式系统中搜索可验证证明路径”。证据线索主要有三类：第一，开放问题层面的结果，包含9/353个Erdős问题和44/492个OEIS猜想；第二，消融式或简化系统证据，即“基础代理”也能复现Erdős成功，暗示复杂代理架构未必是唯一原因；第三，应用外延，系统已部署到组合数学、优化、图论、代数几何、量子光学研究，表明作者希望把它定位为通用研究工具，而非单一竞赛型系统。对科研人员而言，这篇工作的直接意义在于：如果你的研究问题能被形式化编码，AI的价值可能不再只是启发式猜想生成，而是进入“可验证、可积累、可自动搜索”的工作流。尤其对离散数学、定理证明、符号推理、程序验证和可形式化的理论科学方向，这种范式可能改变日常研究流程。需要核对的信息很多：例如9个Erdős问题和44个OEIS猜想分别属于哪些具体命题；这些问题在进入系统前是否经过人工形式化、难度如何、是否存在已知但未发表的解；“autonomously”具体指从问题表述到证明完成的自动化边界；Lean库依赖程度、搜索预算、模型规模、是否使用检索、树搜索或强化学习；以及跨领域部署目前是概念验证、内部协作还是已产生新定理。由于目前只有摘要，不能判断这些结果的严格新颖性边界、人工参与比例和可复现性。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>A dire prediction published in Science in 1960 anticipated a population singularity in 2026—we are not even close</p>
+          <p>Large language models (LLMs) increasingly excel at mathematics tasks, but their unreliability limits their utility in mathematics research. A mitigation is to use LLMs to generate formal proofs in languages such as Lean, in which the compiler verifies every proof step. We present the first demonstration of this method’s value in solving open problems at scale. We built an artificial intelligence agent for formal proof search that autonomously resolved nine of 353 open Erdős problems, proved 44/492 On-Line Encyclopedia of Integer Sequences conjectures, and is being deployed in combinatorics, optimization, graph theory, algebraic geometry, and quantum optics research. Even a basic agent alternating LLM-based generation with Lean-based verification replicated the Erdős successes. These findings demonstrate the power of formal proof search as an enabler of autonomous mathematical discovery.</p>
         </details>
         
         </div>
@@ -609,16 +687,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.adx9628">Golgi-derived vesicles containing PI(3,4)P 2 drive mitochondrial fusion</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Golgi-derived+vesicles+containing+PI%283%2C4%29P+2+drive+mitochondrial+fusion&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adx9628%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Golgi-derived+vesicles+containing+PI%283%2C4%29P+2+drive+mitochondrial+fusion%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Golgi-derived+vesicles+containing+PI%283%2C4%29P+2+drive+mitochondrial+fusion&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adx9628%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Golgi-derived+vesicles+containing+PI%283%2C4%29P+2+drive+mitochondrial+fusion%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Golgi-derived+vesicles+containing+PI%283%2C4%29P+2+drive+mitochondrial+fusion&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adx9628%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Golgi-derived+vesicles+containing+PI%283%2C4%29P+2+drive+mitochondrial+fusion%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>8. <a href="https://doi.org/10.1126/science.aeh3915">Wafer-scale low-symmetry graphene moiré superlattice for integrated quantum rectifiers</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Wafer-scale+low-symmetry+graphene+moir%C3%A9+superlattice+for+integrated+quantum+rect&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh3915%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Wafer-scale+low-symmetry+graphene+moir%C3%A9+superlattice+for+integrated+quantum+rectifiers%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Wafer-scale+low-symmetry+graphene+moir%C3%A9+superlattice+for+integrated+quantum+rect&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh3915%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Wafer-scale+low-symmetry+graphene+moir%C3%A9+superlattice+for+integrated+quantum+rectifiers%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Wafer-scale+low-symmetry+graphene+moir%C3%A9+superlattice+for+integrated+quantum+rect&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh3915%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Wafer-scale+low-symmetry+graphene+moir%C3%A9+superlattice+for+integrated+quantum+rectifiers%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Sho Aki、Mayuko Segawa、Vincent Anton、Suvagata R. Chowdhury 等 24 人 · DOI: <a href="https://doi.org/10.1126/science.adx9628">10.1126/science.adx9628</a></div>
+      <div class="authors">Wenhao Tan、Jiuming Liu、Zhenhao Gong、Yunyu Hong 等 22 人 · DOI: <a href="https://doi.org/10.1126/science.aeh3915">10.1126/science.aeh3915</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该研究聚焦线粒体融合这一具体膜重塑任务，提出一类富含PI(3,4)P2的高尔基体来源囊泡会被招募到ER和mitofusin标记的融合位点，从而促进线粒体融合。摘要还指出，产生PI(3,4)P2的II类PI3K同工酶PI3K-C2α/PI3K-C2β缺失会导致融合受损、线粒体碎片化，并在心肌细胞特异性双敲小鼠中关联到心力衰竭。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把“高尔基体来源囊泡-特定磷脂PI(3,4)P2-线粒体融合位点”串成一条新的细胞器互作机制链，补充了以往更偏向线粒体分裂侧的跨细胞器调控图景。论文还给出疾病相关性线索：PI3K-C2α/β介导的PI(3,4)P2生成对心肌线粒体形态稳态和心功能可能是必需的。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“晶圆级低对称石墨烯莫尔超晶格”这一具体对象，提出通过Ge(110)表面预熔化工程在晶圆尺度上把石墨烯对称性从D6h降到C1v，并据此实现室温非线性霍尔整流器。摘要声称该体系可产生约11 微米/伏/欧姆的室温非线性霍尔电导，并在射频输入下输出超过20毫伏，进一步驱动商用升压器和LED。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出一种不依赖外加场或复杂异质堆叠的低对称性构筑路线：利用Ge(110)表面受控预熔化形成条纹表面图案，从而在大面积石墨烯中内禀打破高对称性约束，释放Berry曲率相关的反常输运。若摘要表述成立，其贡献还包括把这种低对称石墨烯平台与CMOS兼容工艺、晶圆级制备和射频整流应用直接连接起来，展示从量子输运机制到集成器件输出的完整链条。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -639,23 +717,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文要解决的具体问题是：在线粒体融合过程中，哪些跨细胞器接触和膜运输事件提供了促进外膜/内膜融合所需的局部因子？更具体地说，作者在问高尔基体来源囊泡是否像在线粒体分裂中那样参与膜重塑，以及其中的特定磷脂PI(3,4)P2和其生成酶PI3K-C2α/PI3K-C2β是否是融合所必需的。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于摘要可推测的方法路径包括：1）细胞成像，利用ER标记、mitofusin标记和PI(3,4)P2相关探针观察高尔基体来源囊泡是否在时空上富集到线粒体融合位点；2）遗传扰动，敲除或缺失PI3K-C2α与PI3K-C2β，检测线粒体网络由管状转为碎片化的形态变化；3）机制判别，通过融合相关读出而非仅形态学，证明碎片化主要来自融合受损；4）体内模型，构建心肌细胞特异性PI3K-C2α/β双缺失小鼠，评估线粒体形态和心功能；5）可能还会结合高尔基体来源追踪、脂质生化或电子显微镜来支持囊泡身份与膜接触结构。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，机制对象非常清晰：不是笼统的脂质调控，而是锁定PI(3,4)P2这一具体磷脂和PI3K-C2α/β这组具体酶。其二，证据链看起来跨层级：从囊泡招募到细胞线粒体形态，再到心肌特异性小鼠的器官表型，具备从细胞机制到生理后果的延展性。其三，概念上有新意：摘要最后提出“携带不同磷脂的高尔基体来源囊泡亚群控制线粒体膜重塑和稳态”，这意味着作者可能在建立一个更一般的框架，即高尔基体囊泡通过脂质编码来区分分裂与融合任务。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文图中PI(3,4)P2囊泡与ER/mitofusin/线粒体融合事件的成像证据，确认是否有时间序列和定量；2）重点看PI3K-C2α/β缺失后作者如何证明是“融合下降”而不是“分裂上升”；3）记录所有救援实验，尤其是补回PI3K-C2α/β、操纵PI(3,4)P2或改变mitofusin后的结果；4）查看心肌特异性双敲小鼠的心功能指标、线粒体超微结构和是否有组织特异性对照；5）如果你的方向涉及线粒体动力学或脂质信号，可把这篇文献加入“高尔基体-线粒体接触/囊泡脂质编码”主题下，并列出待核对问题：直接受体是谁、囊泡来源如何定义、与已知分裂相关高尔基体囊泡有何异同。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何在不依赖外加电场/磁场或复杂异质堆叠的前提下，于晶圆尺度构建低对称二维量子材料平台，使高对称石墨烯中原本受晶体对称性限制的Berry曲率相关非线性霍尔输运能够在室温下稳定出现，并进一步用于可集成的射频整流器件。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>按摘要推测，研究路径包括：在Ge(110)基底上实施受控表面预熔化，生成条纹状锗表面形貌；在其上制备大面积石墨烯并形成低对称莫尔/界面超结构；通过结构表征与对称性分析确认石墨烯有效点群由D6h降至C1v；进行室温非线性霍尔输运测量，提取约11 微米/伏/欧姆的非线性霍尔电导；再用第一性原理计算分析杂化能带，指出响应来源于锗杂化能带与石墨烯Dirac锥形成的过倾斜有质量Dirac锥；最后把材料做成集成整流器，在射频激励下测试直流输出并验证可驱动商用升压器和LED。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是把“低对称性设计”从小尺寸、复杂堆叠或外场调控，转向更接近制造工艺的基底表面工程，并强调晶圆级与CMOS兼容。第二个亮点是对象选择具体且有反差：石墨烯通常被视为高对称、Berry曲率效应受限的体系，而这里通过Ge(110)界面把它改造成可观室温非线性霍尔平台。第三个亮点是摘要给出了较完整的应用闭环，不仅报告输运系数，还展示了射频整流输出超过20 mV并驱动实际元件，说明其不只是基础物理现象展示。第四个亮点是机理上给出第一性原理支持，强调过倾斜有质量Dirac锥这一较具体的能带图像，而不是仅停留在经验关联。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先带着五个问题去查正文图表：1）看材料结构图和显微表征，确认Ge(110)条纹与石墨烯低对称超结构的直接证据；2）看非线性霍尔测量电路、定义和单位，记录约11 微米/伏/欧姆对应的测试条件；3）看第一性原理能带图，核对“overtilted massive Dirac cones”具体出现在何处、由哪些轨道杂化形成；4）看整流器件图和输出曲线，记下输入频率、功率、负载和是否需要外部匹配/升压；5）与已知非线性霍尔材料做一页对照表，比较室温、可扩展性、输出电压和工艺兼容性。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文要解决的具体问题是：在线粒体融合过程中，哪些跨细胞器接触和膜运输事件提供了促进外膜/内膜融合所需的局部因子？更具体地说，作者在问高尔基体来源囊泡是否像在线粒体分裂中那样参与膜重塑，以及其中的特定磷脂PI(3,4)P2和其生成酶PI3K-C2α/PI3K-C2β是否是融合所必需的。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>基于摘要可推测的方法路径包括：1）细胞成像，利用ER标记、mitofusin标记和PI(3,4)P2相关探针观察高尔基体来源囊泡是否在时空上富集到线粒体融合位点；2）遗传扰动，敲除或缺失PI3K-C2α与PI3K-C2β，检测线粒体网络由管状转为碎片化的形态变化；3）机制判别，通过融合相关读出而非仅形态学，证明碎片化主要来自融合受损；4）体内模型，构建心肌细胞特异性PI3K-C2α/β双缺失小鼠，评估线粒体形态和心功能；5）可能还会结合高尔基体来源追踪、脂质生化或电子显微镜来支持囊泡身份与膜接触结构。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，机制对象非常清晰：不是笼统的脂质调控，而是锁定PI(3,4)P2这一具体磷脂和PI3K-C2α/β这组具体酶。其二，证据链看起来跨层级：从囊泡招募到细胞线粒体形态，再到心肌特异性小鼠的器官表型，具备从细胞机制到生理后果的延展性。其三，概念上有新意：摘要最后提出“携带不同磷脂的高尔基体来源囊泡亚群控制线粒体膜重塑和稳态”，这意味着作者可能在建立一个更一般的框架，即高尔基体囊泡通过脂质编码来区分分裂与融合任务。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭题录和摘要，仍需警惕几个边界。第一，尚不清楚PI(3,4)P2是直接作用于线粒体融合机器，还是通过改变囊泡运输、膜接触或局部膜物性间接影响融合。第二，PI3K-C2α/β双缺失可能引起广泛膜运输和信号转导改变，因此线粒体碎片化与心衰表型的特异性因果链需要看正文中的救援实验和对照。第三，摘要没有说明融合位点招募的定量强度、时间顺序和统计规模，也未说明是否区分外膜融合与内膜融合步骤。第四，心肌模型的表型虽然强，但是否排除了发育效应、代偿效应和系统性代谢改变，摘要无法判断。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文图中PI(3,4)P2囊泡与ER/mitofusin/线粒体融合事件的成像证据，确认是否有时间序列和定量；2）重点看PI3K-C2α/β缺失后作者如何证明是“融合下降”而不是“分裂上升”；3）记录所有救援实验，尤其是补回PI3K-C2α/β、操纵PI(3,4)P2或改变mitofusin后的结果；4）查看心肌特异性双敲小鼠的心功能指标、线粒体超微结构和是否有组织特异性对照；5）如果你的方向涉及线粒体动力学或脂质信号，可把这篇文献加入“高尔基体-线粒体接触/囊泡脂质编码”主题下，并列出待核对问题：直接受体是谁、囊泡来源如何定义、与已知分裂相关高尔基体囊泡有何异同。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：不是泛泛讨论线粒体动力学，而是锁定“含PI(3,4)P2的高尔基体来源囊泡”在“线粒体融合位点”中的作用。摘要中的关键现象链条包括：第一，这类囊泡会被招募到ER和mitofusin标记的融合位点，说明作者可能通过活细胞成像、脂质探针、细胞器标记和时空共定位分析来定义融合事件附近的囊泡行为；第二，去除PI3K-C2α和PI3K-C2β后出现线粒体碎片化，且被解释为“源于融合受损”，这提示作者可能区分了融合缺陷与分裂增强两种机制，可能用到线粒体形态定量、融合速率测定、光转换/内容物混合实验或与分裂标志物的对照；第三，心肌细胞特异性双缺失小鼠出现线粒体碎片化和心力衰竭，说明工作从细胞层面延伸到组织/器官层面，可能包含心脏表型、超微结构或呼吸功能评估。对相关研究方向而言，这篇论文的重要性在于把高尔基体囊泡和特定磷脂信号直接放到线粒体融合机制中，提示不同磷脂组成的高尔基体来源囊泡可能分别参与分裂与融合两类相反的膜重塑任务。需要核对的信息包括：PI(3,4)P2在囊泡上的检测方式与特异性、囊泡招募是否具有因果性而非伴随现象、PI3K-C2α/β双缺失是否存在影响膜运输或细胞代谢的间接效应、心衰表型与线粒体融合缺陷之间的证据强度，以及是否鉴定了PI(3,4)P2在线粒体融合机器上的直接效应分子。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何在不依赖外加电场/磁场或复杂异质堆叠的前提下，于晶圆尺度构建低对称二维量子材料平台，使高对称石墨烯中原本受晶体对称性限制的Berry曲率相关非线性霍尔输运能够在室温下稳定出现，并进一步用于可集成的射频整流器件。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>按摘要推测，研究路径包括：在Ge(110)基底上实施受控表面预熔化，生成条纹状锗表面形貌；在其上制备大面积石墨烯并形成低对称莫尔/界面超结构；通过结构表征与对称性分析确认石墨烯有效点群由D6h降至C1v；进行室温非线性霍尔输运测量，提取约11 微米/伏/欧姆的非线性霍尔电导；再用第一性原理计算分析杂化能带，指出响应来源于锗杂化能带与石墨烯Dirac锥形成的过倾斜有质量Dirac锥；最后把材料做成集成整流器，在射频激励下测试直流输出并验证可驱动商用升压器和LED。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是把“低对称性设计”从小尺寸、复杂堆叠或外场调控，转向更接近制造工艺的基底表面工程，并强调晶圆级与CMOS兼容。第二个亮点是对象选择具体且有反差：石墨烯通常被视为高对称、Berry曲率效应受限的体系，而这里通过Ge(110)界面把它改造成可观室温非线性霍尔平台。第三个亮点是摘要给出了较完整的应用闭环，不仅报告输运系数，还展示了射频整流输出超过20 mV并驱动实际元件，说明其不只是基础物理现象展示。第四个亮点是机理上给出第一性原理支持，强调过倾斜有质量Dirac锥这一较具体的能带图像，而不是仅停留在经验关联。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，仍需警惕几个边界。首先，“莫尔超晶格”的定义和几何来源尚不清楚，需确认是否真有可分辨的莫尔周期及其与条纹Ge表面的关系。其次，非线性霍尔电导的数值虽然醒目，但缺少误差、器件间一致性、门控依赖、频率依赖和温度依赖等关键信息，难以判断稳健性。第三，摘要把机理归因于锗与石墨烯杂化能带，但尚不清楚实验上是否有足够直接的能带证据，例如ARPES或系统的理论-实验对应。第四，器件演示中的&gt;20 mV输出是否在高功率射频输入、特定匹配网络或外部升压条件下获得，需要避免把概念验证误读为高效率整流。第五，所谓CMOS兼容更多像平台潜力判断，具体工艺兼容性、良率和后端集成细节在摘要中并未展开。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先带着五个问题去查正文图表：1）看材料结构图和显微表征，确认Ge(110)条纹与石墨烯低对称超结构的直接证据；2）看非线性霍尔测量电路、定义和单位，记录约11 微米/伏/欧姆对应的测试条件；3）看第一性原理能带图，核对“overtilted massive Dirac cones”具体出现在何处、由哪些轨道杂化形成；4）看整流器件图和输出曲线，记下输入频率、功率、负载和是否需要外部匹配/升压；5）与已知非线性霍尔材料做一页对照表，比较室温、可扩展性、输出电压和工艺兼容性。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象不是一般的扭转双层石墨烯，而是生长在Ge(110)上的“低对称石墨烯莫尔超晶格”，重点任务是通过基底表面工程在大面积、可集成条件下获得原本高对称石墨烯中被晶体对称性禁止的Berry曲率物理和非线性霍尔响应。方法线索较明确：一是材料制备上采用surface premelting engineering，即通过受控预熔化在锗(110)表面形成条纹状图案；二是结构/对称性层面，这些条纹图案与石墨烯耦合后把石墨烯有效对称性从D6h降到C1v；三是机理分析上结合第一性原理计算，将非线性霍尔效应归因于锗杂化能带与石墨烯Dirac锥形成的overtilted massive Dirac cones；四是器件层面构建集成非线性霍尔整流器，直接把射频输入转成直流输出，并驱动后级电子元件。证据链在摘要中呈现为“结构工程→对称性降低→Berry曲率相关非线性霍尔电导→射频整流输出→驱动商用器件”。对相关方向研究者而言，这篇工作可能特别适合关注二维材料对称性工程、Berry curvature dipole、零磁场整流、CMOS兼容量子器件和晶圆级生长的人。需要重点核对的信息包括：所谓“莫尔超晶格”的具体形成机制是否来自石墨烯与Ge(110)条纹/晶格失配，而非传统双层扭转；非线性霍尔电导的定义、测量几何和单位换算；室温下信号大小与已有WTe2、MoTe2、双层石墨烯等体系相比处于什么水平；器件输出&gt;20 mV对应的输入频率、功率、阻抗匹配和负载条件；以及“CMOS兼容”是指材料平台、温度窗口还是工艺流程兼容。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Mitochondria are dynamic organelles that remodel their shape to regulate cell fate. Mitochondrial division involves interactions with the endoplasmic reticulum (ER), lysosomes, and trans-Golgi network–derived vesicles to facilitate membrane scission. How interorganelle contacts regulate mitochondrial membrane fusion remains largely unknown. Here, we identified a role for Golgi-derived vesicles enriched in phosphatidylinositol 3,4-bisphosphate [PI(3,4)P 2 ] in regulating mitochondrial fusion. We found that these vesicles were recruited to ER- and mitofusin-marked fusion sites. Accordingly, loss of class II PI3-kinase isoforms α and β (PI3K-C2α and PI3K-C2β), which generate PI(3,4)P 2 , led to mitochondrial fragmentation resulting from impaired fusion. Furthermore, cardiomyocyte-specific PI3K-C2α and PI3K-C2β double-deletion mice exhibited mitochondrial fragmentation and heart failure. Thus, subpopulations of Golgi-derived vesicles carrying different phosphoinositides control mitochondrial membrane remodeling and homeostasis.</p>
+          <p>Low-symmetry materials unlock rich Berry curvature physics and anomalous transport phenomena that are forbidden in high-symmetry quantum systems through rigorous crystalline symmetry constraints. Current approaches rely on external fields or complex heterogeneous stacking to break crystalline symmetries, which hinders scalable device integration. In this work, we demonstrate surface premelting engineering to create wafer-scale low-symmetry graphene on germanium-110 [Ge(110)]. Controlled premelting forms striped germanium surface patterns that reduce graphene symmetry from D 6h to C 1v , producing a room-temperature nonlinear Hall conductivity of ~11 micrometers per volt per ohm. First-principles calculations attribute this to originating from overtilted massive Dirac cones of hybridized germanium bands and the graphene Dirac cone. Integrated nonlinear Hall rectifiers generate &gt;20 millivolts of output from radio frequency input and drive commercial voltage boosters and light-emitting diodes, establishing a complementary metal-oxide semiconductor–compatible route toward wafer-scale nonlinear quantum devices.</p>
         </details>
         
         </div>
@@ -671,16 +749,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11106-1">Prehistoric global migration of vanishing gut microbes with humans</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Prehistoric+global+migration+of+vanishing+gut+microbes+with+humans&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11106-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Prehistoric+global+migration+of+vanishing+gut+microbes+with+humans%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Prehistoric+global+migration+of+vanishing+gut+microbes+with+humans&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11106-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Prehistoric+global+migration+of+vanishing+gut+microbes+with+humans%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Prehistoric+global+migration+of+vanishing+gut+microbes+with+humans&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11106-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Prehistoric+global+migration+of+vanishing+gut+microbes+with+humans%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11114-1">Human lung organoid modelling of tissue-resident antiviral T cell responses</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Human+lung+organoid+modelling+of+tissue-resident+antiviral+T+cell+responses&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11114-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Human+lung+organoid+modelling+of+tissue-resident+antiviral+T+cell+responses%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Human+lung+organoid+modelling+of+tissue-resident+antiviral+T+cell+responses&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11114-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Human+lung+organoid+modelling+of+tissue-resident+antiviral+T+cell+responses%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Human+lung+organoid+modelling+of+tissue-resident+antiviral+T+cell+responses&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11114-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Human+lung+organoid+modelling+of+tissue-resident+antiviral+T+cell+responses%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Matthew M. Carter、Zhiru Liu、Matthew R. Olm、Melanie Martin 等 15 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11106-1">10.1038/s41586-026-11106-1</a></div>
+      <div class="authors">Joseph K. Rathkey、Shannon S. Choi、Vincent van Unen、Huimin Zhang 等 39 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11114-1">10.1038/s41586-026-11114-1</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦“随人类史前迁徙而全球传播、但在现代逐渐消失的肠道微生物”这一具体对象，核心任务可能是重建这些肠道共生菌随人类扩散的历史及其当代衰退现象。由于当前未提供摘要，能够确认的信息主要来自题名与作者/期刊元数据，具体菌群、样本规模、分析方法和主要结论仍不足。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名推测，其核心贡献可能是在“人类迁徙史—肠道微生物共迁移—现代微生物丢失”之间建立系统证据链，提出某些祖先型或传统生活方式相关肠道微生物曾随人群扩散至全球、如今却在工业化/现代化背景下趋于消失的框架。这类工作若证据充分，可能同时贡献于人类微生物组演化、宿主—微生物共同迁移、生物地理学以及“消失微生物”与健康关联研究。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦“人肺类器官”这一具体模型系统，用于模拟“组织驻留抗病毒T细胞反应”这一肺部局部免疫任务。由于提供信息中摘要为空，目前只能确认其研究对象是人肺类器官与组织驻留T细胞相互作用，无法据此判断具体病毒、实验设计和主要结论。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名推测，论文的核心贡献可能是建立或优化一种能够在体外重建人肺组织局部抗病毒T细胞反应的类器官模型，从而为研究肺部组织驻留免疫、病毒感染应答及免疫干预评估提供更接近人体环境的实验平台。但摘要缺失，具体创新点仍需核对正文。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -701,18 +779,24 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，可能是：哪些肠道微生物在进化和生态上与人类长期伴生，并在史前人类迁徙过程中共同扩散到全球；这些微生物在现代人群中为何呈现消失趋势；这种消失是近期生活方式转变造成，还是更早人口史过程的一部分。更细一点，作者可能在问：这些菌群的系统发育结构是否保留了宿主人口迁徙信号，能否将其视为一种“随人迁移的共生生物地理标记”。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法包括：1）采集多个地理区域和生活方式梯度人群的肠道宏基因组数据；2）鉴定特定“vanishing”菌群或菌株，比较其在传统生活方式人群与工业化人群中的流行率和丰度；3）构建菌株级系统发育树或群体遗传结构，检验其地理分化是否与已知人类迁徙路径一致；4）将微生物谱系分化时间或地理分布与宿主人口史模型对照；5）可能使用宏基因组组装基因组（MAGs）、参考基因组比对、单核苷酸变异分析、共祖或分子钟推断。若题名中的“prehistoric”是严格证据，论文还可能纳入古代粪化石/古DNA，但仅凭元数据无法确认。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的潜在亮点有三点。第一，把“消失的肠道微生物”放入深时人类迁徙框架，而不是只做当代工业化对照，可提升演化解释力。第二，如果作者能够在菌株系统发育中观察到与人类地理扩张一致的分支格局，就能为宿主—微生物长期伴随传播提供强证据。第三，这类研究对“微生物多样性流失”议题有直接应用价值：如果某些共生菌是祖先状态的一部分，其丢失可能影响代谢、免疫或生态稳定性，并为微生物恢复/保藏提供对象。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要和全文图1/图2，确认具体研究菌群、样本来源、比较人群及主分析框架；2）重点查是否包含非工业化人群、古DNA或时间校准系统树；3）记录“vanishing”的操作性定义以及“with humans”的证据标准；4）若你做相关研究，可立即建立一个对照表，整理论文涉及的菌种/属、地理分布、生活方式关联、推断的迁徙路径和证据类型；5）若准备复现，优先查补充材料中的样本清单、宏基因组处理流程和菌株系统发育方法。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名判断，是如何在体外用“人肺类器官”重建或模拟“肺组织驻留抗病毒T细胞反应”。更细一点说，可能是在问：现有模型为何难以反映人肺局部T细胞抗病毒免疫；是否能建立一个保留肺组织微环境关键特征的系统，用来观察TRM样T细胞对病毒或病毒抗原的应答。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：构建或培养人源肺类器官；将T细胞引入类器官体系形成共培养；给予病毒感染、病毒抗原、肽池或炎症刺激；检测T细胞活化、杀伤、细胞因子释放以及类器官细胞状态变化。若论文强调“组织驻留”，可能还会结合表型标志鉴定、成像定位、单细胞组学或多参数流式来证明这些T细胞具有驻留相关特征并在肺样微环境中发挥功能。由于摘要为空，这些都需要正文验证。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名显示的最大亮点是把“人肺类器官”与“组织驻留抗病毒T细胞”直接连接起来，这比单独研究上皮感染或单独研究外周T细胞更贴近肺局部免疫场景。若模型确实成功，潜在价值包括：更好地研究人肺局部抗病毒记忆反应；评估不同病毒或抗原刺激下的T细胞功能；为疫苗、细胞治疗或免疫调节策略提供更具生理相关性的测试平台。发表在Nature也提示其方法或发现可能具有较强普适性或技术突破性，但具体仍需看证据。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先获取摘要、图1和方法概览，重点核对五件事：1）肺类器官的来源与类型；2）T细胞的来源及是否为真实肺TRM或TRM样细胞；3）使用的病毒或抗原刺激；4）主要功能读出指标；5）最关键的对照组。若你准备做相关研究，可先建立一个阅读记录表，把上述五项和样本量、成像证据、单细胞证据、可复现材料逐项填空，再决定是否深入复现或借鉴模型。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，可能是：哪些肠道微生物在进化和生态上与人类长期伴生，并在史前人类迁徙过程中共同扩散到全球；这些微生物在现代人群中为何呈现消失趋势；这种消失是近期生活方式转变造成，还是更早人口史过程的一部分。更细一点，作者可能在问：这些菌群的系统发育结构是否保留了宿主人口迁徙信号，能否将其视为一种“随人迁移的共生生物地理标记”。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能方法包括：1）采集多个地理区域和生活方式梯度人群的肠道宏基因组数据；2）鉴定特定“vanishing”菌群或菌株，比较其在传统生活方式人群与工业化人群中的流行率和丰度；3）构建菌株级系统发育树或群体遗传结构，检验其地理分化是否与已知人类迁徙路径一致；4）将微生物谱系分化时间或地理分布与宿主人口史模型对照；5）可能使用宏基因组组装基因组（MAGs）、参考基因组比对、单核苷酸变异分析、共祖或分子钟推断。若题名中的“prehistoric”是严格证据，论文还可能纳入古代粪化石/古DNA，但仅凭元数据无法确认。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的潜在亮点有三点。第一，把“消失的肠道微生物”放入深时人类迁徙框架，而不是只做当代工业化对照，可提升演化解释力。第二，如果作者能够在菌株系统发育中观察到与人类地理扩张一致的分支格局，就能为宿主—微生物长期伴随传播提供强证据。第三，这类研究对“微生物多样性流失”议题有直接应用价值：如果某些共生菌是祖先状态的一部分，其丢失可能影响代谢、免疫或生态稳定性，并为微生物恢复/保藏提供对象。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，主要局限是关键信息缺失。没有摘要，因此无法确认研究对象是单个属、多个谱系还是广义功能群；无法判断“迁移”证据是相关性、系统发育支持还是直接时间推断；也无法知道是否控制饮食、抗生素、寄生虫负担、地理环境和宿主遗传等混杂因素。此外，“随人类迁移”容易与环境共暴露、水平传播、独立地理适应相混淆；“vanishing”也可能受检测灵敏度、参考数据库偏倚和采样覆盖影响。若无纵向或古样本证据，关于“史前迁移”和“现代消失”的因果链可能仍有解释空间。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要和全文图1/图2，确认具体研究菌群、样本来源、比较人群及主分析框架；2）重点查是否包含非工业化人群、古DNA或时间校准系统树；3）记录“vanishing”的操作性定义以及“with humans”的证据标准；4）若你做相关研究，可立即建立一个对照表，整理论文涉及的菌种/属、地理分布、生活方式关联、推断的迁徙路径和证据类型；5）若准备复现，优先查补充材料中的样本清单、宏基因组处理流程和菌株系统发育方法。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Prehistoric global migration of vanishing gut microbes with humans”可见，研究对象不是泛泛的人类微生物组，而是“正在消失的肠道微生物”这一特定子集；研究任务可能是回答这些微生物是否在史前时期伴随人类走出非洲或后续大陆扩张而实现全球传播，以及它们为何在现代人群中减少。作者名单中包含微生物组、进化与人类生态方向研究者，提示论文可能结合多地区人群粪便宏基因组、传统/工业化人群比较、系统发育或群体遗传分析，甚至引入宿主人口史框架来推断微生物传播路径。题名中的“with humans”暗示作者想证明微生物迁移并非单纯环境扩散，而是与宿主迁徙高度耦合；“vanishing”则提示研究终点可能落在现代生活方式导致的菌群消失、局部灭绝或低丰度化。现阶段由于摘要为空，无法确认具体是哪些菌种或菌株、是否使用古DNA、是否进行了时间校准系统树、是否比较了非工业化与城市化人群，也无法判断“global”是跨几个大陆、多少国家与多少样本。若你的研究方向涉及人类微生物组演化、非工业化人群、共进化、菌株传播或微生物保护，这篇论文值得重点关注；但必须优先核对其样本覆盖、迁徙推断方法、统计控制、替代解释排除情况，以及“消失”究竟定义为低流行率、低丰度还是系统发育分支缺失。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名判断，是如何在体外用“人肺类器官”重建或模拟“肺组织驻留抗病毒T细胞反应”。更细一点说，可能是在问：现有模型为何难以反映人肺局部T细胞抗病毒免疫；是否能建立一个保留肺组织微环境关键特征的系统，用来观察TRM样T细胞对病毒或病毒抗原的应答。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：构建或培养人源肺类器官；将T细胞引入类器官体系形成共培养；给予病毒感染、病毒抗原、肽池或炎症刺激；检测T细胞活化、杀伤、细胞因子释放以及类器官细胞状态变化。若论文强调“组织驻留”，可能还会结合表型标志鉴定、成像定位、单细胞组学或多参数流式来证明这些T细胞具有驻留相关特征并在肺样微环境中发挥功能。由于摘要为空，这些都需要正文验证。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>题名显示的最大亮点是把“人肺类器官”与“组织驻留抗病毒T细胞”直接连接起来，这比单独研究上皮感染或单独研究外周T细胞更贴近肺局部免疫场景。若模型确实成功，潜在价值包括：更好地研究人肺局部抗病毒记忆反应；评估不同病毒或抗原刺激下的T细胞功能；为疫苗、细胞治疗或免疫调节策略提供更具生理相关性的测试平台。发表在Nature也提示其方法或发现可能具有较强普适性或技术突破性，但具体仍需看证据。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要缺失，导致无法确认任何实证结果。仅凭题名无法判断模型是否真正包含组织驻留所需的微环境成分，也无法判断T细胞反应是生理性保护还是伴随免疫病理。还需警惕类器官模型常见边界：是否缺乏完整血管、基质、神经和先天免疫细胞成分；供体间差异是否充分评估；病毒感染条件是否真实；TRM表型是否只是体外诱导而非稳定驻留状态。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先获取摘要、图1和方法概览，重点核对五件事：1）肺类器官的来源与类型；2）T细胞的来源及是否为真实肺TRM或TRM样细胞；3）使用的病毒或抗原刺激；4）主要功能读出指标；5）最关键的对照组。若你准备做相关研究，可先建立一个阅读记录表，把上述五项和样本量、成像证据、单细胞证据、可复现材料逐项填空，再决定是否深入复现或借鉴模型。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从元数据可直接确认的研究对象是“human lung organoid”和“tissue-resident antiviral T cell responses”。这意味着论文很可能处于免疫学、感染生物学与类器官技术的交叉点，目标不是泛泛研究T细胞，而是针对肺组织内驻留、并参与抗病毒防御的T细胞反应进行建模。题名中的“modelling”提示其重点可能在于模型建立、验证和应用，而不一定仅是描述性观察。
+
+从方法线索看，作者可能使用人源肺类器官作为上皮或组织微环境基础，再引入T细胞群体，尤其是具有组织驻留表型或功能特征的T细胞，观察其在病毒相关刺激下的激活、定位、细胞因子分泌、细胞毒作用或与肺上皮细胞的互作。若要支撑“组织驻留”这一概念，正文中通常需要看到对TRM相关标志、来源、维持条件或功能读出的说明；若要支撑“抗病毒”，则通常需要看到病毒感染、病毒抗原刺激、肽池刺激、工程化感染系统或替代性先天免疫激活条件。作者名单中包含多位研究者，且题名偏系统建模，可能伴随高维免疫表征，如流式、单细胞转录组、空间成像或多参数蛋白分析，但这只是基于领域常规的谨慎推测，不能视为已证实内容。
+
+对科研读者而言，这篇论文最值得关注的潜在价值在于：第一，它是否解决了传统二维培养、单纯免疫细胞培养或动物模型难以准确反映人肺局部免疫的问题；第二，它是否能在同一体系中同时观察肺组织细胞状态与T细胞效应；第三，它是否可用于比较不同病毒、不同供体、疫苗后记忆反应或免疫病理风险。如果你的研究方向涉及呼吸道病毒、肺部免疫、类器官共培养、TRM生物学或人源化感染模型，这篇论文很可能提供一个方法学支点。
+
+但当前信息不足非常明显：摘要为空，无法确认研究使用的是哪类肺类器官（远端肺泡、近端气道、混合型、iPSC来源还是原代来源），也无法确认T细胞来源（外周血、肺组织、感染后供体、疫苗后供体）、病毒对象（如流感、SARS-CoV-2、RSV等）、关键 readout、样本量、对照设置和主要发现。因此，任何关于结果强弱、机制深度和临床外推性的判断都必须等待摘要和正文核对。</p></div>
           </div>
           
         </div>
@@ -728,16 +812,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11116-z">Cryo-EM structure of a methanogen nitrogenase–PII protein supercomplex</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Cryo-EM+structure+of+a+methanogen+nitrogenase%E2%80%93PII+protein+supercomplex&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11116-z%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Cryo-EM+structure+of+a+methanogen+nitrogenase%E2%80%93PII+protein+supercomplex%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Cryo-EM+structure+of+a+methanogen+nitrogenase%E2%80%93PII+protein+supercomplex&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11116-z%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Cryo-EM+structure+of+a+methanogen+nitrogenase%E2%80%93PII+protein+supercomplex%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Cryo-EM+structure+of+a+methanogen+nitrogenase%E2%80%93PII+protein+supercomplex&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11116-z%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Cryo-EM+structure+of+a+methanogen+nitrogenase%E2%80%93PII+protein+supercomplex%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11111-4">Retrofitting language models to operate over bytes</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Retrofitting+language+models+to+operate+over+bytes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11111-4%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Retrofitting+language+models+to+operate+over+bytes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Retrofitting+language+models+to+operate+over+bytes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11111-4%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Retrofitting+language+models+to+operate+over+bytes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Retrofitting+language+models+to+operate+over+bytes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11111-4%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Retrofitting+language+models+to+operate+over+bytes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Rajnandani Kashyap、Thomas M. Deere、Ahmed Dhamad、Melissa Chanderban 等 8 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11116-z">10.1038/s41586-026-11116-z</a></div>
+      <div class="authors">Benjamin Minixhofer、Tyler Murray、Tomasz Limisiewicz、Anna Korhonen 等 9 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11111-4">10.1038/s41586-026-11111-4</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦于“甲烷生成古菌中的固氮酶–PII蛋白超复合物”这一具体分子机器，核心任务应是利用冷冻电镜解析其结构并据此讨论PII蛋白对固氮酶调控的机制。由于提供的摘要为空，目前只能基于题名和元数据确认研究对象是甲烷生成菌、固氮酶、PII蛋白及其超复合物结构，而无法确认具体分辨率、构象状态或功能结论。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是首次或高分辨率地给出甲烷生成古菌中固氮酶与PII蛋白形成的超复合物冷冻电镜结构，从结构层面连接氮代谢感知蛋白PII与固氮催化装置之间的直接相互作用，为理解古菌固氮调控、能量状态耦联或氮源响应提供分子基础。若论文包含配套生化数据，其贡献还可能包括界定结合界面、复合物装配条件以及对固氮活性调控的结构解释。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文聚焦于把原本基于子词token的语言模型改造成直接处理字节序列的模型，目标是在代码、生物序列等依赖字符/字节级信息的任务上，缩小字节级模型与子词模型之间的性能差距。摘要显示作者提出了名为“byteification”的两阶段改造流程，可在较少额外训练下把现有子词大模型转成字节级模型，并强调其在字符级推理任务和实际推理速度上的可用性。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献很可能是提出一种通用的“retrofit”方案：不是从头训练字节级大模型，而是通过两阶段转换把已有子词模型字节化，从而兼顾细粒度表示能力、性能和推理效率。基于摘要，论文还可能贡献了比既有字节级方法更强的基线，并展示该方案在字符级/字节级敏感任务上的优势，尤其面向代码、科学文本或生物序列这类对单字符信息敏感的输入。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -758,77 +842,25 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，应该是：在甲烷生成古菌中，PII蛋白是否与固氮酶形成稳定且可解析的超复合物；如果形成，这种结合的空间组织、化学计量和构象状态是什么；以及这种结构关系如何解释氮代谢信号对固氮酶功能的调控。更深一层的问题可能是，古菌固氮调控是否存在区别于已知细菌模型的直接蛋白复合体机制。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从题名可推测，核心方法是冷冻电镜单颗粒分析，用于解析甲烷生成菌来源的固氮酶–PII复合物结构。样品层面可能需要异源或同源表达、厌氧纯化、复合物体外重组或原位共纯化；数据层面可能包括颗粒挑选、2D/3D分类、不同装配态比较和原子模型搭建。若作者希望证明结构具有生理意义，通常还会配合蛋白互作实验、酶活测定、核苷酸或代谢物依赖性结合分析、界面突变验证，甚至体内表型或转录条件对照，但这些都需要正文或摘要确认。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名显示的最大亮点是把两个高度重要但通常分开讨论的对象直接连接起来：催化氮还原的固氮酶，以及负责氮状态感知的PII蛋白。如果确实获得了稳定超复合物结构，这将提供非常直接的分子证据，说明代谢感知与催化机器之间可能存在物理耦联。第二个亮点是研究体系来自甲烷生成古菌，这一类群在结构和调控层面相对少见，潜在新颖性较高。第三，发表在Nature且题名突出“supercomplex”，暗示工作可能不仅是常规结构报道，而是揭示了此前未知的装配模式或调控框架，不过这一点仍需以摘要和正文核实。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先获取摘要和图1/主结构图，优先核对四件事：1）研究物种与固氮酶类型；2）冷冻电镜分辨率及复合物化学计量；3）PII与固氮酶的具体结合界面和是否涉及ATP/ADP/2-氧戊二酸等配体；4）是否有突变或活性实验支持“调控”而不仅是“结合”。如果你做相关方向，建议同时记录该结构与已知细菌PII调控对象的异同，并整理一个问题清单：该超复合物是抑制态还是激活态、是否阻断电子传递或构象循环、是否只在甲烷生成古菌中存在。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何让原本依赖子词分词的语言模型直接在字节级别运行，同时避免传统字节级模型常见的性能落后和序列过长导致的效率问题。更具体地说，它针对的是那些语义依赖单字符/单字节差异的任务场景，例如程序代码、科学数据格式和生物序列，在这些场景中子词切分可能丢失关键信息。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法核心是“byteification”，即一种通用的两阶段模型转换流程，用较少额外训练把现有subword-based模型改造成byte-level模型。可推测第一阶段可能涉及把原模型的输入/词表表示迁移到字节空间，第二阶段再进行适配训练以恢复或提升语言建模能力；同时作者还设计了高效处理字节级信息的机制，以缓解字节序列更长带来的推理成本。实验上大概率会使用已有子词大模型作为起点，比较改造后的byte模型、既有byte-level方法以及原始subword模型，并在字符级推理、代码或其他细粒度任务上评估。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，它不是从头训练新架构，而是“retrofit existing subword-based models”，这对已有模型资产复用非常重要。第二，论文把问题落在具体高价值对象上：代码和生物序列等字符敏感数据，这使字节级建模的动机很强。第三，摘要同时强调性能和推理速度，说明作者不仅追求表示层面的正确性，也试图解决byte-level方法长期存在的工程可用性问题；如果结果可靠，这会使字节级LLM从研究概念更接近可部署方案。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查论文正文中的方法图和算法框，确认“两阶段转换”分别改了哪些模块；第二，查主结果表，记录与原subword模型、既有byte模型相比的绝对分数和推理速度；第三，特别看是否包含代码、生物序列、字符级推理三类任务中的真实实验；第四，记录额外训练成本、上下文长度变化和开源情况；第五，如果你做相关研究，可设计一个小型对照：在现有子词模型上测试字符扰动或字符串操作任务，评估是否有必要关注byteification路线。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，应该是：在甲烷生成古菌中，PII蛋白是否与固氮酶形成稳定且可解析的超复合物；如果形成，这种结合的空间组织、化学计量和构象状态是什么；以及这种结构关系如何解释氮代谢信号对固氮酶功能的调控。更深一层的问题可能是，古菌固氮调控是否存在区别于已知细菌模型的直接蛋白复合体机制。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从题名可推测，核心方法是冷冻电镜单颗粒分析，用于解析甲烷生成菌来源的固氮酶–PII复合物结构。样品层面可能需要异源或同源表达、厌氧纯化、复合物体外重组或原位共纯化；数据层面可能包括颗粒挑选、2D/3D分类、不同装配态比较和原子模型搭建。若作者希望证明结构具有生理意义，通常还会配合蛋白互作实验、酶活测定、核苷酸或代谢物依赖性结合分析、界面突变验证，甚至体内表型或转录条件对照，但这些都需要正文或摘要确认。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>题名显示的最大亮点是把两个高度重要但通常分开讨论的对象直接连接起来：催化氮还原的固氮酶，以及负责氮状态感知的PII蛋白。如果确实获得了稳定超复合物结构，这将提供非常直接的分子证据，说明代谢感知与催化机器之间可能存在物理耦联。第二个亮点是研究体系来自甲烷生成古菌，这一类群在结构和调控层面相对少见，潜在新颖性较高。第三，发表在Nature且题名突出“supercomplex”，暗示工作可能不仅是常规结构报道，而是揭示了此前未知的装配模式或调控框架，不过这一点仍需以摘要和正文核实。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前信息最大的局限是摘要为空，因此无法确认任何具体实验结果，尤其不能确认分辨率、复合物组成、功能影响方向、是否有动态构象、是否有体内证据，也不能判断作者是否真正证明了调控机制而非仅观察到结合。另一个需要警惕的边界是，结构复合物可能来自特定纯化条件或代谢状态，未必代表普遍生理状态。还需注意PII蛋白常受小分子和核苷酸调控，如果论文未系统比较这些条件，则结构解释可能存在条件依赖性。最后，单一物种结果是否可外推到其他古菌或细菌固氮系统，也需要谨慎。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先获取摘要和图1/主结构图，优先核对四件事：1）研究物种与固氮酶类型；2）冷冻电镜分辨率及复合物化学计量；3）PII与固氮酶的具体结合界面和是否涉及ATP/ADP/2-氧戊二酸等配体；4）是否有突变或活性实验支持“调控”而不仅是“结合”。如果你做相关方向，建议同时记录该结构与已知细菌PII调控对象的异同，并整理一个问题清单：该超复合物是抑制态还是激活态、是否阻断电子传递或构象循环、是否只在甲烷生成古菌中存在。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Cryo-EM structure of a methanogen nitrogenase–PII protein supercomplex”可提取出几个非常具体的信息。第一，研究对象不是泛指细菌固氮系统，而是“methanogen”，即甲烷生成古菌中的固氮酶体系；这提示其生理背景可能与厌氧代谢、甲烷生成和古菌特有调控网络相关。第二，论文强调的是“nitrogenase–PII protein supercomplex”，说明作者关注的不只是单个蛋白结构，而是固氮酶与PII信号转导蛋白形成的更大尺度复合体，研究重点很可能是蛋白间相互作用、装配方式以及调控状态。第三，方法上明确是冷冻电镜，因此最直接的证据线索应包括单颗粒重构、不同构象分类、局部分辨率分析以及界面残基解释；但由于摘要缺失，无法确认是否还结合了质谱、突变、生化活性测定、结合实验或体内遗传学验证。就科研意义而言，PII蛋白是经典的氮代谢状态感知与信号整合因子，若其与固氮酶直接形成超复合物，这将比传统“间接调控”框架更进一步，提示古菌中可能存在直接的结构性抑制、激活、定位或底物通道调控机制。对从事固氮酶结构生物学、古菌代谢调控、氮循环或蛋白复合体装配研究的读者，这篇论文最值得核对的是：复合物由哪类固氮酶组成（Mo-dependent还是其他类型）、PII以何种寡聚状态结合、结合是否依赖ATP/ADP/2-oxoglutarate等经典PII效应分子、复合物是否代表活性态或抑制态、以及该结构是否解释了甲烷生成菌在氮限制或氮充足条件下的调控逻辑。由于没有摘要，当前不能判断作者是否提出了普适机制，还是仅限于某一物种的特化现象；也不能确认数据规模、分辨率、样品纯化策略和功能验证强度，因此阅读时需要重点核对这些关键信息。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何让原本依赖子词分词的语言模型直接在字节级别运行，同时避免传统字节级模型常见的性能落后和序列过长导致的效率问题。更具体地说，它针对的是那些语义依赖单字符/单字节差异的任务场景，例如程序代码、科学数据格式和生物序列，在这些场景中子词切分可能丢失关键信息。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法核心是“byteification”，即一种通用的两阶段模型转换流程，用较少额外训练把现有subword-based模型改造成byte-level模型。可推测第一阶段可能涉及把原模型的输入/词表表示迁移到字节空间，第二阶段再进行适配训练以恢复或提升语言建模能力；同时作者还设计了高效处理字节级信息的机制，以缓解字节序列更长带来的推理成本。实验上大概率会使用已有子词大模型作为起点，比较改造后的byte模型、既有byte-level方法以及原始subword模型，并在字符级推理、代码或其他细粒度任务上评估。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，它不是从头训练新架构，而是“retrofit existing subword-based models”，这对已有模型资产复用非常重要。第二，论文把问题落在具体高价值对象上：代码和生物序列等字符敏感数据，这使字节级建模的动机很强。第三，摘要同时强调性能和推理速度，说明作者不仅追求表示层面的正确性，也试图解决byte-level方法长期存在的工程可用性问题；如果结果可靠，这会使字节级LLM从研究概念更接近可部署方案。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于目前题录和摘要，主要局限是关键信息仍不透明。首先，不清楚“approach the capabilities of subword-based systems”具体是接近到什么程度，是否在通用自然语言任务上仍有差距。其次，摘要没有给出任何定量结果、模型规模、训练token量或额外算力，因此难以判断性价比。再次，代码和生物序列在摘要中更像动机示例，尚不能确认是否都做了实证。最后，所谓高效字节处理和自适应机制的具体实现未知，若依赖复杂工程技巧，其通用性和复现门槛需要警惕。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查论文正文中的方法图和算法框，确认“两阶段转换”分别改了哪些模块；第二，查主结果表，记录与原subword模型、既有byte模型相比的绝对分数和推理速度；第三，特别看是否包含代码、生物序列、字符级推理三类任务中的真实实验；第四，记录额外训练成本、上下文长度变化和开源情况；第五，如果你做相关研究，可设计一个小型对照：在现有子词模型上测试字符扰动或字符串操作任务，评估是否有必要关注byteification路线。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：大型语言模型的输入表示单位，从常见的subword token转向byte-level encoding。论文指出子词分词会掩盖细粒度信息，这在计算机代码、DNA/蛋白等生物序列、以及其他字符级结构强约束数据中尤其成问题；而纯字节模型虽然天然保留细粒度信息，但过去性能通常落后于子词模型。作者因此提出“byteification”，意图把现有子词模型以较低成本改造成字节模型，而不是完全重训。摘要给出的关键方法线索是“两阶段转换 procedure”“minimal extra training”“efficiently processing byte-level information”“adap...”，说明方法可能不仅是简单替换词表，而是包含输入/表示层改造、参数迁移、以及为避免字节序列过长带来的计算开销而设计的高效处理机制，可能还涉及自适应压缩、分块、池化、层间聚合或混合粒度编码，但这些具体实现必须查正文确认。证据线索方面，摘要明确声称：1）结果模型优于更早的字节级方法；2）在character-level reasoning tasks上表现突出；3）推理速度达到实用水平。这意味着实验大概率包含与既有byte-level LLM、原始subword模型、以及可能的从头训练byte模型的对照，并覆盖字符扰动、拼写、字符串操作、代码或序列建模等任务。与科研用户的关系在于：如果你的研究涉及代码模型、分子/基因序列建模、多语种噪声文本、OCR/ASR后处理、鲁棒性评测或tokenization替代方案，这篇论文值得重点关注，因为它试图把“细粒度输入表示”和“继承现有大模型能力”结合起来。当前必须核对的信息包括：两阶段转换具体做什么；适配的是decoder-only还是也支持encoder/seq2seq；额外训练量和算力成本；在哪些基准上接近或超过子词模型；所谓practical inference speeds的绝对吞吐和延迟；对长上下文的影响；以及在自然语言主任务上是否有退化。由于只有摘要，不能判断其提升幅度、适用模型规模、是否开源、以及对生物序列任务是否真的做了实证还是仅作为动机举例。</p></div>
           </div>
           
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-10-07</span>
-        <span>Score 40.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11144-9">A split attractor design for rapidly writing a navigational goal</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+split+attractor+design+for+rapidly+writing+a+navigational+goal&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11144-9%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+A+split+attractor+design+for+rapidly+writing+a+navigational+goal%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+split+attractor+design+for+rapidly+writing+a+navigational+goal&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11144-9%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+A+split+attractor+design+for+rapidly+writing+a+navigational+goal%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+split+attractor+design+for+rapidly+writing+a+navigational+goal&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11144-9%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+A+split+attractor+design+for+rapidly+writing+a+navigational+goal%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Aaron J. Lanz、Nicholas D. Kathman、Emily Hao、Bard Ermentrout 等 5 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11144-9">10.1038/s41586-026-11144-9</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇 Nature 论文从题名看，聚焦“如何快速写入一个导航目标”这一具体任务，研究对象很可能是与空间导航相关的神经环路或吸引子网络，并提出了一种“split attractor（分裂吸引子）”设计。由于提供的摘要为空，当前只能依据题名、期刊与作者信息做有限推断，无法确认其具体实验系统、数据类型和结果强度。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是提出并验证一种用于快速设定或更新导航目标表征的“分裂吸引子”机制/模型，用来解释或实现导航系统中目标写入速度、稳定性与灵活性之间的平衡；但这一判断仍需摘要和正文证据核对。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>40.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，按题名推断，是导航系统如何在很短时间内把一个新的“目标”写入内部表征，同时又不破坏系统对空间或方向信息的稳定编码。更细一点说，作者可能在问：经典吸引子网络擅长稳定保持状态，但为什么/如何也能支持快速目标更新？是否需要一种特殊的网络分裂结构，来兼顾快速写入与稳定维持？</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法首先是动力系统或神经网络建模：构建一个具有“split attractor”结构的网络，与传统吸引子模型比较其目标写入速度、稳态性质、抗噪性和可切换性。若结合实验，可能会使用导航行为任务，在动物接收新目标线索后测量行为调整速度，并同步记录与导航相关脑区或神经元群体活动，检验是否存在与模型一致的状态分裂、跃迁或双模块编码现象。也可能通过参数扫描、相图分析、稳定性分析、扰动实验或闭环输入来证明该设计的功能优势。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名本身的亮点在于问题非常具体：不是泛泛讨论导航，而是聚焦“导航目标的快速写入”。如果论文确实提出了“split attractor”这一新设计，其价值可能在于为一个长期张力提供统一解释：吸引子网络通常强调记忆稳定，但现实导航又要求目标能被迅速更新。若作者同时给出理论可解释性和实验可检验预测，这会使工作兼具机制深度与应用潜力，对理解生物导航和设计自主体导航算法都可能有启发。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先获取摘要并确认研究系统（物种/脑区/模型）与主要证据类型；第二，优先查看题目对应的主图和方法概览，定位“split attractor”的具体定义；第三，记录三个核对问题：目标变量是什么、写入机制是什么、与传统吸引子相比提升了什么指标；第四，若你做相关研究，可立即建立一个对照表，把该工作与连续吸引子、环吸引子、目标记忆或路径积分模型逐项比较。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，按题名推断，是导航系统如何在很短时间内把一个新的“目标”写入内部表征，同时又不破坏系统对空间或方向信息的稳定编码。更细一点说，作者可能在问：经典吸引子网络擅长稳定保持状态，但为什么/如何也能支持快速目标更新？是否需要一种特殊的网络分裂结构，来兼顾快速写入与稳定维持？</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能方法首先是动力系统或神经网络建模：构建一个具有“split attractor”结构的网络，与传统吸引子模型比较其目标写入速度、稳态性质、抗噪性和可切换性。若结合实验，可能会使用导航行为任务，在动物接收新目标线索后测量行为调整速度，并同步记录与导航相关脑区或神经元群体活动，检验是否存在与模型一致的状态分裂、跃迁或双模块编码现象。也可能通过参数扫描、相图分析、稳定性分析、扰动实验或闭环输入来证明该设计的功能优势。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>题名本身的亮点在于问题非常具体：不是泛泛讨论导航，而是聚焦“导航目标的快速写入”。如果论文确实提出了“split attractor”这一新设计，其价值可能在于为一个长期张力提供统一解释：吸引子网络通常强调记忆稳定，但现实导航又要求目标能被迅速更新。若作者同时给出理论可解释性和实验可检验预测，这会使工作兼具机制深度与应用潜力，对理解生物导航和设计自主体导航算法都可能有启发。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究对象、证据类型、实验规模、关键结果和结论边界。仅凭题名无法判断“split attractor”是严格定义的数学概念，还是作者的描述性命名；也无法判断“rapidly”是相对何种基线、在什么时间尺度上成立。若论文主要是模型工作，则其生物学可验证性需要谨慎评估；若主要是实验观察，则其机制解释是否唯一也需要核对。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先获取摘要并确认研究系统（物种/脑区/模型）与主要证据类型；第二，优先查看题目对应的主图和方法概览，定位“split attractor”的具体定义；第三，记录三个核对问题：目标变量是什么、写入机制是什么、与传统吸引子相比提升了什么指标；第四，若你做相关研究，可立即建立一个对照表，把该工作与连续吸引子、环吸引子、目标记忆或路径积分模型逐项比较。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“A split attractor design for rapidly writing a navigational goal”判断，论文的中心对象不是一般性的学习，而是“navigational goal（导航目标）”这一特定内部表征，以及“rapidly writing（快速写入）”这一动态过程。这里的“attractor design”通常指向神经动力学、环路计算模型或受其启发的系统设计；“split attractor”则暗示作者可能提出了一种不同于经典单稳态/连续吸引子结构的网络组织方式，使系统能够在保持目标表征稳定的同时，更快地把新的目标位置、方向或状态写入网络。作者名单中包含 Bard Ermentrout，这为“理论神经科学/动力系统建模”提供了较强线索，因此论文可能结合了数学模型、神经回路假设、仿真分析，甚至与动物导航实验或神经记录相联系。若是 Nature 正刊，通常意味着作者不仅提出模型，还可能给出实验支持、行为任务验证，或至少展示该设计能解释某类已知导航现象。可能的数据与任务包括：动物在环境中被赋予新目标后的快速定向行为、与目标相关的神经活动重映射、目标记忆写入与保持的时间尺度比较、以及不同网络结构在噪声、干扰和更新速度上的性能差异。与科研读者的关系上，这篇论文若属实证+理论结合，将对空间导航、目标编码、吸引子网络、工作记忆写入机制、神经形态导航算法等方向都有参考价值。当前最需要核对的信息包括：1）研究对象是昆虫、啮齿动物还是纯理论模型；2）“split attractor”是新的数学结构、回路拓扑还是实验观察到的神经群体态；3）“writing”具体指突触可塑性、瞬时状态切换，还是外部输入驱动的目标加载；4）导航目标是位置、方向、路径终点还是价值峰；5）论文证据主要来自行为、神经记录、干预还是仿真。</p></div>
-          </div>
-          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Abstract Recent advances in artificial intelligence (AI) have largely been driven by large language models, deep neural networks that operate over discrete units called tokens. To represent text, most large language models use words or word fragments as the tokens, known as subword tokenization 1 . Subword tokenization obscures fine-grained information, which is problematic, especially for scientific data—such as computer code or biological sequences—where meaning depends on the individual characters or bytes 2 . Models that instead operate directly on the byte encoding of text avoid these limitations, but until now they have lagged behind subword-based models in performance. Here we introduce a general method for creating byte-level large language models through byteification that approach the capabilities of subword-based systems. We use a two-stage conversion procedure to retrofit existing subword-based models into byte-level models with minimal extra training. The resulting models outperform earlier byte-level approaches and excel on character-level reasoning tasks, achieving practical inference speeds by efficiently processing byte-level information and adaptability by reusing the existing ecosystem around the source large language model. Our results remove a long-standing performance barrier to end-to-end byte-level language modelling, demonstrating that models operating on raw text encodings can scale competitively while offering advantages in domains requiring fine-grained textual understanding.</p>
+        </details>
+        
         </div>
       </details>
     
@@ -839,7 +871,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-10-12 01:22。
+      生成时间：2026-10-13 03:06。
     </div>
   </footer>
 </body>
