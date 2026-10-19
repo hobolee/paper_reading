@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-10-18</title>
+  <title>Paper Reading · 2026-10-19</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,16 +19,16 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-10-18 · 中文论文简报</div>
+        <div class="eyebrow">2026-10-19 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天的论文集合里，最值得优先阅读的是一组围绕“智能体如何在真实或半真实环境中做决策、执行动作并接受验证”的工作，尤其是三篇 AI/agent 论文形成了很强的互补关系。第一篇《Improving Environment-Agnostic Coding Agents: The Role of Scaffolding》直接追问一个当前很关键但常被说得过于笼统的问题：模型更强之后，为什么脚手架没有消失。它的价值不在于再做一个更复杂的专用系统，而在于把差距具体化为控制权分配、失败上报、reset 时机和外部控制器设计等可检验因素；如果摘要描述成立，这对理解“通用代理为何仍输给专用代理”很有启发。第二篇《Intern-Decision》则从接口层面切入，把交互式智能体中的有限候选决策改写成结构化 JSON 占位符预测，强调单次前向、多字段联合决策、概率输出和低延迟部署，适合关注 agent policy head、环境接口和置信度校准的人优先看。第三篇《OS-Helix》把 GUI 交互与代码执行统一到同一动作空间，目标是原生 Ubuntu 桌面中的混合任务，这比单纯的视觉点击代理或工具调用代理更接近真实自动化场景；如果你关心 computer-using agents 的训练数据、环境构造和在线 RL，这篇应列入高优先级。与这三篇相邻的《OmniVerifier-C1》则补上“验证器”这一环：当任务要求复杂、规则组合化时，二元 verifier 不够用，分解式 graded verifier 可能更适合做 critic、reward 或自动验收。四篇合起来，几乎覆盖了 agent 系统的控制、决策、执行、验证四个关键层面，是今天最清晰的一条主线。
+        <p class="summary">今天的论文可分成两组来读。第一组是与AI/agent直接相关、且彼此之间有明显方法学呼应的4篇，阅读优先级最高。它们共同指向一个更具体的趋势：不是单纯追求更大的基础模型，而是在真实任务链条中，把“决策、工具调用、世界模型推演、工作流执行、采样修正”这些中间层能力做成可评测、可部署、可纠错的系统。JevAgentHarness最值得优先看，因为它把一个现实痛点说得很清楚：LLM agent中大量步骤本质上是多项选择决策，是否可以交给更便宜更快的decision model，同时用置信阈值与回退机制守住端到端成功率。它的价值不只在部署，还在于提出了从离线题到在线接管的评测思路，以及明确指出agent接管后会遇到训练分布错位。CoWorld Reasoner则把“世界模型作为可调用推演工具”推进到视频推理场景，重点不是单次生成，而是VLM在推理过程中决定何时需要视觉想象、调用什么操作、如何解释生成证据，这和agent工具使用、外部证据整合、执行反馈迭代高度同构。ISW-Agent代表更垂直的落地范式：LLM并不直接做科学计算，而是解析指令、传递参数、编排n8n和科学模型，外加阶段性校验与重试；它提示科研代理系统的关键瓶颈常在流程鲁棒性与参数传递，而不在“模型是否足够聪明”。Diffusion Language Models as Open Quantum Systems则更偏理论与生成机制创新，但和前三篇也有暗线联系：它试图为文本生成中的多路径条件、置信驱动回改提供统一动力学视角，本质上也是在研究“生成过程中如何保留并利用不确定性”。
 
-从阅读优先级看，如果你的研究方向是大模型智能体，建议先读《Improving Environment-Agnostic Coding Agents》，因为它最直接挑战了“能力提升会自动吞掉脚手架价值”的直觉，而且实验干预很小，便于复现和迁移；其次读《OS-Helix》，因为它涉及真实桌面环境中的动作统一与训练范式，可能对后续系统设计影响更大；再读《Intern-Decision》，它更偏接口与部署优化，但对高频决策型 agent 很实用；《OmniVerifier-C1》适合作为 verifier/reward modeling 方向的补充阅读。若你的兴趣偏神经科学或生物医学，则今天也有两篇值得单独关注：Science 的树突计算论文把“抽象规则—感觉输入—选择”整合问题压到单神经元亚区室层面，提供了认知灵活性与树突计算之间的因果线索；Nature 的 IL-10R 工程化激动剂论文则展示了通过受体交联几何和激酶依赖重编程实现细胞类型选择性的思路，方法学上很强，且有明确转化潜力。材料与量子方向中，WSe2/WS2 莫尔超晶格中的 gate-tunable chiral spin mode 也值得领域内读者优先看，因为它把门控、拉曼、Zeeman 响应和填充依赖的多体激发联系起来，信息密度较高。
+第二组是高影响综合刊物中的领域论文，AI不是主角，但有两篇尤其值得跨领域关注。RFdiffusion3显示生成式AI正在从“生成合理结构”进入“原子级功能位点脚手架”阶段，强调复杂原子约束、功能位点几何与zero-shot实验命中，这对所有关心AI for science的人都很重要，因为它代表评估标准正从感知质量转向可实验验证的功能正确性。Nature那篇human brown fat clinical phenotyping虽然当前信息有限，但题名已经说明其重点在AI驱动临床表型化，值得留意其数据模态、标注策略和外部验证设计。其余几篇Science/Nature论文主要属于材料、植物免疫、社会网络和神经科学前沿，本日若以AI方法学为主线可暂列第二优先级；但如果你关心“复杂系统中的可控结构形成”，它们和今天的agent论文其实有共同问题意识：如何通过干预、结构约束或目标化刺激，让系统进入我们希望的状态。
 
-整体上，今天的高密度信号不是“又有更多模型/材料/分子”，而是多个领域都在从粗粒度能力展示转向更细粒度的机制组织：AI 里是控制结构、动作接口和验证反馈的显式化；神经科学里是规则、感觉和选择在单细胞不同区室中的分工；免疫工程里是受体几何如何改写细胞内激酶依赖；凝聚态里是集体激发如何随填充和耦合条件发生可辨认转变。对科研人员而言，今天最有产出的阅读策略不是平均分配时间，而是沿“系统如何被组织起来并因此获得选择性能力”这条线做跨论文对照阅读。</p>
+如果只能选3篇精读，我会建议依次读：JevAgentHarness、CoWorld Reasoner、RFdiffusion3。前两篇覆盖了agent共享控制与世界模型工具化两个热点，并且都强调真实任务中的执行闭环；第三篇则提供AI for science中最硬的功能验证样例。若你更偏应用系统，再把ISW-Agent补上；若你偏生成理论，再读开放量子系统那篇扩展视野。整体看，今天最值得抓住的主线不是“AI又做了什么”，而是“AI系统如何在中间决策层、外部工具层和功能约束层被重新组织，以获得更低成本、更强可控性和更真实的任务收益”。</p>
         <div class="metrics">
-          <div class="metric"><strong>256</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>172</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>456</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>205</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -63,15 +63,20 @@
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">agent <strong>4</strong></span>
-<span class="chip">agents <strong>4</strong></span>
+          <div class="chips"><span class="chip">language model <strong>4</strong></span>
 <span class="chip">ai <strong>4</strong></span>
-<span class="chip">environment <strong>4</strong></span>
-<span class="chip">rag <strong>3</strong></span>
-<span class="chip">multimodal <strong>3</strong></span>
-<span class="chip">language model <strong>2</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">environmental <strong>1</strong></span></div>
+<span class="chip">llm <strong>3</strong></span>
+<span class="chip">agent <strong>3</strong></span>
+<span class="chip">large language model <strong>2</strong></span>
+<span class="chip">environment <strong>2</strong></span>
+<span class="chip">language models <strong>2</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">vision-language <strong>1</strong></span>
+<span class="chip">vlm <strong>1</strong></span>
+<span class="chip">causal reasoning <strong>1</strong></span>
+<span class="chip">diffusion <strong>1</strong></span>
+<span class="chip">remote sensing <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -83,20 +88,20 @@
             <div class="bar-row">
               <div class="bar-label">arxiv</div>
               <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
-              <div class="bar-count">100</div>
+              <div class="bar-count">300</div>
             </div>
             
 
             <div class="bar-row">
               <div class="bar-label">science</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 97%"></div></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 32%"></div></div>
               <div class="bar-count">97</div>
             </div>
             
 
             <div class="bar-row">
               <div class="bar-label">nature</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 59%"></div></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 20%"></div></div>
               <div class="bar-count">59</div>
             </div>
             
@@ -106,11 +111,11 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">从“更强模型”转向“更好组织”：环境无关 coding agent、桌面 agent 和结构化决策模型都在说明，性能差距未必主要来自环境知识缺失，而可能来自控制权分配、动作接口设计、失败恢复和外部脚手架。</span>
-<span class="chip">智能体栈正在分层清晰化：决策层有 Intern-Decision 的结构化多字段选择，执行层有 OS-Helix 的 GUI/代码统一动作空间，验证层有 OmniVerifier-C1 的分解式 graded verifier，形成可组合的 agent pipeline 视角。</span>
-<span class="chip">“可验证环境”成为共同方法论：ARC/AGI Maze/Terminal-Bench、原生 Ubuntu 桌面、规则约束生成世界建模都强调环境状态可检查、任务结果可验收，这比单纯开放式生成更利于机制分析和训练闭环。</span>
-<span class="chip">细粒度机制替代粗粒度现象描述：树突计算论文把抽象规则与感觉输入分配到顶树突和胞体，IL-10R 工程化论文把细胞选择性落到 TYK2/JAK 依赖与受体交联几何，说明多个领域都在追求“能力来自哪里”的可操作解释。</span>
-<span class="chip">选择性与条件依赖是今天多领域共同关键词：agent 中是何时交还控制权、何时 reset、何时基于置信度交接；免疫工程中是髓系细胞而非 T 细胞的选择性激动；莫尔体系中是随填充变化的手性自旋模性质转变。</span></div>
+        <div class="chips"><span class="chip">共享控制与选择性委托：把agent执行中的局部多项决策从LLM分流给更便宜模型，但通过置信阈值、回退机制和在线评测来控制性能损失。</span>
+<span class="chip">世界模型从被动生成器变为主动推理工具：视频世界模型不再只做固定视觉补全，而是作为可编排的“视觉证据生成引擎”嵌入多步推理闭环。</span>
+<span class="chip">科研代理系统的关键在工作流可靠性而非单模型能力：垂直领域agent更依赖结构化参数传递、阶段验证、异常重试和外部科学模型协作。</span>
+<span class="chip">生成过程中的不确定性利用：无论是decision model置信度回退，还是扩散语言模型的superposition与remasking，都在探索如何在生成/决策时显式操作不确定性。</span>
+<span class="chip">AI for science评价标准向功能约束与实验可验证性收紧：RFdiffusion3这类工作强调满足原子级几何约束并通过实验命中验证，而非仅报告离线预测指标。</span></div>
       </div>
     </section>
 
@@ -119,50 +124,42 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>复现并扩展“困难上报+交还控制权”提示改动在多环境 coding agent 中的收益边界</strong>
-              <p>这篇脚手架论文最有价值的地方是干预极小却可能带来稳定增益，若这一现象可复现，就能把很多“专用代理优势”重新解释为控制协议优势，而不是环境知识优势。</p>
-              <p><span>第一步：</span>先严格复现摘要中提到的两版 prompt 对照，在至少两个公开可运行环境上记录成功率、平均步数、reset 次数、失败类型和人工/脚本接管频率，再做消融：只保留困难上报、不交还控制权；只交还控制权、不要求显式困难描述。</p>
-              <p><span>风险：</span>原论文可能依赖未公开的代理实现、环境封装或评测细节；提示收益也可能高度依赖特定模型版本，跨模型后不稳定。</p>
+              <strong>复现并扩展“共享控制agent”的离线-在线落差测量框架</strong>
+              <p>今天最有方法学价值的问题之一是：离线决策准确率高，并不保证在线接管后的agent成功率高。把这种落差系统化量化，能直接服务于低成本agent部署。</p>
+              <p><span>第一步：</span>先选一个现成agent benchmark和一个可输出类别概率的轻量decision model，按“离线多选准确率—局部步骤替换成功率—整轨任务成功率”三层指标做最小复现实验，并记录接管后错误状态的分布变化。</p>
+              <p><span>风险：</span>公开代码和数据可能尚不完善；若没有与原文一致的任务环境，复现结果可能更多反映实验平台差异而非方法本身。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>把 Intern-Decision 的结构化决策头接到桌面或网页 agent 的高频子决策上，测试延迟—准确率—校准三者权衡</strong>
-              <p>很多 agent 的瓶颈不是长文本规划，而是大量有限候选动作选择；如果结构化占位符预测真能在单次前向中输出多字段决策和概率，它可能比自由文本 action generation 更适合部署。</p>
-              <p><span>第一步：</span>选一个已有交互环境，把其中最频繁的 2-3 类有限候选决策抽出来，先不改全系统，只做离线重放评测：比较自由文本生成、分类头、JSON 占位符决策三种接口在准确率、ECE/Brier、解析失败率和平均延迟上的差异。</p>
-              <p><span>风险：</span>摘要中的优势可能建立在特定数据格式和训练目标上，迁移到新环境时需要额外标注；此外多字段联合预测可能在字段间存在错误传播。</p>
+              <strong>做一个‘何时需要世界模型想象’的判别基线，而不是直接追求更强VWM</strong>
+              <p>CoWorld Reasoner的关键未必只是更好的视频生成，而是VLM是否能在合适时机调用想象工具。这个决策层往往比生成器本身更容易被忽视，也更容易做出独立贡献。</p>
+              <p><span>第一步：</span>在1到2个公开视频推理基准上人工抽样，给题目标注‘直接观察可答/需要额外视觉推演才更可能答对’，建立一个小规模决策子集，再比较固定调用、从不调用和简单规则调用三种策略。</p>
+              <p><span>风险：</span>需要世界模型调用日志或可替代工具；人工标注‘是否需要想象’带有主观性，任务定义不清时结论可能不稳。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>研究分解式 verifier 能否作为桌面/代码 agent 的 reward 或自动验收器，而不只是多模态 critic</strong>
-              <p>OmniVerifier-C1 的核心思想是把复杂规则拆成子项评分，这与桌面任务、代码任务中的多约束验收天然契合；若可迁移，可能改善 sparse reward 和二元验收过粗的问题。</p>
-              <p><span>第一步：</span>从一个可自动验收的 agent benchmark 中抽取任务说明，人工定义 5-10 个可分解子要求，先不训练大模型 verifier，只做规则或弱模型版本的分项评分，比较二元通过/失败与分项评分对策略排序和失败诊断的区分度。</p>
-              <p><span>风险：</span>不同任务的子要求分解可能高度主观，且自动分解质量不足时会引入噪声；分项评分未必能稳定映射到最终任务成功。</p>
+              <strong>总结垂直科研agent中的‘参数传递失败模式’并建立一个小型故障分类表</strong>
+              <p>ISW-Agent提示真实系统常败在意图到参数、参数到工具、工具到下游模型的传递链上。这个问题跨遥感、生物信息、自动实验都普遍存在，但系统整理还不多。</p>
+              <p><span>第一步：</span>以ISW-Agent为起点，收集3到5篇科研工作流agent论文，手工提取其中出现的失败案例或鲁棒性机制，归纳成参数缺失、坐标变换错误、单位不一致、工具返回异常等故障类型，并给出对应校验点。</p>
+              <p><span>风险：</span>很多论文对失败模式报告不足，可能需要从补充材料或代码仓库间接判断，证据颗粒度不一致。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕 OS-Helix 的“GUI+代码统一动作空间”做一个最小对照：统一策略是否优于显式路由的双策略系统</strong>
-              <p>这篇工作的关键主张不是单纯多模态，而是统一动作空间本身有价值；但在工程上，显式路由到 GUI policy 和 code policy 的模块化系统也可能更稳，因此值得做直接对照。</p>
-              <p><span>第一步：</span>在一个小型 Ubuntu 或网页+终端混合任务集上，构建两个基线：统一动作输出模型与先判定动作模态再调用子策略的两阶段系统，比较任务成功率、动作切换次数、长程错误恢复能力和训练/调参成本。</p>
-              <p><span>风险：</span>没有原论文的数据和训练资源时，很难公平复现端到端训练；小规模环境上的结论也可能不能外推到真实桌面任务。</p>
+              <strong>测试基于置信度的生成中途回改，是否能在非量子框架下稳定带来文本质量收益</strong>
+              <p>开放量子系统论文提出的QIR很新，但其核心可操作思想是‘生成中根据置信度重掩码/修正先前token’。即使不采纳完整理论，也值得检验这一机制本身是否有普适价值。</p>
+              <p><span>第一步：</span>选一个开源扩散语言模型或近似的masked generation模型，在小规模文本生成任务上实现最简版置信度回改规则，与标准采样比较生成质量、重复率和长度稳定性。</p>
+              <p><span>风险：</span>依赖合适的开源模型与评价协议；若使用LLM-as-a-judge，结论可能受评估器偏差影响。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>做一篇小型综述或观点稿：把今天几篇 agent 论文统一到“控制、决策、执行、验证”四层框架下</strong>
-              <p>这组论文天然互补，但社区常把它们分散看成 prompt engineering、policy head、computer use、verifier；整理成统一框架有助于明确研究缺口，例如哪一层最缺标准接口和可复现实验。</p>
-              <p><span>第一步：</span>先做表格化梳理：每篇论文分别解决哪一层、输入输出是什么、是否有概率/置信度、是否支持自动验收、是否依赖环境特定脚手架，然后据此写出 3-5 个未解决问题。</p>
-              <p><span>风险：</span>如果只基于摘要和公开材料，综述深度有限；不同论文的任务设定差异较大，强行统一可能掩盖关键前提。</p>
-            </div>
-            
-
-            <div class="idea-item">
-              <strong>对树突计算论文做方法复核型阅读，重点检查“规则编码”“感觉编码”“选择编码”在区室间分离是否可能受分析模型设定影响</strong>
-              <p>这篇 Science 论文的结论很吸引人，但规则、刺激、选择在行为任务中常高度相关；区室分工是否稳健，往往取决于回归模型、试次平衡和规则切换分析方式。</p>
-              <p><span>第一步：</span>先不做实验，先系统阅读并整理其可能使用的解码/GLM 设计，列出至少三类需要核查的混杂：变量共线性、运动/觉醒状态、规则切换期非平稳性；若有补充数据，再尝试重建一个最小模拟分析验证分离是否可辨。</p>
-              <p><span>风险：</span>若原文和数据暂不可得，只能停留在方法学审阅层面；此外神经科学实验细节复杂，单靠摘要难以准确定位真正脆弱的分析环节。</p>
+              <strong>围绕RFdiffusion3做一篇‘功能位点约束生成设计’的快速综述草稿</strong>
+              <p>这类工作代表AI for science评价范式升级，适合尽早梳理：从蛋白骨架生成到自由原子约束、从结构合理性到功能命中率。对后续选题和组会都很有价值。</p>
+              <p><span>第一步：</span>以RFdiffusion3为中心，再补3到5篇相关蛋白/RNA生成设计论文，按‘约束形式、生成对象、后处理、实验验证强度、zero-shot证据’五个维度做表格。</p>
+              <p><span>风险：</span>仅凭摘要容易高估方法差异；如果不看正文和补充材料，很多实验细节无法公平比较。</p>
             </div>
             </div>
       </div>
@@ -175,26 +172,26 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-15T17:43:16Z</span>
-        <span>Score 66.0</span>
+        <span>2026-10-15T07:27:08Z</span>
+        <span>Score 65.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2610.22289v1">Improving Environment-Agnostic Coding Agents: The Role of Scaffolding</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Improving+Environment-Agnostic+Coding+Agents%3A+The+Role+of+Scaffolding&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22289v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Improving+Environment-Agnostic+Coding+Agents%3A+The+Role+of+Scaffolding%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Improving+Environment-Agnostic+Coding+Agents%3A+The+Role+of+Scaffolding&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22289v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Improving+Environment-Agnostic+Coding+Agents%3A+The+Role+of+Scaffolding%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Improving+Environment-Agnostic+Coding+Agents%3A+The+Role+of+Scaffolding&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22289v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Improving+Environment-Agnostic+Coding+Agents%3A+The+Role+of+Scaffolding%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2610.21412v1">JevAgentHarness: Benchmarking, Deploying and Training Decision Models That Share Control with LLMs</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+JevAgentHarness%3A+Benchmarking%2C+Deploying+and+Training+Decision+Models+That+Share&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21412v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+JevAgentHarness%3A+Benchmarking%2C+Deploying+and+Training+Decision+Models+That+Share+Control+with+LLMs%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+JevAgentHarness%3A+Benchmarking%2C+Deploying+and+Training+Decision+Models+That+Share&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21412v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+JevAgentHarness%3A+Benchmarking%2C+Deploying+and+Training+Decision+Models+That+Share+Control+with+LLMs%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+JevAgentHarness%3A+Benchmarking%2C+Deploying+and+Training+Decision+Models+That+Share&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21412v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+JevAgentHarness%3A+Benchmarking%2C+Deploying+and+Training+Decision+Models+That+Share+Control+with+LLMs%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Sergey Rodionov · <a href="https://arxiv.org/pdf/2610.22289v1">PDF</a></div>
-      <div class="chips"><span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
+      <div class="authors">Kunlun Zhu、Tao Feng、Xu Han、Heng Wang 等 8 人 · <a href="https://arxiv.org/pdf/2610.21412v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文研究“环境无关”的代码智能体在不同任务环境中的表现，具体比较了一个基于 Codex 的代理在 ARC-AGI-3、AGI Maze 和 Terminal-Bench 上仅改动一条提示指令后的差异，并分析为什么开发者提供的脚手架仍然能带来优势。摘要显示，鼓励代理显式报告困难并交还控制权以便自动续跑，可提升 ARC-AGI-3 和 AGI Maze 的平均分，但通用代理仍落后于面向 ARC-AGI-3 的专用参考方案。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把“脚手架为何仍有效”具体化为可检验的控制与组织问题，而不是简单归因于环境知识注入；作者通过几乎不改代码和工具、只改提示中一条关于困难上报与控制权返回的指令，展示了环境无关代理在多个基准上的可改进性，并进一步用脚本控制器接管 reset 决策，部分追回专用代理优势，暗示关键差距可能来自外部控制结构而非任务规则本身。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“LLM agent 的运行框架如何把每一步的多项决策安全地委托给更便宜更快的 decision model”这一具体问题，提出了一个评测与部署框架 JevAgentHarness，并构建 AgentDecisionBench 来测试从孤立决策题到运行中 agent 控制的性能。摘要显示作者还进一步训练了面向 agent 轨迹分布的决策模型，以缓解现有 decision model 在自身失误后到达状态上的泛化不足。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要可见，论文的核心贡献可能有三层：第一，提出 AgentDecisionBench，用于系统评估 decision model 在 agentic task 中从离线选择题到在线控制的能力；第二，提出 JevAgentHarness，通过在 agent 自身轨迹上为每类选择拟合置信阈值，在高置信时交给 decision model、低置信时回退给 LLM，从而实现共享控制；第三，指出并尝试解决训练分布错位问题，即现有 decision model 没见过 agent 因自身错误而进入的状态，因此进一步训练了新的 agent-oriented decision model。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -211,27 +208,37 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>66.0</strong>
+              <strong>65.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答两个紧密相关的具体问题：第一，随着语言模型变强，开发者提供的脚手架为什么没有自然失去优势；第二，在不做环境特定工程定制的前提下，环境无关的代码代理能否通过更好的控制与交互约定获得稳定提升。更细一点说，它在问：通用代理落后于专用代理，差距究竟来自缺少环境知识，还是来自任务组织、失败处理、重置时机和控制权分配等外部结构。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法是跨环境对同一代理做最小干预对照实验。对象是一个基于 Codex 的 agent；环境包括 ARC-AGI-3、AGI Maze、Terminal-Bench；实验中保持代码、prompt 主体和通用工具不变，只把环境特定信息作为输入喂给代理。核心对照是两个几乎相同的 prompt 版本，其中一个额外鼓励代理在遇到困难时报告问题并返回控制权，以便系统自动继续。随后作者再做机制分析：引入一个 scripted controller，把 reset 决策从代理转移出去，而且控制器遵循的约定本已在提示中给出。通过比较通用代理、改提示后的通用代理、以及 ARC-AGI-3 专用参考方案，来推断脚手架收益的来源。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点之一是实验干预非常小且可解释：不是大幅改系统，而是只改一条指令，因此更容易把性能变化归因到控制流程。亮点之二是跨三个不同环境做统一部署，能更直接检验 environment-agnostic 主张，而不是在单一 benchmark 上得出结论。亮点之三是摘要给出的机制证据较强：专用参考并未提供新规则或解法，却仍更强；而把 reset 决策交给脚本控制器又能追回部分优势，这使“脚手架主要提供组织与控制”这一论点更可信。亮点之四是结果并非一边倒，Terminal-Bench 只有小而混合的变化，这种异质性反而提示作者没有把结论过度泛化。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作有四个。第一，优先查看论文中两个 prompt 变体的原文，确认唯一改动是否真的是“报告困难并交还控制权”。第二，查 ARC-AGI-3、AGI Maze、Terminal-Bench 三个任务上的分数表和方差，记录哪些子任务受益最大、哪些无效。第三，重点找 scripted controller 的规则描述，判断它到底只是执行约定，还是隐含了额外策略。第四，如果你做代理系统，可先在自己的 agent 上复现一个最小版本：加入“遇阻时显式上报+外部决定是否 reset/continue”的控制回路，并与纯代理内生决策做 A/B 对照。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在 LLM agent 的执行框架中，许多步骤最终都落成一个多项选择决策，例如下一步选哪个工具、是否继续、可能选哪个动作；这些决策若每步都交给大模型会很慢很贵。那么，能否把这类决策委托给更快更便宜的 decision model，同时尽量不降低完整 agent 任务的成功率？进一步地，应该如何评估这种委托在离线题目与在线控制中的真实效果，以及如何处理 decision model 在接管后遇到的分布偏移问题？</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法包括三部分。1）评测：构建 AgentDecisionBench，在公共 benchmark 和自建 DecisionGym 中，按层级测试 decision model，从孤立的多选题到直接控制运行中的 agent。2）部署：设计 JevAgentHarness，对 agent 运行中不同类型的选择基于其自身轨迹拟合 confidence threshold；当 decision model 置信度高于阈值时由其决策，低于阈值时回退给 LLM，实现共享控制。3）训练：针对现有 decision model 没见过“因自身错误而到达的状态”这一问题，进一步训练新的 agent-oriented decision model，可能通过收集 agent rollout、覆盖错误后状态、再进行监督学习或模仿学习来提升在线鲁棒性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，论文把问题落在 agent harness 这一非常工程化但又有普适价值的层面，目标明确：降低每步 LLM 调用成本。第二，证据链强调离线到在线的落差，摘要给出的 69.5% 在线成功率和未校准委托导致的 19.0 点下降，说明作者不是只报告静态准确率，而是揭示真实部署风险。第三，共享控制设计具有很强实用性：不是激进地完全替换 LLM，而是通过按选择拟合阈值进行保守委托，这种 selective delegation 更容易在现有 agent 系统中落地。若训练部分确实覆盖错误后状态，那么它还触及了 agent 学习中非常关键的 covariate shift 问题。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先查论文中的 AgentDecisionBench 和 DecisionGym 定义，记录任务类型、状态表示、动作空间和评价指标；2）重点找展示“离线准确率与在线成功率脱钩”的图表，确认 69.5% 与 -19.0 点分别对应的设置；3）查看 JevAgentHarness 的阈值拟合公式、是否按工具/动作类别分别校准、以及回退策略的触发条件；4）核对成本与延迟收益是否以 token、美元、wall-clock time 报告；5）若你做 agent 系统，可先在自己的 harness 上复现一个最小版本：把“工具选择”抽成分类器输出，并加入基于验证轨迹的置信回退机制，与纯 LLM 控制做对照。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答两个紧密相关的具体问题：第一，随着语言模型变强，开发者提供的脚手架为什么没有自然失去优势；第二，在不做环境特定工程定制的前提下，环境无关的代码代理能否通过更好的控制与交互约定获得稳定提升。更细一点说，它在问：通用代理落后于专用代理，差距究竟来自缺少环境知识，还是来自任务组织、失败处理、重置时机和控制权分配等外部结构。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法是跨环境对同一代理做最小干预对照实验。对象是一个基于 Codex 的 agent；环境包括 ARC-AGI-3、AGI Maze、Terminal-Bench；实验中保持代码、prompt 主体和通用工具不变，只把环境特定信息作为输入喂给代理。核心对照是两个几乎相同的 prompt 版本，其中一个额外鼓励代理在遇到困难时报告问题并返回控制权，以便系统自动继续。随后作者再做机制分析：引入一个 scripted controller，把 reset 决策从代理转移出去，而且控制器遵循的约定本已在提示中给出。通过比较通用代理、改提示后的通用代理、以及 ARC-AGI-3 专用参考方案，来推断脚手架收益的来源。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点之一是实验干预非常小且可解释：不是大幅改系统，而是只改一条指令，因此更容易把性能变化归因到控制流程。亮点之二是跨三个不同环境做统一部署，能更直接检验 environment-agnostic 主张，而不是在单一 benchmark 上得出结论。亮点之三是摘要给出的机制证据较强：专用参考并未提供新规则或解法，却仍更强；而把 reset 决策交给脚本控制器又能追回部分优势，这使“脚手架主要提供组织与控制”这一论点更可信。亮点之四是结果并非一边倒，Terminal-Bench 只有小而混合的变化，这种异质性反而提示作者没有把结论过度泛化。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要，仍有几个边界需要警惕。第一，结果目前只明确提到 mean scores 的变化方向，没有看到统计显著性、方差、样本量和失败案例分布。第二，所谓“几乎相同的 prompt”到底差多少、是否引入了额外行为约束，摘要不足以判断。第三，Codex-based agent 与 GPT-5.6-sol 的关系尚不清楚，可能涉及不同模型、不同预算或不同推理配置，需防止横向比较失真。第四，Terminal-Bench 上效果混合，说明该机制可能依赖任务结构；如果没有更细粒度分析，结论未必能推广到更广泛的软件工程环境。第五，摘要被截断，可能遗漏了关键限定条件、消融实验或作者对机制的更完整解释。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作有四个。第一，优先查看论文中两个 prompt 变体的原文，确认唯一改动是否真的是“报告困难并交还控制权”。第二，查 ARC-AGI-3、AGI Maze、Terminal-Bench 三个任务上的分数表和方差，记录哪些子任务受益最大、哪些无效。第三，重点找 scripted controller 的规则描述，判断它到底只是执行约定，还是隐含了额外策略。第四，如果你做代理系统，可先在自己的 agent 上复现一个最小版本：加入“遇阻时显式上报+外部决定是否 reset/continue”的控制回路，并与纯代理内生决策做 A/B 对照。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和元数据看，论文聚焦代码型智能体的“脚手架”作用，且特别强调 environment-agnostic，即同一套代码、提示和通用工具跨环境部署，只把环境特定信息作为输入提供给代理。研究对象非常具体：一个 Codex-based agent，在 ARC-AGI-3、AGI Maze、Terminal-Bench 三个环境上测试两个几乎相同的 prompt 变体。关键实验操作也很具体：只改变一条指令，鼓励代理在遇到困难时进行报告，并把控制权交还给外部系统以实现 automatic continuation。摘要给出的现象是，这个微小改动在 ARC-AGI-3 和 AGI Maze 上提高了 mean scores，而在 Terminal-Bench 上变化较小且方向不一致，说明“报告困难+外部续跑”并非对所有环境都同样有效。论文还设置了一个 ARC-AGI-3-specific reference 作为参照，即便换成 GPT-5.6-sol，通用代理仍低于该专用参考；而这个参考的优势并不来自额外提供游戏规则或答案，而是来自对组织方式和控制流程的规定。为进一步定位差距来源，作者把 reset decision 从代理内部转移给一个 scripted controller，且该控制器遵循的约定本来就已经在提示中告诉了代理。这个“小改动”能回收部分专用代理优势，是摘要中最重要的证据线索之一，因为它支持这样一种解释：当前大模型即使具备较强程序构造能力，仍可能在长程控制、失败恢复、状态管理、何时重试/重置等元决策上受益于外部脚手架。与科研读者的关系上，这篇工作对通用代理、代码代理、agent scaffolding、benchmark transfer、以及“模型能力提升是否会消解系统工程价值”这些问题都直接相关。尤其如果你的方向涉及 agentic coding、tool use、自动恢复机制、跨环境泛化或 benchmark design，这篇论文值得关注，因为它把脚手架的收益拆解到了可操作的控制接口层面，而不是停留在“专用系统更强”的经验结论。需要核对的信息包括：三项基准的具体设置与评分方式；两个 prompt 变体的完整文本差异； scripted controller 的规则细节；所谓 ARC-AGI-3-specific reference 的实现边界； GPT-5.6-sol 的实验条件；以及摘要末尾被截断的部分，可能包含更完整的结论或机制解释。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在 LLM agent 的执行框架中，许多步骤最终都落成一个多项选择决策，例如下一步选哪个工具、是否继续、可能选哪个动作；这些决策若每步都交给大模型会很慢很贵。那么，能否把这类决策委托给更快更便宜的 decision model，同时尽量不降低完整 agent 任务的成功率？进一步地，应该如何评估这种委托在离线题目与在线控制中的真实效果，以及如何处理 decision model 在接管后遇到的分布偏移问题？</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法包括三部分。1）评测：构建 AgentDecisionBench，在公共 benchmark 和自建 DecisionGym 中，按层级测试 decision model，从孤立的多选题到直接控制运行中的 agent。2）部署：设计 JevAgentHarness，对 agent 运行中不同类型的选择基于其自身轨迹拟合 confidence threshold；当 decision model 置信度高于阈值时由其决策，低于阈值时回退给 LLM，实现共享控制。3）训练：针对现有 decision model 没见过“因自身错误而到达的状态”这一问题，进一步训练新的 agent-oriented decision model，可能通过收集 agent rollout、覆盖错误后状态、再进行监督学习或模仿学习来提升在线鲁棒性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，论文把问题落在 agent harness 这一非常工程化但又有普适价值的层面，目标明确：降低每步 LLM 调用成本。第二，证据链强调离线到在线的落差，摘要给出的 69.5% 在线成功率和未校准委托导致的 19.0 点下降，说明作者不是只报告静态准确率，而是揭示真实部署风险。第三，共享控制设计具有很强实用性：不是激进地完全替换 LLM，而是通过按选择拟合阈值进行保守委托，这种 selective delegation 更容易在现有 agent 系统中落地。若训练部分确实覆盖错误后状态，那么它还触及了 agent 学习中非常关键的 covariate shift 问题。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与截断摘要，主要局限是信息不完整。首先，无法确认 AgentDecisionBench 的任务覆盖面、难度分布和标注方式，因此还不能判断 benchmark 是否足够代表真实 agent 场景。其次，69.5% 和 19.0 点下降虽然很有信息量，但缺少对应基线、绝对成本节省、延迟收益和统计显著性。第三，阈值拟合可能依赖特定 agent、特定任务或特定 choice 类型，泛化到新环境时是否仍有效尚不清楚。第四，训练新 decision model 若需要大量 agent rollout 数据，部署成本和数据采集复杂度可能不低。第五，摘要没有说明 decision model 的输入是否包含完整上下文、工具文档、历史轨迹压缩等，这些都会显著影响可复现性与公平比较。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先查论文中的 AgentDecisionBench 和 DecisionGym 定义，记录任务类型、状态表示、动作空间和评价指标；2）重点找展示“离线准确率与在线成功率脱钩”的图表，确认 69.5% 与 -19.0 点分别对应的设置；3）查看 JevAgentHarness 的阈值拟合公式、是否按工具/动作类别分别校准、以及回退策略的触发条件；4）核对成本与延迟收益是否以 token、美元、wall-clock time 报告；5）若你做 agent 系统，可先在自己的 harness 上复现一个最小版本：把“工具选择”抽成分类器输出，并加入基于验证轨迹的置信回退机制，与纯 LLM 控制做对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常具体：不是泛泛讨论“LLM agent 是否有效”，而是研究 agent harness 这一运行层程序如何在工具选择等多项决策上减少对大模型的逐步调用。摘要给出的典型决策是“下一步调用哪个工具”，这说明论文关注的是 agent 执行过程中的离散控制问题，而不是长文本生成本身。作者的动机也很明确：现有 harness 在每一步都调用大模型，导致长任务在时间和成本上都很高；decision model 如 Jev 可以直接回答这类多选决策，速度和价格远低于一次 LLM 调用，但关键问题是如何在尽量不损失任务成功率的前提下进行委托。
+
+方法线索上，论文先做评测，再做部署，再做训练。评测部分构建了 AgentDecisionBench，覆盖“isolated questions”到“control of a running agent”的层级，并在公共 benchmark 与自建环境 DecisionGym 上测试。这意味着作者并不满足于只看离线分类准确率，而是强调在线 agent 成功率这一更接近真实部署的指标。摘要中一个很关键的证据是：在孤立问题上最准确的 decision model，在线 agent 任务成功率也只有 69.5%；而且如果不做拟合过的 confidence threshold，仅把工具选择委托给 decision model，会让成功率下降 19.0 个点。这个现象直接说明离线决策精度与在线 agent 成功之间存在明显鸿沟，且简单替换控制器会带来严重退化。
+
+在部署机制上，JevAgentHarness 的核心似乎是“按选择类型、基于 agent 自身轨迹拟合置信阈值”。也就是说，它不是统一地把所有高概率输出都交给 decision model，而是针对具体 choice 学习一个阈值；低于阈值时回退给 LLM 决策，高于阈值时由 decision model 接管。这是一种共享控制或 selective delegation 机制，目标是在成本/速度收益与成功率损失之间取得更稳健的折中。这里值得特别注意的是“on the agent&#x27;s own trajectories”这一表述，说明阈值拟合不是仅在静态数据集上完成，而是利用目标 agent 实际运行时产生的状态分布来校准。
+
+训练部分的核心问题是分布偏移。摘要明确指出，现有 decision model 从未见过“agent 因自身错误而到达的状态”，因此它们在真正接管控制后会暴露出训练-部署不一致。作者因此训练了一个名字以 AgentDeci 开头的新模型，但摘要被截断，无法确认完整名称、训练数据构造方式、是否采用 DAgger/在线收集/反事实标注等具体技术。不过从上下文推断，这一模型应当面向 agent rollout 中的状态分布，尤其包含错误恢复或偏离轨迹后的决策样本。
+
+与科研读者的关系上，这篇工作对以下方向尤其相关：一是 LLM agent 系统优化，因为它把“每步都调大模型”拆解为可替代的决策子问题；二是模型路由与 selective prediction，因为它实质上研究何时让小模型接管、何时回退大模型；三是 offline-to-online evaluation gap，因为它展示了离线多选准确率不能直接代表在线任务完成率；四是 agent training data design，因为它强调必须覆盖 agent 自身错误诱发的状态。
+
+需要核对的信息主要有：AgentDecisionBench 的具体任务组成、DecisionGym 的环境类型与交互接口、decision model Jev 的输入输出形式、阈值拟合的数学定义与优化目标、成本/延迟节省的量化结果、AgentDeci 系列模型的训练数据来源与标注方式、以及与纯 LLM harness、纯 decision model harness、其他 routing/bandit/uncertainty baseline 的对比。由于当前只有题名和截断摘要，不能确认其是否在真实软件修复、计算机操作、客服等多个场景都做了实验，也不能确认 69.5% 和 -19.0 点分别对应哪些 benchmark 或设置。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Stronger language models may increasingly construct useful procedures for themselves, reducing the advantage of developer-supplied scaffolding. We investigate why this advantage persists and whether an environment-agnostic agent can be improved without environment-specific engineering. We evaluate a Codex-based agent in two nearly identical prompt variants on ARC-AGI-3, AGI Maze, and Terminal-Bench. Each variant is deployed with unchanged code, prompts, and general-purpose tools across environments, receiving environment-specific information as input. Changing only an instruction to encourage reporting difficulties and returning control for automatic continuation improves mean scores on both ARC-AGI-3 and AGI Maze, while Terminal-Bench shows small, mixed changes. Yet the general agent remains below an ARC-AGI-3-specific reference, including with GPT-5.6-sol. The reference prescribes organization and control rather than supplying new game rules or solutions. To investigate this gap, we transfer reset decisions to a scripted controller that follows a convention already given to the agent. This small change recovers part of the specialized agent&#x27;s advantage. A complementary AGI Maze experiment shows that additional tutorial experience can reduce performance. Together, these findings highlight the distinction between having information and tools available and using them effectively. Supplied procedures still matter for the models tested here. The performance gains also come with higher token-based cost. The experiments do not separate better use of information and procedures from additional or differently allocated inference. We provide the EnvTraverse framework and an evaluated baseline agent for testing whether further environment-independent changes improve performance in some environments without degrading it in others.</p>
+          <p>Large language model (LLM) agents now fix software, operate computers and serve customers, but their harnesses, the programs that run them, call a large LLM at every step, which makes long tasks slow and costly. Most of these calls end in a multiple-choice decision, such as which tool to call next. Decision models such as Jev answer these questions directly, at a fraction of an LLM call&#x27;s time and price. We ask how a harness can delegate these decisions to a decision model with little loss of success. To evaluate decision models in agentic tasks, we build AgentDecisionBench, which tests them from isolated questions up to control of a running agent, on public benchmarks and our DecisionGym environment. The decision model most accurate on isolated questions solved only 69.5% of agent tasks, and without a fitted confidence threshold, delegating tool choices lowered success by 19.0 points. Building on these findings, we then design JevAgentHarness, which fits this threshold for each choice on the agent&#x27;s own trajectories and lets the LLM decide below it. Because existing decision models never see the states an agent reaches after its own mistakes, we train AgentDecision-4B, an open 4B model, on such states with Jev&#x27;s answers as labels. On tasks unlike its training data, the agent solved 91.5% of them with AgentDecision-4B and 82.0% with Jev. On tasks like their training data, 4B models trained this way made agents 81.1-89.0% cheaper and up to 2.5 times faster, without losing 3 or more points of task success. The models, data, and harness will be released at https://github.com/JevAgentHarness/JevAgentHarness.</p>
         </details>
         
         </div>
@@ -243,26 +250,27 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-15T16:05:48Z</span>
-        <span>Score 62.0</span>
+        <span>2026-10-15T13:59:15Z</span>
+        <span>Score 63.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2610.22131v1">Intern-Decision: Efficient Multimodal Decision Making with Autoregressive Masked Language Modeling</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Intern-Decision%3A+Efficient+Multimodal+Decision+Making+with+Autoregressive+Masked&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22131v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Intern-Decision%3A+Efficient+Multimodal+Decision+Making+with+Autoregressive+Masked+Language+Modeling%0Akeywords%3A+language+model%2C+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Intern-Decision%3A+Efficient+Multimodal+Decision+Making+with+Autoregressive+Masked&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22131v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Intern-Decision%3A+Efficient+Multimodal+Decision+Making+with+Autoregressive+Masked+Language+Modeling%0Akeywords%3A+language+model%2C+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Intern-Decision%3A+Efficient+Multimodal+Decision+Making+with+Autoregressive+Masked&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22131v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Intern-Decision%3A+Efficient+Multimodal+Decision+Making+with+Autoregressive+Masked+Language+Modeling%0Akeywords%3A+language+model%2C+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>2. <a href="http://arxiv.org/abs/2610.21910v1">CoWorld Reasoner: Agentic Multimodal Reasoning with the Evolving Video World Model-Driven Harness</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+CoWorld+Reasoner%3A+Agentic+Multimodal+Reasoning+with+the+Evolving+Video+World+Mod&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21910v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+CoWorld+Reasoner%3A+Agentic+Multimodal+Reasoning+with+the+Evolving+Video+World+Model-Driven+Harness%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+multimodal%2C+vision-language%2C+vlm%2C+ai%2C+causal+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+CoWorld+Reasoner%3A+Agentic+Multimodal+Reasoning+with+the+Evolving+Video+World+Mod&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21910v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+CoWorld+Reasoner%3A+Agentic+Multimodal+Reasoning+with+the+Evolving+Video+World+Model-Driven+Harness%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+multimodal%2C+vision-language%2C+vlm%2C+ai%2C+causal+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+CoWorld+Reasoner%3A+Agentic+Multimodal+Reasoning+with+the+Evolving+Video+World+Mod&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21910v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+CoWorld+Reasoner%3A+Agentic+Multimodal+Reasoning+with+the+Evolving+Video+World+Model-Driven+Harness%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+multimodal%2C+vision-language%2C+vlm%2C+ai%2C+causal+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Tong Zhu、Zhe Xu、Zefeng He、Yunkai Chai 等 10 人 · <a href="https://arxiv.org/pdf/2610.22131v1">PDF</a></div>
+      <div class="authors">Dongjie Cheng、Ruifeng Yuan、Ran Wei、Ning Song 等 6 人 · <a href="https://arxiv.org/pdf/2610.21910v1">PDF</a></div>
       <div class="chips"><span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
 <span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">vision-language <strong>1</strong></span>
+<span class="chip">vlm <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
+<span class="chip">causal reasoning <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出 Intern-Decision，一组 0.8B、2B、4B 的多模态决策模型，面向交互式智能体在文本和可选图像输入下，从有限动作/标签/有序结果集合中直接输出结构化选择及候选概率。摘要显示其核心任务不是自由文本生成，而是把多字段决策写入完整 assistant JSON 骨架，并在单次因果前向中同时评估各字段，以降低延迟并简化模型与环境的接口。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献看起来有三点：一是提出“autoregressive masked language modeling”式的结构化决策框架，把每个决策字段映射为 JSON 中的占位符，并复用原生语言模型头完成多字段选择；二是给出 0.8B/2B/4B 三个多模态模型，在七个评测套件上报告 4B 模型 90.02% 的非加权平均准确率，高于摘要中对比的 Jev v1.13.0 的 88.74%；三是强调部署侧价值，包括在固定 289 token、3 字段请求、RTX 4090 上约 44.16 ms 的 4B 平均延迟，以及通过温度缩放改善已知分布试验中的 Brier 分数和 ECE，并支持基于置信度的交接策略。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 CoWorld Reasoner，一个把 Video World Model 作为统一“视觉推演引擎”的 agentic 多模态推理框架，目标是让 VLM 在空间智能、时间推理、因果推理等视频相关任务中，按需选择“想象”操作并利用生成出的视觉证据完成推理。摘要还表明作者在 7 个基准上评测，并引入一种在不更新模型权重的前提下联合改进工具、技能与执行代码的 co-evolution 机制。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献可能有三点。第一，提出 Video World Model-Driven Harness，把 VWM 封装成可调用的多种视觉操作工具，而不是只做固定流程下的单一视觉想象任务，如 novel-view synthesis。第二，设计一套面向 VLM 的 skills，使其能决定是否需要视觉想象、该调用哪种操作、如何构造生成请求、以及如何解释生成结果作为附加证据。第三，提出 VLM-VWM Harness Co-Evolution，通过执行反馈迭代修改工具、技能和执行代码，同时保持 VLM 与 VWM 的参数固定，从而提升跨任务适配性。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -274,7 +282,82 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 7</div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>63.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：当 VLM 需要对图像或视频中未直接呈现的运动、动作演化、视角变化或因果关系进行推理时，如何不依赖固定的新视角合成等单一路径，而是灵活地调用 Video World Model 生成任务相关的额外视觉证据，并把这些证据纳入推理闭环。进一步地，它还想解决一个系统问题：在不更新 VLM 和 VWM 权重的情况下，能否通过工具、技能和执行代码的协同迭代，让同一套框架适配多种视频推理任务。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法由两层组成。第一层是 Video World Model-Driven Harness：把 VWM 封装为多个可调用工具，供 VLM 在推理时按需使用。第二层是 skills：指导 VLM 完成四类动作，即判断是否需要想象、选择视觉操作、撰写生成请求、解释生成证据。整体上这像一个 agentic 推理流程，可能包含多轮工具调用和结果回读。实验上作者应该在 7 个 benchmark 上测试，任务覆盖 spatial intelligence、temporal reasoning、causal reasoning 等；对比对象大概率包括纯 VLM、固定 VWM pipeline、以及其他工具增强式多模态方法。论文还提出 VLM-VWM Harness Co-Evolution，可能根据执行反馈自动或半自动修改工具描述、技能提示、调用逻辑和执行代码，以提升系统表现。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把 Video World Model 从“固定生成器”提升为“统一视觉推理引擎”，这使视觉想象成为可调度、可组合的推理工具，而不是单一 preprocessing 模块。第二个亮点是显式 skills 设计，把是否调用想象、调用什么、如何解释结果这些关键决策结构化，便于分析 agent 的行为。第三个亮点是 co-evolution 思路：即便冻结模型参数，仍通过执行反馈改进系统外层接口与程序，具有较强工程实用性。若实验充分，这种方法对视频问答、时序事件理解、因果判断、具身智能中的视觉外推等方向都有潜在价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作有五个。1）先查论文中的框架总图，确认 Harness、tools、skills、co-evolution 四者关系。2）记录 7 个 benchmark 的具体名称、任务形式和每类任务对应的视觉操作。3）重点看消融实验：无想象、固定 pipeline、无 skills、无 co-evolution 各自性能差异。4）查看案例图，判断生成的视觉证据是否真的帮助了空间/时间/因果判断，还是仅提供表面可视化。5）若做复现或借鉴，可先实现一个最简版本：固定 VLM 与某个公开视频生成/预测模型，只保留“是否调用工具 + 一种视觉操作 + 结果解释”三步流程，在一个时序推理 benchmark 上做小规模对照。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：当 VLM 需要对图像或视频中未直接呈现的运动、动作演化、视角变化或因果关系进行推理时，如何不依赖固定的新视角合成等单一路径，而是灵活地调用 Video World Model 生成任务相关的额外视觉证据，并把这些证据纳入推理闭环。进一步地，它还想解决一个系统问题：在不更新 VLM 和 VWM 权重的情况下，能否通过工具、技能和执行代码的协同迭代，让同一套框架适配多种视频推理任务。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法由两层组成。第一层是 Video World Model-Driven Harness：把 VWM 封装为多个可调用工具，供 VLM 在推理时按需使用。第二层是 skills：指导 VLM 完成四类动作，即判断是否需要想象、选择视觉操作、撰写生成请求、解释生成证据。整体上这像一个 agentic 推理流程，可能包含多轮工具调用和结果回读。实验上作者应该在 7 个 benchmark 上测试，任务覆盖 spatial intelligence、temporal reasoning、causal reasoning 等；对比对象大概率包括纯 VLM、固定 VWM pipeline、以及其他工具增强式多模态方法。论文还提出 VLM-VWM Harness Co-Evolution，可能根据执行反馈自动或半自动修改工具描述、技能提示、调用逻辑和执行代码，以提升系统表现。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把 Video World Model 从“固定生成器”提升为“统一视觉推理引擎”，这使视觉想象成为可调度、可组合的推理工具，而不是单一 preprocessing 模块。第二个亮点是显式 skills 设计，把是否调用想象、调用什么、如何解释结果这些关键决策结构化，便于分析 agent 的行为。第三个亮点是 co-evolution 思路：即便冻结模型参数，仍通过执行反馈改进系统外层接口与程序，具有较强工程实用性。若实验充分，这种方法对视频问答、时序事件理解、因果判断、具身智能中的视觉外推等方向都有潜在价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，首先要警惕生成式视觉证据的真实性与稳定性问题：VWM 生成内容可能引入伪证据，导致推理链条被幻觉污染。其次，摘要没有说明工具类型、VWM 架构、benchmark 名称、评价指标和提升幅度，因此暂时无法判断贡献是方法学突破还是系统整合。第三，冻结权重虽然有部署优势，但也可能意味着性能高度依赖提示工程、工具设计和执行代码细节，迁移性未必稳健。第四，agentic 多轮调用通常伴随较高推理成本和复杂失败模式，例如请求构造错误、工具选择不当、生成结果难解释等，这些都需要正文中的消融和案例来验证。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作有五个。1）先查论文中的框架总图，确认 Harness、tools、skills、co-evolution 四者关系。2）记录 7 个 benchmark 的具体名称、任务形式和每类任务对应的视觉操作。3）重点看消融实验：无想象、固定 pipeline、无 skills、无 co-evolution 各自性能差异。4）查看案例图，判断生成的视觉证据是否真的帮助了空间/时间/因果判断，还是仅提供表面可视化。5）若做复现或借鉴，可先实现一个最简版本：固定 VLM 与某个公开视频生成/预测模型，只保留“是否调用工具 + 一种视觉操作 + 结果解释”三步流程，在一个时序推理 benchmark 上做小规模对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名与摘要看，研究对象不是单纯的视频理解模型，而是“VLM + VWM + agentic harness”的组合系统，重点是把视频世界模型从一个固定生成模块提升为可被调度的通用视觉推理引擎。论文针对的问题很具体：现有方法虽然可借助 VWM 做视觉想象，但通常围绕某一种预定义想象形式，例如新视角合成，难以覆盖动作理解、运动外推、视角变化、时序因果判断等多类任务；作者希望让 VLM 像 agent 一样在推理过程中自主判断是否需要额外视觉证据，并通过不同工具形式调用 VWM 来补足输入中缺失的时空信息。
+
+方法线索上，CoWorld Reasoner 的核心载体是一个“Video World Model-Driven Harness”。“Harness”意味着它不仅是模型调用接口，更像任务执行环境：一方面暴露多个视觉操作工具，另一方面提供“skills”来规范或提示 VLM 的决策流程。根据摘要，这些 skills 至少覆盖四个步骤：是否想象、选择哪种视觉操作、如何编写 generation request、如何解释生成的视觉结果。由此可推断，该框架可能把视觉推理拆成若干显式子任务，例如未来帧想象、视角变换、动作演化、轨迹/交互补全、反事实或因果相关的可视化假设生成等，但具体工具种类、输入输出格式、是否多轮调用，仍需查看正文或图示确认。
+
+摘要强调“unified visual reasoning engine”，说明作者的主张不是为某个单一 benchmark 定制 pipeline，而是让同一个 VWM 支撑多种时空推理任务。这一点与关键词中的 multimodal、vision-language、causal reasoning 相呼应。若你的研究关注基于外部工具增强的多模态 agent、视频理解中的显式中间证据、或世界模型辅助因果/时序推断，这篇论文会比较相关，因为它把“生成视觉证据”本身纳入决策闭环，而不是把生成结果当作离线预处理。
+
+证据线索方面，摘要提到“Across seven benchmarks spanning spatial intelligence, temporal and causal reasoning ...”，说明实验覆盖面较广，至少试图验证框架在空间、时间、因果三类视频推理任务上的泛化能力。另一个重要线索是“keeping both model weights fixed”，意味着性能提升主要来自 harness 设计与执行反馈驱动的系统级迭代，而非微调模型参数。这对实际部署很有吸引力：如果成立，说明可在冻结大模型和世界模型的条件下，通过工具链重构与程序改进获得跨任务收益。不过目前给出的元数据未包含具体 benchmark 名称、对比方法、提升幅度、失败案例以及计算开销，不能据此断言效果强弱。
+
+需要重点核对的信息包括：1）VWM 具体是哪一类视频生成/预测模型，预训练来源是什么；2）“multiple visual operations”究竟有哪些，分别对应哪些任务；3）skills 是人工编写提示、程序化策略，还是由其他模型自动归纳；4）co-evolution 的执行反馈来自正确率、工具调用成功率、生成质量评估，还是代码执行异常；5）七个 benchmark 的任务构成、是否包含开放问答与多选题、是否需要长视频；6）与固定 pipeline、纯 VLM、纯视频生成增强方法相比的增益有多大；7）生成视觉证据是否真正提高可解释性，还是只是增加调用成本。总之，仅凭摘要可将其视为一篇面向视频时空推理的 agentic multimodal reasoning 系统论文，亮点在于把 VWM 工具化、技能化、可迭代化，但具体科学贡献仍需靠实验表格、工具定义和案例图进一步核实。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>As Vision-Language Models (VLMs) advance, they are increasingly expected to perform spatiotemporal reasoning over motion, actions, and view changes beyond what the input images show. Video World Models (VWMs) provide a natural unified engine for visual imagination by generating task-relevant visual content as additional evidence. However, existing approaches typically invoke a VWM through fixed pipelines centered on a predefined form of visual imagination, such as novel-view synthesis. To support flexible visual imagination for diverse reasoning tasks, we introduce CoWorld Reasoner, an agentic framework that uses a VWM as a unified visual reasoning engine. Its Video World Model-Driven Harness exposes multiple visual operations through tools and uses skills to guide the VLM in deciding whether to imagine, selecting an operation, constructing a generation request, and interpreting the resulting visual evidence. We further introduce VLM-VWM Harness Co-Evolution, which jointly revises tools, skills, and execution code based on execution feedback while keeping both model weights fixed. Across seven benchmarks spanning spatial intelligence, temporal and causal reasoning, and perceptual reasoning, CoWorld Reasoner outperforms direct reasoning with the same VLM. The strongest variant improves on all seven benchmarks, including relative accuracy gains of 11.8% on MMSI and 13.0% on ERQA, and outperforms all five evolving baselines using the same backbone across five benchmarks.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-15T10:57:07Z</span>
+        <span>Score 62.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2610.21672v1">Diffusion Language Models as Open Quantum Systems</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Diffusion+Language+Models+as+Open+Quantum+Systems&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21672v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Diffusion+Language+Models+as+Open+Quantum+Systems%0Akeywords%3A+llm%2C+language+model%2C+language+models%2C+ai%2C+diffusion%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Diffusion+Language+Models+as+Open+Quantum+Systems&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21672v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Diffusion+Language+Models+as+Open+Quantum+Systems%0Akeywords%3A+llm%2C+language+model%2C+language+models%2C+ai%2C+diffusion%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Diffusion+Language+Models+as+Open+Quantum+Systems&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21672v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Diffusion+Language+Models+as+Open+Quantum+Systems%0Akeywords%3A+llm%2C+language+model%2C+language+models%2C+ai%2C+diffusion%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Akinori Tanaka、Yukinao Akamatsu、Takuki Tomita、Yuji Hirono · <a href="https://arxiv.org/pdf/2610.21672v1">PDF</a></div>
+      <div class="chips"><span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">diffusion <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文把扩散语言模型在离散 token 序列上的连续时间前向/反向生成动力学，嵌入到开放量子系统框架中，并据此提出面向文本生成的“提示词叠加/思维叠加”和“量子启发式重掩码”两类新机制。其具体任务是改造 diffusion language model 的采样与条件生成过程，使模型能够在超位置条件下生成文本，并在生成中基于置信度回改先前 token。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献看起来有三层：第一，给出扩散语言模型与开放量子系统之间的形式对应，把经典 masked diffusion 的连续时间动力学解释为可在“句子态”上演化的开放系统；第二，构造了一个 τ-leaping unraveling 采样方案，可在每一步同时更新多个 token 位置，从而支持 Superposition of Prompts (SoP) 和 Superposition of Thoughts (SoT) 这类超位置条件生成；第三，从同一框架导出 Quantum-Inspired Remasking (QIR)，即通过扰动 masked-diffusion 动力学得到一种基于置信度的 token 修正规则，并在预训练扩散语言模型上报告了由 LLM 评估的文本质量提升。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 6</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
@@ -283,23 +366,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：当交互式智能体需要在有限候选集合中反复做决策时，如何避免用自由文本生成来表达动作/标签/有序结果，从而降低推理延迟、减少输出解析成本，并让模型直接向环境返回结构化、带概率的多字段决策结果；同时还希望支持文本加图像输入的多模态场景。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法是以现有多模态自回归语言模型为骨干，构造一个完整的 assistant JSON 输出模板，其中每个待预测字段放置一个 decision placeholder；训练时采用作者称为 autoregressive masked language modeling 的目标，让真实决策符号只在监督信号中出现；推理时不生成整段自然语言，而是在单次 causal forward pass 中读取各占位符对应候选的概率分布，输出结构化 choice 和 candidate probabilities。实验上应包含 0.8B、2B、4B 三个模型规模，对七个评测套件做准确率比较，并在固定 token 长度、字段数和 GPU 条件下测延迟；另外对概率输出做温度缩放校准，并用 multiclass Brier 与 ECE 评估。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有：1）把“决策”而非“文本生成”作为一等输出对象，接口设计非常贴近 agent 与环境交互；2）不额外引入专门分类头，而是复用 backbone 的原生 LM head，工程上可能更统一；3）支持多字段 JSON 决策，并强调单次前向完成评估，若属实对在线系统很有吸引力；4）不仅报告准确率，还报告延迟和校准指标，说明作者关注可部署性与风险控制；5）提供不同参数规模版本，便于在性能与时延之间折中。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到全文后优先查看模型输出格式示例和训练目标公式，确认 JSON skeleton、placeholder 和单次前向评估的具体实现；第二，记录七个 evaluation suites 的名称、任务类型、样本规模和是否多模态；第三，核对与 Jev v1.13.0 的参数量、训练设置和推理协议是否可比；第四，查看延迟测试是否包含图像编码、batch size、KV cache 等条件；第五，重点读 calibration 与 confidence-based handoff 的实验图表，判断其是否足以支持真实部署；第六，如果你做 agent 或工具调用，可尝试把自己现有的离散动作任务改写成固定 JSON 字段预测，作为一个低成本复现切入点。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决两个相互关联的具体问题。第一，扩散语言模型的连续时间生成动力学是否可以用一个更统一、可扩展的理论框架来描述，从而支持超越经典单一路径采样的生成形式。第二，在这种框架下，能否设计出新的文本生成机制：一类是在多个 prompt 或多个潜在 thought 之间以“超位置”方式联合条件生成，另一类是在生成过程中根据置信度回改先前 token，以改善最终文本质量。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法路径大致是：先把 diffusion language model 的前向扩散和反向生成过程嵌入开放量子系统形式主义，可能对应某种主方程、Lindblad 型或更一般的随机轨迹表示；再基于这一表示构造 τ-leaping unraveling 方案，用随机轨迹近似连续时间演化，并允许单步多 token 更新。随后在该采样器上实现两种条件生成任务：SoP，即对多个 prompt 的叠加条件采样；SoT，即对多个中间思维/推理状态的叠加采样。最后，从同一动力学形式导出 QIR，通过对 masked diffusion 过程施加扰动，形成一个基于模型置信度的 remasking/revision 规则，并在预训练扩散语言模型上做实验。实验证据应至少包括：超位置生成的定性案例或定量指标、QIR 相对原始采样的质量比较，以及可能的消融。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，论文不是泛泛借用“量子”比喻，而是把开放量子系统直接对应到扩散语言模型的连续时间动力学，这种跨领域映射如果写得严谨，理论新颖性较强。第二，τ-leaping unraveling 很具体，且与离散 token 多位置并行更新天然契合，可能带来比逐 token 或逐位置更新更高效的采样路径。第三，SoP/SoT 提供了一个不同于简单 prompt 混合或多样本 reranking 的条件生成范式；摘要中“保留未被最终测量选中的条件信息”这一现象，如果实验扎实，会是很有辨识度的结果。第四，QIR 把理论框架落到实用 decoding 改进上，说明该工作不仅是解释性理论，也可能提供可直接插入现有 diffusion LM 推理流程的启发式算法。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先读引言和方法总览图，确认“开放量子系统映射”到底是严格数学构造还是启发式重写；2）定位 τ-leaping unraveling 的算法框，记录其状态表示、单步更新规则、时间复杂度和与标准 diffusion sampling 的差异；3）查 SoP/SoT 的实验设置，特别是 prompt/thought 如何构造、最终 measurement 如何执行、以及“未选中条件信息被保留”是通过什么指标或案例证明；4）查 QIR 的伪代码，记下置信度定义、重掩码触发阈值、是否需要额外前向传播；5）优先看与 mixture prompting、ensemble decoding、self-refinement、iterative editing 的对照表，判断新增收益是否来自量子框架本身；6）如果准备复现，可先在一个公开 diffusion LM 上只实现 QIR，因为它比完整 SoP/SoT 更容易落地并验证。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：当交互式智能体需要在有限候选集合中反复做决策时，如何避免用自由文本生成来表达动作/标签/有序结果，从而降低推理延迟、减少输出解析成本，并让模型直接向环境返回结构化、带概率的多字段决策结果；同时还希望支持文本加图像输入的多模态场景。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法是以现有多模态自回归语言模型为骨干，构造一个完整的 assistant JSON 输出模板，其中每个待预测字段放置一个 decision placeholder；训练时采用作者称为 autoregressive masked language modeling 的目标，让真实决策符号只在监督信号中出现；推理时不生成整段自然语言，而是在单次 causal forward pass 中读取各占位符对应候选的概率分布，输出结构化 choice 和 candidate probabilities。实验上应包含 0.8B、2B、4B 三个模型规模，对七个评测套件做准确率比较，并在固定 token 长度、字段数和 GPU 条件下测延迟；另外对概率输出做温度缩放校准，并用 multiclass Brier 与 ECE 评估。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有：1）把“决策”而非“文本生成”作为一等输出对象，接口设计非常贴近 agent 与环境交互；2）不额外引入专门分类头，而是复用 backbone 的原生 LM head，工程上可能更统一；3）支持多字段 JSON 决策，并强调单次前向完成评估，若属实对在线系统很有吸引力；4）不仅报告准确率，还报告延迟和校准指标，说明作者关注可部署性与风险控制；5）提供不同参数规模版本，便于在性能与时延之间折中。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的点包括：1）七个评测套件的组成、难度和任务分布未知，90.02% UAA 的含义需要结合具体 benchmark 才能判断；2）对比基线 Jev v1.13.0 的模型规模、训练数据和输出机制不清楚，公平性待核对；3）“single causal forward pass”与多字段联合决策的技术细节未展开，字段间依赖和约束处理方式未知；4）校准实验只有 96 个已知分布案例，样本偏小，且是否能外推到分布外场景不明确；5）摘要强调有限候选空间，因此对开放式生成、复杂规划、长时序决策的适用性可能有限；6）多模态能力虽被宣称支持图像，但视觉任务占比、图像编码方案和增益幅度都未给出。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到全文后优先查看模型输出格式示例和训练目标公式，确认 JSON skeleton、placeholder 和单次前向评估的具体实现；第二，记录七个 evaluation suites 的名称、任务类型、样本规模和是否多模态；第三，核对与 Jev v1.13.0 的参数量、训练设置和推理协议是否可比；第四，查看延迟测试是否包含图像编码、batch size、KV cache 等条件；第五，重点读 calibration 与 confidence-based handoff 的实验图表，判断其是否足以支持真实部署；第六，如果你做 agent 或工具调用，可尝试把自己现有的离散动作任务改写成固定 JSON 字段预测，作为一个低成本复现切入点。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从摘要看，论文聚焦的是“有限候选空间中的多模态决策”这一非常具体的问题：交互式 agent 在环境中反复做动作选择、分类、排序级别判断时，若每次都生成自由文本，不仅慢，而且会增加解析和接口设计复杂度。作者因此把输出目标改成结构化 JSON 决策对象，且每个字段只对应一个决策占位符。方法线索是：在训练时，完整 assistant JSON skeleton 已给定，真实标签符号只出现在监督中；推理时，利用自回归掩码语言建模目标，在单次 causal forward pass 中对所有字段进行评估，不需要逐字段生成长文本。这意味着它可能兼顾了生成式骨干模型的通用性与判别式决策头的高效性，而且避免额外分类头。证据线索主要来自摘要中的三类结果：第一，任务效果上，4B 模型在七个 evaluation suites 上达到 90.02% UAA，相比 Jev v1.13.0 的 88.74% 有提升；第二，系统效率上，在固定请求长度和硬件条件下，4B 延迟 44.16 ms，小模型约 33–34 ms，说明其确实面向在线决策场景；第三，概率质量上，在 96 个已知分布案例的 pilot 中，温度缩放把 expected multiclass Brier 从 0.628 降到 0.550，把 ECE 从 0.213 降到 0.089，表明作者不仅输出类别，还关心可校准的候选概率。与用户可能关注的 agent、multimodal、environment 接口问题关系很直接：这项工作试图把大模型从“说一句话”改造成“给环境一个可执行结构化决策”，尤其适合工具调用、GUI 操作、游戏/机器人离散动作选择、审核标签预测等场景。需要重点核对的信息包括：七个评测套件具体是什么，是否覆盖视觉问答、动作选择、分类、排序等不同任务；所谓 Jev v1.13.0 是什么基线、参数规模是否可比；“single causal forward pass”在实现上是否真的一次性得到所有字段概率，还是通过掩码位置并行读取 logits；JSON skeleton 的字段依赖如何建模，字段间是否存在顺序偏置；多模态部分的图像编码器和训练数据来源；以及 96-case calibration pilot 的样本量是否足以支持稳健结论。由于目前只有题名、摘要和元数据，不能判断训练语料、消融实验、错误类型、开放集鲁棒性和真实 agent 环境收益。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决两个相互关联的具体问题。第一，扩散语言模型的连续时间生成动力学是否可以用一个更统一、可扩展的理论框架来描述，从而支持超越经典单一路径采样的生成形式。第二，在这种框架下，能否设计出新的文本生成机制：一类是在多个 prompt 或多个潜在 thought 之间以“超位置”方式联合条件生成，另一类是在生成过程中根据置信度回改先前 token，以改善最终文本质量。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法路径大致是：先把 diffusion language model 的前向扩散和反向生成过程嵌入开放量子系统形式主义，可能对应某种主方程、Lindblad 型或更一般的随机轨迹表示；再基于这一表示构造 τ-leaping unraveling 方案，用随机轨迹近似连续时间演化，并允许单步多 token 更新。随后在该采样器上实现两种条件生成任务：SoP，即对多个 prompt 的叠加条件采样；SoT，即对多个中间思维/推理状态的叠加采样。最后，从同一动力学形式导出 QIR，通过对 masked diffusion 过程施加扰动，形成一个基于模型置信度的 remasking/revision 规则，并在预训练扩散语言模型上做实验。实验证据应至少包括：超位置生成的定性案例或定量指标、QIR 相对原始采样的质量比较，以及可能的消融。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，论文不是泛泛借用“量子”比喻，而是把开放量子系统直接对应到扩散语言模型的连续时间动力学，这种跨领域映射如果写得严谨，理论新颖性较强。第二，τ-leaping unraveling 很具体，且与离散 token 多位置并行更新天然契合，可能带来比逐 token 或逐位置更新更高效的采样路径。第三，SoP/SoT 提供了一个不同于简单 prompt 混合或多样本 reranking 的条件生成范式；摘要中“保留未被最终测量选中的条件信息”这一现象，如果实验扎实，会是很有辨识度的结果。第四，QIR 把理论框架落到实用 decoding 改进上，说明该工作不仅是解释性理论，也可能提供可直接插入现有 diffusion LM 推理流程的启发式算法。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，需要警惕几类局限。第一，开放量子系统与扩散语言模型之间可能只是形式同构，未必带来不可替代的算法收益；需要看正文是否有严格定理、推导和必要性论证。第二，SoP/SoT 的“超位置”概念容易与 mixture、ensemble、beam、latent branching 混淆，若没有清晰对照实验，贡献可能被高估。第三，QIR 的效果目前只看到“LLM-assessed text quality”提升，缺少人工评测、任务指标和统计显著性信息；若主要依赖另一个 LLM 打分，证据强度有限。第四，摘要没有给出实验数据集、模型规模、计算开销和失败案例，无法判断方法是否只在小模型或特定任务上有效。第五，量子术语如 measurement、superposition、environment 在文本生成中的定义若不够精确，可能造成概念吸引力大于实际方法增益。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先读引言和方法总览图，确认“开放量子系统映射”到底是严格数学构造还是启发式重写；2）定位 τ-leaping unraveling 的算法框，记录其状态表示、单步更新规则、时间复杂度和与标准 diffusion sampling 的差异；3）查 SoP/SoT 的实验设置，特别是 prompt/thought 如何构造、最终 measurement 如何执行、以及“未选中条件信息被保留”是通过什么指标或案例证明；4）查 QIR 的伪代码，记下置信度定义、重掩码触发阈值、是否需要额外前向传播；5）优先看与 mixture prompting、ensemble decoding、self-refinement、iterative editing 的对照表，判断新增收益是否来自量子框架本身；6）如果准备复现，可先在一个公开 diffusion LM 上只实现 QIR，因为它比完整 SoP/SoT 更容易落地并验证。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要看，研究对象非常明确：不是一般自回归 LLM，而是 diffusion language models，且关注的是离散 token 序列上的连续时间扩散/反扩散过程。作者的关键想法是把这一过程放进开放量子系统的语言里理解：系统对应“句子状态”，环境对应与外界交互导致的非封闭演化，进而允许把传统单一样本路径扩展到“句子超位置”上的演化与采样。这个视角的直接产物有两个。其一是 τ-leaping unraveling：从名字看，它应借鉴随机化学反应网络或主方程模拟中的 tau-leaping 思路，在一个时间步内并行处理多个跃迁事件，因此很适合离散 token 的多位置同步更新；摘要也明确说它能在每一步更新多个 token 位置。其二是基于超位置的条件生成，包括 SoP 和 SoT。SoP 更像把多个 prompt 以叠加态方式作为条件输入，SoT 则可能是在推理/中间思维层面保留多个潜在轨迹，再在最终“测量”时选出一个输出。摘要中特别提到：即使最终测量没有选择某个 conditioning component，生成结果仍可能保留该分量的信息。这是一个很具体、值得核对的现象，意味着超位置条件不是简单的 mixture 或 beam search，而可能在中间动力学中发生了信息干涉或共享。另一个产物 QIR 则更偏实用：通过扰动 masked-diffusion dynamics，得到一种 confidence-based rule，用于修订已经生成过的 token。这与扩散模型本身允许反复掩码/去噪的机制相契合，也说明作者试图把量子形式化落到可操作的 decoding 改进上，而不只是做理论类比。证据线索方面，摘要只说“在预训练扩散语言模型上实验”，并说 superposition-based generation 能保留未被最终测量选中的条件信息，QIR 在 applied ... 的场景下提升了由 LLM 评估的文本质量；但摘要被截断，因此缺少具体基线、任务、数据集、模型规模、提升幅度、人工评测情况。与科研读者的关系上，如果你关注扩散式文本生成、非自回归采样、test-time inference 改造、或把物理启发框架用于生成模型，这篇论文值得读；如果你更关心严格量子计算意义上的可实现性，则需要特别核对作者是在做数学同构、量子启发算法，还是主张真实量子硬件上的实现。当前最需要核对的信息包括：开放量子系统映射的严格形式；句子态/测量/环境在离散词表上的精确定义； τ-leaping 相比标准 diffusion sampling 的复杂度与质量收益；SoP/SoT 与 prompt ensembling、mixture conditioning、speculative decoding、beam search 的差异；QIR 的触发规则、置信度定义、是否引入额外模型调用；以及实验中“LLM-assessed text quality”是否有人工验证。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Interactive agents repeatedly choose among a finite set of actions, labels, or ordinal outcomes. Generating a free-form response for each choice adds latency and complicates the interface between a model and its environment. We present Intern-Decision, a family of 0.8B, 2B, and 4B multimodal decision models that return structured choices and candidate probabilities from text and optional images. Our autoregressive masked language modeling objective places one decision placeholder per field in a complete assistant JSON skeleton. Ground-truth symbols appear only in supervision, while all fields are evaluated in a single causal forward pass using the backbone&#x27;s native language-model head. The 4B model achieves a 90.02% unweighted average accuracy across seven evaluation suites, compared with 88.74% for Jev v1.13.0. For a fixed 289-token request with three fields on one RTX 4090, mean latency is 44.16 ms for the 4B model and approximately 33--34 ms for the smaller models. On a separate 96-case known-distribution pilot, temperature scaling reduces expected multiclass Brier from 0.628 to 0.550 and expected calibration error from 0.213 to 0.089. A confidence-based handoff study on 111 public Jevbench-Hard items improves accuracy from 82/111 (73.87%) to 97/111 (87.39%) by routing 42 items to Atria-Dawn-Preview. We also describe qualitative game, visual interface, and browser demonstrations. These results support compact decision models as a practical component of larger agent systems.</p>
+          <p>Diffusion language models generate text by reversing a classical diffusion process over token sequences. We show that their continuous-time forward and reverse dynamics can be embedded in the framework of open quantum systems, which describes quantum systems interacting with their environment. This connection provides a basis for extending diffusion sampling to superpositions of sentence states and for modifying the underlying generation dynamics. We construct a $τ$-leaping unraveling scheme that simulates stochastic trajectories of these states while updating multiple token positions at each step. This enables generation conditioned on superposed prompts or thoughts, which we call Superposition of Prompts (SoP) and Superposition of Thoughts (SoT). The same formulation yields Quantum-Inspired Remasking (QIR): perturbing the masked-diffusion dynamics produces a confidence-based rule for revising previously generated tokens. Experiments with pretrained diffusion language models show that superposition-based generation can retain information from conditioning components not selected at the final measurement, while QIR improves LLM-assessed text quality when applied at an appropriate stage of generation.</p>
         </details>
         
         </div>
@@ -311,24 +394,25 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-15T17:14:02Z</span>
-        <span>Score 56.5</span>
+        <span>2026-10-15T08:38:23Z</span>
+        <span>Score 62.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2610.22234v1">OS-Helix: Unifying GUI Interaction and Code Execution in Native Computer-Using Agents</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+OS-Helix%3A+Unifying+GUI+Interaction+and+Code+Execution+in+Native+Computer-Using+A&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22234v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+OS-Helix%3A+Unifying+GUI+Interaction+and+Code+Execution+in+Native+Computer-Using+Agents%0Akeywords%3A+agent%2C+agents%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+OS-Helix%3A+Unifying+GUI+Interaction+and+Code+Execution+in+Native+Computer-Using+A&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22234v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+OS-Helix%3A+Unifying+GUI+Interaction+and+Code+Execution+in+Native+Computer-Using+Agents%0Akeywords%3A+agent%2C+agents%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+OS-Helix%3A+Unifying+GUI+Interaction+and+Code+Execution+in+Native+Computer-Using+A&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22234v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+OS-Helix%3A+Unifying+GUI+Interaction+and+Code+Execution+in+Native+Computer-Using+Agents%0Akeywords%3A+agent%2C+agents%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>4. <a href="http://arxiv.org/abs/2610.21502v1">ISW-Agent: Integrating LLM-Driven Dialogue with n8n Workflow for Internal Solitary Wave Remote Sensing Image Processing</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+ISW-Agent%3A+Integrating+LLM-Driven+Dialogue+with+n8n+Workflow+for+Internal+Solita&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21502v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+ISW-Agent%3A+Integrating+LLM-Driven+Dialogue+with+n8n+Workflow+for+Internal+Solitary+Wave+Remote+Sensing+Image+Processing%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+ai%2C+remote+sensing%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+ISW-Agent%3A+Integrating+LLM-Driven+Dialogue+with+n8n+Workflow+for+Internal+Solita&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21502v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+ISW-Agent%3A+Integrating+LLM-Driven+Dialogue+with+n8n+Workflow+for+Internal+Solitary+Wave+Remote+Sensing+Image+Processing%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+ai%2C+remote+sensing%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+ISW-Agent%3A+Integrating+LLM-Driven+Dialogue+with+n8n+Workflow+for+Internal+Solita&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.21502v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+ISW-Agent%3A+Integrating+LLM-Driven+Dialogue+with+n8n+Workflow+for+Internal+Solitary+Wave+Remote+Sensing+Image+Processing%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+ai%2C+remote+sensing%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Bowen Yang、Kaiming Jin、Zichen Ding、Zhenyu Wu 等 11 人 · <a href="https://arxiv.org/pdf/2610.22234v1">PDF</a></div>
-      <div class="chips"><span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
+      <div class="authors">Hao Zhang、Hengrui Liu、Lina Sun、Junmin Meng · <a href="https://arxiv.org/pdf/2610.21502v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
+<span class="chip">remote sensing <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕原生桌面计算机使用代理，提出 OS-Helix，将 GUI 交互与代码执行统一到同一动作空间中，目标是在 Ubuntu 桌面环境里同时处理界面操作、文件/脚本操作和系统状态修改等真实自动化任务。摘要显示其重点任务不是单纯视觉点击或单纯程序调用，而是需要在应用程序与文件工件共同构成的可执行环境中完成可验证的混合型桌面任务。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献可能有四点：一是提出端到端训练的多模态 computer-using agent“OS-Helix”，把 GUI 动作与代码执行统一建模，而不是仅靠提示词层面的工具拼接；二是提出 application-artifact composition，用桌面应用与真实文件工件配对，构造可执行的 Ubuntu 状态作为训练/评测环境；三是提出 instruction/evaluator 解耦生成流程，生成与环境状态绑定、且不依赖具体解法模态的任务与验证器；四是采用先基于筛选后的混合数据做 SFT，再在真实桌面环境中做在线 RL，并提出 Step-balanced GSPO 以适配长程、多步、异质动作的训练。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个面向内孤立波（ISW）遥感图像处理的代理系统 ISW-Agent，目标是把自然语言指令连续转化为图像获取、目标检测、条带提取和传播预测等具体任务。根据摘要，它将大语言模型的对话解释能力与 n8n 工作流、独立科学模型和地理空间变换结合，并在 Sentinel-1 场景上验证了从用户请求到波锋预测的端到端处理。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于构建了一个面向 ISW 遥感业务链条的可执行代理框架：用结构化任务约束承接 LLM 指令解析，用 n8n 编排多阶段处理，用阶段性输出校验和重试机制提高流程鲁棒性，并通过中文指令测试、定时场景处理和故障注入实验给出较具体的系统级证据。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -340,118 +424,40 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 5</div>
-              <div class="signal-meter"><span style="width: 90%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>56.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在原生 Ubuntu 桌面环境中，代理如何统一处理 GUI 交互与代码执行两类本质不同但在真实任务中经常交织的操作，并通过训练而非提示词拼接学会在两者之间正确路由与协同。更细一点说，它试图回答两个方法问题：一，如何构造足够真实且可验证的混合 GUI/代码任务数据；二，如何训练一个端到端策略，使其在长程桌面任务中既能操作应用界面，又能高效修改文件、运行脚本和改变系统状态。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包括四层。第一层是环境与数据：通过 application-artifact composition，把桌面应用和真实文件工件组合成可执行 Ubuntu 状态，形成带上下文的任务环境。第二层是任务生成：采用 instruction/evaluator 解耦流程，分别生成任务指令与最终状态验证器，使任务可以用 GUI 或代码等不同路径完成，但都能通过环境状态自动验收。第三层是策略学习：构建一个多模态 agent，在统一动作空间中输出 GUI 动作和代码执行动作，先用筛选后的 hybrid data 做监督微调冷启动。第四层是在线优化：在 live desktop environments 中进行 online RL，并使用 Step-balanced GSPO，按动作步而非 token 聚合重要性权重，以更合理地更新跨模态、多步长动作序列。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，问题设定贴近真实桌面自动化：不是把 GUI 和代码当成两个外挂工具，而是把它们视为同一代理必须内化的两种操作能力。其二，数据构造思路具体且有现实感，应用程序加真实文件工件的组合比纯合成界面或纯文本任务更可能覆盖真实办公/开发场景。其三，评测设计强调“与解法模态无关的最终状态验证”，这有助于避免只奖励某一种操作路径，也更适合检验代理是否真正学会跨 GUI/代码求解。此外，摘要中提到简单加 code tool 会伤害 GUI agent，这个负结果本身也很有研究价值，因为它指出了当前工具增强范式的局限。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查全文中的任务示例图、动作空间定义和 evaluator 设计，确认“统一动作空间”到底如何落地；第二，记录所有数据构造细节，包括应用种类、工件类型、任务数量、人工过滤方式和 Ubuntu 环境配置；第三，重点看实验表中四类对照：纯 GUI、提示词级 GUI+code、统一训练的 SFT、以及加入在线 RL 后的版本；第四，核对 Step-balanced GSPO 的公式、与现有策略优化方法的差异及消融结果；第五，如果你做相关研究，可先尝试复现一个小型 application-artifact 任务集，例如 LibreOffice/VS Code/文件管理器加真实文档或代码仓库，测试“提示词拼接 code tool 是否真的会伤害 GUI agent”这一核心现象。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在原生 Ubuntu 桌面环境中，代理如何统一处理 GUI 交互与代码执行两类本质不同但在真实任务中经常交织的操作，并通过训练而非提示词拼接学会在两者之间正确路由与协同。更细一点说，它试图回答两个方法问题：一，如何构造足够真实且可验证的混合 GUI/代码任务数据；二，如何训练一个端到端策略，使其在长程桌面任务中既能操作应用界面，又能高效修改文件、运行脚本和改变系统状态。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包括四层。第一层是环境与数据：通过 application-artifact composition，把桌面应用和真实文件工件组合成可执行 Ubuntu 状态，形成带上下文的任务环境。第二层是任务生成：采用 instruction/evaluator 解耦流程，分别生成任务指令与最终状态验证器，使任务可以用 GUI 或代码等不同路径完成，但都能通过环境状态自动验收。第三层是策略学习：构建一个多模态 agent，在统一动作空间中输出 GUI 动作和代码执行动作，先用筛选后的 hybrid data 做监督微调冷启动。第四层是在线优化：在 live desktop environments 中进行 online RL，并使用 Step-balanced GSPO，按动作步而非 token 聚合重要性权重，以更合理地更新跨模态、多步长动作序列。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，问题设定贴近真实桌面自动化：不是把 GUI 和代码当成两个外挂工具，而是把它们视为同一代理必须内化的两种操作能力。其二，数据构造思路具体且有现实感，应用程序加真实文件工件的组合比纯合成界面或纯文本任务更可能覆盖真实办公/开发场景。其三，评测设计强调“与解法模态无关的最终状态验证”，这有助于避免只奖励某一种操作路径，也更适合检验代理是否真正学会跨 GUI/代码求解。此外，摘要中提到简单加 code tool 会伤害 GUI agent，这个负结果本身也很有研究价值，因为它指出了当前工具增强范式的局限。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>目前需要警惕的边界主要有：第一，摘要没有给出任何具体实验数字、任务规模和对比基线，无法判断方法优势是否显著且稳定。第二，所谓“真实文件工件”可能仍受数据来源和任务模板限制，未必覆盖开放世界桌面使用的长尾复杂性。第三，统一动作空间虽然概念上优雅，但也可能带来训练难度、动作信用分配和安全风险，尤其代码执行会放大环境破坏性。第四，在线 RL 在桌面环境中的样本效率、训练成本和可复现性通常是难点，摘要未说明如何控制。第五，论文发表于 arXiv 且时间很新，仅凭摘要无法确认是否已有充分消融、失败案例分析和开源支持。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查全文中的任务示例图、动作空间定义和 evaluator 设计，确认“统一动作空间”到底如何落地；第二，记录所有数据构造细节，包括应用种类、工件类型、任务数量、人工过滤方式和 Ubuntu 环境配置；第三，重点看实验表中四类对照：纯 GUI、提示词级 GUI+code、统一训练的 SFT、以及加入在线 RL 后的版本；第四，核对 Step-balanced GSPO 的公式、与现有策略优化方法的差异及消融结果；第五，如果你做相关研究，可先尝试复现一个小型 application-artifact 任务集，例如 LibreOffice/VS Code/文件管理器加真实文档或代码仓库，测试“提示词拼接 code tool 是否真的会伤害 GUI agent”这一核心现象。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常具体：原生桌面环境中的 computer-using agent，且强调“native”意味着代理直接面对操作系统级 GUI、文件系统、脚本和系统状态，而不是网页代理或纯 API 工具代理。作者指出一个关键现象：把代码工具简单加到 GUI agent 上反而会降低性能，这说明 GUI/代码两种操作模态之间的路由与协同不能只靠推理时提示词编排，而需要通过高质量混合监督和后续强化学习内化到策略中。这个问题设定对做桌面代理、通用智能体、具身软件代理的人都很重要，因为真实办公与开发任务往往既要点界面，也要改文件、跑脚本、检查输出。
-
-方法线索上，OS-Helix 似乎是一个统一动作空间的多模态策略模型。这里“统一”很关键，意味着模型输出层面可能同时覆盖鼠标/键盘等 GUI 动作与代码执行类动作，而不是外接两个独立 agent 再做仲裁。训练数据构造方面，application-artifact composition 很可能是把具体应用程序与真实文档、表格、代码仓库、配置文件、媒体文件等“工件”组合，实例化成可运行的 Ubuntu 桌面状态，从而让任务不再是空 GUI，而是带有真实上下文的操作环境。另一个重要设计是 instruction/evaluator decoupling：任务指令和最终状态验证器分开生成，这样评测可以只看环境最终状态是否满足目标，而不限制必须通过 GUI 还是代码完成，适合比较混合策略是否真正学会跨模态求解。
-
-训练流程上，摘要明确提到先用 filtered hybrid data 做 cold-start SFT，再做 live desktop environments 中的 online RL。这说明作者认为仅靠离线模仿不足以学到稳定的 GUI/代码协同，必须在真实交互环境中继续优化。Step-balanced GSPO 则是 RL 侧的方法创新，摘要说它按 action step 而不是 token 聚合 importance weight，推测是为了解决桌面代理中动作粒度不均、长序列 token 化后权重失衡的问题，尤其当一个“代码执行”动作可能对应很多 token，而一个“点击”动作很短时，按 token 计可能扭曲策略更新。
-
-证据线索方面，摘要至少给出了一条有价值的经验观察：naively adding a code tool degrades a GUI agent。这是论文动机的重要支撑，说明简单工具扩展并不自动带来能力叠加。若全文成立，论文的实证部分大概率会比较纯 GUI agent、提示词级 GUI+code 组合、统一训练的 OS-Helix，以及 SFT 与 SFT+RL 的差异，并在 Ubuntu 桌面任务上报告成功率或最终状态通过率。
-
-与用户方向的关系上，如果你关注多模态 agent、桌面自动化、软件工程代理、工具使用学习、RLHF/RLAIF 之外的在线环境强化学习，这篇论文都值得看。它尤其适合关注“如何让代理在真实操作系统里同时会看界面又会写/跑代码”的研究者。相比网页代理工作，这里更接近真实生产环境；相比纯代码 agent，这里又引入了视觉界面和系统交互的不确定性。
-
-但基于当前仅有题录和摘要，也有多项需要核对的信息：第一，OS-Helix 的基础模型规模、视觉编码器、动作表示和代码执行沙箱机制未给出；第二，application-artifact composition 的数据来源、规模、人工过滤比例和安全约束未知；第三，instruction/evaluator 生成是否依赖大模型自动合成、人工审核还是程序模板尚不清楚；第四，Step-balanced GSPO 的全称、公式、与 PPO/GRPO/GSPO 的关系需要看方法节；第五，评测基准、任务类别、是否开源环境与数据、以及相对现有桌面代理的具体提升幅度都不能从摘要确认。总之，这是一篇问题定义和训练框架都较具体的桌面代理论文，但实验结论强度、泛化范围和可复现性仍需阅读全文核实。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Real desktop automation is neither purely visual nor purely programmatic. Agents must understand user-facing interfaces while efficiently manipulating files, scripts, and system state. However, native GUI/code coordination cannot be obtained by prompt-level tool composition. In our preliminary experiments, naively adding a code tool degrades a GUI agent, revealing that GUI/code routing must be internalized through training on high-quality hybrid data. We present OS-Helix, an end-to-end trained multimodal computer-using agent that unifies GUI actions and code execution in one action space. To construct the required supervision, we introduce application-artifact composition, pairing desktop applications with authentic file artifacts to instantiate executable Ubuntu states, and a decoupled instruction/evaluator generation pipeline that produces environment-grounded tasks whose final states can be verified regardless of the solution modality. We cold-start the policy with SFT on filtered hybrid data and further improve it through online RL in live desktop environments. For RL, we propose Step-balanced GSPO, which aggregates importance weight by action step rather than raw assistant tokens to prevent long code actions from dominating heterogeneous-action optimization. On OSWorld-Verified, OS-Helix-27B and OS-Helix-35B-A3B achieve relative improvements of 35.0% and 33.7% over their matched Qwen3.5 hybrid baselines, while OS-Helix-27B-RL further improves by 42.9% to reach 66.44% success. Ablations provide evidence consistent with contributions from learned GUI/code coordination, scalable verifiable supervision, and action step balanced optimization, while demonstrating cross-platform transfer on WindowsAgentArena. Our project homepage is at https://os-copilot.github.io/OS-Helix/.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-15T17:58:04Z</span>
-        <span>Score 55.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2610.22355v1">OmniVerifier-C1: Decomposed Graded Verifier for Rule-Governed Generative World Modeling</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+OmniVerifier-C1%3A+Decomposed+Graded+Verifier+for+Rule-Governed+Generative+World+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22355v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+OmniVerifier-C1%3A+Decomposed+Graded+Verifier+for+Rule-Governed+Generative+World+Modeling%0Akeywords%3A+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+OmniVerifier-C1%3A+Decomposed+Graded+Verifier+for+Rule-Governed+Generative+World+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22355v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+OmniVerifier-C1%3A+Decomposed+Graded+Verifier+for+Rule-Governed+Generative+World+Modeling%0Akeywords%3A+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+OmniVerifier-C1%3A+Decomposed+Graded+Verifier+for+Rule-Governed+Generative+World+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.22355v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+OmniVerifier-C1%3A+Decomposed+Graded+Verifier+for+Rule-Governed+Generative+World+Modeling%0Akeywords%3A+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Bowei Liu、Xinchen Zhang、Xuhuan Li、Tianlin Zhang 等 13 人 · <a href="https://arxiv.org/pdf/2610.22355v1">PDF</a></div>
-      <div class="chips"><span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">environmental <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个面向规则约束生成世界建模与多模态批判任务的分解式分级验证器 OmniVerifier-C1，不再只输出二元 True/False，而是把复杂提示词或环境规则拆成细粒度子项并进行逐点评分。根据摘要，它还配套设计了 Decoupled RL 训练策略，用子问题级二元判断和全局对齐评分联合优化，以提升复杂组合要求下视觉/多模态验证的鲁棒性与跨域泛化。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献看起来有三点：一是把传统二元视觉验证器扩展为可分解、可解释、连续打分的 graded verifier，直接服务于复杂规则和组合式要求；二是提出 Decoupled RL 训练框架，将局部精确反馈与全局评分目标解耦并联合学习，强调先形成细粒度验证能力再支撑全局连续评分；三是实验上声称这种结构化输出能提升 out-of-domain 多模态 critic 任务的泛化，并且在传统文本到图像评测场景中优于二元验证器。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 7</div>
+              <div class="signal-kicker">关键词命中 6</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>55.5</strong>
+              <strong>62.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在多模态生成结果需要满足复杂组合式提示词或环境规则时，传统只输出 True/False 的视觉验证器信息量不足、可解释性差、难以为训练或推理提供细粒度反馈，进而限制了其在复杂规则场景和跨域 critic 任务中的鲁棒性与泛化。作者因此要回答：能否构建一种把复杂要求自动分解并逐项评分的 verifier，并通过合适训练策略让这种局部验证能力转化为可靠的全局连续评分。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包含三层：1）输入分解：把复杂 prompt 或环境规则拆成细粒度子要求，可能涉及对象、属性、关系、动作、场景规则等；2）局部验证：对每个子要求进行二元判断或点式打分，形成结构化验证输出；3）全局聚合：将局部结果映射为整体 alignment/quality score。训练上采用 Decoupled RL，在统一 RL 框架下分别优化子问题级 binary judgment 与全局 alignment scoring，利用局部精确反馈塑造细粒度能力，再支撑全局连续评分。实验任务至少包括传统 text-to-image 验证，并扩展到 out-of-domain multimodal critic tasks；但具体数据集、模型骨干、奖励定义和评测指标仍需查正文。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把 verifier 从“单次判决器”升级为“可分解、可解释、可连续打分的批判器”，这对复杂规则场景非常实用。第二个亮点是训练目标的解耦：局部二元判断与全局评分分别建模，符合“先学会看清局部约束，再学会整体打分”的直觉，也可能降低直接学习全局分数时的噪声。第三个亮点是其应用外延较广，不仅可用于文本到图像评测，还可能作为多模态 agent/world model 的 reward model、后验 verifier 或自我批判模块。若实验确实覆盖 OOD critic 任务并取得稳定提升，这会比单纯在封闭 benchmark 上提分更有方法学价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先查论文正文中的任务定义图和系统框图，确认 OmniVerifier-C1 的输入、分解单元、局部输出和全局分数如何连接；2）重点看实验表，记录它相对 binary verifier 的具体提升任务、指标和幅度，尤其是 text-to-image 与 OOD multimodal critic 两类；3）核对 Decoupled RL 的具体算法、奖励形式和训练数据来源，判断是否可复现；4）如果你做 agent/world model，优先查是否有环境规则、轨迹或交互式评测，而不只是在静态图像上验证；5）读完后可整理三个问题：分解是否需要人工标注、全局分数如何校准、局部评分能否直接作为生成器/agent 的训练奖励。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的是内孤立波遥感处理中一个很具体的自动化问题：用户用自然语言提出需求后，系统如何把任务参数和空间信息准确传递到图像获取、检测、条带提取和传播预测各阶段，并在多工具、多模型协作中保持执行正确、结果可验证、流程可持续。更直接地说，它试图回答“LLM 能否真正驱动一个地学遥感分析流水线，而不仅是解释任务”。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法是一个代理式工作流系统。输入是中文自然语言指令；LLM 负责解析任务意图、执行决策和参数结构化；n8n 负责调度各处理节点；独立科学模型完成 Sentinel-1 等遥感场景上的 ISW 检测、条带提取和传播预测；地理空间变换负责坐标、场景和区域信息在阶段间传递；阶段特异的输出验证和重试机制负责异常处理。实验包括：每个后端 120 条中文指令的严格任务匹配测试、50 个场景的端到端计时处理、3408 次受控故障注入的鲁棒性评估。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，任务对象非常具体，是 ISW 遥感而非泛化 agent demo，因此更容易评估真实价值。第二，系统强调结构化任务约束和地理空间变换，这正是遥感工作流中最容易出错、也最少被通用智能体论文认真处理的部分。第三，摘要给出的证据不只有限个案例，还包括严格任务匹配率、端到端耗时和故障注入结果，说明作者尝试从正确性、效率和鲁棒性三方面论证。第四，作者明确指出 provenance/completeness 错误仍需内容一致性检查，这种对系统边界的承认反而提高了论文可信度。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查正文中的系统架构图和工作流图，确认 LLM、n8n 和科学模型各自职责；第二，查严格任务匹配率的定义、标注规则和中文指令样例，判断评测是否严格；第三，查 Sentinel-1 案例图与 50 个场景表格，记录空提取停止的具体原因；第四，查故障注入实验的错误分类，特别是 61 个未被现有机制完全拦截的 provenance/completeness 问题；第五，如果你做相关方向，可尝试把自己的一个遥感子任务映射成“自然语言解析—结构化参数—工作流编排—输出验证”的同类框架，评估其可迁移性。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在多模态生成结果需要满足复杂组合式提示词或环境规则时，传统只输出 True/False 的视觉验证器信息量不足、可解释性差、难以为训练或推理提供细粒度反馈，进而限制了其在复杂规则场景和跨域 critic 任务中的鲁棒性与泛化。作者因此要回答：能否构建一种把复杂要求自动分解并逐项评分的 verifier，并通过合适训练策略让这种局部验证能力转化为可靠的全局连续评分。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包含三层：1）输入分解：把复杂 prompt 或环境规则拆成细粒度子要求，可能涉及对象、属性、关系、动作、场景规则等；2）局部验证：对每个子要求进行二元判断或点式打分，形成结构化验证输出；3）全局聚合：将局部结果映射为整体 alignment/quality score。训练上采用 Decoupled RL，在统一 RL 框架下分别优化子问题级 binary judgment 与全局 alignment scoring，利用局部精确反馈塑造细粒度能力，再支撑全局连续评分。实验任务至少包括传统 text-to-image 验证，并扩展到 out-of-domain multimodal critic tasks；但具体数据集、模型骨干、奖励定义和评测指标仍需查正文。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把 verifier 从“单次判决器”升级为“可分解、可解释、可连续打分的批判器”，这对复杂规则场景非常实用。第二个亮点是训练目标的解耦：局部二元判断与全局评分分别建模，符合“先学会看清局部约束，再学会整体打分”的直觉，也可能降低直接学习全局分数时的噪声。第三个亮点是其应用外延较广，不仅可用于文本到图像评测，还可能作为多模态 agent/world model 的 reward model、后验 verifier 或自我批判模块。若实验确实覆盖 OOD critic 任务并取得稳定提升，这会比单纯在封闭 benchmark 上提分更有方法学价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于现有信息，首先要警惕的是“自动分解”本身可能引入新的误差源：如果分解错了，后续逐项评分再精细也可能建立在错误问题表述上。其次，graded score 的一致性和校准性是难点——连续分数是否真正可比较、是否跨任务稳定、是否与人类偏好一致，摘要尚未说明。第三，Decoupled RL 的训练成本、样本效率和稳定性未知，尤其在多模态 verifier 上 RL 往往较重。第四，摘要虽声称优于 binary verifier 并提升 OOD 泛化，但没有给出具体 benchmark、指标和提升幅度；在没有正文前，不能判断收益是否来自分解设计本身，还是来自更大模型、更多数据或更复杂训练。最后，题名中的“generative world modeling”范围较大，但摘要可见部分更像多模态 verifier/critic 论文，是否真正覆盖动态世界模型或交互环境，还需核对。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先查论文正文中的任务定义图和系统框图，确认 OmniVerifier-C1 的输入、分解单元、局部输出和全局分数如何连接；2）重点看实验表，记录它相对 binary verifier 的具体提升任务、指标和幅度，尤其是 text-to-image 与 OOD multimodal critic 两类；3）核对 Decoupled RL 的具体算法、奖励形式和训练数据来源，判断是否可复现；4）如果你做 agent/world model，优先查是否有环境规则、轨迹或交互式评测，而不只是在静态图像上验证；5）读完后可整理三个问题：分解是否需要人工标注、全局分数如何校准、局部评分能否直接作为生成器/agent 的训练奖励。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象不是一般的生成模型本身，而是“生成式视觉/多模态验证器”——即用于判断图像或多模态输出是否满足文本提示、环境规则或组合约束的 critic/verifier。它关注的核心任务是：当输入要求包含多个对象、属性、关系、动作或环境规则时，单一的 True/False 判定过于粗糙，既不利于训练，也不利于给生成系统提供可操作反馈，因此作者提出把复杂要求自动分解成细粒度组件，再对每个组件做点式评分，并汇总成更连续、更有信息量的批判信号。
+            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的是内孤立波遥感处理中一个很具体的自动化问题：用户用自然语言提出需求后，系统如何把任务参数和空间信息准确传递到图像获取、检测、条带提取和传播预测各阶段，并在多工具、多模型协作中保持执行正确、结果可验证、流程可持续。更直接地说，它试图回答“LLM 能否真正驱动一个地学遥感分析流水线，而不仅是解释任务”。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法是一个代理式工作流系统。输入是中文自然语言指令；LLM 负责解析任务意图、执行决策和参数结构化；n8n 负责调度各处理节点；独立科学模型完成 Sentinel-1 等遥感场景上的 ISW 检测、条带提取和传播预测；地理空间变换负责坐标、场景和区域信息在阶段间传递；阶段特异的输出验证和重试机制负责异常处理。实验包括：每个后端 120 条中文指令的严格任务匹配测试、50 个场景的端到端计时处理、3408 次受控故障注入的鲁棒性评估。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，任务对象非常具体，是 ISW 遥感而非泛化 agent demo，因此更容易评估真实价值。第二，系统强调结构化任务约束和地理空间变换，这正是遥感工作流中最容易出错、也最少被通用智能体论文认真处理的部分。第三，摘要给出的证据不只有限个案例，还包括严格任务匹配率、端到端耗时和故障注入结果，说明作者尝试从正确性、效率和鲁棒性三方面论证。第四，作者明确指出 provenance/completeness 错误仍需内容一致性检查，这种对系统边界的承认反而提高了论文可信度。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要需要警惕几类局限。其一，论文更可能是系统集成与流程验证工作，未必在 ISW 检测或传播预测模型本身上有方法创新。其二，任务匹配率高不等于科学结果准确，摘要没有给出检测精度、条带提取质量或传播预测误差。其三，中文指令测试规模为每后端 120 条，是否覆盖复杂歧义表达、跨轮对话和异常地理约束仍未知。其四，50 个 timed scenes 中有 11 个在空提取后停止，这种停止是合理终止还是方法漏检，需要看实例。其五，61 个 provenance 或 completeness 错误表明现有验证机制尚不能完全保证内容一致性，实际部署时这可能是关键风险。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查正文中的系统架构图和工作流图，确认 LLM、n8n 和科学模型各自职责；第二，查严格任务匹配率的定义、标注规则和中文指令样例，判断评测是否严格；第三，查 Sentinel-1 案例图与 50 个场景表格，记录空提取停止的具体原因；第四，查故障注入实验的错误分类，特别是 61 个未被现有机制完全拦截的 provenance/completeness 问题；第五，如果你做相关方向，可尝试把自己的一个遥感子任务映射成“自然语言解析—结构化参数—工作流编排—输出验证”的同类框架，评估其可迁移性。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确，不是泛化的“科学智能体”，而是内孤立波遥感图像处理这一具有强空间约束和多阶段依赖的任务。论文试图解决的关键问题是：用户以自然语言提出需求后，系统如何把任务参数、空间信息和阶段产物在“图像获取—检测—条带提取—传播预测”之间稳定传递，避免 LLM 只停留在对话层而无法驱动真实遥感处理流程。
 
-方法线索比较明确：OmniVerifier-C1 应该包含一个“规则/提示分解模块”与一个“分项验证+全局评分模块”。分解模块可能把复杂 prompt 或环境规则拆成若干子问题，例如对象是否出现、属性是否正确、空间关系是否满足、动作/事件是否符合、环境约束是否违反等；随后验证器对每个子问题给出二元判断或局部分数，再形成全局 alignment score。训练上，摘要提到 Decoupled RL，说明作者不是只做监督学习，而是在统一强化学习框架下，把“子问题级 binary judgment”和“全局 alignment scoring”作为两个相互关联但不完全混同的优化目标。其动机是：局部反馈更精确，能先学会细粒度验证；全局连续评分则更适合复杂样本排序、奖励建模或 critic 信号输出。
+方法线索也比较具体。作者提出的 ISW-Agent 似乎由三部分构成：第一，LLM 负责解释中文指令并映射到任务意图和执行决策；第二，n8n 作为工作流编排层，连接不同处理节点；第三，独立科学模型承担具体遥感分析，如检测、条带提取和传播预测。为保证跨阶段衔接，系统引入了结构化任务约束、地理空间变换和阶段特异的输出验证。这说明作者关注的不只是“能否调用工具”，还包括遥感任务中常见的坐标、场景、区域、产品类型、阶段输出格式等严格约束。
 
-证据线索主要来自摘要中的几句结论：第一，结构化且可解释的输出提升了 verifier 在 out-of-domain multimodal critic tasks 上的泛化；第二，pointwise graded verifier 在传统 text-to-image 场景中显著优于 binary verifiers；第三，作者把该方法定位到“rule-governed generative world modeling”，说明它可能不仅评估静态图像文本一致性，也面向带环境规则、交互约束或世界状态约束的生成/模拟任务。这与关键词中的 agent、multimodal、environmental/environment 也一致，暗示其潜在用途包括智能体环境理解、世界模型 rollout 质量控制、基于规则的多模态生成评估，甚至可作为训练时的 reward model 或 inference-time critic。
+摘要给出的证据比较丰富，但主要是系统层面的。其一，在每个后端 120 条中文指令测试中，GPT-5.6 Sol 和 DeepSeek 的严格任务匹配率都达到 94.2%，并称所有 intents 和 execution decisions 与参考一致。这里表明评估重点是指令理解和流程决策，而不是单纯文本回答质量。其二，在 Sentinel-1 案例上，系统实现了从对话请求到指定场景波锋预测的连续处理，说明至少在 SAR 遥感数据上有实际跑通案例。其三，在 50 个计时场景中，39 个场景完成检测、提取和预测，中位周转时间为 48.04 秒，另有 11 个在空提取后停止，提示失败不一定是系统崩溃，也可能是图像中没有可继续分析的有效波条带。其四，在 3408 次受控故障注入中，重试恢复了 234 个瞬时故障，输出验证拒绝了 234 个结构性缺陷，但还有 61 个 provenance 或 completeness 错误未被现有机制完全覆盖，作者因此指出仍需要内容一致性检查。这个细节很重要，因为它说明系统已经从“是否可运行”推进到“如何保证科学流程输出可靠”这一层。
 
-与科研用户方向的关系上，如果你关注多模态 agent、世界模型、基于规则的环境生成、RAG 后验证、或生成模型对齐，这篇论文值得关注的点在于“验证器设计”而不是“生成器设计”。它可能提供一种更适合复杂任务的 reward/critic 形式：把不可解释的单分数替换为可分解的局部证据集合。这对 agent 尤其重要，因为 agent 常需要知道“错在哪一条规则”，而不是只知道“整体不对”。
+如果你的方向涉及遥感智能体、地学工作流自动化、科学大模型应用或多工具代理，这篇论文的价值主要在工程集成与验证框架，而未必是新的 ISW 物理模型。它更像是在遥感具体任务中验证：LLM 能否作为面向用户的任务解释器，接上稳定的工作流系统与专业模型，形成可执行、可审计、可容错的链条。对实际科研或业务系统而言，这类工作比单纯展示“模型会说”更接近部署。
 
-但需要明确，当前只有题录和截断摘要，很多关键信息仍需核对：例如分解是由 LLM 自动完成、由模板规则完成，还是由人工标注监督；评分是离散等级、连续回归还是 pairwise ranking； RL 的具体算法是 PPO、GRPO、DPO 风格变体还是自定义奖励分解；实验数据集是否覆盖图像、视频、环境轨迹或交互式世界模型；所谓 out-of-domain critic tasks 具体有哪些 benchmark；以及“显著优于”对应的指标、幅度和统计显著性。由于摘要被截断，当前不能确认其完整实验范围和定量结果。</p></div>
+但基于当前元数据，也有若干需要核对的信息。首先，摘要未说明“独立科学模型”具体是什么：是传统图像处理、深度学习检测器，还是已有 ISW 传播模型。其次，严格任务匹配率 94.2% 的标注标准、参考答案构建方式和统计置信度需要看正文。第三，50 个 timed scenes 的数据分布、场景来源、失败场景特征、空提取判定标准和硬件配置都会显著影响 48.04 秒这一指标的解释。第四，Sentinel-1 之外是否支持其他传感器尚不明确。第五，故障注入的类型虽然给出计数，但不同错误对最终科学结论的风险等级可能不同，需要看详细分类。总之，这篇论文从摘要看是一个面向内孤立波遥感处理的 LLM+n8n 科学工作流代理系统，亮点在跨阶段任务约束和流程鲁棒性验证，阅读时应重点核对其评估协议、底层科学模型和内容一致性保障是否足够扎实。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Generative visual verifiers play a crucial role in advancing multimodal intelligence. To enhance the robustness of visual verifiers in complex multimodal scenarios involving compositional requirements, we move beyond conventional binary verifiers that produce only True/False discrete judgments and introduce a verifier that automatically decomposes complex prompts or environmental rules into fine-grained components and assigns pointwise scores to provide a continuous and more informative critique signal. Our experiments further demonstrate that these structured and interpretable outputs improve the verifier&#x27;s generalization to out-of-domain multimodal critic tasks. To train this verifier, we introduce a Decoupled RL training strategy that jointly optimizes sub-question-level binary judgment and global alignment scoring, using precise local feedback to develop fine-grained verification capabilities that provide a foundation for reliable continuous scoring at the global level. Under a general reinforcement learning framework, we first empirically demonstrate that the proposed pointwise graded verifier significantly outperforms binary verifiers in traditional text-to-image scenarios. We then extend our investigation to rule-governed generative world modeling where generative models are leveraged for world simulation and world reasoning under explicit rules. From a theoretical standpoint, we further show that a pairwise verification paradigm yields more accurate critiques than the pointwise formulation when ground-truth images are available, with empirical results on diverse structured world-modeling tasks such as Maze and Sudoku further validating the effectiveness of our approach. Overall, our findings suggest a key insight: the transition from generative models to structured world-modeling agents critically hinges on the availability of accurate pairwise graded visual verifiers.</p>
+          <p>Internal solitary wave (ISW) remote sensing requires task parameters and spatial information to be transferred across image acquisition, detection, stripe extraction, and propagation prediction. Here, we present ISW-Agent, which integrates large language model (LLM) interpretation with n8n workflows and independent scientific models through structured task constraints, geospatial transformations, and stage-specific output validation. In tests of 120 Chinese instructions per backend, GPT-5.6 Sol and DeepSeek both achieved a strict task-match rate of 94.2%, with all intents and execution decisions matching the reference. Sentinel-1 cases demonstrated continuous processing from dialogue requests to wavefront prediction for the specified scene. Of 50 timed scenes, 39 completed detection, extraction, and prediction with a median turnaround time of 48.04 s; 11 stopped after empty extraction. Across 3,408 controlled fault-injection runs, retries recovered 234 transient-failure conditions and output validation rejected 234 structural defects, while 61 provenance or completeness errors indicated the need for content-consistency checks. Overall, ISW-Agent thus connects natural-language requests to traceable spatial processing chains for multimodel ISW analysis.</p>
         </details>
         
         </div>
@@ -464,19 +470,19 @@
       <div class="paper-meta">
         <span class="source-pill">Science</span>
         <span>2026-10-15</span>
-        <span>Score 44.0</span>
+        <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1126/science.adz5323">Dendritic computation for abstract rule-based flexible decision-making</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Dendritic+computation+for+abstract+rule-based+flexible+decision-making&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adz5323%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Dendritic+computation+for+abstract+rule-based+flexible+decision-making%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Dendritic+computation+for+abstract+rule-based+flexible+decision-making&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adz5323%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Dendritic+computation+for+abstract+rule-based+flexible+decision-making%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Dendritic+computation+for+abstract+rule-based+flexible+decision-making&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adz5323%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Dendritic+computation+for+abstract+rule-based+flexible+decision-making%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>5. <a href="https://doi.org/10.1126/science.aeh1409">Engineering ordered two-dimensional defect phases to strengthen structural alloys</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Engineering+ordered+two-dimensional+defect+phases+to+strengthen+structural+alloy&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh1409%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Engineering+ordered+two-dimensional+defect+phases+to+strengthen+structural+alloys%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Engineering+ordered+two-dimensional+defect+phases+to+strengthen+structural+alloy&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh1409%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Engineering+ordered+two-dimensional+defect+phases+to+strengthen+structural+alloys%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Engineering+ordered+two-dimensional+defect+phases+to+strengthen+structural+alloy&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh1409%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Engineering+ordered+two-dimensional+defect+phases+to+strengthen+structural+alloys%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Yuan Zhang、Yanhe Liu、Yachuang Hu、Zhenkun Zhang 等 14 人 · DOI: <a href="https://doi.org/10.1126/science.adz5323">10.1126/science.adz5323</a></div>
+      <div class="authors">Andreas Bezold、Manuel Köbrich、Jan Vollhüter、Longsheng Feng 等 11 人 · DOI: <a href="https://doi.org/10.1126/science.aeh1409">10.1126/science.aeh1409</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文围绕“小鼠听觉皮层中单个第5层皮层外投射神经元如何在规则驱动的灵活决策任务中整合抽象规则与感觉输入”展开。摘要表明，作者在体双光子成像结合光遗传操控发现：顶树突更偏向编码推断出的抽象规则，胞体更偏向表征感觉刺激，而选择信号在两者中都存在，并且抑制树突会损害依赖规则的胞体选择编码。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把“树突计算”从传统的感觉调制语境推进到“抽象规则—感觉信息整合—灵活决策”这一认知层面，并给出细胞内不同亚区室分工的证据线索：顶树突偏规则、胞体偏感觉、二者共同参与选择表征；同时通过树突定向光遗传抑制提供了任务相关因果支持。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文针对结构合金强化这一具体任务，提出通过“预变形+时效”在单晶钴镍基高温合金和多晶钴铬钨合金中构建有序二维缺陷相网络，而不是仅依赖服役中自发形成的平面缺陷。摘要显示，这种原子级薄、相干的缺陷限域有序相可带来超过200 MPa的室温强度提升，并使该超合金的最低蠕变速率降低3倍以上。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把通常被视为变形后果的晶体缺陷，转化为可设计、可预先引入的强化结构单元：先通过预变形制造平面缺陷，再经时效把这些缺陷“转化”为有序缺陷相架构。论文可能的重要科学推进包括：1）提出一种可控调节缺陷密度、稳定性和局部化学组成的强化策略；2）证明局部化学有序会放大强化效果；3）揭示这类有序缺陷相在保持可剪切性的同时抑制滑移传递，从而兼顾强度与高温蠕变性能。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -493,27 +499,27 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>44.0</strong>
+              <strong>42.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在规则驱动的灵活决策中，单个皮层神经元内部不同亚区室是否承担不同计算角色，尤其是顶树突是否参与抽象规则的表征与整合，并进一步影响胞体中的选择相关编码与行为输出。更直接地说，它在问“树突计算能否支持超越感觉调制的认知灵活性”。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，实验路径大概率包括三部分。第一，建立小鼠的规则型灵活决策任务，要求动物把感觉输入与当前抽象规则结合后作答，从而分离规则、刺激和选择变量。第二，在体双光子成像记录听觉皮层第5层皮层外投射神经元，分别采集顶树突和胞体活动，并通过试次级分析比较各区室对规则、刺激、选择的编码偏好。第三，使用光遗传学对树突进行抑制，检测这种操控是否削弱规则依赖的胞体选择编码，并可能伴随行为层面的灵活决策受损。分析上可能涉及单细胞/单区室解码、GLM回归、条件比较、规则切换期分析以及因果操控前后对比。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，研究层级新：不是只看脑区平均活动，而是把抽象规则、感觉刺激和选择信号映射到同一神经元的树突与胞体两个区室。其二，证据类型较强：摘要同时给出表征差异和光遗传因果干预，避免停留在纯相关观察。其三，任务设计具有认知含量：如果规则需要动物推断而非简单提示，那么“顶树突编码推断出的抽象规则”这一表述意味着树突可能承载来自高阶或反馈通路的任务状态信息，这对理解皮层反馈、预测加工和灵活行为都很重要。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看任务示意图和行为结果图，确认“抽象规则”在实验中如何定义、切换和推断。第二，查看树突与胞体成像图及对应解码/回归图，记录规则、刺激、选择三个变量在时间窗和效应量上的差异。第三，重点核对光遗传抑制实验：操控位置、对照条件、对行为和胞体选择编码的具体影响。第四，如果你的方向与神经表征或树突计算相关，可把本文拆成一个可复现框架：任务变量分解、区室级记录、编码模型、因果干预四步，并列出你自己的对照问题，如运动混杂、反馈来源和跨会话稳定性。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：平面缺陷虽然能强化结构合金，但通常在变形或服役过程中被动形成，导致其数量、稳定性和化学组成难以控制；能否通过可设计的工艺路径，预先在合金中构建稳定、致密且具有特定化学有序的二维缺陷相，并由此显著提升强度与蠕变抗力？</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>依据摘要，可能的研究路径是：1）对两类代表性钴基/钴镍基合金实施预变形，引入高密度平面缺陷；2）进行后续时效，使缺陷附近发生元素偏聚与局部有序化，形成缺陷限域的二维有序相；3）利用电子显微镜表征其原子级厚度、相干界面、网络分布和有序结构，可能包括TEM/STEM及化学分析；4）开展室温强度和蠕变测试，量化强化幅度；5）结合模拟解释局部化学有序如何改变位错切过、滑移传递和缺陷稳定性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点有三点。第一，设计思想新：不是等待缺陷在服役中自然演化，而是把缺陷当作可编程强化载体。第二，证据链较完整：摘要同时给出工艺、显微结构、力学性能和模拟机制四类信息，且跨单晶与多晶两种材料体系，说明策略可能具有一定普适性。第三，性能指标具体且有吸引力：室温强度提升超过200 MPa、最低蠕变速率下降超过3倍，说明该二维有序缺陷相不仅提高强度，还可能改善高温承载能力。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先查正文或补充材料中的显微图，确认二维缺陷相的具体缺陷类型、厚度、间距和化学有序证据；2）记录预变形量、时效制度、测试温度/应力这三个最关键工艺-性能参数；3）把“强度+200 MPa、最低蠕变速率降3倍”与基线合金状态逐项对照；4）重点查看模拟部分如何定义“局部化学有序”和“阻碍滑移传递”；5）如果你的方向是合金设计，可立即建立一个对照表：传统析出强化、层错强化、孪晶强化与本文二维有序缺陷相强化在形成条件、稳定性、可剪切性和高温适用性上的差别。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在规则驱动的灵活决策中，单个皮层神经元内部不同亚区室是否承担不同计算角色，尤其是顶树突是否参与抽象规则的表征与整合，并进一步影响胞体中的选择相关编码与行为输出。更直接地说，它在问“树突计算能否支持超越感觉调制的认知灵活性”。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，实验路径大概率包括三部分。第一，建立小鼠的规则型灵活决策任务，要求动物把感觉输入与当前抽象规则结合后作答，从而分离规则、刺激和选择变量。第二，在体双光子成像记录听觉皮层第5层皮层外投射神经元，分别采集顶树突和胞体活动，并通过试次级分析比较各区室对规则、刺激、选择的编码偏好。第三，使用光遗传学对树突进行抑制，检测这种操控是否削弱规则依赖的胞体选择编码，并可能伴随行为层面的灵活决策受损。分析上可能涉及单细胞/单区室解码、GLM回归、条件比较、规则切换期分析以及因果操控前后对比。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，研究层级新：不是只看脑区平均活动，而是把抽象规则、感觉刺激和选择信号映射到同一神经元的树突与胞体两个区室。其二，证据类型较强：摘要同时给出表征差异和光遗传因果干预，避免停留在纯相关观察。其三，任务设计具有认知含量：如果规则需要动物推断而非简单提示，那么“顶树突编码推断出的抽象规则”这一表述意味着树突可能承载来自高阶或反馈通路的任务状态信息，这对理解皮层反馈、预测加工和灵活行为都很重要。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭题录和摘要，仍需警惕几个边界。第一，摘要未说明样本量、效应大小、统计稳健性以及跨动物一致性，结论强度需看正文。第二，研究聚焦听觉皮层第5层ET神经元，外推到其他皮层区、细胞类型或物种需要谨慎。第三，“规则编码”可能与上下文、注意、期望、动作准备或奖励预测部分混杂，具体如何剥离要看任务与模型。第四，树突抑制是否真正局限于顶树突、是否影响整体兴奋性或输入输出变换，也需要看操控精度与对照。第五，摘要说选择信号在两者中都存在，但未说明时间顺序；若缺少精细时序分析，较难判断信息流方向。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看任务示意图和行为结果图，确认“抽象规则”在实验中如何定义、切换和推断。第二，查看树突与胞体成像图及对应解码/回归图，记录规则、刺激、选择三个变量在时间窗和效应量上的差异。第三，重点核对光遗传抑制实验：操控位置、对照条件、对行为和胞体选择编码的具体影响。第四，如果你的方向与神经表征或树突计算相关，可把本文拆成一个可复现框架：任务变量分解、区室级记录、编码模型、因果干预四步，并列出你自己的对照问题，如运动混杂、反馈来源和跨会话稳定性。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：小鼠听觉皮层中的第5层extratelencephalic神经元，且比较的是同一单神经元内部的顶树突与胞体在规则型灵活决策任务中的功能分工。任务应当要求动物根据抽象规则对相同或相似感觉输入作出不同决策，因此能够把“规则”“刺激”“选择”三个变量在分析上拆开。方法上，作者应是将在体双光子成像用于分别记录树突与胞体活动，再结合行为任务中的试次结构，利用解码、回归或表征分析来判断不同区室对抽象规则、感觉刺激和选择的编码偏好；随后用光遗传方式定向抑制树突活动，观察胞体选择编码及行为表现是否受损，以建立跨区室整合对任务执行的重要性。证据链在摘要中较完整：先有相关性证据（树突/胞体编码分离），再有因果性证据（树突抑制影响规则依赖的胞体选择编码）。对做感觉认知、皮层回路、树突生理或神经表征分析的研究者，这篇文章的价值在于它把“抽象规则”这种较高层变量落到了单细胞亚区室尺度，并提示听觉皮层并非只做低级感觉分析，而可能直接参与规则依赖的决策整合。需要核对的信息包括：规则任务的具体结构与难度、规则是显式切换还是需动物推断、记录的是钙信号还是电压相关指标、树突抑制的空间特异性、行为损伤是否特异于规则整合而非一般觉醒/感觉处理、以及“choice coding”与运动准备信号如何区分。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：平面缺陷虽然能强化结构合金，但通常在变形或服役过程中被动形成，导致其数量、稳定性和化学组成难以控制；能否通过可设计的工艺路径，预先在合金中构建稳定、致密且具有特定化学有序的二维缺陷相，并由此显著提升强度与蠕变抗力？</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>依据摘要，可能的研究路径是：1）对两类代表性钴基/钴镍基合金实施预变形，引入高密度平面缺陷；2）进行后续时效，使缺陷附近发生元素偏聚与局部有序化，形成缺陷限域的二维有序相；3）利用电子显微镜表征其原子级厚度、相干界面、网络分布和有序结构，可能包括TEM/STEM及化学分析；4）开展室温强度和蠕变测试，量化强化幅度；5）结合模拟解释局部化学有序如何改变位错切过、滑移传递和缺陷稳定性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点有三点。第一，设计思想新：不是等待缺陷在服役中自然演化，而是把缺陷当作可编程强化载体。第二，证据链较完整：摘要同时给出工艺、显微结构、力学性能和模拟机制四类信息，且跨单晶与多晶两种材料体系，说明策略可能具有一定普适性。第三，性能指标具体且有吸引力：室温强度提升超过200 MPa、最低蠕变速率下降超过3倍，说明该二维有序缺陷相不仅提高强度，还可能改善高温承载能力。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，仍需警惕若干边界。首先，性能提升是否伴随塑性、断裂韧性或低周疲劳恶化，摘要未说明。其次，所谓“remain shearable while impeding slip transmission”听起来有利，但具体适用的温度、应变率和加载模式未知。第三，工艺窗口和可制造性尚不清楚：预变形与时效是否对构件尺寸、织构、初始组织敏感，是否容易放大到工程尺度。第四，材料范围目前只看到两类钴基相关合金，能否推广到镍基、钛合金或高熵合金仍需谨慎。第五，摘要未给出长期热暴露稳定性、相粗化行为和服役环境适应性。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先查正文或补充材料中的显微图，确认二维缺陷相的具体缺陷类型、厚度、间距和化学有序证据；2）记录预变形量、时效制度、测试温度/应力这三个最关键工艺-性能参数；3）把“强度+200 MPa、最低蠕变速率降3倍”与基线合金状态逐项对照；4）重点查看模拟部分如何定义“局部化学有序”和“阻碍滑移传递”；5）如果你的方向是合金设计，可立即建立一个对照表：传统析出强化、层错强化、孪晶强化与本文二维有序缺陷相强化在形成条件、稳定性、可剪切性和高温适用性上的差别。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：一类单晶Co-Ni基高温合金，以及一类多晶Co-Cr-W合金；研究任务是把二维平面缺陷工程化为“ordered two-dimensional defect phases”，并验证其对强度和蠕变的强化作用。方法线索也较具体：先预变形，再时效；随后用电子显微学观察缺陷网络的形貌、相干性、厚度和有序特征，并结合模拟分析局部化学有序与位错/滑移行为之间的关系。摘要给出的关键证据包括：形成了致密网络状、相干、原子级薄的有序缺陷限域相；室温强度提高超过200 MPa；超合金最低蠕变速率降低超过3倍；显微与模拟共同支持“局部化学有序增强强化、缺陷相可剪切但阻碍滑移传递”的机制判断。对做高温合金、缺陷工程、析出强化、界面相变、位错-界面相互作用的读者，这篇文章的价值在于它把传统析出强化与缺陷强化之间搭起了桥梁：强化单元不是体相析出物，而是被平面缺陷限域并有序化的二维相。需要重点核对的信息包括：预变形方式与应变量、时效温度时间窗口、缺陷类型究竟是层错/孪晶/反相界面中的哪一种或哪几种、所谓ordered defect-confined phases的晶体学与化学特征、强度测试条件、蠕变测试温度应力、模拟方法是第一性原理/相场/原子模拟还是位错动力学，以及该策略对延性、疲劳和热稳定性的影响。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Intelligent behavior involves flexible integration of sensory input and abstract rule knowledge. Dendritic computation has been shown to contribute to top-down modulation of sensory processing; however, whether and how it is involved in flexible cognitive processing remains to be elucidated. Combining a rule-based flexible decision-making task with in vivo two-photon imaging and optogenetics in mice, we found that within single layer 5 extratelencephalic neurons in the auditory cortex, apical dendrites preferentially encoded the inferred abstract rule and somata preferentially represented sensory stimuli, whereas choice signals were present in both compartments. Optogenetic dendritic inhibition impaired rule-dependent somatic choice coding, supporting a task-relevant integration across the dendritic and somatic compartments. These results indicate that dendritic computation in cortical neurons mediates flexible behavior.</p>
+          <p>Defects in crystals are usually considered to be consequences of deformation, but they can also be engineered as strengthening features. Planar defects can strengthen structural alloys but usually form only during deformation or service, limiting control over their density, stability, and chemistry. We show that predeformation followed by aging can convert such defects into a designed architecture of ordered defect phases. In a single-crystal cobalt-nickel–based superalloy and a polycrystalline cobalt-chromium-tungsten alloy, this treatment creates dense networks of coherent, atomically thin, ordered defect–confined phases. These increase room-temperature strength by more than 200 megapascals and reduce the superalloy’s minimum creep rate by more than threefold. Electron microscopy and simulations show that local chemical ordering amplifies strengthening and that the ordered defect phases remain shearable while impeding slip transmission.</p>
         </details>
         
         </div>
@@ -526,19 +532,19 @@
       <div class="paper-meta">
         <span class="source-pill">Science</span>
         <span>2026-10-15</span>
-        <span>Score 44.0</span>
+        <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.aem4081">Fear the bioengineered future April X Michel K. Parandi, director Lavi Star, 2026. 96 minutes.</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Fear+the+bioengineered+future+April+X+Michel+K.+Parandi%2C+director+Lavi+Star%2C+202&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem4081%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Fear+the+bioengineered+future+April+X+Michel+K.+Parandi%2C+director+Lavi+Star%2C+2026.+96+minutes.%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Fear+the+bioengineered+future+April+X+Michel+K.+Parandi%2C+director+Lavi+Star%2C+202&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem4081%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Fear+the+bioengineered+future+April+X+Michel+K.+Parandi%2C+director+Lavi+Star%2C+2026.+96+minutes.%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Fear+the+bioengineered+future+April+X+Michel+K.+Parandi%2C+director+Lavi+Star%2C+202&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem4081%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Fear+the+bioengineered+future+April+X+Michel+K.+Parandi%2C+director+Lavi+Star%2C+2026.+96+minutes.%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1126/science.adz4600">Structural basis for size-selective perception of chitin in plants</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Structural+basis+for+size-selective+perception+of+chitin+in+plants&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adz4600%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Structural+basis+for+size-selective+perception+of+chitin+in+plants%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Structural+basis+for+size-selective+perception+of+chitin+in+plants&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adz4600%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Structural+basis+for+size-selective+perception+of+chitin+in+plants%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Structural+basis+for+size-selective+perception+of+chitin+in+plants&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adz4600%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Structural+basis+for+size-selective+perception+of+chitin+in+plants%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Gregory J. Miller · DOI: <a href="https://doi.org/10.1126/science.aem4081">10.1126/science.aem4081</a></div>
+      <div class="authors">Kira Gysel、Simon Boje Hansen、Henriette Rübsam、Husam M. A. B. Alsarraf 等 15 人 · DOI: <a href="https://doi.org/10.1126/science.adz4600">10.1126/science.adz4600</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这不是一篇常规科研论文，更像是Science上的影评/评论短文：Gregory J. Miller围绕一部96分钟影片《Fear the bioengineered future》讨论“先进技术如何与人类最坏冲动相遇”这一主题，具体对象是生物工程未来风险在影视叙事中的呈现。基于现有题名、摘要和元数据，它的任务更接近科技伦理与公共传播评论，而非提出可复现的实验方法或数据结果。</p></div>
-        <div class="note"><strong>贡献</strong><p>从题录信息看，其核心贡献可能是借助一部关于生物工程未来的电影，提炼生物技术、风险想象与社会恐惧之间的关系，为科研人员理解公众如何通过流行文化感知生物工程风险提供一个案例化入口。若用于科研阅读，其价值主要在科技传播、科学伦理、风险治理和公众认知研究的讨论素材，而不是方法学或实证发现。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕植物几丁质免疫感知，具体解析了豆科植物Lotus japonicus和Medicago truncatula中对长链几丁质寡聚体进行尺寸选择性识别的受体机制，并提出由CHIP受体与CERK类共受体组成的配体诱导信号异源复合体模型。基于摘要信息，工作重点是把“为什么植物更偏好识别长链几丁质”这一具体问题，落到受体结构、亲和力差异和体内功能验证上。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是提出并部分建立了植物长链几丁质高亲和识别的结构基础：识别出CHITIN PERCEPTION（CHIP）受体类特征性的bridge domain，说明其与长链几丁质寡聚体的尺寸选择性识别有关；同时将CHITIN ELICITOR RECEPTOR KINASE（CERK）类界定为低亲和但必需的共受体，并据此提出几丁质诱导的核心信号异源复合体装配机制。若摘要表述可靠，这项工作把“配体长度偏好”“主受体/共受体分工”“结构到功能的因果链”三者连接起来。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -555,27 +561,27 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>44.0</strong>
+              <strong>42.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>若按学术问题重述，这篇文章关注的具体问题可能是：一部以生物工程未来为主题的电影，如何通过快节奏叙事把先进技术与人类恶意、失控或滥用联系起来，并由此塑造公众对生物技术风险的理解与恐惧。它不是在解决实验科学问题，而是在处理科技叙事和社会想象问题。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法是评论性文本分析而非科研实验。作者大概率基于影片内容、人物设定、冲突结构和技术设定进行解读，评估影片如何呈现‘bioengineered future’、如何把技术风险戏剧化，以及这种呈现是否具有现实映射或伦理启发。现有元数据没有显示使用数据集、模型、访谈、案例比较或定量分析。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点可能在于把生物工程这一高度专业化主题转化为可被广泛讨论的文化对象，使科研人员看到公众风险感知并不只来自论文和政策，也来自影视叙事。若文章写得好，其价值在于提供一个具体案例，帮助讨论生物安全、双重用途研究、技术滥用和科学传播中的恐惧框架。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先到Science页面核对栏目类型，确认它是否为影评/评论；2）查看正文首段和配图说明，记录影片涉及的具体生物工程技术；3）若你的研究方向是生物安全或科技传播，可把文中风险叙事与现实议题做一张对照表，如基因编辑、合成生物学、双重用途、实验室治理；4）若只做文献管理，应将其标注为‘文化评论/影评’，避免误归类为实证论文。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：植物LysM受体如何在众多几丁质相关分子中对“长链几丁质寡聚体”实现尺寸选择性、高亲和识别；这种识别由哪一类受体主导，哪一类受体作为必需共受体参与；以及配体结合后受体复合体如何装配并触发几丁质诱导的免疫信号。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，作者采用了受体-配体复合物结构解析来定位几丁质结合模式和关键结构域，重点识别CHIP类受体的bridge domain；随后通过生物化学实验比较不同受体类别对几丁质的结合特性和亲和力，可能包括链长依赖的结合测定、复合体形成分析和突变体验证；最后在Lotus japonicus与Medicago truncatula中使用抑制性纳米抗体进行体内功能干预，以测试特定受体界面或构象对免疫感知的必要性。整体路径是“结构发现—生化定量—体内验证—机制建模”。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点之一是把一个长期存在但常较笼统描述的问题——植物为何偏好某些链长的几丁质信号——具体化为可见的结构基础。亮点之二是区分了CHIP与CERK两类受体的功能分工：前者可能承担高亲和、尺寸选择性识别，后者虽低亲和却在信号复合体中不可或缺，这种分工模型比单纯“某受体识别几丁质”更有解释力。亮点之三是证据类型跨越结构、生化和体内功能，且引入抑制性纳米抗体作为功能探针，说明作者不仅观察结合，还尝试干预并验证机制。亮点之四是使用两个豆科物种，增加了机制保守性的说服力。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五项：第一，优先查看正文中的主结构图，确认CHIP受体的bridge domain具体位于何处、与几丁质和受体其他LysM模块如何相对定位。第二，查亲和力和链长依赖数据，记录不同几丁质寡聚体长度对应的结合强度及CHIP、CERK之间的差异。第三，查看纳米抗体实验图，明确其阻断对象是CHIP、CERK还是复合体界面，以及体内读出指标是什么。第四，整理作者提出的异源复合体模型，画出“配体—CHIP—CERK”的装配顺序和必要条件。第五，如果你的方向涉及植物免疫或受体工程，可进一步对照自己系统中的LysM受体序列，检查是否存在类似bridge domain或保守位点，作为后续功能验证候选。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>若按学术问题重述，这篇文章关注的具体问题可能是：一部以生物工程未来为主题的电影，如何通过快节奏叙事把先进技术与人类恶意、失控或滥用联系起来，并由此塑造公众对生物技术风险的理解与恐惧。它不是在解决实验科学问题，而是在处理科技叙事和社会想象问题。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能方法是评论性文本分析而非科研实验。作者大概率基于影片内容、人物设定、冲突结构和技术设定进行解读，评估影片如何呈现‘bioengineered future’、如何把技术风险戏剧化，以及这种呈现是否具有现实映射或伦理启发。现有元数据没有显示使用数据集、模型、访谈、案例比较或定量分析。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点可能在于把生物工程这一高度专业化主题转化为可被广泛讨论的文化对象，使科研人员看到公众风险感知并不只来自论文和政策，也来自影视叙事。若文章写得好，其价值在于提供一个具体案例，帮助讨论生物安全、双重用途研究、技术滥用和科学传播中的恐惧框架。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>局限非常明显：从题录和摘要看，这不是标准研究论文，缺少明确研究设计、数据、方法和可检验结论；摘要没有给出具体技术对象、情节机制或分析框架；标题信息疑似混杂影片元数据，存在解析错误风险；因此不适合据此提炼实验结论或方法学启发。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先到Science页面核对栏目类型，确认它是否为影评/评论；2）查看正文首段和配图说明，记录影片涉及的具体生物工程技术；3）若你的研究方向是生物安全或科技传播，可把文中风险叙事与现实议题做一张对照表，如基因编辑、合成生物学、双重用途、实验室治理；4）若只做文献管理，应将其标注为‘文化评论/影评’，避免误归类为实证论文。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>根据标题“Fear the bioengineered future April X Michel K. Parandi, director Lavi Star, 2026. 96 minutes.”以及摘要“Advanced technologies meet humanity’s worst impulses in a fast-paced new film”，可以较明确判断这是一则关于电影的评论或书影音评介，而不是报告实验、模型或数据分析的研究论文。研究对象若勉强按学术阅读框架界定，应是“生物工程未来”在影视作品中的风险叙事：影片如何把先进技术与暴力、控制、失序、滥用等‘人类最坏冲动’连接起来，并借此制造伦理张力或社会警示。可能的方法不是实验或统计，而是评论性分析：围绕影片情节设定、技术想象、角色行为、社会后果和伦理寓意进行文本解读。证据线索目前只有期刊、作者、发布日期、片名、导演、片长和一句摘要，因此无法确认影片涉及的具体技术对象，例如基因编辑、合成生物学、生物武器、增强人类、监控生物识别或实验室泄漏等，也无法确认文章是否联系现实政策、历史案例或科学事实核查。与科研人员的关系在于：这类评论可作为观察公众风险想象的窗口，帮助生命科学、合成生物学、生物安全和科技政策研究者理解外部社会如何把‘先进生物技术’与威胁叙事绑定，从而影响治理沟通、伦理审查和科普策略。需要重点核对的信息包括：这篇文章在Science中的栏目属性是否为Books et al./Reviews之类的文化评论；影片标题中“April X Michel K. Parandi, director Lavi Star”究竟是片名副标题、主演信息还是题录抽取错误；文章是否讨论了具体生物工程技术；是否引用现实科学事件或政策争议；以及作者是否提出了超出影评层面的科技伦理判断。由于摘要极短，任何关于方法、结论或立场的进一步推断都必须谨慎。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：植物LysM受体如何在众多几丁质相关分子中对“长链几丁质寡聚体”实现尺寸选择性、高亲和识别；这种识别由哪一类受体主导，哪一类受体作为必需共受体参与；以及配体结合后受体复合体如何装配并触发几丁质诱导的免疫信号。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，作者采用了受体-配体复合物结构解析来定位几丁质结合模式和关键结构域，重点识别CHIP类受体的bridge domain；随后通过生物化学实验比较不同受体类别对几丁质的结合特性和亲和力，可能包括链长依赖的结合测定、复合体形成分析和突变体验证；最后在Lotus japonicus与Medicago truncatula中使用抑制性纳米抗体进行体内功能干预，以测试特定受体界面或构象对免疫感知的必要性。整体路径是“结构发现—生化定量—体内验证—机制建模”。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点之一是把一个长期存在但常较笼统描述的问题——植物为何偏好某些链长的几丁质信号——具体化为可见的结构基础。亮点之二是区分了CHIP与CERK两类受体的功能分工：前者可能承担高亲和、尺寸选择性识别，后者虽低亲和却在信号复合体中不可或缺，这种分工模型比单纯“某受体识别几丁质”更有解释力。亮点之三是证据类型跨越结构、生化和体内功能，且引入抑制性纳米抗体作为功能探针，说明作者不仅观察结合，还尝试干预并验证机制。亮点之四是使用两个豆科物种，增加了机制保守性的说服力。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前仍有几个边界需要警惕。第一，摘要没有给出具体结构技术、分辨率和复合物组成，尚不清楚bridge domain与配体接触是直接还是通过稳定受体构象间接实现。第二，“低亲和但必需”的CERK结论需要查看定量数据支持，例如Kd、动力学参数和遗传/功能缺失表型，否则容易停留在模型层面。第三，体内纳米抗体实验虽然有力，但其特异性、表达水平、副作用和阻断位点都需要核对。第四，研究对象集中于Lotus和Medicago，能否外推到拟南芥、水稻或更广泛作物仍待确认。第五，摘要未说明是否比较了不同链长几丁质、几丁寡糖修饰状态或与几丁聚糖/肽聚糖等相关配体的区分能力。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五项：第一，优先查看正文中的主结构图，确认CHIP受体的bridge domain具体位于何处、与几丁质和受体其他LysM模块如何相对定位。第二，查亲和力和链长依赖数据，记录不同几丁质寡聚体长度对应的结合强度及CHIP、CERK之间的差异。第三，查看纳米抗体实验图，明确其阻断对象是CHIP、CERK还是复合体界面，以及体内读出指标是什么。第四，整理作者提出的异源复合体模型，画出“配体—CHIP—CERK”的装配顺序和必要条件。第五，如果你的方向涉及植物免疫或受体工程，可进一步对照自己系统中的LysM受体序列，检查是否存在类似bridge domain或保守位点，作为后续功能验证候选。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：植物LysM受体如何感知几丁质，尤其是为何对长链几丁质寡聚体表现出高亲和、尺寸选择性的识别。系统上聚焦两个豆科模式植物Lotus japonicus和Medicago truncatula，说明作者可能希望证明该机制不是单一物种特例，而具有一定保守性。摘要中的关键对象包括CHIP受体类、CERK共受体类、长链几丁质寡聚体，以及用于功能阻断的抑制性纳米抗体。方法线索也较具体：一是“structural analysis of receptor-ligand complexes”，意味着至少获得了受体-配体复合物的结构信息，可能来自X射线晶体学或冷冻电镜；二是“biochemistry”，通常对应结合实验、亲和力测定、复合体形成分析或突变体验证；三是“in planta functional studies of inhibitory nanobodies”，说明作者不仅做了体外结构/生化，还在植物体内利用纳米抗体干预受体功能，以验证结构推断与免疫表型之间的联系。摘要最值得注意的证据链是：先通过结构识别出CHIP类受体的bridge domain这一标志性结构特征，再结合生化和体内抑制实验，支持其介导长链几丁质的高亲和、尺寸选择性感知；随后再把CERK类放到“低亲和但必需”的共受体位置，形成一个主受体负责高选择性识别、共受体负责信号复合体组装/传递的机制模型。对做植物免疫、受体激酶、糖配体识别、LysM家族功能分化或作物抗病工程的读者，这篇论文的价值在于它可能提供了一个可操作的结构框架：哪些结构域决定链长偏好，哪些受体负责初始高亲和结合，哪些共受体负责后续信号放大与复合体稳定。需要核对的信息包括：bridge domain的具体位置和保守性；“长链”几丁质寡聚体具体指几聚体范围；CHIP与CERK各自的结合常数和是否存在协同结合；纳米抗体阻断的是配体结合、受体二聚化还是复合体装配；体内功能读出是ROS、MAPK、基因表达还是抗病性；以及该模型是否适用于非豆科植物。由于目前只有摘要，不能确认结构分辨率、样本数量、统计强度、突变位点覆盖度和跨物种普适性。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Advanced technologies meet humanity’s worst impulses in a fast-paced new film</p>
+          <p>Plants detect microbes through pattern recognition receptors that perceive conserved microbial surface motifs known as microbe-associated molecular patterns (MAMPs). Lysin motif (LysM) receptors recognize and mediate downstream responses to chitinous MAMPs. In this study, we elucidated the mechanism for the specific recognition of long-chain chitin oligomers and identified a hallmark bridge domain characteristic of the CHITIN PERCEPTION (CHIP) receptor class. Structural analysis of receptor-ligand complexes, biochemistry, and in planta functional studies of inhibitory nanobodies revealed the mechanism of size-selective, high-affinity chitin perception in Lotus japonicus and Medicago truncatula . Additionally, we identified the CHITIN ELICITOR RECEPTOR KINASE (CERK) class as low-affinity, yet essential, co-receptors and propose a mechanistic model for a ligand-induced core signaling heterocomplex. Our findings establish the structural and mechanistic basis of differential chitin perception and receptor complex assembly in chitin-elicited plant immune signaling.</p>
         </details>
         
         </div>
@@ -588,19 +594,19 @@
       <div class="paper-meta">
         <span class="source-pill">Science</span>
         <span>2026-10-15</span>
-        <span>Score 44.0</span>
+        <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.adq6530">Gate-tunable chiral spin mode in WSe 2 /WS 2 moiré superlattices</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Gate-tunable+chiral+spin+mode+in+WSe+2+%2FWS+2+moir%C3%A9+superlattices&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adq6530%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Gate-tunable+chiral+spin+mode+in+WSe+2+%2FWS+2+moir%C3%A9+superlattices%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Gate-tunable+chiral+spin+mode+in+WSe+2+%2FWS+2+moir%C3%A9+superlattices&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adq6530%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Gate-tunable+chiral+spin+mode+in+WSe+2+%2FWS+2+moir%C3%A9+superlattices%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Gate-tunable+chiral+spin+mode+in+WSe+2+%2FWS+2+moir%C3%A9+superlattices&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adq6530%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Gate-tunable+chiral+spin+mode+in+WSe+2+%2FWS+2+moir%C3%A9+superlattices%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1126/science.aeh2982">Atomic functional site scaffolding in biopolymers with RFdiffusion3</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Atomic+functional+site+scaffolding+in+biopolymers+with+RFdiffusion3&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh2982%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Atomic+functional+site+scaffolding+in+biopolymers+with+RFdiffusion3%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Atomic+functional+site+scaffolding+in+biopolymers+with+RFdiffusion3&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh2982%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Atomic+functional+site+scaffolding+in+biopolymers+with+RFdiffusion3%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Atomic+functional+site+scaffolding+in+biopolymers+with+RFdiffusion3&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh2982%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Atomic+functional+site+scaffolding+in+biopolymers+with+RFdiffusion3%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Zhexu Shan、Wenjian Su、Kenji Watanabe、Takashi Taniguchi 等 7 人 · DOI: <a href="https://doi.org/10.1126/science.adq6530">10.1126/science.adq6530</a></div>
+      <div class="authors">Jasper Butcher、Rohith Krishna、Raktim Mitra、Seth M. Woodbury 等 33 人 · DOI: <a href="https://doi.org/10.1126/science.aeh2982">10.1126/science.aeh2982</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该论文报道了近0°扭转WSe2/WS2莫尔超晶格中一种可由栅压调控的手性自旋模，具体发生在导带自旋轨道分裂的小能带之间，并通过拉曼谱中的赝矢量对称通道表现为高效率尖锐共振。摘要还指出该集体激发会随填充数从手性自旋激子演化为激子极化子，并借助塞曼效应确认其自旋翻转性质。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把“多体相互作用+自旋轨道耦合”导致的低能集体自旋激发，具体落实到WSe2/WS2莫尔双层体系中的可门控观测对象，并给出三条关键物理指认线索：拉曼强共振、磁场下的塞曼响应、自填充依赖的激发性质转变。若摘要表述成立，这项工作还可能提供了unity filling处电荷转移绝缘态的光谱证据，并拓展了TMD莫尔超晶格中可研究的低能集体现象谱系。</p></div>
+        <div class="note"><strong>一句话</strong><p>该论文围绕“在生物聚合物中按原子级约束搭建功能位点”这一具体设计任务，提出生成式AI方法RFdiffusion3，用于更快、更准确地满足复杂原子约束，面向酶设计和RNA结构设计等问题。摘要给出的实验示例集中在从头设计磷酸三酯酶和针对转甲状腺素蛋白的锌蛋白酶，并声称在各自96个构建设计的zero-shot实验中获得了有活性的催化剂。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应是提出了一个面向生物聚合物功能位点构建的原子级生成设计框架RFdiffusion3，其关键特征是“free atom diffusion”以直接处理复杂原子约束；从摘要看，作者试图证明该方法相较既有方法在多类任务上同时提升速度与准确性，并把能力落到高难度活性位点设计上，包括含羧氨化赖氨酸-双金属配位架构的磷酸三酯酶，以及对疾病相关靶标转甲状腺素具有特异性的锌蛋白酶。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -617,27 +623,33 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>44.0</strong>
+              <strong>42.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答的具体问题是：在近0°扭转WSe2/WS2莫尔超晶格中，导带SOC分裂小能带之间是否存在由多体效应与SOC共同产生的手性自旋集体模；该模能否通过栅压调控和拉曼光谱直接观测；其自旋翻转与手性属性如何被实验确认；以及该激发在不同莫尔填充下为何会从手性自旋激子演化为激子极化子，并对unity filling处的绝缘态性质给出什么信息。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，实验主线应是门控二维异质结器件上的低温共振拉曼光谱。样品应为近0°扭转WSe2/WS2双层，利用栅压调节电子填充到不同莫尔小能带占据区间；通过偏振或对称性分析提取赝矢量对称通道中的共振峰；在外加磁场下测量峰位随Zeeman效应变化以确认自旋翻转性质；再结合导带SOC分裂小能带和多体相互作用模型，将低填充或特定填充区间的模式解释为chiral spin exciton，将更高填充或有费米海参与的区间解释为excitonic polaron。若论文较完整，可能还会配合反射/PL/输运或电容数据来标定填充与绝缘态位置，但摘要未明确说明。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。其一，观测对象非常新：不是常见激子，而是手性自旋模这种低能集体激发。其二，实验可调性强：通过栅压连续调控填充，使同一体系中出现从自旋激子到极化子的演化。其三，证据链相对闭合：拉曼强共振给出可见性，Zeeman效应给出自旋翻转指认，填充依赖给出多体态背景。其四，物理外延价值高：如果unity filling确为电荷转移绝缘体，则该工作把莫尔关联基态与低能自旋集体模联系起来，为后续研究磁性、谷自旋耦合和光学操控提供切入点。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文图中拉曼峰出现的能量、线宽、偏振/对称通道和随栅压演化曲线；2）记录unity filling的定义、填充标定方式及对应绝缘态证据；3）查看磁场数据，确认Zeeman位移是否足以排除非自旋翻转解释；4）对照理论部分，整理作者区分chiral spin exciton与excitonic polaron的具体判据；5）若你的方向涉及莫尔光谱或关联态，可把这篇与已有TMD莫尔中的自旋/谷激发、层间激子极化子和拉曼集体模工作做一页对照表。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：当目标功能依赖许多原子在三维空间中的精确排布时，如何在生物聚合物中快速、准确地构建能够承载这些原子级功能位点的整体结构。更具体地说，是如何在酶设计、RNA结构设计等任务中，同时满足复杂催化几何、金属配位、靶标识别等多重原子约束，而不是只生成外形合理但功能位点不精确的骨架。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法核心是RFdiffusion3及其free atom diffusion机制。可推测其流程可能包括：以功能位点相关原子、残基、金属离子、靶标或RNA约束作为条件输入；通过扩散生成满足这些约束的生物聚合物三维结构；再结合序列设计、结构筛选和实验测试完成闭环。实验上至少包含两条验证路径：一是从头设计具有羧氨化赖氨酸-双金属活性中心的磷酸三酯酶；二是设计对转甲状腺素具有特异性的锌蛋白酶。摘要还暗示作者做了与既有方法的速度和准确性比较，但具体数据、基线和评估任务需要看正文。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是把“原子级功能约束满足”作为中心能力来展示，而不是停留在一般结构生成。摘要中的两个酶设计案例都具有高难度特征：前者涉及非普通残基化学状态与双金属配位，后者涉及疾病相关蛋白底物的特异性蛋白酶设计。若摘要表述准确，那么在zero-shot、每个案例96个构建的规模下获得活性催化剂，说明方法可能显著提高了从头功能设计的可行性。另一个亮点是任务范围跨越酶设计和RNA结构设计，提示模型表示可能具有较强通用性。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）优先查正文或补充材料中RFdiffusion3的输入表示与free atom diffusion定义；2）记录两类实验案例的具体活性指标、命中构建数、是否有晶体或冷冻电镜结构；3）查看与“previous methods”比较所用基线和评估任务；4）特别核对96个构建设计活动中每个案例的成功率，而不只看“获得活性催化剂”这一表述；5）如果你的方向是酶设计，先把文中磷酸三酯酶活性位点几何约束和锌蛋白酶底物特异性约束整理成可复用的设计要素清单。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答的具体问题是：在近0°扭转WSe2/WS2莫尔超晶格中，导带SOC分裂小能带之间是否存在由多体效应与SOC共同产生的手性自旋集体模；该模能否通过栅压调控和拉曼光谱直接观测；其自旋翻转与手性属性如何被实验确认；以及该激发在不同莫尔填充下为何会从手性自旋激子演化为激子极化子，并对unity filling处的绝缘态性质给出什么信息。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，实验主线应是门控二维异质结器件上的低温共振拉曼光谱。样品应为近0°扭转WSe2/WS2双层，利用栅压调节电子填充到不同莫尔小能带占据区间；通过偏振或对称性分析提取赝矢量对称通道中的共振峰；在外加磁场下测量峰位随Zeeman效应变化以确认自旋翻转性质；再结合导带SOC分裂小能带和多体相互作用模型，将低填充或特定填充区间的模式解释为chiral spin exciton，将更高填充或有费米海参与的区间解释为excitonic polaron。若论文较完整，可能还会配合反射/PL/输运或电容数据来标定填充与绝缘态位置，但摘要未明确说明。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。其一，观测对象非常新：不是常见激子，而是手性自旋模这种低能集体激发。其二，实验可调性强：通过栅压连续调控填充，使同一体系中出现从自旋激子到极化子的演化。其三，证据链相对闭合：拉曼强共振给出可见性，Zeeman效应给出自旋翻转指认，填充依赖给出多体态背景。其四，物理外延价值高：如果unity filling确为电荷转移绝缘体，则该工作把莫尔关联基态与低能自旋集体模联系起来，为后续研究磁性、谷自旋耦合和光学操控提供切入点。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的边界主要有：第一，‘手性’的定义和实验可观测量之间是否一一对应，需看正文理论与选择定则推导；第二，拉曼中的尖锐共振是否可能与其他电子激发、层间激子或声子相关过程混淆，摘要未展示排他性证据；第三，从spin exciton到polaron的转变判据可能依赖模型解释，需检查是否有定量拟合而非定性命名；第四，charge-transfer insulator的判断目前只在摘要中由填充依赖引出，缺少独立输运或压缩率证据描述；第五，近0°扭转样品对角度、应变、无序较敏感，结果的样品普适性和重复性需要看正文。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文图中拉曼峰出现的能量、线宽、偏振/对称通道和随栅压演化曲线；2）记录unity filling的定义、填充标定方式及对应绝缘态证据；3）查看磁场数据，确认Zeeman位移是否足以排除非自旋翻转解释；4）对照理论部分，整理作者区分chiral spin exciton与excitonic polaron的具体判据；5）若你的方向涉及莫尔光谱或关联态，可把这篇与已有TMD莫尔中的自旋/谷激发、层间激子极化子和拉曼集体模工作做一页对照表。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：近0°扭转的WSe2/WS2双层莫尔超晶格，关注的是导带SOC分裂小能带之间的手性自旋模，而不是一般性的激子或单粒子带间跃迁。论文要解决的核心问题，是在具有强SOC和强关联的莫尔体系中，是否存在可实验分辨、可电门调控、并且具有明确手性与自旋翻转属性的低能集体激发，以及这种激发如何随载流子填充演化。证据链在摘要中也较集中：第一，拉曼谱赝矢量对称通道出现“sharp resonance with giant Raman efficiency”，说明作者并非只看到弱肩峰，而是观察到强而窄的特征模；第二，磁场下的Zeeman effect被用来直接确认spin-flip nature，意味着该模的能量或分裂对磁场有可解析响应；第三，随填充变化，该模从chiral spin exciton转变为excitonic polaron，说明作者把不同掺杂区间下的集体激发放在统一图景中讨论；第四，unity filling处的填充依赖被解释为charge-transfer insulator，这提示他们可能结合了莫尔填充序列、拉曼模强度/能量变化与绝缘态位置进行判定。可能的方法路径包括：制备高质量近0° WSe2/WS2异质双层并加hBN封装与石墨栅极；通过栅压连续调节莫尔能带填充；在低温下进行偏振分辨或对称通道分解的共振拉曼测量；在外加磁场下跟踪模的能量位移或分裂；再结合莫尔小能带、自旋轨道分裂和多体相互作用的理论模型，对“手性自旋激子”和“激子极化子”两个区间进行解释。与科研读者的关系上，这篇工作对二维半导体莫尔体系、低能集体模、拉曼光谱、强关联与SOC耦合问题都很相关，尤其适合关注“如何在光谱中识别莫尔关联态”和“如何区分单粒子跃迁与集体模”的读者。需要重点核对的信息包括：CSM的具体能量尺度；所谓pseudovector-symmetry channel在实验上如何实现与选择定则如何建立；‘giant Raman efficiency’相对于什么基准；填充数标定方法与unity filling的确定方式；从spin exciton到polaron的判据是峰位、线宽、磁场响应还是理论拟合；charge-transfer insulator的证据是否仅来自光谱关联，还是有输运/电容等独立支持。由于目前只有摘要，不能判断样品数量、统计稳健性、理论是否定量拟合实验，也不能确认是否排除了层间激子、声子耦合或普通带间拉曼过程等替代解释。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：当目标功能依赖许多原子在三维空间中的精确排布时，如何在生物聚合物中快速、准确地构建能够承载这些原子级功能位点的整体结构。更具体地说，是如何在酶设计、RNA结构设计等任务中，同时满足复杂催化几何、金属配位、靶标识别等多重原子约束，而不是只生成外形合理但功能位点不精确的骨架。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法核心是RFdiffusion3及其free atom diffusion机制。可推测其流程可能包括：以功能位点相关原子、残基、金属离子、靶标或RNA约束作为条件输入；通过扩散生成满足这些约束的生物聚合物三维结构；再结合序列设计、结构筛选和实验测试完成闭环。实验上至少包含两条验证路径：一是从头设计具有羧氨化赖氨酸-双金属活性中心的磷酸三酯酶；二是设计对转甲状腺素具有特异性的锌蛋白酶。摘要还暗示作者做了与既有方法的速度和准确性比较，但具体数据、基线和评估任务需要看正文。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是把“原子级功能约束满足”作为中心能力来展示，而不是停留在一般结构生成。摘要中的两个酶设计案例都具有高难度特征：前者涉及非普通残基化学状态与双金属配位，后者涉及疾病相关蛋白底物的特异性蛋白酶设计。若摘要表述准确，那么在zero-shot、每个案例96个构建的规模下获得活性催化剂，说明方法可能显著提高了从头功能设计的可行性。另一个亮点是任务范围跨越酶设计和RNA结构设计，提示模型表示可能具有较强通用性。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前信息仍有明显边界。第一，缺少定量结果：不知道活性有多强、命中率多高、与基线相比提升多少。第二，zero-shot的定义不清楚，可能仍包含人工筛选、后处理或实验筛选。第三，摘要没有说明是否有高分辨率结构验证来证明设计确实实现了预期原子排布。第四，RNA部分只在方法能力层面被提及，没有给出实验示例。第五，复杂活性位点如carbamylated lysine的实验实现可能依赖特定表达/修饰条件，泛化性需谨慎。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）优先查正文或补充材料中RFdiffusion3的输入表示与free atom diffusion定义；2）记录两类实验案例的具体活性指标、命中构建数、是否有晶体或冷冻电镜结构；3）查看与“previous methods”比较所用基线和评估任务；4）特别核对96个构建设计活动中每个案例的成功率，而不只看“获得活性催化剂”这一表述；5）如果你的方向是酶设计，先把文中磷酸三酯酶活性位点几何约束和锌蛋白酶底物特异性约束整理成可复用的设计要素清单。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要判断，研究对象不是一般的蛋白骨架生成，而是“功能位点的原子级支架化/搭建”：给定催化残基、金属配位、底物或靶标相关几何等复杂约束，生成能够承载这些功能原子排布的生物聚合物结构。方法上，RFdiffusion3应是RFdiffusion系列的延伸，但这里强调的是free atom diffusion，说明扩散过程可能不再只在残基框架或主链层面进行，而是允许更直接地对自由原子或原子集合进行建模，从而更精细地满足活性位点几何、配位化学和多组分约束。摘要明确提到任务覆盖enzyme design到RNA structure design，意味着该框架可能具有跨生物聚合物泛化能力，而不局限于蛋白质。
+
+证据线索主要来自两类实验设计案例。第一类是de novo phosphotriesterases，且活性位点架构非常具体：包含一个carbamylated lysine并协调两个金属离子。这说明作者并非只做简单催化三联体，而是在挑战涉及翻译后修饰样残基状态、金属配位和复杂几何的活性中心。第二类是zinc proteases specific for transthyretin protein involved in amyloid diseases，说明设计目标不仅是“有酶活”，还可能包含对特定蛋白底物的识别与切割特异性，属于结合界面与催化位点耦合设计。摘要中“in both cases we obtain active catalysts in zero shot 96 construct design campaigns”是最关键的实验主张：在没有迭代定向进化或多轮筛选优化的前提下，每个案例进行96个构建设计并得到活性催化剂。这暗示命中率可能高于传统从头酶设计流程，但具体活性水平、命中数、对照基线、是否需要表达筛选、金属依赖性和底物谱仍需全文核对。
+
+与科研读者的关系上，这篇工作对以下方向尤其相关：1）计算蛋白设计/酶设计，尤其是需要严格几何约束的金属酶、共因子酶、蛋白酶；2）RNA结构设计，因为摘要声称方法可跨到RNA；3）生成模型方法学，特别是如何把原子级约束、功能位点和大分子骨架联合建模；4）疾病相关蛋白靶向催化剂设计，例如淀粉样疾病相关靶标。若你的研究关注活性位点构象、配位化学、底物定向或多体约束满足，这篇论文值得重点看其约束表示、采样策略、打分/筛选流程和实验验证标准。
+
+需要核对的信息包括：free atom diffusion的精确定义；模型输入输出是全原子坐标、残基框架还是混合表示；训练数据是否同时包含蛋白和RNA；“more rapidly and accurately than previous methods”比较的是哪些基线和哪些指标；磷酸三酯酶与锌蛋白酶的具体活性数据、催化效率、特异性、结构验证方式；carbamylated lysine是如何在设计和实验中实现的；96个构建中活性命中率到底是多少；zero-shot是否完全不依赖人工后处理或序列优化。由于目前只有摘要，不能判断其统计显著性、结构解析证据和可复现性。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The interplay between many-body and spin-orbit coupling (SOC) effects can lead to previously unobserved phenomena in solids. Chiral spin modes (CSMs) are collective spin excitations that arise from such interplay and connect states with opposite chirality. Here, we report a gate-tunable CSM that occurs between conduction SOC-split minibands in near-0°-twisted WSe 2 /WS 2 bilayers. This mode manifests as a sharp resonance with giant Raman efficiency in the pseudovector-symmetry channel of the Raman spectra. By varying the filling, the CSM transitions from a chiral spin exciton to an excitonic polaron. The spin-flip nature is directly confirmed by the Zeeman effect, and the filling dependence indicates a charge-transfer insulator at unity filling. Our results demonstrate that transition metal–dichalcogenide moiré superlattices are a fertile platform for exploring exotic low-lying collective excitations.</p>
+          <p>The catalytic and other sophisticated functions of biomolecules arise from the placement of many atoms in three-dimensional space. Here, we describe a generative artificial intelligence method for biopolymers, RFdiffusion3 (RFD3), which employs free atom diffusion to satisfy complex sets of atomic constraints more rapidly and accurately than previous methods across several challenges from enzyme design to RNA structure design. We demonstrate experimentally the power of the RFD3 pipeline for enzyme design by designing de novo phosphotriesterases with a complex active site architecture incorporating a carbamylated lysine coordinating two metal ions and zinc proteases specific for the transthyretin protein involved in amyloid diseases; in both cases we obtain active catalysts in zero shot 96 construct design campaigns.</p>
         </details>
         
         </div>
@@ -653,16 +665,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11176-1">Engineered TYK2 dependence enables myeloid-selective IL-10 receptor agonism</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Engineered+TYK2+dependence+enables+myeloid-selective+IL-10+receptor+agonism&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11176-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Engineered+TYK2+dependence+enables+myeloid-selective+IL-10+receptor+agonism%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Engineered+TYK2+dependence+enables+myeloid-selective+IL-10+receptor+agonism&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11176-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Engineered+TYK2+dependence+enables+myeloid-selective+IL-10+receptor+agonism%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Engineered+TYK2+dependence+enables+myeloid-selective+IL-10+receptor+agonism&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11176-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Engineered+TYK2+dependence+enables+myeloid-selective+IL-10+receptor+agonism%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11162-7">Artificial intelligence-enabled clinical phenotyping of human brown fat</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Artificial+intelligence-enabled+clinical+phenotyping+of+human+brown+fat&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11162-7%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Artificial+intelligence-enabled+clinical+phenotyping+of+human+brown+fat%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Artificial+intelligence-enabled+clinical+phenotyping+of+human+brown+fat&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11162-7%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Artificial+intelligence-enabled+clinical+phenotyping+of+human+brown+fat%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Artificial+intelligence-enabled+clinical+phenotyping+of+human+brown+fat&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11162-7%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Artificial+intelligence-enabled+clinical+phenotyping+of+human+brown+fat%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">D. Alejandro Canaria、Trang T. T. Nguyen、Huang Huang、Hui Xu 等 31 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11176-1">10.1038/s41586-026-11176-1</a></div>
+      <div class="authors">Nicolás Gómez-Banoy、Jorge A. Barrero、Luiza Rachel Pinheiro de Carvalho、Caroline S. Jiang 等 18 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11162-7">10.1038/s41586-026-11162-7</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该研究围绕IL-10受体激动剂的细胞类型选择性设计，构建了一种四价纳米抗体型髓系细胞选择性IL-10R激动剂，通过利用髓系细胞与T细胞在IL-10信号传导中对JAK家族激酶配对依赖性的差异，实现对单核细胞、巨噬细胞和树突状细胞的抗炎抑制而避免激活T细胞。摘要还表明作者结合冷冻电镜结构与人源化小鼠炎症模型，试图证明这种工程化受体交联几何可将信号转为严格TYK2依赖并带来治疗窗口改善。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是提出并验证了一种基于“受体交联几何+激酶依赖重编程”的细胞选择性细胞因子受体激动策略：不是简单改造IL-10本身，而是通过四价纳米抗体架构工程化IL-10R激动方式，使其在髓系细胞中保留IL-10样抑炎功能、在T细胞中失活。若摘要描述成立，这不仅为IL-10治疗慢性炎症的毒性与窄窗问题提供新方案，也为其他共享受体但细胞内激酶依赖不同的细胞因子系统提供可迁移的设计范式。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦“human brown fat（人体棕色脂肪）”的“clinical phenotyping（临床表型刻画）”，并强调以人工智能方法支持识别、分型或量化这一代谢相关组织。由于当前未提供摘要和关键词，能确认的具体任务主要限于：利用AI开展人体棕色脂肪的临床表型分析，而无法进一步确定其数据来源、模型类型和主要发现。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是把人工智能引入人体棕色脂肪的临床研究流程，用于从临床数据中更系统地识别、分层或量化棕色脂肪相关表型，从而推动这一组织从影像/生理观察走向可扩展的临床表型学研究。若属实，其价值可能在于建立可推广的人体棕色脂肪表型框架，并连接代谢、内分泌或精准医学应用场景；但具体贡献仍需摘要或正文核对。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -683,33 +695,26 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何保留IL-10对髓系细胞的强抗炎作用，同时去除其对T细胞的激活，从而突破IL-10在慢性炎症治疗中因非选择性免疫作用导致的窄疗效窗口和剂量限制毒性。更深一层的科学问题是，不同免疫细胞在IL-10受体信号中是否存在可被工程利用的JAK/TYK2依赖差异，以及能否通过改变受体聚合几何把这种差异放大为细胞选择性。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：比较髓系细胞与T细胞中IL-10诱导信号的激酶依赖，可能使用原代人单核细胞、巨噬细胞、树突状细胞和T细胞，结合STAT磷酸化、转录响应和功能抑制实验；设计并筛选四价纳米抗体型IL-10R激动剂，可能同时靶向IL-10Rα和IL-10Rβ以重构受体复合体；利用冷冻电镜解析工程化激动剂与受体复合物的空间构型，并与天然IL-10家族配体复合物比较；通过药理学或遗传学手段证明该激动剂信号转导对TYK2的严格依赖及对受体丰度的敏感性；最后在人源化小鼠LPS挑战和迟发型超敏反应模型中评估抗炎效果，可能与天然IL-10或对照分子比较。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是设计逻辑新：不是简单做亲和力优化，而是通过四价架构改变受体交联几何，进而改变下游激酶使用规则。亮点二是选择性来源具有机制深度：同时依赖TYK2、IL-10Rα/β丰度和细胞类型差异，解释力强。亮点三是证据层次看起来较完整，涵盖结构、生化/细胞信号、原代免疫细胞功能和体内模型。亮点四是应用价值明确，直接针对IL-10长期存在的转化障碍，即T细胞相关副作用和治疗窗狭窄。若正文中有与天然IL-10的头对头比较，这将是非常强的转化证据。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看正文中的主图和扩展数据，确认msIL-10R agonist的分子构型、结合对象和四价设计细节。第二，定位证明“严格TYK2依赖”的关键实验，记录是遗传证据还是药理证据。第三，查找髓系细胞与T细胞的并排功能数据，特别是STAT3激活、炎症因子抑制和T细胞活化/增殖读出。第四，查看冷冻电镜图中受体交联几何与天然IL-10复合物的差异是否足以支持机制结论。第五，整理体内模型中与天然IL-10的剂量、暴露和安全性对照，判断其是否真正扩大治疗窗口。第六，如果你的方向是细胞因子工程，可进一步记录该策略是否可迁移到其他JAK/TYK2相关受体系统。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名推断，是如何在临床场景中更准确、更大规模地识别和刻画人体棕色脂肪相关表型。更细一点，可能包括：如何从临床数据中发现棕色脂肪；如何定义不同棕色脂肪表型或活性状态；以及这些表型与代谢健康、疾病状态或患者特征之间有什么关系。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法包括：使用人工智能模型处理临床影像或多模态临床数据，对人体棕色脂肪进行自动识别、分割、定量或分型；随后结合电子病历、实验室指标和人口学变量做表型关联分析。若是Nature论文，常见路径还可能包括大样本回顾性队列、模型训练与外部验证、亚组分析，以及将AI提取的棕色脂肪特征与代谢结局进行统计关联。由于没有摘要，暂时无法确定是深度学习、传统机器学习、表型聚类，还是基础模型/多模态模型。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的潜在亮点有三类。第一，研究对象具体且临床意义强：人体棕色脂肪与能量代谢、肥胖和糖代谢密切相关。第二，若AI确实用于大规模临床表型提取，可能突破传统棕色脂肪研究样本小、依赖特定检查和人工判读的限制。第三，若论文把AI表型与临床结局连接起来，其应用价值可能不仅在检测本身，还在于患者分层、代谢风险评估或治疗靶点发现。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先获取摘要并核对研究设计，确认数据模态、样本量和主要终点；第二，优先查看图1和方法部分，记录棕色脂肪的操作性定义、标签来源和模型任务；第三，检查是否有外部验证、前瞻性验证或生理/组织学支持；第四，若你做相关研究，可建立一个对照表，逐项记录该文的输入数据、模型类型、评估指标、临床关联变量和可复现资源。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何保留IL-10对髓系细胞的强抗炎作用，同时去除其对T细胞的激活，从而突破IL-10在慢性炎症治疗中因非选择性免疫作用导致的窄疗效窗口和剂量限制毒性。更深一层的科学问题是，不同免疫细胞在IL-10受体信号中是否存在可被工程利用的JAK/TYK2依赖差异，以及能否通过改变受体聚合几何把这种差异放大为细胞选择性。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：比较髓系细胞与T细胞中IL-10诱导信号的激酶依赖，可能使用原代人单核细胞、巨噬细胞、树突状细胞和T细胞，结合STAT磷酸化、转录响应和功能抑制实验；设计并筛选四价纳米抗体型IL-10R激动剂，可能同时靶向IL-10Rα和IL-10Rβ以重构受体复合体；利用冷冻电镜解析工程化激动剂与受体复合物的空间构型，并与天然IL-10家族配体复合物比较；通过药理学或遗传学手段证明该激动剂信号转导对TYK2的严格依赖及对受体丰度的敏感性；最后在人源化小鼠LPS挑战和迟发型超敏反应模型中评估抗炎效果，可能与天然IL-10或对照分子比较。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是设计逻辑新：不是简单做亲和力优化，而是通过四价架构改变受体交联几何，进而改变下游激酶使用规则。亮点二是选择性来源具有机制深度：同时依赖TYK2、IL-10Rα/β丰度和细胞类型差异，解释力强。亮点三是证据层次看起来较完整，涵盖结构、生化/细胞信号、原代免疫细胞功能和体内模型。亮点四是应用价值明确，直接针对IL-10长期存在的转化障碍，即T细胞相关副作用和治疗窗狭窄。若正文中有与天然IL-10的头对头比较，这将是非常强的转化证据。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要的主要局限是信息仍不足以判断选择性的稳健性和普适性。首先，T细胞“避免刺激”的定义不清，可能只是相对降低而非完全消除。其次，受体丰度敏感性虽然解释了髓系选择性，但也意味着不同疾病状态、组织环境或患者间异质性可能显著影响效果。第三，人源化小鼠模型只能部分模拟人免疫系统，不能直接推出临床安全性。第四，四价纳米抗体分子的药代、免疫原性、组织穿透和长期给药耐受性在摘要中没有信息。第五，摘要未说明是否评估了其他表达IL-10R的非目标细胞，因而脱靶免疫调节风险仍需警惕。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看正文中的主图和扩展数据，确认msIL-10R agonist的分子构型、结合对象和四价设计细节。第二，定位证明“严格TYK2依赖”的关键实验，记录是遗传证据还是药理证据。第三，查找髓系细胞与T细胞的并排功能数据，特别是STAT3激活、炎症因子抑制和T细胞活化/增殖读出。第四，查看冷冻电镜图中受体交联几何与天然IL-10复合物的差异是否足以支持机制结论。第五，整理体内模型中与天然IL-10的剂量、暴露和安全性对照，判断其是否真正扩大治疗窗口。第六，如果你的方向是细胞因子工程，可进一步记录该策略是否可迁移到其他JAK/TYK2相关受体系统。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：IL-10受体通路、髓系细胞与T细胞的差异性信号依赖、以及一个工程化的myeloid-selective IL-10 receptor agonist（msIL-10R agonist）。论文要解决的核心矛盾是：天然IL-10虽然是强抗炎因子，但既抑制髓系炎症反应，也会激活T细胞，导致慢性炎症治疗中疗效窗口窄、剂量受毒性限制。作者的切入点不是泛泛追求“更强”或“更弱”的IL-10，而是识别不同细胞类型在IL-10信号转导时对JAK家族激酶配对的依赖差异，尤其强调工程化激动剂可被重定向为“严格TYK2依赖”。这意味着其选择性来源于细胞内信号装置与受体表达量的组合，而非单纯配体亲和力差异。
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名推断，是如何在临床场景中更准确、更大规模地识别和刻画人体棕色脂肪相关表型。更细一点，可能包括：如何从临床数据中发现棕色脂肪；如何定义不同棕色脂肪表型或活性状态；以及这些表型与代谢健康、疾病状态或患者特征之间有什么关系。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能方法包括：使用人工智能模型处理临床影像或多模态临床数据，对人体棕色脂肪进行自动识别、分割、定量或分型；随后结合电子病历、实验室指标和人口学变量做表型关联分析。若是Nature论文，常见路径还可能包括大样本回顾性队列、模型训练与外部验证、亚组分析，以及将AI提取的棕色脂肪特征与代谢结局进行统计关联。由于没有摘要，暂时无法确定是深度学习、传统机器学习、表型聚类，还是基础模型/多模态模型。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的潜在亮点有三类。第一，研究对象具体且临床意义强：人体棕色脂肪与能量代谢、肥胖和糖代谢密切相关。第二，若AI确实用于大规模临床表型提取，可能突破传统棕色脂肪研究样本小、依赖特定检查和人工判读的限制。第三，若论文把AI表型与临床结局连接起来，其应用价值可能不仅在检测本身，还在于患者分层、代谢风险评估或治疗靶点发现。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致关键信息缺失：不知道数据类型、样本量、模型架构、验证方式、主要结果和统计显著性。基于题名还需警惕几个边界问题：一是“clinical phenotyping”可能偏描述性，不一定提供机制证据；二是若主要依赖机会性影像数据，可能存在选择偏倚；三是棕色脂肪在人类中的定义和测量受环境、年龄、药物和扫描条件影响较大，模型泛化可能是难点；四是AI发现的表型是否具有生物学可解释性，需要正文支持。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先获取摘要并核对研究设计，确认数据模态、样本量和主要终点；第二，优先查看图1和方法部分，记录棕色脂肪的操作性定义、标签来源和模型任务；第三，检查是否有外部验证、前瞻性验证或生理/组织学支持；第四，若你做相关研究，可建立一个对照表，逐项记录该文的输入数据、模型类型、评估指标、临床关联变量和可复现资源。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名“Artificial intelligence-enabled clinical phenotyping of human brown fat”可推断，研究对象非常明确，是人体棕色脂肪，而不是一般脂肪组织或动物模型；研究任务也较具体，是“临床表型刻画”，意味着作者可能试图回答：在真实世界临床环境中，如何借助AI从复杂、多模态或大规模数据中识别与棕色脂肪相关的人群特征、影像特征、生理特征或疾病关联。题名中的“enabled”提示AI更像是赋能工具，可能用于自动检测、特征提取、患者分层、风险关联分析或表型发现，而不一定只是单纯做预测。
 
-方法线索较清楚。第一，作者应比较髓系细胞和T细胞中IL-10信号所需的JAK/TYK2配对关系，可能涉及STAT3磷酸化、转录响应、药理抑制、基因敲除/敲低或重构实验。第二，构建了四价纳米抗体型IL-10R激动剂，说明分子不是天然IL-10变体，而更像同时结合IL-10Rα/IL-10Rβ的多特异性或多价受体聚合分子。第三，冷冻电镜用于解析其与受体复合物的结构，摘要明确指出其受体交联几何不同于天然IL-10家族细胞因子，这一点是机制主轴。第四，功能上在单核细胞、巨噬细胞、树突状细胞中“完全重现”IL-10的强抑制作用，而避免T细胞刺激；这类证据通常会包括细胞因子释放、表面活化标志、转录组或炎症刺激条件下的功能读出。第五，体内证据来自人源化小鼠模型，至少包括LPS刺激和迟发型超敏反应，摘要虽被截断，但足以说明作者尝试覆盖急性先天免疫炎症与更复杂免疫病理场景。
+仅凭元数据，最可能的数据线索包括：临床影像数据（例如PET/CT、CT、MRI或其他能反映棕色脂肪活性的检查）、电子病历、实验室指标、生命体征、环境温度暴露信息，或多模态临床数据库。因为棕色脂肪在人类研究中常与代谢状态、寒冷刺激、葡萄糖摄取、能量消耗、肥胖、糖代谢和心代谢风险相关，所以论文可能尝试把AI识别到的棕色脂肪表型与这些临床结局建立联系。但这些都只是基于领域常识和题名的合理推断，不能视为论文已证实内容。
 
-最值得关注的证据链是“结构几何改变→信号依赖改变→细胞类型选择性→体内抗炎获益”。如果这一链条在正文中被严密支持，那么论文的价值不只是一个候选药物，而是一个受体激动工程原则：通过改变受体复合体的空间组织方式，重写下游激酶使用规则，并借助不同细胞的受体丰度与激酶可用性实现选择性。摘要还提示该分子对IL-10Rα和IL-10Rβ受体丰度“高度敏感”，这意味着细胞选择性可能依赖不同细胞群的受体表达阈值；对转化应用而言，这既是优势也是需要仔细分层验证的风险点，因为患者样本、炎症状态、组织微环境都可能改变受体表达。
+如果你的研究方向涉及医学AI、代谢疾病、影像组学、内分泌或临床表型学，这篇论文值得优先关注的原因在于：它可能代表一个从“稀疏、机会性观察棕色脂肪”转向“系统化、规模化临床表型分析”的方法学节点。尤其需要核对作者是否解决了几个关键难点：第一，棕色脂肪标签如何获得，是真实人工标注、临床报告抽取，还是弱监督/自监督方式；第二，AI模型处理的是单一影像还是多模态临床数据；第三，所谓“phenotyping”是描述性分型、机制相关亚群发现，还是与疾病风险/治疗反应相关的预测性表型；第四，研究样本量、外部验证和人群泛化能力如何。
 
-与相关研究方向的关系上，这篇论文对细胞因子工程、免疫调节药物设计、JAK/TYK2信号选择性、髓系靶向抗炎治疗都很相关。对于做蛋白工程的人，重点是四价纳米抗体架构如何实现受体跨链方式重排；对于做免疫信号的人，重点是IL-10R在不同细胞中到底依赖哪些JAK组合、TYK2严格依赖是如何被证明的；对于做转化医学的人，重点是是否真正扩大了疗效/毒性窗口，是否优于重组IL-10或PEG-IL-10类历史方案。
-
-需要核对的信息很多，且仅凭摘要不能下结论：1）“完全重现”髓系抑制作用具体指哪些功能读出，是否覆盖不同来源的人原代细胞；2）“避免刺激T细胞”是完全无STAT激活、无增殖、无细胞因子释放，还是仅显著降低；3）TYK2严格依赖是通过遗传学证据、选择性抑制剂还是结构推断支持；4）四价分子的药代、组织分布、免疫原性和制造稳定性如何；5）人源化小鼠模型中与天然IL-10相比的剂量、暴露量和安全性边界是否直接对照；6）是否测试了患者来源炎症样本，如IBD、RA、银屑病或败血症相关髓系细胞。总之，这是一篇机制驱动且明显面向转化的细胞因子工程论文，但真正的说服力取决于结构、细胞信号和体内药效三层证据是否闭环。</p></div>
+由于摘要为空，目前信息不足，不能判断论文是否提出了新模型、新数据集、新临床定义，还是主要做了大规模关联分析。也不能确认其证据强度，例如是否有独立队列验证、前瞻性分析、因果推断、组织学验证或生理实验支持。因此，阅读时应把重点放在图1的研究设计、数据流程图、棕色脂肪定义标准、模型评估指标、主要关联结果和外部验证部分。</p></div>
           </div>
           
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Abstract Interleukin-10 (IL-10) is a central anti-inflammatory cytokine that suppresses immune responses in myeloid cells but can also activate T cells, limiting its therapeutic use in chronic inflammatory diseases owing to narrow efficacy windows and dose-limiting toxicities 1–5 . Here we show that myeloid and T cells differ in their dependence on JAK-family kinase pairing for IL-10 signalling and function. We took advantage of this differential kinase dependence to engineer a tetravalent nanobody-based myeloid-selective IL-10 receptor agonist (msIL-10R agonist) that fully recapitulates IL-10’s potent suppression of monocytes, macrophages and dendritic cells while avoiding stimulation of T cells. Cryo-electron microscopy structural analysis reveals a distinct receptor cross-linking geometry of the msIL-10R agonist compared with native IL-10 family cytokines. This tetravalent architecture renders signalling strictly TYK2-dependent and highly sensitive to IL-10Rα and IL-10Rβ receptor abundance, thereby conferring selective activity in myeloid cells. This msIL-10R agonist reduces inflammation in humanized mouse models of lipopolysaccharide challenge, delayed-type hypersensitivity and colitis. A humanized version exhibits IgG-like pharmacokinetics, sustained receptor occupancy and durable myeloid suppression up to 30 days without T cell activation or haematological toxicities in non-human primates. These findings establish a geometry-based strategy for achieving cell-type-selective cytokine signalling and identify the msIL-10R agonist as a therapeutic candidate for myeloid-driven inflammatory diseases, including inflammatory bowel diseases.</p>
-        </details>
-        
         </div>
       </details>
     
@@ -723,16 +728,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11117-y">Parity-dependent coupling of molecular spin chains to a superconductor</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Parity-dependent+coupling+of+molecular+spin+chains+to+a+superconductor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11117-y%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Parity-dependent+coupling+of+molecular+spin+chains+to+a+superconductor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Parity-dependent+coupling+of+molecular+spin+chains+to+a+superconductor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11117-y%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Parity-dependent+coupling+of+molecular+spin+chains+to+a+superconductor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Parity-dependent+coupling+of+molecular+spin+chains+to+a+superconductor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11117-y%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Parity-dependent+coupling+of+molecular+spin+chains+to+a+superconductor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11154-7">Educational intervention can rewire village social networks</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Educational+intervention+can+rewire+village+social+networks&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11154-7%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Educational+intervention+can+rewire+village+social+networks%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Educational+intervention+can+rewire+village+social+networks&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11154-7%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Educational+intervention+can+rewire+village+social+networks%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Educational+intervention+can+rewire+village+social+networks&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11154-7%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Educational+intervention+can+rewire+village+social+networks%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Katerina Vaxevani、Jon Ortuzar、Stefano Trivini、Georg Monninger 等 9 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11117-y">10.1038/s41586-026-11117-y</a></div>
+      <div class="authors">Marios Papamichalis、Laura Forastiere、Edoardo M. Airoldi、Nicholas A. Christakis · DOI: <a href="https://doi.org/10.1038/s41586-026-11154-7">10.1038/s41586-026-11154-7</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦“分子自旋链”与“超导体”之间的耦合，并强调这种耦合具有“奇偶性依赖”特征，即链长或自旋数目的奇偶可能影响超导近邻效应或相关量子态。由于提供的摘要为空，目前只能据题名和期刊元数据判断其核心任务是研究分子尺度磁性链在超导基底上的耦合规律。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名可推测，论文的核心贡献可能是在分子自旋链-超导体杂化体系中识别并验证了一种与链的奇偶性相关的耦合机制，可能为理解原子/分子尺度磁性结构中的超导诱导态、边界态或自旋相关近邻效应提供了新的实验平台与判据。但摘要缺失，具体贡献形式（实验发现、理论解释、器件演示或方法学推进）仍需核对。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，研究对象是“村庄社会网络”，具体任务是考察一种教育干预是否能够改变乃至“重塑”村级人际连接结构。由于提供信息中摘要为空，目前只能确认其关注教育干预与社会网络变化之间的因果或关联问题，无法据此判断干预形式、样本规模或主要结果。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名和作者背景，这篇工作可能的核心贡献是：把“教育干预”作为可操作外生因素，检验其对村庄层面的社会网络结构产生系统性影响的可能性，而不仅仅评估个体知识、态度或行为变化；若设计严谨，论文可能进一步展示社会网络可被干预塑形，并为公共卫生、发展经济学或网络科学中的群体级干预提供证据。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -753,26 +758,18 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题，按题名判断，是：当分子自旋链与超导体耦合时，链的奇偶性为什么以及如何改变耦合结果？更细一点，作者可能在问：有限长度自旋链中，奇数链和偶数链是否会表现出不同的超导诱导亚隙态、端态、总自旋响应或磁性-超导竞争行为。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法是先合成或表面构筑长度可控的分子自旋链，再在超导基底上进行低温局域谱学测量，逐链长比较奇偶差异；同时结合理论建模解释耦合机制。可预期的数据类型包括STM形貌图、dI/dV亚隙谱、沿链空间分布图、不同链长统计图，以及模型参数拟合或第一性原理计算结果。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能在于：把“化学可设计的分子自旋链”与“超导耦合”结合起来，使奇偶效应能够在单链、单分子尺度被直接操控和观测；如果实验确实系统比较了多种链长并给出空间分辨谱学证据，那么其说服力会高于只看单个器件或单一长度的研究。题名中的奇偶依赖也暗示结果具有清晰、离散、可检验的物理判据。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先获取摘要并确认“parity”与“coupling”的精确定义；第二，查看首图和核心谱图，记录奇数链与偶数链的直接对比对象和观测量；第三，核对所用超导基底、分子结构和链长控制方式；第四，检查是否有理论模型把奇偶性与具体能谱或空间分布联系起来；第五，如果你的研究相关，建立一个对照表，比较该工作与原子磁链、YSR链和分子自旋链文献中的有限尺寸效应异同。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体科学问题应是：教育类干预是否不仅改变受试者个体层面的知识或行为，还能在村庄这一真实社会系统中引发人际关系结构的重组；如果能，这种重组体现在哪些网络指标、哪些人群或哪些关系类型上，以及这种变化是否可归因于干预本身。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：在多个村庄中实施教育干预，并在干预前后收集完整或近完整的村庄社会网络数据；以村或个体为随机化单元，比较处理组与对照组网络结构随时间的变化；使用网络统计量、图模型、置换检验、因果推断框架或纵向网络模型评估“rewiring”；也可能结合异质性分析，考察性别、年龄、亲属关系、地理邻近性或原始中心性对网络变化的调节作用。若作者延续其既有研究风格，可能会特别强调群体层面的实验设计和网络层面的结果测量。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点：第一，把教育干预的效果从个体结果扩展到网络结构结果，这是更高层次、更接近社会系统的因果问题；第二，若为现场实验，村庄场景下的网络全图数据价值很高，能够观察真实关系而非实验室代理指标；第三，若能证明教育改变了跨家庭、跨群体或跨地位连边，这对理解社会资本形成、信息扩散和集体行动具有直接应用价值。发表在Nature也提示其研究问题、设计或证据强度可能具有广泛意义。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，立即获取摘要并核对研究对象、干预内容、随机化单位和主要网络结局；第二，优先查看首图和方法图，确认“rewire”具体指哪些网络指标变化；第三，记录样本框架：村庄数、个体数、随访轮次、失访率；第四，检查是否有预注册、稳健性分析和替代解释排除；第五，若你的研究涉及网络干预，可整理一个对照表，比较这篇论文测量的是连边重组、行为扩散还是两者兼有。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题，按题名判断，是：当分子自旋链与超导体耦合时，链的奇偶性为什么以及如何改变耦合结果？更细一点，作者可能在问：有限长度自旋链中，奇数链和偶数链是否会表现出不同的超导诱导亚隙态、端态、总自旋响应或磁性-超导竞争行为。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的方法是先合成或表面构筑长度可控的分子自旋链，再在超导基底上进行低温局域谱学测量，逐链长比较奇偶差异；同时结合理论建模解释耦合机制。可预期的数据类型包括STM形貌图、dI/dV亚隙谱、沿链空间分布图、不同链长统计图，以及模型参数拟合或第一性原理计算结果。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能在于：把“化学可设计的分子自旋链”与“超导耦合”结合起来，使奇偶效应能够在单链、单分子尺度被直接操控和观测；如果实验确实系统比较了多种链长并给出空间分辨谱学证据，那么其说服力会高于只看单个器件或单一长度的研究。题名中的奇偶依赖也暗示结果具有清晰、离散、可检验的物理判据。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大局限是摘要为空，导致无法确认研究是实验、理论还是二者结合，也无法知道具体材料体系、测量量、样本规模和统计稳健性。仅凭题名容易过度联想到YSR链、拓扑超导或Majorana物理，但这些都必须谨慎，不能预设论文已经证明。另一个需要警惕的边界是：所谓奇偶效应可能只在特定链长范围、特定耦合强度或特定基底上成立，未必具有普适性。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先获取摘要并确认“parity”与“coupling”的精确定义；第二，查看首图和核心谱图，记录奇数链与偶数链的直接对比对象和观测量；第三，核对所用超导基底、分子结构和链长控制方式；第四，检查是否有理论模型把奇偶性与具体能谱或空间分布联系起来；第五，如果你的研究相关，建立一个对照表，比较该工作与原子磁链、YSR链和分子自旋链文献中的有限尺寸效应异同。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从对象上看，论文研究的是“molecular spin chains”，即由分子构筑或承载的自旋链，与“a superconductor”的耦合；结合作者团队和Nature发表背景，这类工作很可能位于扫描探针显微/谱学、表面分子组装、低温超导谱测量和量子态工程的交叉点。题名中的“parity-dependent”是最关键线索，通常指链中单元数、自旋数、有效站点数或总自旋量子数的奇偶性会改变体系与超导体的耦合响应，例如诱导亚隙态的位置、分裂、空间分布、端态出现与否，或Kondo/YSR类竞争关系。仅凭元数据不能断言具体是哪一种现象，但可以明确这不是泛泛讨论“有无耦合”，而是在研究一个离散、可计数结构参数对超导耦合的系统性影响。
-
-可能的方法方面，这类题目常见路径包括：在超导表面上构筑长度可控的分子自旋链；利用低温扫描隧道显微镜/谱学测量链上不同位置的微分电导谱；比较奇数链与偶数链在超导能隙内的谱峰、端点局域态、能量分裂或空间对称性差异；并辅以有效自旋模型、Anderson/Kondo-超导杂化模型、紧束缚模型或从头计算来解释奇偶效应来源。作者名单中包含分子合成与表面物理方向研究者，这进一步提示工作可能结合了定制分子前驱体、表面组装和原子级表征，而不是仅有纯理论分析。
-
-证据线索主要来自题名和期刊定位：如果能登上Nature，通常意味着作者不仅观察到奇偶差异，还可能实现了较强的可控性，例如系统改变链长、重复统计多个链、在不同位置测谱、与理论拟合一致，或者展示了奇偶性与某种拓扑/磁性/超导边界态之间的明确联系。不过这些都必须在摘要、图谱和方法部分中核实，当前不能当作既定事实。
-
-与相关研究方向的关系上，这篇论文可能对以下主题有直接价值：一是Yu-Shiba-Rusinov链、磁性原子链和拓扑超导候选体系中的有限尺寸效应；二是分子自旋电子学与超导近邻效应的结合；三是利用化学可设计性来调控量子磁性-超导杂化态；四是奇偶效应在一维量子磁体、Kondo链或有限自旋阵列中的普适性。如果你的方向涉及STM/STS、表面分子磁学、超导亚隙态、Majorana候选平台或分子量子器件，这篇论文值得优先关注。
-
-需要核对的信息包括：1）“parity”具体指链长奇偶、电子占据奇偶、总自旋奇偶还是端基构型奇偶；2）超导体材料是什么，是否为Pb、NbSe2或其他常见低温超导基底；3）分子自旋链由何种分子构成，磁矩来源于金属中心还是有机自由基；4）观测量是隧穿谱中的亚隙峰、能隙重整化、Josephson响应还是自旋激发；5）是否有理论模型定量解释；6）奇偶效应是否与链端态、反铁磁/铁磁耦合、Kondo屏蔽或拓扑相变相关。由于摘要为空，以上都属于基于题名的高可信推断框架，而非论文已证实结论。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>具体科学问题应是：教育类干预是否不仅改变受试者个体层面的知识或行为，还能在村庄这一真实社会系统中引发人际关系结构的重组；如果能，这种重组体现在哪些网络指标、哪些人群或哪些关系类型上，以及这种变化是否可归因于干预本身。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：在多个村庄中实施教育干预，并在干预前后收集完整或近完整的村庄社会网络数据；以村或个体为随机化单元，比较处理组与对照组网络结构随时间的变化；使用网络统计量、图模型、置换检验、因果推断框架或纵向网络模型评估“rewiring”；也可能结合异质性分析，考察性别、年龄、亲属关系、地理邻近性或原始中心性对网络变化的调节作用。若作者延续其既有研究风格，可能会特别强调群体层面的实验设计和网络层面的结果测量。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点：第一，把教育干预的效果从个体结果扩展到网络结构结果，这是更高层次、更接近社会系统的因果问题；第二，若为现场实验，村庄场景下的网络全图数据价值很高，能够观察真实关系而非实验室代理指标；第三，若能证明教育改变了跨家庭、跨群体或跨地位连边，这对理解社会资本形成、信息扩散和集体行动具有直接应用价值。发表在Nature也提示其研究问题、设计或证据强度可能具有广泛意义。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，最主要局限是摘要缺失，导致无法确认研究设计、样本、因果识别和结果方向。题名中的“can rewire”语气较强，但尚不清楚是普遍性的稳定效应，还是特定语境下的有限发现。还需警惕几个边界：网络测量可能受回忆偏差影响；村庄网络变化可能由外部事件共同驱动；教育干预可能同时改变调查响应方式，从而伪造网络变化；不同类型网络（友谊、合作、借贷、亲属）是否被混为一谈；以及村庄情境的外部可推广性未必适用于城市、学校或线上平台。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，立即获取摘要并核对研究对象、干预内容、随机化单位和主要网络结局；第二，优先查看首图和方法图，确认“rewire”具体指哪些网络指标变化；第三，记录样本框架：村庄数、个体数、随访轮次、失访率；第四，检查是否有预注册、稳健性分析和替代解释排除；第五，若你的研究涉及网络干预，可整理一个对照表，比较这篇论文测量的是连边重组、行为扩散还是两者兼有。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从元数据可提取的最具体信息是：论文发表于Nature，题名为Educational intervention can rewire village social networks，研究场景应是村庄（village）这一线下社区单元，结果变量很可能不是传统教育成绩，而是社会网络的结构性变化，例如关系形成、关系消失、网络密度、聚类、中心性分布、跨群体连边或信息传播路径等。“rewire”一词暗示作者关注的是网络连边重组，而不仅是网络上的行为扩散。作者名单中包含Nicholas A. Christakis与Edoardo M. Airoldi，提示研究可能位于社会网络分析、因果推断与现场干预交叉地带，可能采用整村随机、分层随机、准实验或干预前后网络测量设计，并结合统计网络模型、因果估计或网络比较方法。证据线索仅来自题名与作者：若论文声称教育干预能够“rewire”网络，通常需要至少两类证据，一是基线与随访的网络数据，二是将网络改变归因于教育项目而非迁移、季节性劳动、调查误差或其他同期事件。与科研读者的关系上，这篇论文可能对以下方向特别相关：社会网络干预、群体级因果推断、发展中国家村庄研究、教育外溢效应、公共卫生中的网络重构，以及“通过改变关系结构而非仅改变节点属性”来实现长期干预效果的研究范式。需要核对的信息很多，因为摘要为空：教育干预面向儿童、成人还是全村；干预内容是课堂教学、合作学习、健康教育还是社会技能训练；网络数据如何采集（姓名生成器、互动记录、亲属/借贷/友谊网络等）；研究是否有随机对照；“rewire”是统计显著的整体结构变化还是局部连边变化；效应持续多久；是否区分同质性增强与跨群体桥接增加；以及伦理与外部有效性如何处理。总之，这是一篇题目很强、潜在影响较大的网络干预研究，但在摘要缺失条件下，任何关于结果大小、机制和稳健性的判断都必须暂缓。</p></div>
           </div>
           
         </div>
@@ -788,16 +785,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11167-2">Computational design of metalloproteases</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Computational+design+of+metalloproteases&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11167-2%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Computational+design+of+metalloproteases%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Computational+design+of+metalloproteases&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11167-2%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Computational+design+of+metalloproteases%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Computational+design+of+metalloproteases&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11167-2%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Computational+design+of+metalloproteases%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11174-3">Targeted stimulation of motor cortex ensembles drives learned movements</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Targeted+stimulation+of+motor+cortex+ensembles+drives+learned+movements&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11174-3%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Targeted+stimulation+of+motor+cortex+ensembles+drives+learned+movements%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Targeted+stimulation+of+motor+cortex+ensembles+drives+learned+movements&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11174-3%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Targeted+stimulation+of+motor+cortex+ensembles+drives+learned+movements%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Targeted+stimulation+of+motor+cortex+ensembles+drives+learned+movements&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11174-3%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Targeted+stimulation+of+motor+cortex+ensembles+drives+learned+movements%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Anqi Chen、Kejia Wu、Hojae Choi、Preetham Venkatesh 等 28 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11167-2">10.1038/s41586-026-11167-2</a></div>
+      <div class="authors">Qiyu Chen、An Wu、Bin Yu、Soyoung Chae 等 8 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11174-3">10.1038/s41586-026-11174-3</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦“金属蛋白酶（metalloproteases）的计算设计”这一具体任务，即利用计算方法从头设计或重设计能够结合金属并执行蛋白水解反应的酶。由于当前提供信息中摘要为空，现阶段只能基于题名、期刊与元数据判断其主题是“功能性金属酶设计”，无法确认其具体底物范围、金属类型、设计成功率或实验性能。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是：将计算蛋白设计推进到金属蛋白酶这一高难度催化类别，提出能够同时满足金属配位几何、活性位点构型、底物进入通道与蛋白整体稳定性的设计框架，并通过实验验证部分设计体具备蛋白酶活性或相关前体功能。若属实，这将把以往偏重结合蛋白、简单催化位点或非金属酶的设计工作，扩展到更复杂的金属依赖水解酶。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦运动皮层中的“神经元集合/ensembles”是否能够被定向刺激，并进一步驱动已经学会的运动行为。由于提供的摘要为空，目前只能较谨慎地判断其任务是把运动皮层群体活动的因果操控，与已习得动作的产生或触发直接联系起来。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是提出并验证了一种针对运动皮层特定神经元集合的定向刺激范式，用于因果性地诱发或偏置 learned movements，而不仅是相关性记录。这类工作若证据充分，意义在于把“运动表征存在于群体活动中”推进到“特定群体可被精确激活并驱动具体已学习动作”。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -818,26 +815,18 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文要解决的具体问题，推测是：能否通过计算方法设计出真正具备金属依赖蛋白水解能力的蛋白质，并让其在结构上稳定、在活性位点上满足正确的金属配位与催化几何、在功能上对目标肽键产生可检测切割。更深一层的问题是，复杂酶催化尤其是金属蛋白酶这类需要精细几何控制的体系，是否已经进入可设计范围。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法是先抽象出金属蛋白酶所需的最小催化几何单元，再用计算蛋白设计将该单元嵌入新骨架或重设计骨架中。数据层面可能依赖已知金属蛋白酶结构库、金属配位统计、底物结合构象模板；模型层面可能结合物理能量函数、结构生成模型、序列设计模型和结构预测筛选；实验层面大概率包括蛋白表达纯化、金属结合验证、荧光或质谱底物切割实验、关键位点突变对照，以及结构测定来比较设计模型与实测结构。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三类。第一，任务本身难度高：金属配位与催化水定位比一般结合位点设计更苛刻。第二，如果论文展示了从头设计而非天然模板微调，则说明计算设计在“复杂催化功能”上有实质推进。第三，若实验中证明了金属依赖性、位点特异性和结构吻合度，那么其应用价值会超出单篇案例，成为可迁移的人工酶设计范式。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先补读摘要和图1，确认设计对象、金属类型、底物类型和“design”具体含义。第二，优先查主文或补充中的活性数据表，记录kcat、KM、kcat/KM或相对切割效率，并与天然金属蛋白酶量级对照。第三，查关键对照：去金属、活性位点突变、非底物序列、抑制剂实验。第四，查是否有实测结构验证设计模型。第五，如果你的方向是计算设计，重点记录其活性位点构建与筛选流程；如果你的方向是酶工程，重点记录底物谱、金属依赖性和可迁移性。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，应该是：运动皮层中在学习过程中形成或参与某一动作的神经元集合，是否能够被有选择地重新激活，并以因果方式驱动该已学习动作的表达。更细一点说，它可能在问“运动皮层的群体表征是否具有可操控的动作生成能力”，以及“ learned movement 是否可以映射到可被定向刺激调用的皮层 ensemble”。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径是：先在动物执行已训练运动任务时记录运动皮层神经元活动，识别与特定 learned movement 相关的细胞集合；随后对这些目标细胞进行定向刺激，并同步测量行为输出与网络活动变化。若是Nature级别并且题名强调 targeted stimulation，较可能涉及高空间精度的光学方法，如双光子钙成像结合双光子光刺激、全息光遗传刺激，或其他能够在细胞群层面选择性激活 ensemble 的技术。数据上可能包括单细胞或群体活动记录、动作学轨迹、任务成功率、反应时、刺激前后网络状态比较，以及多种对照刺激条件。分析上可能需要把刺激诱发的活动模式与自然执行该动作时的活动模式进行相似性比较，并检验行为是否特异地朝目标动作偏移。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点，首先是因果性：如果作者确实能通过刺激特定 ensemble 诱发已学习动作，这比单纯相关性编码更强。其次是分辨率：若刺激是细胞群定向而非区域级粗刺激，那么对“动作表征单元”这一问题会更有说服力。再次是任务层面的具体性：题名强调 learned movements，说明研究可能触及技能学习后的稳定神经表征，而不是简单反射或自发运动。应用价值上，这类结果若稳健，可能为精细运动恢复、神经假体控制策略、以及基于神经群体状态的闭环干预提供概念基础。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，优先获取摘要和图1，确认物种、行为任务、刺激技术和“drives”的操作性定义；第二，查方法或结果中的 ensemble 定义标准，以及目标细胞选择流程；第三，记录关键对照条件，尤其是非目标集合刺激、随机刺激和未学习条件；第四，查看行为量化指标是轨迹、力度、时序还是成功率；第五，若你的研究涉及运动皮层或神经调控，可把本文与“相关性记录”“必要性抑制”“充分性激活”三类证据框架对照，判断其真正推进点在哪里。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文要解决的具体问题，推测是：能否通过计算方法设计出真正具备金属依赖蛋白水解能力的蛋白质，并让其在结构上稳定、在活性位点上满足正确的金属配位与催化几何、在功能上对目标肽键产生可检测切割。更深一层的问题是，复杂酶催化尤其是金属蛋白酶这类需要精细几何控制的体系，是否已经进入可设计范围。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的方法是先抽象出金属蛋白酶所需的最小催化几何单元，再用计算蛋白设计将该单元嵌入新骨架或重设计骨架中。数据层面可能依赖已知金属蛋白酶结构库、金属配位统计、底物结合构象模板；模型层面可能结合物理能量函数、结构生成模型、序列设计模型和结构预测筛选；实验层面大概率包括蛋白表达纯化、金属结合验证、荧光或质谱底物切割实验、关键位点突变对照，以及结构测定来比较设计模型与实测结构。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三类。第一，任务本身难度高：金属配位与催化水定位比一般结合位点设计更苛刻。第二，如果论文展示了从头设计而非天然模板微调，则说明计算设计在“复杂催化功能”上有实质推进。第三，若实验中证明了金属依赖性、位点特异性和结构吻合度，那么其应用价值会超出单篇案例，成为可迁移的人工酶设计范式。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录，最大的局限是摘要缺失，导致无法判断论文究竟是概念验证、少数成功个例，还是已建立较通用的平台。还需警惕几个边界：所谓metalloprotease是否只是对小肽底物的弱活性切割；活性是否依赖高浓度金属或非生理条件；是否存在天然蛋白骨架借用较多而非真正从头设计；是否只证明结合和构象而未充分证明高效催化；以及底物特异性和可编程性是否足够强。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先补读摘要和图1，确认设计对象、金属类型、底物类型和“design”具体含义。第二，优先查主文或补充中的活性数据表，记录kcat、KM、kcat/KM或相对切割效率，并与天然金属蛋白酶量级对照。第三，查关键对照：去金属、活性位点突变、非底物序列、抑制剂实验。第四，查是否有实测结构验证设计模型。第五，如果你的方向是计算设计，重点记录其活性位点构建与筛选流程；如果你的方向是酶工程，重点记录底物谱、金属依赖性和可迁移性。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Computational design of metalloproteases”可直接锁定研究对象是金属蛋白酶，而不是一般蛋白酶或天然酶机理解析。这里的科学难点通常不只是“让蛋白结合一个金属离子”，而是要在三维结构中精确安排金属配位残基、催化水分子/羟基、可能的广义酸碱残基，以及与待切割肽键相匹配的底物识别口袋。对于计算设计而言，这类体系比单纯配体结合蛋白更难，因为需要同时优化静态结构稳定性与动态催化构象，还要避免错误金属配位、非特异性水解或自体降解。
-
-仅凭元数据，较可信的证据线索有三点。第一，期刊为Nature，说明工作大概率不只是算法增量，而是伴随明确实验验证，可能包括结构表征、活性测定、突变分析或底物谱测试。第二，作者名单中包含Brian Coventry、Samuel J. Pellock等，结合该领域既有研究脉络，容易让人联想到现代计算蛋白设计、生成式结构设计或Rosetta/深度学习辅助设计路线，但这仍需正文核对，不能直接当作事实。第三，题名使用“design of metalloproteases”而非“engineering”或“optimization”，暗示论文重点可能是从头设计（de novo design）或高度重构，而非仅对天然金属蛋白酶做少量突变改造。
-
-可能的方法路径包括：先定义目标催化基序，例如常见金属蛋白酶中的Zn2+配位环境（如His/Glu/Asp组合）及活化水分子的位置关系；再将该“理论活性位点”嵌入可折叠蛋白骨架，或通过生成模型/片段拼装/反向折叠方法构建支持该位点的全新骨架；随后用能量函数、几何约束和序列设计筛选候选；最后通过表达纯化、金属依赖活性实验、底物切割检测、点突变失活对照、可能的晶体学或冷冻电镜结构来验证。若论文确实达到Nature级别，实验部分还可能包含动力学参数、金属特异性、pH依赖性、抑制剂敏感性、底物选择性，甚至多轮设计迭代。
-
-与科研读者的关系上，这篇论文对几个方向尤其相关：一是计算蛋白设计/AI for protein design，关注如何把“结构设计”推进到“复杂催化功能设计”；二是酶工程，关注是否能获得可编程切割特异性的人工蛋白酶；三是化学生物学与生物技术，关注这类设计酶是否可用于受控蛋白降解、前体加工、诊断底物切割或工业蛋白加工；四是基础酶学，关注人工设计是否复现了天然金属蛋白酶的关键机理要素。
-
-但目前信息不足非常明显。摘要为空，因此无法确认：设计的是哪一类金属蛋白酶；使用何种金属离子（Zn、Co、Mn或其他）；底物是短肽、折叠蛋白还是特定序列标签；是否实现真正多轮催化而非一次性化学切割；活性水平与天然酶相比处于什么量级；是否有高分辨率结构证明设计构象正确；以及“computational”具体指传统Rosetta、扩散模型、语言模型、结构预测约束设计，还是这些方法的组合。所有这些都需要在正式阅读摘要、图1、方法和补充材料后核对。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，应该是：运动皮层中在学习过程中形成或参与某一动作的神经元集合，是否能够被有选择地重新激活，并以因果方式驱动该已学习动作的表达。更细一点说，它可能在问“运动皮层的群体表征是否具有可操控的动作生成能力”，以及“ learned movement 是否可以映射到可被定向刺激调用的皮层 ensemble”。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径是：先在动物执行已训练运动任务时记录运动皮层神经元活动，识别与特定 learned movement 相关的细胞集合；随后对这些目标细胞进行定向刺激，并同步测量行为输出与网络活动变化。若是Nature级别并且题名强调 targeted stimulation，较可能涉及高空间精度的光学方法，如双光子钙成像结合双光子光刺激、全息光遗传刺激，或其他能够在细胞群层面选择性激活 ensemble 的技术。数据上可能包括单细胞或群体活动记录、动作学轨迹、任务成功率、反应时、刺激前后网络状态比较，以及多种对照刺激条件。分析上可能需要把刺激诱发的活动模式与自然执行该动作时的活动模式进行相似性比较，并检验行为是否特异地朝目标动作偏移。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点，首先是因果性：如果作者确实能通过刺激特定 ensemble 诱发已学习动作，这比单纯相关性编码更强。其次是分辨率：若刺激是细胞群定向而非区域级粗刺激，那么对“动作表征单元”这一问题会更有说服力。再次是任务层面的具体性：题名强调 learned movements，说明研究可能触及技能学习后的稳定神经表征，而不是简单反射或自发运动。应用价值上，这类结果若稳健，可能为精细运动恢复、神经假体控制策略、以及基于神经群体状态的闭环干预提供概念基础。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，最大的局限是摘要缺失，导致无法确认研究对象、实验范式、样本量、统计强度和结论边界。需要警惕题名中的 drives 可能被媒体化理解：它可能只是提高某动作出现概率，而非完整、稳定地重建自然动作。还需注意 ensemble 的定义是否存在分析者自由度，刺激是否真正特异，是否有网络级扩散效应，以及 learned movement 的判定是否依赖有限行为指标。若实验仅在单一任务、单一物种或高度受限动作中成立，其外推到一般运动控制的范围也需要谨慎。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，优先获取摘要和图1，确认物种、行为任务、刺激技术和“drives”的操作性定义；第二，查方法或结果中的 ensemble 定义标准，以及目标细胞选择流程；第三，记录关键对照条件，尤其是非目标集合刺激、随机刺激和未学习条件；第四，查看行为量化指标是轨迹、力度、时序还是成功率；第五，若你的研究涉及运动皮层或神经调控，可把本文与“相关性记录”“必要性抑制”“充分性激活”三类证据框架对照，判断其真正推进点在哪里。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅依据题名、期刊与作者信息，研究对象应是运动皮层中的特定神经元集合，以及这些集合与已学习运动之间的因果关系。题名中的 targeted stimulation 暗示作者并非进行粗粒度电刺激，而更可能采用细胞群体分辨率较高的操控手段，例如基于成像识别后的定向光刺激、闭环刺激，或对先前在任务中被标记的神经元群进行再激活。题名中的 ensembles drives learned movements 则提示实验任务大概率不是随机运动输出，而是动物经过训练后形成的特定动作、动作片段或动作轨迹，作者试图检验：如果只刺激与该动作相关的皮层集合，是否足以触发、偏置、加速或重现该 learned movement。作者团队中包含Takaki Komiyama，结合其既往研究风格，可以合理推测该工作可能与小鼠运动学习、双光子成像/光遗传操控、皮层群体动力学和行为定量有关，但这只是基于作者背景的线索，不应当当作本文已证实的方法事实。证据线索方面，若论文要支撑题名中的强因果表述，通常需要至少展示几类结果：第一，如何定义“ensemble”，例如依据任务期间协同活动、动作选择相关性、时序共激活或低维动力学中的聚类；第二，定向刺激是否优先激活目标集合而非广泛扰动周边网络；第三，刺激后行为输出是否与训练得到的特定动作在运动学、时序或成功率上可比；第四，是否存在对照，如刺激非相关集合、随机细胞、不同皮层位置，或在未学习阶段刺激时效果减弱。与科研读者的关系上，这篇论文若属实证充分，将直接关联运动控制、神经编码、因果神经调控、脑机接口和记忆/技能表征等方向，因为它触及一个关键问题： learned movement 的神经表征究竟是分布式状态、可重放的细胞集合，还是必须依赖更大范围回路上下文。当前最需要核对的信息包括：具体物种与行为范式；刺激技术分辨率； ensemble 的定义标准；“drives”在文中究竟指触发、偏置还是增强动作概率；行为效应大小与可重复性；是否证明了特异性和必要性，而不只是充分性。由于摘要为空，以上均属于基于题名和元数据的审慎推断，不能替代对正文和图表的核实。</p></div>
           </div>
           
         </div>
@@ -850,7 +839,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-10-18 00:07。arXiv page failed at start=100, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&amp;start=100&amp;max_results=50&amp;sortBy=s... arXiv page failed at start=150, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&amp;start=150&amp;max_results=50&amp;sortBy=s... arXiv fetch stopped after 2 consecutive page failure(s).
+      生成时间：2026-10-19 00:17。
     </div>
   </footer>
 </body>
