@@ -1,0 +1,606 @@
+{
+  "date": "2026-10-20",
+  "stats": {
+    "fetched": 457,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 60,
+      "science": 97
+    },
+    "deduped": 457,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 60,
+      "science": 97
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 261,
+    "keyword_filtered_by_source": {
+      "arxiv": 261
+    },
+    "keyword_optional_included": 139,
+    "keyword_optional_included_by_source": {
+      "nature": 59,
+      "science": 80
+    },
+    "ranked": 196,
+    "ranked_by_source": {
+      "arxiv": 39,
+      "nature": 60,
+      "science": 97
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 127,
+    "selected_by_source": {
+      "arxiv": 4,
+      "nature": 3,
+      "science": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天的条目里，最值得优先阅读的是与 LLM/agent 安全、测试时自我改进以及科研任务评测直接相关的四篇 arXiv：Pair-Aware Optimization、MELD、CME-SpectrumBench、RATION。它们共同指向一个很清晰的前沿：研究对象正在从“静态语言模型能力”转向“会调用工具、与环境交互、在单次任务中持续适应的 agent 系统”，而评测与防护也随之从单轮问答扩展到执行过程、预算分配、风险累积和真实科研数据理解。若按阅读优先级排序，建议先看 Pair-Aware Optimization 与 RATION，因为二者分别对应“如何攻击 agent”与“如何做执行期风险控制”，问题定义直接、对后续系统设计影响最大；再看 MELD，它代表了 test-time training 在多智能体科学发现中的更激进用法，但摘要里的理论与实验声称较多，尤其需要核对目标函数、更新稳定性、预算设定和基线公平性；随后看 CME-SpectrumBench，它不是提出新 agent 算法，而是提供一个很有价值的“科研级实验数据分析”压力测试，能帮助判断现有模型在真实科学工作流中的短板究竟在哪里。其余 Nature/Science 条目整体更偏各自学科前沿：包括自由行为小鼠全皮层无线成像、宏观声学谐振器中的多体纠缠、植物免疫糖识别、二维材料电子相写入、C–C σ 键螺环骨架编辑、机电超材料中的时间晶体化。这些工作学科跨度大，但共同特点是“新平台/新机制/新测量能力”驱动：要么打开新的观测窗口，要么提供新的可控物理或化学过程。对以 AI for Science、agent、科研自动化为主线的读者而言，今天最有信息密度的主轴仍然是：agent 的能力边界正在被更真实的环境交互、科研任务组织和安全约束重新定义，而 benchmark 与防护框架开始追着这种变化升级。",
+    "themes": [
+      "从静态 LLM 到执行型 agent：关注点从单轮回答质量转向工具调用、环境交互、任务分解与执行轨迹安全。",
+      "测试时优化正在走向层级化与多智能体化：MELD 体现的是在单个任务过程中同时调整团队级搜索组织和个体级研究策略。",
+      "agent 安全研究开始形成“攻防闭环”：Pair-Aware Optimization 研究 jailbreaking，RATION 研究基于定量风险的访问控制，二者可直接对照阅读。",
+      "科研能力评测从符号推理转向实验数据理解：CME-SpectrumBench 强调含噪、有限分辨率二维谱图分析，提示真实科研场景可能比传统 benchmark 更依赖工具与代码执行。",
+      "高影响力自然科学论文的共同趋势是平台化突破：超轻无线脑成像、宏观机械纠缠分发、二维材料相写入、机电超材料时间晶体化，都属于“新装置/新操控机制带来新现象或新能力”。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "做一个面向 LLM agents 的“攻击-防御配对”复现实验，把 Pair-Aware Optimization 与 RATION 放到同一套任务上比较。",
+        "why": "这能直接回答一个高价值问题：更强的 jailbreak 攻击在执行型 agent 上到底会如何穿透风险预算式防护；同时也能检验防护是否只是降低能力，还是确实改变了攻击成功率与风险暴露曲线。",
+        "first_step": "先只做文献级复现准备：提取两篇论文摘要中可确认的任务设定、控制变量、指标名称与实验对象，整理成一张对照表；随后选一个公开 agent 安全基准，定义最小统一评测协议。",
+        "risk": "当前只有摘要级信息，方法细节、基线和实现要求可能与预想差异很大；若原文代码未开源，复现成本会迅速上升。"
+      },
+      {
+        "idea": "围绕 MELD 做一次“层级 test-time training 是否真的优于独立并行探索”的消融核查。",
+        "why": "MELD 的核心主张不是单纯多 agent，而是团队级协调与个体级适应的联合优化；这类方法很容易因预算更大、搜索更广或评测偶然性而显得更强，因此最值得做的是拆开其增益来源。",
+        "first_step": "阅读原文时优先定位三类信息：共享 derivation tree 的具体作用、Coordinator 与 Scientist 的更新顺序/频率、与独立并行 agent 的预算对齐方式；把这些整理成消融清单。",
+        "risk": "如果论文中的理论部分与实验实现耦合很深，单独复现某个模块可能无法得到可解释结论；另外科学发现基准本身噪声可能较大。"
+      },
+      {
+        "idea": "基于 CME-SpectrumBench 做一个“直接问答 vs 代码执行”能力差距的误差类型分析。",
+        "why": "这篇工作最有启发性的点不只是分数高低，而是它暗示真实科研数据分析中，模型失败可能主要来自感知、数值处理和程序化操作，而不是纯语言推理。把误差类型拆清楚，对后续 agent 设计很关键。",
+        "first_step": "先通读 benchmark 任务定义，按题型把问题分成结构识别、模式追踪、派生量计算、抗噪/分辨率变化四类；然后只选每类少量样本，比较纯文本回答与允许代码执行时的输出差异。",
+        "risk": "如果数据集或评测脚本尚未公开，短期内只能做方法学评论而难以实证；另外不同模型的工具调用接口差异会影响可比性。"
+      },
+      {
+        "idea": "整理一篇短综述或内部备忘录：‘科研 agent 的三层评测框架——能力、过程、安全’。",
+        "why": "今天四篇 AI 相关论文刚好覆盖了三层：CME-SpectrumBench 偏能力评测，MELD 偏过程组织与适应，Pair-Aware Optimization 和 RATION 偏安全攻防。把它们放进统一框架，有助于避免只看最终任务成功率。",
+        "first_step": "先做一个三列表：能力层看任务完成与数据理解，过程层看预算分配与轨迹质量，安全层看攻击成功率与风险累积；再把四篇论文各自映射到这些维度。",
+        "risk": "由于材料主要来自摘要，框架容易过于概括；若后续原文中的指标定义不一致，统一比较会比较困难。"
+      },
+      {
+        "idea": "从 AI for Science 角度筛选一个跨学科试点：用 agent+工具链去处理类似 CME-SpectrumBench 这类真实科研数据任务，而不是继续堆通用问答 benchmark。",
+        "why": "今天的条目提示一个现实问题：真正有科研价值的任务往往是噪声数据、数值计算、实验约束和多步分析的组合。若 agent 研究继续停留在文本问答，外推到科研场景的可信度有限。",
+        "first_step": "最小动作是选一个公开、低门槛的科学数据分析任务，要求输入是数组或图像、输出是数值结论；设计一个最简 agent 流程，只允许‘读数据—写代码—执行—汇总结论’四步。",
+        "risk": "跨学科任务的评测标准往往不如 NLP benchmark 统一，容易出现工程工作量大但结论不够清晰的问题。"
+      }
+    ],
+    "papers": {
+      "arxiv:2610.24823v1": {
+        "summary": "Pair-Aware Optimization: Coordinating Exploration and Refinement for Jailbreaking LLM Agents。摘要要点：Large Language Model (LLM) agents are vulnerable to adversarial inputs that induce attacker-specified malicious behaviors, commonly referred to as jailbreaking.",
+        "contribution": "摘要中最具体的线索是：Large Language Model (LLM) agents are vulnerable to adversarial inputs that induce attacker-specified malicious behaviors, commonly referred to as jailbreaking. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、rag、ai、environment。题名指向“Pair-Aware Optimization: Coordinating Exploration and Refinement for Jailbreaking LLM Agents”。摘要中可用的信息是：Large Language Model (LLM) agents are vulnerable to adversarial inputs that induce attacker-specified malicious behaviors, commonly referred to as jailbreaking. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Pair-Aware Optimization: Coordinating Exploration and Refinement for Jailbreaking LLM Agents”展开；摘要线索显示问题可能与 Large Language Model (LLM) agents are vulnerable to adversarial inputs that induce attacker-specified malicious behaviors, commonly referred to as jailbreaking. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、llm、language model、agent、agents、rag、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2610.24454v1": {
+        "summary": "这篇论文提出 MELD，一个面向多智能体科学发现任务的分层测试时训练框架，目标是在单次发现过程中同时优化团队级 Coordinator 与个体级 Scientist 的策略，用于改进如 MLGym 和 MLE-bench 上的研究分工、假设生成与实验执行。按摘要描述，方法围绕共享推导树上的分支搜索、研究指令分配以及交替式 GRPO 风格更新展开，强调多智能体协同与个体适应的递归自我改进。",
+        "contribution": "核心贡献看起来有三层。第一，提出统一的分层 test-time training 框架，把“任务分配/搜索组织”和“个体研究行为适应”放进同一个科学发现过程里联合优化，而不是只做并行 agent 搜索。第二，在方法上引入 Coordinator-Scientist 两级结构：Coordinator 负责联合搜索分支组合与研究指令，Scientist 负责提出假设和执行计划，底层由共享且冻结的 Executor 落地，从而把高层组织与低层研究行为解耦。第三，论文不仅给出实验结果，还声称提供理论分析，包括层级目标对齐、相对独立并行发现的协调增益条件、私有适应的一阶收益，以及有限预算下的 regret bound；实验上摘要称在 22 个 MLGym 与 MLE-bench 任务中有 20 个最好，但具体指标、显著性和基线仍需核对原文。",
+        "details": "从题名和摘要看，论文聚焦的是“多智能体科学发现”这一类需要提出假设、规划实验、执行并根据反馈继续搜索的复杂任务。其关键难点被作者表述为一个耦合学习问题：研究任务如何分配，不仅决定当前会做哪些实验，也决定各个 agent 后续能从哪些经验中适应，因此“分工策略”和“个体学习”不能分开看。MELD 的切入点是把这种耦合显式建模成分层协调问题：团队层的 Coordinator 在共享 derivation tree 上生成一组搜索分支和研究指令，相当于决定团队把预算投到哪些科学思路、哪些实验路线；个体层的 Scientist 则沿着这些指令发展假设与执行计划。真正执行实验的模块是共享且冻结的 Executor，这意味着论文可能希望把“会不会执行工具/环境操作”与“如何组织研究”分离，避免训练不稳定或把贡献混到执行器能力上。\n\n方法线索上，摘要提到“两层都接受交替式的 GRPO-style 参数更新”，并且共享一个“smooth best-of-budget objective”。这说明作者可能把整个发现过程看成预算受限的搜索/试验问题，不是简单最大化平均回报，而是更接近“在给定预算内尽量找到最好结果”的目标；smooth best-of-budget 可能是对离散 best-of-k 指标的平滑近似，便于梯度更新。交替更新则暗示先固定 Scientist 更新 Coordinator，再固定 Coordinator 更新 Scientist，或者在 rollout 中交替收集经验，以让团队组织和个体研究行为共同演化，形成题名所说 recursive self-improvement。若你关心 test-time training，这篇论文的重要点在于它不是传统离线训练后直接推理，而是在测试任务内部继续适应策略，且适应对象同时包括团队层和个体层。\n\n证据线索主要来自摘要中的理论与实验两部分。理论上，作者声称证明了 hierarchy 的 objective alignment，这意味着高层协调目标与低层个体优化目标之间不是彼此冲突的；还分析了何时协调优于 independent parallel discovery，即什么时候多个 agent 不是各自独立跑更好，而是需要显式协调；另外还给出 private adaptation 的一阶收益，说明个体 agent 基于自身经历做局部适应在理论上有可量化价值；最后有 finite-budget regret bound，表明作者试图把方法放进有限实验预算的在线决策框架中讨论。实验上，任务来自 22 个 MLGym 和 MLE-bench 任务，这两个基准通常与机器学习研究/工程型科学发现任务相关，因此论文的“科学发现”更可能是面向 ML research agent 场景，而不是湿实验、生物实验或物理实验室自动化。摘要称在 20/22 个任务上最好，并有截断的“achieves th...”，但由于摘要被截断，无法确认具体提升幅度、比较对象、是否是 pass@k、成功率、平均得分还是 best-of-budget 指标。\n\n与用户方向的关系方面，如果你关注 LLM agent、multi-agent coordination、test-time adaptation、自动化科研或 AI for science，这篇论文值得看，因为它把多智能体协同和测试时训练结合起来，而不是只讨论单 agent 自反思或树搜索。尤其适合关注“如何在固定执行器上提升研究组织能力”的读者：Coordinator/Scientist/Executor 的三层职责划分可能对构建科研 agent 系统有直接启发。如果你更偏理论，也可重点看其 coordination gain 条件和 regret bound 是否真正对应实验设置；如果你更偏系统实现，则应核对 derivation tree 的定义、分支扩展规则、预算分配机制、GRPO 更新细节以及 Executor 的冻结方式。\n\n需要核对的信息很多。首先，MELD 中 Coordinator 和 Scientist 是否共享底座模型、共享参数还是完全独立；“private adaptation”是每个 Scientist 拥有私有 LoRA/adapter，还是仅基于私有轨迹更新共享策略。其次，GRPO-style 更新具体如何构造 group relative preference、奖励归因到团队层还是个体层、是否存在 credit assignment 机制。第三，smooth best-of-budget objective 的精确定义、与最终评测指标的一致性、是否会偏向探索少数高风险分支。第四，实验基线有哪些：独立并行 agent、单 agent test-time training、无层级协调、无个体适应、无共享树搜索等。第五，22 个任务的类型分布、预算设置、运行成本、方差和统计显著性。第六，摘要中的理论结论依赖哪些假设，例如奖励平滑性、分支独立性、环境平稳性、Executor 误差可忽略等；这些假设若过强，理论对真实科研 agent 的解释力会受限。由于当前只有题录和摘要，不能确认这些细节。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、language model、language models、agent、agents、ai、ml、scientific discovery、test-time training。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在多智能体科学发现任务中，研究分工本身会改变每个 agent 能接触到的实验与反馈，因此团队级任务分配和个体级策略适应是耦合的。作者试图回答，如何在单个测试任务的发现过程中，同时优化“团队如何组织搜索”和“个体如何根据经历改进研究行为”，从而比多个 agent 独立并行探索更有效。",
+          "method": "按摘要推测，方法使用分层多智能体架构。Coordinator 在共享 derivation tree 上生成联合搜索分支组合和研究指令，决定预算投向哪些研究路线；Scientist 根据指令提出假设与执行计划；Executor 负责实际执行且保持冻结。训练/适应发生在测试时，Coordinator 与 Scientist 采用交替式 GRPO 风格更新，共享一个 smooth best-of-budget 目标，可能通过多轮 rollout 收集轨迹并根据预算内最佳发现结果进行平滑奖励优化。实验数据/任务来自 22 个 MLGym 与 MLE-bench 任务，理论部分则分析目标对齐、协调增益条件、私有适应收益和有限预算 regret。",
+          "strengths": "最值得关注的亮点有四点。其一，把多智能体科研中的“组织结构”作为可学习对象，而不是默认固定并行搜索。其二，Coordinator/Scientist/Executor 的职责划分具体，便于把高层研究规划与底层执行能力分离。其三，摘要同时给出理论与基准实验，说明作者不仅追求经验效果，也试图解释为什么层级协调和私有适应有效。其四，评测落在 MLGym 和 MLE-bench 这类较具体的科研代理任务上，而不是泛化到模糊开放域对话，因此对自动化 ML 研究 agent 可能更有实际参考价值。",
+          "weaknesses": "基于当前信息需要警惕几类局限。第一，摘要中的“科学发现”很可能主要指 ML benchmark 上的研究型任务，外推到真实科学实验室场景未必成立。第二，实验结果虽声称 20/22 最好，但缺少具体提升幅度、成本、方差、显著性和基线细节。第三，test-time training 往往计算代价高，分层多 agent 再加交替更新可能进一步增加预算消耗，是否真正划算需要看单位成本收益。第四，冻结 Executor 虽有助于隔离变量，但也可能把瓶颈留在执行层，导致上层策略改进受限。第五，理论结论可能依赖较强假设；在真实非平稳、长时程、工具噪声大的科研环境中是否仍成立，需要核对。",
+          "next_step": "最小可执行动作：第一，先找原文中的方法图，确认 Coordinator、Scientist、Executor 的信息流、参数共享方式和更新顺序。第二，直接查实验主表，记录 22 个任务的名称、指标、预算和主要基线，核对“20 个最好”具体指什么。第三，查看消融实验，重点找去掉层级协调、去掉私有适应、去掉共享 derivation tree、去掉 smooth best-of-budget objective 后的变化。第四，阅读理论部分时只抓三个问题：objective alignment 的定义、coordination gain 成立条件、regret bound 的假设。第五，如果你准备复现，可先实现一个最小版本：固定 Executor，只比较独立并行 Scientist 与带 Coordinator 的分支分配，在单个 MLGym/MLE-bench 任务上测试预算内最佳成绩。"
+        }
+      },
+      "arxiv:2610.24304v1": {
+        "summary": "这篇论文提出了一个面向凝聚态实验谱数据分析的基准 CME-SpectrumBench，用190道专家设计题评测大语言模型能否从含噪声、有限分辨率的二维强度数组中识别结构并给出接近真值的数值答案。摘要显示其核心任务不是理论推导，而是研究级光谱数据理解；直接问答下当前模型整体明显弱于手写代码，但在允许代码生成与执行后，性能可接近手写代码。",
+        "contribution": "核心贡献应在于：构建了一个专门针对凝聚态物质实验光谱数据分析的专家级 benchmark；把评测对象从符号推理扩展到实验数据分析与稠密上下文推理；系统揭示 LLM 在谱图结构识别、模式追踪、派生量计算、分辨率提升和噪声增强条件下的失效模式；并给出一个重要结论，即工具使用/代码执行可能显著缩小 LLM 与传统手写分析程序之间的性能差距。",
+        "details": "从题名和摘要看，论文聚焦“LLM 能否分析凝聚态谱学数据”这一非常具体的问题，而不是泛泛讨论科学推理。研究对象是 condensed matter experiments 中的 spectral data，且输入形式被明确描述为 2D intensity arrays，说明任务很可能接近 ARPES、散射谱、能量-动量分辨谱图或其他二维谱图中的结构识别与定量测量。作者使用 simulated CME spectral data 构造 190 个问题，意味着他们希望控制真值、噪声、卷积/仪器分辨率等变量，从而把模型能力拆解为“找简单特征”“沿谱线或色散追踪模式”“计算导出物理量”等多个层次。评分方式是比较模型输出的数值答案与 ground truth 的接近程度，这比开放式文字问答更适合科研数据分析场景，也更容易做细粒度误差统计。\n\n摘要给出的证据线索比较清楚：一是直接查询时，前沿 LLM 的分数通常明显不如 handwritten code；二是失败模式包括只能找到简单特征、难以追踪复杂图样、难以计算派生量；三是随着数据分辨率提高以及噪声/卷积增强，性能通常下降。这些线索说明 benchmark 很可能系统扫描了数据难度维度，而不是只做单点测试。另一个重要信息是“LLM performance becomes comparable to handwritten code ...”摘要虽被截断，但前文已明确提到在代码生成与执行条件下性能接近手写代码，因此论文很可能比较了至少两种设置：纯语言直接回答 vs. 可调用代码/工具的代理式分析。若属实，这对科学 foundation model 的设计启示很强：关键瓶颈可能不只是知识缺失，而是缺少稳定的数值计算、图像/数组处理和程序化搜索能力。\n\n与科研用户的关系上，这篇工作对以下方向尤其相关：1）科学机器学习/科学基础模型评测，因为它把 benchmark 从理论题推进到实验数据题；2）凝聚态实验自动分析，因为它尝试把谱图判读任务标准化；3）LLM agent/tool use，因为结果暗示工具增强是必要条件；4）多模态或数组推理，因为输入虽描述为二维强度数组，但是否以文本化矩阵、图像、还是结构化表格喂给模型，会直接影响结论外推范围。\n\n需要重点核对的信息包括：190 道题覆盖哪些具体谱学任务；模拟数据对应哪些物理模型与实验模态；“结构”具体指峰位、带色散、能隙、交叉点、费米面特征还是序参量相关信号；数值答案的误差度量是什么；比较了哪些模型与哪些代码基线；代码执行环境是否统一；是否有人类专家上限；噪声和卷积的参数范围是否贴近真实实验；以及 benchmark 是否公开数据与评测脚本。由于目前只有题录和摘要，不能断言其在真实实验数据上的泛化能力，也不能确认“接近手写代码”的具体幅度和适用任务范围。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、foundation model、foundation models、agent、tool use、ai、symbolic reasoning。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：当前大语言模型是否真正具备分析前沿凝聚态实验谱数据的能力，尤其是在面对含噪声、有限仪器分辨率的二维谱图时，能否可靠地识别物理结构、追踪模式并计算定量结果。更深一层的方法学问题是，现有以数学/理论物理为主的 benchmark 是否高估了 LLM 在实验科研场景中的实用性，因此需要一个面向研究级谱数据分析的新评测基准。",
+          "method": "从摘要推测，作者构建了 CME-SpectrumBench，包含190个由专家设计的问题。数据来源应是模拟生成的凝聚态实验谱图，以二维强度数组形式呈现，并系统加入噪声、卷积和分辨率限制来模拟真实仪器条件。模型被提示去识别谱图中的结构并输出数值答案，再与已知真值比较评分。实验设置大概率包含至少两类：一类是直接自然语言/文本查询模型；另一类是允许模型生成并执行代码进行数组处理、拟合、搜索或数值计算。分析维度可能包括任务类型、数据分辨率、噪声水平、卷积强度以及不同模型家族之间的对比。",
+          "strengths": "最值得关注的亮点是评测对象非常具体：不是抽象“物理推理”，而是凝聚态谱图的定量分析任务。第二，使用模拟数据使真值可控，便于严格评估数值误差和失效模式。第三，摘要已经给出较细的能力分解：模型能找简单特征，但难以做模式追踪和派生量计算，这种诊断比单一总分更有科研价值。第四，论文把工具使用纳入比较，指出代码执行可显著提升表现，这对设计科学智能体和实验分析工作流很有现实意义。第五，难度维度包含噪声、卷积和分辨率，较贴近实验数据处理中真正棘手的因素。",
+          "weaknesses": "基于现有信息需要警惕几类边界。首先，数据是 simulated CME spectral data，因此 benchmark 结论未必直接等价于真实实验数据上的表现，尤其真实数据常含背景漂移、仪器伪影、样品不均匀性和标注歧义。其次，输入形式尚不清楚：如果二维强度数组被文本化后输入纯文本 LLM，结果可能更多反映上下文窗口与数组读取能力，而非真正的视觉/谱图理解能力。第三，摘要未说明任务覆盖的具体物理现象和实验模态，190题的代表性需要核对。第四，“性能接近手写代码”这一结论依赖具体基线、工具权限和执行预算，若设置不公平则解释会变化。第五，摘要没有给出误差统计、模型名单和显著性信息，因此目前不能判断不同模型之间差距是否稳健。",
+          "next_step": "最小可执行动作：1）先查论文正文中的 benchmark 任务表，记录190题按任务类型、噪声、分辨率的划分；2）确认输入给模型的是图像、数组文本还是其他结构化格式；3）查看直接问答与代码执行两种设置的主结果表，记下相对手写代码的差距；4）重点找失败案例图，判断“简单特征识别”“模式追踪失败”“派生量计算失败”分别对应哪些具体谱学对象；5）如果你做科学智能体或谱学自动分析，可尝试把自己常见的二维谱图任务映射到该 benchmark 分类，评估其是否可作为内部对照基准；6）记录一个关键问题待核对：该基准是否包含真实实验数据或计划扩展到真实数据。"
+        }
+      },
+      "arxiv:2610.24311v1": {
+        "summary": "这篇论文面向会与外部环境交互的AI agents，研究如何用“定量风险”而不是单纯动作封禁来做访问控制，目标是在复杂开放任务中缓解安全性与可用性的冲突。作者提出名为RATION的框架，围绕任务执行过程中可累计、可度量的风险进行跟踪与约束，并在四个安全基准上评估其效果。",
+        "contribution": "从摘要看，论文的核心贡献是把AI agent安全控制从传统的静态权限限制，推进到执行期的定量风险预算管理；具体实现上，RATION会为单个任务构建任务特定策略，将用户请求中的显式约束与相似历史任务校准得到的隐式风险结合起来，并在执行过程中按风险类型采用不同的强制策略。这一思路的潜在价值在于：对复杂任务不必一刀切禁用高能力动作，而是根据风险累积情况动态放行、限制或干预。",
+        "details": "仅根据题名、摘要和元数据，这篇工作聚焦“AI agent在真实外部环境中执行任务时的访问控制”这一非常具体的问题场景，尤其针对摘要明确点名的间接提示注入（indirect prompt injection）等安全威胁。论文认为，现有agent安全系统主要通过限制动作来保护系统，但这会在开放式复杂任务中显著牺牲效用；因此作者提出一种风险驱动的替代范式：不是只问“某动作能不能做”，而是问“该动作会带来多少可测风险、累计后是否超过任务允许阈值”。\n\n从方法线索看，RATION至少包含三个关键部件。第一，任务特定策略构建：它不是全局统一策略，而是针对当前用户任务生成policy。该policy由两部分组成：一部分是用户请求直接给出的显式约束，例如不能访问哪些资源、不能执行哪些高危操作、预算或权限边界是什么；另一部分是从“相似任务的历史执行”中校准出的隐式风险，这暗示作者可能建立了某种风险统计、经验分布、相似任务检索或历史轨迹分析机制。第二，执行期风险跟踪：系统会持续记录agent动作带来的风险累积，而不是只在单步决策时判断。这里的“风险”很可能是多维的，因为摘要说会“根据不同类型的风险采用不同 enforcement strategies”，说明风险并非单一分数，可能区分数据泄露、越权访问、外部通信、工具调用、状态污染等类别。第三，差异化执行约束：不同风险类型对应不同干预方式，可能包括阻断、确认、降权、替代执行、审计或预算扣减等，但具体机制需要看正文和实验。\n\n证据方面，摘要声称在四个安全基准上做了广泛实验，并且强调“强安全性”与更好的安全-效用平衡。不过由于当前摘要被截断，无法得知具体基准名称、比较方法、指标定义，以及“强 security guarantees / utility retention”究竟如何量化。对科研读者而言，最值得核对的是：1）风险是否真的可测且可校准，还是依赖启发式打分；2）历史相似任务的定义与检索方式；3）风险累积模型是否具有理论解释，例如预算约束、代价敏感控制或序贯决策框架；4）四个基准是否覆盖真实agent工具链，而不只是合成攻击场景；5）与现有agent guardrail、tool permissioning、policy engine、runtime monitor方法相比，提升来自风险建模本身还是工程上更细粒度的规则设计。\n\n与AI agent安全、访问控制、LLM系统防护方向的研究者关系很直接：这篇论文可能提供了一种把传统访问控制、风险管理和agent runtime security结合起来的框架化视角。若你的方向涉及agentic systems、tool-use安全、prompt injection防御、least privilege、runtime governance或human-in-the-loop审批，这篇论文值得重点关注。需要注意的是，当前信息不足以确认其理论新颖性、风险定义的普适性、实验外推性以及部署成本，因此不应据此推断其已全面优于现有方案。",
+        "why_read": "来源为 arXiv，关键词匹配：agent、agents、ai agent、ai agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：当AI agent为完成复杂用户任务而调用工具、访问外部环境或处理不可信内容时，如何在不严重损害任务完成能力的前提下实施安全访问控制，尤其是如何应对间接提示注入等会在执行过程中逐步暴露的风险。更细一点说，它试图把“是否允许某动作”转化为“该任务在执行到当前阶段累计了多少可量化风险、是否仍在可接受范围内”。",
+          "method": "从摘要推断，方法路径可能是：先解析用户请求，抽取显式安全约束与任务目标；再利用历史上相似任务的执行记录，对不同动作或状态转移的隐式风险进行校准，形成任务特定policy；执行时对agent每一步动作关联的风险进行持续记账，并依据风险类别采用不同的执行控制策略。实验上应当是在四个agent安全基准上，与传统动作限制或其他防护系统做对比，指标可能包括攻击成功率、任务成功率、误拦截率、风险超预算次数或综合安全-效用指标。",
+          "strengths": "最值得关注的亮点有三点。第一，问题设定贴近真实agent系统：不是离线分类，而是面向持续交互、工具调用和外部环境暴露。第二，提出了“风险累积约束”这一比静态权限更细粒度的控制思路，理论上更适合复杂开放任务。第三，任务特定策略结合显式约束与历史校准隐式风险，这意味着系统可能既能尊重用户意图，又能利用经验数据补足用户未明确表达的安全边界；如果实验扎实，这会是很有应用价值的设计。",
+          "weaknesses": "基于现有题录信息，需要警惕几类局限。第一，风险如何定义、量化和校准并不清楚，若过度依赖启发式规则，泛化性可能有限。第二，历史相似任务驱动的隐式风险估计可能受数据分布、任务检索质量和环境变化影响，存在迁移失效风险。第三，摘要虽提到四个安全基准，但未说明是否覆盖真实生产级agent工作流，可能仍偏基准化。第四，不同风险类型对应的强制策略若设计复杂，部署和调参成本可能较高。第五，摘要未给出理论保证、误报漏报情况和与现有方法的显著性比较，因此目前不能判断其改进幅度和稳健性。",
+          "next_step": "最小可执行动作：第一，获取全文后先看方法总览图和系统架构，确认“风险”的数学表示、累积方式和policy生成流程；第二，定位四个安全基准的名称、任务类型、攻击设置和评价指标，记录与最强基线的具体差距；第三，重点查表格中任务成功率与攻击防御率是否同时提升，以验证其是否真正改善安全-效用权衡；第四，查看是否有消融实验区分显式约束、历史风险校准和执行期跟踪三部分的贡献；第五，如果你做agent安全，可尝试把自己的工具调用日志映射成风险预算问题，评估RATION思路是否能迁移到你的场景。"
+        }
+      },
+      "doi:10.1038/s41586-026-11293-x": {
+        "summary": "这篇Nature论文从题名看，聚焦于“自然行为状态下小鼠的全皮层成像”这一具体任务，核心对象是重量仅1克的无线mesoscope（介观成像显微系统）。仅凭题名和元数据可推测，作者试图在尽量不干扰小鼠自然行为的条件下，实现大范围皮层活动记录，但由于摘要为空，具体成像指标、行为范式和实验结果目前无法确认。",
+        "contribution": "基于题名可判断，其核心贡献很可能是提出并验证了一种超轻量（1克级）无线介观成像系统，用于自然行为小鼠的皮层范围神经活动观测；如果成立，这将同时推进设备小型化、无线化以及大视场脑成像在自由行为实验中的可用性。需要强调的是，摘要缺失，因此这里的“贡献”只能视为题名所支持的可能贡献，而非已核实的全文结论。",
+        "details": "从题名“Cortex-wide imaging in naturally behaving mice with 1-gram wireless mesoscopes”可以提取出几个非常具体的信息点。第一，研究对象是小鼠，而且强调“naturally behaving mice”，说明实验场景并非传统头固定条件，而更接近自由活动或低约束行为状态。第二，观测范围是“cortex-wide imaging”，即目标不是局部细胞群，而是跨多个皮层区的大范围成像，这通常对应介观尺度神经活动记录。第三，技术载体是“1-gram wireless mesoscopes”，这表明作者的主要方法学创新很可能集中在超轻量无线成像设备的设计与系统集成，包括但不限于光学路径、传感器、供电、数据传输、机械封装和佩戴稳定性。\n\n仅依据题名，较合理的证据线索包括：作者可能展示了该设备在小鼠头部负载下对自然行为影响较小；可能给出跨皮层区域的活动成像示例；可能比较无线与有线、轻量与较重设备、自然行为与受限行为之间的数据质量或行为差异；也可能展示在社交、探索、运动或复杂任务中的皮层动态模式。不过这些都需要摘要或正文核对，当前不能当作已知事实。\n\n如果你的研究方向涉及系统神经科学、自由行为成像、脑机接口前端、微型显微镜、神经工程或行为神经科学，这篇论文的潜在价值在于：它可能提供一种兼顾大视场、低负载和无线化的记录方案，从而缓解头固定成像在生态效度上的限制；也可能为跨脑区协同活动、自然行为编码和长期记录提供新工具。相对地，若你的重点是单细胞分辨率、深脑成像、定量光学性能或闭环控制，则需要特别核对该mesoscope的空间分辨率、时间分辨率、信噪比、视场大小、成像深度、续航时间、数据带宽、掉包率、同步方式以及是否支持多动物同时记录。\n\n目前最需要核对的信息包括：1）“cortex-wide”具体覆盖哪些皮层区域，是真正全背侧皮层还是多个大区拼接；2）成像信号类型，是钙信号、血流/血氧信号还是其他荧光指标；3）无线链路如何实现，是否本地存储、实时传输或混合方案；4）1克是否为整机重量还是仅头戴部分重量；5）自然行为的定义和验证方式；6）与现有miniscope/mesoscope相比的定量优势；7）是否存在视场、分辨率、续航和动物负担之间的折中。由于摘要为空，以上均属于基于题名的结构化推断，而非论文已证实内容。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名判断，是如何在尽量保持小鼠自然行为状态的前提下，对大范围皮层活动进行成像记录。更细一点说，它针对的是现有脑成像技术在“视场范围大”与“设备轻便、无线、低行为干扰”之间难以兼顾的方法学瓶颈。",
+          "method": "可能的方法路径是研制一种头戴式、约1克重量的无线介观成像系统，并将其用于表达荧光指示器的小鼠皮层活动记录。实验上可能包括设备工程设计、重量与佩戴稳定性测试、无线数据采集链路验证、在自然行为任务中的成像演示，以及与现有有线或更重设备的对照。数据层面可能涉及跨皮层区域的时空活动图、行为同步记录和设备性能指标，但这些都需要摘要或正文确认。",
+          "strengths": "题名所显示的最大亮点是三个目标的同时实现：无线化、1克级超轻量化、以及皮层范围成像。如果论文确实完成了这三点，并在自然行为小鼠中稳定工作，那么它对提高行为实验生态效度、扩展跨脑区神经动力学研究、支持更复杂或社交场景下的记录都具有明显应用价值。发表在Nature也提示其方法学或应用层面的潜在影响较大，但具体强度仍需看正文证据。",
+          "weaknesses": "当前最主要的局限是摘要为空，导致无法确认任何实验结果、性能指标或生物学发现。仅从题名无法判断成像分辨率、采样速率、信号类型、续航时间、数据质量、样本量、行为范式和统计证据，也无法知道“cortex-wide”是否存在表述上的范围限制。因此在阅读时必须警惕被题名中的技术卖点带偏，避免默认其在所有关键指标上都优于现有方案。",
+          "next_step": "最小可执行动作是先获取摘要、图1和方法概览，优先核对设备重量定义、视场大小、空间/时间分辨率、无线传输方式、续航时间和动物行为约束程度。随后查是否有与有线mesoscope或miniscope的定量对照，再记录一个问题清单：它解决了哪些旧系统痛点，代价是什么，是否适合你的实验对象与行为任务。"
+        }
+      },
+      "doi:10.1126/science.aeh4273": {
+        "summary": "这篇Science论文聚焦于两个多模声学谐振器中的真正多体纠缠的确定性生成与分发，具体展示了跨两个谐振器制备2模、4模和6模 genuine multipartite entangled states，并演示了2模和4模纠缠态在谐振器之间的转移。摘要给出的核心结果是：多模机械量子态不仅可被确定性制备，还能在宏观声学器件之间以可量化保真度进行传输。",
+        "contribution": "从摘要可提炼的核心贡献是：提出并实验实现了一种面向多模机械系统的、硬件高效且可扩展的架构，用于在两个多模声学谐振器之间确定性地产生、验证并分发真正多体纠缠；同时给出了随模式数增加的保真度数据，以及纠缠态跨谐振器转移的保真度数据，为构建大规模机械量子网络提供了实验路径。",
+        "details": "仅根据题名、期刊来源、摘要和元数据，这项工作研究的是宏观声学机械系统中的多模量子纠缠控制，具体对象是“两个多模 acoustic resonators”。论文声称实现了 genuine multipartite entanglement 的生成与转移，且不是停留在双模，而是扩展到2、4、6个模式，说明作者关注的是多模可扩展性而非单一纠缠对。摘要中最关键的证据线索是具体保真度：2模、4模、6模纠缠态的保真度分别为0.912±0.003、0.790±0.003、0.570±0.001；两类转移实验中，2模和4模 genuine entangled states 的转移保真度分别为0.785±0.006和0.601±0.006。这些数字表明，随着模式数增加以及加入跨谐振器转移任务，态制备/保持难度明显上升，但作者仍然维持了可验证的 genuine multipartite entanglement。题名中的“deterministic generation and distribution”与摘要中的“hardware-efficient and scalable architecture”共同暗示，其方法路线很可能不是依赖后选择的概率性事件，而是通过可编程耦合、受控交换或参数驱动，在多模声学自由度之间进行确定性量子态工程；但具体是电路量子电动力学耦合、光机械接口、超导量子比特控制，还是其他混合平台，单靠摘要无法确认。作者名单中包含J. Q. You、Eric Lutz、Tobias J. Kippenberg，结合“macroscopic acoustic resonators”这一表述，可推测这项工作处于机械/声学量子系统、量子控制与量子网络交叉方向，可能与超导或光学读出和控制技术有关，但这需要正文核对。对科研读者而言，这篇论文的价值主要在三点：第一，它把真正多体纠缠从少模系统推进到跨两个多模机械谐振器的场景，强调“生成+分发”而非仅局域制备；第二，它给出了明确的可扩展性信号，即模式数从2到6时仍能维持可报告的保真度；第三，它把机械系统定位为量子网络节点或寄存器候选，推动“宏观机械系统中的复杂量子态控制”这一方向。需要重点核对的信息包括：genuine multipartite entanglement 的判据和验证协议是什么；保真度是相对于哪类目标态定义的；6模态的具体图态/簇态/GHZ-like 结构为何；两个谐振器之间的“transfer”是直接物理耦合传输还是通过中介量子总线完成；实验温度、退相干时间、模式频率、耦合强度、制备时序和误差来源分别是什么；以及“hardware-efficient”具体指器件数量少、控制脉冲少，还是验证复杂度低。若你的研究方向涉及机械量子系统、多模纠缠、连续变量/离散变量混合架构、量子网络节点或量子态传输，这篇论文值得优先关注其态制备协议、纠缠见证方法和可扩展性瓶颈。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题是：如何在宏观机械平台中，以可扩展且确定性的方式生成真正多体纠缠，并将这种多模纠缠在两个多模声学谐振器之间分发或转移；更细一点说，是如何同时满足多模控制、跨器件传输和有效状态验证这三个通常彼此掣肘的要求。",
+          "method": "根据摘要可推测，作者在两个多模声学谐振器上构建了可控的多模式量子操作架构，先制备跨谐振器的2模、4模、6模 genuine multipartite entangled states，再执行2模和4模纠缠态的跨谐振器转移，并通过某种保真度评估与 genuine entanglement 验证协议给出结果。可能涉及的技术路径包括：对多个声学模式进行选择性寻址、通过中介耦合器实现模式间受控相互作用、利用量子层析或纠缠见证估计目标态保真度，以及比较制备前后或转移前后的态重构结果。具体是离散变量编码还是连续变量编码、是否借助超导量子比特或光学/微波接口，摘要未说明。",
+          "strengths": "最突出的亮点是结果具体且层次清晰：既有多模数扩展（2、4、6模），又有跨谐振器转移任务（2模、4模），并且每一项都给出了带误差条的保真度。第二个亮点是“genuine multipartite entanglement”这一表述，意味着目标不是简单的两两纠缠拼接，而是排除了可分解为低阶纠缠混合的情形。第三个亮点是对象选在“macroscopic acoustic resonators”，这使工作不仅是量子信息演示，也触及宏观机械系统中的复杂量子控制边界。第四个亮点是摘要强调“hardware-efficient and scalable architecture”，说明作者试图回答该领域长期存在的可扩展实现问题，而非单次概念验证。",
+          "weaknesses": "基于题录和摘要，当前信息仍有明显边界。首先，不清楚保真度对应的目标态类型和计算方式，因而难以判断这些数值在不同模式数下的严格可比性。其次，摘要没有给出纠缠验证的统计显著性、见证不等式或层析完整度，无法独立评估“genuine multipartite”结论的稳健性。第三，虽然声称可扩展，但目前只展示到6模和两台谐振器，距离“大规模机械量子网络”仍有工程鸿沟。第四，转移保真度在4模情形下降到0.601±0.006，说明噪声、损耗或控制误差可能快速累积，但摘要未拆解误差预算。第五，缺少与既有机械/超导/光学多模纠缠方案的直接对比信息，尚不能仅凭摘要判断其相对优势来自确定性、保真度、模式数还是器件复杂度。",
+          "next_step": "最小可执行动作建议有五项：1）先查正文或补充材料中 genuine multipartite entanglement 的判据，确认是基于保真度阈值、纠缠见证还是完整层析；2）记录2/4/6模目标态的具体结构与编码方式，判断其是否适合你的体系复现；3）查实验装置图，弄清两个多模声学谐振器之间的耦合与转移通道；4）整理摘要中的五个保真度数据，和你熟悉平台上的多模纠缠结果做横向对照；5）重点查看误差来源、退相干时间和控制脉冲序列，因为这些信息决定该方案是否真的可扩展或可迁移到其他机械量子平台。"
+        }
+      },
+      "doi:10.1126/science.ael7305": {
+        "summary": "这篇Science论文从题名和摘要看，聚焦植物如何“解码”具有免疫原性的糖类信号，核心任务是区分不同特定糖分子所触发的免疫反应与维持性反应。作者强调植物存在彼此不同的识别系统，用于针对特定糖信号做出合适的生物学响应。",
+        "contribution": "基于摘要，这篇文章的核心贡献应在于提出或综述一种较清晰的机制框架：植物并非对糖类模式分子做统一反应，而是通过“针对特定糖的不同识别系统”实现响应分流，从而把免疫激活与组织维护/稳态维持区分开来。若正文含实验数据，则可能进一步给出具体糖配体、受体类别或信号通路之间的对应关系。",
+        "details": "仅根据题名、摘要和期刊信息判断，这篇文章的研究对象是植物对免疫原性聚糖/糖链信号的识别机制，尤其是“哪些糖被识别”“由什么系统识别”“为什么会导向免疫或maintenance responses（维持/维护性反应）而非同一种输出”。题名中的decode immunogenic glycans提示重点不只是发现某个糖能诱导免疫，而是解释植物如何读取糖类信息的“语义”或“编码规则”。摘要中的Distinct recognition systems for specific sugars是最关键线索，说明作者关注的是糖信号的特异性识别，而不是笼统的模式识别免疫。这里的specific sugars很可能涉及来源不同、结构不同或修饰不同的糖类分子，例如病原相关或宿主细胞壁相关糖片段；但题录未给出具体糖种、受体名称、物种或实验体系，因此这些都需要核对原文。由于文章发表于Science且摘要极短，也存在它是评论、观点或综述性文章的可能，而不一定是完整原创研究论文；这一点必须通过文章类型确认。如果是评论文章，其贡献更可能是整合近年关于植物糖感知受体、细胞壁损伤信号、病原来源糖模式以及下游免疫/生长平衡的证据，提出一个区分“免疫性糖识别”和“稳态性糖识别”的概念框架。若是研究论文，则可能使用遗传学材料、糖处理实验、受体结合分析、免疫表型测定、转录组或生化结构分析来证明不同糖由不同受体系统感知，并产生不同输出。对科研读者而言，这篇文章与植物先天免疫、细胞壁生物学、糖生物学、受体激酶/受体样蛋白研究方向直接相关，也可能对作物抗病设计有启发：不是简单增强所有糖感知，而是要精确调控特定糖-受体轴，避免把防御激活与正常生长维护混淆。当前最需要核对的信息包括：文章类型；研究植物物种；具体糖分子类别；识别系统是哪些受体或复合体；“maintenance responses”具体指细胞壁修复、发育稳态还是共生/耐受；以及证据是遗传、生化、结构还是概念整合。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "这篇论文试图回答的具体问题应是：植物面对不同来源和结构的免疫原性糖类时，如何实现精确识别并决定输出为免疫反应还是维持性/稳态性反应？进一步说，糖类信号的特异性是由哪些识别系统编码和区分的？",
+          "method": "从现有信息无法确定真实方法，只能做受限推断。若为原创研究，可能会结合外源糖处理、植物突变体或受体缺失材料、免疫表型测定（如ROS、MAPK、 defense gene表达）、配体-受体结合实验、生化纯化、糖结构比较，甚至结构生物学来解析“特定糖—特定识别系统—特定响应”的对应关系。若为评论/综述，则方法主要是整合已有关于植物糖感知、细胞壁损伤相关分子模式和病原相关糖模式的文献证据，提出分类框架。",
+          "strengths": "最值得关注的亮点是摘要直接提出“distinct recognition systems for specific sugars”，这比一般“糖能诱导免疫”的表述更进一步，强调识别系统的分工与响应分流。如果文章给出了具体糖种和受体对应关系，那么其价值在于把植物糖感知从宽泛现象推进到可操作的机制层面，并帮助解释为什么某些糖触发防御，而另一些糖更多参与组织维护或稳态调节。发表于Science也提示其概念整合度或机制新颖性较高。",
+          "weaknesses": "基于当前题录信息，最大局限是信息量非常有限：摘要没有给出具体植物物种、糖分子、受体名称、实验设计、数据类型和主要结果，因此不能判断证据强度，也不能确认是原创研究还是评论文章。题名中的immunogenic glycans范围很广，若不看正文容易把不同来源的糖信号混为一谈；同时maintenance responses含义也不明确，可能导致过度解读。",
+          "next_step": "最小可执行动作：第一，先确认文章类型（Research Article还是Perspective/Review/Editorial）；第二，查看摘要全文或导言首段，记录具体提到的糖分子、植物物种和受体名称；第三，若是研究论文，优先查主图1和结果标题，建立“糖种—识别系统—输出反应”对照表；第四，若是评论文章，提取作者给出的分类框架和关键参考文献，作为后续追踪原始研究的入口。"
+        }
+      },
+      "doi:10.1126/science.aem0088": {
+        "summary": "这篇Science题录指向一种“原子级薄层材料”的相工程任务：该材料可被“写入”并转化为具有不同电子性质的晶体相。基于题名与摘要，论文核心对象是原子层材料中的可控晶相/电子相转换，目标是把局域结构改写成不同功能电子区域。",
+        "contribution": "从题名“Writing electronic phases into atomic layers”和摘要“An atomically thin material converts into crystals with different electronic properties”看，论文的核心贡献很可能是提出或展示了一种在原子级二维材料中局域写入不同晶体相的方法，使同一超薄材料平台内形成电子性质不同的晶体区域，从而实现可编程电子相图案化或器件级相工程。",
+        "details": "仅根据题名、期刊、摘要和元数据，这项工作聚焦二维原子层材料中的相变控制，而不是一般意义上的薄膜生长。摘要明确说“atomically thin material converts into crystals with different electronic properties”，说明研究对象应是单层或少层材料，且关键现象是材料在外部作用下转化为不同晶体结构，这些结构对应不同电子性质，例如更可能涉及金属/半导体、绝缘/导电、或不同能带拓扑/载流子行为的差异。题名中的“writing”暗示这种相变不是整体退火式均匀转变，而更像局域、可寻址、可图案化的写入过程，可能借助激光、电场、电流脉冲、扫描探针、电子束、应变或热场来在二维层内定义空间分布的电子相区域。若这一判断成立，论文的重要性在于把“相”当作可写入信息单元，在单一材料中构造横向异质结、相边界或功能电路区域。\n\n从证据线索看，Science上的此类工作通常需要同时证明结构变化和电子性质变化，因此可能会结合晶体学表征与电学/光学表征。结构证据可能来自透射电镜、电子衍射、拉曼、原子分辨成像或扫描探针；电子性质证据可能来自局域电导映射、器件I-V、温度依赖输运、光致发光变化或能带相关谱学。题名强调“electronic phases”而摘要强调“crystals with different electronic properties”，这提示作者可能将“电子相”与“晶体相”紧密对应，即通过晶体结构重构来实现电子功能切换，而不是仅靠载流子掺杂或栅压调控。\n\n与科研读者的关系上，如果你的方向是二维材料、相变材料、神经形态器件、可重构电子学、原子制造或局域表征，这篇论文值得关注的点在于：是否实现了可逆或至少高分辨率的相写入；写入尺度是否达到纳米级；写入后相的稳定性、擦写性和界面锐利度如何；不同相之间是否形成低接触电阻或特殊边界态；是否能在同一片原子层中直接定义晶体管沟道、互连或存储单元。若你的方向偏基础物理，则应重点核对相变驱动力、相边界能量、厚度依赖、基底作用和缺陷参与机制。\n\n需要特别说明的是，当前信息极少，无法确认具体材料体系。摘要没有给出材料名称、写入手段、是否可逆、空间分辨率、器件性能指标、温度条件、样本数量或理论支持，因此不能声称论文已经证明了某种特定机制，也不能断言其应用场景已经成熟。阅读正文时应优先核对：1）具体是哪一种二维材料；2）“writing”是光、电、热、机械还是探针诱导；3）相变是局域晶化、晶型转换还是非晶到晶体转变；4）不同电子性质具体是什么；5）证据是否区分了真正的晶相变化与缺陷/应变/掺杂导致的表观电性变化。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题很可能是：如何在原子级薄层材料中，以空间可控的方式把局域区域转化为不同晶体相，并由此获得不同电子性质，从而在单一二维材料内直接定义功能区域，而不必依赖传统多材料堆叠或复杂光刻后工艺。",
+          "method": "从题名与摘要推断，方法路径可能包括两部分：第一，用某种局域激励手段对原子层材料进行“写入”，诱导其发生晶体结构转变；第二，用结构表征和电子性质表征验证写入区域确实形成了不同晶体，并且这些晶体对应可区分的电子行为。可能涉及的数据类型包括显微图像、衍射/光谱信号、局域导电图、器件输运曲线以及写入前后对照。若有理论部分，可能会用第一性原理或相稳定性分析解释不同晶相的能量差与电子结构差异。",
+          "strengths": "最值得关注的亮点可能在于把“电子相”作为可图案化对象直接写入二维材料，这比单纯观察相变更进一步。如果论文展示了高空间分辨率、稳定相边界、明显电子性质反差以及可器件化读出，那么其价值不仅在基础相变物理，也在可重构电子学和原子尺度制造。另一个潜在亮点是同一材料平台内实现横向异质结构，避免传统异质集成中的界面污染和晶格失配问题。",
+          "weaknesses": "基于现有题录信息，主要局限是材料体系、写入机制和性能指标全部缺失。摘要没有说明相变是否可逆、是否需要极端条件、是否具有统计重复性，也没有给出电子性质差异的量化幅度。题名中的“electronic phases”可能带有一定概念延展，实际是否为严格定义的电子相、还是由晶相变化引起的电性差异，需要正文和图谱支持。此外，若写入依赖缺陷、基底或局部热效应，其普适性和可扩展性可能受限。",
+          "next_step": "最小可执行动作是先获取论文摘要扩展信息或正文图1-3，优先记录四项事实：材料名称、写入手段、写入尺度、电子性质差异类型。随后查是否有关键对照：写入前后结构表征、电学读出、可逆性/稳定性测试。若你做相关研究，可建立一个对照表，把该工作与已知二维相工程体系按“材料-驱动方式-分辨率-是否可逆-器件功能”五列比较，快速判断其真正创新点。"
+        }
+      },
+      "doi:10.1038/s41586-026-11242-8": {
+        "summary": "这篇Nature论文从题名看，聚焦于“通过催化性碳原子转移实现C–C σ键的螺环融合（spirofusion）”这一合成化学任务，目标对象应是含C–C单键骨架的有机分子及其向螺环结构的重组转化。由于提供信息中摘要为空，目前只能确认其核心主题是发展一种以“碳原子转移”为关键步骤的催化新反应，用于构建螺环分子框架。",
+        "contribution": "基于题名可推测，论文的核心贡献可能是在有机合成方法学上提出了一类不同于传统偶联、环加成或重排策略的新型骨架编辑反应：不是简单断键/成键，而是以“催化转移一个碳原子”的方式重构C–C σ键连接关系，从而高效生成螺环骨架。如果这一判断成立，其意义在于把“单碳转移”和“C–C σ键活化/编辑”结合起来，为复杂三维分子骨架的快速搭建提供新范式。",
+        "details": "仅依据题名、期刊和作者信息，这项工作应属于前沿有机合成/催化领域，研究对象很可能是可发生骨架重排的有机底物，任务是把原有C–C σ键网络转化为螺环连接模式。题名中的“Catalytic transfer of carbon atoms”提示反应并非单纯去碳、插碳或环扩张的传统表述，而可能涉及催化循环中一个碳片段在底物之间或底物内部被转移并嵌入新骨架；“enables spirofusion of C–C σ-bonds”则说明关键结果是把原本非螺环的碳骨架重塑为共享一个四价中心的螺环体系，且重点在C–C单键层面的编辑而非仅对π键官能化。若属实，这类方法对药物化学和分子多样性导向合成有潜在价值，因为螺环结构常用于提升分子三维性、构象刚性和成药性质。证据线索方面，Nature级别的方法学论文通常会给出：底物范围、官能团兼容性、对映/非对映选择性（若相关）、机理实验（同位素标记、交叉实验、中间体捕获、动力学分析）、以及可能的计算化学支持，用以证明“碳原子转移”而非其他表观重排路径。但由于摘要为空，当前无法确认具体催化剂体系（过渡金属、主族、光氧化还原或双催化）、碳源/受体类型、底物类别（环烷醇、环酮、张力环、二醇衍生物、烯烃/炔烃前体等）、是否分子内或分子间、以及产率和选择性水平。与读者研究方向的关系上，如果你关注骨架编辑、C–C键活化、螺环分子合成、复杂分子后期修饰或新型单碳转移化学，这篇论文值得优先核对；如果你更关注机理，则应重点查明“转移的碳原子来自哪里、以何种中间体形式迁移、催化循环如何闭合”。当前最需要核对的信息包括：反应底物与产物的具体结构模式、碳原子转移的定义与证据、催化剂和条件、反应适用范围、局限底物、以及是否展示了天然产物/药物样分子的后期螺环化应用。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，推测是：如何以催化方式编辑稳定的C–C σ键，并在此过程中实现一个碳原子的定向转移，从而把常规碳骨架高效重构为螺环骨架。更细一点说，它可能针对传统螺环构建依赖预功能化底物、多步合成或特定环加成策略的局限，提出一种直接从现有C–C单键框架出发的骨架重塑方法。",
+          "method": "可能的方法路径包括：设计可在催化条件下发生选择性C–C σ键断裂的底物；借助金属催化或其他催化模式生成含碳迁移能力的中间体；通过单碳片段插入、迁移或交换，形成新的季碳型螺中心并闭环。若论文强调“transfer of carbon atoms”，常见证据可能包括13C标记实验追踪被转移碳的位置、交叉实验区分分子内/分子间路径、控制实验排除简单重排、以及DFT计算支持关键过渡态。数据层面应重点关注底物范围表、代表性产物结构、收率、区域/立体选择性，以及机理图。",
+          "strengths": "最值得关注的亮点可能有三点：第一，概念新颖，把“碳原子转移”与“C–C σ键螺环融合”联系起来，属于骨架编辑层面的新反应设计；第二，若能在较广底物范围内成立，则对快速构建高三维度螺环分子具有明显方法学价值；第三，若机理证据充分，这项工作可能为理解和利用C–C单键的可编程重组提供新的反应逻辑，而不仅是单一实例。",
+          "weaknesses": "基于当前题录信息，最大局限是摘要缺失，导致无法确认任何具体实验结果、底物类型、催化体系、反应条件和机理证据。因此需要警惕：题名中的“carbon atoms transfer”是否是严格定义的单碳转移，还是更宽泛的骨架重排表述；“spirofusion of C–C σ-bonds”是否适用于广泛底物，还是局限于特定预组织化骨架；反应是否依赖昂贵催化剂、苛刻条件或低官能团兼容性；以及是否真正具有合成实用性而非概念展示。",
+          "next_step": "最小可执行动作是：第一，立即获取摘要和图1，确认底物-产物转化模式以及“被转移的碳”来源；第二，查看反应总览表，记录催化剂、配体、氧化还原条件和代表性收率；第三，优先查机理部分是否有13C标记和交叉实验；第四，整理一份问题清单：底物范围边界、是否分子内/分子间、是否形成季碳螺中心、是否可用于复杂分子后期修饰；第五，如果与你的研究相关，可选取一个最接近你体系的底物例子，评估其是否具备迁移前体和螺环化位点。"
+        }
+      },
+      "doi:10.1038/s41586-026-11163-6": {
+        "summary": "这篇Nature论文从题名判断，研究对象是“机电超材料（mechatronic metamaterials）”中的时间晶体化现象，核心任务是解释或实现由“波粗化（wave coarsening）”驱动的时间晶体形成。由于提供的摘要为空，目前只能依据题名和期刊元数据推断其重点可能在非平衡动力学、周期驱动响应与超材料中的时序有序结构。",
+        "contribution": "从题名推测，论文的核心贡献可能是提出并验证一种新的时间晶体化机制：不是单纯依赖外部周期驱动或微观自旋体系，而是在机电耦合超材料中通过波的粗化过程自发形成稳定的时间有序态；这可能把时间晶体研究从传统物理平台扩展到可工程实现的机械/机电超材料体系。",
+        "details": "已知信息非常有限：题名“Wave coarsening drives time crystallization in mechatronic metamaterials”直接给出三个具体对象与机制线索。第一，研究对象是机电超材料，说明系统很可能由机械单元、电子控制/传感/执行模块以及空间耦合网络组成，而不是纯理论模型。第二，研究现象是时间晶体化，通常指系统在周期驱动或非平衡条件下表现出比驱动周期更长的稳定时间序，或出现离散时间平移对称性破缺。第三，驱动机制是波粗化，意味着作者可能观察到初始多波长或多畴动态经过竞争、并合、尺度增长后，最终选择出某种宏观时间有序模式。结合Nature定位和作者构成，这项工作很可能同时包含实验平台、动力学建模和非线性波/模式选择分析。可能的证据线索包括：时空图、频谱或锁频图、亚谐波响应、畴尺寸随时间增长的粗化标度、不同驱动参数下的相图，以及机电单元阵列中的同步/反同步模式演化。与科研读者的关系上，如果你关注非平衡统计物理、机械超材料、主动材料、时空对称性破缺、模式形成或可编程物质，这篇论文值得重点看其“粗化”是否只是现象描述，还是被提升为可预测的普适机制。当前最需要核对的信息包括：时间晶体是离散还是连续意义上的；波粗化发生在空间波数选择、相位畴并合还是振幅包络演化层面；机电超材料的具体单元、耦合方式、驱动协议和测量量是什么；是否给出理论标度律、稳定性分析或最小模型；实验是否展示了可重复、可调控和抗噪声的时间晶体态。由于摘要为空，以上均为基于题名的谨慎推断，不能视为论文已证实的结果。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名推测，是：在机电超材料这种可工程化的非平衡多体系统中，时间晶体化究竟如何产生？更具体地说，作者可能在问，空间传播波或振动模式的粗化过程，是否能够作为形成稳定时间有序态的主导机制，而不仅仅是外部驱动频率锁定的副产物。",
+          "method": "可能的方法路径是构建一个由多个机电耦合单元组成的超材料阵列，在周期驱动或反馈控制下记录其时空动力学；通过高速位移/相位测量、电信号采集或嵌入式传感获得时空图；再用频谱分析、相位分析、畴统计和粗化标度分析识别时间晶体化过程。理论上可能配合非线性振子链、耦合映射、振幅方程、连续介质近似或稳定性分析，解释为何波长竞争与畴并合会导向亚谐波或其他时间有序响应。",
+          "strengths": "最值得关注的亮点可能有三点。其一，平台层面：如果时间晶体在机电超材料中实现，说明该现象进入了更可设计、可观测、可调参的工程体系。其二，机制层面：若“波粗化驱动时间晶体化”被清晰证明，这会比单纯展示亚谐波响应更有理论价值，因为它把模式形成与时间对称性破缺联系起来。其三，应用层面：机电超材料若能稳定地产生时间有序态，可能对鲁棒振动控制、波导引、时序编码或自组织功能材料有启发。",
+          "weaknesses": "基于当前题录信息，最大的局限是摘要为空，无法确认论文到底是实验主导、理论主导还是二者结合，也无法确认“time crystallization”是否采用严格定义。还需要警惕题名中的“drives”是否意味着因果机制已被充分证明，还是仅表明相关联的动力学过程。此外，不清楚结果是否依赖特定反馈电路、有限尺寸阵列、精细调参或低噪声条件，这些都会影响其普适性与可复现性。",
+          "next_step": "最小可执行动作：第一，先获取摘要和图1，确认系统具体由哪些机电单元构成、驱动频率与观测频率关系为何。第二，重点查找是否有时空图、频谱图和粗化标度图，以判断“波粗化”是定量机制还是定性描述。第三，记录论文是否给出最小模型及其控制参数，便于与你自己的振子阵列、主动材料或模式形成系统做一一对照。第四，若准备复现，优先提取单元自由度、耦合拓扑、反馈律和判定时间晶体的操作性指标。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": [
+      "LLM paper analysis failed for arxiv:2610.24823v1: Extra data: line 1 column 3638 (char 3637)"
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2610.24823v1",
+      "source": "arxiv",
+      "title": "Pair-Aware Optimization: Coordinating Exploration and Refinement for Jailbreaking LLM Agents",
+      "authors": [
+        "Juanyang Xu",
+        "Zheng Wang",
+        "Xingyu Zhao",
+        "Siddartha Khastgir",
+        "Andi Zhang"
+      ],
+      "published": "2026-10-17T19:13:37Z",
+      "updated": "2026-10-17T19:13:37Z",
+      "abstract": "Large Language Model (LLM) agents are vulnerable to adversarial inputs that induce attacker-specified malicious behaviors, commonly referred to as jailbreaking. Existing optimization-based jailbreak attacks primarily employ first-order (FO) methods that leverage gradient information or zeroth-order (ZO) methods that rely on function-value feedback. However, their complementarity and optimization ordering remain underexplored. We systematically investigate four strategies: pure ZO, pure FO, ZO->FO, and FO->ZO, and develop a ZO-FO framework that explores adversarial prefixes through ZO optimization and refines their corresponding suffixes through FO optimization. To coordinate the two processes, we introduce Pair-aware optimization, which retains multiple prefix candidates, conditionally refines their suffixes and selects among the resulting prefix-suffix pairs. We further investigate agent jailbreaking from a more general stochastic-generation perspective, where the same adversarial input can induce diverse reasoning trajectories and actions that a single greedy output cannot capture. Accordingly, we adopt consistent stochastic decoding during both optimization and evaluation. Experiments across malicious-instruction and malicious-environment benchmarks demonstrate that hybrid optimization improves attack effectiveness over single-optimizer methods, while optimization order substantially influences performance.",
+      "url": "http://arxiv.org/abs/2610.24823v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.24823v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 75.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2610.24454v1",
+      "source": "arxiv",
+      "title": "MELD: Recursive Self-Improvement via Hierarchical Coordination for Multi-Agent Scientific Discovery",
+      "authors": [
+        "Sizhe Tang",
+        "Zuyuan Zhang",
+        "Zeyu Fang",
+        "Tian Lan"
+      ],
+      "published": "2026-10-17T04:43:40Z",
+      "updated": "2026-10-17T04:43:40Z",
+      "abstract": "Multi-agent scientific discovery with large language models raises a coupled learning problem: research assignments determine both which experiments are pursued and the experiences from which agents adapt. We introduce MELD, a unified hierarchical test-time training framework that jointly adapts a team-level Coordinator policy and agent-level individual Scientist policies within a single discovery process. The Coordinator generates a joint portfolio of search branches and research directives over a shared derivation tree, while Scientists develop hypotheses and execution plans implemented by a shared frozen Executor. Both levels receive alternating GRPO-style parameter updates under a shared smooth best-of-budget objective, allowing team organization and individual research behavior to co-evolve in a recursive self-improvement loop. Our analysis establishes objective alignment for the hierarchy, characterizes conditions for coordination gains over independent parallel discovery and the first-order benefit of private adaptation, and derives a finite-budget regret bound for adapted models. On 22 MLGym and MLE-bench tasks, MELD is best on 20 of them and achieves the highest aggregate normalized scores on MLGym, using a 4B backbone for coordination and research. Most baselines use proprietary Scientists, and all systems share one frozen Executor.",
+      "url": "http://arxiv.org/abs/2610.24454v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.24454v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "ml",
+        "scientific discovery",
+        "test-time training"
+      ],
+      "score": 74.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2610.24304v1",
+      "source": "arxiv",
+      "title": "CME-SpectrumBench: Can LLMs Analyze Condensed Matter Spectral Data?",
+      "authors": [
+        "Jin Gene Wong",
+        "Anjney Midha",
+        "Joseph Mathew Tennyson",
+        "Wei-Lin Chiang",
+        "Ion Stoica",
+        "Zhi-Xun Shen"
+      ],
+      "published": "2026-10-16T22:58:16Z",
+      "updated": "2026-10-16T22:58:16Z",
+      "abstract": "Large Language Models (LLMs) are presently well assessed by expert-level mathematics and physics benchmarks which focus on theoretical, symbolic reasoning. However, we lack experimental benchmarks that evaluate data analysis in frontier research problems, a capability that future domain-specific foundation models must have. To this end, we present CME-SpectrumBench, an expert-designed benchmark consisting of 190 questions that measures how reliably frontier LLMs analyze research-level spectral scientific data in condensed matter experiments (CME). Using simulated CME spectral data, we prompt models to identify structures from 2D intensity arrays in the face of noise and limited instrumental resolution, a test of dense context reasoning. Models are scored by how accurately their numerical answers approach the ground truth. Under direct query, scores generally pale in comparison to handwritten code due to clear failure modes: models can find simple features but struggle to trace patterns or compute derived quantities, and performance typically degrades with increased data resolution and noise/convolution levels. LLM performance becomes comparable to handwritten code by allowing tool use (access to a Python interpreter) with/without ReAct prompting, in effect mapping questions onto agentic code generation problems. Our findings show that frontier models can serve as research assistants by interfacing with data through code, but still face difficulties processing information directly from large datasets - a key barrier future foundation models must overcome. The code and data are publicly available at https://huggingface.co/datasets/jingene/CMESpectrumBench.",
+      "url": "http://arxiv.org/abs/2610.24304v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.24304v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "cond-mat.other",
+        "cond-mat.str-el",
+        "cond-mat.supr-con"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "foundation model",
+        "foundation models",
+        "agent",
+        "tool use",
+        "ai",
+        "symbolic reasoning"
+      ],
+      "score": 71.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2610.24311v1",
+      "source": "arxiv",
+      "title": "RATION: Towards Quantitative Risk-Based Access Control for AI Agents",
+      "authors": [
+        "Yuntao Du",
+        "Harsh Chaudhari",
+        "Yuetian Chen",
+        "Ron Heichman",
+        "Ashish Jayamohan",
+        "Kumar Pallav",
+        "Mahim Patel",
+        "Kaiyuan Zhang",
+        "Kyle Polley",
+        "Jerry Ma",
+        "Ninghui Li"
+      ],
+      "published": "2026-10-16T23:15:24Z",
+      "updated": "2026-10-16T23:15:24Z",
+      "abstract": "AI agents increasingly interact with external environments to complete complex user tasks. These interactions can lead to unexpected behavior and expose agents to security threats such as indirect prompt injection. Current agent security systems largely protect agents by restricting their actions, which can result in a substantial security-utility trade-off for complex, open-ended tasks. To address this, we propose a quantitative risk-based approach to access control for AI agents that regulates measurable risks accumulated during task execution. As a concrete realization of this approach, we introduce RATION, a security framework that tracks measurable risks associated with agent actions and enforces quantitative constraints throughout execution. RATION first constructs a task-specific policy by combining explicit constraints derived from the user request with implicit risks calibrated from historical executions of similar tasks. During task execution, RATION continuously tracks the accumulated risks and applies different enforcement strategies depending on the type of risk. Extensive experiments on four security benchmarks show that RATION provides strong security while maintaining high task utility across diverse models and environments.",
+      "url": "http://arxiv.org/abs/2610.24311v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.24311v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "agent",
+        "agents",
+        "ai agent",
+        "ai agents",
+        "ai",
+        "environment"
+      ],
+      "score": 70.0,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11293-x",
+      "source": "nature",
+      "title": "Cortex-wide imaging in naturally behaving mice with 1-gram wireless mesoscopes",
+      "authors": [
+        "Yuanlong Zhang",
+        "Angran Li",
+        "Lekang Yuan",
+        "Mingrui Wang",
+        "Weihao Zhao",
+        "Zhenbo Wang",
+        "Boyang Zang",
+        "Yangxuan Zhou",
+        "Tao Yu",
+        "Lin Gao",
+        "Yu Wu",
+        "Rongkang Zhu",
+        "Mengyi Tian",
+        "Kun Li",
+        "Jiamin Wu",
+        "Pu Dai",
+        "Qionghai Dai"
+      ],
+      "published": "2026-10-19",
+      "updated": "2026-10-19",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11293-x",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11293-x",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11293-x"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeh4273",
+      "source": "science",
+      "title": "Deterministic generation and distribution of genuine multipartite entanglement in macroscopic acoustic resonators",
+      "authors": [
+        "Dian Tan",
+        "Guixu Xie",
+        "Libo Zhang",
+        "Yang Xu",
+        "Chilong Liu",
+        "Haolan Yuan",
+        "Zhihua Chen",
+        "Chang-Kang Hu",
+        "J. Q. You",
+        "Song Liu",
+        "Eric Lutz",
+        "Tobias J. Kippenberg",
+        "Dapeng Yu"
+      ],
+      "published": "2026-10-15",
+      "updated": "2026-10-15",
+      "abstract": "Generating complex multimode entanglement is a central goal of quantum information science. However, scalable creation of genuine multipartite entanglement is challenging as it requires excellent control and efficient state verification. We report the generation and transfer of genuine multimode entanglement across two multimode acoustic resonators. We prepare genuine multipartite entangled states involving two, four, and six modes across the resonators with respective fidelities of 0.912 ± 0.003, 0.790 ± 0.003, and 0.570 ± 0.001. We further demonstrate the transfer of two- and four-mode genuine entangled states between the resonators with fidelities of 0.785 ± 0.006 and 0.601 ± 0.006. This hardware-efficient and scalable architecture enables deterministic control and generation of complex multimode mechanical states. Our results push the boundary of quantum control in macroscopic mechanical systems, establishing a pathway toward large-scale mechanical quantum networks.",
+      "url": "https://doi.org/10.1126/science.aeh4273",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeh4273",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6821",
+        "page": "321-325",
+        "reference_count": 80,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeh4273"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.ael7305",
+      "source": "science",
+      "title": "How plants decode immunogenic glycans",
+      "authors": [
+        "Lisha Zhang",
+        "Thorsten Nürnberger"
+      ],
+      "published": "2026-10-15",
+      "updated": "2026-10-15",
+      "abstract": "Distinct recognition systems for specific sugars ensure appropriate immune or maintenance responses",
+      "url": "https://doi.org/10.1126/science.ael7305",
+      "pdf_url": "",
+      "doi": "10.1126/science.ael7305",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6821",
+        "page": "268-269",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.ael7305"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aem0088",
+      "source": "science",
+      "title": "Writing electronic phases into atomic layers",
+      "authors": [
+        "Hyun-Young Choi",
+        "Gwan-Hyoung Lee"
+      ],
+      "published": "2026-10-15",
+      "updated": "2026-10-15",
+      "abstract": "An atomically thin material converts into crystals with different electronic properties",
+      "url": "https://doi.org/10.1126/science.aem0088",
+      "pdf_url": "",
+      "doi": "10.1126/science.aem0088",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6821",
+        "page": "272-273",
+        "reference_count": 7,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aem0088"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11242-8",
+      "source": "nature",
+      "title": "Catalytic transfer of carbon atoms enables spirofusion of C–C σ-bonds",
+      "authors": [
+        "Hayato Fujimoto",
+        "Masayuki Mizutani",
+        "Kazuya Imachi",
+        "Teruki Nishioka",
+        "Reona Ikeda",
+        "Mamoru Tobisu"
+      ],
+      "published": "2026-10-14",
+      "updated": "2026-10-15",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11242-8",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11242-8",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11242-8"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11163-6",
+      "source": "nature",
+      "title": "Wave coarsening drives time crystallization in mechatronic metamaterials",
+      "authors": [
+        "Jonas Veenstra",
+        "Jack Binysh",
+        "Vito Seinen",
+        "Roger Solé Borràs",
+        "Rutger Naber",
+        "Damien Robledo-Poisson",
+        "Andres Hunt",
+        "Wim van Saarloos",
+        "Anton Souslov",
+        "Corentin Coulais"
+      ],
+      "published": "2026-10-14",
+      "updated": "2026-10-15",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11163-6",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11163-6",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 69,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11163-6"
+      }
+    }
+  ]
+}
