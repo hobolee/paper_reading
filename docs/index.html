@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-10-21</title>
+  <title>Paper Reading · 2026-10-22</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,12 +19,12 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-10-21 · 中文论文简报</div>
+        <div class="eyebrow">2026-10-22 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天这组论文里，最值得优先读的是两篇围绕 LLM agent 在动态环境中行为失效的工作：AdaExploreBench 和 Productive State-Space Exploration。它们共同把注意力从“静态题目上能否答对”转向“在多轮交互、隐藏规则、规则漂移、长时程反馈下，agent 是否会主动找证据、发现旧知识失效、避免高置信度重复动作”。从现有摘要看，这一方向已经开始从泛泛讨论“agent 不稳”转向可分解的误差诊断：推理本身未必最差，真正短板可能是证据获取、状态覆盖、失效检测与再探索。对做 agent benchmark、test-time adaptation、RL for agents、tool-use evaluation 的研究者，这两篇应列为第一优先级，因为它们直接定义了下一阶段更真实的评测对象。第三优先级可放在 Procedural Memory for Language Agents。它与前两篇形成互补：前两篇强调外部环境探索与适应，这篇则强调内部过程知识表示，主张把目标、子目标和前置依赖显式化为 Goal-Oriented Graphs。即便目前更像框架性论文，它仍然提供了一个很有价值的解释：长程 agent 失败不只是“记不住”，而是“缺少可编辑、可检查的程序性记忆”。如果你在做规划、工作流 agent、神经符号系统，这篇值得跟进。非 LLM 方向里，Earth Observation 星上 AI 处理链论文是今天最完整的系统工程工作之一。它不是单点模型精度论文，而是从模型适配、量化部署、整景 tiling/mosaicing 到板上任务编排的全链路落地，说明“端侧 AI 真正可用”依赖系统集成而非单个网络。对做遥感 AI、边缘部署、航天载荷软件栈的人，这篇有很强参考价值。其余几篇高影响期刊论文更偏各自领域前沿：超导量子处理器上的 magic state cultivation 明显是容错量子计算资源制备的重要实验进展；电驱动手性发光则是纳米光子学与量子隧穿耦合的器件创新；表皮干细胞动力学中的性别二态性属于细胞命运与组织稳态研究中的机制性发现。两篇 Nature 题名级信息的论文目前摘要不足，适合先做题录跟踪，不宜过度解读。整体上，今天最清晰的主线是：一，AI agent 研究正在从静态能力展示转向动态环境中的探索、适应与内部过程结构；二，工程型 AI 论文越来越强调从模型到部署编排的闭环；三，基础科学论文则继续沿着“高保真资源制备”“结构机制解析”“活体动力学定量”这类高分辨率机制路线推进。若按阅读顺序建议：先读 AdaExploreBench，再读 Productive State-Space Exploration，然后根据兴趣在 Procedural Memory 与 Earth Observation 系统论文之间二选一；其余 Science/Nature 论文按学科相关性补充。</p>
+        <p class="summary">今天的论文可分成两条主线和一条背景线。第一条主线是“面向大模型/智能体的能力评测与训练机制”，且重点从一般准确率转向更细粒度、受约束、可解释的能力刻画。CAPSafe把具身安全拆成“情境化单步危险识别”和“长程安全规划”两层，给出的关键信号是：模型可能已经会识别明显危险，但还不会在多步任务中持续保持安全性。预算感知多轮 agent 的工作则把“会不会做”进一步推进到“在任意测试时预算下能否自适应地做”，说明 agent 评测正在从静态成功率转向资源约束下的策略质量。RANGER则代表另一种训练范式：用 LLM 作为语义奖励器，去弥合结构化图导航中的强化学习奖励设计难题。SliMOO则把模型压缩问题从单指标剪枝改写为多任务 Pareto 优化，强调不同层对不同任务贡献不一致，反映出“能力保真”正在替代“单点分数最大化”成为模型部署研究的核心。第二条主线是“多模态与结构化推理基准正在变得更强约束”。TriGeoBench不满足于图像+文本问答，而是引入 TikZ 这一结构化几何表示，试图区分模型到底是在做几何结构推理，还是在利用视觉表面模式和题目模板。这和 CAPSafe 的设计思路有共通性：都在把一个看似单一的能力拆成更可诊断的子能力，并通过更贴近任务本质的数据表示来减少“刷分但不懂”的空间。第三条是非 AI 方向的高影响论文背景线，集中在环境与生命系统中的“动态调控与真实环境验证”。亚马孙碳排放论文强调人为活动与干旱的放大耦合；深海可降解聚酯论文强调材料设计必须经受真实海洋深度梯度检验；两篇细胞/植物论文则都在说明生物系统中的关键表型往往由动态信号或特异受体机制决定，而不是简单静态强度决定。对科研阅读优先级而言，如果你的主线是 LLM/agent，最值得先读的是 CAPSafe、预算感知多轮 agent、TriGeoBench 和 RANGER：它们分别对应安全、资源约束、多模态结构推理、LLM+RL 检索四个当前很活跃且彼此可连接的方向。若偏系统与部署，可把 SliMOO 提到前列，因为它直接关系到多任务保真压缩。非 AI 论文中，亚马孙碳排放那篇最值得优先关注，因为它提供了长期观测下的人类活动与气候耦合证据，外推意义较强。</p>
         <div class="metrics">
-          <div class="metric"><strong>457</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>207</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>459</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>204</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -39,43 +39,46 @@
             <div class="bar-row">
               <div class="bar-label">arXiv</div>
               <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
-              <div class="bar-count">4</div>
-            </div>
-            
-
-            <div class="bar-row">
-              <div class="bar-label">Science</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
-              <div class="bar-count">3</div>
+              <div class="bar-count">5</div>
             </div>
             
 
             <div class="bar-row">
               <div class="bar-label">Nature</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 60%"></div></div>
               <div class="bar-count">3</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Science</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 40%"></div></div>
+              <div class="bar-count">2</div>
             </div>
             
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">ai <strong>4</strong></span>
-<span class="chip">large language model <strong>3</strong></span>
-<span class="chip">language model <strong>3</strong></span>
+          <div class="chips"><span class="chip">ai <strong>7</strong></span>
+<span class="chip">environment <strong>6</strong></span>
+<span class="chip">large language model <strong>5</strong></span>
+<span class="chip">language model <strong>5</strong></span>
+<span class="chip">large language models <strong>4</strong></span>
+<span class="chip">llm <strong>4</strong></span>
+<span class="chip">language models <strong>4</strong></span>
+<span class="chip">rag <strong>4</strong></span>
+<span class="chip">environmental <strong>4</strong></span>
 <span class="chip">agent <strong>3</strong></span>
 <span class="chip">agents <strong>3</strong></span>
-<span class="chip">llm <strong>2</strong></span>
-<span class="chip">rag <strong>2</strong></span>
-<span class="chip">environment <strong>2</strong></span>
-<span class="chip">environmental <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">neurosymbolic <strong>1</strong></span>
-<span class="chip">artificial intelligence <strong>1</strong></span>
-<span class="chip">neural network <strong>1</strong></span>
-<span class="chip">earth <strong>1</strong></span>
-<span class="chip">satellite <strong>1</strong></span>
-<span class="chip">earth observation <strong>1</strong></span></div>
+<span class="chip">transformer <strong>2</strong></span>
+<span class="chip">ocean <strong>2</strong></span>
+<span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">vision-language <strong>1</strong></span>
+<span class="chip">mllm <strong>1</strong></span>
+<span class="chip">ml <strong>1</strong></span>
+<span class="chip">mathematical reasoning <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">carbon <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -100,8 +103,8 @@
 
             <div class="bar-row">
               <div class="bar-label">nature</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 20%"></div></div>
-              <div class="bar-count">60</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 21%"></div></div>
+              <div class="bar-count">62</div>
             </div>
             
       </div>
@@ -110,11 +113,12 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">从静态基准转向动态环境评测：隐藏规则推断、隐式规则漂移、测试时再适应正在成为 LLM agent 更真实的能力边界。</span>
-<span class="chip">把 agent 失败模式拆成可诊断模块：证据获取不足、重复状态循环、前置条件误判、知识失效检测迟钝，而不只是笼统的“推理差”。</span>
-<span class="chip">显式过程知识表示重新受到重视：程序性记忆、目标图、依赖结构被视为长程任务稳定执行的关键中间层。</span>
-<span class="chip">AI 系统论文从模型性能转向全链路落地：量化、板级部署、整景工作流、任务编排共同决定端侧 AI 是否可用。</span>
-<span class="chip">高影响基础科学论文继续强调机制级与资源级突破：量子容错资源态制备、纳米尺度手性发光、活体组织干细胞动力学等都体现出‘可验证机制+关键指标’的研究范式。</span></div>
+        <div class="chips"><span class="chip">从“会不会”到“在约束下会不会”：安全约束、预算约束、图搜索奖励约束正在成为 agent 研究的共同评测轴</span>
+<span class="chip">把单一能力拆成可诊断子能力：CAPSafe 区分危险识别与安全规划，TriGeoBench 区分视觉识别与结构化几何推理，SliMOO 区分任务共享层与任务特异层</span>
+<span class="chip">结构化表示重新变重要：TikZ、知识图谱路径、任务-层重要性图都在说明仅靠端到端表面输入输出已不足以解释模型能力</span>
+<span class="chip">LLM 正从直接求解器转向训练中的评估器/教师：RANGER 用 LLM 提供语义奖励，预算感知 agent 工作则比较不同奖励设计如何塑造行为</span>
+<span class="chip">高影响自然科学论文的共同趋势是真实环境与动态机制验证：从深海降解到长期大气 CO2 反演，再到振荡频率编码与受体复合体机制</span>
+<span class="chip">阅读上应警惕“高分不等于真能力”：今天多篇 AI 论文都在针对这一点设计更强 benchmark 或更细训练目标</span></div>
       </div>
     </section>
 
@@ -123,50 +127,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>复现并扩展 AdaExploreBench 式评测，增加“显式失效提示”和“无提示漂移”两种条件，对比 agent 的规则重建能力</strong>
-              <p>现有摘要已经暗示当前瓶颈不在纯证据推理，而在主动探索和知识失效发现。加入失效提示对照，可以更清楚地区分‘不会推理’与‘不会察觉该重学’。</p>
-              <p><span>第一步：</span>先整理论文摘要中明确提到的任务要素，搭一个最小隐藏规则环境原型，至少包含初始规则学习阶段和一次未通知规则漂移；然后对同一模型分别测试有无失效提示两种设置。</p>
-              <p><span>风险：</span>原论文具体环境设计和指标可能比摘要复杂，最小复现容易过度简化，导致结论只能作为启发式观察。</p>
+              <strong>做一个跨基准的小型综述/复现实验，比较“识别型安全”与“规划型安全”是否系统脱钩</strong>
+              <p>CAPSafe 的核心发现很可能不只存在于具身家庭任务，也可能出现在网页 agent、代码 agent 或工具使用场景中。若这种脱钩具有普遍性，它会直接影响 agent 安全部署与评测设计。</p>
+              <p><span>第一步：</span>先精读 CAPSafe 摘要与公开页面，整理其两类任务定义和指标；再选一个现成 agent benchmark，手工构造 20-30 个同时包含“单步危险判断”和“多步安全执行”的对照样例，做小规模人工评测框架。</p>
+              <p><span>风险：</span>CAPSafe 细节尚未核对，若公开资源不足，短期内只能做概念性对照而难以严格复现。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>在多轮 agent RL 环境中加入基于观测去重的内在奖励，检查它究竟提升了任务完成率，还是只提升了状态覆盖率</strong>
-              <p>第二篇论文的核心主张是‘生产性探索’而非盲目探索，但很多内在奖励方法会出现覆盖率上升、任务收益不升反降的问题，因此需要把探索收益与任务收益拆开验证。</p>
-              <p><span>第一步：</span>选一个现成多轮文本环境或工具使用环境，记录每步观测文本；实现最简单的字符串级或嵌入级去重奖励，并设置三组对照：仅外在奖励、外在+去重奖励、随机探索增强。</p>
-              <p><span>风险：</span>观测去重的定义非常敏感，字符串去重可能过粗，嵌入去重又依赖阈值；若环境本身奖励稀疏，结果可能高度不稳定。</p>
+              <strong>围绕 TriGeoBench 设计一个“图像转结构表示是否提升几何问答”的最小对照实验</strong>
+              <p>这能直接检验多模态模型在几何题上到底缺的是视觉识别、结构恢复，还是后续推理；也能为后续把 TikZ 或其他结构中间层接入 MLLM 提供证据。</p>
+              <p><span>第一步：</span>收集少量公开几何题图，先不用完整 TriGeoBench；分别测试同一模型在两种输入下的表现：仅图像+题干，和人工补充的结构化图形描述+题干，比较答案变化与错误类型。</p>
+              <p><span>风险：</span>没有标准化 TikZ 数据时，人工结构描述可能引入提示泄漏，导致结论只能作为探索性证据。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>把 Goal-Oriented Graph 作为外部可编辑记忆层，测试其是否能减少长程任务中的前置条件错误和重复规划</strong>
-              <p>程序性记忆论文提出了一个很强的解释框架，但真正有价值的是验证这种显式结构是否能改善可观测失败模式，而不只是让轨迹更可解释。</p>
-              <p><span>第一步：</span>选一个需要多步依赖的任务集，先人工为少量任务标注目标—子目标—前置条件图，再让同一 LLM 在‘纯文本提示’与‘图辅助执行’两种条件下运行，比较前置条件违反次数和重复步骤数。</p>
-              <p><span>风险：</span>人工构图成本高，而且图质量会强烈影响结果；如果任务本身较短，图结构优势可能不明显。</p>
+              <strong>复现并扩展“预算感知 agent”的奖励设计比较，先从单一资源预算做起</strong>
+              <p>预算约束是实际部署中的硬需求，但很多工作只看成功率。若能在一个小环境中复现“超预算惩罚优于只奖励成功”的趋势，就能为后续更复杂资源分配研究打基础。</p>
+              <p><span>第一步：</span>选择一个易运行环境，先只保留 turn budget 或 API-call budget 一种资源；实现两到三种最简单奖励：仅成功奖励、成功+线性成本、成功+超预算惩罚，比较预算内成功率。</p>
+              <p><span>风险：</span>原论文使用特定 backbone 和环境，简化复现后可能看不到同样趋势；此外训练成本可能高于预期。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>做一个小型综述或对照表，系统比较 LLM agent 的三类‘记忆/适应’机制：情景记忆、语义记忆、程序性记忆</strong>
-              <p>今天三篇 agent 相关论文实际上分别触及环境适应、探索策略和程序性记忆，但社区常把它们混在一起。整理清楚概念边界，有助于后续设计更有针对性的 benchmark。</p>
-              <p><span>第一步：</span>以这三篇为起点，补充近一年关于 agent memory、test-time adaptation、planning graph 的代表作，建立一个表格，列出记忆对象、更新触发、可编辑性、是否支持规则漂移应对。</p>
-              <p><span>风险：</span>如果只基于摘要和题名，概念归纳可能过早；需要后续补读原文避免把不同方法硬归为同一类。</p>
+              <strong>把 RANGER 的“LLM 语义奖励”思想迁移到非知识图谱检索任务，做奖励可替代性检查</strong>
+              <p>如果 LLM 作为奖励器的价值不依赖知识图谱特性，而是普遍适用于多步检索/导航，那么它会成为一类通用训练接口；反之则说明其收益高度任务依赖。</p>
+              <p><span>第一步：</span>先不做完整 RL 训练，先构造一批查询-路径样本，让 LLM 对路径相关性打分，再与人工标注或启发式相关性指标做一致性比较，评估其是否足够稳定可用。</p>
+              <p><span>风险：</span>LLM 奖励本身可能噪声很大、成本高，且一致性不足；没有训练闭环时只能验证奖励质量，不能证明最终策略收益。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>针对星上遥感 AI，复现一个最小 tiler-inference-mosaicer 流程，并测量量化前后整景级误差传播</strong>
-              <p>这篇 Earth Observation 论文的价值在于系统链路而非单模型。很多部署工作只报 tile 级精度，却忽略拼接、边界效应和整景吞吐，这正是可复现的切入点。</p>
-              <p><span>第一步：</span>选一个公开遥感分割数据集，训练或调用现成模型后分别以浮点和 int8 形式运行 tile 推理，再比较整景重建后的边界伪影、吞吐和精度变化。</p>
-              <p><span>风险：</span>缺少与论文相同硬件和编排环境时，很难复现其系统级结论；公开数据与真实星上数据分布也可能差异较大。</p>
+              <strong>基于 SliMOO 的思路做一个“任务-层重要性图”轻量复现，检查层重要性是否跨任务显著异质</strong>
+              <p>即使不完整复现进化搜索，只要先验证不同任务对层的依赖差异，就能判断多目标剪枝是否真的必要，也能为后续自定义压缩策略提供依据。</p>
+              <p><span>第一步：</span>选一个可运行的小型 Transformer 或开源 LLM，对少量任务做单层屏蔽实验，记录每层移除后的性能变化，画出任务×层热图。</p>
+              <p><span>风险：</span>小模型上的层功能分布未必能代表大模型；单层屏蔽的实现方式不同也会影响结论。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕‘动态环境中的 agent 失效检测’设计一个统一指标，比较性能下降触发、显式不确定性触发和观测新颖性触发三种再探索机制</strong>
-              <p>两篇 agent 论文共同指向一个核心空白：agent 何时意识到自己该重新探索。这个问题比单纯提高最终准确率更基础，也更容易形成通用评测。</p>
-              <p><span>第一步：</span>在一个可控规则漂移环境中实现三种简单触发器：最近窗口成功率下降、模型自报不确定性升高、观测与历史记忆差异升高；比较它们触发再探索的时机和恢复速度。</p>
-              <p><span>风险：</span>不同模型未必能稳定输出可比较的不确定性信号；而且触发器效果会强依赖环境漂移幅度与反馈延迟。</p>
+              <strong>整理一篇短综述笔记，主题是“从静态分数到机制性评测：2026 年 agent/MLLM benchmark 的设计转向”</strong>
+              <p>今天几篇 AI 论文共同显示 benchmark 正从粗粒度准确率转向机制诊断、结构化表示和约束条件。尽早整理这条线索，有助于后续选题避免重复做“又一个平均分 benchmark”。</p>
+              <p><span>第一步：</span>以 CAPSafe、TriGeoBench、预算感知 agent、SliMOO 为核心，做一页表格，列出它们各自拆解了什么能力、引入了什么约束、避免了什么伪能力。</p>
+              <p><span>风险：</span>如果只基于摘要和二手笔记，综述容易停留在框架层，需后续补读正文以避免误判。</p>
             </div>
             </div>
       </div>
@@ -179,19 +183,21 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-19T07:41:50Z</span>
-        <span>Score 78.5</span>
+        <span>2026-10-20T15:33:20Z</span>
+        <span>Score 76.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2610.25950v1">AdaExploreBench: Benchmarking LLM Agents for Proactive Exploration and Test-time Adaptation in Evolving Environments</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+AdaExploreBench%3A+Benchmarking+LLM+Agents+for+Proactive+Exploration+and+Test-time&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25950v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+AdaExploreBench%3A+Benchmarking+LLM+Agents+for+Proactive+Exploration+and+Test-time+Adaptation+in+Evolving+Environments%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+AdaExploreBench%3A+Benchmarking+LLM+Agents+for+Proactive+Exploration+and+Test-time&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25950v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+AdaExploreBench%3A+Benchmarking+LLM+Agents+for+Proactive+Exploration+and+Test-time+Adaptation+in+Evolving+Environments%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+AdaExploreBench%3A+Benchmarking+LLM+Agents+for+Proactive+Exploration+and+Test-time&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25950v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+AdaExploreBench%3A+Benchmarking+LLM+Agents+for+Proactive+Exploration+and+Test-time+Adaptation+in+Evolving+Environments%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2610.28381v1">CAPSafe: A Benchmark for Contextual Action and Plan Safety Reasoning in Embodied Agents</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+CAPSafe%3A+A+Benchmark+for+Contextual+Action+and+Plan+Safety+Reasoning+in+Embodied&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28381v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+CAPSafe%3A+A+Benchmark+for+Contextual+Action+and+Plan+Safety+Reasoning+in+Embodied+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+CAPSafe%3A+A+Benchmark+for+Contextual+Action+and+Plan+Safety+Reasoning+in+Embodied&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28381v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+CAPSafe%3A+A+Benchmark+for+Contextual+Action+and+Plan+Safety+Reasoning+in+Embodied+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+CAPSafe%3A+A+Benchmark+for+Contextual+Action+and+Plan+Safety+Reasoning+in+Embodied&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28381v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+CAPSafe%3A+A+Benchmark+for+Contextual+Action+and+Plan+Safety+Reasoning+in+Embodied+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Rui Wang、Zishen Lai、Jiayu Liu、Cheng Qian 等 18 人 · <a href="https://arxiv.org/pdf/2610.25950v1">PDF</a></div>
+      <div class="authors">Youmna Farag、Svetlana Stoyanchev、Simon Keizer、Mohan Li 等 5 人 · <a href="https://arxiv.org/pdf/2610.28381v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
 <span class="chip">rag <strong>1</strong></span>
@@ -199,8 +205,8 @@
 <span class="chip">environmental <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出了 AdaExploreBench，一个面向 LLM agent 的基准，用于评测其在“不断演化的环境”中是否能主动探索隐藏规则，并在测试时遇到未显式通知的规则漂移后重新适应。根据摘要，作者将环境动态具体化为隐藏规则推断任务，并在八个主流大模型上测试，发现当前模型的主要瓶颈不在基于证据推理本身，而在主动获取证据与发现知识失效。</p></div>
-        <div class="note"><strong>贡献</strong><p>从题名和摘要看，核心贡献主要有三点：一是提出专门针对 proactive exploration 与 test-time adaptation 的新基准 AdaExploreBench，而不是只测静态任务求解；二是把环境演化形式化为“隐藏规则 + 隐式规则漂移”，要求 agent 通过性能下降自行察觉旧知识失效并重新探索；三是通过八个领先 LLM 的实验给出定量证据，指出即使强模型如 GPT-6 Sol 的 calibrated accuracy 也只有 61.9%，而“提供足够证据”或“移除规则漂移”都能带来接近 10% 的平均提升，说明当前短板集中在探索与适应阶段。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个面向具身智能体安全推理的基准 CAPSafe，专门评测两类任务：给定环境上下文判断单步动作是否安全，以及为复杂且带危险的家庭任务生成安全的长程计划。摘要显示，作者用九个开源和闭源大模型评测后发现：很多模型已经能较好识别单步不安全动作，但在长时序安全规划上仍存在明显能力缺口。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是构建了一个把“情境化危险识别”和“长程安全规划”分开评测的具身安全基准，并进一步把危险设计为依赖对象属性、可多重共存、且带相对严重度标注，从而支持更细粒度地分析模型在家庭场景中的安全推理能力。另一个重要贡献是给出跨九个模型的系统性对比证据，指出“识别危险”与“生成安全计划”并不等价。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -212,38 +218,38 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 9</div>
+              <div class="signal-kicker">关键词命中 11</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>78.5</strong>
+              <strong>76.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：现有 LLM agent 基准大多评测静态任务求解，却很少检验 agent 在陌生且会变化的环境中，能否主动探索环境机制、从交互中推断隐藏规则，并在规则未被显式告知地发生变化后，通过性能退化察觉知识失效并进行测试时再适应。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，作者的方法是构建一个名为 AdaExploreBench 的评测基准，将环境动态抽象为隐藏规则。agent 需要通过主动获取证据来推断规则；在后续阶段引入 implicit rule drift，使潜在规则悄然变化，要求 agent 依据失败或表现下降重新探索。实验上，作者在八个主流 LLM 上运行该基准，并设置至少两个关键对照条件：提供充分证据、移除规则漂移，以分离“推理能力不足”与“探索/适应能力不足”两类误差来源。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是评测目标非常聚焦且贴近真实部署场景：不是只看 agent 会不会答题，而是看它会不会主动发现环境规律、会不会意识到环境已经变了。摘要中的对照结果也很有解释力：当证据足够或环境不漂移时性能明显提升，说明 benchmark 能较清楚地区分“证据获取”与“基于证据推理”两个阶段的能力瓶颈。这种设计对后续方法研究有直接指导意义。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：1）先查看论文中的 benchmark 任务示例，确认“隐藏规则”和“规则漂移”具体如何实例化；2）查实验表，记录八个模型名单、是否可调用工具、交互轮数和上下文限制；3）定位 calibrated accuracy 的定义与计算方式；4）重点看“提供充分证据”和“移除漂移”两个消融表，判断性能提升是否稳定且是否支持作者关于瓶颈归因的结论；5）如果你做 agent 方法，可把自己的系统映射到这两个失败点：主动探索不足还是漂移检测不足。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何系统评估具身智能体在家庭环境中基于上下文进行安全推理的能力，尤其区分“单个动作在当前环境下是否安全”和“面对复杂危险任务时能否生成长程且持续安全的计划”这两个不同层面的能力；以及当前大模型在这两类能力上是否存在显著落差。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，作者构建了名为 CAPSafe 的双层基准。动作级部分应以环境上下文、对象属性和候选动作作为输入，输出安全/不安全判断；计划级部分应以复杂家庭任务和环境危险条件为输入，要求模型生成安全的多步计划。数据标注上，危险被设计为情境依赖、可多重共存，并带相对严重度标签。实验上，作者评测了九个开源与闭源大模型，并比较它们在危险识别与安全长程规划上的表现差异，可能还做了按危险类型、严重度或多危险共现条件的细分分析。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，任务拆分清晰，把安全推理分成动作级识别和计划级生成，便于诊断能力瓶颈。第二，危险建模不是简单黑白标签，而是依赖对象属性、允许多危险共现并加入严重度，这使评测更贴近真实家庭场景，也更适合细粒度误差分析。第三，摘要给出的结果具有明确启发性：即使模型在单步不安全动作识别上超过90%，长程安全规划仍明显更难，说明现有 agent 能力评估若只看局部判断会高估实际安全性。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，打开 arXiv 正文核对 CAPSafe 两个子数据集的规模、样例、危险类别和标注流程；第二，查实验表确认九个模型名单、提示模板、解码设置以及 safe success rate 的精确定义；第三，重点看是否有按严重度、多危险共现、任务长度分层的结果图表；第四，记录模型在计划级失败的主要模式，是漏掉危险、步骤顺序错误，还是局部安全但全局不安全；第五，如果你做 agent safety，可尝试把自己的方法先映射到这两个子任务上，判断更适合提升动作级识别还是计划级约束维护。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：现有 LLM agent 基准大多评测静态任务求解，却很少检验 agent 在陌生且会变化的环境中，能否主动探索环境机制、从交互中推断隐藏规则，并在规则未被显式告知地发生变化后，通过性能退化察觉知识失效并进行测试时再适应。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，作者的方法是构建一个名为 AdaExploreBench 的评测基准，将环境动态抽象为隐藏规则。agent 需要通过主动获取证据来推断规则；在后续阶段引入 implicit rule drift，使潜在规则悄然变化，要求 agent 依据失败或表现下降重新探索。实验上，作者在八个主流 LLM 上运行该基准，并设置至少两个关键对照条件：提供充分证据、移除规则漂移，以分离“推理能力不足”与“探索/适应能力不足”两类误差来源。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是评测目标非常聚焦且贴近真实部署场景：不是只看 agent 会不会答题，而是看它会不会主动发现环境规律、会不会意识到环境已经变了。摘要中的对照结果也很有解释力：当证据足够或环境不漂移时性能明显提升，说明 benchmark 能较清楚地区分“证据获取”与“基于证据推理”两个阶段的能力瓶颈。这种设计对后续方法研究有直接指导意义。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>目前仅凭摘要，局限主要在信息不完整。第一，不知道任务环境是否足够多样，若隐藏规则过于人工合成，外部效度可能有限。第二，不清楚 agent 的行动空间和交互预算，若探索成本设置不合理，结果可能更多反映 prompt 工程而非适应能力。第三，规则漂移的形式、频率和难度未披露，可能显著影响 benchmark 结论。第四，calibrated accuracy 的定义不明，且摘要未提供更细粒度错误分析，因此暂时不能判断模型究竟卡在漂移检测、证据选择、记忆更新还是策略切换。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：1）先查看论文中的 benchmark 任务示例，确认“隐藏规则”和“规则漂移”具体如何实例化；2）查实验表，记录八个模型名单、是否可调用工具、交互轮数和上下文限制；3）定位 calibrated accuracy 的定义与计算方式；4）重点看“提供充分证据”和“移除漂移”两个消融表，判断性能提升是否稳定且是否支持作者关于瓶颈归因的结论；5）如果你做 agent 方法，可把自己的系统映射到这两个失败点：主动探索不足还是漂移检测不足。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常具体：不是一般的语言理解或单轮推理，而是部署在陌生、会变化的环境中的 LLM agents。摘要强调的任务结构是：环境内部存在隐藏规则，agent 不能直接得到规则说明，必须通过主动收集证据来理解环境如何运作；随后环境会发生 implicit rule drift，即潜在规则在没有公告的情况下改变，agent 需要从自身表现变差这一间接信号中判断原有知识已经过时，再次探索并更新策略。这说明该 benchmark 关注的是“何时探索、探索什么、何时怀疑已有知识失效、如何在测试时重建环境模型”这类在线适应能力，而不只是给定上下文后的静态推理能力。
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何系统评估具身智能体在家庭环境中基于上下文进行安全推理的能力，尤其区分“单个动作在当前环境下是否安全”和“面对复杂危险任务时能否生成长程且持续安全的计划”这两个不同层面的能力；以及当前大模型在这两类能力上是否存在显著落差。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，作者构建了名为 CAPSafe 的双层基准。动作级部分应以环境上下文、对象属性和候选动作作为输入，输出安全/不安全判断；计划级部分应以复杂家庭任务和环境危险条件为输入，要求模型生成安全的多步计划。数据标注上，危险被设计为情境依赖、可多重共存，并带相对严重度标签。实验上，作者评测了九个开源与闭源大模型，并比较它们在危险识别与安全长程规划上的表现差异，可能还做了按危险类型、严重度或多危险共现条件的细分分析。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，任务拆分清晰，把安全推理分成动作级识别和计划级生成，便于诊断能力瓶颈。第二，危险建模不是简单黑白标签，而是依赖对象属性、允许多危险共现并加入严重度，这使评测更贴近真实家庭场景，也更适合细粒度误差分析。第三，摘要给出的结果具有明确启发性：即使模型在单步不安全动作识别上超过90%，长程安全规划仍明显更难，说明现有 agent 能力评估若只看局部判断会高估实际安全性。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅根据摘要，需要警惕几个边界。第一，基准是否足够真实仍未知：家庭危险场景可能主要是文本化、离线化描述，未必反映真实具身执行中的感知噪声和动作不确定性。第二，严重度标注是“相对”而非绝对，标注标准和一致性若不透明，可能影响分析结论。第三，计划级指标可能高度依赖评测规则与判分器设计，如果自动评测不稳健，模型间差异可能被放大或缩小。第四，摘要未说明是否控制了模型提示工程、采样次数和工具使用，这会影响公平比较。第五，最佳模型名称和结果来自特定时间点，可能更多反映模型规模与训练数据优势，而不完全是安全推理机制本身。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，打开 arXiv 正文核对 CAPSafe 两个子数据集的规模、样例、危险类别和标注流程；第二，查实验表确认九个模型名单、提示模板、解码设置以及 safe success rate 的精确定义；第三，重点看是否有按严重度、多危险共现、任务长度分层的结果图表；第四，记录模型在计划级失败的主要模式，是漏掉危险、步骤顺序错误，还是局部安全但全局不安全；第五，如果你做 agent safety，可尝试把自己的方法先映射到这两个子任务上，判断更适合提升动作级识别还是计划级约束维护。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文聚焦的是由大语言模型驱动的具身智能体在家庭环境中的安全推理问题，而不是一般文本安全或机器人控制层面的物理执行安全。CAPSafe包含两个层级的数据：其一是动作级数据集，任务应是给定环境上下文、对象属性和一个候选动作，判断该动作是否安全；其二是计划级数据集，任务应是面对复杂、带危险的家庭任务时，生成一条长时程且安全的行动计划。摘要特别强调危险是“情境性的”，即不是靠固定黑名单动作判断，而是需要从对象属性和环境状态中推断，例如某个容器是否易燃、某种清洁剂是否与另一物品组合后危险、某个热源附近是否存在可燃物等。这说明该基准可能比静态规则匹配更接近真实家庭场景中的安全决策。
 
-从可能方法看，AdaExploreBench 很可能构造了一组可控的环境或任务实例，每个实例由某种隐藏规则支配，agent 通过交互、试探、查询或行动反馈来积累证据。由于摘要使用了“instantiating environmental dynamics as hidden rules”这一表述，说明环境变化不是开放世界的任意变化，而是被设计成可评测、可比较的规则系统。评测指标中出现 calibrated accuracy，意味着作者可能不仅看最终答对率，还考虑模型在不同情形下输出与真实规则/决策正确性的校准表现，或者对多阶段任务中的成功率做了校准统计。摘要还给出两个关键对照：一是如果直接提供足够证据，平均性能会显著提升；二是如果去掉规则漂移，平均性能也会提升近 10%。这两条证据共同支持作者的核心论点：当前 LLM agent 往往“拿到足够信息后能推理”，但“不会主动去找信息”以及“不能及时发现环境已经变了”。
+方法线索上，CAPSafe的设计至少包含三类关键标注：第一，环境中对象及其属性；第二，可能同时存在的多个危险源；第三，每个危险的相对严重度。这样的标注结构使它不仅能评估“是否识别到危险”，还可能分析模型是否优先规避高严重度风险、是否在多风险冲突下做出合理取舍。计划级任务则更接近具身代理常见的长程任务规划评测，但这里评价重点不是任务完成率本身，而是“safe long-horizon plans”，即计划在多步执行过程中是否持续满足安全约束。摘要给出的结果表明，最佳模型在不安全动作识别上可超过90%，但安全长程规划的最佳安全成功率为78.19%，且除 Gemini-3-pro 外其他模型低于65%。这构成了论文最核心的经验发现：单步安全分类能力不能直接迁移为多步安全规划能力。
 
-与科研方向的关系上，这篇工作与 LLM agent、交互式推理、测试时适应、在线探索、非平稳环境、工具使用评测都高度相关。若你的方向涉及 agent benchmark、RAG/工具调用中的动态知识更新、长期交互决策，AdaExploreBench 提供了一个很有价值的评测视角：把失败归因从“模型不会推理”细化为“模型不会主动探索”或“不会检测知识陈旧”。这对设计新方法很重要，因为改进路径可能不是继续增强静态 reasoning，而是加入不确定性感知、探索策略、漂移检测、记忆更新机制或元控制器。
+如果你的研究方向涉及 LLM agent、具身规划、家庭机器人、风险感知或安全评测，这篇论文的价值主要在于提供了一个更细粒度的评测框架。它把安全问题拆成“局部动作判断”和“全局计划生成”两个层面，有助于定位模型到底是缺少危险知识、上下文绑定能力，还是缺少跨步约束维护能力。对于做 agent benchmark 的研究者，CAPSafe也可能是一个补充现有任务成功率指标的重要资源，因为它强调任务完成不等于安全完成。对于做方法的人，这个基准可能适合测试：显式安全规则注入、基于对象属性的中间推理、风险感知搜索、分层规划、critic/reflection 机制、以及把严重度作为代价函数的规划方法。
 
-但基于当前仅有的题录和摘要，仍有多项关键信息需要核对。首先，不清楚 benchmark 的具体环境类型：是文本世界、表格规则游戏、API 交互环境，还是多任务合成环境。其次，不清楚“隐藏规则”的复杂度、组合性、可解释性和漂移频率如何设置，也不清楚是否区分一次性漂移与多次漂移。第三，八个 leading LLM 的具体名单、是否包含闭源/开源模型、是否允许工具调用、上下文长度和交互轮数限制，都直接影响结论解释。第四，calibrated accuracy 的精确定义需要看正文，否则难以与其他 benchmark 横向比较。第五，摘要只给出最强模型 GPT-6 Sol 的 61.9%，以及两个近 10% 的提升现象，但没有给出方差、任务分解、错误类型和统计显著性。阅读正文时应重点确认这些实验细节，避免过度外推。</p></div>
+但基于当前仅有的摘要，仍有若干关键信息必须核对。首先，动作级和计划级数据集的规模、构造来源、标注流程、标注一致性与质量控制尚不清楚。其次，计划级“safe success rate”的定义需要确认：是任务完成且全程无危险步骤，还是按严重度加权，或允许轻微风险但禁止高风险？第三，九个模型的具体名单、提示方式、是否允许工具调用、是否使用同一解码设置、是否有多次采样重试，都会显著影响结论。第四，家庭危险任务的分布是否覆盖火灾、化学、割伤、触电、烫伤等不同类别，及其是否存在文化或地区依赖的安全常识偏差，也需要查看正文。最后，摘要没有说明是否有人类或规则系统作为上界/参考，也未说明模型失败主要来自漏检危险、错误排序严重度，还是长程计划中后续步骤引入新风险。以上都是正式阅读时应重点核对的地方。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Large Language Model (LLM) agents are increasingly deployed in unfamiliar and evolving environments, requiring them to proactively explore, understand, and adapt to environmental dynamics. However, existing benchmarks rarely test whether agents can proactively discover how an environment works and adapt as it evolves. To address this gap, we introduce AdaExploreBench, a benchmark for proactive exploration and test-time adaptation in evolving environments. By instantiating environmental dynamics as hidden rules, AdaExploreBench requires agents to actively acquire evidence and infer the rules. Under implicit rule drift, the latent rule changes without announcement, requiring agents to detect from degraded performance that prior knowledge is stale and re-explore. Experiments on eight leading LLMs show that proactive and adaptive exploration remain challenging: GPT-6 Sol achieves only 61.9% calibrated accuracy, while providing sufficient evidence or removing rule drift improves average performance significantly by close to 10%. These results reveal a critical bottleneck in current LLM agents: they can often reason effectively from informative evidence once it is available, but struggle to actively acquire the right evidence and recognize when previously acquired evidence is no longer valid.</p>
+          <p>Reasoning about safety is essential for embodied agents powered by large language models (LLMs). We introduce the Contextual Action and Plan Safety benchmark (CAPSafe), designed to evaluate safety reasoning at two levels: (1) an action-level dataset that tests whether a single action is safe given its environmental context, and (2) a plan-level dataset that evaluates whether agents can generate safe long-horizon plans for complex hazardous household tasks. CAPSafe models safety conditions where hazards are situational (inferred from object properties), multiple hazards can co-occur within the same environment, and each is annotated with a relative severity level for fine-grained analysis. Evaluating nine closed and open-source LLMs reveals a substantial gap between hazard recognition and safe long-horizon planning. Several models achieve high accuracy in recognizing unsafe actions (exceeding 90% in the best cases), yet safe long-horizon planning remains substantially harder. Gemini-3-pro achieves the highest safe success rate (78.19%), while other models remain below 65%. These results highlight that robust safety reasoning over long action sequences remains an open challenge.</p>
         </details>
         
         </div>
@@ -255,18 +261,251 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-19T07:49:35Z</span>
-        <span>Score 71.0</span>
+        <span>2026-10-20T04:52:30Z</span>
+        <span>Score 73.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2610.25957v1">Productive State-Space Exploration for Multi-turn RL in LLM Agents</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Productive+State-Space+Exploration+for+Multi-turn+RL+in+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25957v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Productive+State-Space+Exploration+for+Multi-turn+RL+in+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Productive+State-Space+Exploration+for+Multi-turn+RL+in+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25957v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Productive+State-Space+Exploration+for+Multi-turn+RL+in+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Productive+State-Space+Exploration+for+Multi-turn+RL+in+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25957v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Productive+State-Space+Exploration+for+Multi-turn+RL+in+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>2. <a href="http://arxiv.org/abs/2610.27626v1">TriGeoBench: A Multimodal Mathematical Geometry Benchmark with Figures and TikZ</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+TriGeoBench%3A+A+Multimodal+Mathematical+Geometry+Benchmark+with+Figures+and+TikZ&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.27626v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+TriGeoBench%3A+A+Multimodal+Mathematical+Geometry+Benchmark+with+Figures+and+TikZ%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+vision-language%2C+mllm%2C+ai%2C+ml%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+TriGeoBench%3A+A+Multimodal+Mathematical+Geometry+Benchmark+with+Figures+and+TikZ&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.27626v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+TriGeoBench%3A+A+Multimodal+Mathematical+Geometry+Benchmark+with+Figures+and+TikZ%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+vision-language%2C+mllm%2C+ai%2C+ml%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+TriGeoBench%3A+A+Multimodal+Mathematical+Geometry+Benchmark+with+Figures+and+TikZ&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.27626v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+TriGeoBench%3A+A+Multimodal+Mathematical+Geometry+Benchmark+with+Figures+and+TikZ%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+vision-language%2C+mllm%2C+ai%2C+ml%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Mohammed Haroon Dupty、Yong Liang Goh、Song Guo、Wee Sun Lee · <a href="https://arxiv.org/pdf/2610.25957v1">PDF</a></div>
+      <div class="authors">Jing Wang、Yitong Yang、Hao Dou、Yaomin Wu 等 9 人 · <a href="https://arxiv.org/pdf/2610.27626v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">vision-language <strong>1</strong></span>
+<span class="chip">mllm <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">ml <strong>1</strong></span>
+<span class="chip">mathematical reasoning <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个面向多模态数学几何推理的基准 TriGeoBench，核心对象是由“题目-答案、几何图像、TikZ代码”组成的三元组数据，用于评测多模态大模型在几何结构理解、图文对齐和几何推理上的能力。基准据称来源于中国中学数学考试，覆盖平面几何、立体几何、解析几何、函数与向量几何等任务，并通过 image-to-TikZ 与多模态推理探针分析模型是否真正利用几何结构而非表面视觉模式。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献很可能有三点：第一，构建了一个规模较大的几何中心多模态基准，包含 7,000 个问答对和 12,235 个带 TikZ 的几何图形，数据表示同时保留自然语言、栅格图像与可程序化几何结构；第二，相比仅依赖光栅图的已有数学基准，TriGeoBench 通过引入 TikZ 显式保存拓扑、符号标注和关系结构，为区分“结构化几何推理”与“视觉模式匹配”提供了更强测试条件；第三，作者对开源和闭源 MLLM 做了 image-to-TikZ 与推理评测，摘要显示当前模型在细粒度结构恢复和图文对齐上仍存在持续性困难。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 11</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>73.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答的具体问题是：当前多模态大模型在几何任务上的能力到底来自真正的几何结构推理，还是来自对栅格图像表面模式和题目模板的利用？进一步地，如何构建一个同时包含自然语言题目、几何图像和结构化图形代码的 benchmark，来更精确地测量模型对几何拓扑、符号标注、空间关系和图文约束对齐的理解能力。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，作者首先从中国中学数学考试中收集并整理几何题，形成 7,000 个问答对；然后为相关图形提供 RGB 图像和 TikZ 代码，构成 {QA, image, TikZ} 三元组。数据表示上，LaTeX 保存题目与答案文本，TikZ 保存几何对象及其关系。实验上，作者可能设置两条主线：一是 image-to-TikZ，测试模型从图像恢复结构化几何表示的能力；二是多模态推理评测，测试模型结合题文和图形完成几何问答的能力，并在开源/闭源 MLLM 间做横向比较。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把 TikZ 引入几何 benchmark，使图形不再只是像素，而是可程序化、可分析、可验证的结构对象；这对研究几何推理中的可解释中间表示非常重要。第二个亮点是数据覆盖面较广，不局限于平面几何，还包括立体、解析、函数和向量几何，且响应格式多样，更接近真实考试环境。第三个亮点是评测目标不只看最终答对率，还显式考察 image-to-TikZ 和图文对齐，这有助于定位模型失败究竟发生在视觉解析、符号绑定还是推理阶段。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：先查看论文正文中的数据构建章节和附录，确认 7,000 QA 与 12,235 图的对应关系、TikZ 标注来源及质量控制；再查实验表，记录 image-to-TikZ 与问答任务分别使用的模型、指标和最好/最差子任务；随后重点看错误案例图，判断失败是否集中在点线标注、角度符号、空间关系或题图不一致；如果你做相关研究，可优先尝试把 TriGeoBench 作为诊断集，对比“纯图像输入”和“图像+结构中间表示”两种系统的性能差异。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答的具体问题是：当前多模态大模型在几何任务上的能力到底来自真正的几何结构推理，还是来自对栅格图像表面模式和题目模板的利用？进一步地，如何构建一个同时包含自然语言题目、几何图像和结构化图形代码的 benchmark，来更精确地测量模型对几何拓扑、符号标注、空间关系和图文约束对齐的理解能力。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，作者首先从中国中学数学考试中收集并整理几何题，形成 7,000 个问答对；然后为相关图形提供 RGB 图像和 TikZ 代码，构成 {QA, image, TikZ} 三元组。数据表示上，LaTeX 保存题目与答案文本，TikZ 保存几何对象及其关系。实验上，作者可能设置两条主线：一是 image-to-TikZ，测试模型从图像恢复结构化几何表示的能力；二是多模态推理评测，测试模型结合题文和图形完成几何问答的能力，并在开源/闭源 MLLM 间做横向比较。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把 TikZ 引入几何 benchmark，使图形不再只是像素，而是可程序化、可分析、可验证的结构对象；这对研究几何推理中的可解释中间表示非常重要。第二个亮点是数据覆盖面较广，不局限于平面几何，还包括立体、解析、函数和向量几何，且响应格式多样，更接近真实考试环境。第三个亮点是评测目标不只看最终答对率，还显式考察 image-to-TikZ 和图文对齐，这有助于定位模型失败究竟发生在视觉解析、符号绑定还是推理阶段。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要，当前需要警惕的局限包括：其一，尚不清楚 TikZ 标注的构建成本、准确率和一致性，若大量依赖人工重建，可能存在主观性；其二，数据来自中国中学考试，语言、课程体系和图形风格可能限制跨地区泛化；其三，摘要没有给出具体评价指标、基线模型和数值结果，暂时无法判断 benchmark 的区分度和难度分布；其四，image-to-TikZ 任务本身可能受代码风格多解性影响，若评价设计不当，可能低估模型对几何结构的真实恢复能力；其五，摘要只说明模型存在挑战，但未展示错误类型拆解，仍需看正文确认问题主要来自视觉识别、文本理解还是几何推理。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：先查看论文正文中的数据构建章节和附录，确认 7,000 QA 与 12,235 图的对应关系、TikZ 标注来源及质量控制；再查实验表，记录 image-to-TikZ 与问答任务分别使用的模型、指标和最好/最差子任务；随后重点看错误案例图，判断失败是否集中在点线标注、角度符号、空间关系或题图不一致；如果你做相关研究，可优先尝试把 TriGeoBench 作为诊断集，对比“纯图像输入”和“图像+结构中间表示”两种系统的性能差异。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文聚焦的不是一般数学问答，而是“几何”这一对视觉结构高度敏感的子领域，尤其关注多模态大模型是否真的理解图中的点、线、角、位置关系、标注符号和题干约束。现有 benchmark 常把几何图作为普通图片处理，这会让模型可能依赖局部纹理、版式或训练记忆，而不是真正恢复几何对象及其关系。TriGeoBench 的关键设计线索在于三元组表示：题目与答案用 LaTeX 存储，图像用 RGB 图表示，TikZ 代码则作为结构化中间表示，保留几何拓扑、符号注释和关系结构。这意味着该基准既可用于标准 VQA/数学推理，也可用于 image-to-code、结构解析、图文一致性验证等更细粒度任务。
+
+数据方面，摘要给出 7,000 个 QA 对和 12,235 个几何图，说明一个问答实例可能对应多幅图，或者数据组织中图与题目并非严格一一对应。来源是中国初高中数学考试，这通常意味着题目分布更贴近教育测评场景，知识点覆盖较系统，且题型可能包含选择、填空、解答等多种响应格式。摘要明确列出平面几何、立体几何、解析几何、函数、向量几何，说明它不只考察经典欧氏作图关系，也可能涉及坐标、函数图像、空间关系和向量运算与图形结合的问题。
+
+方法与实验线索上，作者似乎设计了两类评测：一类是 image-to-TikZ，即让模型从几何图像恢复 TikZ 代码或等价结构表示，这更直接测试模型能否识别图中的对象、连接关系、标记和布局；另一类是 multimodal reasoning probes，即在题文+图像条件下测试几何问答能力，可能还会比较是否提供 TikZ、是否只给图像、不同模型家族之间的差异。摘要中的结论“persistent fine-grained structure and image-text alignment challenges”很关键，表明即便模型整体视觉语言能力较强，在几何这种需要精确结构绑定的任务上仍明显不足，尤其可能体现在：点线角标注识别错误、图中关系恢复不完整、题干条件与图中元素无法正确对齐、以及从图到符号表示的转换不稳定。
+
+对科研读者而言，这篇工作的价值主要在三个方向。其一，如果你做 MLLM 数学推理或视觉符号推理，TriGeoBench 提供了一个比普通 MathVQA 更适合分析“结构理解”的测试床。其二，如果你做 document understanding、diagram parsing、program synthesis 或视觉到代码生成，TikZ 这一表示使问题从“答题”扩展到“结构恢复”，便于研究可解释中间表示。其三，如果你关注教育 AI 或中文数学数据，来自中国中学考试的来源可能带来较强的真实题目分布，但也需要注意语言、课程体系和作图风格的领域偏置。
+
+需要核对的信息包括：1）TriGeoBench 的具体划分方式，训练/验证/测试是否公开；2）12,235 图与 7,000 QA 的对应关系；3）TikZ 是原题自带、人工重建还是半自动生成，标注质量如何保证；4）image-to-TikZ 的评价指标是代码级精确匹配、编译后图像相似度，还是图结构一致性；5）“代表性开源和闭源 MLLM”具体包含哪些模型；6）不同几何子领域、题型和响应格式上的性能差异；7）是否比较了仅图像、图像+文本、图像+TikZ 等不同输入设置；8）摘要末尾被截断，可能还有更具体的实验发现或方法建议，需要查看原文。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Multimodal Large Language Models show strong vision-language capabilities, yet their geometry-centric reasoning remains insufficiently understood. Existing mathematical benchmarks typically rely on rasterized figures and cover limited geometric knowledge areas and response formats, making it difficult to assess whether models reason over geometric structures or exploit superficial visual patterns. We introduce TriGeoBench, a geometry-centric multimodal benchmark constructed from Chinese middle- and high-school mathematics examinations. TriGeoBench contains 7,000 question-answer pairs and 12,235 geometric figures with TikZ code, spanning plane geometry, solid geometry, analytic geometry, function, and vector geometry across diverse response formats. Each instance forms a {question-answer pair, image, TikZ} triplet: question-answer pairs are stored in LaTeX, images as RGB figures, and TikZ preserves geometric topology, symbolic annotations, and relational structure. We evaluate representative open- and closed-source MLLMs through image-to-TikZ and multimodal reasoning probes. Results reveal persistent fine-grained structure and image-text alignment challenges. Oracle experiments with human-curated reference TikZ suggest that accurate executable representations provide complementary geometric cues; they do not evaluate an end-to-end conversion pipeline. TriGeoBench offers a testbed for structure-aware mathematical reasoning.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-20T10:53:41Z</span>
+        <span>Score 70.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2610.28010v1">RANGER: Retrieval Agent for Navigating Graphs with Semantic Evaluation Rewards</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+RANGER%3A+Retrieval+Agent+for+Navigating+Graphs+with+Semantic+Evaluation+Rewards&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28010v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+RANGER%3A+Retrieval+Agent+for+Navigating+Graphs+with+Semantic+Evaluation+Rewards%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+transformer%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+RANGER%3A+Retrieval+Agent+for+Navigating+Graphs+with+Semantic+Evaluation+Rewards&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28010v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+RANGER%3A+Retrieval+Agent+for+Navigating+Graphs+with+Semantic+Evaluation+Rewards%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+transformer%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+RANGER%3A+Retrieval+Agent+for+Navigating+Graphs+with+Semantic+Evaluation+Rewards&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28010v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+RANGER%3A+Retrieval+Agent+for+Navigating+Graphs+with+Semantic+Evaluation+Rewards%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+transformer%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Artem Mikhaylov、Pavel Konoplev、Nikolay Efanov、Artyom Sorokin 等 5 人 · <a href="https://arxiv.org/pdf/2610.28010v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">transformer <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 RANGER，用于知识图谱上的多跳问答检索：让大语言模型在训练阶段为强化学习图导航代理提供稠密的语义奖励，从而学习更符合查询语义的路径检索策略。其目标对象很具体，是“面向知识图谱多跳检索/问答的图导航代理”，而不是一般文本生成任务。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于提出一种 LLM+RL 的混合训练框架：用 LLM 作为“导师/评估器”对代理 traversed paths 的语义相关性打分，替代或补充传统难以设计的奖励函数；代理本身采用 Transformer-based policy，并使用 Group Relative Policy Optimization 训练，最终被集成进完整问答流水线。若摘要表述准确，论文的主要新意不是单独发明新图模型，而是把“语义评估奖励”系统化地嵌入知识图谱导航训练。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>70.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在知识图谱多跳问答中，如何训练一个能够进行精确多步图导航的检索代理，同时避免手工设计奖励函数时无法准确表达“路径对问题是否语义相关、是否有助于回答”的困难。更细一点说，它要解决的是“结构化图搜索的策略学习”与“自然语言问题语义对齐”之间的鸿沟。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法流程是：给定自然语言问题和知识图谱，RL 代理从某个起始实体或候选节点出发，在图上逐步选择关系/邻居进行多跳遍历；策略网络使用 Transformer 编码问题、历史路径和候选动作；训练时，LLM 读取问题与代理当前或最终路径，对其语义相关性进行评估，输出稠密奖励；再用 GRPO 更新策略，使高语义相关路径相对获得更高优势。最后将该检索代理接入完整 QA pipeline，可能把检索到的路径、实体或子图交给下游答案模块。由于摘要截断，尚不清楚使用了哪些知识图谱问答数据集、LLM 型号、奖励提示词设计、以及是否有人工标注或弱监督信号辅助。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，奖励设计抓住了 KG 多跳问答中的核心瓶颈：传统命中式奖励过稀疏，而 LLM 可提供更细粒度的语义反馈。第二，LLM 被用作训练期 mentor 而非在线控制器，这种角色分工理论上兼顾了语义理解与执行稳定性，也可能降低推理时延。第三，方法对象明确，直接面向知识图谱导航与问答流水线，而不是泛化到过宽泛的 agent 场景，因此更容易形成可检验的实验设置和应用价值。若实验充分，论文可能对“如何把 LLM 反馈转成可优化的图检索策略”提供有参考价值的范式。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取全文，重点看方法图和奖励函数定义，确认 LLM 是如何把路径语义相关性转成 dense reward 的；2）记录实验所用 KGQA 数据集、基线和指标，特别是是否包含多跳公开基准；3）查看消融实验，区分“LLM 奖励”“Transformer policy”“GRPO”三者各自贡献；4）核对训练/推理阶段的 LLM 调用次数与成本；5）如果你做相关研究，可先复现一个简化版：在小型知识图谱环境中，用现成 LLM 对路径-问题对打分，再替换手工奖励训练一个基本图导航策略，验证是否比稀疏终点奖励更稳定。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在知识图谱多跳问答中，如何训练一个能够进行精确多步图导航的检索代理，同时避免手工设计奖励函数时无法准确表达“路径对问题是否语义相关、是否有助于回答”的困难。更细一点说，它要解决的是“结构化图搜索的策略学习”与“自然语言问题语义对齐”之间的鸿沟。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法流程是：给定自然语言问题和知识图谱，RL 代理从某个起始实体或候选节点出发，在图上逐步选择关系/邻居进行多跳遍历；策略网络使用 Transformer 编码问题、历史路径和候选动作；训练时，LLM 读取问题与代理当前或最终路径，对其语义相关性进行评估，输出稠密奖励；再用 GRPO 更新策略，使高语义相关路径相对获得更高优势。最后将该检索代理接入完整 QA pipeline，可能把检索到的路径、实体或子图交给下游答案模块。由于摘要截断，尚不清楚使用了哪些知识图谱问答数据集、LLM 型号、奖励提示词设计、以及是否有人工标注或弱监督信号辅助。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，奖励设计抓住了 KG 多跳问答中的核心瓶颈：传统命中式奖励过稀疏，而 LLM 可提供更细粒度的语义反馈。第二，LLM 被用作训练期 mentor 而非在线控制器，这种角色分工理论上兼顾了语义理解与执行稳定性，也可能降低推理时延。第三，方法对象明确，直接面向知识图谱导航与问答流水线，而不是泛化到过宽泛的 agent 场景，因此更容易形成可检验的实验设置和应用价值。若实验充分，论文可能对“如何把 LLM 反馈转成可优化的图检索策略”提供有参考价值的范式。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，需要警惕几类局限。第一，摘要未给出任何数据集、指标和结果，无法判断方法是否真正优于强基线。第二，LLM 语义奖励可能引入评估噪声、偏见和可操纵性，代理可能学会迎合评分模板而非真正找到可回答路径。第三，若训练阶段频繁调用 LLM，对成本和可复现性可能不友好。第四，GRPO 与 Transformer policy 的具体适配方式不明，难以判断改进来自奖励设计还是优化技巧。第五，完整 QA pipeline 的后端答案模块未说明，因此最终问答性能提升是否主要来自检索代理仍需核对。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取全文，重点看方法图和奖励函数定义，确认 LLM 是如何把路径语义相关性转成 dense reward 的；2）记录实验所用 KGQA 数据集、基线和指标，特别是是否包含多跳公开基准；3）查看消融实验，区分“LLM 奖励”“Transformer policy”“GRPO”三者各自贡献；4）核对训练/推理阶段的 LLM 调用次数与成本；5）如果你做相关研究，可先复现一个简化版：在小型知识图谱环境中，用现成 LLM 对路径-问题对打分，再替换手工奖励训练一个基本图导航策略，验证是否比稀疏终点奖励更稳定。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和关键词看，论文聚焦的是知识图谱上的复杂序列决策，典型任务是 multi-hop question answering。作者认为两类方法各有短板：LLM 擅长语义理解与推理，但在结构化环境中的精确多步导航不稳定；RL 代理能学导航策略，但奖励函数往往难以表达“路径是否真正回答了问题”的语义质量。RANGER 的思路是把 LLM 放在训练环节中充当 mentor，对代理走过的图路径进行语义评价，生成 dense reward，帮助 RL 学到与查询信息需求更一致的检索行为。
+
+方法线索相对明确：环境应是知识图谱，状态/动作大概率对应当前节点、关系扩展与路径历史；策略网络是 Transformer-based policy，说明作者可能把“问题文本 + 当前路径/邻居候选”编码后做动作选择；优化算法明确写了 Group Relative Policy Optimization，说明训练范式可能借鉴近年的相对优势/组内比较式策略优化，而不是最传统的 DQN 或 PPO。奖励侧的关键对象是“agent&#x27;s traversed paths”的 semantic relevance，因此 LLM 可能不是直接生成动作，而是对完整或部分路径相对于 query 的相关性、支持性、可回答性进行评分，再把该评分转成 step-wise 或 trajectory-level reward。摘要还说集成到 complete QA pipeline，意味着图导航检索只是前端，后面可能还有答案抽取、候选聚合或由 LLM/reader 生成最终答案的模块。
+
+证据线索主要来自摘要中的对比结构：一方面强调 structured environments 中的 precise multi-step navigation，另一方面强调 semantically meaningful reward functions 的设计困难，因此论文最可能的实验主线是比较不同奖励设计下的图导航效果，或者比较纯 LLM、纯 RL、以及 LLM-as-reward 三种范式在多跳问答上的差异。不过由于当前只有截断摘要，没有数据集名、评价指标、基线系统、消融实验和具体结果，不能判断其真实性能提升幅度，也不能确认 LLM 奖励是否带来额外推理成本、标注偏差或 reward hacking 风险。
+
+如果你的研究方向与 LLM agent、检索增强、知识图谱问答、基于反馈的策略学习有关，这篇论文值得关注的点在于：它把 LLM 从“直接决策者”降级为“训练期语义裁判”，这通常比让 LLM 在线逐步选边更容易获得稳定性和可部署性；同时它也提供了一种把不可微、语义性的任务目标转译为 RL 可用监督信号的思路。需要重点核对的信息包括：1）LLM 奖励是对整条路径还是每一步局部动作评分；2）奖励是否需要人工模板或 few-shot rubric；3）GRPO 在该图环境中的具体实现；4）知识图谱数据集与问答基准；5）是否与 beam search、MCTS、RAG、路径排序器等强基线比较；6）训练和推理阶段是否都依赖 LLM，还是仅训练依赖。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>The integration of Large Language Models and Reinforcement Learning offers a promising direction for complex sequential decision-making tasks, such as multi-hop question answering over knowledge graphs. While LLMs provide strong semantic understanding and reasoning capabilities, they often struggle with precise, multi-step navigation in structured environments. Conversely, RL agents excel at learning navigation policies but are hindered by the difficulty of designing semantically meaningful reward functions. This paper introduces a novel hybrid approach in which an LLM serves as a mentor to an RL agent during training by providing dense, semantically informed reward signals. The RL agent, built on a Transformer-based policy and trained with Group Relative Policy Optimization, learns to navigate a knowledge graph to retrieve relevant information. The LLM evaluates the semantic relevance of the agent&#x27;s traversed paths, generating reward signals that align the agent&#x27;s behavior with the information needs expressed in a query. We integrate this Retrieval Agent for Navigating Graphs with Semantic Evaluation Rewards (RANGER) into a complete question-answering pipeline and evaluate it on the open question answering datasets. Experimental results show that the proposed approach outperforms both a baseline retrieval-augmented system with classical graph search and one using an RL agent trained with heuristic rewards, achieving a significant increase in NLP metrics and LLM-as-a-Judge scores. Our findings demonstrate that deep integration of LLMs into the RL training loop yields more effective and semantically aligned retrieval policies for complex reasoning tasks.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-20T08:05:50Z</span>
+        <span>Score 70.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>4. <a href="http://arxiv.org/abs/2610.27812v1">SliMOO: Interpretable Multi-Objective Evolutionary Search for LLM Depth Pruning</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+SliMOO%3A+Interpretable+Multi-Objective+Evolutionary+Search+for+LLM+Depth+Pruning&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.27812v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+SliMOO%3A+Interpretable+Multi-Objective+Evolutionary+Search+for+LLM+Depth+Pruning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+transformer%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+SliMOO%3A+Interpretable+Multi-Objective+Evolutionary+Search+for+LLM+Depth+Pruning&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.27812v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+SliMOO%3A+Interpretable+Multi-Objective+Evolutionary+Search+for+LLM+Depth+Pruning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+transformer%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+SliMOO%3A+Interpretable+Multi-Objective+Evolutionary+Search+for+LLM+Depth+Pruning&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.27812v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+SliMOO%3A+Interpretable+Multi-Objective+Evolutionary+Search+for+LLM+Depth+Pruning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+transformer%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Guanchen Li、Yixing Xu、Xuanwu Yin、Dong Li 等 5 人 · <a href="https://arxiv.org/pdf/2610.27812v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">transformer <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文针对大语言模型的深度剪枝任务，提出了一个名为 SliMOO 的可解释多目标进化搜索框架，目标是在减少 Transformer 层数、降低服务成本的同时，尽量保持模型在多任务上的广泛能力。摘要强调不同层对不同任务的贡献存在明显异质性，因此作者将层剪枝从单一评分排序问题改写为多目标优化问题。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于：一是提出“任务-层重要性图”来刻画单层移除对不同任务的影响，从而显式区分任务共享层与任务特定层；二是将 LLM 深度剪枝建模为面向多任务保真的 Pareto 感知进化搜索，而不是传统的单指标层排序；三是结合先验引导候选掩码生成，并用 NSGA-II 风格环境选择保留多目标折中解，强调可解释性与跨任务稳健性。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>70.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在大语言模型深度剪枝中，如何在减少 Transformer 层数、降低显存和延迟的同时，不只优化某一个任务或单一 benchmark，而是尽量保留模型在多个任务上的整体能力。更细一点说，它质疑“按单一重要性分数给层排序再裁剪”的范式，因为不同层对不同任务的贡献并不一致。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法大概率分两阶段。其一，做单层移除探测：对每一层分别删除或屏蔽，测量模型在多个任务上的性能变化，形成任务×层的重要性图谱，用来识别共享关键层和任务特异层。其二，在该图谱先验指导下，对层保留掩码进行多目标进化搜索；每个候选掩码都按其相对稠密模型在各任务上的性能偏差进行多维打分，再通过 NSGA-II 式非支配排序和环境选择保留 Pareto 前沿候选。研究中应会使用若干 LLM、多个评测任务，以及不同剪枝深度设置来验证。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，把层剪枝显式建模为多目标优化，和“多任务能力保真”这一真实部署需求更一致。第二，任务-层重要性图提供了可解释性，不只是给出一个剪枝结果，还能帮助理解哪些层是跨任务共享瓶颈、哪些层只服务特定能力。第三，进化搜索结合先验而非纯随机搜索，理论上更适合离散的层掩码空间，也更容易得到一组可供不同成本预算选择的 Pareto 解。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到全文后优先查看任务-层重要性图和 Pareto 前沿图，确认层异质性是否显著、是否跨模型一致。第二，记录实验所用模型、任务集合、剪枝比例和基线方法，特别关注是否包含实际延迟/显存数据。第三，如果你做高效 LLM，可先尝试在一个中等规模开源 Transformer 上复现 single-layer removal probing，验证你自己的任务集合是否也呈现明显任务依赖层贡献。第四，重点核对 NSGA-II 搜索预算与总成本，判断该方法是否适合你的算力条件。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在大语言模型深度剪枝中，如何在减少 Transformer 层数、降低显存和延迟的同时，不只优化某一个任务或单一 benchmark，而是尽量保留模型在多个任务上的整体能力。更细一点说，它质疑“按单一重要性分数给层排序再裁剪”的范式，因为不同层对不同任务的贡献并不一致。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法大概率分两阶段。其一，做单层移除探测：对每一层分别删除或屏蔽，测量模型在多个任务上的性能变化，形成任务×层的重要性图谱，用来识别共享关键层和任务特异层。其二，在该图谱先验指导下，对层保留掩码进行多目标进化搜索；每个候选掩码都按其相对稠密模型在各任务上的性能偏差进行多维打分，再通过 NSGA-II 式非支配排序和环境选择保留 Pareto 前沿候选。研究中应会使用若干 LLM、多个评测任务，以及不同剪枝深度设置来验证。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，把层剪枝显式建模为多目标优化，和“多任务能力保真”这一真实部署需求更一致。第二，任务-层重要性图提供了可解释性，不只是给出一个剪枝结果，还能帮助理解哪些层是跨任务共享瓶颈、哪些层只服务特定能力。第三，进化搜索结合先验而非纯随机搜索，理论上更适合离散的层掩码空间，也更容易得到一组可供不同成本预算选择的 Pareto 解。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>目前需要警惕的边界包括：摘要没有说明搜索和 probing 的额外计算成本，若要对每层、每任务都做探测，前期开销可能不低；没有看到是否真正报告了端到端延迟收益，而不仅是层数减少；多目标优化可能得到一组解，但实际部署仍需额外决策标准；如果任务集合覆盖不全，所谓“广泛能力保留”可能仍受评测集偏置影响；此外，方法是否优于更简单的启发式层剪枝、是否能迁移到不同模型家族，都还需要正文证据。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到全文后优先查看任务-层重要性图和 Pareto 前沿图，确认层异质性是否显著、是否跨模型一致。第二，记录实验所用模型、任务集合、剪枝比例和基线方法，特别关注是否包含实际延迟/显存数据。第三，如果你做高效 LLM，可先尝试在一个中等规模开源 Transformer 上复现 single-layer removal probing，验证你自己的任务集合是否也呈现明显任务依赖层贡献。第四，重点核对 NSGA-II 搜索预算与总成本，判断该方法是否适合你的算力条件。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象是大语言模型中的 Transformer 深度剪枝，即直接删除部分层以降低显存占用和推理延迟。作者的关键观察是：层的重要性并非全局一致，而是强烈依赖具体任务；如果仍用单一分数给层排序，容易只对某一类 benchmark 或窄域任务有效，损害模型的通用能力。因此论文把问题重述为多目标优化：每个任务上的性能偏差都可视为一个目标，需要在多个目标之间寻找 Pareto 折中。
+
+方法线索比较具体。第一步是 single-layer removal probing，即逐层移除并测量模型在各任务上的变化，据此构建 task-layer importance map。这个图既是可解释分析工具，也作为后续搜索先验，意味着搜索不会完全盲目，而会优先考虑那些在多任务上相对冗余、或只对少数任务敏感的层组合。第二步是 Pareto-aware evolutionary search：搜索对象应是 pruning mask，也就是保留/删除哪些层的二值模式；候选解的评分不是单一平均分，而是“相对 dense model 在每个任务上的偏差”；保留策略采用 NSGA-II 环境选择，说明作者希望维护一组非支配解，而非单个最优解。
+
+从应用价值看，这项工作与“高效 LLM 部署”“无需硬件特化的推理加速”“结构化压缩”高度相关。相比量化、蒸馏或稀疏化，深度剪枝的优势通常是实现简单、对推理栈友好；而本文进一步强调跨任务保真和可解释性，适合那些希望在多种下游任务上维持能力、又需要降低服务成本的场景。
+
+但基于当前元数据，仍有多项关键信息需要核对。摘要未给出具体实验模型规模、任务集合、剪枝比例、与哪些基线比较、实际延迟/吞吐收益、以及 Pareto 前沿相对现有方法的提升幅度。还需要确认“任务”是否是零样本/少样本评测任务、是否覆盖推理/知识/代码/数学等不同能力；single-layer probing 的成本是否过高；搜索是在单个基座模型上完成还是可迁移到其他模型；最终输出是一组可供用户按需求选择的掩码，还是作者再从 Pareto 集中挑一个默认方案。这些都直接影响方法的实用性与可复现性。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>As large language models (LLMs) grow more powerful, their scale makes them costly to serve. Depth pruning offers a practical route to efficiency by directly reducing memory and latency without hardware-specific support. However, we observe that transformer layers exhibit markedly different task-dependent layer contributions, whereas existing depth-pruning methods ignore this heterogeneity and thus tend to optimize for a narrow domain or benchmark rather than preserve broad capability. This suggests that LLM depth pruning should be formulated as a multi-objective optimization problem rather than a single-score ranking problem. We propose SliMOO, an interpretable multi-objective evolutionary search framework for LLM depth pruning. SliMOO first uses single-layer removal probing to construct a task-layer importance map, which provides an interpretable view of task-shared and task-specific layers and serves as a search prior. It then performs a Pareto-aware evolutionary search for pruning masks, where candidates are generated under the guidance of the task-layer prior, scored by their deviation from the dense model on each task, and retained through NSGA-II environmental selection. Across the Llama-3.1 and Qwen3 model families, SliMOO consistently achieves stronger multi-task trade-offs than rule-based, greedy, and scalarized baselines. For example, on Llama-3.1-70B at 25% sparsity, it improves the math-domain average from 24.33% to 34.40% and the code-domain average from 35.03% to 39.14%. Code will be made available at https://github.com/AMD-AGI/SliMOO.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-20T15:49:32Z</span>
+        <span>Score 67.5</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>5. <a href="http://arxiv.org/abs/2610.28409v1">Rewards for Budget-Aware Multi-Turn Agents That Adapt to Arbitrary Test-Time Constraints</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Rewards+for+Budget-Aware+Multi-Turn+Agents+That+Adapt+to+Arbitrary+Test-Time+Con&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28409v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Rewards+for+Budget-Aware+Multi-Turn+Agents+That+Adapt+to+Arbitrary+Test-Time+Constraints%0Akeywords%3A+large+language+model%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Rewards+for+Budget-Aware+Multi-Turn+Agents+That+Adapt+to+Arbitrary+Test-Time+Con&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28409v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Rewards+for+Budget-Aware+Multi-Turn+Agents+That+Adapt+to+Arbitrary+Test-Time+Constraints%0Akeywords%3A+large+language+model%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Rewards+for+Budget-Aware+Multi-Turn+Agents+That+Adapt+to+Arbitrary+Test-Time+Con&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.28409v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Rewards+for+Budget-Aware+Multi-Turn+Agents+That+Adapt+to+Arbitrary+Test-Time+Constraints%0Akeywords%3A+large+language+model%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Tom A. Lamb、Adam Golinski、Eleonora Gualdoni、Sinead Williamson 等 5 人 · <a href="https://arxiv.org/pdf/2610.28409v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
@@ -274,8 +513,8 @@
 <span class="chip">ai <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦于多轮、长时程环境中的LLM智能体强化学习，具体针对智能体反复执行无效动作、陷入高置信度循环行为而无法完成任务的问题，提出一种面向“状态空间生产性探索”的条件式探索框架。根据摘要线索，其核心做法是在任务奖励之外加入基于观测去重的内在奖励，以鼓励智能体探索能带来新状态信息的动作，从而改善对环境动态与前置条件的建模。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献很可能是：把“重复观测/重复状态记忆”显式定义为多轮LLM agent探索中的低价值信号，并据此设计条件式内在奖励机制，在不脱离任务目标的前提下抑制动作循环和无效尝试；同时，论文将问题解释为智能体内部状态表征与真实环境动态、动作前置条件之间的不匹配，这为多轮RL agent中的失败模式提供了较具体的诊断视角。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文研究在给定测试时预算约束下，多轮大语言模型智能体能否学会自行分配资源，并比较哪些奖励设计最能让智能体在预算内完成任务。具体上，作者在 AppWorld 和 BabyAI 环境中，围绕 token、API 调用、环境步数和回合数等预算，训练 Qwen3.5 4B/9B 智能体学习随预算动态调整行为。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献是把单次生成中的长度惩罚思路扩展到多轮智能体的多资源预算约束，提出并系统比较了 11 种奖励目标；在统一训练流程下，评估这些奖励是否能让智能体跨不同预算值学习“何时花、花多少”的资源分配策略；并在 AppWorld 与 BabyAI 两类任务上展示，带有超预算惩罚的奖励相较仅优化任务成功率，更能提升预算内成功率与自然预算遵守能力。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -287,38 +526,32 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-kicker">关键词命中 7</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>71.0</strong>
+              <strong>67.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在多轮、长时程环境中训练LLM智能体时，为什么智能体会持续选择高置信度但无效的动作，甚至陷入重复循环，导致任务无法完成；以及如何设计一种既能促进环境理解、又不偏离任务目标的探索机制，来减少前置条件违反和低产出交互。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法路径应是将任务奖励与内在探索奖励结合，构建一个条件式状态空间探索框架。核心技术可能包括：维护智能体的历史状态/观测记忆；比较当前动作产生的观测与历史记忆是否重复；若重复则施加惩罚，若带来新信息则给予探索激励；再将该内在信号与外在任务回报联合用于RL训练。实验上大概率会在多步交互环境中，对比是否能降低重复动作、提升状态覆盖和任务完成率。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是它把多轮LLM agent中的常见失败模式具体化为“重复观测驱动的低生产性探索”，并给出一个可直接落地的奖励设计，而不是停留在抽象的探索不足论述。其次，论文把无效动作与环境前置条件违反联系起来，这为分析agent为何‘明明很自信却总做错’提供了较有解释力的视角。若实验充分，这种方法可能对长时程工具使用、交互式规划和复杂代理训练具有较强实用价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：先获取全文后优先查看方法图和奖励函数定义，确认“conditional”“state memory”“duplicate observation”的精确定义；然后记录实验环境名称、基线方法、成功率与重复率指标；若你做agent训练，可先在自己的轨迹日志中统计重复观测比例、无效动作率和循环长度，判断该论文提出的问题是否与你的系统高度一致，再决定是否复现其内在奖励设计。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在多轮交互式 agent 场景中，当测试时预算由外部动态指定且可能限制不同资源类型时，智能体能否学会自主进行预算分配，而不是仅靠外部截断；以及什么样的奖励函数最能教会这种预算感知行为。更细一点说，它关注的是“跨预算值训练后，agent 是否能在未必固定的预算下，依据任务难度决定是否多思考、多调用工具或更快结束”。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推测，方法包括四部分。第一，任务与环境：在 AppWorld 上考察 token、API 调用、环境步数预算，在 BabyAI 上考察 turn budget。第二，模型：使用 Qwen3.5 4B 和 9B 作为 agent backbone。第三，训练设计：针对每个环境和每种资源类型分别训练一个 policy，但训练时覆盖多个预算值，使策略学习预算条件化行为。第四，奖励比较：将已有长度惩罚扩展到多轮、多资源预算约束，并提出新的奖励形式，在统一 pipeline 下比较 11 个 objectives。实验上大概率会报告预算内成功率、超预算率、平均资源消耗、不同预算档位表现，以及与仅任务成功奖励、未训练模型的对照。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，问题设定很具体且贴近真实部署：多轮 agent 的成本控制比单轮长度控制更难，也更有应用价值。其二，预算类型覆盖 token、API、环境步数、回合数，说明作者试图把“预算感知”抽象成跨资源的一般训练问题，而非只做 token 长度控制。其三，摘要显示作者不是只证明“加预算截断就行”，而是研究 agent 是否能内生地学会遵守预算并随预算变化自适应，这对构建可控、可部署 agent 很关键。若实验设计扎实，11 种奖励在统一管线下的比较会具有较高参考价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查论文中 11 种 reward objective 的定义表或公式，记录哪些属于硬惩罚、软惩罚、归一化奖励或分段奖励。第二，查看主结果表，重点抄下 within-budget success、overspend rate、平均资源消耗三类指标，并与“task success only”基线对照。第三，检查预算是否作为显式输入，以及测试预算是否包含训练外区间。第四，找一张按预算值分组的曲线图，确认 agent 是否真的随预算增减资源使用，而不是学到固定保守策略。第五，如果你做 agent/RL/推理控制，可直接把这篇论文作为“预算条件化奖励设计”的对照文献，整理出可迁移到自己环境的奖励模板。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在多轮、长时程环境中训练LLM智能体时，为什么智能体会持续选择高置信度但无效的动作，甚至陷入重复循环，导致任务无法完成；以及如何设计一种既能促进环境理解、又不偏离任务目标的探索机制，来减少前置条件违反和低产出交互。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法路径应是将任务奖励与内在探索奖励结合，构建一个条件式状态空间探索框架。核心技术可能包括：维护智能体的历史状态/观测记忆；比较当前动作产生的观测与历史记忆是否重复；若重复则施加惩罚，若带来新信息则给予探索激励；再将该内在信号与外在任务回报联合用于RL训练。实验上大概率会在多步交互环境中，对比是否能降低重复动作、提升状态覆盖和任务完成率。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是它把多轮LLM agent中的常见失败模式具体化为“重复观测驱动的低生产性探索”，并给出一个可直接落地的奖励设计，而不是停留在抽象的探索不足论述。其次，论文把无效动作与环境前置条件违反联系起来，这为分析agent为何‘明明很自信却总做错’提供了较有解释力的视角。若实验充分，这种方法可能对长时程工具使用、交互式规划和复杂代理训练具有较强实用价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与摘要，主要局限是关键信息尚不完整。首先，不清楚重复观测惩罚是否会误伤某些必要的回访行为，因为很多任务本就需要返回先前状态或重复检查。其次，若观测去重依赖表层文本相似度，可能无法准确反映真实环境状态新颖性。再次，摘要未说明适用环境范围，方法可能更适合离散、可观测性较强的文本环境，而在部分可观测、噪声大或真实工具环境中效果未必稳定。最后，尚未看到与其他探索方法、记忆增强方法或模型规模因素的系统消融。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：先获取全文后优先查看方法图和奖励函数定义，确认“conditional”“state memory”“duplicate observation”的精确定义；然后记录实验环境名称、基线方法、成功率与重复率指标；若你做agent训练，可先在自己的轨迹日志中统计重复观测比例、无效动作率和循环长度，判断该论文提出的问题是否与你的系统高度一致，再决定是否复现其内在奖励设计。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象不是单轮问答式LLM，而是需要在环境中连续交互、执行多步决策的LLM agents，任务形态应接近长时程规划、工具使用、交互式环境操作或文本环境中的任务完成。作者观察到两个具体现象：一是智能体会高置信度地重复执行违反环境前置条件的动作，说明模型“以为当前状态允许该动作”，但环境并不认可；二是智能体会进入动作或状态循环，持续产生几乎不带来任务进展的交互轨迹。基于这些现象，论文把问题归因为探索不足且探索不够“任务对齐”，即智能体没有有效获取能修正环境认知的状态信息。
-
-方法上，摘要明确提到受内在好奇心驱动探索启发，提出conditional state-space exploration framework。这里“conditional”大概率表示内在探索不是无条件追求新奇，而是与任务完成目标共同平衡；“state-space exploration”则强调探索对象是环境状态而非仅动作多样性。最具体的技术线索是：引入一种内在奖励，对“其观测与先前状态记忆重复”的动作进行惩罚。换言之，如果某个动作导致智能体看到的观测与历史记忆高度重复，则该动作被视为信息增益低、探索价值低；反之，能带来新观测、新状态证据的动作更可能获得正向探索激励。这种设计直接对应摘要中的失败模式，因为动作循环通常伴随重复观测，而违反前置条件的无效尝试也常常只返回相同或近似的失败反馈。
-
-从证据线索看，论文可能会在多轮交互基准环境上比较：标准RL训练的LLM agent、加入其方法后的agent，以及可能的其他探索基线。可预期的评估指标包括任务成功率、平均回合长度、重复动作率、无效动作率、状态覆盖率、轨迹信息增益等。但这些都需要阅读全文核对，当前不能据摘要断言具体实验结果。若你的研究方向涉及LLM agent、tool-use agent、文本游戏、网页代理、具身规划或长时程决策，这篇论文的价值在于它不是泛泛讨论“探索更好”，而是把“重复观测”作为可操作的训练信号，可能对减少代理在复杂环境中的卡死、空转、假装推进等问题有直接启发。
-
-需要重点核对的信息包括：1）“状态记忆”如何表示，是原始文本观测、压缩后的latent state，还是检索式记忆；2）重复判定是精确匹配、语义相似度还是环境状态哈希；3）内在奖励如何与外在任务奖励加权，是否会导致过度追求新奇而偏离任务；4）方法适用于在线RL、离线RL还是RLHF/RLAIF式agent训练；5）实验环境具体是什么，是否包含真实工具调用或仅限文本仿真环境；6）是否报告了对前置条件违反率和循环行为的定量分析。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在多轮交互式 agent 场景中，当测试时预算由外部动态指定且可能限制不同资源类型时，智能体能否学会自主进行预算分配，而不是仅靠外部截断；以及什么样的奖励函数最能教会这种预算感知行为。更细一点说，它关注的是“跨预算值训练后，agent 是否能在未必固定的预算下，依据任务难度决定是否多思考、多调用工具或更快结束”。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推测，方法包括四部分。第一，任务与环境：在 AppWorld 上考察 token、API 调用、环境步数预算，在 BabyAI 上考察 turn budget。第二，模型：使用 Qwen3.5 4B 和 9B 作为 agent backbone。第三，训练设计：针对每个环境和每种资源类型分别训练一个 policy，但训练时覆盖多个预算值，使策略学习预算条件化行为。第四，奖励比较：将已有长度惩罚扩展到多轮、多资源预算约束，并提出新的奖励形式，在统一 pipeline 下比较 11 个 objectives。实验上大概率会报告预算内成功率、超预算率、平均资源消耗、不同预算档位表现，以及与仅任务成功奖励、未训练模型的对照。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，问题设定很具体且贴近真实部署：多轮 agent 的成本控制比单轮长度控制更难，也更有应用价值。其二，预算类型覆盖 token、API、环境步数、回合数，说明作者试图把“预算感知”抽象成跨资源的一般训练问题，而非只做 token 长度控制。其三，摘要显示作者不是只证明“加预算截断就行”，而是研究 agent 是否能内生地学会遵守预算并随预算变化自适应，这对构建可控、可部署 agent 很关键。若实验设计扎实，11 种奖励在统一管线下的比较会具有较高参考价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与摘要，仍需警惕几类局限。第一，论文似乎是按“环境 × 资源类型”分别训练 policy，因此方法是否能在同一策略中同时处理多种预算约束，尚不明确。第二，摘要没有说明预算值的分布、训练/测试是否存在外推，因而“适应任意测试时约束”是否真包含超出训练范围的预算泛化，需要核对。第三，结果表述以相对提升为主，缺少绝对数值、显著性和失败案例。第四，AppWorld 与 BabyAI 都是特定 benchmark，真实开放域工具使用场景中的稳健性、可迁移性和安全性仍未知。第五，若奖励中对超预算惩罚过强，可能牺牲高预算下的探索或任务完成质量，这种 trade-off 需要看图表。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查论文中 11 种 reward objective 的定义表或公式，记录哪些属于硬惩罚、软惩罚、归一化奖励或分段奖励。第二，查看主结果表，重点抄下 within-budget success、overspend rate、平均资源消耗三类指标，并与“task success only”基线对照。第三，检查预算是否作为显式输入，以及测试预算是否包含训练外区间。第四，找一张按预算值分组的曲线图，确认 agent 是否真的随预算增减资源使用，而不是学到固定保守策略。第五，如果你做 agent/RL/推理控制，可直接把这篇论文作为“预算条件化奖励设计”的对照文献，整理出可迁移到自己环境的奖励模板。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>研究对象是“预算感知”的多轮 LLM agent，而不是单轮文本生成器。摘要强调的核心难点在于：即使外部 harness 可以硬性截断预算，智能体本身是否能内化预算约束，并根据任务难度与给定预算主动调整资源使用。这里的“预算”不是单一 token 长度，而是跨多轮交互累积的多种资源，包括 AppWorld 中的 tokens、API calls、environment steps，以及 BabyAI 中的 turn budgets。方法线索上，作者似乎将已有长度惩罚类奖励推广到多资源、多轮 setting，并额外提出新的 reward formulations，在同一训练管线中横向比较 11 个目标函数。模型方面使用 Qwen3.5 的 4B 和 9B 版本；训练组织方式是“每个环境 × 每种资源类型”训练一个单独 policy，但每个 policy 会覆盖多个预算值，因此重点不是单一预算点拟合，而是跨预算泛化与适应。证据线索主要来自摘要中的三类表述：第一，带超预算惩罚的奖励显著提升 within-budget success；第二，相比未训练模型和只按任务成功训练的模型，预算遵守更自然；第三，agent 学会根据显式预算和任务难度调节资源消耗。这说明论文可能不仅看最终成功率，还看预算合规率、资源使用曲线、不同预算下的策略变化，甚至可能分析是否出现“预算越宽松越愿意探索”的行为模式。与科研读者的关系上，这篇工作对受限推理、test-time compute control、agent RL、tool-using agents 和部署时成本控制都直接相关，尤其适合关注“如何让 agent 不只会做任务，还会按成本做任务”的研究者。需要核对的信息包括：11 种奖励的具体数学形式；预算是作为输入条件、系统提示还是状态特征提供给策略；训练算法是 RL、DPO 类方法还是监督/离线混合；“natural compliance”如何定义与测量；不同资源类型之间是否共享方法；4B 与 9B 的趋势是否一致；以及摘要末尾被截断部分是否包含更具体的实验结论或失败案例。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Reinforcement Learning (RL) for Large Language Model (LLM) agents in multi-turn, long-horizon environments remains challenging due to inefficient action selection and repetitive behavioral patterns. In particular, agents often become trapped in high-confidence yet unproductive behaviors, repeatedly executing invalid actions or entering action loops that hinder task completion. We observe that these frequently violate environment preconditions, revealing a mismatch between the agent&#x27;s representation of the internal state and the dynamics of the underlying environment. In addition, repetitive high-confidence actions lead to cyclical behaviors that provide little to no progress towards the goal. We argue that addressing these challenges requires more productive task-aligned exploration to improve the agent&#x27;s understanding of environment dynamics. Motivated by intrinsic curiosity-driven exploration, we propose a conditional state-space exploration framework that balances task completion with intrinsic information-seeking behavior. Specifically, we introduce an intrinsic reward that penalizes actions whose observation duplicates prior state memory. This provides the benefit of reducing redundant behaviors and encouraging state-space coverage without relying on a general information-theoretic measure. Strong experimental results demonstrate that our approach substantially improves policy learning in multi-turn environments, mitigating invalid actions and repetitive loops.</p>
+          <p>Large language model agents are often given an inference budget and asked to maximise success within it. A multi-turn agent has to allocate this budget across many environment interactions. An external harness can enforce the budget, but it remains unclear whether the agent itself can learn when and how much to spend. We ask whether agents can learn this allocation across dynamically specified budgets and which rewards best teach this behaviour. We adapt existing length penalties to budget constraints spanning multiple resource types, introduce new reward formulations, and compare eleven objectives in a shared training pipeline. We train Qwen3.5 models at 4B and 9B on AppWorld with budgets over tokens, API calls, and environment steps, and on the BabyAI gridworld with turn budgets. We train a separate policy for each environment and resource type, with each policy trained across budget values. Training with rewards that penalise overspending substantially improves within-budget success and natural compliance over untrained models and over training on task success alone, with agents learning to adapt their resource use to stated budgets and task difficulty. These gains extend to unseen budgets and, zero-shot, to a shifted task distribution and a new benchmark. Reward objectives trade off success within budget and natural compliance. A sigmoid penalty for overspending most often achieves the highest within-budget success at an individual budget, while a fixed negative reward for overspending generally yields the strongest natural compliance. Combining penalties for overspend frequency and magnitude gives the smallest average gap to the best method at each budget. Overall, we show that a single agent can learn to allocate resources across turns and adapt its behaviour to user-specified budgets using budget feedback without external budget-allocation controllers.</p>
         </details>
         
         </div>
@@ -329,28 +562,24 @@
 
     <article class="paper-card">
       <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-19T08:19:23Z</span>
-        <span>Score 66.5</span>
+        <span class="source-pill">Nature</span>
+        <span>2026-10-21</span>
+        <span>Score 65.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2610.25996v1">Procedural Memory for Language Agents: A Neurosymbolic Perspective on Explicit Goal Structure</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Procedural+Memory+for+Language+Agents%3A+A+Neurosymbolic+Perspective+on+Explicit+G&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25996v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Procedural+Memory+for+Language+Agents%3A+A+Neurosymbolic+Perspective+on+Explicit+Goal+Structure%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+neurosymbolic%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Procedural+Memory+for+Language+Agents%3A+A+Neurosymbolic+Perspective+on+Explicit+G&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25996v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Procedural+Memory+for+Language+Agents%3A+A+Neurosymbolic+Perspective+on+Explicit+Goal+Structure%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+neurosymbolic%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Procedural+Memory+for+Language+Agents%3A+A+Neurosymbolic+Perspective+on+Explicit+G&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.25996v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Procedural+Memory+for+Language+Agents%3A+A+Neurosymbolic+Perspective+on+Explicit+Goal+Structure%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+neurosymbolic%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1038/s41586-026-11168-1">Amazon carbon emissions driven by human actions amplified by droughts</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Amazon+carbon+emissions+driven+by+human+actions+amplified+by+droughts&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11168-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Amazon+carbon+emissions+driven+by+human+actions+amplified+by+droughts%0Akeywords%3A+ai%2C+climate%2C+ocean%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Amazon+carbon+emissions+driven+by+human+actions+amplified+by+droughts&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11168-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Amazon+carbon+emissions+driven+by+human+actions+amplified+by+droughts%0Akeywords%3A+ai%2C+climate%2C+ocean%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Amazon+carbon+emissions+driven+by+human+actions+amplified+by+droughts&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11168-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Amazon+carbon+emissions+driven+by+human+actions+amplified+by+droughts%0Akeywords%3A+ai%2C+climate%2C+ocean%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Jonathan Leung、Zhiqi Shen、Deheng Ye · <a href="https://arxiv.org/pdf/2610.25996v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">neurosymbolic <strong>1</strong></span></div>
+      <div class="authors">Luciana V. Gatti、Camilla L. Cunha、Juan C. G. Blas、A. Scott Denning 等 33 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11168-1">10.1038/s41586-026-11168-1</a></div>
+      <div class="chips"><span class="chip">ai <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">ocean <strong>1</strong></span>
+<span class="chip">carbon <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦语言智能体在长时程任务中的程序性推理不可靠问题，提出从“程序性记忆”缺失这一角度解释失效原因，并主张用目标导向图（Goal-Oriented Graphs）显式表示目标及其前置依赖结构。其核心任务对象是需要多步规划、依赖管理和可修改执行知识的长程任务型语言智能体。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于摘要可判断，论文的核心贡献在于提出一个神经符号视角：将程序性记忆明确区分于语义记忆和情景记忆，并把目标导向图作为可访问、可编辑、可检查的显式过程知识表示，用于支撑语言智能体的长程任务推理；同时论文似乎还系统讨论了这类图结构的构建难点，以及与神经推理模块集成的设计原则。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文聚焦亚马孙地区碳收支，利用15年大气CO2观测反演区域碳通量，分析人为活动与干旱如何共同驱动碳排放增强。摘要显示作者将火作为主导碳源，并尝试按年份分组，区分湿润低人类扰动年份与受干旱/人类活动放大的高排放年份。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于：基于长期大气CO2测量给出亚马孙碳平衡估计，并将总碳排放进一步归因到火、森林吸收减弱、干旱放大效应以及砍伐/退化/生物质燃烧等人为活动的共同作用；同时提出“不同年份类型”的框架，用于解释亚马孙何时接近全球碳平衡中的弱源/弱汇、何时转为更强碳源。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -359,41 +588,35 @@
           <div class="detail-signal">
             <div>
               <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
+              <div class="signal-source">Nature</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 8</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
+              <div class="signal-kicker">关键词命中 4</div>
+              <div class="signal-meter"><span style="width: 72%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>66.5</strong>
+              <strong>65.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：为什么语言智能体在需要多步、长时程、带前置依赖的任务中经常表现不稳定，以及是否可以通过一种显式、可编辑的程序性记忆表示来改善 procedural reasoning。更细一点说，它关注的不是一般知识缺失，而是“如何完成任务”的结构化知识缺失，即目标、子目标、依赖和先决条件没有被外显表示。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：1）定义程序性记忆在 agent 架构中的角色，并与语义记忆、情景记忆区分；2）提出或形式化 Goal-Oriented Graphs，把任务表示为目标节点及其 prerequisite dependencies；3）讨论图的构建来源，可能来自任务说明、专家演示、执行轨迹、工具调用序列或 LLM 抽取；4）分析图与神经模块的接口，例如由 LLM 负责从文本映射到图、在图上选择下一子目标、根据执行反馈更新图；5）如果有实验，可能会在长程任务、规划任务或工具使用 agent benchmark 上比较有无显式目标结构的差异。但这些实验细节目前都需要阅读全文核实。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把“程序性记忆”作为独立问题提出，并给出具体表示对象 Goal-Oriented Graphs，而不是泛泛谈记忆增强或规划增强。摘要中的表示具有几个潜在价值：可检查，意味着研究者能直接看到 agent 当前认为的目标结构；可访问，意味着推理时能显式调用而非完全依赖隐式参数记忆；可修改，意味着失败后可以局部修补任务知识。这种设计对长程任务中的可解释性、可调试性和失败恢复都很有吸引力。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先阅读全文确认论文类型，是立场/综述还是方法+实验；2）重点查找是否正式定义了 Goal-Oriented Graphs 的节点、边、前置条件和更新规则；3）记录文中是否给出图构建流程图、agent 架构图或案例任务；4）若有实验，优先看任务类型、基线方法、评价指标和失败案例；5）把它与自己熟悉的 HTN planning、knowledge graph memory、ReAct、plan-and-execute、episodic/semantic memory agent 框架做一页对照，判断其新意究竟在表示、训练、推理还是系统整合。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>研究问题是：在过去15年里，亚马孙究竟是净碳源还是净碳汇；火、森林吸收减弱、砍伐/退化、生物质燃烧和干旱分别贡献多大；以及为何某些年份排放显著升高，是否存在“人为活动与干旱相互放大”的年际机制。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法是以长期大气CO2浓度观测为核心，结合大气输送/区域反演估算亚马孙总碳通量；再叠加火活动、森林损失、降水、温度、旱季长度、El Niño等气候与土地利用指标做归因分析。摘要中的“distinct year groups”暗示作者可能使用聚类、经验分组或基于驱动变量阈值的分类，将年份按湿润程度、人类活动强度和排放水平进行比较。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点包括：一是时间跨度达到15年，足以讨论年际变率和极端年份；二是使用大气CO2观测约束区域碳通量，相比仅依赖地面样地或遥感更接近整体收支；三是把火排放单独量化为主导源，直接回应亚马孙碳源化的关键争议；四是强调干旱与人类活动并非独立，而是存在放大关系，这对政策和风险评估都很重要。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查论文主文图表中三组年份的完整划分、每组碳通量数值及对应干旱/火/砍伐指标；第二，记录CO2观测来源、空间覆盖和反演方法；第三，核对火排放0.40 ± 0.07 PgC yr−1与总碳平衡0.32 ± 0.08 PgC yr−1的符号定义和组成关系；第四，若做相关研究，可把该文的年份分组框架与自己使用的降水、VPD、烧毁面积或森林损失数据做对照。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：为什么语言智能体在需要多步、长时程、带前置依赖的任务中经常表现不稳定，以及是否可以通过一种显式、可编辑的程序性记忆表示来改善 procedural reasoning。更细一点说，它关注的不是一般知识缺失，而是“如何完成任务”的结构化知识缺失，即目标、子目标、依赖和先决条件没有被外显表示。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：1）定义程序性记忆在 agent 架构中的角色，并与语义记忆、情景记忆区分；2）提出或形式化 Goal-Oriented Graphs，把任务表示为目标节点及其 prerequisite dependencies；3）讨论图的构建来源，可能来自任务说明、专家演示、执行轨迹、工具调用序列或 LLM 抽取；4）分析图与神经模块的接口，例如由 LLM 负责从文本映射到图、在图上选择下一子目标、根据执行反馈更新图；5）如果有实验，可能会在长程任务、规划任务或工具使用 agent benchmark 上比较有无显式目标结构的差异。但这些实验细节目前都需要阅读全文核实。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把“程序性记忆”作为独立问题提出，并给出具体表示对象 Goal-Oriented Graphs，而不是泛泛谈记忆增强或规划增强。摘要中的表示具有几个潜在价值：可检查，意味着研究者能直接看到 agent 当前认为的目标结构；可访问，意味着推理时能显式调用而非完全依赖隐式参数记忆；可修改，意味着失败后可以局部修补任务知识。这种设计对长程任务中的可解释性、可调试性和失败恢复都很有吸引力。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，主要局限是信息不足。第一，不清楚论文是观点综述、框架论文还是带完整实验的研究论文；第二，不清楚 Goal-Oriented Graphs 的形式化程度，是否有严格定义、算法和复杂度分析；第三，不清楚是否有数据集或 benchmark 支撑“程序性记忆缺失是关键原因”这一因果判断；第四，图结构在开放世界任务中可能面临构建成本高、维护困难、依赖关系不完备、任务变化时脆弱等问题；第五，若过度依赖显式图，可能牺牲神经模型在模糊、隐式或创造性步骤上的灵活性。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先阅读全文确认论文类型，是立场/综述还是方法+实验；2）重点查找是否正式定义了 Goal-Oriented Graphs 的节点、边、前置条件和更新规则；3）记录文中是否给出图构建流程图、agent 架构图或案例任务；4）若有实验，优先看任务类型、基线方法、评价指标和失败案例；5）把它与自己熟悉的 HTN planning、knowledge graph memory、ReAct、plan-and-execute、episodic/semantic memory agent 框架做一页对照，判断其新意究竟在表示、训练、推理还是系统整合。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和关键词看，论文不是单纯讨论“让大模型规划得更好”，而是把问题具体落在“语言智能体缺少显式程序性记忆”这一结构性缺陷上。摘要明确指出，大语言模型在长时程任务上不可靠，尤其是需要 procedural reasoning 的场景；作者认为原因之一是模型内部虽有大量语义知识，但缺少一种可被访问、修改、复用的“如何完成任务”的知识载体。为此，论文引入 Goal-Oriented Graphs 作为候选表示：图中的节点和边大概率对应目标、子目标、前置条件、依赖关系或完成顺序，因此它不是普通知识图谱，而更接近任务分解图、依赖图或层级计划结构。
-
-从“neurosymbolic perspective on explicit goal structure”这一题名判断，论文很可能是概念框架型或立场型工作，重点在于提出表示层和推理层如何分工：符号层负责显式目标结构、依赖约束和可解释编辑，神经层负责语言理解、模糊匹配、泛化和不完全信息下的推断。摘要中的“their construction, the challenges they pose, and principles for integrating them with neural reasoning”说明论文至少会讨论三类具体内容：第一，目标导向图如何构建，可能涉及从自然语言任务说明、示例轨迹、工具使用日志或人类程序化描述中抽取目标与依赖；第二，这种表示会带来哪些挑战，例如图构建成本高、粒度难统一、前置条件隐含、动态环境下图会失效、图更新与执行反馈闭环困难；第三，如何与神经推理结合，可能包括图检索、图上规划、子目标选择、执行监控、失败后图修订等机制。
-
-与科研读者的关系上，这篇论文对以下方向尤其相关：长程 agent、任务规划、工具使用、可解释推理、记忆系统设计、神经符号 AI。如果你的研究关注“为什么 agent 在多步任务中经常中途偏航、遗漏前置步骤、重复操作或无法恢复”，这篇论文提供了一个较具体的诊断框架：问题不只是模型能力不足，而是缺少外显的过程知识结构。如果你的方向是 memory for agents，这篇工作还提示应把 memory 至少分成语义、情景、程序三类，并分别设计存储、更新和调用机制。
-
-但需要明确核对的信息也很多。仅凭摘要无法确认这是否包含实证实验、基准数据集、具体算法或系统实现；也无法确认 Goal-Oriented Graphs 是作者新提出的正式表示，还是对已有 HTN/goal graph/planning graph 思路的重新整合。还需查证论文是否给出图构建算法、是否在真实 agent benchmark 上验证、评价指标是什么、与 ReAct/plan-and-execute/memory-augmented agents/HTN planning 等方法如何比较，以及程序性记忆是否真的带来长程成功率提升而不只是概念上更清晰。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>研究问题是：在过去15年里，亚马孙究竟是净碳源还是净碳汇；火、森林吸收减弱、砍伐/退化、生物质燃烧和干旱分别贡献多大；以及为何某些年份排放显著升高，是否存在“人为活动与干旱相互放大”的年际机制。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能方法是以长期大气CO2浓度观测为核心，结合大气输送/区域反演估算亚马孙总碳通量；再叠加火活动、森林损失、降水、温度、旱季长度、El Niño等气候与土地利用指标做归因分析。摘要中的“distinct year groups”暗示作者可能使用聚类、经验分组或基于驱动变量阈值的分类，将年份按湿润程度、人类活动强度和排放水平进行比较。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点包括：一是时间跨度达到15年，足以讨论年际变率和极端年份；二是使用大气CO2观测约束区域碳通量，相比仅依赖地面样地或遥感更接近整体收支；三是把火排放单独量化为主导源，直接回应亚马孙碳源化的关键争议；四是强调干旱与人类活动并非独立，而是存在放大关系，这对政策和风险评估都很重要。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，局限主要是信息不完整：看不到三组年份的完整定义和数值；不清楚观测站点/航线是否足以代表整个亚马孙；不清楚火排放与生态系统交换的分离是否依赖额外模型假设；也无法判断不同子区域（东南亚马孙、中央亚马孙等）是否存在显著异质性。此外，摘要强调相关和归因框架，但因果识别强度、统计显著性和替代解释仍需看正文与补充材料。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查论文主文图表中三组年份的完整划分、每组碳通量数值及对应干旱/火/砍伐指标；第二，记录CO2观测来源、空间覆盖和反演方法；第三，核对火排放0.40 ± 0.07 PgC yr−1与总碳平衡0.32 ± 0.08 PgC yr−1的符号定义和组成关系；第四，若做相关研究，可把该文的年份分组框架与自己使用的降水、VPD、烧毁面积或森林损失数据做对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象是整个亚马孙区域的年际碳通量变化及其驱动因素，核心任务不是单点生态过程，而是区域尺度碳收支归因。作者使用了15年的大气CO2测量来推断Amazonian carbon fluxes，这通常意味着基于飞机剖面、区域大气采样或反演框架估算净碳交换，再结合火排放、降水、干旱、森林损失和可能的气候模态事件（如El Niño）进行解释。摘要给出一个区域碳平衡值0.32 ± 0.08 PgC yr−1，并指出火是主导源0.40 ± 0.07 PgC yr−1，这说明净结果偏向碳源，而且森林吸收已越来越难以抵消排放。证据线索还包括：森林损失会减少降水、升高温度、延长旱季；更高砍伐地区气候胁迫更强、可燃性更高；大尺度气候事件会进一步放大区域影响。作者进一步把年份分为三组，摘要已明确Group 1对应2011–2014、2017、2018，为较湿润且人类活动较低年份，碳平衡约0.11 ± 0.08 PgC yr−1，接近弱源或近中性状态。其余两组在截断摘要中未完整给出，但从题名可合理判断，至少有一组对应干旱增强且人为活动较强的年份，用于说明“human actions amplified by droughts”的机制链条。与气候/碳循环方向的关系很直接：这项工作可为热带森林是否仍是碳汇、火与退化在区域碳预算中的权重、以及极端气候与土地利用交互作用提供观测约束。需要核对的信息包括：CO2观测平台与空间覆盖、反演方法细节、火排放与净生态交换如何分离、三组年份的完整定义、各组对应的气候指标和土地利用指标、误差传播方式，以及0.32 PgC yr−1的符号定义是否明确表示净向大气排放。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Large language models remain unreliable on long-horizon tasks requiring procedural reasoning. We argue that a key cause is the absence of explicit procedural memory: accessible, modifiable knowledge of how tasks are accomplished, distinct from semantic and episodic memory. Goal-Oriented Graphs offer such a representation, encoding goals and prerequisite dependencies as inspectable symbolic structure. We examine their construction, the challenges they pose, and principles for integrating them with neural reasoning.</p>
+          <p>Abstract The Amazon carbon sink is weakening as deforestation 1–5 , rising tree mortality 6–8 and climate change disrupt the climatic conditions that sustain a humid tropical forest 9–11 . Forest loss reduces precipitation, increases temperatures and lengthens the dry season, driving higher carbon emissions 1–4,11,12 . Climate stress is stronger in more deforested regions, rendering forests progressively more flammable 1,9,13 . Large-scale climate events, such as El Niño, further amplify regional climate impacts 9,14–17 . Here we present an analysis of 15 years of Amazonian carbon fluxes derived from atmospheric CO 2 measurements. We determine a carbon balance of 0.32 ± 0.08 PgC yr −1 , with fires acting as the dominant source (0.40 ± 0.07 PgC yr −1 ) and forest uptake becoming increasingly unable to offset emissions. Furthermore, we investigate key drivers of the carbon emissions of Amazonia and identify three distinct year groups. Group 1 (2011–2014, 2017 and 2018) represents the role of the Amazon in the global carbon balance (0.11 ± 0.08 PgC yr −1 ) during wetter years with low human activity, such as deforestation, biomass burning and degradation. Group 2 (2019–2022) represents Amazon carbon emissions (0.43 ± 0.13 PgC yr −1 ) from human activities (mainly deforestation and degradation) during years with low climatic stress. Group 3 (2010, 2015, 2016, 2023 and 2024) has the highest carbon emissions (0.49 ± 0.07 PgC yr −1 ) and comprises warm and dry years (high climate stress), such as El Niño and the warming of the Tropical North Atlantic Ocean, associated with biomass burning.</p>
         </details>
         
         </div>
@@ -404,26 +627,24 @@
 
     <article class="paper-card">
       <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-19T13:08:45Z</span>
-        <span>Score 66.0</span>
+        <span class="source-pill">Nature</span>
+        <span>2026-10-21</span>
+        <span>Score 61.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2610.26340v1">A Generic On-Board AI Processing Chain for Earth Observation: From Application Development to Embedded Deployment and Mission-Level Orchestration</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+Generic+On-Board+AI+Processing+Chain+for+Earth+Observation%3A+From+Application+D&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.26340v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+A+Generic+On-Board+AI+Processing+Chain+for+Earth+Observation%3A+From+Application+Development+to+Embedded+Deployment+and+Mission-Level+Orchestration%0Akeywords%3A+artificial+intelligence%2C+ai%2C+neural+network%2C+earth%2C+satellite%2C+earth+observation%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+Generic+On-Board+AI+Processing+Chain+for+Earth+Observation%3A+From+Application+D&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.26340v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+A+Generic+On-Board+AI+Processing+Chain+for+Earth+Observation%3A+From+Application+Development+to+Embedded+Deployment+and+Mission-Level+Orchestration%0Akeywords%3A+artificial+intelligence%2C+ai%2C+neural+network%2C+earth%2C+satellite%2C+earth+observation%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+Generic+On-Board+AI+Processing+Chain+for+Earth+Observation%3A+From+Application+D&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.26340v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+A+Generic+On-Board+AI+Processing+Chain+for+Earth+Observation%3A+From+Application+Development+to+Embedded+Deployment+and+Mission-Level+Orchestration%0Akeywords%3A+artificial+intelligence%2C+ai%2C+neural+network%2C+earth%2C+satellite%2C+earth+observation%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1038/s41586-026-11192-1">Enzyme-embedded polyesters for accelerated biodegradation in the deep sea</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Enzyme-embedded+polyesters+for+accelerated+biodegradation+in+the+deep+sea&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11192-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Enzyme-embedded+polyesters+for+accelerated+biodegradation+in+the+deep+sea%0Akeywords%3A+ai%2C+ocean%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Enzyme-embedded+polyesters+for+accelerated+biodegradation+in+the+deep+sea&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11192-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Enzyme-embedded+polyesters+for+accelerated+biodegradation+in+the+deep+sea%0Akeywords%3A+ai%2C+ocean%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Enzyme-embedded+polyesters+for+accelerated+biodegradation+in+the+deep+sea&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11192-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Enzyme-embedded+polyesters+for+accelerated+biodegradation+in+the+deep+sea%0Akeywords%3A+ai%2C+ocean%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Michel-Fran{\c c}ois Foulon、Liz Ramos Medina、Thomas Goudemant、Clotilde Szywala 等 8 人 · <a href="https://arxiv.org/pdf/2610.26340v1">PDF</a></div>
-      <div class="chips"><span class="chip">artificial intelligence <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">neural network <strong>1</strong></span>
-<span class="chip">earth <strong>1</strong></span>
-<span class="chip">satellite <strong>1</strong></span>
-<span class="chip">earth observation <strong>1</strong></span></div>
+      <div class="authors">QiuYuan Huang、Noriko Iida、Noriyuki Isobe、Taizo Kabe 等 11 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11192-1">10.1038/s41586-026-11192-1</a></div>
+      <div class="chips"><span class="chip">ai <strong>1</strong></span>
+<span class="chip">ocean <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕地球观测卫星上的端侧AI处理链展开，目标是在星上把整景遥感数据直接转成更紧凑的产品，如野火分割掩膜、船只检测结果或云分割结果，而不是下传完整影像。摘要显示作者不仅关注神经网络本身，还覆盖了从模型调优、int8量化与AMD Versal VCK190部署，到基于ORCHIDE的任务级编排这一整条星上处理链。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于提出了一个“通用”的星上AI处理框架，并用野火分割作为主案例验证其跨任务复用性：一是针对具体遥感任务进行模型适配，包括光谱波段选择和输入归一化，并将模型量化为int8后部署到AMD Versal VCK190且保持分割性能；二是构建了可跨应用复用且无需修改的tiler-inference-mosaicer场景级工作流，把瓦片级模型扩展到整景输出；三是把各处理步骤封装为unikernel，并通过云原生风格的ORCHIDE在板上进行编排，体现从单模块推理到任务级执行的系统化落地。</p></div>
+        <div class="note"><strong>一句话</strong><p>该论文围绕“在海洋尤其深海环境中如何让可堆肥聚酯更快降解”这一具体任务，研究了将酶热嵌入多种商业相关聚酯（PBS、PBSA、PCL、PBAT）后的海洋降解表现。根据摘要，酶嵌入可显著加速这些聚酯在近岸海水和深海（最深至5,503 m）中的降解，并在757 m深海5个月内实现接近完全降解。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出并展示了一种面向真实海洋环境的材料设计策略：通过在可堆肥聚酯中热嵌入微量酶，提升其在近岸到深海不同水深条件下的降解速率，同时尽量保持材料原有机械性能。若摘要表述在正文中得到充分支撑，这项工作的重要性在于把“工业堆肥条件下可降解”推进到“海洋特别是深海条件下也可加速降解”的具体证据层面。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -432,41 +653,96 @@
           <div class="detail-signal">
             <div>
               <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
+              <div class="signal-source">Nature</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 6</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
+              <div class="signal-kicker">关键词命中 4</div>
+              <div class="signal-meter"><span style="width: 72%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>66.0</strong>
+              <strong>61.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何把地球观测中的AI应用从“实验室里的单个神经网络”扩展为可在卫星上实际运行的完整处理链，使卫星能够在受限算力、存储和下行带宽条件下，直接生成野火分割掩膜、船只检测列表或云分割结果等紧凑产品；同时，这条处理链还要具备跨任务复用能力，并能在任务级别被统一编排。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法路径分三层。第一层是模型层：针对具体遥感任务进行光谱波段选择和输入归一化，随后做int8量化并部署到AMD Versal VCK190，验证量化与移植后性能保持。第二层是场景处理层：采用模块化tiler-inference-mosaicer流程，把整景影像切成瓦片、逐瓦片推理，再拼接成场景级掩膜或检测结果，这一流程据称在不同应用间可直接复用。第三层是系统编排层：将各步骤打包为unikernel，并通过ORCHIDE在板上进行编排，最后对从独立执行到编排执行的端到端链路进行表征。可能涉及的数据应为多光谱地球观测影像，但摘要未给出具体卫星、传感器、数据集或标注来源。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。其一，论文不把“星上AI”狭义理解为单个模型加速，而是覆盖模型适配、整景处理和任务编排，系统完整性较强。其二，明确处理了遥感特有问题，如光谱波段选择和整景到瓦片再回拼的流程，这比通用视觉部署更贴近真实地球观测任务。其三，给出了具体硬件目标AMD Versal VCK190和具体量化方案int8，说明工作具有较强工程落地性。其四，提出跨应用复用的工作流与基于ORCHIDE的编排框架，如果实验支持充分，可能对未来多任务星上智能载荷的软件架构有参考价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，优先查全文中的系统总览图，确认三层结构——模型适配、tiler-inference-mosaicer、ORCHIDE编排——之间的接口关系；第二，定位野火分割实验表，记录数据集、输入波段、量化前后精度、板上延迟和资源占用；第三，检查船只检测和云分割是否真正复用了同一工作流且“无需修改”，还是仅做了轻量配置调整；第四，查ORCHIDE与unikernel部分是否给出编排开销、故障处理或任务切换实验；第五，若你做相关研究，可把自己的任务按“tile切分—模型推理—结果拼接—任务编排”四段映射，评估该框架是否可迁移。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文要解决的具体问题是：现有商业可堆肥聚酯虽然在工业堆肥条件下可有效降解，但在海洋尤其深海环境中降解缓慢甚至受限，能否通过材料内部嵌入酶的方式，使这些聚酯在真实海洋水深梯度下实现更快、更可靠的生物降解，同时不明显牺牲使用阶段的机械性能。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要推测，作者采用的是材料制备加真实环境暴露相结合的路径。材料端，使用热加工方式将酶嵌入PBS、PBSA、PCL、PBAT等聚酯中，并设置无酶对照；可能制备为薄膜，因为摘要提到films。实验端，在近岸海水（2–6 m）和深海环境（包括757 m与5,503 m）进行长期暴露，比较酶嵌入与未嵌入样品的降解行为。表征上大概率包括机械性能测试，以及降解前后质量、外观、形貌、分子量或化学结构变化分析。若要支撑“biodegradation”而非单纯碎裂，正文中应有微生物参与、矿化或生物降解相关证据。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是把评价场景推进到真实深海环境，而不是停留在实验室海水模拟，这使结果对海洋塑料问题更有外部效度。第二个亮点是对象覆盖四类常见可堆肥聚酯，说明策略可能具有一定材料普适性。第三，摘要给出较具体的深度和时间数据：757 m、5个月、接近完全降解，以及5,503 m下仍有中等降解，这些都是很强的应用导向证据。第四，0.1 wt%酶即可在近岸海水中快速降解，若可重复，意味着添加量低、成本和加工负担可能可控。第五，机械性能与无酶材料相近，说明作者关注的是“服役稳定—废弃后降解”的平衡设计，而非单纯追求快降解。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先带着问题去核对正文图表和补充材料：1）记录嵌入酶的具体名称、添加量、热加工条件；2）逐一摘录PBS、PBSA、PCL、PBAT在2–6 m、757 m、5,503 m下的定量降解数据；3）确认“near-complete degradation”和“moderate biodegradation”的判据；4）查看是否有无酶对照、灭活酶对照和实验室模拟对照；5）核对机械性能数据是否包括拉伸强度、断裂伸长率、模量等；6）特别查找是否有矿化、降解产物和生态安全性证据。若你做相关研究，可进一步把这篇论文作为“酶嵌入型海洋可降解聚酯”的案例，与传统表面涂覆酶、可水解共聚改性、海洋微生物降解策略做并列比较。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何把地球观测中的AI应用从“实验室里的单个神经网络”扩展为可在卫星上实际运行的完整处理链，使卫星能够在受限算力、存储和下行带宽条件下，直接生成野火分割掩膜、船只检测列表或云分割结果等紧凑产品；同时，这条处理链还要具备跨任务复用能力，并能在任务级别被统一编排。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法路径分三层。第一层是模型层：针对具体遥感任务进行光谱波段选择和输入归一化，随后做int8量化并部署到AMD Versal VCK190，验证量化与移植后性能保持。第二层是场景处理层：采用模块化tiler-inference-mosaicer流程，把整景影像切成瓦片、逐瓦片推理，再拼接成场景级掩膜或检测结果，这一流程据称在不同应用间可直接复用。第三层是系统编排层：将各步骤打包为unikernel，并通过ORCHIDE在板上进行编排，最后对从独立执行到编排执行的端到端链路进行表征。可能涉及的数据应为多光谱地球观测影像，但摘要未给出具体卫星、传感器、数据集或标注来源。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。其一，论文不把“星上AI”狭义理解为单个模型加速，而是覆盖模型适配、整景处理和任务编排，系统完整性较强。其二，明确处理了遥感特有问题，如光谱波段选择和整景到瓦片再回拼的流程，这比通用视觉部署更贴近真实地球观测任务。其三，给出了具体硬件目标AMD Versal VCK190和具体量化方案int8，说明工作具有较强工程落地性。其四，提出跨应用复用的工作流与基于ORCHIDE的编排框架，如果实验支持充分，可能对未来多任务星上智能载荷的软件架构有参考价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：缺少定量结果，无法判断“性能保持”具体到何种精度、速度、功耗和资源占用；“通用”一词可能主要指软件管线复用，而不一定意味着模型、硬件或任务配置都能无缝迁移；未说明野火、船只、云三个任务的实验覆盖深度，可能存在主案例充分、辅案例较弱的情况；unikernel与ORCHIDE的引入虽然新颖，但其额外开销、可靠性和对航天约束的适配性尚未从摘要中得到证实；此外，摘要截断，端到端表征的完整结论目前不可见。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，优先查全文中的系统总览图，确认三层结构——模型适配、tiler-inference-mosaicer、ORCHIDE编排——之间的接口关系；第二，定位野火分割实验表，记录数据集、输入波段、量化前后精度、板上延迟和资源占用；第三，检查船只检测和云分割是否真正复用了同一工作流且“无需修改”，还是仅做了轻量配置调整；第四，查ORCHIDE与unikernel部分是否给出编排开销、故障处理或任务切换实验；第五，若你做相关研究，可把自己的任务按“tile切分—模型推理—结果拼接—任务编排”四段映射，评估该框架是否可迁移。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从摘要可见，研究对象非常具体：面向地球观测卫星，由于下行带宽受限，作者希望把卫星变成“数据压缩/信息提取节点”，在星上直接输出掩膜或检测列表等紧凑产品。任务层面至少包含野火分割、船只检测和云分割，其中野火分割是重点示例。方法线索也较明确：先对AI模型做任务适配，特别提到光谱波段选择与输入归一化，说明作者考虑了多光谱遥感数据在星上部署时的输入约束；随后进行8位整数量化，并移植到AMD Versal VCK190，强调板上分割性能基本保持，说明其关注的不只是吞吐和功耗，也包括量化后精度保持。进一步地，作者提出模块化的tiler-inference-mosaicer流程，把原本只能处理小块输入的模型扩展到整景级处理，这对高分辨率遥感场景非常关键，因为星上算力和片上存储通常不足以直接处理整幅图像。最后，系统工程层面把每一步封装为unikernel，并由ORCHIDE进行编排，表明论文试图把“单个AI算子部署”提升为“可在任务中运行的完整软件链”。
-
-对科研读者而言，这篇工作的价值可能在于它连接了三个常被割裂的层面：遥感任务适配、嵌入式AI部署、以及在轨软件编排。若你的方向是星上智能、边缘AI、遥感系统或航天软件架构，这篇论文值得关注，因为它可能提供一个可迁移的工程模板，而不只是某个单一模型的加速结果。尤其是“同一tiler-inference-mosaicer工作流跨应用不变”这一点，如果证据充分，意味着不同遥感任务可以共享大量基础设施，从而降低任务切换成本。
-
-但基于当前仅有的题名和摘要，也有多项关键信息仍需核对。首先，“excellent segmentation performance preserved on the board”只说明板上精度保持较好，但没有给出具体指标、基线、数据集名称、输入分辨率、tile大小、延迟、吞吐、功耗或资源占用。其次，虽然提到船只检测和云分割，但摘要没有说明这些任务是否都完成了端到端部署、是否共享同一模型骨干、以及“通用性”究竟体现在软件复用、模型接口统一还是硬件无关性。再次，ORCHIDE被称为cloud-native orchestrator，但需要确认其在航天环境中的容错、实时性、资源隔离和故障恢复机制，否则“云原生”概念未必天然适合星上系统。最后，unikernel封装的选择很有意思，但需要看其相对容器、RTOS进程或裸机方案的开销与收益是否有量化比较。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文要解决的具体问题是：现有商业可堆肥聚酯虽然在工业堆肥条件下可有效降解，但在海洋尤其深海环境中降解缓慢甚至受限，能否通过材料内部嵌入酶的方式，使这些聚酯在真实海洋水深梯度下实现更快、更可靠的生物降解，同时不明显牺牲使用阶段的机械性能。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要推测，作者采用的是材料制备加真实环境暴露相结合的路径。材料端，使用热加工方式将酶嵌入PBS、PBSA、PCL、PBAT等聚酯中，并设置无酶对照；可能制备为薄膜，因为摘要提到films。实验端，在近岸海水（2–6 m）和深海环境（包括757 m与5,503 m）进行长期暴露，比较酶嵌入与未嵌入样品的降解行为。表征上大概率包括机械性能测试，以及降解前后质量、外观、形貌、分子量或化学结构变化分析。若要支撑“biodegradation”而非单纯碎裂，正文中应有微生物参与、矿化或生物降解相关证据。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是把评价场景推进到真实深海环境，而不是停留在实验室海水模拟，这使结果对海洋塑料问题更有外部效度。第二个亮点是对象覆盖四类常见可堆肥聚酯，说明策略可能具有一定材料普适性。第三，摘要给出较具体的深度和时间数据：757 m、5个月、接近完全降解，以及5,503 m下仍有中等降解，这些都是很强的应用导向证据。第四，0.1 wt%酶即可在近岸海水中快速降解，若可重复，意味着添加量低、成本和加工负担可能可控。第五，机械性能与无酶材料相近，说明作者关注的是“服役稳定—废弃后降解”的平衡设计，而非单纯追求快降解。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前仍有几个必须警惕的边界。首先，摘要没有说明酶的身份、稳定性和热加工后残余活性，因而机制可信度需要看正文。其次，“接近完全降解”不等于完全矿化，可能只是薄膜破碎、质量损失或分子量显著下降，环境意义需要区分。第三，深海实验虽然珍贵，但样本量、回收条件、环境波动和对照充分性未知。第四，摘要未说明不同聚酯之间是否都达到同等效果，也未说明PBAT这类含芳香族单元材料的降解程度。第五，机械性能“相似”缺少具体指标，尚不清楚是否包括长期储存稳定性、加工窗口和使用寿命。第六，降解产物是否会形成暂时性微塑料或低聚物积累、对深海生态是否安全，摘要没有提供信息。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先带着问题去核对正文图表和补充材料：1）记录嵌入酶的具体名称、添加量、热加工条件；2）逐一摘录PBS、PBSA、PCL、PBAT在2–6 m、757 m、5,503 m下的定量降解数据；3）确认“near-complete degradation”和“moderate biodegradation”的判据；4）查看是否有无酶对照、灭活酶对照和实验室模拟对照；5）核对机械性能数据是否包括拉伸强度、断裂伸长率、模量等；6）特别查找是否有矿化、降解产物和生态安全性证据。若你做相关研究，可进一步把这篇论文作为“酶嵌入型海洋可降解聚酯”的案例，与传统表面涂覆酶、可水解共聚改性、海洋微生物降解策略做并列比较。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确，是四类聚酯薄膜或相关形态材料：PBS、PBSA、PCL 和 PBAT，其中“enzyme-embedded”说明作者不是简单外加酶处理，而是通过热加工把酶嵌入聚酯基体中。研究任务是解决现有商业可堆肥塑料在海洋、尤其深海环境中降解有限的问题。摘要给出的证据线索包括：一，测试场景覆盖近岸海域和深海，水深范围从2–6 m到5,503 m，说明作者强调真实环境暴露而非仅实验室模拟；二，在757 m深度，酶嵌入聚酯5个月内接近完全降解，这是最具体、最强的结果表述；三，在5,503 m深海底极端条件下仍观察到“中等程度”生物降解，说明该策略并非只在温和海洋条件下有效；四，在近岸海水中，仅0.1 wt%痕量酶嵌入就能实现快速降解，提示该方法在添加量和加工可行性上可能具有优势；五，机械性能与无酶聚酯相近，意味着作者试图兼顾使用期性能与废弃后环境降解。对科研读者而言，这篇论文与海洋塑料污染、环境友好高分子、可降解材料设计、酶催化聚合物降解、真实场景材料评价等方向直接相关。尤其值得注意的是，它不是泛泛讨论“可降解塑料”，而是把问题压缩到“深海环境中如何加速降解”这一长期缺少实证的数据空白。需要核对的信息主要包括：所嵌入酶的具体种类与来源；热嵌入后酶活性如何保留；降解评价指标是质量损失、分子量下降、形貌破坏、矿化程度还是CO2释放；“near-complete degradation”与“moderate biodegradation”的定量定义；不同聚酯之间降解差异；深海实验的样品尺寸、暴露装置、回收率和对照设置；机械性能测试的具体指标；以及是否评估了降解产物、微塑料中间态和生态安全性。由于当前仅依据摘要，不能判断其是否已经证明了完全环境无害化，只能确认其报告了显著加速的海洋降解现象。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Earth observation satellites acquire more data than they can downlink. Extracting information on board with artificial intelligence (AI) turns the satellite into a data-reduction stage that downlinks compact products, such as masks or detections, instead of full scenes; deploying it in a mission, however, involves the whole processing chain and not only the neural network. We present a generic on-board AI processing chain along three axes, with wildfire segmentation as the worked example among ship detection and cloud segmentation. (i) The AI model is tuned (spectral-band selection, input normalization), quantized to 8-bit integers (int8) and ported to an AMD Versal VCK190, with its excellent segmentation performance preserved on the board. (ii) A modular tiler-inference-mosaicer workflow, reused unchanged across applications, brings the tile-level model to scene level, turning a full acquisition into a scene-level mask or detection list. (iii) Each step is packaged as a unikernel and orchestrated on board by ORCHIDE, a cloud-native orchestrator. The chain is characterized end to end, from the standalone execution on the target to its execution under orchestration with parallel workflows on a representative test bench. Beyond AI inference on individual tiles, this approach aims at increasing the maturity of on-board AI deployment by addressing a complete processing chain, from the acquired scene to the mission-level execution.</p>
+          <p>Abstract The accumulation of persistent plastics in the ocean is causing wide-ranging environmental problems 1–3 . Some commercially available compostable plastics 4–7 , developed to address these issues, degrade efficiently under industrial composting conditions; however, their degradation in marine environments, particularly in the deep sea, remains limited 8–10 . Here we demonstrate that thermally embedding enzymes into compostable polyesters (poly(butylene succinate) (PBS), poly(butylene succinate- co -adipate) (PBSA), poly(ε-caprolactone) (PCL) and poly(butylene adipate- co -terephthalate) (PBAT)) significantly accelerates their degradation in both coastal and deep-sea environments from water depths of 2–6 m to 5,503 m. Enzyme-embedded polyesters achieved near-complete degradation at a deep-sea depth of 757 m within 5 months. Furthermore, moderate biodegradation of enzyme-embedded polyesters was observed under extreme conditions on deep-sea floors of 5,503 m. In coastal seawater, films embedded with trace amounts (0.1 wt%) of enzyme underwent rapid degradation. The mechanical properties of enzyme-embedded polyesters were similar to those of enzyme-free polyesters. Chemical analysis confirmed the formation of low-molecular-mass degradation products and biochemical oxygen demand measurements supported the mineralization of the enzyme-embedded polyesters. The enzyme-embedding strategy enables enhanced marine degradation of compostable polyesters and represents a potential solution to marine plastic pollution.</p>
         </details>
         
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-10-21</span>
+        <span>Score 59.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11179-y">An environmentally regulated dichotomy in cell lineages of the root</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+An+environmentally+regulated+dichotomy+in+cell+lineages+of+the+root&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11179-y%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+An+environmentally+regulated+dichotomy+in+cell+lineages+of+the+root%0Akeywords%3A+rag%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+An+environmentally+regulated+dichotomy+in+cell+lineages+of+the+root&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11179-y%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+An+environmentally+regulated+dichotomy+in+cell+lineages+of+the+root%0Akeywords%3A+rag%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+An+environmentally+regulated+dichotomy+in+cell+lineages+of+the+root&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11179-y%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+An+environmentally+regulated+dichotomy+in+cell+lineages+of+the+root%0Akeywords%3A+rag%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Marina Oliva、Tim Stuart、Dave Tang、Adil Khan 等 15 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11179-y">10.1038/s41586-026-11179-y</a></div>
+      <div class="chips"><span class="chip">rag <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦“根（root）中的细胞谱系（cell lineages）”如何呈现一种受环境调控的二分性（dichotomy），核心任务可能是解释植物根部发育过程中，不同细胞命运或谱系分支如何随环境条件发生分化或重塑。由于提供信息中摘要为空，目前只能据题名和期刊元数据判断其主题大概率位于植物发育生物学、环境响应与单细胞/谱系分析的交叉处。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是提出并证实：根部细胞谱系并非仅由内在发育程序决定，而存在一个由环境因素显著调控的“二分”结构或状态切换框架；如果属实，这将把根发育中的细胞命运决定、环境感知和组织层级重建联系起来。结合作者构成与Nature发表层级，论文还可能在高分辨率细胞图谱、谱系追踪、环境扰动实验或计算整合分析方面提供方法学推进，但这些都需要正文核对。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 3</div>
+              <div class="signal-meter"><span style="width: 54%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>59.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，按题名推测，是根部细胞谱系的形成是否存在一个明确的二分结构，以及这种二分究竟由内在发育程序主导，还是会被外界环境条件系统性调控。更细一点，作者可能在问：同一类根祖细胞或早期分化细胞，是否会在不同环境下进入两种不同命运轨道；或者原本被视为单一路径的根细胞发育，是否其实包含环境依赖的双分支组织原则。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法包括：在不同环境处理下采集根组织，进行单细胞RNA测序或单核RNA测序，比较细胞状态组成与分化轨迹；结合空间定位技术确认二分谱系在根组织中的位置关系；使用遗传标记、报告基因或活体成像做谱系追踪，验证计算推断的分支是否真实存在；通过突变体、激素处理或环境扰动实验测试调控因子；再用计算方法进行聚类、伪时序分析、RNA velocity、跨条件整合和差异表达分析，以界定“二分”是细胞类型差异、可逆状态差异，还是稳定命运分叉。由于摘要缺失，这些都只是高概率路线，不是已知事实。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>从题名和期刊层级看，最值得关注的亮点可能有三点。其一，把“环境调控”直接上升到“细胞谱系二分”的层面，若证据充分，说明环境不是简单调节表达量，而是影响发育结构本身。其二，研究对象限定在根，意味着可以利用植物根透明、结构规则、易于成像和扰动的优势，较容易建立从细胞到组织的因果链。其三，如果论文同时整合单细胞图谱与实验验证，它的价值不仅在于描述现象，还可能提供一个可迁移的分析框架，用于研究其他器官或条件下的发育可塑性。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议为：第一，先获取摘要并确认研究物种、环境因素和“dichotomy”的精确定义；第二，优先查看题图、Figure 1和结果小标题，判断证据主轴是单细胞图谱、成像还是遗传实验；第三，记录文中是否有直接谱系追踪证据，以区分“命运分叉”与“状态分离”；第四，若你的方向与单细胞或环境响应相关，重点摘录其跨条件整合分析流程、关键标记基因和扰动设计；第五，建立一个核对清单：对象细胞群、环境处理、时间尺度、是否可逆、分子调控因子、是否跨物种验证。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，按题名推测，是根部细胞谱系的形成是否存在一个明确的二分结构，以及这种二分究竟由内在发育程序主导，还是会被外界环境条件系统性调控。更细一点，作者可能在问：同一类根祖细胞或早期分化细胞，是否会在不同环境下进入两种不同命运轨道；或者原本被视为单一路径的根细胞发育，是否其实包含环境依赖的双分支组织原则。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能方法包括：在不同环境处理下采集根组织，进行单细胞RNA测序或单核RNA测序，比较细胞状态组成与分化轨迹；结合空间定位技术确认二分谱系在根组织中的位置关系；使用遗传标记、报告基因或活体成像做谱系追踪，验证计算推断的分支是否真实存在；通过突变体、激素处理或环境扰动实验测试调控因子；再用计算方法进行聚类、伪时序分析、RNA velocity、跨条件整合和差异表达分析，以界定“二分”是细胞类型差异、可逆状态差异，还是稳定命运分叉。由于摘要缺失，这些都只是高概率路线，不是已知事实。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>从题名和期刊层级看，最值得关注的亮点可能有三点。其一，把“环境调控”直接上升到“细胞谱系二分”的层面，若证据充分，说明环境不是简单调节表达量，而是影响发育结构本身。其二，研究对象限定在根，意味着可以利用植物根透明、结构规则、易于成像和扰动的优势，较容易建立从细胞到组织的因果链。其三，如果论文同时整合单细胞图谱与实验验证，它的价值不仅在于描述现象，还可能提供一个可迁移的分析框架，用于研究其他器官或条件下的发育可塑性。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究物种、环境变量、样本规模、技术平台、统计设计和主要结论。题名中的“dichotomy”也可能有多种含义：可能是两类细胞、两条轨迹、两种响应模式，甚至是概念性框架，而不一定是严格的谱系分叉。另一个需要警惕的边界是，单细胞轨迹推断常常容易把状态变化解释为谱系关系，若没有直接谱系追踪或时间序列证据，‘cell lineages’的表述需要谨慎核对。最后，Nature论文常强调机制与普适性，但在没有摘要和正文时，不能假定其结论可推广到所有植物或所有环境。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议为：第一，先获取摘要并确认研究物种、环境因素和“dichotomy”的精确定义；第二，优先查看题图、Figure 1和结果小标题，判断证据主轴是单细胞图谱、成像还是遗传实验；第三，记录文中是否有直接谱系追踪证据，以区分“命运分叉”与“状态分离”；第四，若你的方向与单细胞或环境响应相关，重点摘录其跨条件整合分析流程、关键标记基因和扰动设计；第五，建立一个核对清单：对象细胞群、环境处理、时间尺度、是否可逆、分子调控因子、是否跨物种验证。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名“An environmentally regulated dichotomy in cell lineages of the root”可提炼出几个具体对象与线索。第一，研究对象应是“根”这一器官中的细胞谱系，而不是泛指全植物；更具体地，可能涉及根尖分生组织、表皮/皮层/内皮层/维管组织等谱系分支，或某类祖细胞向两种命运方向分化的过程。第二，题名中的“environmentally regulated”提示环境变量不是背景条件，而是解释谱系二分现象的关键自变量，可能包括营养、盐、干旱、水分、温度、微生物或机械环境等。第三，“dichotomy”意味着作者可能观察到两类稳定状态、两条主要分化路径、两种谱系程序，或同一谱系在不同环境下进入两种可区分的发育轨道。第四，若论文与当前常见技术路线一致，证据可能来自单细胞转录组、空间转录组、活体成像、遗传标记谱系追踪、环境扰动对照，以及计算上的轨迹推断/状态分类/跨条件整合。第五，关键词中出现environment/environmental，但“rag”与题名关联不明，不能据此推断具体方法。与科研读者的关系上，这篇工作若属实用单细胞与环境扰动结合的研究，将对理解“发育程序是否被环境重写”“细胞类型与细胞状态如何区分”“跨条件图谱如何比较”具有参考价值。当前最需要核对的信息包括：研究物种是否为拟南芥；所谓dichotomy具体指哪两类细胞、状态或谱系；环境因素是什么；证据是静态图谱还是直接谱系追踪；结论是普适规律还是特定条件下现象。由于摘要为空，任何关于实验结果、效应方向、分子机制和统计显著性的表述都不能确定。</p></div>
+          </div>
+          
         </div>
       </details>
     
@@ -480,16 +756,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1126/science.aee7961">Magic state cultivation on a superconducting quantum processor</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Magic+state+cultivation+on+a+superconducting+quantum+processor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aee7961%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Magic+state+cultivation+on+a+superconducting+quantum+processor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Magic+state+cultivation+on+a+superconducting+quantum+processor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aee7961%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Magic+state+cultivation+on+a+superconducting+quantum+processor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Magic+state+cultivation+on+a+superconducting+quantum+processor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aee7961%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Magic+state+cultivation+on+a+superconducting+quantum+processor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1126/science.adt1928">Frequency encoding regulates cell type composition in the small intestine</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Frequency+encoding+regulates+cell+type+composition+in+the+small+intestine&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt1928%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Frequency+encoding+regulates+cell+type+composition+in+the+small+intestine%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Frequency+encoding+regulates+cell+type+composition+in+the+small+intestine&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt1928%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Frequency+encoding+regulates+cell+type+composition+in+the+small+intestine%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Frequency+encoding+regulates+cell+type+composition+in+the+small+intestine&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt1928%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Frequency+encoding+regulates+cell+type+composition+in+the+small+intestine%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">E. Rosenfeld、C. Gidney、G. Roberts、A. Morvan 等 296 人 · DOI: <a href="https://doi.org/10.1126/science.aee7961">10.1126/science.aee7961</a></div>
+      <div class="authors">Sonja D. C. Weterings、Hiromune Eto、Jan-Daniël de Leede-Scheven、Amir Giladi 等 12 人 · DOI: <a href="https://doi.org/10.1126/science.adt1928">10.1126/science.adt1928</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文围绕超导量子处理器上的“魔态培育”任务展开，目标是在容错量子计算中以比传统魔态蒸馏更低的资源代价获得高保真非Clifford资源态。根据摘要，作者实验实现了包含向表面码切换的培育流程，并用容错测量协议对魔态保真度进行下界估计，报告误差降低约40倍、保真度至少达到0.9999(1)、成功保留率为8%。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把“magic state cultivation”从理论资源优化方案推进到超导量子处理器上的实验验证：不仅实现了培育流程本身，还实现了与表面码相关的code-switching以及用于保真度界定的容错测量协议。若摘要表述完整，这项工作的重要性在于它直接针对容错量子计算中非Clifford门资源瓶颈，给出一种相对蒸馏更高效且已被实验支持的替代路径。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦小肠上皮细胞命运决定，提出Notch靶蛋白Hes1的振荡频率会调控小肠中吸收性与分泌性两大谱系的细胞组成。作者结合内源性荧光Hes1报告系统与类器官微流控扰动，认为细胞命运信息不是仅由信号强弱决定，而是以振荡频率编码。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是把“小肠细胞类型组成如何被调控”具体落到Hes1振荡这一可测动态变量上，并提出频率编码机制：不同细胞类型及隐窝-绒毛轴位置对应不同Hes1振荡频率，这一频率又受细胞周期、Wnt活性和Notch活性调制；进一步通过微流控系统人为调节Notch振荡，显示频率变化可改变类器官中的细胞类型比例。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -510,23 +786,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在超导量子处理器和表面码相关容错架构中，能否用“魔态培育”替代高成本魔态蒸馏，以实验上可验证的方式制备足够高保真的非Clifford资源态；以及如何在容错条件下可靠地证明输出魔态的保真度。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径是：在超导量子芯片上制备初始魔态或候选资源态；执行培育协议，通过编码操作和向表面码的code-switching把状态转入适合容错处理的编码空间；利用专门设计的容错测量协议对输出态进行验证，并据此给出保真度下界而非仅依赖标准层析；最后统计误差抑制倍数、输出保真度和保留率，评估培育相对蒸馏的可行性。数据层面应主要来自实验重复采样后的通过/失败事件统计、逻辑测量结果和保真度界。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，任务选择直接击中容错量子计算的核心瓶颈：非Clifford资源态制备。第二，实验内容不只是演示单个编码态，而是包含code-switching和容错测量，说明工作更接近完整容错流程而非孤立器件表征。第三，摘要给出了较具体的性能数字：误差降低40倍、保真度至少0.9999(1)、保留率8%，这使读者可以直接思考资源-性能折中，而不是停留在定性“可行”。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：先查论文正文中的主图和补充材料，重点定位培育电路、code-switching流程图、容错测量定义以及“40倍降错/0.9999(1)/8%”对应的精确定义；然后把这些数字与标准魔态蒸馏协议在相同初始误差下的资源开销做一页对照表；最后记录三个核对问题：目标魔态类型、保真度估计方法、成功率与总资源的换算关系。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在小肠上皮中，干细胞如何在维持自身的同时，稳定地产生吸收性和分泌性两大谱系，并形成合适的细胞类型组成？更进一步，Notch/Wnt等经典通路究竟是通过信号强度、持续时间，还是通过像Hes1这样的下游振荡频率来编码细胞命运信息？</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推测，方法包括：1）利用内源性荧光Hes1报告系统进行活细胞时间序列成像，定量不同位置和不同细胞类型中的Hes1振荡频率；2）在小肠组织或类器官体系中，沿隐窝-绒毛轴比较频率梯度；3）结合细胞周期状态分析，评估频率与细胞周期阶段的关系；4）通过操纵Wnt和Notch活性，测试频率变化是否受这些通路调控；5）开发微流控平台，对类器官施加时间可控的Notch信号振荡输入，再测量最终细胞类型组成变化。若有更完整数据，可能还会包含单细胞转录组、免疫染色或谱系标记来定义细胞身份。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点有三点。其一，研究把静态分化问题转化为动态编码问题，直接测量Hes1振荡而非只看终点表达。其二，观察层面和操控层面兼具：既发现细胞类型特异频率和空间梯度，又通过微流控人为改变Notch振荡来测试功能后果。其三，机制整合度较高，摘要显示频率同时受细胞周期、Wnt和Notch影响，意味着作者可能建立了一个把位置、增殖状态和信号通路统一到同一动态变量上的框架。这对理解组织稳态和类器官定向分化都很有应用价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文图1和方法部分，确认Hes1 reporter的构建方式、成像时间分辨率和频率提取算法；2）查找展示隐窝-绒毛轴频率梯度和不同细胞类型频率分布的关键图，记录具体数值范围；3）重点看微流控实验，弄清Notch振荡是如何施加的、对照组是什么、细胞组成如何定量；4）核对作者是否比较了频率、振幅和平均水平三者的解释力；5）如果你做类器官或信号动力学，可直接整理一个复现实验清单：Hes1动态报告、Notch脉冲输入、终点细胞类型标记、以及区分分化与增殖效应的读出。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在超导量子处理器和表面码相关容错架构中，能否用“魔态培育”替代高成本魔态蒸馏，以实验上可验证的方式制备足够高保真的非Clifford资源态；以及如何在容错条件下可靠地证明输出魔态的保真度。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径是：在超导量子芯片上制备初始魔态或候选资源态；执行培育协议，通过编码操作和向表面码的code-switching把状态转入适合容错处理的编码空间；利用专门设计的容错测量协议对输出态进行验证，并据此给出保真度下界而非仅依赖标准层析；最后统计误差抑制倍数、输出保真度和保留率，评估培育相对蒸馏的可行性。数据层面应主要来自实验重复采样后的通过/失败事件统计、逻辑测量结果和保真度界。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，任务选择直接击中容错量子计算的核心瓶颈：非Clifford资源态制备。第二，实验内容不只是演示单个编码态，而是包含code-switching和容错测量，说明工作更接近完整容错流程而非孤立器件表征。第三，摘要给出了较具体的性能数字：误差降低40倍、保真度至少0.9999(1)、保留率8%，这使读者可以直接思考资源-性能折中，而不是停留在定性“可行”。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅基于题录和摘要，仍需警惕几个边界。第一，8%的保留率提示协议可能依赖较强后选择，系统级吞吐量和时空开销未明。第二，摘要没有说明比较基线；“比蒸馏更高效”可能依赖特定噪声模型、初始态质量或硬件原语。第三，保真度是“at least”形式，说明结果可能是下界而非完整状态表征，实际误差通道结构仍未知。第四，尚不清楚实验规模、码距、物理比特数和重复轮数，因此很难仅凭摘要判断其可扩展性。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：先查论文正文中的主图和补充材料，重点定位培育电路、code-switching流程图、容错测量定义以及“40倍降错/0.9999(1)/8%”对应的精确定义；然后把这些数字与标准魔态蒸馏协议在相同初始误差下的资源开销做一页对照表；最后记录三个核对问题：目标魔态类型、保真度估计方法、成功率与总资源的换算关系。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：超导量子处理器上的魔态培育，服务于容错量子计算中的非Clifford资源制备。背景是：Clifford门本身不足以实现通用量子计算，而T门等非Clifford操作通常依赖高保真魔态；在多数纠错架构中，魔态蒸馏代价高，因此“培育”被提出为更高效的替代方案。该文的实验重点不是一般量子存储，而是测试培育方案成立所需的关键假设，这意味着实验应涉及从初始较粗糙魔态出发，经编码、码切换、容错测量与筛选，得到更高保真的输出态。摘要给出的具体证据线索包括三点：一是“including code-switching into a surface code”，说明实验流程中至少有一步把量子信息映射或切换到表面码表示；二是“develop a fault-tolerant measurement protocol to bound the magic state fidelity”，说明作者没有只给出普通层析，而是设计了更贴近容错条件的保真度下界评估方法；三是定量结果“reduces the error by a factor of 40”“state fidelity of at least 0.9999(1)”“retaining 8% of attempts”，这表明该方案是以较低通过率换取显著质量提升，类似后选择/筛选型协议的资源-质量权衡。对从事量子纠错、容错门实现、超导量子硬件或资源估算的读者，这篇论文的价值在于它把魔态资源制备问题从抽象开销分析推进到可实验检验的流程级实现，尤其值得关注其码切换细节、测量协议的容错性定义、误差模型假设，以及与标准蒸馏协议相比的物理比特数、时序深度和成功率。需要核对的信息包括：培育所针对的具体魔态类型是否为T态；“40倍降错”对应的是哪种误差度量；0.9999(1)是单边下界还是点估计加不确定度；8%保留率对应单轮还是全流程；以及与蒸馏相比的资源节省是在何种噪声区间和码距条件下成立。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在小肠上皮中，干细胞如何在维持自身的同时，稳定地产生吸收性和分泌性两大谱系，并形成合适的细胞类型组成？更进一步，Notch/Wnt等经典通路究竟是通过信号强度、持续时间，还是通过像Hes1这样的下游振荡频率来编码细胞命运信息？</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推测，方法包括：1）利用内源性荧光Hes1报告系统进行活细胞时间序列成像，定量不同位置和不同细胞类型中的Hes1振荡频率；2）在小肠组织或类器官体系中，沿隐窝-绒毛轴比较频率梯度；3）结合细胞周期状态分析，评估频率与细胞周期阶段的关系；4）通过操纵Wnt和Notch活性，测试频率变化是否受这些通路调控；5）开发微流控平台，对类器官施加时间可控的Notch信号振荡输入，再测量最终细胞类型组成变化。若有更完整数据，可能还会包含单细胞转录组、免疫染色或谱系标记来定义细胞身份。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点有三点。其一，研究把静态分化问题转化为动态编码问题，直接测量Hes1振荡而非只看终点表达。其二，观察层面和操控层面兼具：既发现细胞类型特异频率和空间梯度，又通过微流控人为改变Notch振荡来测试功能后果。其三，机制整合度较高，摘要显示频率同时受细胞周期、Wnt和Notch影响，意味着作者可能建立了一个把位置、增殖状态和信号通路统一到同一动态变量上的框架。这对理解组织稳态和类器官定向分化都很有应用价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：1）尚不清楚频率是否独立于振幅、平均表达量和总信号剂量发挥作用，频率编码是否被严格区分出来需要看正文实验设计；2）“细胞类型组成”变化可能同时受分化、增殖和存活影响，摘要未说明如何拆分这些因素；3）类器官微流控系统虽利于精确操控，但其外推到体内小肠稳态的程度需要看体内验证；4）不同细胞类型的频率差异是否足够稳健、是否存在个体间或批次间变异，摘要没有给出；5）尚不清楚作者是否证明Hes1本身是功能执行者，还是仅作为Notch动态状态的报告读出。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文图1和方法部分，确认Hes1 reporter的构建方式、成像时间分辨率和频率提取算法；2）查找展示隐窝-绒毛轴频率梯度和不同细胞类型频率分布的关键图，记录具体数值范围；3）重点看微流控实验，弄清Notch振荡是如何施加的、对照组是什么、细胞组成如何定量；4）核对作者是否比较了频率、振幅和平均水平三者的解释力；5）如果你做类器官或信号动力学，可直接整理一个复现实验清单：Hes1动态报告、Notch脉冲输入、终点细胞类型标记、以及区分分化与增殖效应的读出。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要看，研究对象是小肠上皮稳态中的干细胞维持与向吸收性/分泌性细胞分化的平衡。已知Notch和Wnt是关键通路，但这篇工作试图回答一个更细的问题：这些通路究竟如何编码并输出“细胞类型组成”这一组织层面的结果。作者给出的答案是Hes1振荡频率。证据线索主要有三层。第一，作者构建或使用了内源性荧光Hes1 reporter，说明他们不是只看终点表达量，而是做活细胞动态追踪，观察到Hes1在不同细胞类型中存在不同振荡频率，并且沿隐窝-绒毛轴形成频率梯度。第二，这种频率并非固定，而会被细胞周期阶段以及Wnt/Notch信号活性调节，提示频率是多个调控因素汇聚后的动态读出。第三，作者开发了一个微流控系统来调制类器官中的Notch信号振荡，并观察到细胞类型组成随振荡频率改变，这使“相关性”进一步接近“因果操控”。如果你的方向涉及发育生物学、干细胞命运决定、动态信号转导、类器官工程或单细胞时序成像，这篇论文的价值在于它把传统的通路强度模型推进到时间编码模型，尤其适合与振荡基因网络、实时成像、谱系分化控制联系起来理解。基于目前只有摘要，仍需重点核对若干信息：Hes1频率的具体量化方式和时间尺度；不同细胞类型的定义依据是形态、标记基因还是谱系追踪；微流控施加的是Notch配体脉冲、抑制剂脉冲还是培养条件切换；“调控细胞组成”的效应量有多大、是否可逆；以及作者如何排除平均信号强度、总暴露量或细胞增殖差异对结果的替代解释。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Fault-tolerant quantum computing requires a universal gate set, but the necessary non-Clifford gates represent a significant resource cost for most quantum error correction architectures. Magic state cultivation offers an efficient alternative to resource-intensive distillation protocols; however, testing the proposal’s assumptions represents a challenging departure from quantum memory experiments. We present an experimental study of magic state cultivation on a superconducting quantum processor. We implement cultivation, including code-switching into a surface code, and develop a fault-tolerant measurement protocol to bound the magic state fidelity. Cultivation reduces the error by a factor of 40, with a state fidelity of at least 0.9999(1) (retaining 8% of attempts). Our results experimentally establish magic state cultivation as a viable solution to one of quantum computing’s most important challenges.</p>
+          <p>Intestinal homeostasis requires tight regulation of stem cell maintenance and differentiation to absorptive and secretory cell types, two major intestinal lineages. Key signaling pathways have been identified, but how they balance cell type composition remains unclear. We uncovered oscillatory expression of the Notch-target protein Hes1 (hairy and enhancer of split 1) that controls cell fate specification in a frequency-dependent manner. An endogenous fluorescent Hes1 reporter revealed distinct, cell type–specific oscillation frequencies forming a gradient along the crypt-villus axis, which was modulated by cell cycle phase as well as Wnt (wingless-related integration site)–signaling and Notch-signaling activity. We developed a microfluidic system to modulate Notch-signaling oscillations in organoids and found the oscillation frequency to regulate the balance of cell type composition. This study provides evidence that information for cell fate specification is encoded in the frequency of an oscillatory signal.</p>
         </details>
         
         </div>
@@ -542,16 +818,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.ael9047">Winds make bird flights cheaper</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Winds+make+bird+flights+cheaper&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael9047%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Winds+make+bird+flights+cheaper%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Winds+make+bird+flights+cheaper&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael9047%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Winds+make+bird+flights+cheaper%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Winds+make+bird+flights+cheaper&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael9047%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Winds+make+bird+flights+cheaper%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>10. <a href="https://doi.org/10.1126/science.ady7647">A pair of chitosan receptors confer broad-spectrum fungal resistance</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+pair+of+chitosan+receptors+confer+broad-spectrum+fungal+resistance&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady7647%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+A+pair+of+chitosan+receptors+confer+broad-spectrum+fungal+resistance%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+pair+of+chitosan+receptors+confer+broad-spectrum+fungal+resistance&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady7647%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+A+pair+of+chitosan+receptors+confer+broad-spectrum+fungal+resistance%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+pair+of+chitosan+receptors+confer+broad-spectrum+fungal+resistance&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady7647%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+A+pair+of+chitosan+receptors+confer+broad-spectrum+fungal+resistance%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Anders Hedenström · DOI: <a href="https://doi.org/10.1126/science.ael9047">10.1126/science.ael9047</a></div>
+      <div class="authors">Keyi Huang、Jingni Wu、Yu Cao、Yingying Cao 等 34 人 · DOI: <a href="https://doi.org/10.1126/science.ady7647">10.1126/science.ady7647</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦“鸟类飞行如何借助大气风场降低能量成本”这一具体问题。根据题名与摘要，作者讨论的核心对象是鸟类飞行过程中的空气流利用，任务是解释风如何让飞行“更便宜”。</p></div>
-        <div class="note"><strong>贡献</strong><p>从现有题名和摘要看，论文的核心贡献很可能是对“风场可降低鸟类飞行能耗”这一现象进行概括、机制阐释或证据整合，并将大气气流与鸟类运动生态、飞行生物力学之间建立更直接的联系。若为评论/观点类文章，则贡献更可能在于提出清晰框架而非报告新实验。</p></div>
+        <div class="note"><strong>一句话</strong><p>该研究围绕植物如何直接感知真菌细胞壁成分壳聚糖这一具体问题，鉴定出水稻中的一对受体OsFID1和OsFID2：前者为可结合壳聚糖的胞外DUF26蛋白，后者为质膜定位的DUF26受体样激酶，两者组成受体复合体并介导壳聚糖触发的免疫与广谱抗真菌性。摘要还指出，将OsFID1异位表达至小麦和玉米可在无明显生长代价的情况下增强抗真菌能力，提示其具有作物抗病工程应用潜力。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是提出并初步建立了植物直接识别壳聚糖的受体机制：OsFID1作为壳聚糖结合受体、OsFID2作为与之配对并依赖磷酸化发挥功能的受体样激酶，共同构成一个保守的壳聚糖感知复合体。可能的重要延伸贡献包括：将壳聚糖从“已知可激活免疫的真菌来源分子”推进到“具有明确受体复合体的模式分子”；说明该机制在陆生植物中具有保守性；并给出跨作物转化增强真菌抗性的应用线索。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -572,277 +848,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>研究问题是：鸟类在飞行过程中，具体如何利用大气中的空气流来降低飞行能量成本？更细一点，论文可能在问：哪些风场类型能被鸟类利用、不同飞行方式对风的依赖有何差异、风对迁徙或长距离移动的能量经济性有多大影响。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>仅凭题录无法确定方法，但较可能的路径包括：整合鸟类飞行生物力学理论与气象学知识；引用或分析GPS/遥测轨迹与风场数据的配准结果；比较不同物种或飞行模式在不同风况下的行为变化；用功率需求或运输成本模型解释为何风能降低飞行代价。如果文章属于评论/观点，则方法更可能是文献综合与机制推理。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点在于问题具体且具有跨学科价值：把大气环境这一外部条件直接纳入鸟类飞行成本解释框架。题名和摘要都非常聚焦，说明文章可能提供了一个清晰、可传播的机制性观点，即鸟类并非被动受风影响，而是主动利用风场实现更低成本移动。这对理解迁徙策略、栖息地连通性以及仿生飞行设计都很有启发。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先核对Science页面上的文章类型（Research Article、Perspective、Review或Editorial）；第二，查看摘要全文与首图/图1，确认讨论的是哪类风场和哪些鸟类；第三，记录文中是否出现GPS追踪、风场再分析、功率模型等关键词；第四，若与你的研究相关，优先摘录文中关于“能量成本”使用的具体指标名称与代表性案例。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文要解决的具体科学问题是：植物如何直接感知真菌细胞壁成分壳聚糖并将其转化为免疫信号；在分子层面，是否存在专门的壳聚糖受体及其配套信号转导复合体；这一机制是否足以解释广谱抗真菌抗性并可用于作物工程化改良。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：1）通过遗传筛选、候选基因分析或免疫表型筛查鉴定壳聚糖响应缺陷相关基因OsFID1/OsFID2；2）利用亚细胞定位实验区分OsFID1位于胞外空间、OsFID2位于质膜；3）通过体外结合、生化亲和或标记配体实验验证OsFID1与壳聚糖直接结合；4）通过共免疫沉淀、双分子互补、pull-down或类似方法证明OsFID1-OsFID2形成复合体；5）通过激酶失活或磷酸化位点突变证明OsFID2磷酸化对功能必需；6）通过壳聚糖处理后的免疫读出，如早期防御反应、标志基因表达或抗病性变化，证明该复合体介导壳聚糖触发免疫；7）通过多种真菌接种评估广谱抗性；8）通过跨物种同源蛋白分析和在小麦、玉米中的异位表达测试保守性与应用潜力。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，研究对象非常具体且重要：壳聚糖是主要真菌细胞壁成分之一，但其植物感知机制长期不清楚，若受体被明确鉴定，属于机制层面的关键推进。第二，受体设计具有分工特征：OsFID1负责配体结合、OsFID2负责膜上信号转导，这种“胞外结合蛋白+受体样激酶”的复合体模式有助于解释识别与激活如何耦联。第三，摘要给出了从分子识别到生物学功能再到作物应用的完整链条，包括直接结合、复合体形成、磷酸化依赖、广谱抗真菌性以及跨作物转化。第四，若“无生长代价”结论可靠，则对抗病育种尤其有吸引力，因为许多免疫增强策略常伴随产量或生长惩罚。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议为：1）先查论文主图和补充材料目录，重点定位证明“直接结合”“复合体形成”“OsFID2磷酸化必需”“广谱抗性”“异位表达无生长代价”的图；2）记录病原种类、接种方式、抗性指标和效应量，判断“广谱”是否成立；3）核对壳聚糖材料参数，如分子量、聚合度、脱乙酰度，以及是否与几丁质做了严格对照；4）查看OsFID1和OsFID2的失功能、互补和突变体实验是否构成闭环证据；5）若你的方向是作物抗病或PRR工程，优先整理该复合体在水稻、小麦、玉米中的表达构建、表型评估和是否影响农艺性状；6）列出一个待核对问题清单：OsFID1是否单独足够结合并触发信号、OsFID2是否需要共受体、该通路与CERK1类几丁质通路如何关系。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>研究问题是：鸟类在飞行过程中，具体如何利用大气中的空气流来降低飞行能量成本？更细一点，论文可能在问：哪些风场类型能被鸟类利用、不同飞行方式对风的依赖有何差异、风对迁徙或长距离移动的能量经济性有多大影响。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>仅凭题录无法确定方法，但较可能的路径包括：整合鸟类飞行生物力学理论与气象学知识；引用或分析GPS/遥测轨迹与风场数据的配准结果；比较不同物种或飞行模式在不同风况下的行为变化；用功率需求或运输成本模型解释为何风能降低飞行代价。如果文章属于评论/观点，则方法更可能是文献综合与机制推理。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点在于问题具体且具有跨学科价值：把大气环境这一外部条件直接纳入鸟类飞行成本解释框架。题名和摘要都非常聚焦，说明文章可能提供了一个清晰、可传播的机制性观点，即鸟类并非被动受风影响，而是主动利用风场实现更低成本移动。这对理解迁徙策略、栖息地连通性以及仿生飞行设计都很有启发。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>局限是当前可用信息极少，无法确认研究类型、数据来源、物种范围、效应量和结论边界。摘要过于简短，不能支持对实验设计或结果作具体判断。还需警惕题名中的“bird flights”是否泛指多类鸟，还是主要针对善于滑翔/翱翔的类群；若是评论性文章，其证据强度依赖所综述研究的质量而非单篇新数据。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先核对Science页面上的文章类型（Research Article、Perspective、Review或Editorial）；第二，查看摘要全文与首图/图1，确认讨论的是哪类风场和哪些鸟类；第三，记录文中是否出现GPS追踪、风场再分析、功率模型等关键词；第四，若与你的研究相关，优先摘录文中关于“能量成本”使用的具体指标名称与代表性案例。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>基于仅有的题名、期刊、作者和一句摘要，这篇文章的研究对象非常明确：鸟类在飞行中如何利用大气中的空气流（如顺风、上升气流、风梯度或其他风场结构）来减少单位距离或单位时间的能量消耗。题名“Winds make bird flights cheaper”直接指向飞行代价下降这一现象，摘要中的“Many birds use atmospheric air currents to reduce the energy costs of flying”进一步说明，论文关注的不是一般性的飞行能力，而是“利用环境流体条件降低代谢/机械成本”的生态与生物力学问题。
-
-从文献类型判断，这篇文章发表在Science，且当前提供的信息只有一句高度概括的摘要，没有具体样本、实验设计、数据规模或统计结果，因此需要警惕它可能不是标准原始研究论文，而更可能是评论、观点、综述性短文或对相关研究的解读。如果是这类文章，那么其“方法”主要可能是整合已有追踪数据、风场观测、飞行力学理论和典型案例，而不是单一实验。作者Anders Hedenström长期与飞行生物力学、鸟类飞行和空气动力学相关，因此文章很可能从机制层面讨论不同类型风对不同飞行策略的影响，例如滑翔、翱翔、迁徙巡航、海鸟动态翱翔等。
-
-可能的证据线索包括：第一，生物遥测或GPS/加速度计数据，用于比较鸟类在不同风况下的速度、路径选择、振翅频率或停歇策略；第二，气象再分析数据、局地风场测量或热气流信息，用于把个体轨迹与环境风条件配准；第三，飞行功率曲线、最小功率速度/最大航程速度等理论框架，用于推断顺风、侧风、上升气流如何改变能量预算；第四，跨物种比较，区分大型滑翔鸟、海鸟和持续振翅飞行鸟在利用风场方面的差异。题名中的“cheaper”更像能量经济性表述，因此若文中涉及定量，重点可能是代谢成本、机械功、运输成本（cost of transport）或迁徙总能量支出，而不只是飞行速度提升。
-
-与科研读者的关系上，这篇文章对运动生态学、迁徙生态学、比较生理学、空气动力学仿生和动物行为学都有直接参考价值。若你的方向涉及动物追踪、环境行为耦合、生态位建模或仿生飞行器，这篇文章可作为“环境流体辅助运动”的概念入口：动物并非只依赖自身输出功率，而是在时空上主动选择更有利的流场，从而优化能量、时间和风险之间的权衡。
-
-但必须明确，目前信息不足以确认以下关键点：文章究竟是原始研究还是评论；研究的是所有鸟类的一般规律还是某些特定类群；讨论的是顺风、热上升气流、坡面上升气流还是动态翱翔中的风切变；是否提供了新的实测数据、模型推导或仅总结既有证据；“降低能量成本”是直接测量还是理论推断。因此，任何关于实验结果、效应大小、统计显著性、物种名单和图表结论的判断都需要在阅读全文后核对。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文要解决的具体科学问题是：植物如何直接感知真菌细胞壁成分壳聚糖并将其转化为免疫信号；在分子层面，是否存在专门的壳聚糖受体及其配套信号转导复合体；这一机制是否足以解释广谱抗真菌抗性并可用于作物工程化改良。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：1）通过遗传筛选、候选基因分析或免疫表型筛查鉴定壳聚糖响应缺陷相关基因OsFID1/OsFID2；2）利用亚细胞定位实验区分OsFID1位于胞外空间、OsFID2位于质膜；3）通过体外结合、生化亲和或标记配体实验验证OsFID1与壳聚糖直接结合；4）通过共免疫沉淀、双分子互补、pull-down或类似方法证明OsFID1-OsFID2形成复合体；5）通过激酶失活或磷酸化位点突变证明OsFID2磷酸化对功能必需；6）通过壳聚糖处理后的免疫读出，如早期防御反应、标志基因表达或抗病性变化，证明该复合体介导壳聚糖触发免疫；7）通过多种真菌接种评估广谱抗性；8）通过跨物种同源蛋白分析和在小麦、玉米中的异位表达测试保守性与应用潜力。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，研究对象非常具体且重要：壳聚糖是主要真菌细胞壁成分之一，但其植物感知机制长期不清楚，若受体被明确鉴定，属于机制层面的关键推进。第二，受体设计具有分工特征：OsFID1负责配体结合、OsFID2负责膜上信号转导，这种“胞外结合蛋白+受体样激酶”的复合体模式有助于解释识别与激活如何耦联。第三，摘要给出了从分子识别到生物学功能再到作物应用的完整链条，包括直接结合、复合体形成、磷酸化依赖、广谱抗真菌性以及跨作物转化。第四，若“无生长代价”结论可靠，则对抗病育种尤其有吸引力，因为许多免疫增强策略常伴随产量或生长惩罚。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的边界主要有：1）尚不清楚壳聚糖识别的化学特异性，尤其与几丁质、壳寡糖及不同脱乙酰度/聚合度分子的区分程度；2）“广谱”表述缺少病原范围、实验条件和效应量，不能仅凭摘要判断其普适性；3）“无生长代价”通常依赖多环境、多时期和产量性状评估，摘要未提供细节；4）同源物保守性与功能保守性并不完全等价，需要核对是否做了跨物种遗传互补或仅做了结合实验；5）OsFID1/OsFID2与已知真菌相关模式识别受体网络的关系尚不明确，可能存在通路交叉但摘要未展开；6）由于未见全文，不能确认受体命名、突变体来源、样本量、统计强度和关键对照是否充分。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议为：1）先查论文主图和补充材料目录，重点定位证明“直接结合”“复合体形成”“OsFID2磷酸化必需”“广谱抗性”“异位表达无生长代价”的图；2）记录病原种类、接种方式、抗性指标和效应量，判断“广谱”是否成立；3）核对壳聚糖材料参数，如分子量、聚合度、脱乙酰度，以及是否与几丁质做了严格对照；4）查看OsFID1和OsFID2的失功能、互补和突变体实验是否构成闭环证据；5）若你的方向是作物抗病或PRR工程，优先整理该复合体在水稻、小麦、玉米中的表达构建、表型评估和是否影响农艺性状；6）列出一个待核对问题清单：OsFID1是否单独足够结合并触发信号、OsFID2是否需要共受体、该通路与CERK1类几丁质通路如何关系。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可提炼出较清晰的研究对象与证据链。研究对象是植物先天免疫中对真菌细胞壁主要成分之一壳聚糖的感知机制，核心材料应包括水稻基因OsFID1和OsFID2，以及小麦、玉米中的异位表达体系。OsFID1被描述为apoplast-localized DUF26 domain protein，说明它可能位于胞外空间、缺乏典型激酶结构，主要承担配体结合功能；OsFID2则是plasma membrane-localized DUF26 receptor-like kinase，提示其位于质膜并负责信号转导。摘要明确说OsFID1是“chitosan-binding receptor essential for chitosan-triggered immunity”，因此关键实验线索大概率包括壳聚糖结合测定、失功能材料中的免疫缺陷表型，以及补回或重建实验。OsFID1与OsFID2形成受体复合体且OsFID2磷酸化对功能必需，意味着作者可能做了蛋白互作、定位、激酶活性或磷酸化位点突变分析，并将这些分子事件与免疫输出和抗病表型关联起来。所谓“broad-spectrum resistance to fungal pathogens”说明病原测试可能不止一种真菌，重点应核对涉及哪些病原、是生物营养型还是坏死营养型、抗性提升幅度和稳定性如何。摘要还提到OsFID1同源物在陆生植物中保守，且单、双子叶植物中都显示壳聚糖结合活性，这提示作者可能进行了系统发育比较与跨物种蛋白结合实验，但需要核对“保守”是序列层面、功能层面还是两者兼具。对科研读者而言，这篇工作与植物-真菌互作、PRR受体生物学、作物抗病育种和模式分子识别机制都直接相关，尤其适合关注DUF26家族功能分化、胞外配体识别与受体激酶协同、以及免疫增强是否伴随生长代价的研究方向。基于仅有摘要，仍需重点核对的信息包括：壳聚糖的聚合度和脱乙酰度是否影响识别；OsFID1是否直接且特异地结合壳聚糖而非几丁质或其他多糖；OsFID2是否单独参与其他免疫通路；广谱抗性是否在田间或仅在受控条件下成立；异位表达无生长代价的评估指标和环境范围；以及该复合体与已知几丁质受体通路之间是并行、串联还是交叉调控。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Many birds use atmospheric air currents to reduce the energy costs of flying</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Science</span>
-        <span>2026-10-15</span>
-        <span>Score 42.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.aeh4015">Electrically driven chiral emission from plasmonic tunnel junctions</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Electrically+driven+chiral+emission+from+plasmonic+tunnel+junctions&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh4015%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Electrically+driven+chiral+emission+from+plasmonic+tunnel+junctions%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Electrically+driven+chiral+emission+from+plasmonic+tunnel+junctions&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh4015%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Electrically+driven+chiral+emission+from+plasmonic+tunnel+junctions%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Electrically+driven+chiral+emission+from+plasmonic+tunnel+junctions&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh4015%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Electrically+driven+chiral+emission+from+plasmonic+tunnel+junctions%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Yuanyang Xie、Alexey V. Krasavin、Anatoly V. Zayats · DOI: <a href="https://doi.org/10.1126/science.aeh4015">10.1126/science.aeh4015</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该论文围绕“等离激元隧穿结中如何电驱动产生手性光”这一具体任务，报道了将隧穿结与手性等离激元纳米螺旋体集成，在单颗粒尺度实现电激发手性发光。摘要表明，隧穿驱动可共振激发纳米螺旋体的手性偶极模，产生同时携带自旋角动量和轨道角动量的涡旋光束。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是提出并演示了一种基于等离激元隧穿结+手性纳米螺旋体的电致手性发光方案：不是依赖外部光学泵浦，而是利用量子隧穿直接在纳米尺度生成具有手性选择性的光子自旋，并进一步得到轨道角动量与自旋角动量耦合的涡旋发射。若摘要表述可靠，其关键指标包括手性选择性大于0.8，以及轨道角动量与自旋角动量“大小相等、符号相反”的发射特征。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Science</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>42.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：能否利用量子隧穿这一纯电驱动纳米发光机制，在单个等离激元手性纳米结构中直接产生具有可选手性的光，并进一步实现同时携带自旋角动量与轨道角动量的电致涡旋发射？更细一点说，它关注的是如何把隧穿结中的局域激发有效耦合到手性等离激元模，从而避免仅得到普通非偏振或弱偏振的电致发光。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>依据摘要，可能的方法路径是：构建金属隧穿结并与手性纳米螺旋体集成；在外加偏压下通过非弹性电子隧穿激发局域等离激元；利用纳米螺旋体的几何手性选择性地激发手性偶极模；通过光谱、偏振分辨和可能的角分辨/相位分析表征发射光的手性、自旋角动量和轨道角动量；再结合电磁仿真或模态分解解释为何会出现“handedness selectivity &gt; 0.8”以及“OAM与SAM等大反号”。如果是单颗粒层面的结论，实验上还可能使用暗场/电子显微镜结构表征与单器件发光测量配套。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，驱动方式上是电驱动而非光泵浦，这对片上集成和器件化更直接。第二，结构层面把隧穿结与手性等离激元纳米螺旋体结合，目标对象明确，且摘要声称达到单颗粒尺度，说明空间局域性和器件微型化程度较高。第三，输出光场性质不止是圆偏振，而是同时涉及SAM和OAM，且给出较具体的关系“OAM大小等于SAM且符号相反”，这使其从一般手性发光提升到更丰富的角动量工程问题。若实验数据扎实，这对纳米光源、偏振显示、量子信息和手性光化学都具有较高吸引力。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1) 先查正文或补充材料中“handedness selectivity”的数学定义和测量方式；2) 重点看器件结构图、单颗粒电致发光谱、左右手性对照图以及偏振/OAM表征图；3) 记录隧穿结材料、间隙尺寸、偏压电流范围和发光波段；4) 核对OAM是实验直接证明还是仿真支持；5) 若你做纳米光源或手性光场，可据其结构思路建立一个对照表：非手性隧穿结、手性但无隧穿驱动、以及本文集成结构三者在偏振选择性和角动量输出上的差别。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：能否利用量子隧穿这一纯电驱动纳米发光机制，在单个等离激元手性纳米结构中直接产生具有可选手性的光，并进一步实现同时携带自旋角动量与轨道角动量的电致涡旋发射？更细一点说，它关注的是如何把隧穿结中的局域激发有效耦合到手性等离激元模，从而避免仅得到普通非偏振或弱偏振的电致发光。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>依据摘要，可能的方法路径是：构建金属隧穿结并与手性纳米螺旋体集成；在外加偏压下通过非弹性电子隧穿激发局域等离激元；利用纳米螺旋体的几何手性选择性地激发手性偶极模；通过光谱、偏振分辨和可能的角分辨/相位分析表征发射光的手性、自旋角动量和轨道角动量；再结合电磁仿真或模态分解解释为何会出现“handedness selectivity &gt; 0.8”以及“OAM与SAM等大反号”。如果是单颗粒层面的结论，实验上还可能使用暗场/电子显微镜结构表征与单器件发光测量配套。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，驱动方式上是电驱动而非光泵浦，这对片上集成和器件化更直接。第二，结构层面把隧穿结与手性等离激元纳米螺旋体结合，目标对象明确，且摘要声称达到单颗粒尺度，说明空间局域性和器件微型化程度较高。第三，输出光场性质不止是圆偏振，而是同时涉及SAM和OAM，且给出较具体的关系“OAM大小等于SAM且符号相反”，这使其从一般手性发光提升到更丰富的角动量工程问题。若实验数据扎实，这对纳米光源、偏振显示、量子信息和手性光化学都具有较高吸引力。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与摘要，主要局限是关键信息缺失。首先，不清楚“handedness selectivity &gt; 0.8”具体是何种定义，不能直接与常见g-factor或DCP指标等同。其次，未给出发光效率、量子效率、输出功率、谱宽、工作电压和寿命，因而应用可行性尚无法判断。第三，OAM的证据在摘要中只有结论，没有说明是直接测量还是仿真推断。第四，单颗粒结果是否具有统计普适性、左右手结构是否严格对照、是否存在几何不对称或探测系统偏置，也都需要正文验证。最后，摘要强调潜在应用，但没有提供制造良率、可扩展性和阵列兼容性信息。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1) 先查正文或补充材料中“handedness selectivity”的数学定义和测量方式；2) 重点看器件结构图、单颗粒电致发光谱、左右手性对照图以及偏振/OAM表征图；3) 记录隧穿结材料、间隙尺寸、偏压电流范围和发光波段；4) 核对OAM是实验直接证明还是仿真支持；5) 若你做纳米光源或手性光场，可据其结构思路建立一个对照表：非手性隧穿结、手性但无隧穿驱动、以及本文集成结构三者在偏振选择性和角动量输出上的差别。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：等离激元隧穿结(plasmonic tunnel junctions)与手性等离激元纳米螺旋体(nanohelicoids)构成的单纳米颗粒器件。目标不是一般性的圆偏振发光，而是在电驱动条件下，于单颗粒层面产生可控手性光，并赋予其涡旋光束属性。摘要给出的机制线索是：电子隧穿先提供纳米尺度光生激发通道，再共振耦合到纳米螺旋体的手性偶极模(chiral dipolar modes)，最终辐射出具有显著手性选择性的光。这里“handedness selectivity &gt; 0.8”很可能对应某种圆偏振不对称因子、发光手性因子或左右旋发射强度差归一化指标，但具体定义需要核对正文或图注。摘要还强调发射光同时具有自旋角动量(SAM)和轨道角动量(OAM)，且OAM与SAM大小相等、符号相反，这提示作者可能不仅测了偏振，还分析了波前拓扑或远场相位结构，可能通过角分辨发光、偏振分辨成像、干涉法或电磁仿真来支持。方法上，按该类工作常见路径，器件可能由金属纳米结构形成亚纳米/纳米间隙，在加偏压下发生非弹性隧穿并激发局域等离激元，再由手性几何将近场模式转化为远场手性辐射；同时应辅以电磁模拟和模态分析来识别“手性偶极模”。证据链大概率包括：器件结构表征、I-V与发光关联、左右手性结构对照、偏振分辨电致发光谱、可能的角分辨或相位相关测量，以及与非手性结构的比较。与潜在应用的关系也较明确：该工作面向纳米尺度光源、显示器件中的偏振/手性像素、量子信息中的光子自旋态工程，以及光化学中对手性光场的需求。需要特别核对的信息包括：1) 纳米螺旋体的材料、尺寸和制备方式；2) 隧穿结具体构型与偏压/电流范围；3) “单颗粒水平”是单器件统计还是单发射体光谱；4) 手性选择性&gt;0.8的定义、测量波段和重复性；5) OAM的测量方法与拓扑荷数；6) 发光效率、稳定性和器件一致性。由于目前只有摘要，不能判断其效率是否足以支撑实际应用，也不能确认其是否在室温、连续工作和批量制造条件下成立。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Chirality plays a crucial role in a broad range of processes, including light-matter interactions in physics, chemistry, and biology, while quantum tunneling provides a promising mechanism for light generation at the nanoscale. By integrating tunnel junctions with chiral plasmonic nanohelicoids, we achieved electrically induced nanoscale generation of chiral light at the single-particle level. The tunneling-driven resonant excitation of chiral dipolar modes of the nanohelicoids results in emission of a vortex light beam possessing both spin angular momentum with handedness selectivity of more than 0.8 and orbital angular momentum equal in magnitude and opposite in sign. Our electrically driven approach offers a means for engineering photon spin generation at the nanoscale, highlighting its potential for next-generation optical components in display applications, as well as quantum information processing and photochemistry.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-10-14</span>
-        <span>Score 40.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11239-3">Structural basis of ligand recognition and gating in mosquito IRs</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Structural+basis+of+ligand+recognition+and+gating+in+mosquito+IRs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11239-3%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Structural+basis+of+ligand+recognition+and+gating+in+mosquito+IRs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Structural+basis+of+ligand+recognition+and+gating+in+mosquito+IRs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11239-3%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Structural+basis+of+ligand+recognition+and+gating+in+mosquito+IRs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Structural+basis+of+ligand+recognition+and+gating+in+mosquito+IRs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11239-3%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Structural+basis+of+ligand+recognition+and+gating+in+mosquito+IRs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Li Xu、Xin Wang、Xuebo Quan、Stephen T. Ferguson 等 12 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11239-3">10.1038/s41586-026-11239-3</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦“蚊虫离子型受体（mosquito IRs）”对配体的识别以及通道门控的结构基础，核心任务应是解析受体-配体相互作用如何转化为离子通道开启/关闭。由于提供信息中摘要为空，目前只能基于题名与期刊定位推断其研究对象是蚊虫感觉受体家族中的IR受体及其结构机制。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是给出一种或多种蚊虫IR受体在配体结合与门控状态下的高分辨率结构，并据此提出配体识别位点、构象变化路径以及门控耦联机制；若属实，这将为理解蚊虫嗅觉/化学感觉分子基础以及潜在驱避剂、行为调控分子设计提供结构框架。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>40.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体科学问题应是：蚊虫IR受体如何在分子层面识别外界化学配体，以及配体结合事件如何通过受体结构重排触发或调控离子通道门控。若进一步细化，可能还涉及不同IR亚基在配体选择性和门控中的分工，以及蚊虫IR与其他离子型谷氨酸受体/昆虫IR之间的机制差异。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>在没有摘要的前提下，最可能的方法路径是结构生物学结合功能学：1）表达纯化目标蚊虫IR复合体；2）在无配体和有配体条件下解析结构，常见手段是冷冻电镜；3）根据结构识别潜在配体结合口袋、门控螺旋或关键界面；4）通过定点突变、膜片钳/双电极电压钳、钙成像或配体响应实验验证关键残基；5）必要时结合序列比对、分子对接或进化分析解释蚊虫IR的特异性。若论文强调“gating”，则很可能比较多个构象状态而非单一静态结构。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名显示其亮点在于把两个层面连起来：一是“ligand recognition”的化学选择性，二是“gating”的功能输出，这比单纯给出一个受体结构更有机制价值。若论文确实解析了多状态结构并辅以突变/电生理验证，那么其证据链会对“结合—构象变化—通道开启”这一因果路径较完整。另一个潜在亮点是研究对象是蚊虫IR，具有明显的生物学与应用相关性，因为蚊虫宿主识别、觅食和产卵行为常依赖化学感觉系统。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先补齐摘要和图文信息，再按以下顺序阅读：1）确认研究的蚊虫物种、IR亚基组成和配体名称；2）查看主图是否包含apo/配体结合/不同门控状态结构；3）记录结合口袋和门控区的关键残基；4）核对是否有突变-功能对应实验支持结构解释；5）与已知昆虫IR或iGluR结构做一页对照笔记，特别关注保守域、配体口袋和门控耦联路径的异同；6）如果你的方向偏应用，进一步查文中是否讨论驱避剂、引诱剂或行为调控分子的结构设计启发。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>具体科学问题应是：蚊虫IR受体如何在分子层面识别外界化学配体，以及配体结合事件如何通过受体结构重排触发或调控离子通道门控。若进一步细化，可能还涉及不同IR亚基在配体选择性和门控中的分工，以及蚊虫IR与其他离子型谷氨酸受体/昆虫IR之间的机制差异。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>在没有摘要的前提下，最可能的方法路径是结构生物学结合功能学：1）表达纯化目标蚊虫IR复合体；2）在无配体和有配体条件下解析结构，常见手段是冷冻电镜；3）根据结构识别潜在配体结合口袋、门控螺旋或关键界面；4）通过定点突变、膜片钳/双电极电压钳、钙成像或配体响应实验验证关键残基；5）必要时结合序列比对、分子对接或进化分析解释蚊虫IR的特异性。若论文强调“gating”，则很可能比较多个构象状态而非单一静态结构。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>题名显示其亮点在于把两个层面连起来：一是“ligand recognition”的化学选择性，二是“gating”的功能输出，这比单纯给出一个受体结构更有机制价值。若论文确实解析了多状态结构并辅以突变/电生理验证，那么其证据链会对“结合—构象变化—通道开启”这一因果路径较完整。另一个潜在亮点是研究对象是蚊虫IR，具有明显的生物学与应用相关性，因为蚊虫宿主识别、觅食和产卵行为常依赖化学感觉系统。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究对象、实验体系和结论边界。需要警惕的点包括：1）是否只研究了少数IR亚型，外推到整个蚊虫IR家族可能有限；2）结构状态是否真正代表生理门控过程，还是稳定化条件下的近似状态；3）配体是否为天然生态相关分子，还是实验替代配体；4）功能验证是否充分，尤其是结构推断的关键残基是否经过系统测试；5）若使用异源表达系统，结果与原生感觉神经元环境可能存在差异。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先补齐摘要和图文信息，再按以下顺序阅读：1）确认研究的蚊虫物种、IR亚基组成和配体名称；2）查看主图是否包含apo/配体结合/不同门控状态结构；3）记录结合口袋和门控区的关键残基；4）核对是否有突变-功能对应实验支持结构解释；5）与已知昆虫IR或iGluR结构做一页对照笔记，特别关注保守域、配体口袋和门控耦联路径的异同；6）如果你的方向偏应用，进一步查文中是否讨论驱避剂、引诱剂或行为调控分子的结构设计启发。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Structural basis of ligand recognition and gating in mosquito IRs”看，研究对象非常具体，是蚊虫中的ionotropic receptors（IRs），即与化学感觉相关的一类受体/离子通道。论文想回答的应不是泛泛的“IR有什么功能”，而是更细的结构生物学问题：特定配体如何被IR识别、结合后如何诱导受体构象变化、这些变化又如何耦联到通道门控。Nature期刊定位通常意味着作者可能结合了高分辨率结构方法与功能验证，而“structural basis”这一表述最常见的证据链通常包括冷冻电镜或X射线晶体学结构、关键残基突变、配体结合或电生理功能测定，以及不同状态之间的构象比较。不过这些都只是基于题名和领域惯例的推断，不能视为本文已明确报告的事实。与科研读者的关系上，如果你关注感觉受体、昆虫化学生态、离子通道门控、结构指导的小分子设计，本文很可能提供可直接引用的受体构象框架、结合口袋候选位点和门控耦联模型。当前最需要核对的信息包括：具体研究的是哪一种或哪几种蚊虫IR亚基；是否为异源复合体；解析了哪些状态（apo、配体结合、开放/闭合、去敏化等）；使用了什么配体；是否有功能实验支撑结构解释；研究对象来自哪种蚊虫（如Aedes、Anopheles等）；以及这些结果与已知iGluR/IR家族机制的异同。由于摘要为空，任何关于样本量、分辨率、突变位点、功能效应大小、行为学意义和应用前景的具体判断都信息不足。</p></div>
-          </div>
-          
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-10-14</span>
-        <span>Score 40.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11164-5">Modelling mouse embryogenesis from chemically induced totipotent stem cells</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Modelling+mouse+embryogenesis+from+chemically+induced+totipotent+stem+cells&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11164-5%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Modelling+mouse+embryogenesis+from+chemically+induced+totipotent+stem+cells%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Modelling+mouse+embryogenesis+from+chemically+induced+totipotent+stem+cells&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11164-5%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Modelling+mouse+embryogenesis+from+chemically+induced+totipotent+stem+cells%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Modelling+mouse+embryogenesis+from+chemically+induced+totipotent+stem+cells&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11164-5%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Modelling+mouse+embryogenesis+from+chemically+induced+totipotent+stem+cells%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Hua Wu、Yanyan Hu、Hanzhi Yu、Nana Huang 等 19 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11164-5">10.1038/s41586-026-11164-5</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦于“化学诱导的全能性干细胞（chemically induced totipotent stem cells）”能否用于“建模小鼠胚胎发生（mouse embryogenesis）”这一具体任务。由于提供的摘要为空，目前只能确认其研究对象是小鼠胚胎发生与化学诱导全能性干细胞，无法依据现有信息判断其具体实验范围、发育阶段覆盖度或建模成功标准。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是提出或验证了一种以化学诱导全能性干细胞为起点的小鼠胚胎发生建模体系，潜在意义在于为早期发育研究、全能性状态建立与体外胚胎模型构建提供新细胞来源或新实验框架。但由于摘要缺失，具体贡献究竟是细胞诱导方法、胚胎样结构形成、发育潜能验证，还是多组学表征，仍需核对原文。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>40.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名推断，是能否利用化学方法诱导获得的全能性干细胞来重建或模拟小鼠胚胎发生过程，以及这种体系在发育潜能、谱系覆盖和发育程序保真度上是否足以作为胚胎发生模型。更细一点说，它可能在回答：化学诱导得到的细胞是否不仅具有分子层面的全能性特征，而且能够在功能上支持胚胎样发育事件。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的研究路径是：先通过小分子组合和培养条件建立或维持化学诱导全能性干细胞；随后将这些细胞置于胚胎样结构形成体系、自组织培养体系或功能验证体系中；再通过形态学、免疫标记、单细胞组学以及与天然小鼠胚胎参考图谱的比较来评估其发育轨迹与谱系组成。若涉及严格功能验证，还可能包括嵌合实验、胚内/胚外贡献分析或阶段特异性发育终点检测，但这些需要原文确认。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名显示的最大亮点在于把“化学诱导全能性细胞”和“胚胎发生建模”直接连接起来。若成立，这意味着研究不仅停留在细胞状态诱导，还把该状态推进到发育模型构建层面。对领域而言，这种设计的潜在价值在于：提供更可操控的全能性来源；减少对天然胚胎材料的依赖；为研究早期谱系分化、自组织规律和发育扰动建立实验平台。发表在Nature也提示其证据体系可能较完整，但这一点仍需以正文为准。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：1）先获取摘要和图1，确认研究对象、模型类型和主结论；2）重点查方法部分中化学诱导方案、小分子组合、培养条件和细胞定义标准；3）查看是否有单细胞图谱与天然小鼠胚胎对照，以及是否有胚内/胚外谱系证据；4）记录作者如何定义“totipotent”，并与本领域常用标准对照；5）若你关注复现，优先摘录细胞来源、诱导时长、关键培养基成分和功能验证终点。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名推断，是能否利用化学方法诱导获得的全能性干细胞来重建或模拟小鼠胚胎发生过程，以及这种体系在发育潜能、谱系覆盖和发育程序保真度上是否足以作为胚胎发生模型。更细一点说，它可能在回答：化学诱导得到的细胞是否不仅具有分子层面的全能性特征，而且能够在功能上支持胚胎样发育事件。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的研究路径是：先通过小分子组合和培养条件建立或维持化学诱导全能性干细胞；随后将这些细胞置于胚胎样结构形成体系、自组织培养体系或功能验证体系中；再通过形态学、免疫标记、单细胞组学以及与天然小鼠胚胎参考图谱的比较来评估其发育轨迹与谱系组成。若涉及严格功能验证，还可能包括嵌合实验、胚内/胚外贡献分析或阶段特异性发育终点检测，但这些需要原文确认。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>题名显示的最大亮点在于把“化学诱导全能性细胞”和“胚胎发生建模”直接连接起来。若成立，这意味着研究不仅停留在细胞状态诱导，还把该状态推进到发育模型构建层面。对领域而言，这种设计的潜在价值在于：提供更可操控的全能性来源；减少对天然胚胎材料的依赖；为研究早期谱系分化、自组织规律和发育扰动建立实验平台。发表在Nature也提示其证据体系可能较完整，但这一点仍需以正文为准。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认任何具体实验结果、模型类型、发育阶段、成功率和功能验证强度。仅凭题名无法判断“totipotent”是否为严格定义，还是领域中较宽泛的“totipotent-like”表述；也无法判断“modelling embryogenesis”是结构模拟、分子映射还是功能性发育重建。此外，题录信息不足以评估可重复性、培养条件复杂度、与现有EPS/2C-like体系的差异，以及是否存在仅在特定实验条件下成立的边界。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：1）先获取摘要和图1，确认研究对象、模型类型和主结论；2）重点查方法部分中化学诱导方案、小分子组合、培养条件和细胞定义标准；3）查看是否有单细胞图谱与天然小鼠胚胎对照，以及是否有胚内/胚外谱系证据；4）记录作者如何定义“totipotent”，并与本领域常用标准对照；5）若你关注复现，优先摘录细胞来源、诱导时长、关键培养基成分和功能验证终点。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Modelling mouse embryogenesis from chemically induced totipotent stem cells”可提取出几个较明确的信息点。第一，研究对象是小鼠系统，而不是人源体系，因此其结论首先服务于小鼠早期发育、生殖与干细胞生物学。第二，文章的起点细胞不是天然胚胎来源全能细胞，而是“化学诱导”的全能性干细胞，这暗示作者可能建立了通过小分子重编程、培养条件转换或状态稳定化获得全能样/全能性细胞的方案。第三，核心任务是“modelling embryogenesis”，说明重点不一定只是证明细胞具有某些分子标志，而更可能是利用这些细胞重建、模拟或追踪胚胎发生过程中的结构形成、谱系分化或时序程序。
-
-在可能的方法层面，题名支持以下推断：作者可能先获得化学诱导的全能性干细胞，再测试其在体外形成胚胎样结构、在特定培养体系中自组织、或在嵌合/移植实验中参与胚胎与胚外谱系的能力。若论文能发表在Nature，常见证据链通常会包括形态学观察、谱系标志检测、单细胞转录组或表观组比较，以及与天然小鼠胚胎发育阶段的对照映射。但这些都只是基于期刊层级和题名的合理猜测，不能当作已知事实。
-
-对科研读者而言，这篇论文最值得关注的潜在线索有三类。其一是“化学诱导”本身：如果全能性状态主要通过小分子建立而非转基因因子维持，那么在机制研究、可重复性、成本和可控性上都可能具有方法学价值。其二是“从该细胞出发建模胚胎发生”：这关系到模型是否覆盖胚内与胚外谱系、是否能跨越着床前后关键节点、以及是否能作为发育异常或药物扰动的平台。其三是“全能性”定义是否严格：领域内常见争议在于totipotent、totipotent-like、expanded potential等概念边界，论文是否真正证明了全能性，而非仅证明更宽谱分化潜能，需要重点核查。
-
-由于摘要为空，当前信息不足以回答以下关键问题：1）所谓“chemically induced totipotent stem cells”是新建立的细胞类型，还是对既有体系的改进；2）“modelling”具体指体外胚胎样结构、自组织体系、嵌合贡献，还是计算/多组学映射；3）是否使用单细胞测序、空间转录组、成像或功能性发育终点作为主要证据；4）模型对应的小鼠胚胎发育时间窗是2-cell样、囊胚、着床后，还是更晚阶段；5）是否涉及胚外组织如滋养层和卵黄囊内胚层；6）成功率、稳定性、批次差异和伦理边界如何界定。
-
-如果你的研究方向与干细胞重编程、早期胚胎发育、胚胎样结构、全能性判定或化学生物学有关，这篇论文很可能值得优先阅读。但在没有摘要和正文信息的情况下，现阶段最稳妥的做法是把它视为一篇“可能提出化学诱导全能性细胞驱动的小鼠胚胎发生模型”的高价值候选文献，而不是对其具体结果作任何确定性判断。</p></div>
-          </div>
-          
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-10-14</span>
-        <span>Score 40.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11159-2">Sexual dimorphism in epidermal stem cell dynamics</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Sexual+dimorphism+in+epidermal+stem+cell+dynamics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11159-2%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Sexual+dimorphism+in+epidermal+stem+cell+dynamics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Sexual+dimorphism+in+epidermal+stem+cell+dynamics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11159-2%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Sexual+dimorphism+in+epidermal+stem+cell+dynamics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Sexual+dimorphism+in+epidermal+stem+cell+dynamics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11159-2%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Sexual+dimorphism+in+epidermal+stem+cell+dynamics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Dan Engelman、Joel Hochstetter、Anaïs Bauduin、Sagar Patil 等 18 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11159-2">10.1038/s41586-026-11159-2</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文聚焦皮肤表皮层间隙表皮中的基底细胞命运与干细胞层级问题，利用活体时间序列成像追踪谱系标记细胞，提出表皮稳态更符合“干细胞—过渡扩增样细胞”两区室模型。摘要还指出一个关键发现是表皮干细胞动力学存在性别二态性：雌鼠表现出更同步的分裂、分化与脱层过程，并与更快的伤口修复相关。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于：基于活体克隆动力学定量分析，为长期争议的表皮基底层异质性提供支持两级层级结构的新证据；同时把“性别差异”从背景变量提升为解释表皮细胞命运和组织更新规律的关键生物学因素。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>40.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决两个具体问题：第一，表皮基底层在稳态更新中是否由一群具有相似自我更新潜能的增殖细胞维持，还是存在干细胞向过渡扩增样祖细胞分化的层级结构；第二，雌雄个体之间是否存在可量化的表皮细胞命运动力学差异，并且这种差异是否影响组织更新和伤口修复。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，最可能的技术路线是：在小鼠层间隙表皮中进行谱系标记，随后用活体时间推移显微成像长期追踪单细胞/克隆；记录基底细胞分裂、保留、上移分化、脱层等事件；对克隆大小、存活时间、命运转移和空间行为进行定量统计；将观测结果与不同表皮稳态模型进行拟合或比较，尤其是单群体自我更新模型与两区室干细胞-TA样模型；并在雌雄小鼠之间比较这些动力学参数，可能再结合伤口模型评估修复速度差异。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是直接在体内做时间分辨的细胞命运追踪，而不是仅依赖终点组织学或静态标记，因此更适合回答“命运过程”问题。亮点二是把克隆动力学与理论模型对应起来，能对长期争议给出更机制化的解释。亮点三是发现性别二态性，并将其与细胞分裂、分化、脱层同步性及伤口修复联系起来，这对重新解释既往文献差异很有价值。亮点四是研究对象明确聚焦interfollicular epidermis，避免将毛囊等不同生态位混为一谈。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查论文摘要完整版和主文图题，确认两区室模型的具体定义与雌雄差异的量化指标；2）重点看活体成像图、克隆追踪示意和模型拟合图，记录作者如何区分stem cell与TA-like cell；3）核对雌雄样本量、年龄、皮肤部位、伤口模型和统计方法；4）如果你的研究涉及皮肤稳态或单细胞动力学，可把“是否区分性别”和“是否存在同步事件”加入自己的实验设计检查表；5）整理一个问题清单：该层级结构是否有分子标记、是否受激素调控、是否在不同解剖部位和病理状态下保持一致。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决两个具体问题：第一，表皮基底层在稳态更新中是否由一群具有相似自我更新潜能的增殖细胞维持，还是存在干细胞向过渡扩增样祖细胞分化的层级结构；第二，雌雄个体之间是否存在可量化的表皮细胞命运动力学差异，并且这种差异是否影响组织更新和伤口修复。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，最可能的技术路线是：在小鼠层间隙表皮中进行谱系标记，随后用活体时间推移显微成像长期追踪单细胞/克隆；记录基底细胞分裂、保留、上移分化、脱层等事件；对克隆大小、存活时间、命运转移和空间行为进行定量统计；将观测结果与不同表皮稳态模型进行拟合或比较，尤其是单群体自我更新模型与两区室干细胞-TA样模型；并在雌雄小鼠之间比较这些动力学参数，可能再结合伤口模型评估修复速度差异。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是直接在体内做时间分辨的细胞命运追踪，而不是仅依赖终点组织学或静态标记，因此更适合回答“命运过程”问题。亮点二是把克隆动力学与理论模型对应起来，能对长期争议给出更机制化的解释。亮点三是发现性别二态性，并将其与细胞分裂、分化、脱层同步性及伤口修复联系起来，这对重新解释既往文献差异很有价值。亮点四是研究对象明确聚焦interfollicular epidermis，避免将毛囊等不同生态位混为一谈。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要仍有若干边界需要警惕：第一，结论目前看主要基于小鼠，外推到人类表皮需谨慎。第二，摘要未说明样本量、成像时长、身体部位、年龄和激素状态，这些都可能显著影响表皮动力学。第三，“TA-like”说明该中间状态可能是功能定义而非严格分子定义，是否有独立分子标记尚不清楚。第四，性别差异与伤口修复之间在摘要中更像关联，是否有激素、受体或遗传干预证明因果尚待核对。第五，摘要被截断，后半段可能包含关键机制或限制条件，目前信息不完整。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查论文摘要完整版和主文图题，确认两区室模型的具体定义与雌雄差异的量化指标；2）重点看活体成像图、克隆追踪示意和模型拟合图，记录作者如何区分stem cell与TA-like cell；3）核对雌雄样本量、年龄、皮肤部位、伤口模型和统计方法；4）如果你的研究涉及皮肤稳态或单细胞动力学，可把“是否区分性别”和“是否存在同步事件”加入自己的实验设计检查表；5）整理一个问题清单：该层级结构是否有分子标记、是否受激素调控、是否在不同解剖部位和病理状态下保持一致。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、期刊与摘要看，研究对象是小鼠皮肤的interfollicular epidermis（毛囊间表皮/层间隙表皮）中的基底细胞群体，核心任务是判定表皮稳态更新究竟由一类等势增殖细胞维持，还是存在具有有限增殖潜能的过渡扩增样祖细胞。摘要给出的主要方法线索是intravital time-lapse imaging（活体时间推移成像）结合lineage-labelled cells（谱系标记细胞）追踪，并对clonal dynamics（克隆动力学）做定量分析。这意味着作者很可能直接记录单细胞或小克隆在体内随时间的分裂、停留、分化上移和脱层事件，再将观测到的克隆大小分布、持续时间、命运转移概率等与不同理论模型进行比较。摘要明确说“结果支持two-compartment model”，因此论文的证据主线应是：单一等势模型难以解释观测到的时空行为，而包含stem cell与transit-amplifying-like cell层级的模型更能拟合数据。最值得注意的是，作者称这一结论的关键在于发现sexual dimorphism in epidermal fate，即雌雄小鼠在表皮命运动力学上不同，尤其雌鼠出现高度同步的细胞分裂、分化和delamination（脱层/脱离基底层进入上层并最终脱落）的模式，并且这种同步性与加速创伤修复有关。对科研读者而言，这提示过去关于表皮是否均一、是否存在TA样状态的争议，可能部分源于实验设计中未区分性别、时间尺度或动态同步性。与相关方向的关系上，这篇工作可能影响皮肤干细胞生物学、组织稳态建模、创伤修复、性别生物学以及活体成像定量分析。需要核对的信息包括：具体使用的小鼠品系与谱系标记系统；雌雄样本量与统计设计；“同步”是细胞周期同步、局部波动同步还是组织尺度事件耦合；两区室模型的数学形式与参数；伤口修复实验是相关性还是因果干预；以及该结论是否适用于不同年龄、激素状态、身体部位或人类表皮。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Abstract The epidermis is a stratified epithelium comprising proliferative basal cells and differentiated suprabasal cells that are continuously renewed throughout life. Conflicting theories have been proposed regarding the heterogeneity of the basal cell layer, with some studies proposing that all proliferative cells have self-renewal potential during homeostasis 1–5 . Meanwhile, others posit a model in which stem cell differentiation occurs through an intermediate transit-amplifying-like progenitor state with strictly limited proliferative potential 6–10 . Here, to determine the heterogeneity and pattern of cell fate, we performed intravital time-lapse imaging to track the fate of lineage-labelled cells in the skin interfollicular epidermis. Results from quantitative analyses of clonal dynamics support a two-compartment model of epidermal homeostasis, whereby basal cells are organized in a stem cell–transit-amplifying cell hierarchy. Critical to these conclusions was the discovery of sexual dimorphism in epidermal fate, with female mice showing a highly synchronized pattern of cell division, differentiation and delamination that contributes to accelerated wound healing. Single-cell RNA sequencing, transcriptional profiling and clonal analyses of castrated mice revealed that male sex hormones promote stem cell differentiation and delamination. In summary, our study provides insight into the functional identity of the stem cell population and identifies sex-specific differences in the regulation of epidermal stem cells and transit-amplifying cell fate.</p>
+          <p>Chitosan, a major fungal cell wall component, activates plant immunity, yet the underlying perception mechanism remains unknown. In this study, we identified OsFID1, an apoplast-localized DUF26 domain protein, as a chitosan-binding receptor essential for chitosan-triggered immunity. OsFID1 forms a receptor complex with OsFID2, a plasma membrane–localized DUF26 receptor-like kinase, to mediate chitosan sensing and immune activation, requiring OsFID2 phosphorylation for function. The OsFID1-OsFID2 complex confers broad-spectrum resistance to fungal pathogens. OsFID1 homologs are conserved in land plants, which show chitosan-binding activity in both monocots and dicots. Ectopic expression of OsFID1 in wheat and maize enhanced fungal resistance without growth penalty. These findings uncover a conserved receptor complex for direct chitosan sensing, advancing our understanding of plant-fungus interactions and providing a potential strategy for engineering durable fungal resistance crops.</p>
         </details>
         
         </div>
@@ -855,7 +877,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-10-21 00:40。
+      生成时间：2026-10-22 00:44。
     </div>
   </footer>
 </body>
