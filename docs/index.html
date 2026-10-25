@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-10-24</title>
+  <title>Paper Reading · 2026-10-25</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,12 +19,12 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-10-24 · 中文论文简报</div>
+        <div class="eyebrow">2026-10-25 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天的论文集合里，最值得优先阅读的是一组围绕“LLM/agent 从一次性回答走向持续交互、评测与部署”的工作，其次是“领域化多模态系统如何由数据与系统工程驱动落地”，再其次是几篇高影响力基础科学论文。就AI方向看，ReflectPO、AgenticEvolve、VERA 和个人健康代理这四篇形成了一个很清晰的链条：前两篇关注长时程智能体在复杂环境中的决策改进与搜索效率，核心问题都不是单步生成质量，而是如何在多轮交互、错误累积、实验反馈和信用分配下持续改进；VERA 则把模型能力进一步推进到真实组织部署场景，强调把工程 benchmark 转译成合规、可审查、可留痕的证据；个人健康代理则展示了多子代理架构如何把个人数据分析、医学知识整合和行为支持结合起来，说明 agent 系统正在从“会答题”转向“会协作、会解释、会陪伴”。如果只选一篇方法论文优先读，ReflectPO 的问题定义最尖锐：长时程 tool-use agent 的早期错误会改变后续状态，传统 RL 或 SFT 很难把“恢复到正确轨道”的价值分配到具体动作上；它提出的反思引导采样和树结构信用分配，直接对应当前 agent 训练中的关键瓶颈。若关注“LLM 是否能真正参与科学发现或程序搜索”，AgenticEvolve 也很值得跟进，因为它把 LLM 从一次性变异器提升为持久化实验者，重点不只是结果更好，而是显式检验“设计并运行实验”这项能力是否独立贡献搜索质量与样本效率。若关注治理与落地，VERA 的现实意义很强：它不是再做一个 benchmark，而是把 benchmark 组织成欧盟 AI 法案语境下的审批证据，并把能耗纳入 run-level 记录，这对企业内部模型准入流程很有参考价值。个人健康代理则更像系统论文，价值在于把用户旅程、个人纵向数据、多代理分工和健康教练式交互放到同一框架里，但由于健康场景风险高，后续阅读时应特别关注其评测边界、错误处理和安全约束。数据中心视角也是今天很强的一条线索。遥感 VLM 综述明确指出研究范式正从模型中心转向数据中心，重点不再是再造一个通用架构，而是梳理什么样的遥感图文数据、指令数据和评测基准，才能真正支撑通用 VLM 迁移到遥感任务。这篇综述本身不是算法突破，但对做领域多模态适配的人很有用，尤其适合作为近期组会或课题开题的资料入口。基础科学部分，几篇 Science/Nature 论文分属完全不同方向，但都围绕“机制解析”而非单纯现象报告。糖尿病合并肥胖的无线电催化闭环系统展示了一个很强的工程-生物医学交叉范式：把连续监测、无线供能、电催化葡萄糖清除和闭环控制整合起来，若摘要成立，其亮点在于提出了区别于药物和胰岛素的新干预路线。乌鸦超快速决策工作则把比较神经科学中的一个经典问题推进到鸟类模型，强调其在极短时间内仍表现出证据积累式决策特征。NiPS3 声子热霍尔论文则试图把长期争议从“是否存在”推进到“机制更偏内禀还是外禀”。另外两篇 Nature 论文中，岛叶功能架构由于缺少摘要，当前只能列为信息待补；WEE1 那篇则较完整地提出了一个非经典细胞周期机制，适合做分子机制方向的重点跟进。综合排序上，如果面向 AI/CS 研究者，建议优先级为：ReflectPO &gt; AgenticEvolve ≈ VERA &gt; 个人健康代理 &gt; 遥感 VLM 综述；如果面向跨学科前沿追踪，则可把无线电催化闭环代谢系统和 WEE1 机制论文加入第一梯队。整体上，今天最鲜明的信号是：一方面，AI 论文的创新重心正在从“更强模型”转向“更长时程的交互优化、实验驱动搜索、合规化部署和多代理系统工程”；另一方面，非 AI 顶刊论文则继续强调在复杂系统中建立可检验的机制链条。</p>
+        <p class="summary">今天这组论文可以分成两条主线和一组高影响非AI前沿。第一条主线是“把 agent/LLM 从静态能力展示推进到可执行、可归因、可审计的评测与部署”。其中最值得优先读的是 EpiSEM-Bench、Dual Exam 和 Sequential diagnosis with language models。EpiSEM-Bench抓住了一个非常具体且现实的失效模式：工具返回的信息都是真的，但缺了决定安全边界的关键事实，代理会不会因此越界执行；它的价值在于把“缺失证据下的安全决策”和“主动补证据能力”拆开测。Dual Exam则把多模态 agent 的动作选择能力与 world model 的状态演化能力分轨评测，适合做误差归因和系统诊断。Science 的序贯诊断论文把语言模型评估从一次性答题推进到多轮信息获取、鉴别诊断更新和检查成本权衡，说明“交互式决策”正在成为比静态 benchmark 更重要的评测范式。第二条主线是“LLM/语言接口进入真实复杂系统”，代表是 AgentDP 和 LAST-V2X。前者面向异构嵌入式部署自动化，关注需求澄清、算子/引擎不匹配和历史配置复用，偏系统工程；后者把自然语言测试需求转成 V2X 联合仿真场景，并通过对照执行区分通信退化导致的风险与交通本身风险，偏安全测试与因果归因。若你的研究偏 agent safety、benchmark 或 evaluation，今天最优先读 EpiSEM-Bench 和 Dual Exam；若偏医疗AI，优先读 Sequential diagnosis；若偏系统与部署，读 AgentDP；若偏自动驾驶/V2X 安全测试，读 LAST-V2X。其余 Science/Nature 论文虽然不在AI主线，但学术影响力高，且都围绕“新机制被直接识别或重构”展开：二维金属中的电子 BIC、植物/细菌中的胍基异戊二烯转移酶、许家窑古蛋白与丹尼索瓦形态联系、低温通过 BH2-BH4 网络调控寿命与蛋白稳态、以及单一古菌耦联长链脂肪酸氧化与产甲烷。这些工作共同提示一个阅读策略：AI论文优先看评测设计是否真正隔离了能力成分与失败来源，非AI论文优先看其是否建立了从现象到机制的闭环证据链。</p>
         <div class="metrics">
-          <div class="metric"><strong>468</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>212</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>450</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>194</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -59,23 +59,18 @@
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">language model <strong>4</strong></span>
-<span class="chip">language models <strong>4</strong></span>
-<span class="chip">ai <strong>4</strong></span>
-<span class="chip">large language model <strong>3</strong></span>
-<span class="chip">large language models <strong>3</strong></span>
+          <div class="chips"><span class="chip">ai <strong>4</strong></span>
+<span class="chip">environment <strong>4</strong></span>
+<span class="chip">llm <strong>3</strong></span>
+<span class="chip">language model <strong>3</strong></span>
+<span class="chip">agent <strong>3</strong></span>
+<span class="chip">agents <strong>3</strong></span>
 <span class="chip">rag <strong>3</strong></span>
-<span class="chip">llm <strong>2</strong></span>
-<span class="chip">agent <strong>2</strong></span>
-<span class="chip">agents <strong>2</strong></span>
-<span class="chip">environmental <strong>2</strong></span>
-<span class="chip">environment <strong>2</strong></span>
-<span class="chip">vision-language <strong>1</strong></span>
-<span class="chip">vlm <strong>1</strong></span>
-<span class="chip">artificial intelligence <strong>1</strong></span>
-<span class="chip">deep learning <strong>1</strong></span>
-<span class="chip">remote sensing <strong>1</strong></span>
-<span class="chip">equation discovery <strong>1</strong></span></div>
+<span class="chip">large language model <strong>2</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -93,8 +88,8 @@
 
             <div class="bar-row">
               <div class="bar-label">science</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 37%"></div></div>
-              <div class="bar-count">111</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 31%"></div></div>
+              <div class="bar-count">93</div>
             </div>
             
 
@@ -110,12 +105,11 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">长时程 LLM agent 的核心瓶颈正在从单步生成转向错误恢复、反思触发与动作级信用分配，ReflectPO 是这一问题的直接回应。</span>
-<span class="chip">LLM 在搜索与发现中的角色从一次性候选生成器转向持久化实验者，AgenticEvolve 把“设计并运行实验”本身作为可检验能力。</span>
-<span class="chip">模型落地正在进入制度化评测阶段：VERA 说明 benchmark 需要被重组为合规证据、审批界面和能耗记录，而不只是排行榜分数。</span>
-<span class="chip">领域多模态适配的重心明显数据化，遥感 VLM 综述强调高质量图文/指令/评测数据比继续堆叠通用架构更关键。</span>
-<span class="chip">多代理系统开始面向高风险真实任务分工协作，个人健康代理把数据分析、领域知识整合和行为支持拆成不同子代理。</span>
-<span class="chip">基础科学论文普遍围绕‘现象背后的机制链’展开：从电催化闭环代谢干预，到鸟类超快速决策神经动力学，再到声子热霍尔与细胞周期调控机制。</span></div>
+        <div class="chips"><span class="chip">缺失信息而非错误信息导致的 agent 失效：从 EpiSEM-Bench 可见，下一代安全评测正在从“模型会不会胡说”转向“证据不全时会不会越权行动，以及会不会主动补证据”。</span>
+<span class="chip">把耦合系统拆开测：Dual Exam 将 agent 决策与 world model 预测分离，LAST-V2X 用退化信息执行与真实信息执行做对照，体现出当前评测越来越强调误差归因而非端到端总分。</span>
+<span class="chip">从静态问答到序贯决策：无论是临床序贯诊断还是工具型 agent，核心都变成了多轮信息获取、成本约束下的下一步动作选择，而不是一次性输出答案。</span>
+<span class="chip">语言接口进入真实工程闭环：AgentDP 和 LAST-V2X 都把自然语言需求转成结构化规格、可执行流程或仿真场景，说明 LLM 的价值越来越体现在需求编译、流程编排和自动化搜索，而不只是文本生成。</span>
+<span class="chip">高影响基础科学论文的共同模式是‘新实体/新通路/新耦联被直接识别’：电子 BIC、胍基异戊二烯转移酶、BH2-BH4 低温长寿网络、单古菌脂肪酸氧化-产甲烷耦联，都属于把长期猜想或分散现象收束为可验证机制。</span></div>
       </div>
     </section>
 
@@ -124,50 +118,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>复现并拆解 ReflectPO 的两个关键部件：反思引导采样与树结构信用分配，验证哪一部分真正提升长时程恢复能力。</strong>
-              <p>当前很多 agent 训练方法把成功率提升混在更强采样或更大算力里，ReflectPO 的价值主张是‘恢复到正确轨道’与‘信用分配更细’，值得做组件级验证。</p>
-              <p><span>第一步：</span>先找到论文使用的两个 long-horizon tool-use benchmark；在一个可复现实验环境中实现最小版对照：基础策略优化、仅加 reflection prompt、仅加 tree credit、两者同时加入，比较成功率与从早期错误恢复的条件成功率。</p>
-              <p><span>风险：</span>公开代码和环境可能尚未完善；若 benchmark 难以完全复现，结论可能受实现细节和底座模型影响。</p>
+              <strong>复现一个“缺失证据安全性”小型基准，比较模型是保守拒绝还是主动补证据</strong>
+              <p>EpiSEM-Bench提示 unsafe execution 与 evidence recovery 不是同一能力。很多现有 agent 评测只看最终是否犯错，忽略了模型是否知道自己证据不足。这个方向容易做出有诊断价值的结果。</p>
+              <p><span>第一步：</span>先选 2 个容易构造的领域（如医疗建议、网络/系统操作），各写 10 组 safe/unsafe 配对任务；为每组准备完整证据版和缺失关键事实版，再用 2-3 个现成模型测试其执行、拒绝和追问行为。</p>
+              <p><span>风险：</span>如果任务写得不够严谨，结果会混入提示敏感性；另外没有独立审计工具时，很难严格区分‘真正补证据后做对’与‘默认保守拒绝’。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>把 AgenticEvolve 的“持久化 agent 设计实验”思想迁移到一个低成本程序搜索任务，单独测量实验分析带来的样本效率收益。</strong>
-              <p>这篇工作最有意思的不是最终分数，而是把实验设计能力从直觉变成可测变量；在小任务上复现更容易判断其是否具有普适性。</p>
-              <p><span>第一步：</span>选一个可快速评估的程序合成或启发式设计任务，构建两组系统：persistent agent 可读取历史日志并主动提出诊断实验，No-analysis 组只做候选变异；固定总评估预算，比较达到同等性能所需评估次数。</p>
-              <p><span>风险：</span>小任务可能不足以体现实验分析优势；若 agent 的实验接口设计不合理，容易把效果混淆为提示工程差异。</p>
+              <strong>做一个‘分离式评测’综述或实验复核，比较 agent 能力评测中哪些工作真正实现了误差归因</strong>
+              <p>Dual Exam 和 LAST-V2X 都说明，端到端成功率不足以解释系统为何失败。整理并比较不同领域如何固定环境、固定动作、做对照执行，能形成一篇很有价值的方法型综述或短论文。</p>
+              <p><span>第一步：</span>收集 8-12 篇 agent/world model/simulator safety benchmark 论文，建立一个表：是否分离决策与环境建模、是否有对照执行、是否能定位失败来源、是否报告成本/查询行为。</p>
+              <p><span>风险：</span>综述型工作容易停留在概念层面；如果没有一个统一分类框架，最后可能只是文献罗列。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>基于 VERA 的思路整理一个面向本机构或实验室的‘LLM 部署证据卡’，把能力、风险、能耗和适用边界统一到同一模板。</strong>
-              <p>很多团队已有 benchmark 结果，但缺少可供非技术决策者阅读的证据组织方式；这是低门槛且高实用性的治理研究切入点。</p>
-              <p><span>第一步：</span>选一个已在内部使用的开源或闭源模型，收集现有 benchmark、红队记录、推理成本和能耗估计，按‘任务能力-限制-风险-运行代价-适用场景’五栏做一版证据卡，并邀请非工程同事试读。</p>
-              <p><span>风险：</span>若没有稳定的能耗测量和风险评测流程，证据卡容易流于展示；不同任务分数如何映射到决策阈值也不容易统一。</p>
+              <strong>在公开医疗问答或病例数据上构造低成本版序贯诊断任务，检查‘准确率提升是否只是多问多得’</strong>
+              <p>Sequential diagnosis 的关键不只是诊断准，而是以较低 workup cost 达到较高准确率。一个很实际的问题是：模型优势是否来自更高效的信息选择，而非单纯请求更多检查。</p>
+              <p><span>第一步：</span>从可公开使用的病例数据中抽取一小批病例，手工定义可请求的信息项及其成本，比较同一模型在‘无限查询’、‘预算受限’和‘固定轮数’三种设置下的诊断表现。</p>
+              <p><span>风险：</span>公开数据未必天然适合序贯交互，信息项拆分和成本设定可能带来较强主观性。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>做一份遥感 VLM 数据集的结构化清单，重点检查任务类型、文本来源、标注粒度和评测泄漏风险，而不是只罗列数据集名称。</strong>
-              <p>综述已经指出遥感 VLM 进入数据中心阶段，但真正缺的是可操作的数据审计视角，尤其是文本质量和训练/评测边界。</p>
-              <p><span>第一步：</span>从综述中抽取 10-20 个代表性数据集，建立表格记录图像来源、文本生成方式、是否含指令数据、区域级标注情况、时序信息、许可协议和常见下游任务，再抽样检查文本模板化程度与重复率。</p>
-              <p><span>风险：</span>部分数据集文档不完整，难以准确判断构建流程；人工审计成本较高，且不同任务之间不易直接比较。</p>
+              <strong>验证 LLM 驱动部署系统中的‘历史配置复用’是否真的优于简单相似检索基线</strong>
+              <p>AgentDP 的一个亮点是配置复用，但这类模块常常容易被简单 nearest-neighbor 或规则库基线追平。做一个小规模复核能快速判断其真实增益来自 LLM agent 还是来自经验缓存。</p>
+              <p><span>第一步：</span>选一个嵌入式推理优化任务集合，建立历史配置库，比较三种方法：随机/网格搜索、基于元数据的相似检索复用、LLM 辅助复用建议；指标至少包括搜索时间、最终时延和精度变化。</p>
+              <p><span>风险：</span>如果拿不到原系统或足够多设备，实验规模会受限；不同硬件上的噪声也可能掩盖方法差异。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕个人健康代理，设计一个更小范围的安全评测：区分‘数据解释’与‘建议生成’两类任务，检查多代理分工是否真的降低高风险错误。</strong>
-              <p>健康场景里系统看起来越完整，越需要验证其分工是否带来真实安全收益，而不是仅增加复杂度和表面可解释性。</p>
-              <p><span>第一步：</span>构造一组匿名化或公开健康数据案例，分别要求系统完成数值解释、生活方式建议和症状分诊；比较单代理与三子代理输出在事实一致性、过度建议、风险提示完整性上的差异。</p>
-              <p><span>风险：</span>缺少高质量医学金标准会使评测主观；真实健康数据获取和伦理合规门槛较高。</p>
+              <strong>围绕 V2X 测试中的‘通信致因’做一个最小对照实验，区分交通危险与通信退化危险</strong>
+              <p>LAST-V2X 的核心价值在于归因。这个思想可迁移到很多 cyber-physical safety 场景：不是只看是否撞车，而是看如果给真实信息是否还会失败。</p>
+              <p><span>第一步：</span>在一个可用仿真器中实现 3-5 个简单 V2X 场景，对每个场景分别运行真实信息版和延迟/丢包版，记录安全指标差异，并筛出只在退化信息下失败的案例。</p>
+              <p><span>风险：</span>联合仿真和消息故障注入的工程门槛较高；如果场景过于简单，可能观察不到稳定的通信诱发失效。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>做一个跨论文的小型综述或评论：比较今天几篇 AI 论文中‘反思、实验、合规、陪伴’四种 agent 能力，提出一个从训练到部署的能力分层框架。</strong>
-              <p>这几篇论文虽然题材不同，但共同指向 agent 从生成模型向持续系统演化；把它们放在同一框架下有助于形成更清晰的研究地图。</p>
-              <p><span>第一步：</span>按四个维度整理论文：交互时长、外部环境耦合、反馈类型、评测目标；再总结每篇论文主要解决的是训练问题、搜索问题、治理问题还是产品系统问题。</p>
-              <p><span>风险：</span>材料目前主要来自摘要级信息，若不补读正文容易把不同论文强行并置；框架若过于抽象，可能缺乏可检验性。</p>
+              <strong>做一篇‘从静态 benchmark 到交互式 benchmark’的短综述，聚焦成本、查询、证据恢复和安全边界</strong>
+              <p>今天几篇AI论文共同显示，评测对象正在从答案质量转向交互策略质量。把医疗、agent safety、多模态 world model、工程部署放在同一框架下讨论，容易形成跨领域视角。</p>
+              <p><span>第一步：</span>先写一个统一维度表：初始信息是否不完整、模型能否主动查询、查询是否有成本、是否区分错误信息与缺失信息、是否能做失败归因；再把今天这几篇作为种子文献扩展。</p>
+              <p><span>风险：</span>跨领域统一框架需要足够抽象但不能失真；若缺少更多代表性文献，论证可能显得样本不足。</p>
             </div>
             </div>
       </div>
@@ -180,30 +174,26 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-22T08:54:24Z</span>
-        <span>Score 81.5</span>
+        <span>2026-10-22T17:57:04Z</span>
+        <span>Score 67.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2610.30933v1">ReflectPO: Reflection-Guided Policy Optimization for Long-Horizon LLM Agents</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+ReflectPO%3A+Reflection-Guided+Policy+Optimization+for+Long-Horizon+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30933v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+ReflectPO%3A+Reflection-Guided+Policy+Optimization+for+Long-Horizon+LLM+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+ReflectPO%3A+Reflection-Guided+Policy+Optimization+for+Long-Horizon+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30933v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+ReflectPO%3A+Reflection-Guided+Policy+Optimization+for+Long-Horizon+LLM+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+ReflectPO%3A+Reflection-Guided+Policy+Optimization+for+Long-Horizon+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30933v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+ReflectPO%3A+Reflection-Guided+Policy+Optimization+for+Long-Horizon+LLM+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2610.31650v1">EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+EpiSEM-Bench%3A+Evaluating+Safety+and+Evidence+Recovery+in+LLM+Agents+under+Missin&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31650v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+EpiSEM-Bench%3A+Evaluating+Safety+and+Evidence+Recovery+in+LLM+Agents+under+Missing+Evidence%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+EpiSEM-Bench%3A+Evaluating+Safety+and+Evidence+Recovery+in+LLM+Agents+under+Missin&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31650v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+EpiSEM-Bench%3A+Evaluating+Safety+and+Evidence+Recovery+in+LLM+Agents+under+Missing+Evidence%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+EpiSEM-Bench%3A+Evaluating+Safety+and+Evidence+Recovery+in+LLM+Agents+under+Missin&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31650v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+EpiSEM-Bench%3A+Evaluating+Safety+and+Evidence+Recovery+in+LLM+Agents+under+Missing+Evidence%0Akeywords%3A+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Rumei Li、Xunliang Cai · <a href="https://arxiv.org/pdf/2610.30933v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
+      <div class="authors">Qijin Zhang、Hanzhen Wang、Yuehan Zhao、Haoyu Dai 等 7 人 · <a href="https://arxiv.org/pdf/2610.31650v1">PDF</a></div>
+      <div class="chips"><span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
 <span class="chip">environmental <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦带外部工具的长时程LLM智能体，在需要持续环境交互的复杂任务中，针对“早期执行错误会沿决策链累积并破坏后续状态”的问题，提出了一个名为ReflectPO的强化学习框架，用于自主错误恢复。根据摘要，它主要在两个长时程工具使用基准上评估，通过反思引导采样和树结构信用分配来优化策略。</p></div>
-        <div class="note"><strong>贡献</strong><p>从题名和摘要看，核心贡献应包括：1）提出Reflection-Guided Policy Optimization（ReflectPO），面向长时程工具使用型LLM agent的错误恢复；2）设计Reflection-Guided Sampling，利用交互轨迹中的分支差异和重复访问现象构造恢复提示；3）设计Tree-Structured Credit Assignment，将采样轨迹组织为树，并基于父子奖励差与恢复增益进行动作级信用分配；4）在两个长时程tool-use benchmark上与多种基线比较，报告多数领域优于现有方法。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个名为 EpiSEM-Bench 的可执行基准，用于评估工具使用型大语言模型代理在“安全关键证据缺失”时是否会错误执行本应被禁止的动作，以及它们是否会主动恢复缺失证据。基准包含 300 组跨六个领域的安全/不安全配对任务，并额外用独立审计工具测试代理在信息缺失下的证据搜寻与安全决策能力。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献是把“工具返回内容都为真但遗漏关键安全事实”这一较少被系统评测的风险，形式化为可执行 benchmark；同时不仅测量 unsafe execution，还测量 safety boundary、minimum observed failure cardinality，以及 evidence recovery。另一个重要贡献是构造了独立审计工具，区分“抗遗漏导致不犯错”和“主动补证据后再做正确动作”这两类能力，并在 10 个模型上展示二者并不等价。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -215,42 +205,32 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 11</div>
+              <div class="signal-kicker">关键词命中 7</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>81.5</strong>
+              <strong>67.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在带外部工具的长时程LLM agent任务中，早期动作错误会改变后续交互历史和环境状态，导致错误沿决策链累积；现有方法如何让agent在执行过程中识别偏航、进行自主反思，并把“恢复到正确轨道”的价值有效分配到具体动作上，是一个核心方法问题。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法路径可能是：先在长时程工具使用环境中采样多条交互轨迹；利用同一任务下不同分支轨迹的差异，以及轨迹中重复访问某些状态/节点的现象，构造反思或恢复提示；再把这些轨迹整理成树结构，以父节点和子节点的奖励差、以及从错误状态恢复所带来的增益，进行更细粒度的动作级信用分配；最后用该信用信号做策略优化。实验数据应来自两个long-horizon tool-use benchmarks，评价可能围绕任务成功率、恢复能力、跨域表现或样本效率展开。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题切得准：不是泛泛提升agent能力，而是专门针对长时程交互中的错误累积与恢复。第二，方法设计与任务结构匹配：分支差异、重复访问、树结构轨迹，这些都天然对应agent在环境中的探索与纠错过程。第三，如果摘要所述结果可靠，那么该方法在多个领域优于现有基线，说明它可能不仅是prompt层面的反思技巧，而是对RL训练信号本身做了更适合长时程agent的改造。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查论文正文中的两个benchmark名称、任务示例和评价指标；2）重点看ReflectPO总流程图，确认reflection提示是如何从branch differences和repeated visits中生成的；3）查看Tree-Structured Credit Assignment的公式，弄清父子奖励差与recovery gain如何定义；4）记录主结果表中相对最强基线的提升幅度，以及是否控制采样预算；5）优先找消融实验，确认性能提升主要来自反思引导采样、树结构信用分配，还是二者结合。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：当 LLM agent 依赖工具或环境事实来判断某个动作是否被允许时，如果返回信息没有包含某个安全关键事实，代理是否会在“信息不完整但表面上都是真实”的情况下错误执行禁止动作？进一步地，代理能否识别证据不足、主动查询缺失事实，并在补足证据后区分该拒绝的任务与该完成的任务？</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法包括四部分。第一，构建一个可执行 benchmark：300 组 unsafe/safe 配对任务，覆盖六个领域，每组任务应围绕同类动作决策与许可边界设计。第二，系统性抑制 critical facts，制造“缺失证据”条件，并记录代理是否发生 unsafe execution。第三，计算 minimum observed failure cardinality，可能是通过逐步增加或组合被省略的关键事实，寻找触发失败的最小遗漏规模，同时标记在 full evidence 下仍失败和在穷尽测试下未失败的样本。第四，使用独立审计工具评估 evidence recovery：代理是否会主动寻找缺失事实、在发现禁止条件后停止动作、在确认允许条件后继续完成任务。实验对象是 10 个模型，比较维度至少包括 omission robustness、evidence acquisition、appropriate action。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，问题设定很具体且现实：不是传统的虚假信息或恶意提示，而是“真实但不完整”的工具反馈，这更接近真实 API、数据库、检索系统中的常见风险。其二，benchmark 设计强调 matched unsafe/safe pairs 和 executable setting，有助于把失败归因到证据缺失与安全边界判断，而不是语言表述差异。其三，评测维度比单一成功率更细，既看 omission robustness，也看主动 evidence recovery，还引入 minimum observed failure cardinality 这种边界性指标，能够更细致地区分模型是“保守不做”还是“会主动补证据后正确做”。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先查论文正文中的 benchmark 定义表和任务示例，确认六个领域、unsafe/safe 配对方式及 critical fact 的操作化定义。第二，重点找 minimum observed failure cardinality 的正式定义、计算算法和示例图表，判断它是否可复现。第三，查看 independent audit tool 的输入输出、是否需要额外工具权限、如何判定“seek missing facts”。第四，记录 10 个模型在三类指标上的排名或分层现象，特别关注“抗遗漏强但恢复弱”的代表模型。第五，如果你做 agent safety 相关研究，可尝试把自己系统放到“真实但缺失关键信息”的工具模拟环境中，先复现一两个 unsafe/safe 配对任务，观察是否会在证据不足时误执行。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在带外部工具的长时程LLM agent任务中，早期动作错误会改变后续交互历史和环境状态，导致错误沿决策链累积；现有方法如何让agent在执行过程中识别偏航、进行自主反思，并把“恢复到正确轨道”的价值有效分配到具体动作上，是一个核心方法问题。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法路径可能是：先在长时程工具使用环境中采样多条交互轨迹；利用同一任务下不同分支轨迹的差异，以及轨迹中重复访问某些状态/节点的现象，构造反思或恢复提示；再把这些轨迹整理成树结构，以父节点和子节点的奖励差、以及从错误状态恢复所带来的增益，进行更细粒度的动作级信用分配；最后用该信用信号做策略优化。实验数据应来自两个long-horizon tool-use benchmarks，评价可能围绕任务成功率、恢复能力、跨域表现或样本效率展开。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题切得准：不是泛泛提升agent能力，而是专门针对长时程交互中的错误累积与恢复。第二，方法设计与任务结构匹配：分支差异、重复访问、树结构轨迹，这些都天然对应agent在环境中的探索与纠错过程。第三，如果摘要所述结果可靠，那么该方法在多个领域优于现有基线，说明它可能不仅是prompt层面的反思技巧，而是对RL训练信号本身做了更适合长时程agent的改造。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，主要局限是信息不完整。首先，看不到具体benchmark和任务难度，无法判断结果代表性。其次，不清楚“reflection”是否需要额外标注、教师模型或高成本采样，方法开销和可扩展性未知。再次，树结构信用分配听起来合理，但若分支树构建依赖大量回滚或重复探索，训练成本可能较高。最后，摘要只说在多数领域优于基线，没有给出失败案例、统计显著性、对不同错误类型的恢复效果，也无法确认方法对真实开放环境是否稳健。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查论文正文中的两个benchmark名称、任务示例和评价指标；2）重点看ReflectPO总流程图，确认reflection提示是如何从branch differences和repeated visits中生成的；3）查看Tree-Structured Credit Assignment的公式，弄清父子奖励差与recovery gain如何定义；4）记录主结果表中相对最强基线的提升幅度，以及是否控制采样预算；5）优先找消融实验，确认性能提升主要来自反思引导采样、树结构信用分配，还是二者结合。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常具体：不是一般文本生成，而是“可调用外部工具、需要持续与环境交互、任务跨度较长”的LLM智能体。这类任务的关键难点在于，动作是序列化且相互依赖的，环境状态会被每一步真实改变，因此前面一步出错不仅影响当前回报，还会污染后续观测、历史和可达状态，形成累积性失败。摘要明确把问题定义为长时程任务中的自主错误恢复，而不是单步决策精度提升。
-
-方法线索也比较具体。ReflectPO包含两个部件。其一，Reflection-Guided Sampling：从名字和摘要描述看，它不是简单地采样更多轨迹，而是利用“branch differences”和“repeated visits”这两类轨迹结构信号来生成恢复提示。可推测作者会在同一任务或相近状态上保留多条分支轨迹，对比成功/失败分支的差异，提炼出哪里偏离了正确路径；“重复访问”则可能对应agent反复回到某些状态、工具页面或子任务节点，提示其陷入循环、卡住或局部错误恢复失败。这些信号被转化为reflection/hint，再用于后续采样或策略更新。
-
-其二，Tree-Structured Credit Assignment：摘要说将采样轨迹组织成树，并用父子奖励差和recovery gains做动作级信用分配。这说明作者可能不满足于把整条长轨迹压成一个终局回报，而是显式利用分支树结构，把某个动作导致的局部恢复、偏航或改进量化出来。父子奖励差意味着比较某节点扩展后子分支相对父状态的收益变化；recovery gains则更像专门衡量“从错误状态拉回正确轨道”的增益。这种设计若成立，确实更适合长时程agent，因为传统序列级回报在错误恢复场景下往往稀疏且高方差。
-
-证据线索方面，摘要只给出“两个长时程工具使用基准”“多数领域优于多个基线”，没有列出具体benchmark名称、任务类型、工具集合、评价指标、提升幅度，也没有说明基线是SFT、PPO、DPO、RLAIF还是已有agent RL方法。因此目前只能确认论文强调跨域长时程tool-use评测，而不能判断其优势主要来自采样策略、信用分配、反思提示质量，还是训练数据/模型规模差异。
-
-与科研读者的关系上，这篇工作对以下方向尤其相关：1）LLM agent强化学习，尤其是环境交互式policy optimization；2）长时程规划与错误恢复；3）tool-use agent的轨迹建模与信用分配；4）反思/自我纠错机制如何从启发式prompting走向可训练RL框架。如果你的研究关注agent在真实环境中的鲁棒性、恢复能力或训练信号设计，这篇论文值得重点看方法和消融。
-
-需要核对的信息包括：具体使用了哪些基准和环境；“reflection”是自然语言提示、结构化标签还是隐式训练信号；树结构是在线构建还是离线重组；奖励来源是环境终局成功率、过程奖励还是模型打分；与哪些基线比较；是否控制了采样预算和工具调用次数；错误恢复是否真的提升了长期成功率而非仅增加探索；以及该方法对不同模型规模、不同工具复杂度的泛化情况。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：当 LLM agent 依赖工具或环境事实来判断某个动作是否被允许时，如果返回信息没有包含某个安全关键事实，代理是否会在“信息不完整但表面上都是真实”的情况下错误执行禁止动作？进一步地，代理能否识别证据不足、主动查询缺失事实，并在补足证据后区分该拒绝的任务与该完成的任务？</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法包括四部分。第一，构建一个可执行 benchmark：300 组 unsafe/safe 配对任务，覆盖六个领域，每组任务应围绕同类动作决策与许可边界设计。第二，系统性抑制 critical facts，制造“缺失证据”条件，并记录代理是否发生 unsafe execution。第三，计算 minimum observed failure cardinality，可能是通过逐步增加或组合被省略的关键事实，寻找触发失败的最小遗漏规模，同时标记在 full evidence 下仍失败和在穷尽测试下未失败的样本。第四，使用独立审计工具评估 evidence recovery：代理是否会主动寻找缺失事实、在发现禁止条件后停止动作、在确认允许条件后继续完成任务。实验对象是 10 个模型，比较维度至少包括 omission robustness、evidence acquisition、appropriate action。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，问题设定很具体且现实：不是传统的虚假信息或恶意提示，而是“真实但不完整”的工具反馈，这更接近真实 API、数据库、检索系统中的常见风险。其二，benchmark 设计强调 matched unsafe/safe pairs 和 executable setting，有助于把失败归因到证据缺失与安全边界判断，而不是语言表述差异。其三，评测维度比单一成功率更细，既看 omission robustness，也看主动 evidence recovery，还引入 minimum observed failure cardinality 这种边界性指标，能够更细致地区分模型是“保守不做”还是“会主动补证据后正确做”。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与截断摘要，主要局限是信息不完整。首先，六个领域、任务实例、动作空间和判分标准未给出，暂时无法判断 benchmark 的生态有效性与覆盖面。其次，minimum observed failure cardinality 的定义可能较技术化，但摘要未说明统计过程、是否受搜索预算影响、是否稳定。再次，独立审计工具虽然听起来重要，但其实现方式、是否引入额外先验、是否偏向某类 agent 架构都未知。还有，摘要只给出定性发现，没有具体数值、显著性检验或错误案例，因此目前不能判断结论强弱。最后，恢复访问“降低 unsafe execution”后半句被截断，可能还伴随代价或失败模式，这部分必须核对原文。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先查论文正文中的 benchmark 定义表和任务示例，确认六个领域、unsafe/safe 配对方式及 critical fact 的操作化定义。第二，重点找 minimum observed failure cardinality 的正式定义、计算算法和示例图表，判断它是否可复现。第三，查看 independent audit tool 的输入输出、是否需要额外工具权限、如何判定“seek missing facts”。第四，记录 10 个模型在三类指标上的排名或分层现象，特别关注“抗遗漏强但恢复弱”的代表模型。第五，如果你做 agent safety 相关研究，可尝试把自己系统放到“真实但缺失关键信息”的工具模拟环境中，先复现一两个 unsafe/safe 配对任务，观察是否会在证据不足时误执行。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>基于题名与摘要，这项工作聚焦于工具增强型 LLM agents 的一个具体失效模式：代理做决策时依赖环境或工具提供的事实，但当工具响应省略了一个安全相关事实时，即使用户请求本身无害、且系统返回的每句话都是真实的，代理仍可能执行实际上被禁止的操作。论文据此提出 EpiSEM-Bench，且强调其“executable benchmark”属性，说明任务应当不是纯静态问答，而是带有可执行动作、许可/禁止边界和环境反馈的代理评测设置。数据规模上，摘要明确给出 300 个 matched unsafe/safe task pairs，覆盖六个领域；“matched”暗示每组任务可能共享高度相似的表面形式，仅通过关键证据是否存在、是否被抑制，来区分允许与禁止动作，从而更精确地归因于“证据缺失”而非任务难度差异。方法上，作者通过系统性 suppress critical facts 来制造关键信息缺失场景，并测量 unsafe execution under critical evidence omission；同时还确定 minimum observed failure cardinality，这一点很值得注意，意味着他们可能不是只看单次遗漏，而是在控制遗漏事实数量或组合时，寻找触发失败所需的最小缺失规模，并记录两类边界情况：一类是 full evidence 下仍失败，说明问题不只是遗漏鲁棒性；另一类是 exhaustive testing 后仍未观察到失败，说明某些模型或任务对遗漏更稳健。摘要还提到 independent audit tool，用来测试 agents 是否会主动 seek missing facts，并在补证据后对 prohibited actions 进行 withholding，同时对 permissible tasks 继续完成。这表明评测不只看“最后有没有犯错”，还看中间是否表现出主动信息获取、风险意识和选择性拒绝/执行的能力。结果层面，摘要只给出定性结论：10 个模型在 omission robustness、evidence acquisition 和 appropriate action 上存在显著差异；对缺失证据的抵抗力并不必然转化为有用的恢复能力；恢复访问会降低一部分 unsafe execution。由于摘要被截断，具体降低幅度、哪些模型最好、六个领域是什么、审计工具如何实现、failure cardinality 的精确定义与统计方式，都需要阅读全文核对。与科研读者的关系上，这篇工作对 agent safety、tool-use reliability、uncertainty-aware planning、retrieval/verification 机制设计都直接相关，尤其适合关注“真实工具接口并不撒谎，但会漏信息”这一更贴近实际系统的安全评测场景。需要特别核对的信息包括：六个领域的具体任务类型；unsafe/safe 配对的构造原则；critical fact suppression 是在工具层、环境层还是 observation 层实现；审计工具是否模型无关；10 个模型的类别与是否包含闭源系统；以及 benchmark 是否公开代码、执行环境和判分脚本。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>With external tools, large language models (LLMs) can tackle complex tasks through sustained environmental interaction. LLM-based agents are therefore increasingly used to tackle complex long-horizon tasks in real-world environments. However, these tasks involve sequential, interdependent decisions and changes in environmental states. Early execution errors affect subsequent interaction histories and environmental states, and their effects accumulate along the decision chain. To address this challenge, we propose Reflection-Guided Policy Optimization (ReflectPO), a reinforcement learning framework for autonomous error recovery in long-horizon tasks. ReflectPO comprises two core components. The first is Reflection-Guided Sampling. We use branch differences and repeated visits in interaction trajectories to construct hints for error recovery. The second is Tree-Structured Credit Assignment. We organize sampled trajectories into trees and assign action-level credit using parent--child reward differences and recovery gains. Experiments over two long-horizon tool-use benchmarks show that ReflectPO outperforms multiple existing baselines in most domains. It also achieves the best overall performance on average. Further analyses show that ReflectPO effectively improves agents&#x27; ability to recognize their own deviations, recover from erroneous states, and continue making progress toward task completion.</p>
+          <p>Tool-using language model agents rely on environmental facts to decide whether an action is permitted. When a tool response omits a safety-relevant fact, an agent may carry out a prohibited action even though the user request is benign and every returned statement is true. We introduce \bench{}, an executable benchmark for evaluating unsafe execution, safety boundaries, and evidence recovery in LLM agents under missing evidence. It contains 300 matched unsafe/safe task pairs across six domains. By systematically suppressing critical facts, the benchmark measures unsafe execution under critical evidence omission and determines the minimum observed failure cardinality, including failures with full evidence and cases with no observed failure after exhaustive testing. An independent audit tool tests whether agents seek missing facts and then withhold prohibited actions while completing permissible tasks. The benchmark reveals substantial variation across the ten models in omission robustness, evidence acquisition, and appropriate action. Resistance to missing evidence does not necessarily translate into useful recovery. Recovery access reduces unsafe execution for all ten models, but agents differ in whether they actively obtain the missing facts and use them to act appropriately in both worlds.</p>
         </details>
         
         </div>
@@ -262,167 +242,27 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-22T14:03:29Z</span>
-        <span>Score 78.5</span>
+        <span>2026-10-22T05:29:35Z</span>
+        <span>Score 67.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2610.31304v1">Data-Driven Vision-Language Models for Remote Sensing: A Survey</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Data-Driven+Vision-Language+Models+for+Remote+Sensing%3A+A+Survey&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31304v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Data-Driven+Vision-Language+Models+for+Remote+Sensing%3A+A+Survey%0Akeywords%3A+language+model%2C+language+models%2C+rag%2C+vision-language%2C+vlm%2C+artificial+intelligence%2C+ai%2C+deep+learning%2C+remote+sensing%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Data-Driven+Vision-Language+Models+for+Remote+Sensing%3A+A+Survey&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31304v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Data-Driven+Vision-Language+Models+for+Remote+Sensing%3A+A+Survey%0Akeywords%3A+language+model%2C+language+models%2C+rag%2C+vision-language%2C+vlm%2C+artificial+intelligence%2C+ai%2C+deep+learning%2C+remote+sensing%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Data-Driven+Vision-Language+Models+for+Remote+Sensing%3A+A+Survey&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31304v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Data-Driven+Vision-Language+Models+for+Remote+Sensing%3A+A+Survey%0Akeywords%3A+language+model%2C+language+models%2C+rag%2C+vision-language%2C+vlm%2C+artificial+intelligence%2C+ai%2C+deep+learning%2C+remote+sensing%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>2. <a href="http://arxiv.org/abs/2610.30760v1">AgentDP: Towards Automated Model Deployment for Heterogeneous Embedded AI Applications</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+AgentDP%3A+Towards+Automated+Model+Deployment+for+Heterogeneous+Embedded+AI+Applic&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30760v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+AgentDP%3A+Towards+Automated+Model+Deployment+for+Heterogeneous+Embedded+AI+Applications%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+AgentDP%3A+Towards+Automated+Model+Deployment+for+Heterogeneous+Embedded+AI+Applic&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30760v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+AgentDP%3A+Towards+Automated+Model+Deployment+for+Heterogeneous+Embedded+AI+Applications%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+AgentDP%3A+Towards+Automated+Model+Deployment+for+Heterogeneous+Embedded+AI+Applic&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30760v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+AgentDP%3A+Towards+Automated+Model+Deployment+for+Heterogeneous+Embedded+AI+Applications%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Yue Zhou、Shujun Zhao、Xue Yang、Ruigang Li 等 10 人 · <a href="https://arxiv.org/pdf/2610.31304v1">PDF</a></div>
-      <div class="chips"><span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">vision-language <strong>1</strong></span>
-<span class="chip">vlm <strong>1</strong></span>
-<span class="chip">artificial intelligence <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">deep learning <strong>1</strong></span>
-<span class="chip">remote sensing <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这是一篇面向遥感领域视觉-语言模型（VLM）的综述，核心对象是“用于VLM适配与微调的遥感数据集”及其从数据构建、模型微调到性能评估的全流程实践。摘要显示论文试图从数据中心视角系统梳理遥感VLM时代的数据资源、构建方法和应用场景，而不是继续聚焦模型结构改造。</p></div>
-        <div class="note"><strong>贡献</strong><p>从题名与摘要看，论文的核心贡献应在于：第一，系统回顾面向遥感VLM的数据集发展现状，强调高质量遥感视觉-语言数据在大模型适配中的关键作用；第二，提出一个覆盖数据构建、微调与评测的实践性框架或指南，帮助研究者针对不同遥感任务组织数据并开展模型适配；第三，明确指出遥感视觉模型研究范式正从“模型中心”转向“数据中心”，为后续数据集设计、任务定义和评测标准提供综述性参考。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 9</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>78.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在遥感视觉-语言模型快速发展、但研究重心从模型结构创新转向领域数据适配的背景下，研究者应如何系统理解现有遥感VLM数据集的类型、质量、适用任务与局限，并据此完成数据构建、模型微调和性能评估的全流程设计。更直接地说，它关注的不是“再造一个新VLM架构”，而是“遥感领域到底需要什么样的数据，才能把通用VLM有效迁移到遥感任务上”。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，这篇综述的方法应主要是文献归纳与体系化分析，而非提出单一算法。可能的分析路径包括：按遥感任务梳理数据集，如图像描述、跨模态检索、视觉问答、定位/检测辅助文本理解、变化描述等；按数据构成梳理，如图像-文本对、区域级标注、时序多模态样本、指令数据；按用途梳理，如预训练、监督微调、指令微调、评测基准；再进一步总结这些数据如何支持通用VLM在遥感垂直领域上的适配。摘要还提到“covering the entire pipeline from data construction to fi...”，大概率意味着论文会讨论数据采集、标注、清洗、质量控制、微调策略与评测流程，但具体是否包含案例实验、推荐模型或标准化协议，需要查看正文。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点在于其明确采用“数据中心”视角切入遥感VLM，这比单纯罗列模型更贴近当前大模型研究现实。对于资源有限的遥感团队，真正可操作的往往不是从零训练大模型，而是构建高质量领域数据并进行适配，因此这类综述的应用价值较高。第二个亮点是它可能覆盖从数据构建到微调、评测的完整链条，如果内容扎实，就能帮助研究者把“数据集选择/构建”和“模型适配策略”联系起来，而不是孤立看待。第三，作者团队人数较多，且题目与摘要都显示其目标是系统性梳理发展状态，说明论文可能包含较全面的数据集盘点和任务映射，这对选题、benchmark搭建和综述引用都很有帮助。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五步：1）先查看正文目录和总表，确认它如何分类遥感VLM数据集，记录每一类对应的任务与代表数据；2）重点查是否有“dataset taxonomy”“benchmark comparison”或“practical guideline”类图表，把其中的数据字段、标注形式、规模、任务、评测指标整理成自己的表；3）核对论文是否讨论具体微调范式，如指令微调、LoRA/PEFT、全参数微调，以及这些方法与数据规模/质量的关系；4）如果你的方向是遥感描述、检索、VQA或变化理解，直接筛出对应章节，记录作者推荐的数据构建原则与常见问题；5）阅读时特别标记所有作者明确提出但尚未解决的问题，例如数据稀缺、标注噪声、跨传感器泛化、时空偏移和评测不统一，这些最可能转化为后续研究选题。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在遥感视觉-语言模型快速发展、但研究重心从模型结构创新转向领域数据适配的背景下，研究者应如何系统理解现有遥感VLM数据集的类型、质量、适用任务与局限，并据此完成数据构建、模型微调和性能评估的全流程设计。更直接地说，它关注的不是“再造一个新VLM架构”，而是“遥感领域到底需要什么样的数据，才能把通用VLM有效迁移到遥感任务上”。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，这篇综述的方法应主要是文献归纳与体系化分析，而非提出单一算法。可能的分析路径包括：按遥感任务梳理数据集，如图像描述、跨模态检索、视觉问答、定位/检测辅助文本理解、变化描述等；按数据构成梳理，如图像-文本对、区域级标注、时序多模态样本、指令数据；按用途梳理，如预训练、监督微调、指令微调、评测基准；再进一步总结这些数据如何支持通用VLM在遥感垂直领域上的适配。摘要还提到“covering the entire pipeline from data construction to fi...”，大概率意味着论文会讨论数据采集、标注、清洗、质量控制、微调策略与评测流程，但具体是否包含案例实验、推荐模型或标准化协议，需要查看正文。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点在于其明确采用“数据中心”视角切入遥感VLM，这比单纯罗列模型更贴近当前大模型研究现实。对于资源有限的遥感团队，真正可操作的往往不是从零训练大模型，而是构建高质量领域数据并进行适配，因此这类综述的应用价值较高。第二个亮点是它可能覆盖从数据构建到微调、评测的完整链条，如果内容扎实，就能帮助研究者把“数据集选择/构建”和“模型适配策略”联系起来，而不是孤立看待。第三，作者团队人数较多，且题目与摘要都显示其目标是系统性梳理发展状态，说明论文可能包含较全面的数据集盘点和任务映射，这对选题、benchmark搭建和综述引用都很有帮助。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，首先要警惕这是综述论文而非方法论文，因此它的直接技术创新可能有限，更多价值在于整理与框架化。其次，摘要强调“systematic review”和“practical guide”，但尚不清楚其系统性体现在哪里：是否有明确检索标准、纳入排除规则、统一比较维度，还是偏经验性总结。第三，摘要没有给出任何具体数据集名称、任务统计、实验结果或定量结论，因此目前无法判断其覆盖是否全面，也无法确认其是否提出了新的benchmark或评测协议。第四，遥感VLM范围很广，若论文试图覆盖所有数据类型与任务，可能面临分类过粗、深度不足的问题。最后，作为2026年的arXiv预印本，其内容可能尚未经过同行评审，引用时应注意版本稳定性。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五步：1）先查看正文目录和总表，确认它如何分类遥感VLM数据集，记录每一类对应的任务与代表数据；2）重点查是否有“dataset taxonomy”“benchmark comparison”或“practical guideline”类图表，把其中的数据字段、标注形式、规模、任务、评测指标整理成自己的表；3）核对论文是否讨论具体微调范式，如指令微调、LoRA/PEFT、全参数微调，以及这些方法与数据规模/质量的关系；4）如果你的方向是遥感描述、检索、VQA或变化理解，直接筛出对应章节，记录作者推荐的数据构建原则与常见问题；5）阅读时特别标记所有作者明确提出但尚未解决的问题，例如数据稀缺、标注噪声、跨传感器泛化、时空偏移和评测不统一，这些最可能转化为后续研究选题。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这篇文章不是提出单一新模型，而是围绕“Data-Driven Vision-Language Models for Remote Sensing”这一主题做系统性综述。研究对象非常具体：遥感场景中的视觉-语言模型，以及支撑这些模型训练、微调和评估的垂直领域数据。摘要给出的关键线索是，过去遥感深度学习更强调针对分类、检测、分割等具体任务优化网络结构并端到端训练；而在VLM时代，由于通用大模型训练成本极高，主流做法转向利用遥感领域数据去适配和微调通用VLM，因此创新重点从架构设计转移到数据构建与数据使用策略。这意味着论文很可能会按数据类型、任务类型、标注形式或应用场景来组织综述内容，例如遥感图文对、区域级描述、变化描述、问答数据、指令微调数据、多模态检索数据等，但这些具体类别需要阅读全文核对，不能仅凭摘要断言。摘要还表明作者认为当前学界缺少“数据中心”的系统综述，因此本文的价值更像一份研究路线图：告诉遥感研究者在大模型时代如何构建高质量视觉-语言数据集，如何基于这些数据进行有效微调，以及如何做性能评估。对从事遥感多模态理解、遥感大模型、跨模态检索、遥感问答、图像描述、变化理解或指令微调的研究者，这篇综述可能尤其有用，因为它可能汇总数据资源、任务定义、评测协议和开放问题。需要特别核对的信息包括：1）综述覆盖的数据集范围与纳入标准；2）是否给出数据集分类法与统计表；3）是否比较不同微调范式，如全参数微调、参数高效微调、指令微调或对齐训练；4）是否讨论遥感特有难点，如多尺度、长尾类别、时空变化、专业术语、地理泛化、标注成本与版权问题；5）是否提出明确的benchmark建议或未来数据构建原则。由于目前只有摘要，不能声称其已经给出定量结论，也不能确认其是否包含新数据集、新基准或统一实验。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>During the deep learning era, innovations in remote sensing (RS) vision models primarily focused on optimizing network architectures for specific tasks and conducting end-to-end training. However, with the advent of the Vision-Language Models (VLMs) era, constrained by substantial computational resource demands, the mainstream research paradigm has shifted towards adapting general-purpose VLMs using RS vertical domain data for fine-tuning, rather than modifying their core architectures. This transition marks a change in the innovation pathway from model-centric to data-centric. Despite the increasing importance of data, the academic community still lacks a systematic, data-centric survey to guide researchers in constructing high-quality RS vision-language datasets for various application scenarios and in conducting effective model fine-tuning and performance evaluation based on these datasets. To address this gap, this paper presents a systematic review of the development status of RS datasets tailored for VLMs. It further provides a comprehensive practical guide for RS researchers in the large model era, covering the entire pipeline from data construction to fine-tuning and evaluation. This paper aims to encourage the academic community to build more diverse and higher-quality vision-language datasets for specialized RS sub-fields. Ultimately, the goal is to converge these efforts into a comprehensive RS vision-language corpus that offers extensive task coverage and a wide geographical distribution, thereby laying a solid data foundation for advancing towards general artificial intelligence in RS.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-22T17:23:39Z</span>
-        <span>Score 69.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2610.31588v1">VERA: A Responsible AI Dashboard for Assessing LLM Deployments in Light of the EU AI Act</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+VERA%3A+A+Responsible+AI+Dashboard+for+Assessing+LLM+Deployments+in+Light+of+the+E&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31588v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+VERA%3A+A+Responsible+AI+Dashboard+for+Assessing+LLM+Deployments+in+Light+of+the+EU+AI+Act%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+VERA%3A+A+Responsible+AI+Dashboard+for+Assessing+LLM+Deployments+in+Light+of+the+E&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31588v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+VERA%3A+A+Responsible+AI+Dashboard+for+Assessing+LLM+Deployments+in+Light+of+the+EU+AI+Act%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+VERA%3A+A+Responsible+AI+Dashboard+for+Assessing+LLM+Deployments+in+Light+of+the+E&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31588v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+VERA%3A+A+Responsible+AI+Dashboard+for+Assessing+LLM+Deployments+in+Light+of+the+EU+AI+Act%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Robin Quériaux、Solveig Bachellery、Léa Déléris、Saurabhsingh Rajput 等 7 人 · <a href="https://arxiv.org/pdf/2610.31588v1">PDF</a></div>
+      <div class="authors">Leming Shen、Qiang Yang、Xinyu Huang、Zijing Ma 等 5 人 · <a href="https://arxiv.org/pdf/2610.30760v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">environmental <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文介绍了 VERA：一个面向大语言模型部署审批流程的开源、自托管责任型 AI 仪表板，目标是在欧盟《AI 法案》语境下，把命令行基准测试结果转化为非工程人员可读的合规证据。根据摘要，VERA围绕 COMPL-AI 定义的 6 组原则、18 项技术要求中的 12 项可测要求，对已部署或待部署的服务化开源权重模型运行公开基准，并额外记录每次评测的能耗作为环境影响证据。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献应在于提出并落地了一个将 LLM 评测、合规解释和审批可视化结合起来的实际系统：一是把欧盟《AI 法案》的技术解释框架 COMPL-AI 映射到可执行 benchmark pipeline；二是把 12 项当前可由基准测量的要求汇总成面向审查者的 dashboard 分数；三是把评测能耗纳入 run-level 证据链；四是在一家大型欧洲银行内部部署，并通过被试内研究比较“原始 benchmark 输出”与“VERA 仪表板”两种阅读条件下的结果理解效果。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 9</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>69.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在欧盟《AI 法案》约束下，机构如何把面向工程师、通常通过命令行运行的 LLM benchmark，转化为非工程审批人员可理解、可比较、可留痕的部署合规证据；进一步地，如何把这些证据按责任型 AI 要求组织起来，而不是仅给出零散任务分数。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法路径大致是：先采用 COMPL-AI 对《AI 法案》进行技术化拆解，得到 6 组原则和 18 项技术要求；再识别其中 12 项可由现有 benchmark 测量；在 VERA 中实现一个评测流水线，让审查者选择某个服务化模型并运行公开 benchmark；系统把 benchmark 输出映射为 requirement-level 分数，并在每次运行时记录能耗，形成环境影响证据；最后用 4 个 served open-weight models 演示该流水线，并通过 within-subject 用户研究比较原始输出文件与 dashboard 两种结果阅读方式。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点主要有四点。第一，问题定义非常具体，针对的是“部署审批”而非泛泛的 LLM 评测。第二，它把法规解释框架、技术 benchmark 和可视化审查界面连成一条证据链，具有较强落地性。第三，加入评测能耗记录，使环境影响不再停留在模型训练层面，而进入评测运行层面的可审计证据。第四，真实部署于大型欧洲银行并配合被试内研究，说明作者不仅做了系统原型，还尝试验证其在组织流程中的可用性。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查原文中 COMPL-AI 的 18 项要求列表，标出其中 12 项可测要求及其 benchmark 映射关系；第二，记录四个 served open-weight models 的具体名称、版本和服务配置，判断结果是否受部署参数影响；第三，查看能耗计量实现细节，确认是整机功耗估计、GPU 计量还是软件近似；第四，核对被试内研究的任务、样本量、评价指标和统计检验；第五，如果你关注合规评测平台，可尝试复现其“benchmark 输出→requirement score→dashboard 展示”的最小链路，并与自己现有的模型风险管理模板做对照。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在欧盟《AI 法案》约束下，机构如何把面向工程师、通常通过命令行运行的 LLM benchmark，转化为非工程审批人员可理解、可比较、可留痕的部署合规证据；进一步地，如何把这些证据按责任型 AI 要求组织起来，而不是仅给出零散任务分数。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法路径大致是：先采用 COMPL-AI 对《AI 法案》进行技术化拆解，得到 6 组原则和 18 项技术要求；再识别其中 12 项可由现有 benchmark 测量；在 VERA 中实现一个评测流水线，让审查者选择某个服务化模型并运行公开 benchmark；系统把 benchmark 输出映射为 requirement-level 分数，并在每次运行时记录能耗，形成环境影响证据；最后用 4 个 served open-weight models 演示该流水线，并通过 within-subject 用户研究比较原始输出文件与 dashboard 两种结果阅读方式。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点主要有四点。第一，问题定义非常具体，针对的是“部署审批”而非泛泛的 LLM 评测。第二，它把法规解释框架、技术 benchmark 和可视化审查界面连成一条证据链，具有较强落地性。第三，加入评测能耗记录，使环境影响不再停留在模型训练层面，而进入评测运行层面的可审计证据。第四，真实部署于大型欧洲银行并配合被试内研究，说明作者不仅做了系统原型，还尝试验证其在组织流程中的可用性。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与摘要，局限也很明显。第一，18 项要求中只有 12 项可测，意味着该系统对责任型 AI 的覆盖仍不完整，剩余要求可能需要人工审查或文档证据。第二，摘要没有说明 requirement score 的映射规则是否稳健、是否存在主观阈值设定，以及不同 benchmark 之间如何归一化。第三，四个模型的样本规模较小，更像展示性案例而非广泛比较。第四，用户研究部分摘要被截断，尚不清楚参与者构成、任务设计和统计结果，因此不能判断 dashboard 是否真正提升了审批质量而不仅是界面偏好。第五，银行内部部署带来很强场景价值，但也可能限制外部可迁移性，例如到医疗、公共部门或多模态模型场景。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查原文中 COMPL-AI 的 18 项要求列表，标出其中 12 项可测要求及其 benchmark 映射关系；第二，记录四个 served open-weight models 的具体名称、版本和服务配置，判断结果是否受部署参数影响；第三，查看能耗计量实现细节，确认是整机功耗估计、GPU 计量还是软件近似；第四，核对被试内研究的任务、样本量、评价指标和统计检验；第五，如果你关注合规评测平台，可尝试复现其“benchmark 输出→requirement score→dashboard 展示”的最小链路，并与自己现有的模型风险管理模板做对照。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象不是单一模型算法，而是“LLM 部署审批中的责任型 AI 证据呈现系统”。其直接场景是受监管机构，尤其是大型欧洲银行这类需要在模型上线前向非工程审批人员提供技术证据的组织。摘要给出的关键线索是：作者采用 COMPL-AI 作为欧盟《AI 法案》的技术解释框架，将证据组织为 6 个原则组和 18 个技术要求，其中 12 项可以由现有 benchmark 测量；VERA 则把这些 benchmark 的运行、汇总和展示产品化。具体任务包括：审查者选择一个模型，对其运行公开 benchmark；系统将 benchmark 输出映射为 12 个可测要求的得分；同时记录评测过程能耗，补充环境影响证据；最后在 dashboard 中展示模型在各要求上的表现。实验对象方面，摘要明确提到“4 个 served open-weight models”，说明评测对象是以服务形式部署的开源权重模型，而不是闭源 API-only 模型。证据方面，论文至少包含两类：一类是技术评测证据，即四个模型在 requirement pipeline 上的逐项得分；另一类是人因/可用性证据，即被试内实验比较参与者通过原始输出文件与通过 VERA dashboard 阅读 benchmark 结果时的差异。由于摘要被截断，尚不能确认该用户研究的具体指标，可能涉及理解速度、正确率、主观负担或审批信心，但这需要核对原文。与科研或工程实践的关系在于，这项工作把“benchmark 结果”提升为“合规审批证据”，尤其适合关注 LLM 治理、模型风险管理、AI 审计、可解释评测流程和绿色 AI 的读者。需要特别核对的信息包括：12 项可测要求分别是什么、每项如何从公开 benchmark 映射得到、能耗测量采用的软件/硬件计量方式、四个模型的具体名称与部署配置、被试内研究的样本量和统计显著性，以及 VERA 是否支持自定义 benchmark、私有模型和审计日志导出。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Institutions that deploy large language models in regulated settings often need technical evidence of responsible AI practices before approving a deployment. COMPL-AI provides a technical interpretation of the EU AI Act that organises this evidence under six principle groups and eighteen technical requirements, twelve of which current benchmarks can measure. The benchmark suites that produce this evidence are typically operated from a command line, while the staff who approve deployments are non-engineers. We present VERA, an open-source self-hosted dashboard deployed to facilitate responsible AI processes within a large European bank. A reviewer selects a model and runs public benchmarks against it. VERA scores the twelve requirements that current benchmarks can measure and instruments the energy consumed by each evaluation, adding run-level evidence for environmental impact. We run four served open-weight models through the requirement pipeline, and the dashboard displays a score for each measurable requirement. A within-subject study then compares how participants read these benchmark results: from the raw output files in one condition, and through the VERA dashboard in the other. The dashboard reduced the time needed to perform the responsible AI assessment, reducing the time required from 56 seconds using raw files to 30 seconds using our dashboard, on average. Our dashboard scored highly (4.36 out of 5) on usefulness in the survey conducted within the organization. The dashboard and the study material are released publicly to promote replicability and reproducibility in different organisational contexts.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-10-22T14:18:21Z</span>
-        <span>Score 68.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2610.31326v1">AgenticEvolve: Evolutionary Program Search with Persistent Language Model Agents that Design and Run Experiments</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+AgenticEvolve%3A+Evolutionary+Program+Search+with+Persistent+Language+Model+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31326v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+AgenticEvolve%3A+Evolutionary+Program+Search+with+Persistent+Language+Model+Agents+that+Design+and+Run+Experiments%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+equation+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+AgenticEvolve%3A+Evolutionary+Program+Search+with+Persistent+Language+Model+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31326v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+AgenticEvolve%3A+Evolutionary+Program+Search+with+Persistent+Language+Model+Agents+that+Design+and+Run+Experiments%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+equation+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+AgenticEvolve%3A+Evolutionary+Program+Search+with+Persistent+Language+Model+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31326v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+AgenticEvolve%3A+Evolutionary+Program+Search+with+Persistent+Language+Model+Agents+that+Design+and+Run+Experiments%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+equation+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Ze-Yu Peng、Qing-Yu Lan、Zhan-He Wang、Jun Zhang 等 5 人 · <a href="https://arxiv.org/pdf/2610.31326v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">equation discovery <strong>1</strong></span></div>
+<span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出 AgenticEvolve：一种用于进化式程序搜索的框架，把每个“岛”实现为持久化的大语言模型智能体，使其在候选程序评估间隙主动设计并运行实验。根据摘要，它主要在两类启发式设计任务和十二个方程发现问题上，与禁用实验分析的 No-analysis 配置、OpenEvolve 以及现有语言模型/遗传编程基线比较，报告了更好的隐藏与未见实例表现以及更高的真结构恢复率。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把传统“LLM 只作为一次性变异算子生成候选程序”的进化程序搜索，改造成“持久化智能体持续分析候选、设计实验、再据此改进程序”的搜索范式；并通过显式消融（AgenticEvolve 对比 No-analysis）来隔离“实验设计与运行”这一能力的贡献。若摘要表述成立，其方法价值不仅在最终质量提升，还在于以更少评估次数达到基线最终水平，且成本相当，这对高代价程序搜索和科学发现任务都较有吸引力。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“将预训练AI模型自动部署到异构嵌入式设备”这一具体任务，提出了一个名为AgentDP的LLM代理框架，用于自动完成模型优化与适配。根据摘要，系统重点处理用户需求澄清、跨设备执行环境不匹配、以及优化配置复用三类问题，目标是在减少人工参与的同时提升嵌入式推理效率。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要可见，论文的核心贡献可能包括：1）提出AgentDP，用LLM agents自动化异构嵌入式AI应用中的模型优化与适配（O&amp;A）流程；2）设计“用户需求标准化”模块，把用户较模糊的部署需求转成更清晰、可执行的约束；3）提出“算子感知的模型切分”范式，使模型不同部分可在不同推理引擎上执行，以缓解模型与设备执行环境不匹配；4）提出“配置复用”模块，通过启发式检索历史超参数配置，避免新任务重复搜索；5）通过实验声称在全流程自动化下显著缩短模型适配时间，并改善推理效果，但具体幅度与基线细节仍需核对原文。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -439,27 +279,171 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>68.0</strong>
+              <strong>67.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题是：在进化式程序搜索中，若大语言模型不再只是一次性生成候选程序，而是作为持久化智能体持续观察评估结果、主动设计并运行实验，是否能更有效地发现高质量程序，尤其是在启发式设计和方程发现这两类需要试错与归纳的任务上？更细一点说，它在问“实验分析能力”本身是否对搜索质量、样本效率和泛化有独立贡献。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法框架仍保留 evolutionary algorithm 的 island 结构，但每个 island 由一个 persistent LLM agent 负责。该 agent 可能接收父代程序、历史分数、先前实验记录和当前候选程序表现，在两次正式评估之间自行提出诊断性实验，例如改变输入实例、检查边界条件、比较不同组件或参数、分析失败模式，然后根据实验结果修改程序。实验部分应通过可执行环境运行候选程序并返回日志/指标。作者设置了一个关键消融 No-analysis：其他配置相同，但禁用 agent 的实验设计与分析能力。实验上，至少包含两类 heuristic design tasks，使用三种不同 LLM；并在十二个 equation discovery problems 上比较结构恢复能力。评价指标从摘要可见包括隐藏实例与未见实例上的程序质量、达到某一质量所需的评估次数、成本，以及方程真结构恢复数量。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题设定具体且有机制创新：不是泛泛地说“agent 更强”，而是把“持久化 + 自主实验”嵌入进化搜索流程，并用 No-analysis 做针对性消融。第二，证据类型相对丰富：既看最终性能，也看达到基线终点所需评估次数和成本，还在 hidden/unseen instances 上检查泛化，在 equation discovery 上检查结构恢复而非仅拟合误差。第三，任务覆盖面有一定跨度：启发式程序设计偏算法搜索，方程发现偏科学发现/符号回归，如果同一框架都有效，说明其可能不是只对单一 benchmark 调参。对从事自动算法设计、LLM agents、符号回归或 AutoML 的研究者，这种“让模型自己决定做哪些实验”的范式具有直接参考价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查论文中 AgenticEvolve 与 No-analysis 的流程图和伪代码，确认“实验设计与运行”在循环中的具体位置；第二，记录两类 heuristic design tasks 的名称、数据规模、hidden/unseen 划分方式，以及三种 LLM 的型号；第三，查看主表中最终质量、评估次数、成本三类指标是否同时报告均值/方差；第四，查看 equation discovery 的十二个问题列表和“结构恢复”判定规则；第五，如果你做相关研究，可先复现一个最小版本：在现有 OpenEvolve 类框架上加入一个受限实验模块，让 agent 在每轮额外生成 1 到 3 个诊断实验，再与禁用实验的版本做小规模对照。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何把预训练AI模型在异构嵌入式设备上进行高效部署时，原本复杂、依赖人工经验的模型优化与适配流程自动化。更细地说，它针对三个实际瓶颈：用户部署需求往往不清晰且不标准化；模型与目标设备/推理引擎之间存在执行环境和算子支持不匹配；面对新任务时重复搜索优化超参数成本高、效率低。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法可能是一套由LLM agents驱动的自动部署框架。输入侧，系统先接收用户关于设备、性能目标和约束的描述，并通过需求标准化模块转成结构化规格。优化侧，系统分析模型中的算子与目标设备/推理引擎的兼容性，采用算子感知的模型切分，把不同子模块分配给不同推理引擎执行。搜索侧，系统维护历史优化配置库，对新任务基于启发式相似性检索可复用的超参数配置，减少重新调参成本。实验上大概率会在多种嵌入式设备、多个预训练模型和不同部署任务上评估适配时间、推理时延、吞吐、资源占用及可能的精度变化。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题定义贴近真实部署链路，不只优化单一模型性能，而是覆盖需求理解、环境适配、配置迁移等工程痛点。第二，算子感知模型切分很有系统价值，因为异构设备上“单一后端无法完整支持模型”是常见障碍，这种设计可能比单纯换模型格式更实用。第三，配置复用模块体现了经验积累机制，如果做得好，能让自动化系统随着任务增多而变得更高效，适合持续部署场景。另一个潜在亮点是把LLM与设备领域知识结合，而不是把LLM当作泛化黑盒。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取原文，优先查看系统总览图和三个模块的接口定义，确认AgentDP中LLM与规则/搜索组件的分工；2）查实验表，记录设备类型、模型名称、推理引擎、评价指标和时间节省具体数值；3）重点看算子感知切分的消融实验，判断跨引擎执行是否真的带来净收益；4）查看配置复用模块是否有相似任务检索机制、特征定义和失败案例；5）如果你做边缘部署，可把自己的一个典型模型-设备对照到论文设定中，列出其是否支持你的框架、算子和约束，再决定是否值得复现。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题是：在进化式程序搜索中，若大语言模型不再只是一次性生成候选程序，而是作为持久化智能体持续观察评估结果、主动设计并运行实验，是否能更有效地发现高质量程序，尤其是在启发式设计和方程发现这两类需要试错与归纳的任务上？更细一点说，它在问“实验分析能力”本身是否对搜索质量、样本效率和泛化有独立贡献。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法框架仍保留 evolutionary algorithm 的 island 结构，但每个 island 由一个 persistent LLM agent 负责。该 agent 可能接收父代程序、历史分数、先前实验记录和当前候选程序表现，在两次正式评估之间自行提出诊断性实验，例如改变输入实例、检查边界条件、比较不同组件或参数、分析失败模式，然后根据实验结果修改程序。实验部分应通过可执行环境运行候选程序并返回日志/指标。作者设置了一个关键消融 No-analysis：其他配置相同，但禁用 agent 的实验设计与分析能力。实验上，至少包含两类 heuristic design tasks，使用三种不同 LLM；并在十二个 equation discovery problems 上比较结构恢复能力。评价指标从摘要可见包括隐藏实例与未见实例上的程序质量、达到某一质量所需的评估次数、成本，以及方程真结构恢复数量。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题设定具体且有机制创新：不是泛泛地说“agent 更强”，而是把“持久化 + 自主实验”嵌入进化搜索流程，并用 No-analysis 做针对性消融。第二，证据类型相对丰富：既看最终性能，也看达到基线终点所需评估次数和成本，还在 hidden/unseen instances 上检查泛化，在 equation discovery 上检查结构恢复而非仅拟合误差。第三，任务覆盖面有一定跨度：启发式程序设计偏算法搜索，方程发现偏科学发现/符号回归，如果同一框架都有效，说明其可能不是只对单一 benchmark 调参。对从事自动算法设计、LLM agents、符号回归或 AutoML 的研究者，这种“让模型自己决定做哪些实验”的范式具有直接参考价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：1）任务规模和难度未知，两类 heuristic design tasks 可能数量较少，外推到更复杂软件工程任务未必成立；2）“comparable cost”定义不清，若 agent 运行大量中间实验，真实 wall-clock 时间、环境调用成本和工程复杂度可能上升；3）持久化 agent 的收益可能部分来自更长上下文或更多交互轮次，而不完全是“实验设计”本身，需要看控制变量是否严格；4）方程发现中的“ground-truth structure”恢复标准可能受表达式等价、常数拟合和搜索空间约束影响；5）摘要未说明失败案例、对不同 LLM 的稳定性差异、以及 island 间是否存在信息共享导致的额外优势。因此在未读全文前，不能把它视为对所有程序搜索场景都稳健有效的结论。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查论文中 AgenticEvolve 与 No-analysis 的流程图和伪代码，确认“实验设计与运行”在循环中的具体位置；第二，记录两类 heuristic design tasks 的名称、数据规模、hidden/unseen 划分方式，以及三种 LLM 的型号；第三，查看主表中最终质量、评估次数、成本三类指标是否同时报告均值/方差；第四，查看 equation discovery 的十二个问题列表和“结构恢复”判定规则；第五，如果你做相关研究，可先复现一个最小版本：在现有 OpenEvolve 类框架上加入一个受限实验模块，让 agent 在每轮额外生成 1 到 3 个诊断实验，再与禁用实验的版本做小规模对照。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：一类是启发式算法/启发式程序设计任务，另一类是方程发现（equation discovery）任务。论文所针对的具体方法问题是：在 evolutionary program search 中，现有 LLM 通常只在单次请求里根据父代程序及其分数生成子代，缺少持续的、基于实验反馈的分析过程；作者希望证明，如果把每个 island 变成一个持续存在的语言模型 agent，让它在两次评估之间主动设计实验、运行候选程序并分析结果，那么搜索效率和最终程序质量会更好。摘要给出的证据线索包括：1）与 No-analysis 的对照，说明作者试图把“agent 会做实验”这一因素单独拿出来验证；2）与 OpenEvolve 的比较，说明其目标是超越已有进化式 LLM 程序搜索框架；3）在 hidden 和 unseen instances 上评估，说明作者关注泛化而非仅训练/开发实例拟合；4）在十二个方程发现问题上比较 ground-truth structure recovery，说明其评价不只是数值误差，还涉及符号结构恢复。对科研读者而言，这篇工作的潜在意义在于：它把“程序搜索”与“agentic experimentation”结合起来，接近自动科研或自动算法设计的工作流，即模型不只是写代码，还会自己决定该做什么实验来验证假设。需要核对的信息主要有：持久化 agent 的状态如何保存；实验设计空间是否受限；每个 island 的并行/通信机制；三种大语言模型分别是什么；两类启发式设计任务具体是哪两个；hidden/unseen 实例如何构造；成本比较采用 token、API 费用还是总算力；方程发现基线包含哪些 LLM 方法和哪些 GP 方法；“恢复真结构”采用何种等价判定标准。由于目前只有摘要，不能确认其实现细节、统计显著性、失败案例和适用边界。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何把预训练AI模型在异构嵌入式设备上进行高效部署时，原本复杂、依赖人工经验的模型优化与适配流程自动化。更细地说，它针对三个实际瓶颈：用户部署需求往往不清晰且不标准化；模型与目标设备/推理引擎之间存在执行环境和算子支持不匹配；面对新任务时重复搜索优化超参数成本高、效率低。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法可能是一套由LLM agents驱动的自动部署框架。输入侧，系统先接收用户关于设备、性能目标和约束的描述，并通过需求标准化模块转成结构化规格。优化侧，系统分析模型中的算子与目标设备/推理引擎的兼容性，采用算子感知的模型切分，把不同子模块分配给不同推理引擎执行。搜索侧，系统维护历史优化配置库，对新任务基于启发式相似性检索可复用的超参数配置，减少重新调参成本。实验上大概率会在多种嵌入式设备、多个预训练模型和不同部署任务上评估适配时间、推理时延、吞吐、资源占用及可能的精度变化。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题定义贴近真实部署链路，不只优化单一模型性能，而是覆盖需求理解、环境适配、配置迁移等工程痛点。第二，算子感知模型切分很有系统价值，因为异构设备上“单一后端无法完整支持模型”是常见障碍，这种设计可能比单纯换模型格式更实用。第三，配置复用模块体现了经验积累机制，如果做得好，能让自动化系统随着任务增多而变得更高效，适合持续部署场景。另一个潜在亮点是把LLM与设备领域知识结合，而不是把LLM当作泛化黑盒。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与摘要，需要警惕几类边界。第一，LLM agent带来的自动化是否稳定、可复现、可审计尚不清楚，尤其在部署系统中错误决策代价较高。第二，摘要没有说明支持哪些模型类型和任务，若只覆盖少数CV模型或特定框架，泛化性可能有限。第三，算子感知切分虽然实用，但可能引入跨引擎数据搬运开销，若切分策略不佳，整体时延未必优于单引擎方案。第四，配置复用依赖历史案例库，面对全新设备或模型结构时效果可能下降。第五，摘要中的实验结果数字被截断，缺少具体基线、统计显著性、失败案例和人工成本定义，因此目前无法判断其“显著减少时间”和“增强推理效能”的实际含金量。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取原文，优先查看系统总览图和三个模块的接口定义，确认AgentDP中LLM与规则/搜索组件的分工；2）查实验表，记录设备类型、模型名称、推理引擎、评价指标和时间节省具体数值；3）重点看算子感知切分的消融实验，判断跨引擎执行是否真的带来净收益；4）查看配置复用模块是否有相似任务检索机制、特征定义和失败案例；5）如果你做边缘部署，可把自己的一个典型模型-设备对照到论文设定中，列出其是否支持你的框架、算子和约束，再决定是否值得复现。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>就题名和摘要而言，论文研究对象非常明确：不是训练新模型，而是把“已有预训练模型”部署到“异构嵌入式设备”上，并尽量把原本依赖工程师经验的优化与适配过程自动化。这里的“异构”大概率指不同芯片、不同推理后端、不同算子支持情况、不同内存/功耗/时延约束的设备组合；“embedded AI applications”则暗示其场景可能接近边缘端、IoT、移动端或专用硬件平台。
+
+方法线索主要来自摘要中的三个模块。第一，用户需求标准化模块，说明作者意识到部署任务的输入往往不是结构化规范，而是用户用自然语言描述目标，例如时延、精度、内存、功耗、目标设备、可接受的模型改动范围等。LLM agent在这里可能承担需求解析、约束补全、冲突检查和标准化表示生成的角色。第二，算子感知模型切分，说明系统并非只做单一后端编译，而是考虑模型中不同子图/算子在不同推理引擎上的兼容性与效率差异，因此可能会把模型切成多个部分，分别映射到不同执行引擎，以绕开某些设备或后端不支持全部算子的现实问题。第三，配置复用模块，说明作者关注自动化系统的“冷启动成本”与“重复搜索浪费”，因此可能建立了历史任务—配置库，并基于任务特征、模型特征、设备特征或约束相似性来检索可复用的优化超参数。
+
+从证据线索看，摘要提到“Extensive experiments”以及“fully automating the entire O&amp;A process”，并声称显著减少整体模型适配时间、提升推理效能。这意味着实验大概率会覆盖多个模型、多个设备平台和多个推理引擎，并与人工流程、单后端部署、无配置复用、无需求标准化等基线比较。但当前提供的信息被截断，尤其“reduces entire model adaptation time by up ...”后面的具体数字缺失，因此不能判断时间节省幅度、性能提升幅度、是否存在精度损失，也无法确认实验是否包含真实工业任务。
+
+如果你的研究方向涉及LLM agents、AutoML for deployment、边缘AI系统、编译/运行时协同优化、模型压缩与部署工具链，这篇论文值得关注，因为它把LLM从“代码生成/问答”进一步推向“部署流程编排与知识注入”的系统角色。它的价值不一定在提出全新底层优化算法，而可能在于把需求理解、设备知识、算子兼容性、历史经验复用整合成一个自动化闭环。
+
+但需要重点核对的信息也很多：1）LLM agent到底参与决策到什么程度，是规则驱动外加LLM解释，还是LLM直接生成部署方案；2）算子感知切分是图级优化、启发式搜索还是约束求解；3）配置复用依赖什么索引特征，是否会因设备差异导致迁移失败；4）实验设备、模型类型、推理引擎名称、评价指标、人工基线定义、失败案例与消融实验是否充分；5）自动化是否真的“端到端”，还是仍需人工修复编译/运行错误。由于目前只有摘要，以上都只能作为高概率推断，不能当作已证实事实。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Evolutionary program search with large language models keeps the structure of an evolutionary algorithm and uses the model as its variation operator. Typically, the model generates each candidate program in a single request from parent programs and their scores. We present AgenticEvolve, an evolutionary program search framework in which each island is run by a persistent large language model agent. Between evaluations, the agent designs and runs experiments on the candidate program. To measure the contribution of experimentation, we compare AgenticEvolve with No-analysis, an otherwise identical configuration with experiments disabled. On two heuristic design tasks with three large language models, AgenticEvolve produces better programs than No-analysis and OpenEvolve on both hidden and unseen instances. It reaches the baselines&#x27; final quality with far fewer evaluations and comparable cost. On twelve equation discovery problems, it recovers the ground-truth structure of more equations than No-analysis and existing language-model and genetic programming baselines.</p>
+          <p>This paper presents AgentDP, which aims to deploy pre-trained AI models on heterogeneous embedded devices by fully automating model optimization and adaptation (O&amp;A) with Large Language Model (LLM) agents. AgentDP not only significantly reduces human effort via automation but also enhances model inference efficacy by integrating LLMs with device-specific domain knowledge. To deliver a robust automation framework, AgentDP develops novel solutions to address three key technical challenges: 1) To help users elicit clear requirements, we propose a user requirement standardization module; 2) To mitigate the execution environment mismatch between AI models and heterogeneous embedded devices, we design an operator-aware model partition paradigm that enables different parts of the model to be efficiently executed on distinct inference engines. 3) To avoid re-searching optimization hyperparameters for new tasks, we propose a configuration reuse module that heuristically retrieves previous hyperparameter configurations for efficient reuse. Extensive experiments demonstrate that by fully automating the entire O&amp;A process, AgentDP reduces entire model adaptation time by up to 80% compared with manual O&amp;A while achieving higher task accuracy (more than 13% on average) than the baselines. Additionally, a comprehensive user study also exhibits the robust generalizability of AgentDP in adapting to different user requirements for heterogeneous embedded devices.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-22T10:44:35Z</span>
+        <span>Score 64.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2610.31066v1">Dual Exam: Controlled Evaluation of Multimodal Agents and World Models</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Dual+Exam%3A+Controlled+Evaluation+of+Multimodal+Agents+and+World+Models&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31066v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Dual+Exam%3A+Controlled+Evaluation+of+Multimodal+Agents+and+World+Models%0Akeywords%3A+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Dual+Exam%3A+Controlled+Evaluation+of+Multimodal+Agents+and+World+Models&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31066v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Dual+Exam%3A+Controlled+Evaluation+of+Multimodal+Agents+and+World+Models%0Akeywords%3A+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Dual+Exam%3A+Controlled+Evaluation+of+Multimodal+Agents+and+World+Models&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31066v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Dual+Exam%3A+Controlled+Evaluation+of+Multimodal+Agents+and+World+Models%0Akeywords%3A+agent%2C+agents%2C+rag%2C+multimodal%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Zhefan Rao、Meng Chu、Xuan Zhang、Jingfan Chen 等 83 人 · <a href="https://arxiv.org/pdf/2610.31066v1">PDF</a></div>
+      <div class="chips"><span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个名为 Dual Exam 的受控评测框架，用于分别评估多模态智能体在固定环境反馈下的行动选择能力，以及世界模型在固定动作干预下的状态演化建模能力。论文覆盖物理、数字、社会和科学等多类场景，并报告了多种模型配置在 Agent track 和 World Model track 上的分项结果与综合指数。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把“智能体决策能力”和“世界模型状态预测能力”拆开做受控评测，避免二者耦合后难以定位误差来源；同时构建了较大规模的双轨基准，包括 Agent track 的 1088 个题目、15 个报告类别，以及 World Model track 的 400 个案例、8 个场景，并给出多模型配置的覆盖式比较和一个 150 案例的耦合试验作为诊断性证据。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 6</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>64.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：当多模态智能体与世界模型相互作用时，如何在不被端到端成败掩盖的情况下，分别测量智能体的动作选择能力和世界模型的状态演化/环境响应建模能力，并据此诊断耦合系统失败的来源。更细一点说，它要回答的是：在物理、数字、社会、科学等不同任务域中，模型到底是“不会选动作”，还是“不能维持正确世界状态”，以及这两类能力是否能通过受控实验被独立评估。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法上应是一个双轨受控评测框架。Agent track 中，环境响应机制被固定，意味着每个任务实例可能有预定义或标准化的环境转移/反馈规则，智能体只需在该机制下做决策，评测重点是行动选择质量。World Model track 中，动作干预被固定，意味着给定一串外部动作或操作序列，让世界模型预测、更新或维持状态，评测重点是状态演化是否正确、是否保留任务相关信息。任务覆盖物理、数字、社会、科学四类大域，细分为 8 个场景和多个报告类别。实验上，作者比较了多种模型配置：Agent 侧 10 种，WM 侧至少 16 种（其中 15 个全覆盖、1 个覆盖 6 场景）。结果汇总使用了 Agent Index、WM Overall 等综合指标，并辅以一个 150 案例的耦合 pilot 来观察组件组合后的真实任务成功情况。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，评测拆分思路很清晰：把 agent 和 world model 分开测，有助于定位错误来源，这比单纯看端到端成功率更有诊断价值。第二，覆盖面较广，不只限于单一游戏或单一视觉任务，而是跨物理、数字、社会、科学等域，说明作者希望评估更一般的“行动-状态”能力。第三，摘要给出了具体规模和模型排名信息，并明确声明不同轨道分数不可直接比较，这种表述相对严谨。尤其是 150 案例耦合试验出现 0 成功这一现象，虽然只是 pilot，但很有警示意义：单个组件在各自轨道上有分数，不代表组合后就能完成任务。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作可以是：第一，优先查论文中 Agent track 的 15 个报告类别和 WM track 的 8 个场景列表，确认每类任务到底测什么。第二，记录 Agent Index=31.3、WM Overall=21.7、耦合 pilot 0 成功这三个关键数字，并在正文中核对其定义和统计方式。第三，查看是否公开了 1088 个 agent 条目和 400 个 world model 案例的样例、标注协议或评测脚本，以判断能否复现。第四，重点找图表中“任务相关状态未被保留”的具体失败案例，因为这可能直接关系到你自己的多模态 agent 或环境建模研究。第五，如果你的方向涉及 agent-world model 协同训练，可进一步追问：Dual Exam 的分项分数能否作为训练中的诊断信号或课程学习目标。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：当多模态智能体与世界模型相互作用时，如何在不被端到端成败掩盖的情况下，分别测量智能体的动作选择能力和世界模型的状态演化/环境响应建模能力，并据此诊断耦合系统失败的来源。更细一点说，它要回答的是：在物理、数字、社会、科学等不同任务域中，模型到底是“不会选动作”，还是“不能维持正确世界状态”，以及这两类能力是否能通过受控实验被独立评估。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法上应是一个双轨受控评测框架。Agent track 中，环境响应机制被固定，意味着每个任务实例可能有预定义或标准化的环境转移/反馈规则，智能体只需在该机制下做决策，评测重点是行动选择质量。World Model track 中，动作干预被固定，意味着给定一串外部动作或操作序列，让世界模型预测、更新或维持状态，评测重点是状态演化是否正确、是否保留任务相关信息。任务覆盖物理、数字、社会、科学四类大域，细分为 8 个场景和多个报告类别。实验上，作者比较了多种模型配置：Agent 侧 10 种，WM 侧至少 16 种（其中 15 个全覆盖、1 个覆盖 6 场景）。结果汇总使用了 Agent Index、WM Overall 等综合指标，并辅以一个 150 案例的耦合 pilot 来观察组件组合后的真实任务成功情况。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，评测拆分思路很清晰：把 agent 和 world model 分开测，有助于定位错误来源，这比单纯看端到端成功率更有诊断价值。第二，覆盖面较广，不只限于单一游戏或单一视觉任务，而是跨物理、数字、社会、科学等域，说明作者希望评估更一般的“行动-状态”能力。第三，摘要给出了具体规模和模型排名信息，并明确声明不同轨道分数不可直接比较，这种表述相对严谨。尤其是 150 案例耦合试验出现 0 成功这一现象，虽然只是 pilot，但很有警示意义：单个组件在各自轨道上有分数，不代表组合后就能完成任务。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：一是缺少任务实例、评分标准和标注流程细节，暂时无法判断 benchmark 的信度、难度分布和可复现性。二是“configuration”含义不明，不清楚比较的是基础模型、推理策略、工具使用还是系统封装，因此排行榜的解释空间有限。三是虽然作者强调组件级诊断，但摘要没有说明 Agent track 与 WM track 的指标是否真的能预测耦合成功，反而明确说其对耦合成功或持续互惠学习的预测价值尚待建立。四是耦合 pilot 只有 150 个案例且只涉及一个 pairing，0 成功虽然醒目，但外推性有限。五是世界模型评测中的“状态保持失败”具体表现为何、是否涉及长时程记忆、因果一致性或视觉物理约束，摘要尚未展开。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作可以是：第一，优先查论文中 Agent track 的 15 个报告类别和 WM track 的 8 个场景列表，确认每类任务到底测什么。第二，记录 Agent Index=31.3、WM Overall=21.7、耦合 pilot 0 成功这三个关键数字，并在正文中核对其定义和统计方式。第三，查看是否公开了 1088 个 agent 条目和 400 个 world model 案例的样例、标注协议或评测脚本，以判断能否复现。第四，重点找图表中“任务相关状态未被保留”的具体失败案例，因为这可能直接关系到你自己的多模态 agent 或环境建模研究。第五，如果你的方向涉及 agent-world model 协同训练，可进一步追问：Dual Exam 的分项分数能否作为训练中的诊断信号或课程学习目标。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要看，论文关注的是多模态智能体（Multimodal Agents, MAs）与世界模型（World Models, WMs）之间的双向关系：一方面，世界模型可通过模拟经验支持智能体；另一方面，智能体轨迹又可反过来帮助世界模型改进。作者认为，要评估这种互动，不能只看端到端成败，而应分别提供关于“动作选择是否合理”和“状态演化是否可信”的独立证据，因此提出 Dual Exam。具体设计上，Agent track 通过固定环境响应机制来测试智能体，即把环境反馈控制住，重点观察模型在给定任务中的行动决策；World Model track 则通过固定动作干预来测试世界模型，即把动作序列控制住，重点观察模型是否能保持和推进任务相关状态。数据与任务范围较广：Agent track 比较了 10 种配置，在 1088 个条目上、按 15 个报告类别统计；World Model track 包含 400 个案例、8 个场景，其中 15 种配置实现了全覆盖，另有 1 种覆盖 6 个场景。结果层面，GPT 6 Astra 在按案例加权的 Agent Index 上领先，分数为 31.3；GPT-Image-2 在全覆盖世界模型 Overall 上领先，分数为 21.7。摘要特别强调这两个分数来自不同任务和指标，不能直接比较，这说明作者有意避免把 agent 分数和 world model 分数混成单一排行榜。另一个重要线索是 150 个案例的耦合试验：某一组 agent+world model 配对的任务成功数为 0，这一现象被作者用来说明端到端耦合失败可能非常严重，也支持其“先做组件级诊断”的主张。对科研读者而言，这篇工作与多模态 agent、环境交互、模拟器评测、模型诊断和可能的 agent-world model 协同训练都相关，尤其适合关注“为什么端到端系统失败”“如何把决策错误与环境建模错误分开”的研究方向。需要核对的信息包括：15 个报告类别和 8 个场景的具体定义；Agent track 与 WM track 的评分公式；所谓 configuration 是模型本体差异、提示策略差异还是工具链差异；耦合试验中为何出现 0 成功，是任务过难、接口不匹配、状态漂移还是评测标准严格所致。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>World Models (WMs) can support Multimodal Agents (MAs) through simulated experience, while Agent trajectories can inform World Model refinement. Evaluating this interaction requires separate evidence about action selection and state evolution. We introduce Dual Exam, which tests Agents under fixed environment response mechanisms and World Models under fixed action interventions across physical, digital, social, and scientific domains. The Agent track compares 10 configurations on 1,088 items in 15 reporting categories. The World Model track contains 400 cases across eight scenarios; 15 configurations have full coverage and one covers six scenarios. GPT 6 Astra leads the case-weighted Agent Index at 31.3, and GPT-Image-2 leads the full-coverage WM Overall at 21.7. These scores use different tasks and metrics and are not directly comparable. A 150-case pilot of one coupled pairing records zero task successes and motivates component-level diagnosis. Results reveal uneven task performance and failures to preserve task-relevant state. Their value for predicting coupled success or sustained reciprocal learning remains to be established.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-22T09:24:29Z</span>
+        <span>Score 63.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>4. <a href="http://arxiv.org/abs/2610.30979v1">LAST-V2X: Language-Driven Adaptive Scenario Synthesis and Testing for Communication-Induced Failures in V2X Safety Applications</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+LAST-V2X%3A+Language-Driven+Adaptive+Scenario+Synthesis+and+Testing+for+Communicat&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30979v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+LAST-V2X%3A+Language-Driven+Adaptive+Scenario+Synthesis+and+Testing+for+Communication-Induced+Failures+in+V2X+Safety+Applications%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+LAST-V2X%3A+Language-Driven+Adaptive+Scenario+Synthesis+and+Testing+for+Communicat&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30979v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+LAST-V2X%3A+Language-Driven+Adaptive+Scenario+Synthesis+and+Testing+for+Communication-Induced+Failures+in+V2X+Safety+Applications%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+LAST-V2X%3A+Language-Driven+Adaptive+Scenario+Synthesis+and+Testing+for+Communicat&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30979v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+LAST-V2X%3A+Language-Driven+Adaptive+Scenario+Synthesis+and+Testing+for+Communication-Induced+Failures+in+V2X+Safety+Applications%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Keshu Wu、Hao Zhang、Rui Gan、Pei Li 等 6 人 · <a href="https://arxiv.org/pdf/2610.30979v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 LAST-V2X，一个面向 V2X 安全应用的语言驱动自适应测试框架，目标是把自然语言测试需求转成可执行交通场景，并系统注入通信层故障以发现由延迟、丢失或错误信息引发的安全失效。其核心任务不是一般自动驾驶仿真，而是区分“交通本身导致的风险”和“通信退化额外造成的风险”，用于 V2X 应用的因果化安全测试。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献可能有四点：一是提出一个将自然语言测试描述映射为道路几何、V2X 消息语义和车辆行为配置的场景合成框架；二是把物理交通仿真、空间相关的通信建模与消息级故障注入结合起来，专门评估信息退化对车辆决策的影响；三是设计“退化信息执行”与“真实信息执行”的匹配对照机制，用于判断观测到的安全失败是否真正由通信问题触发；四是引入执行引导的自适应 refinement 机制，迭代生成更可能暴露通信诱发失效的测试场景。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>63.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>研究问题是：如何自动构造能够真实暴露 V2X 通信诱发安全失效的测试场景，并把这种失效与原本就危险的交通情形区分开来。更具体地说，论文试图解决自然语言测试需求到可执行 V2X 场景的映射问题，以及在交通交互、通信退化和应用决策三者耦合条件下的安全归因问题。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法链路是：输入自然语言测试描述；由 LLM 解析并生成结构化场景规范，内容涉及道路几何、参与车辆/路侧单元、行为脚本、V2X 消息语义和测试目标；在联合仿真环境中运行交通动力学与空间感知的通信模型；对消息进行延迟、丢失、错误值或时序扰动等 fault injection；对同一或匹配场景分别执行退化信息版和 ground-truth 信息版；比较两者在安全指标和决策轨迹上的差异，以判断通信是否为关键致因；再根据执行结果进行 refinement，迭代调整场景参数以提高失效发现效率。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点主要在于问题定义和系统闭环都比较完整。第一，它不是泛泛地做“LLM 生成驾驶场景”，而是明确针对 V2X 安全应用中的通信诱发失效。第二，它把消息级故障注入和交通仿真耦合，测试对象更贴近真实网络化车辆系统。第三，matched executions 的设计很有价值，因为它试图提供比单次事故观察更强的因果归因证据。第四，语言驱动接口降低了测试需求表达门槛，而 execution-guided refinement 则有望比随机或静态模板更高效地找到边界失效场景。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到全文后先看系统总览图和方法图，确认自然语言输入、中间表示、仿真后端和 fault injection 接口。第二，优先查实验部分的应用对象、基线方法、评价指标和案例图，判断其是否真的区分了通信致因与交通致因。第三，记录 matched execution 的实现细节和 refinement 算法，因为这是论文最可能的技术核心。第四，如果你做相关研究，可尝试复现一个最小场景：固定道路与车辆行为，只切换 ground-truth 与 degraded V2X 消息，验证是否能复现论文声称的归因思路。第五，特别核对是否公开代码、场景描述语言和仿真平台配置。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>研究问题是：如何自动构造能够真实暴露 V2X 通信诱发安全失效的测试场景，并把这种失效与原本就危险的交通情形区分开来。更具体地说，论文试图解决自然语言测试需求到可执行 V2X 场景的映射问题，以及在交通交互、通信退化和应用决策三者耦合条件下的安全归因问题。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法链路是：输入自然语言测试描述；由 LLM 解析并生成结构化场景规范，内容涉及道路几何、参与车辆/路侧单元、行为脚本、V2X 消息语义和测试目标；在联合仿真环境中运行交通动力学与空间感知的通信模型；对消息进行延迟、丢失、错误值或时序扰动等 fault injection；对同一或匹配场景分别执行退化信息版和 ground-truth 信息版；比较两者在安全指标和决策轨迹上的差异，以判断通信是否为关键致因；再根据执行结果进行 refinement，迭代调整场景参数以提高失效发现效率。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点主要在于问题定义和系统闭环都比较完整。第一，它不是泛泛地做“LLM 生成驾驶场景”，而是明确针对 V2X 安全应用中的通信诱发失效。第二，它把消息级故障注入和交通仿真耦合，测试对象更贴近真实网络化车辆系统。第三，matched executions 的设计很有价值，因为它试图提供比单次事故观察更强的因果归因证据。第四，语言驱动接口降低了测试需求表达门槛，而 execution-guided refinement 则有望比随机或静态模板更高效地找到边界失效场景。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕几类局限。首先，LLM 生成场景的可控性和一致性可能是问题，尤其是自然语言到精确仿真参数的映射是否稳定。其次，通信模型虽然提到 spatially aware，但不清楚是否足够逼真，若忽略协议栈、信道竞争、遮挡和多径等因素，外推性会受限。第三，matched execution 的“匹配”如何实现很关键；若交通随机性较大，归因可能仍然混杂。第四，摘要没有给出支持的 V2X 应用范围，若只验证少数应用，通用性有限。第五，尚不清楚 refinement 是否会过拟合仿真器漏洞或特定指标，而非发现现实中有代表性的通信风险。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到全文后先看系统总览图和方法图，确认自然语言输入、中间表示、仿真后端和 fault injection 接口。第二，优先查实验部分的应用对象、基线方法、评价指标和案例图，判断其是否真的区分了通信致因与交通致因。第三，记录 matched execution 的实现细节和 refinement 算法，因为这是论文最可能的技术核心。第四，如果你做相关研究，可尝试复现一个最小场景：固定道路与车辆行为，只切换 ground-truth 与 degraded V2X 消息，验证是否能复现论文声称的归因思路。第五，特别核对是否公开代码、场景描述语言和仿真平台配置。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作聚焦于 V2X safety applications 的测试自动化，具体对象应是依赖车路/车车消息进行决策的安全关键功能，而不是纯感知或纯规划模块。论文要解决的难点在于：要制造“有意义”的通信失效场景，不能只单独改网络参数，也不能只生成交通冲突，而必须同时协调交通参与者交互、道路拓扑、通信条件以及应用侧响应逻辑。摘要给出的技术路线较清楚：先用 LLM 把自然语言测试意图翻译成可执行场景；场景需要落到 roadway geometry、V2X communication semantics 和 vehicle behavior，说明其生成目标可能包括道路结构、参与者初始状态、轨迹/策略、消息类型与时序等。随后框架在仿真中联合运行物理交通和通信模型，并在 message level 注入 fault，例如延迟、丢包、错误内容或信息陈旧。一个很关键的证据线索是 matched executions under degraded and ground-truth information，这意味着作者意识到仅观察事故或险情不足以归因，必须在相同或尽量匹配的交通条件下比较“有通信退化”和“无通信退化”的执行差异，以支持通信致因判断。题名中的 Adaptive Scenario Synthesis 和摘要中的 execution-guided refinement 表明系统不是一次性生成场景，而是根据执行结果继续调整场景参数，朝更容易触发通信诱发失效的方向搜索，这一点很像面向 failure discovery 的闭环测试。与使用者方向的关系上，如果你关注 LLM for testing、自动驾驶安全验证、网络化 CPS、V2X 协议鲁棒性或仿真驱动的场景生成，这篇论文都值得看，因为它把语言接口、场景生成、通信故障建模和因果对照测试串成了一个完整链条。需要重点核对的信息包括：支持哪些 V2X 应用类型；自然语言到场景的中间表示是什么；通信模型是否考虑距离、遮挡、信道拥塞或协议栈细节；fault injection 覆盖哪些消息字段和时序模式；matched execution 如何保证可比性；refinement 的搜索目标、奖励或停止条件是什么；实验中是否与随机生成、规则模板或非自适应方法比较；评价指标是碰撞、TTC、误刹、漏响应还是应用级 KPI。由于没有全文，不能确认其仿真平台、数据集、基线方法和具体实验结果。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Vehicle-to-everything (V2X) communication enables connected vehicles to make safety-critical decisions, but delayed, missing, or incorrect information can compromise driving safety. Systematically testing such failures is challenging because traffic interactions, communication conditions, and application responses must be jointly configured to produce meaningful scenarios. This paper presents LAST-V2X, a language-driven, adaptive framework for automated scenario synthesis and safety testing of V2X applications. LAST-V2X leverages large language models (LLMs) to translate natural-language test descriptions into executable scenarios grounded in roadway geometry, V2X communication semantics, and vehicle behavior. The framework integrates physical traffic simulation with spatially aware communication modeling and message-level fault injection to evaluate how information degradation affects vehicle decisions. To establish whether an observed safety failure is caused by communication rather than the underlying traffic conditions, LAST-V2X employs matched executions under degraded and ground-truth information. Furthermore, an execution-guided refinement mechanism combines parameter search and LLM self-reflection to identify ineffective test configurations, improve scenario effectiveness, and produce minimal reproducible failure cases. Experiments across diverse CARLA environments and V2X safety applications demonstrate the framework&#x27;s ability to generate reliable scenarios, distinguish communication-induced failures from unrelated safety violations, and substantially improve failure discovery through adaptive refinement. These results establish LAST-V2X as a systematic approach to language-driven, causally verified, and adaptive safety testing for connected vehicle systems.</p>
         </details>
         
         </div>
@@ -475,16 +459,16 @@
         <span>Score 44.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1126/science.ady8560">Wireless electrocatalytic closed-loop system for drug-free management of diabesity</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Wireless+electrocatalytic+closed-loop+system+for+drug-free+management+of+diabesi&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady8560%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Wireless+electrocatalytic+closed-loop+system+for+drug-free+management+of+diabesity%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Wireless+electrocatalytic+closed-loop+system+for+drug-free+management+of+diabesi&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady8560%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Wireless+electrocatalytic+closed-loop+system+for+drug-free+management+of+diabesity%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Wireless+electrocatalytic+closed-loop+system+for+drug-free+management+of+diabesi&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady8560%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Wireless+electrocatalytic+closed-loop+system+for+drug-free+management+of+diabesity%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>5. <a href="https://doi.org/10.1126/science.adt9825">Electronic bound states in the continuum in a two-dimensional metal</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Electronic+bound+states+in+the+continuum+in+a+two-dimensional+metal&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt9825%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Electronic+bound+states+in+the+continuum+in+a+two-dimensional+metal%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Electronic+bound+states+in+the+continuum+in+a+two-dimensional+metal&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt9825%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Electronic+bound+states+in+the+continuum+in+a+two-dimensional+metal%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Electronic+bound+states+in+the+continuum+in+a+two-dimensional+metal&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt9825%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Electronic+bound+states+in+the+continuum+in+a+two-dimensional+metal%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Debasis Maity、Preetam Guha Ray、Peter Buchmann、Ghislaine Charpin-El Hamri 等 5 人 · DOI: <a href="https://doi.org/10.1126/science.ady8560">10.1126/science.ady8560</a></div>
+      <div class="authors">Morgan Thinel、Xiong Huang、Daniel G. Chica、Simon Turkel 等 17 人 · DOI: <a href="https://doi.org/10.1126/science.adt9825">10.1126/science.adt9825</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文报道了一种用于“diabesity（2型糖尿病合并肥胖）”无药物管理的植入式无线电催化闭环系统ECHO：通过铂修饰金纳米簇/石墨毡电极在低功率电刺激下选择性将血糖氧化为可经肾清除的葡糖酸盐，并与连续血糖监测系统耦合实现自主闭环控制。摘要显示，该系统在2型糖尿病小鼠中可在1小时内恢复血糖稳态，并在6周内改善体重、甘油三酯和代谢底物利用。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于提出了一条区别于药物、胰岛素或传统代谢手术的技术路线：用可无线供能的植入式电催化器件直接消耗循环葡萄糖，并把实时血糖监测、智能手机控制和闭环触发整合为一个自主代谢干预系统。若摘要表述成立，其贡献不仅是材料/器件层面的选择性葡萄糖电氧化，还包括在动物体内证明了低电压低电流长期运行、代谢重编程（由糖向脂利用转移）以及初步安全性。</p></div>
+        <div class="note"><strong>一句话</strong><p>该论文围绕二维范德华金属 Pd5AlI2 中“嵌入金属连续谱的局域电子态”这一具体对象展开，报告了利用扫描隧道显微镜识别出两种由缺陷诱导、但仍在金属背景中保持局域化的电子连续谱束缚态（electronic BICs）。摘要给出的机制是：Pd5AlI2 的 decorated checkerboard 晶格中电子跃迁干涉形成近乎平带的局域本征态，缺陷将这些平带局域态推入金属连续谱后，产生受对称性保护的稳健 BIC。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把 BIC 概念从更常见的光子体系推进到真实二维金属电子体系，并给出一个较具体的材料平台与机制图景：在 Pd5AlI2 的受挫晶格中，平带局域态与色散连续谱正交，缺陷进一步调节其能量位置，使其落入金属连续谱而不发生离域化。这意味着论文可能同时贡献了实验识别、材料实现和理论机制三方面证据。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -505,23 +489,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：能否构建一种植入体内、可无线供能并由实时血糖信号驱动的电催化闭环装置，在不使用药物的情况下直接清除血液葡萄糖，从而同时改善2型糖尿病和肥胖相关代谢异常？进一步说，它要回答的是体内选择性葡萄糖电氧化是否足够高效、安全、可持续，能否形成真正可自动运行的闭环治疗系统。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>按摘要推测，方法路径包括：1）材料与电极设计：制备铂修饰金纳米簇并嵌入石墨毡，形成高比表面积、导电且适于葡萄糖氧化的电催化界面；2）器件工程：将该电极封装为可植入、可无线供能的ECHO装置，在0.75 V、10 mA条件下工作；3）体内实验：在2型糖尿病小鼠中进行急性和6周慢性干预，监测血糖恢复时间、体重、甘油三酯、游离脂肪酸、酮体等代谢指标；4）安全性评估：观察低血糖、炎症、生理和行为异常；5）闭环控制：把装置与商用CGM连接，通过智能手机或控制逻辑根据血糖读数自动启停电催化降糖。摘要未给出，但正文中大概率还会包含电化学表征、体外选择性测试、组织学和炎症因子分析。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是把“体内电催化葡萄糖清除”从概念推进到闭环治疗场景：不是单纯传感，也不是单纯刺激，而是直接把代谢底物作为电化学反应物处理。第二个亮点是系统集成度高，材料、电极、无线供能、CGM和手机控制被串成一个完整闭环。第三，摘要中的结果指向的不只是降糖，还包括底物利用从糖向脂转移、体重和血脂改善，这使其更接近“diabesity”而非单一高血糖管理。第四，作者强调低功率、6周持续使用且未见明显不良效应，如果数据扎实，将对植入式代谢器械的可行性很有说服力。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文图表，定位器件结构图、电化学性能图、动物实验流程图和闭环控制示意图；2）记录三个必须核对的定量问题：每次激活消耗多少葡萄糖、生成多少葡糖酸盐、与血糖下降幅度是否守恒匹配；3）核对小鼠模型、样本量、对照组（假手术、无催化材料、不开机、开环控制等）和统计方法；4）重点看安全性图表，确认低血糖判据、炎症/组织学证据和行为学评估；5）如果你的方向偏器械或电化学，可尝试整理其材料组成、工作电压电流、无线供能方式和CGM接口，评估是否能在体外先复现葡萄糖选择性氧化模块。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在一个真实二维金属中，是否能够存在能量落在延展电子连续谱中的局域电子态，并且这种局域化不是偶然的弱耦合共振，而是由晶格干涉与对称性保护产生的电子连续谱束缚态；进一步地，作者想回答这种态能否通过缺陷在具体材料 Pd5AlI2 中被实验识别。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>摘要显示的可能研究路径是：1）在 Pd5AlI2 单层或表面上用扫描隧道显微镜寻找原子缺陷及其局域电子谱特征；2）通过缺陷附近的空间分辨谱图识别两种局域态，并检查其是否处于金属背景能量范围内；3）结合电子结构计算，可能包括第一性原理与紧束缚模型，抽象出 decorated checkerboard lattice 上的跃迁干涉机制；4）分析平带局域本征态与色散连续谱的正交性，并说明缺陷如何把这些局域态从平带位置移入连续谱而仍保持局域。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，材料对象具体且新颖：不是人工光学结构，而是二维范德华金属中的电子态。第二，机制链条相对完整：受挫晶格/跃迁干涉→（准）平带局域态→缺陷调能→金属连续谱中的 BIC，这比单纯报告异常缺陷峰更有说服力。第三，实验工具与理论概念匹配度高：STM 天然适合观察缺陷诱导局域态的实空间分布，而平带与正交性分析则为“为何在金属中仍不离域”提供理论支撑。如果成立，这对利用缺陷工程在金属中构造长寿命局域电子态具有潜在应用价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：先查正文或补充材料中的 STM dI/dV 空间图和能谱线形，确认两种缺陷态的能量位置、空间局域范围和是否位于金属连续谱内；再看理论部分是否给出紧束缚哈密顿量、平带局域本征态构型及其与色散带正交的推导；最后记录三个核对问题：缺陷的原子身份是什么、BIC 与普通缺陷共振如何区分、对称性保护在实际样品扰动下是否仍成立。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：能否构建一种植入体内、可无线供能并由实时血糖信号驱动的电催化闭环装置，在不使用药物的情况下直接清除血液葡萄糖，从而同时改善2型糖尿病和肥胖相关代谢异常？进一步说，它要回答的是体内选择性葡萄糖电氧化是否足够高效、安全、可持续，能否形成真正可自动运行的闭环治疗系统。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>按摘要推测，方法路径包括：1）材料与电极设计：制备铂修饰金纳米簇并嵌入石墨毡，形成高比表面积、导电且适于葡萄糖氧化的电催化界面；2）器件工程：将该电极封装为可植入、可无线供能的ECHO装置，在0.75 V、10 mA条件下工作；3）体内实验：在2型糖尿病小鼠中进行急性和6周慢性干预，监测血糖恢复时间、体重、甘油三酯、游离脂肪酸、酮体等代谢指标；4）安全性评估：观察低血糖、炎症、生理和行为异常；5）闭环控制：把装置与商用CGM连接，通过智能手机或控制逻辑根据血糖读数自动启停电催化降糖。摘要未给出，但正文中大概率还会包含电化学表征、体外选择性测试、组织学和炎症因子分析。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是把“体内电催化葡萄糖清除”从概念推进到闭环治疗场景：不是单纯传感，也不是单纯刺激，而是直接把代谢底物作为电化学反应物处理。第二个亮点是系统集成度高，材料、电极、无线供能、CGM和手机控制被串成一个完整闭环。第三，摘要中的结果指向的不只是降糖，还包括底物利用从糖向脂转移、体重和血脂改善，这使其更接近“diabesity”而非单一高血糖管理。第四，作者强调低功率、6周持续使用且未见明显不良效应，如果数据扎实，将对植入式代谢器械的可行性很有说服力。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕几类边界。首先，证据目前仅限小鼠，且“1小时恢复稳态”“6周无不良效应”在啮齿类中成立并不代表大动物或人体可行。其次，葡萄糖被氧化为葡糖酸盐这一机制虽然直观，但体内复杂环境下可能存在蛋白吸附、电极钝化、非特异氧化、副产物生成和局部pH变化等问题，摘要未说明。第三，长期安全性仍有关键空白，如血液相容性、血栓风险、纤维包裹、肾脏对葡糖酸盐清除负担、以及持续脂解/酮体升高是否存在代谢代价。第四，闭环控制的鲁棒性未知：CGM延迟、传感误差、控制阈值设置不当都可能影响避免低血糖的能力。第五，摘要没有给出样本量、统计显著性、对照条件和效应大小分布，因此目前只能把它视为很有吸引力的概念验证。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文图表，定位器件结构图、电化学性能图、动物实验流程图和闭环控制示意图；2）记录三个必须核对的定量问题：每次激活消耗多少葡萄糖、生成多少葡糖酸盐、与血糖下降幅度是否守恒匹配；3）核对小鼠模型、样本量、对照组（假手术、无催化材料、不开机、开环控制等）和统计方法；4）重点看安全性图表，确认低血糖判据、炎症/组织学证据和行为学评估；5）如果你的方向偏器械或电化学，可尝试整理其材料组成、工作电压电流、无线供能方式和CGM接口，评估是否能在体外先复现葡萄糖选择性氧化模块。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：面向生活方式相关的2型糖尿病及肥胖共病，开发一种植入式、无线供能、无药物的闭环代谢管理装置。器件核心是“铂装饰金纳米簇嵌入石墨毡”的电催化结构，目标反应是选择性把血液中的葡萄糖氧化为葡糖酸盐；后者可经肾脏清除，因此作者试图通过体内电化学方式直接降低葡萄糖负荷，而不是依赖胰岛素分泌、受体激动剂或吸收抑制。摘要给出的关键操作参数是0.75 V、10 mA，说明作者强调低功耗和无线激活的可行性。证据线索主要包括三层：第一，急性疗效上，在2型糖尿病小鼠中1小时内恢复葡萄糖稳态；第二，慢性代谢效应上，6周治疗使代谢从葡萄糖利用转向脂质利用，并伴随体重下降、甘油三酯下降、游离脂肪酸和酮体升高；第三，系统集成上，将ECHO与商用连续血糖监测（CGM）耦合，实现自主、智能手机控制的闭环管理。与相关研究方向的关系在于，这项工作横跨生物电子学、植入式医疗器械、电催化、代谢疾病治疗和闭环控制；对做代谢疾病器械、可穿戴/植入式闭环系统、体内电化学反应或纳米催化材料的人尤其值得关注。需要重点核对的信息包括：葡萄糖氧化的体内选择性和法拉第效率如何评估；葡糖酸盐生成量与降糖幅度是否定量匹配；器件植入部位、血液接触方式和抗污损/抗纤维化设计；无线供能方式、能量传输距离和组织加热；“无低血糖”和“无炎症/行为异常”的判定指标与统计功效；小鼠模型类型、样本量、对照组设置以及闭环算法的触发阈值和控制逻辑。由于目前仅依据摘要，不能判断其长期转化可行性、与现有药物相比的效益边界，以及在大动物或人体中的血栓、免疫和肾脏负担风险。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在一个真实二维金属中，是否能够存在能量落在延展电子连续谱中的局域电子态，并且这种局域化不是偶然的弱耦合共振，而是由晶格干涉与对称性保护产生的电子连续谱束缚态；进一步地，作者想回答这种态能否通过缺陷在具体材料 Pd5AlI2 中被实验识别。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>摘要显示的可能研究路径是：1）在 Pd5AlI2 单层或表面上用扫描隧道显微镜寻找原子缺陷及其局域电子谱特征；2）通过缺陷附近的空间分辨谱图识别两种局域态，并检查其是否处于金属背景能量范围内；3）结合电子结构计算，可能包括第一性原理与紧束缚模型，抽象出 decorated checkerboard lattice 上的跃迁干涉机制；4）分析平带局域本征态与色散连续谱的正交性，并说明缺陷如何把这些局域态从平带位置移入连续谱而仍保持局域。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，材料对象具体且新颖：不是人工光学结构，而是二维范德华金属中的电子态。第二，机制链条相对完整：受挫晶格/跃迁干涉→（准）平带局域态→缺陷调能→金属连续谱中的 BIC，这比单纯报告异常缺陷峰更有说服力。第三，实验工具与理论概念匹配度高：STM 天然适合观察缺陷诱导局域态的实空间分布，而平带与正交性分析则为“为何在金属中仍不离域”提供理论支撑。如果成立，这对利用缺陷工程在金属中构造长寿命局域电子态具有潜在应用价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的局限包括：1）尚不清楚实验是否足以严格证明 BIC，而非寿命较长的准束缚共振；2）“symmetry-protected”与“orthogonal to the dispersive continuum”是强理论表述，但摘要未说明保护对称性的具体形式及其对真实缺陷、温度、电子相互作用的鲁棒性边界；3）只提到识别出两种 defect-induced states，缺少统计信息，不清楚是否具有普适性还是依赖特定缺陷构型；4）Pd5AlI2 的材料制备、层数、表面终止、缺陷类型和能量标定方式均未在摘要中给出，这些都会影响对结果的解释；5）“quasi-flat band”意味着并非严格平带，因此与理想 BIC 条件之间可能存在偏差，需要看正文如何界定。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：先查正文或补充材料中的 STM dI/dV 空间图和能谱线形，确认两种缺陷态的能量位置、空间局域范围和是否位于金属连续谱内；再看理论部分是否给出紧束缚哈密顿量、平带局域本征态构型及其与色散带正交的推导；最后记录三个核对问题：缺陷的原子身份是什么、BIC 与普通缺陷共振如何区分、对称性保护在实际样品扰动下是否仍成立。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：二维范德华金属 Pd5AlI2 中由原子缺陷触发的局域电子态，目标是证明这些态虽然能量上位于金属延展态连续谱内，却仍保持空间局域，即电子版 BIC。方法线索也较具体：实验上使用扫描隧道显微镜，推测至少包含实空间形貌与局域态谱学表征，可能通过缺陷附近的 dI/dV 空间分布来展示局域共振峰不向背景金属态扩展；理论上则使用某种电子结构计算或紧束缚分析，论证 decorated checkerboard lattice 上的电子跃迁干涉可产生由空间局域本征态构成的（准）平带，并且这些态与色散带连续谱正交。摘要中的关键证据链是“先有受挫晶格导致的局域平带态，再由原子缺陷把其能量推入金属连续谱，最终形成对称性保护的 BIC”。对相关方向读者而言，这篇工作与平带物理、受挫晶格、缺陷工程、二维金属局域谱学、以及连续谱中束缚态的电子实现都直接相关，尤其值得关注的是它是否真正区分了普通缺陷束缚态、准束缚共振态与严格意义上的 BIC。当前仅凭摘要仍需核对若干关键信息：两种缺陷态分别对应什么原子缺陷；“remain localized”的判据是空间衰减、线宽、寿命还是理论正交性；“robust, symmetry-protected”具体由哪种晶格/轨道对称性保护；所谓 quasi-flat band 的带宽、能量位置及与费米能级关系；以及实验和计算之间是否做到定量对应。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Lifestyle-related type 2 diabetes and associated obesity (diabesity) affect &gt;2.5 billion people worldwide and impose nearly $3 trillion in annual health care costs. We developed an implantable, wirelessly powered electrocatalytic closed-loop health optimization (ECHO) device containing platinum-decorated gold nanoclusters embedded in graphite felt that enabled selective, electrically tunable oxidation of blood glucose to renally cleared gluconate. In type 2 diabetic mice, wireless, low-power activation (0.75 volts, 10 milliamperes) restored glucose homeostasis within 1 hour, shifted metabolism from glucose to lipid utilization, reduced body weight and triglycerides, and increased circulating free fatty acids and ketone bodies without detectable hypoglycemia or adverse physiological, inflammatory, or behavioral effects during 6 weeks of treatment. Coupling this ECHO device to a commercial continuous glucose monitoring system enabled autonomous, smartphone-controlled, drug-free closed-loop management of experimental diabesity.</p>
+          <p>Bound states in the continuum (BICs) are quantum states that remain localized despite lying within a continuum of extended, delocalized states. Whereas optical BICs have been realized in photonic systems, achieving electronic bound states embedded in a metallic background remains an ongoing challenge. In this study, we used scanning tunneling microscopy to identify two defect-induced electronic states that remain localized within the metallic continuum of Pd 5 AlI 2 , a two-dimensional van der Waals metal. Our calculations suggest that electron-hopping interference on the decorated checkerboard lattice of Pd 5 AlI 2 gives rise to a (quasi) flat band built from spatially localized eigenstates that are orthogonal to the dispersive continuum. Atomic defects within this frustrated lattice shift the associated flat-band localized states into the metallic continuum, forming robust, symmetry-protected BICs.</p>
         </details>
         
         </div>
@@ -537,16 +521,16 @@
         <span>Score 44.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.aed6459">Ultrarapid decision-making in an avian brain</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Ultrarapid+decision-making+in+an+avian+brain&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed6459%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Ultrarapid+decision-making+in+an+avian+brain%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Ultrarapid+decision-making+in+an+avian+brain&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed6459%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Ultrarapid+decision-making+in+an+avian+brain%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Ultrarapid+decision-making+in+an+avian+brain&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed6459%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Ultrarapid+decision-making+in+an+avian+brain%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1126/science.aeh7930">Sequential diagnosis with language models</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Sequential+diagnosis+with+language+models&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh7930%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Sequential+diagnosis+with+language+models%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Sequential+diagnosis+with+language+models&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh7930%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Sequential+diagnosis+with+language+models%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Sequential+diagnosis+with+language+models&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh7930%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Sequential+diagnosis+with+language+models%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Philipp Schmidbauer、Andreas Nieder · DOI: <a href="https://doi.org/10.1126/science.aed6459">10.1126/science.aed6459</a></div>
+      <div class="authors">Harsha Nori、Mayank Daswani、Christopher Kelly、Scott Lundberg 等 15 人 · DOI: <a href="https://doi.org/10.1126/science.aeh7930">10.1126/science.aeh7930</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文基于腐肉乌鸦在经典视觉运动方向辨别任务中的行为与神经记录，报告其知觉决策可在约235毫秒内完成，且相关苍白端脑神经元在刺激后约70毫秒即开始编码即将作出的选择。摘要指向一个具体结论：鸟类在不明显牺牲准确率的情况下，可能拥有比猴和人更快的审慎性决策回路。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把“超快速但仍具证据积累特征的知觉决策”明确落到鸟类模型上，并将行为速度优势与端脑神经活动的时间进程对应起来：方向选择性神经元的爬升活动随感觉证据变化，并在反应起始时收敛，提示鸟类 pallial endbrain 可能实现了高效的决策形成机制。若摘要表述成立，这项工作同时扩展了跨物种决策神经科学的比较框架，挑战了快速决策主要由哺乳动物皮层样系统刻画的默认印象。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦“序贯诊断”任务：让语言模型在仅给出简短临床主诉后，像临床医生一样逐步选择检查、持续更新鉴别诊断并最终给出诊断。根据摘要，作者构建了一个交互式基准和一个模拟“医生小组”的AI系统，并在NEJM clinicopathological conference病例与MIMIC-IV-ED急诊入院数据上报告了较高诊断准确率与较低检查成本。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于把大语言模型评估从一次性静态问答推进到更接近真实临床推理流程的“序贯诊断”框架：一方面提出可交互 benchmark，用于同时衡量诊断正确率与workup cost；另一方面设计了一个会动态修正鉴别诊断、并选择成本效益较高检查项目的AI系统。摘要还显示其与通科医生在两个数据来源上的对比结果明显占优，这使论文的主要价值不仅是模型性能展示，也包括一种新的临床AI评测范式。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -567,23 +551,33 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答的具体问题是：鸟类是否也能像哺乳动物那样在知觉决策任务中进行基于感觉证据的审慎选择；如果能，其决策速度和对应神经动力学是否具有独特优势，尤其是在经典视觉运动方向辨别任务中，乌鸦如何在极短时间内完成选择并由哪些端脑神经信号支持。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要推测，作者训练腐肉乌鸦执行视觉运动方向辨别任务，系统操纵运动证据强度并记录行为准确率与反应时；同时在 pallial endbrain 进行单神经元或多单元电生理记录，筛选方向选择性神经元，分析其在刺激对齐和反应对齐下的时间进程，检验是否存在对即将作出选择的早期编码、是否随证据强度呈爬升变化、以及是否在反应发生时达到共同终点。还可能结合正确/错误试次、心理物理曲线、反应时分布和神经—行为相关分析来支持“审慎决策”而非简单反射。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点首先是对象与任务都很具体：在乌鸦上实现经典视觉运动决策范式，并把行为速度与神经时间常数直接对应。第二，摘要给出了清晰的时间标记：约235毫秒行为报告、约70毫秒选择编码起始、约170毫秒反应前神经预测，这种精细时间结构很适合与灵长类文献做定量比较。第三，若“爬升活动随感觉证据缩放并在反应起始时收敛”在正文中得到充分展示，那么它不仅说明鸟类会做决策，还提示其神经实现与经典积累到界限框架存在可比性。第四，工作具有较强比较神经科学价值，因为它把高效 visuomotor control 的进化解释与具体神经数据联系起来。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先查正文图1和行为方法，确认任务范式、反应时定义、准确率水平和证据强度操纵方式；第二，查神经记录脑区名称、记录数量及图中刺激对齐/反应对齐的神经活动曲线，验证70毫秒与170毫秒两个关键时间点如何计算；第三，把文中与猴/人比较所引用的基准论文记下，判断是否为可比任务；第四，若你的方向涉及决策模型，可直接记录是否提供 drift-diffusion 或 ramp-to-threshold 的拟合；第五，整理一个问题清单：超快速优势来自感觉编码更快、积累更快、阈值更低，还是运动输出更短。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何评估并提升语言模型在临床“序贯诊断”中的能力，即在初始信息有限的情况下，模型能否像医生一样主动选择后续检查/信息、持续更新鉴别诊断，并以较低workup cost达到较高诊断准确率。更深一层的问题是，现有静态医学问答或一次性病例诊断评测是否低估或误测了语言模型在真实临床推理流程中的能力。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：1）构建一个交互式诊断benchmark，给定简短临床presentation，允许受试者逐步请求额外信息；2）为每次信息请求或检查赋予成本，从而联合评估准确率与成本；3）设计一个模拟“医生小组”的AI系统，在多轮过程中维护并修正鉴别诊断列表，选择下一步最具成本效益的检查；4）在NEJM CPC病例和MIMIC-IV-ED急诊入院数据上，与generalist physicians进行对照评测。需要核对的是：AI系统究竟是单模型+提示工程、多代理协作、检索增强，还是专门训练的策略模型。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点主要有四点。第一，任务设定贴近临床真实流程，把主动信息获取纳入评测，而非只看最终答案。第二，同时衡量diagnostic accuracy和workup cost，具有明显的临床与资源配置意义。第三，使用两类不同来源的数据：NEJM教学型复杂病例与MIMIC-IV-ED真实急诊数据，覆盖了高难度推理与实际场景。第四，摘要中的对照结果显示AI系统相对通科医生有较大优势，如果评测公平，这将是对临床LLM能力边界的重要证据。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文或补充材料中的benchmark定义，确认每轮可请求的信息类型、停止规则和cost计算方式；2）定位AI system架构图，弄清“simulate a panel of physicians”是多代理还是提示模板；3）核对NEJM CPC与MIMIC-IV-ED的样本量、纳排标准、医生基线人数与统计区间；4）优先查看错误分析和ablation，判断性能来自序贯策略本身还是底层模型知识；5）如果你做相关研究，可先复刻一个简化版环境：用公开病例构建“初始主诉—可选检查—最终诊断”的多轮评测，记录准确率与累计检查成本。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答的具体问题是：鸟类是否也能像哺乳动物那样在知觉决策任务中进行基于感觉证据的审慎选择；如果能，其决策速度和对应神经动力学是否具有独特优势，尤其是在经典视觉运动方向辨别任务中，乌鸦如何在极短时间内完成选择并由哪些端脑神经信号支持。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要推测，作者训练腐肉乌鸦执行视觉运动方向辨别任务，系统操纵运动证据强度并记录行为准确率与反应时；同时在 pallial endbrain 进行单神经元或多单元电生理记录，筛选方向选择性神经元，分析其在刺激对齐和反应对齐下的时间进程，检验是否存在对即将作出选择的早期编码、是否随证据强度呈爬升变化、以及是否在反应发生时达到共同终点。还可能结合正确/错误试次、心理物理曲线、反应时分布和神经—行为相关分析来支持“审慎决策”而非简单反射。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点首先是对象与任务都很具体：在乌鸦上实现经典视觉运动决策范式，并把行为速度与神经时间常数直接对应。第二，摘要给出了清晰的时间标记：约235毫秒行为报告、约70毫秒选择编码起始、约170毫秒反应前神经预测，这种精细时间结构很适合与灵长类文献做定量比较。第三，若“爬升活动随感觉证据缩放并在反应起始时收敛”在正文中得到充分展示，那么它不仅说明鸟类会做决策，还提示其神经实现与经典积累到界限框架存在可比性。第四，工作具有较强比较神经科学价值，因为它把高效 visuomotor control 的进化解释与具体神经数据联系起来。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕几类边界。其一，跨物种“约快两倍”的比较可能受任务版本、刺激参数、训练程度、反应器官、反应时定义和实验约束条件影响，不能仅凭摘要视为纯粹神经计算速度差异。其二，摘要未说明样本量、个体差异、神经元数量和记录脑区精确定位，因而暂时无法判断结果稳健性与可推广性。其三，“不牺牲准确率”需要看到完整的速度—准确率权衡分析，否则可能只是特定难度范围内成立。其四，神经活动的爬升与收敛虽然符合积累模型，但是否排除了运动准备、注意或觉醒水平变化等替代解释，需要正文中的对照分析支持。其五，题录发布时间为2026-10-22，需确认是否为正式在线发表版本及是否已有补充材料。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先查正文图1和行为方法，确认任务范式、反应时定义、准确率水平和证据强度操纵方式；第二，查神经记录脑区名称、记录数量及图中刺激对齐/反应对齐的神经活动曲线，验证70毫秒与170毫秒两个关键时间点如何计算；第三，把文中与猴/人比较所引用的基准论文记下，判断是否为可比任务；第四，若你的方向涉及决策模型，可直接记录是否提供 drift-diffusion 或 ramp-to-threshold 的拟合；第五，整理一个问题清单：超快速优势来自感觉编码更快、积累更快、阈值更低，还是运动输出更短。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和元数据看，研究对象是腐肉乌鸦，任务是经典视觉运动辨别，最可能接近随机点运动方向判别一类的知觉决策范式。作者强调“deliberate decisions”而非单纯反射，说明实验设计应当区分了快速反应与真正基于感觉证据的选择形成，例如通过操纵运动证据强度、比较准确率与反应时、并分析神经活动是否呈现证据依赖的爬升轨迹。行为层面最关键的数据线索是平均约235毫秒的选择报告时间，并且摘要称这一速度约为猴或人的两倍快，同时“不牺牲准确率”；这意味着正文中应有跨物种比较的基准来源、任务可比性说明，以及速度—准确率权衡的定量分析。神经层面，记录部位是鸟类 pallial endbrain，摘要未给出更具体核团名称，因此需要在正文核对究竟是NCL、视觉联络区还是与运动输出更近的区域。已给出的证据链包括：方向选择性神经元在刺激后约70毫秒开始编码即将选择的方向；该信号出现在反应前约170毫秒；神经活动呈爬升并随感觉证据强弱缩放；在反应起始时收敛。这样的描述很像证据积累/界限到达模型在单神经元层面的表征，因此与决策神经科学、比较认知神经科学、感觉—动作转换研究都直接相关。对科研读者而言，这篇论文最值得核对的是：乌鸦样本量、试次数、刺激参数、反应方式、是否头固定、神经元记录类型与数量、证据强度分层、正确/错误试次分析、以及与灵长类比较是否建立在同类任务和相近定义的反应时之上。由于目前只有摘要，不能判断其“超快速”是否部分来自运动输出链路更短、训练范式不同、反应定义不同，还是确实反映了决策形成本身更高效。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何评估并提升语言模型在临床“序贯诊断”中的能力，即在初始信息有限的情况下，模型能否像医生一样主动选择后续检查/信息、持续更新鉴别诊断，并以较低workup cost达到较高诊断准确率。更深一层的问题是，现有静态医学问答或一次性病例诊断评测是否低估或误测了语言模型在真实临床推理流程中的能力。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：1）构建一个交互式诊断benchmark，给定简短临床presentation，允许受试者逐步请求额外信息；2）为每次信息请求或检查赋予成本，从而联合评估准确率与成本；3）设计一个模拟“医生小组”的AI系统，在多轮过程中维护并修正鉴别诊断列表，选择下一步最具成本效益的检查；4）在NEJM CPC病例和MIMIC-IV-ED急诊入院数据上，与generalist physicians进行对照评测。需要核对的是：AI系统究竟是单模型+提示工程、多代理协作、检索增强，还是专门训练的策略模型。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点主要有四点。第一，任务设定贴近临床真实流程，把主动信息获取纳入评测，而非只看最终答案。第二，同时衡量diagnostic accuracy和workup cost，具有明显的临床与资源配置意义。第三，使用两类不同来源的数据：NEJM教学型复杂病例与MIMIC-IV-ED真实急诊数据，覆盖了高难度推理与实际场景。第四，摘要中的对照结果显示AI系统相对通科医生有较大优势，如果评测公平，这将是对临床LLM能力边界的重要证据。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>局限和风险点包括：1）摘要未说明模型细节、训练方式、是否依赖专有frontier models，复现性可能有限；2）医生基线显著低于AI，需警惕比较协议是否公平，例如时间限制、界面限制、病例选择偏差；3）controlled benchmark setting不等于真实临床部署，外部有效性、工作流整合、安全性和责任归属都未解决；4）摘要未报告校准性、置信度、误诊类型、少见病/常见病分层表现、以及不必要检查的具体模式；5）MIMIC-IV-ED任务标签如何定义、序贯信息如何从回顾性病历中模拟，也需要仔细核对。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文或补充材料中的benchmark定义，确认每轮可请求的信息类型、停止规则和cost计算方式；2）定位AI system架构图，弄清“simulate a panel of physicians”是多代理还是提示模板；3）核对NEJM CPC与MIMIC-IV-ED的样本量、纳排标准、医生基线人数与统计区间；4）优先查看错误分析和ablation，判断性能来自序贯策略本身还是底层模型知识；5）如果你做相关研究，可先复刻一个简化版环境：用公开病例构建“初始主诉—可选检查—最终诊断”的多轮评测，记录准确率与累计检查成本。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体，不是泛化的“医学问答”，而是临床诊断中的序贯信息采集与决策：系统先接收简短临床表现，然后必须主动决定下一步要问什么、查什么，再根据新增信息不断更新鉴别诊断，直到输出最终诊断。这比常见的单轮病例分类更贴近临床工作流，因为它把“信息获取策略”本身纳入了评估。
+
+方法线索主要有两部分。第一，作者开发了一个interactive benchmark，说明评测环境应允许模型或人类在多轮中请求额外信息，并记录每一步的检查选择与成本。第二，作者构建了一个AI system that simulates a panel of physicians，意味着系统可能不是单一直接输出答案的模型，而是通过多代理/多角色讨论、集成推理，或至少在提示层面模拟多个医生共同维护鉴别诊断列表。摘要中特别提到“continually revising the differential diagnosis and selecting cost-effective tests”，这表明系统输出不只是最终标签，还包括中间态的鉴别诊断更新与检查决策策略。
+
+数据与任务设置方面，摘要给出两个关键评测来源：NEJM clinicopathological conference cases，以及MIMIC-IV-ED emergency department admissions。前者通常病例复杂、教学性强，适合考察高难度诊断推理；后者来自真实急诊入院场景，更接近临床分布。摘要报告系统在这两类数据上的准确率分别为83.2%和80.3%，而generalist physicians分别为36.1%和46.8%。如果这些数字对应同一受限信息与成本约束下的公平比较，那么证据力度很强；但仅凭摘要还需要核对医生组样本量、评测协议、是否允许外部资源、病例筛选标准、终点定义以及统计显著性。
+
+论文还强调“workup cost”，这是一个很重要的信号：作者并非只追求高准确率，而是试图在诊断收益与检查代价之间做权衡。因此该工作可能与临床决策支持、主动信息获取、成本敏感学习、POMDP式序贯决策、以及医疗资源优化都有联系。对做医学AI评测、临床推理、agentic LLM、或医疗经济学相关研究的人，这篇论文值得重点关注，因为它可能提供了一个比传统多选题/病例摘要分类更真实的基准框架。
+
+但基于摘要也必须保持谨慎。作者明确说明结果来自controlled benchmark setting，这意味着系统表现未必能直接外推到真实临床部署。摘要没有说明模型类型、是否为专有frontier model、是否做了微调、是否使用工具调用、成本如何量化、医生对照如何组织、以及错误类型与安全性分析如何开展。尤其是医生基线明显偏低，可能与任务界面、时间限制、信息可得性、评分标准或病例难度有关，这些都需要读正文和补充材料核实。
+
+如果你的研究方向涉及临床LLM或序贯决策，这篇论文最值得提炼的不是单个准确率数字，而是其任务定义：把“诊断正确性 + 信息采集路径 + 检查成本”联合起来评估。这种设定可能比静态benchmark更能揭示模型是否真的具备可用的临床推理能力。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Perceptual decision-making is well studied in mammals, but its operation in other vertebrates remains unclear. We show that carrion crows ( Corvus corone ) make deliberate decisions in a classic visual motion discrimination task with unprecedented speed, reporting choices in approximately 235 milliseconds on average, which is roughly twice as fast as has been observed in monkeys or humans and without sacrificing accuracy. Recordings from the pallial endbrain reveal that direction-selective neurons encode the upcoming choice as early as about 70 milliseconds after stimulus onset and about 170 milliseconds before the response, with ramping activity scaling with sensory evidence and converging at response onset. These findings highlight the extraordinary efficiency of avian decision-making circuitry, possibly shaped by evolutionary pressures for rapid visuomotor control.</p>
+          <p>We explored the capabilities of frontier language models in sequential diagnosis, a diagnostic paradigm that captures the iterative nature of clinical reasoning. Given a brief clinical presentation, clinicians selectively acquired information to reach a diagnosis, enabling assessment of diagnostic accuracy and workup cost. We developed an interactive benchmark and an artificial intelligence (AI) system that simulates a panel of physicians, continually revising the differential diagnosis and selecting cost-effective tests. Using this benchmark, the system achieved 83.2% accuracy on New England Journal of Medicine clinicopathological conference cases and 80.3% on MIMIC-IV-ED emergency department admissions, outperforming generalist physicians (36.1 and 46.8%, respectively). Although these findings were obtained in a controlled benchmark setting, they highlight the promise of language models for supporting more accurate, lower-cost diagnoses.</p>
         </details>
         
         </div>
@@ -599,16 +593,16 @@
         <span>Score 44.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.adt1992">Thermodynamic origin of the phonon Hall effect in a honeycomb antiferromagnet</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Thermodynamic+origin+of+the+phonon+Hall+effect+in+a+honeycomb+antiferromagnet&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt1992%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Thermodynamic+origin+of+the+phonon+Hall+effect+in+a+honeycomb+antiferromagnet%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Thermodynamic+origin+of+the+phonon+Hall+effect+in+a+honeycomb+antiferromagnet&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt1992%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Thermodynamic+origin+of+the+phonon+Hall+effect+in+a+honeycomb+antiferromagnet%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Thermodynamic+origin+of+the+phonon+Hall+effect+in+a+honeycomb+antiferromagnet&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt1992%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Thermodynamic+origin+of+the+phonon+Hall+effect+in+a+honeycomb+antiferromagnet%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1126/science.aeg1821">Natural product biosynthesis by guanidine prenyltransferases in plants and bacteria</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Natural+product+biosynthesis+by+guanidine+prenyltransferases+in+plants+and+bacte&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg1821%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Natural+product+biosynthesis+by+guanidine+prenyltransferases+in+plants+and+bacteria%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Natural+product+biosynthesis+by+guanidine+prenyltransferases+in+plants+and+bacte&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg1821%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Natural+product+biosynthesis+by+guanidine+prenyltransferases+in+plants+and+bacteria%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Natural+product+biosynthesis+by+guanidine+prenyltransferases+in+plants+and+bacte&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg1821%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Natural+product+biosynthesis+by+guanidine+prenyltransferases+in+plants+and+bacteria%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Qingkai Meng、Xiaokang Li、Jie Liu、Lingxiao Zhao 等 8 人 · DOI: <a href="https://doi.org/10.1126/science.adt1992">10.1126/science.adt1992</a></div>
+      <div class="authors">Dominik Kolling、Katharina Konzok、Daghan Taser、Tom Jentsch 等 14 人 · DOI: <a href="https://doi.org/10.1126/science.aeg1821">10.1126/science.aeg1821</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文以蜂窝层状反铁磁体NiPS3为具体对象，研究其声子热霍尔效应的热力学起源。摘要显示作者在NiPS3中观测到显著横向热导κab，并用其与纵向热导峰位重合、与b轴磁化强相关而与声子平均自由程不相关等现象，论证该效应更可能具有内禀起源。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把“绝缘体中声子热霍尔效应的机制”这一长期未明问题，具体推进到NiPS3这一具有锯齿型反铁磁序的蜂窝范德华材料体系中，并给出偏向内禀机制的证据链：κaa与κab在同一温度达到峰值、峰值处热霍尔角满足既有上界、κab对b轴磁化幅值极敏感但不随声子平均自由程变化。若这些证据在正文中被充分支撑，则该工作的重要性在于把声子热霍尔响应与热力学量/磁序耦合更直接地联系起来，而非简单归因于散射增强。</p></div>
+        <div class="note"><strong>一句话</strong><p>该研究围绕“游离胍基的直接酶促异戊二烯化”这一具体任务，鉴定了蓝细菌酶 NosH 可将异戊二烯基直接转移到游离胍基上，并据此在细菌和植物中识别出一大类胍基异戊二烯转移酶。摘要还指出，植物同源酶可在体外生成胍生物碱（如 galegine），且在烟草瞬时表达体系中实现 galegine 的体内生成，从而把该酶家族与植物特化代谢直接联系起来。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是提出并初步建立了“胍基异戊二烯转移酶”这一新的酶学类别：一方面通过 NosH 的结构与机理分析，给出游离胍基被活化并接受异戊二烯基的催化逻辑；另一方面利用这些结构/机理特征在细菌和植物中扩展发现同源酶，并把植物胍生物碱 galegine 的生物合成与具体酶促步骤直接关联。若摘要表述完整，这项工作同时推进了天然产物生物合成、酶催化化学以及植物特化代谢途径解析。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -629,27 +623,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在绝缘体中观测到的声子热霍尔效应究竟源于什么机制，尤其在蜂窝层状反铁磁体NiPS3中，横向热导κab是由外禀散射/平均自由程效应主导，还是由与磁序和热力学量更直接相关的内禀机制产生。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于摘要推测，作者应进行了NiPS3单晶或定向样品的纵向与横向热导测量，得到κaa和κab随温度的曲线，并在磁场下考察其变化；同时测量或调用沿b轴的磁化信息，比较κab与磁化幅值的相关性；再结合κaa或其他热输运参数估算声子平均自由程，检验κab是否与其相关；最后用热霍尔角在峰值处是否满足既有上界来支撑其热力学解释。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点在于对象明确且物理背景有代表性：NiPS3兼具蜂窝晶格、范德华层状结构和锯齿型反铁磁序，适合研究磁序对声子横向输运的影响。证据设计上，摘要给出的不是单一相关性，而是多条相互补充的线索：κaa与κab峰位重合、热霍尔角受上界约束、κab对b轴磁化高度敏感、κab与平均自由程不相关。这种组合比单纯报告“测到非零κab”更接近机制判别。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文或补充材料中κaa(T)、κab(T)和热霍尔角曲线，确认峰值温度、量级和符号；2）定位作者引用的“热霍尔角上界”原始文献，弄清其定义与适用条件；3）查看磁场方向是否沿b轴、是否做了角分辨测量，以及κab与Mb的对应图；4）检查声子平均自由程的估算公式和数据来源；5）记录作者如何排除magnon贡献和实验串扰，这将决定“内禀声子起源”论断的可信度。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在天然产物生物合成中，几乎总以稳定阳离子形式存在的游离胍基，是否能够被酶直接进行异戊二烯化；如果可以，负责该反应的酶如何识别并活化胍基，这类酶是否广泛存在于细菌和植物中，以及它们是否参与已知胍生物碱（如 galegine）的生物合成。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法路径应包括：1）从蓝细菌中鉴定 NosH 并进行体外酶学实验，直接检测游离胍基受体与异戊二烯供体反应生成产物；2）开展结构生物学分析，解析 NosH 活性位点并识别“双天冬氨酸夹持”等关键特征；3）结合机理推断进行位点突变或底物结合分析，验证胍基活化与供体结合的耦联关系；4）以结构/序列特征为线索，在细菌和植物基因组中挖掘同源酶家族；5）对植物同源酶进行体外功能验证，检测 galegine 等胍生物碱生成；6）在 Nicotiana benthamiana 中异源表达植物直系同源酶，观察是否在植物体内形成 galegine，从而建立酶与植物特化代谢之间的直接联系。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，反应本身新颖：直接对游离胍基进行酶促异戊二烯化，针对的是一个通常难以直接官能化的底物类型。第二，证据组织较完整：摘要同时提到功能鉴定、结构与机理分析、家族扩展发现以及体外和体内验证，说明作者试图从单酶现象推进到可推广的酶家族与代谢逻辑。第三，应用潜力明确：如果双 Asp 夹持和供体结合架构确实具有可迁移性，那么这类酶可用于新型胍基天然产物挖掘、植物代谢通路解析以及面向含胍骨架分子的生物催化设计。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）优先查看正文中的 NosH 反应示意图和产物结构，确认受体、供体、连接位点及是否为 N-异戊二烯化；2）查结构图，记录双 Asp 残基编号、与胍基/供体的相互作用距离及关键突变表型；3）查看植物同源酶实验，确认 galegine 是由单酶加前体直接生成，还是依赖额外代谢背景；4）整理家族挖掘标准，如保守位点、序列基序和物种分布；5）若与你的方向相关，可据此在自有基因组数据中检索含双 Asp 活性位点特征的候选异戊二烯转移酶，并设计最基础的体外底物筛选。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在绝缘体中观测到的声子热霍尔效应究竟源于什么机制，尤其在蜂窝层状反铁磁体NiPS3中，横向热导κab是由外禀散射/平均自由程效应主导，还是由与磁序和热力学量更直接相关的内禀机制产生。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>基于摘要推测，作者应进行了NiPS3单晶或定向样品的纵向与横向热导测量，得到κaa和κab随温度的曲线，并在磁场下考察其变化；同时测量或调用沿b轴的磁化信息，比较κab与磁化幅值的相关性；再结合κaa或其他热输运参数估算声子平均自由程，检验κab是否与其相关；最后用热霍尔角在峰值处是否满足既有上界来支撑其热力学解释。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点在于对象明确且物理背景有代表性：NiPS3兼具蜂窝晶格、范德华层状结构和锯齿型反铁磁序，适合研究磁序对声子横向输运的影响。证据设计上，摘要给出的不是单一相关性，而是多条相互补充的线索：κaa与κab峰位重合、热霍尔角受上界约束、κab对b轴磁化高度敏感、κab与平均自由程不相关。这种组合比单纯报告“测到非零κab”更接近机制判别。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭题录和摘要，仍有几个边界需要警惕。第一，尚不清楚横向热导信号是否已充分排除实验串扰、样品不对称和温度计校准误差。第二，摘要虽强调与声子平均自由程不相关，但未说明平均自由程如何提取、误差多大、适用温区如何。第三，“内禀起源”仍较宽泛，缺少具体微观模型名称和定量拟合信息。第四，NiPS3作为反铁磁体，是否存在磁振子或混合声子-磁振子贡献，摘要未交代。第五，所谓“此前识别出的上界”若只是经验关系，其理论约束力需要核实。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文或补充材料中κaa(T)、κab(T)和热霍尔角曲线，确认峰值温度、量级和符号；2）定位作者引用的“热霍尔角上界”原始文献，弄清其定义与适用条件；3）查看磁场方向是否沿b轴、是否做了角分辨测量，以及κab与Mb的对应图；4）检查声子平均自由程的估算公式和数据来源；5）记录作者如何排除magnon贡献和实验串扰，这将决定“内禀声子起源”论断的可信度。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文聚焦“声子产生的热霍尔效应为何出现”这一机制问题，选取材料是NiPS3：一种范德华堆垛的蜂窝层状体系，并具有zigzag antiferromagnetic order（锯齿型反铁磁序）。作者报告了可观的横向热导κab，同时测量了纵向热导κaa。最关键的摘要证据有三条。第一，κaa与κab在相同温度处出现峰值，这提示横向热输运并非独立于主导热载流子谱，而可能与同一组热激发或同一热力学尺度相关。第二，在该峰值温度处，热霍尔角满足“此前识别出的上界”，说明作者将结果放入一个更一般的经验或理论约束框架中，试图表明NiPS3并非异常个例，而是符合某种普适限制。第三，κab对沿b轴磁化强度极其敏感，但与声子平均自由程不相关；这直接针对外禀散射图景，因为若横向信号主要来自杂质、边界或磁散射导致的偏转，通常会期待其与平均自由程或散射强度更紧密相关。摘要因此把论点导向“intrinsic origin”，即更内禀的能带/准粒子几何、磁序诱导对称性破缺或自旋-晶格耦合机制。
-
-就可能方法而言，正文大概率包含：在不同温度和磁场条件下同时测量κaa与κab；记录磁化沿晶轴尤其是b轴分量的变化；通过热导峰值位置、热霍尔角以及与磁化的相关性分析来建立机制判断。由于摘要明确提到phonon mean free path，作者可能还利用κaa、比热、声速或文献参数估算声子平均自由程，并检验κab是否随其变化。材料层面，NiPS3的蜂窝晶格、层状范德华结构和反铁磁序意味着晶体取向、磁场方向和热流/温差方向的定义很关键，尤其κaa与κab中的a、b轴选择应与磁各向异性和磁化响应直接相关。
-
-对科研读者而言，这篇论文最值得关注的是它如何把“热霍尔信号存在”提升为“热力学起源判断”。如果你的方向涉及热输运、声子霍尔效应、磁性绝缘体、二维范德华磁体或自旋-晶格耦合，这篇工作提供了一个很具体的判据组合：峰位共现、热霍尔角上界、与特定轴向磁化相关、与平均自由程脱钩。需要核对的信息包括：热霍尔角上界具体指什么文献或公式；κab的量级、符号、磁场依赖和温度窗口；NiPS3中磁相变温度与热导峰值的相对位置；“对b轴磁化敏感”是通过旋转磁场、磁各向异性测量还是磁化曲线拟合得到；以及作者如何排除magnon Hall、样品几何串扰、接触热漏和纵横向混叠等实验伪信号。由于目前只有摘要，不能判断其理论模型是否定量，也不能确认“内禀”究竟指Berry curvature型声子机制、磁弹耦合修饰的声子本征态，还是更广义的热力学约束下的有效描述。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在天然产物生物合成中，几乎总以稳定阳离子形式存在的游离胍基，是否能够被酶直接进行异戊二烯化；如果可以，负责该反应的酶如何识别并活化胍基，这类酶是否广泛存在于细菌和植物中，以及它们是否参与已知胍生物碱（如 galegine）的生物合成。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法路径应包括：1）从蓝细菌中鉴定 NosH 并进行体外酶学实验，直接检测游离胍基受体与异戊二烯供体反应生成产物；2）开展结构生物学分析，解析 NosH 活性位点并识别“双天冬氨酸夹持”等关键特征；3）结合机理推断进行位点突变或底物结合分析，验证胍基活化与供体结合的耦联关系；4）以结构/序列特征为线索，在细菌和植物基因组中挖掘同源酶家族；5）对植物同源酶进行体外功能验证，检测 galegine 等胍生物碱生成；6）在 Nicotiana benthamiana 中异源表达植物直系同源酶，观察是否在植物体内形成 galegine，从而建立酶与植物特化代谢之间的直接联系。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，反应本身新颖：直接对游离胍基进行酶促异戊二烯化，针对的是一个通常难以直接官能化的底物类型。第二，证据组织较完整：摘要同时提到功能鉴定、结构与机理分析、家族扩展发现以及体外和体内验证，说明作者试图从单酶现象推进到可推广的酶家族与代谢逻辑。第三，应用潜力明确：如果双 Asp 夹持和供体结合架构确实具有可迁移性，那么这类酶可用于新型胍基天然产物挖掘、植物代谢通路解析以及面向含胍骨架分子的生物催化设计。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：1）尚不清楚 NosH 的底物范围和催化效率，无法判断其是高度专一还是具有工程化潜力；2）“large family”缺乏数量、系统发育分布和功能验证比例，可能存在序列同源但功能分化的情况；3）植物中 galegine 的体内生成虽有说服力，但摘要未说明是否需要额外前体供给、共表达上游酶或代谢工程背景，因此对天然通路完整性的支持程度仍需核对；4）结构与机理结论目前只见概述，尚不能判断是否有高分辨率结构、底物复合物、过渡态模拟或充分突变数据支撑；5）仅凭摘要无法确认该反应在天然产物生态功能或进化来源上的广泛意义。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）优先查看正文中的 NosH 反应示意图和产物结构，确认受体、供体、连接位点及是否为 N-异戊二烯化；2）查结构图，记录双 Asp 残基编号、与胍基/供体的相互作用距离及关键突变表型；3）查看植物同源酶实验，确认 galegine 是由单酶加前体直接生成，还是依赖额外代谢背景；4）整理家族挖掘标准，如保守位点、序列基序和物种分布；5）若与你的方向相关，可据此在自有基因组数据中检索含双 Asp 活性位点特征的候选异戊二烯转移酶，并设计最基础的体外底物筛选。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可见，研究对象非常具体：底物是“游离胍基（free guanidine）”，关键酶是蓝细菌来源的 NosH，反应类型是“直接异戊二烯基转移（direct prenyl transfer）”。论文试图解决的核心难点在于，胍基通常以共振稳定的阳离子形式存在，化学上不利于直接作为常规亲核体参与酶促官能化，因此“如何在酶活性位点中激活胍基并实现选择性异戊二烯化”是明确的科学问题。摘要给出的机理线索是“双天冬氨酸夹持（two-aspartate clamp）”与“异戊二烯供体结合耦联的独特催化架构”，这意味着作者很可能结合了蛋白结构解析、活性位点突变、底物/供体结合分析以及体外酶学实验来建立催化模型。证据链大致分三层：第一层是 NosH 的生化功能鉴定，证明其确实能对游离胍基进行异戊二烯转移；第二层是结构与机理分析，解释为何这种通常难以直接官能化的底物在该酶中可被活化；第三层是基于这些特征开展序列/结构导向的家族挖掘，在细菌和植物中识别更大范围的同类酶，并通过体外产物生成和烟草异源表达验证植物酶与 galegine 生物合成的关系。对从事天然产物、酶工程、植物代谢或微生物合成生物学的读者，这篇论文的价值在于：它不仅报告一个新反应，还提供了可用于基因组挖掘和通路重建的判别特征。尤其是“植物酶在 Nicotiana benthamiana 中产 galegine”这一点，提示该工作可能把长期依赖推测的植物胍生物碱来源，推进到了可实验操控的酶学层面。需要核对的信息包括：NosH 的天然底物和异戊二烯供体具体是什么（如 DMAPP、GPP 或其他供体）；产物的连接位点与区域/立体选择性；双 Asp 位点是否通过去质子化、静电定位或过渡态稳定发挥作用；植物酶的底物谱是否仅限胍基还是可接受取代胍；家族规模“large family”的定量范围；以及 galegine 体外/体内生成的产率、是否需要辅酶或上游底物补料等。由于目前只有摘要，不能判断结构分辨率、动力学参数、突变效应大小、系统发育覆盖度和在 planta 产量是否足以支持广泛生物合成推断，这些都需要读正文和图表确认。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The underlying mechanism of the thermal Hall effect generated by phonons in a variety of insulators is yet to be identified. In this work, we report on a sizable thermal Hall conductivity in nickel phosphorus trisulfide (NiPS 3 ), a van der Waals stack of honeycomb layers with a zigzag antiferromagnetic order. The longitudinal (κ aa ) and the transverse (κ ab ) thermal conductivities peak at the same temperature, and the thermal Hall angle, at this peak, respects a previously identified bound. The amplitude of κ ab is extremely sensitive to the amplitude of magnetization along the b axis but is not correlated with the phonon mean free path, which points to an intrinsic origin.</p>
+          <p>Guanidine exists almost exclusively as a resonance-stabilized cation, making its direct enzymatic functionalization challenging. We identified the cyanobacterial enzyme NosH, which catalyzes direct prenyl transfer to free guanidine. Structural and mechanistic analyses revealed guanidine activation by a two-aspartate clamp coupled to prenyl-donor binding through a distinct catalytic architecture. Guided by these features, we identified a large family of guanidine prenyltransferases across bacteria and plants. Plant enzymes produced guanidine alkaloids such as galegine in vitro and heterologous expression of a plant ortholog in Nicotiana benthamiana produced galegine in planta, providing a direct enzymatic link to plant-specialized metabolism.</p>
         </details>
         
         </div>
@@ -662,19 +652,19 @@
       <div class="paper-meta">
         <span class="source-pill">Nature</span>
         <span>2026-10-21</span>
-        <span>Score 42.0</span>
+        <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11175-2">Functional architecture of the human insula</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Functional+architecture+of+the+human+insula&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11175-2%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Functional+architecture+of+the+human+insula%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Functional+architecture+of+the+human+insula&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11175-2%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Functional+architecture+of+the+human+insula%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Functional+architecture+of+the+human+insula&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11175-2%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Functional+architecture+of+the+human+insula%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11132-z">The proteome of Middle Pleistocene Xujiayao and common Denisovan morphology</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+The+proteome+of+Middle+Pleistocene+Xujiayao+and+common+Denisovan+morphology&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11132-z%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+The+proteome+of+Middle+Pleistocene+Xujiayao+and+common+Denisovan+morphology%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+The+proteome+of+Middle+Pleistocene+Xujiayao+and+common+Denisovan+morphology&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11132-z%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+The+proteome+of+Middle+Pleistocene+Xujiayao+and+common+Denisovan+morphology%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+The+proteome+of+Middle+Pleistocene+Xujiayao+and+common+Denisovan+morphology&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11132-z%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+The+proteome+of+Middle+Pleistocene+Xujiayao+and+common+Denisovan+morphology%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Julian Quabs、Sofia Pantis、Guanpeng Chen、Weichen Huang 等 14 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11175-2">10.1038/s41586-026-11175-2</a></div>
+      <div class="authors">Song Xing、Zhongyou Wu、Qingfeng Shao、Junyi Ge 等 14 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11132-z">10.1038/s41586-026-11132-z</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看聚焦“人类岛叶的功能架构”，核心任务应是刻画人类岛叶内部不同功能区及其组织原则。由于提供信息中摘要为空，目前只能依据题名、期刊与作者信息判断其可能涉及人脑功能分区、连接模式或跨任务功能映射，具体结论仍明显信息不足。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是提出或验证一个关于人类岛叶功能组织的系统性框架，例如更细粒度的功能分区、层级结构、与认知/情绪/内感受相关任务的对应关系，或结合多模态证据重建岛叶的功能架构。但在摘要缺失的情况下，任何具体贡献都需要以正文和图表核对。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦中国中更新世许家窑（Xujiayao）人类遗存的蛋白质组分析，并尝试将其与丹尼索瓦人（Denisovan）的形态学共性联系起来，以回答许家窑样本的系统发育归属或亲缘关系问题。由于未提供摘要和关键词，当前只能基于题名与元数据做有限解读，不能确认其具体样本、蛋白类型、年代测定和统计证据。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是：利用古蛋白质组学为许家窑中更新世人类化石提供分子层面的分类线索，并提出或强化“许家窑样本与丹尼索瓦人共享一组形态特征”的论点，从而把东亚中更新世人类化石、古分子证据与丹尼索瓦人形态重建联系起来。若题名直译无误，论文还可能在“如何定义common Denisovan morphology（共同/典型丹尼索瓦形态）”这一问题上提出新的比较框架。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -691,22 +681,22 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>40.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名推断，是“人类岛叶究竟如何在功能上组织起来”。更细一点，可能包括：岛叶是否存在稳定的功能子区；这些子区是否对应不同心理/生理任务；岛叶内部是否存在连续功能梯度或网络层级；其功能组织是否能统一解释既往关于显著性、内感受、疼痛和情绪加工的分散发现。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>在没有摘要的前提下，只能推测其方法路径。若是Nature上的“functional architecture”主题，常见设计包括：1）大样本功能影像，利用任务态和静息态数据做岛叶内部分区；2）连接组学分析，比较岛叶各子区与前扣带、额叶、感觉皮层、边缘系统等的耦合模式；3）梯度分析、聚类或降维，提取岛叶内部连续组织原则；4）若结合临床作者背景，可能加入颅内电极记录、直接电刺激或术中功能定位，以提供更高时空分辨率证据；5）可能将功能结果与解剖边界、细胞构筑或既有脑图谱对照。需要正文确认具体数据规模、任务范式、统计模型和验证策略。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>从题名和期刊定位看，最大亮点可能在于“系统性”而非单点发现，即试图给出一个可解释岛叶复杂功能的整体框架。如果论文确实整合了多模态数据，那么其价值会体现在：把传统上分散在疼痛、情绪、内感受、认知控制等领域的岛叶研究统一到同一组织模型中；提供更细粒度的人类特异性分区；为临床定位、癫痫手术、电刺激靶点选择或精神神经疾病研究提供结构化参考。若包含公开图谱或可复用ROI，其方法学价值会更高。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要和图1，确认论文到底是分区图谱、连接梯度还是颅内功能映射；2）记录样本来源、样本量、是否健康/临床、左右半球是否分开分析；3）查看作者是否提供岛叶ROI、表面图谱或代码；4）重点核对结果是否把岛叶划分为前/中/后部，及其分别对应哪些任务或网络；5）若你做相关研究，可把自己的岛叶坐标或ROI与该文图谱对照，评估是否能直接用于再分析或实验设计。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，可能是：许家窑中更新世人类化石在系统发育上应如何归属；在缺乏或难以获取古DNA的情况下，古蛋白质组能否为其与丹尼索瓦人的关系提供分子证据；以及是否存在一组可跨标本识别的“共同丹尼索瓦形态”，从而把东亚若干争议化石纳入同一比较框架。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于题名推测，方法上很可能结合了两条主线。第一条是古蛋白质组学：从许家窑化石，尤其可能是牙齿或骨组织中提取古蛋白，使用质谱进行肽段鉴定，重建可用于系统比较的蛋白序列，并与现代人、尼安德特人、丹尼索瓦人或其他古人类参考数据比较。第二条是形态学比较：围绕许家窑标本与已知丹尼索瓦化石的解剖特征进行对照，可能涉及牙冠形态、牙根结构、下颌或颅骨特征，并尝试总结所谓“common Denisovan morphology”。若论文达到Nature级别，通常还会包含年代背景、污染控制、系统树或聚类分析、以及形态与分子证据的一致性讨论。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，把中更新世东亚关键化石点位与古蛋白质组学结合，直接回应长期存在的分类争议。第二，不仅给出分子线索，还试图定义或验证丹尼索瓦人的共同形态，这对未来识别缺乏DNA的化石尤其重要。第三，如果许家窑样本确实被分子证据连接到丹尼索瓦谱系，那么其意义会超出单一遗址，可能影响对丹尼索瓦人时空分布、形态变异范围和东亚古人类演化格局的理解。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先获取摘要并核对作者实际声称的是“丹尼索瓦归属”“近缘关系”还是仅“共享形态特征”。第二，优先查看图1和结果部分，确认分析的是哪些许家窑标本、何种蛋白、覆盖度和系统比较对象。第三，记录文中对“common Denisovan morphology”的定义及其对应解剖特征列表。第四，把该文与既有许家窑、夏河、丹尼索瓦洞和其他东亚中更新世化石研究并列，做一个“分子证据—形态证据—年代证据”的对照表。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名推断，是“人类岛叶究竟如何在功能上组织起来”。更细一点，可能包括：岛叶是否存在稳定的功能子区；这些子区是否对应不同心理/生理任务；岛叶内部是否存在连续功能梯度或网络层级；其功能组织是否能统一解释既往关于显著性、内感受、疼痛和情绪加工的分散发现。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>在没有摘要的前提下，只能推测其方法路径。若是Nature上的“functional architecture”主题，常见设计包括：1）大样本功能影像，利用任务态和静息态数据做岛叶内部分区；2）连接组学分析，比较岛叶各子区与前扣带、额叶、感觉皮层、边缘系统等的耦合模式；3）梯度分析、聚类或降维，提取岛叶内部连续组织原则；4）若结合临床作者背景，可能加入颅内电极记录、直接电刺激或术中功能定位，以提供更高时空分辨率证据；5）可能将功能结果与解剖边界、细胞构筑或既有脑图谱对照。需要正文确认具体数据规模、任务范式、统计模型和验证策略。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>从题名和期刊定位看，最大亮点可能在于“系统性”而非单点发现，即试图给出一个可解释岛叶复杂功能的整体框架。如果论文确实整合了多模态数据，那么其价值会体现在：把传统上分散在疼痛、情绪、内感受、认知控制等领域的岛叶研究统一到同一组织模型中；提供更细粒度的人类特异性分区；为临床定位、癫痫手术、电刺激靶点选择或精神神经疾病研究提供结构化参考。若包含公开图谱或可复用ROI，其方法学价值会更高。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最主要局限不是论文本身，而是可用信息严重不足：摘要为空，无法确认研究设计、样本、数据模态、主要结果和统计强度。因此必须警惕基于题名过度解读。即便论文确实提出“功能架构”，也要注意几个常见边界：岛叶功能高度异质，任务依赖性强；临床颅内样本可能存在覆盖偏倚；fMRI分区可能受配准和信号质量影响；所谓“架构”可能是特定分析框架下的模型，而非唯一真实分区；左右岛叶、个体差异和跨任务稳定性都需要单独验证。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要和图1，确认论文到底是分区图谱、连接梯度还是颅内功能映射；2）记录样本来源、样本量、是否健康/临床、左右半球是否分开分析；3）查看作者是否提供岛叶ROI、表面图谱或代码；4）重点核对结果是否把岛叶划分为前/中/后部，及其分别对应哪些任务或网络；5）若你做相关研究，可把自己的岛叶坐标或ROI与该文图谱对照，评估是否能直接用于再分析或实验设计。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常明确，是“human insula（人类岛叶）”。岛叶通常与内感受、情绪、疼痛、显著性加工、自主神经调节、语言/社会认知等多类功能相关，因此“functional architecture”这一表述往往意味着作者试图回答：岛叶是否由多个功能子区构成，这些子区如何沿前后轴、背腹轴或皮层层级组织，以及它们与全脑网络和具体任务之间如何对应。题名使用“architecture”而非单一“activation”或“connectivity”，提示研究可能不是单一任务激活报告，而更可能是系统性组织研究，潜在方法包括功能磁共振成像任务范式、静息态功能连接、皮层电刺激/颅内电生理、病灶或术中记录、跨被试配准、聚类/梯度分析，甚至结合解剖与功能数据。作者名单中既有神经影像和脑图谱方向研究者，也有临床神经外科/颅内记录相关作者，这为“多模态证据”提供了一定线索，但不能据此断言。若你的研究方向涉及脑区分区、显著性网络、内感受、情绪神经科学、临床癫痫电生理或脑机接口，这篇论文值得优先关注，因为岛叶长期是功能复杂但边界难清的区域。当前最需要核对的信息包括：样本类型是健康被试还是临床受试者；数据模态是fMRI、iEEG、刺激还是多模态整合；功能架构是离散分区、连续梯度还是层级网络；是否给出可复用的人类岛叶图谱；是否区分左右半球；是否讨论与疼痛、味觉、内感受、情绪、语言等任务的映射；统计证据是否跨队列复现。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，可能是：许家窑中更新世人类化石在系统发育上应如何归属；在缺乏或难以获取古DNA的情况下，古蛋白质组能否为其与丹尼索瓦人的关系提供分子证据；以及是否存在一组可跨标本识别的“共同丹尼索瓦形态”，从而把东亚若干争议化石纳入同一比较框架。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>基于题名推测，方法上很可能结合了两条主线。第一条是古蛋白质组学：从许家窑化石，尤其可能是牙齿或骨组织中提取古蛋白，使用质谱进行肽段鉴定，重建可用于系统比较的蛋白序列，并与现代人、尼安德特人、丹尼索瓦人或其他古人类参考数据比较。第二条是形态学比较：围绕许家窑标本与已知丹尼索瓦化石的解剖特征进行对照，可能涉及牙冠形态、牙根结构、下颌或颅骨特征，并尝试总结所谓“common Denisovan morphology”。若论文达到Nature级别，通常还会包含年代背景、污染控制、系统树或聚类分析、以及形态与分子证据的一致性讨论。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，把中更新世东亚关键化石点位与古蛋白质组学结合，直接回应长期存在的分类争议。第二，不仅给出分子线索，还试图定义或验证丹尼索瓦人的共同形态，这对未来识别缺乏DNA的化石尤其重要。第三，如果许家窑样本确实被分子证据连接到丹尼索瓦谱系，那么其意义会超出单一遗址，可能影响对丹尼索瓦人时空分布、形态变异范围和东亚古人类演化格局的理解。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认论文究竟报告了什么层级的证据。需要警惕的边界包括：蛋白质组分辨率通常低于高质量古DNA，未必足以做精细谱系判定；“common Denisovan morphology”这一表述可能带有一定归纳性，需核查其样本基础是否足够广；许家窑遗址和标本本身可能存在年代、混杂或个体差异问题；如果分子数据覆盖有限，形态解释可能仍有多解性。因此在未看摘要、图表和方法前，不能把题名直接等同于已完全解决许家窑归属问题。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先获取摘要并核对作者实际声称的是“丹尼索瓦归属”“近缘关系”还是仅“共享形态特征”。第二，优先查看图1和结果部分，确认分析的是哪些许家窑标本、何种蛋白、覆盖度和系统比较对象。第三，记录文中对“common Denisovan morphology”的定义及其对应解剖特征列表。第四，把该文与既有许家窑、夏河、丹尼索瓦洞和其他东亚中更新世化石研究并列，做一个“分子证据—形态证据—年代证据”的对照表。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从现有元数据看，研究对象非常具体：一是“中更新世许家窑”人类遗存，二是“丹尼索瓦人共同形态”这一古人类学命题。题名中的“The proteome of Middle Pleistocene Xujiayao”提示作者很可能从许家窑化石中提取并鉴定了古蛋白，最常见的对象可能包括牙釉质蛋白或骨/牙中的结构蛋白，因为在中更新世时间尺度上DNA保存往往受限，而蛋白质组学可作为替代分子证据。题名后半句“and common Denisovan morphology”说明论文不只是报告蛋白序列，还试图把分子结果与形态学比较结合，可能涉及牙齿、下颌、颅骨或其他已知在丹尼索瓦研究中具有诊断意义的解剖特征。基于Nature期刊定位，这项工作很可能意在解决一个长期争议：许家窑人群究竟属于何种东亚古人类谱系，是否与丹尼索瓦人存在直接联系、近缘关系，或至少在形态上表现出可归入丹尼索瓦谱系的特征组合。可能的方法路径包括：对许家窑化石进行古蛋白提取、质谱鉴定、肽段序列比对、污染控制和系统发育分析；同时汇总已知丹尼索瓦化石的形态特征，与许家窑标本做定性或定量比较。证据线索主要来自题名中的两个关键词“proteome”和“common Denisovan morphology”，前者暗示分子证据，后者暗示形态归纳与比较框架。与科研读者的关系在于，这篇论文可能对东亚中更新世人类多样性、丹尼索瓦人的地理分布、以及“分子证据如何反向约束形态归属”提供重要案例。需要重点核对的信息包括：具体分析了哪些许家窑标本；蛋白保存质量和覆盖度如何；是否能达到区分丹尼索瓦、尼安德特人和其他古人类的分辨率；“common Denisovan morphology”是基于哪些已知丹尼索瓦化石定义的；形态比较是统计分析还是专家判读；年代框架是否直接测定还是沿用遗址既有年代。由于摘要为空，以上均属于基于题名的审慎推断，不能视为论文已证实的结果。</p></div>
           </div>
           
         </div>
@@ -719,19 +709,19 @@
       <div class="paper-meta">
         <span class="source-pill">Nature</span>
         <span>2026-10-21</span>
-        <span>Score 42.0</span>
+        <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11161-8">The anatomy of a personal health agent</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+The+anatomy+of+a+personal+health+agent&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11161-8%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+The+anatomy+of+a+personal+health+agent%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+The+anatomy+of+a+personal+health+agent&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11161-8%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+The+anatomy+of+a+personal+health+agent%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+The+anatomy+of+a+personal+health+agent&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11161-8%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+The+anatomy+of+a+personal+health+agent%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11152-9">Cold activates a BH2 metabolic network promoting longevity and proteostasis</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Cold+activates+a+BH2+metabolic+network+promoting+longevity+and+proteostasis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11152-9%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Cold+activates+a+BH2+metabolic+network+promoting+longevity+and+proteostasis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Cold+activates+a+BH2+metabolic+network+promoting+longevity+and+proteostasis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11152-9%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Cold+activates+a+BH2+metabolic+network+promoting+longevity+and+proteostasis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Cold+activates+a+BH2+metabolic+network+promoting+longevity+and+proteostasis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11152-9%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Cold+activates+a+BH2+metabolic+network+promoting+longevity+and+proteostasis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">A. Ali Heydari、Ken Gu、Vidya Srinivas、Hong Yu 等 40 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11161-8">10.1038/s41586-026-11161-8</a></div>
+      <div class="authors">Hyun Ju Lee、Cansu Doğan、Seda Koyuncu、Markus Wehrmann 等 17 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11152-9">10.1038/s41586-026-11152-9</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文围绕“个人健康代理”这一具体对象，提出了一个可对消费级可穿戴设备数据与医疗记录进行多模态推理的健康智能体，用于支持一般健康知识问答、个人数据解读、健康建议和症状评估四类用户任务。根据摘要，它的核心是由数据科学代理、健康领域专家代理和健康教练代理组成的多子代理系统，面向日常健康场景中的个体化支持。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能在于：第一，基于网页搜索、健康论坛查询以及用户和健康专家参与式研究，系统化定义了个人健康代理的四类关键用户旅程；第二，提出了一个面向个人健康支持的三子代理架构，将纵向可穿戴/病历数据分析、健康知识整合与行为教练式多轮交互分工实现；第三，强调把个体数据、上下文信息与群体统计结合起来，为数值型健康数据提供可解释的个体化解读；第四，展示了大语言模型健康代理从“回答问题”走向“持续陪伴、目标设定与进展跟踪”的产品化/系统化设计方向。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文基于秀丽隐杆线虫研究“适度低温为何能延寿并改善蛋白稳态”这一具体问题，提出一个由肌肉产生并跨组织传递的BH2-BH4代谢网络：低温上调CAT-4/GCH1，增加BH2生成，BH2在肠道和神经等远端组织经DHFR-1转化为BH4，进而通过PAH-1促进酪氨酸合成、延长寿命并抑制年龄相关蛋白聚集。摘要还提示作者将该机制外推到人细胞，认为BH2或酪氨酸补充可能具有改善蛋白毒性的潜力。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是把“低温延寿”从一般应激/转录调控现象，具体化为一个可运输、跨组织、多步骤的代谢信号轴：肌肉来源BH2作为储备与信号分子，远端组织通过DHFR-1再生BH4，BH4作为PAH-1辅因子驱动酪氨酸代谢，从而连接环境温度、组织间通讯、寿命调控和蛋白稳态维护。若摘要表述成立，论文还提供了一个重要的充分性证据：仅在肌肉提高BH2合成，即使在常温或较高温度下，也足以促进远端组织的长寿和抗蛋白聚集表型。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -748,35 +738,27 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>40.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何构建一个能够在日常而非纯临床场景中，为个体用户提供个性化健康支持的健康代理，并让它同时处理健康知识问答、个人健康数据解释、保健建议和症状评估这四类不同但相关的任务。更细一点说，作者关注的是大语言模型健康代理如何结合多模态个人数据与医学知识，跨越“信息回答”“数据解读”“行为支持”三种能力层次。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法路径大致分为两阶段。第一阶段是需求建模：分析网页搜索与健康论坛查询，并结合终端用户和健康专家的用户中心研究，抽取高频、真实且有代表性的健康任务，最终形成四类用户旅程。第二阶段是系统实现：构建三个专门子代理。数据科学代理处理纵向可穿戴设备数据和医疗记录，并用群体统计做数值上下文化；健康领域专家代理把个人数据、上下文因素与健康知识结合，生成个体化解释；健康教练代理负责多轮对话、目标设定、心理策略应用和进展跟踪。整体上像是一个多代理协作框架，底层可能由大语言模型承担推理与生成，但摘要未给出具体模型、训练方式或工具调用细节。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，任务定义来自真实用户查询与用户研究，而不是研究者主观设定，这使系统设计更贴近日常健康需求。其二，三子代理分工明确，把“数据分析”“医学解释”“行为教练”拆开，符合健康支持任务的能力结构，也有利于后续模块化评估。其三，摘要明确提到纵向数据、群体统计、上下文信息和多轮目标跟踪，说明系统试图解决个人健康场景中最关键的难点：不仅回答是否正常，还解释相对变化、个体差异和后续行动。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，获取论文全文后先看系统总览图，确认三子代理的输入、输出和交互流程；第二，查四类用户旅程的定义表或示例，判断是否覆盖你的研究/产品场景；第三，重点找评测部分，记录每类任务的数据集、标注者、基线、指标和失败案例；第四，专门核对症状评估与健康教练模块的安全机制、心理策略和长期追踪证据；第五，如果你做相关研究，可先复用其任务分解框架，把自己的系统映射到“数据分析—领域解释—行为支持”三层结构中做对照。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文聚焦的具体科学问题是：适度低温如何在多组织层面被转译为寿命延长和蛋白稳态改善？更细化地说，作者在寻找一种可定义的代谢信号，解释低温如何从一个外界环境变量，变成肌肉到肠道/神经的系统性抗衰老与抗蛋白聚集效应。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：1）在线虫中比较常温与低温条件下CAT-4/GCH1及相关代谢物变化；2）通过遗传敲除、敲低、过表达或组织特异救援，定位CAT-4、DHFR-1、PAH-1分别在哪些组织产生作用；3）定量BH2/BH4及酪氨酸水平，建立代谢通量或因果链；4）用寿命测定和健康寿命指标评估低温或代谢操纵的功能后果；5）使用疾病相关蛋白聚集模型和神经功能读出，测试该通路对蛋白毒性和神经衰老的影响；6）在人细胞中补充BH2或酪氨酸，观察蛋白毒性/聚集相关表型是否改善，以支持跨物种保守性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是机制链条具体且具有组织间分工：肌肉负责生成可运输BH2，远端组织负责通过DHFR-1再生BH4并执行功能，这比单组织、单基因解释更接近系统性生理调控。第二个亮点是摘要声称存在“充分性”证据，即仅增强肌肉BH2合成就能在非低温条件下复制部分保护效应，这对因果推断和干预价值都很关键。第三个亮点是把寿命、蛋白聚集和神经功能三个层面串联起来，并且给出人细胞线索，使该工作不仅是基础衰老机制，也可能与蛋白错误折叠疾病相关。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）优先查正文或图表中关于“肌肉特异CAT-4上调是否足够延寿”和“DHFR-1/PAH-1是否必需”的关键遗传证据；2）记录低温、常温和高温的具体温度设定及寿命效应量；3）核对BH2与BH4是否有组织分辨的定量或示踪数据；4）查看蛋白聚集模型具体是Aβ、polyQ、α-syn还是其他，并记下神经功能读出；5）补全摘要截断部分，确认人细胞实验到底支持到什么程度。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何构建一个能够在日常而非纯临床场景中，为个体用户提供个性化健康支持的健康代理，并让它同时处理健康知识问答、个人健康数据解释、保健建议和症状评估这四类不同但相关的任务。更细一点说，作者关注的是大语言模型健康代理如何结合多模态个人数据与医学知识，跨越“信息回答”“数据解读”“行为支持”三种能力层次。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法路径大致分为两阶段。第一阶段是需求建模：分析网页搜索与健康论坛查询，并结合终端用户和健康专家的用户中心研究，抽取高频、真实且有代表性的健康任务，最终形成四类用户旅程。第二阶段是系统实现：构建三个专门子代理。数据科学代理处理纵向可穿戴设备数据和医疗记录，并用群体统计做数值上下文化；健康领域专家代理把个人数据、上下文因素与健康知识结合，生成个体化解释；健康教练代理负责多轮对话、目标设定、心理策略应用和进展跟踪。整体上像是一个多代理协作框架，底层可能由大语言模型承担推理与生成，但摘要未给出具体模型、训练方式或工具调用细节。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，任务定义来自真实用户查询与用户研究，而不是研究者主观设定，这使系统设计更贴近日常健康需求。其二，三子代理分工明确，把“数据分析”“医学解释”“行为教练”拆开，符合健康支持任务的能力结构，也有利于后续模块化评估。其三，摘要明确提到纵向数据、群体统计、上下文信息和多轮目标跟踪，说明系统试图解决个人健康场景中最关键的难点：不仅回答是否正常，还解释相对变化、个体差异和后续行动。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，主要局限是证据不足。首先，看不到具体实验结果，无法判断系统在四类任务上的性能是否均衡，尤其症状评估是否达到可接受安全水平。其次，消费级可穿戴数据质量有限，若用于个体化建议，可能受设备误差、缺失值和用户依从性影响。再次，群体统计若来源不均衡，可能导致对不同年龄、性别、种族或基础疾病人群的解释偏差。最后，摘要没有说明临床责任边界、风险分级、人工升级机制和隐私合规设计，而这些对健康代理尤其关键。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，获取论文全文后先看系统总览图，确认三子代理的输入、输出和交互流程；第二，查四类用户旅程的定义表或示例，判断是否覆盖你的研究/产品场景；第三，重点找评测部分，记录每类任务的数据集、标注者、基线、指标和失败案例；第四，专门核对症状评估与健康教练模块的安全机制、心理策略和长期追踪证据；第五，如果你做相关研究，可先复用其任务分解框架，把自己的系统映射到“数据分析—领域解释—行为支持”三层结构中做对照。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、期刊、摘要和元数据，这项研究的对象不是单一医学预测模型，而是一个面向日常健康管理的“personal health agent”系统。摘要给出的任务边界较清楚：它希望覆盖四类用户旅程，即一般健康知识、个人数据解释、健康/保健建议、以及症状评估。这说明作者并非只做医疗问答，而是试图把消费级健康数据、医疗记录、健康知识和行为改变支持整合到一个统一代理中。
-
-方法线索也较具体。作者先通过分析网页搜索和健康论坛问题，结合终端用户与健康专家的用户中心研究，归纳需求空间；随后据此设计三个专门子代理。数据科学代理负责分析纵向的可穿戴设备数据和医疗数据，并引入群体统计作为参照，这意味着系统可能不仅输出原始数值趋势，还会做相对基线、分布位置、异常性或变化幅度的解释。健康领域专家代理负责把个人数据、上下文和健康知识结合，生成个体化洞见，说明其重点在知识整合与情境化推理。健康教练代理则负责综合前两者输出，支持多轮对话、目标设定、应用特定心理学策略并追踪进展，显示其目标不仅是一次性回答，还包括持续行为干预。
-
-从证据线索看，摘要强调“developed a comprehensive personal health agent”，但当前提供的信息没有包含具体评测设置、样本规模、对照基线、安全性审查、临床验证或用户研究结果，因此不能判断系统在准确性、可用性、风险控制和长期效果上的真实表现。尤其“症状评估”涉及更高风险场景，读者需要重点核对是否有分诊边界、升级到人工医生的规则、幻觉控制、风险提示和不确定性表达机制。
-
-与科研或产品方向的关系上，这篇论文更像是健康AI系统设计与评估的综合工作，而非单点算法论文。它对从事医疗大模型、数字健康、可穿戴分析、人机交互、行为医学和多代理系统的研究者都有参考价值：一方面提供了需求分层和任务分解框架，另一方面展示了如何把数据分析、医学知识推理和教练式交互拆分为不同能力模块。
-
-需要核对的信息包括：1）多模态输入具体包含哪些消费级设备和哪些病历字段；2）群体统计来自何种参考人群，是否存在偏倚；3）三子代理之间如何通信、仲裁和追踪状态；4）症状评估是否经过医生标注或临床基准测试；5）健康教练所用“specified psychological strategies”具体是哪些行为改变技术；6）是否报告了真实用户长期随访、依从性或健康结局改善；7）隐私、安全、合规和责任边界如何处理。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文聚焦的具体科学问题是：适度低温如何在多组织层面被转译为寿命延长和蛋白稳态改善？更细化地说，作者在寻找一种可定义的代谢信号，解释低温如何从一个外界环境变量，变成肌肉到肠道/神经的系统性抗衰老与抗蛋白聚集效应。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：1）在线虫中比较常温与低温条件下CAT-4/GCH1及相关代谢物变化；2）通过遗传敲除、敲低、过表达或组织特异救援，定位CAT-4、DHFR-1、PAH-1分别在哪些组织产生作用；3）定量BH2/BH4及酪氨酸水平，建立代谢通量或因果链；4）用寿命测定和健康寿命指标评估低温或代谢操纵的功能后果；5）使用疾病相关蛋白聚集模型和神经功能读出，测试该通路对蛋白毒性和神经衰老的影响；6）在人细胞中补充BH2或酪氨酸，观察蛋白毒性/聚集相关表型是否改善，以支持跨物种保守性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是机制链条具体且具有组织间分工：肌肉负责生成可运输BH2，远端组织负责通过DHFR-1再生BH4并执行功能，这比单组织、单基因解释更接近系统性生理调控。第二个亮点是摘要声称存在“充分性”证据，即仅增强肌肉BH2合成就能在非低温条件下复制部分保护效应，这对因果推断和干预价值都很关键。第三个亮点是把寿命、蛋白聚集和神经功能三个层面串联起来，并且给出人细胞线索，使该工作不仅是基础衰老机制，也可能与蛋白错误折叠疾病相关。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的边界包括：1）低温延寿常伴随发育速度、摄食、繁殖和活动变化，摘要未说明如何排除这些混杂；2）BH2/BH4在不同组织中的真实运输与转化证据强度未知，需看是否有直接示踪而非仅遗传推断；3）PAH-1-酪氨酸是否为主要下游通路，还是众多BH4依赖反应中的一个，摘要未给出排他性比较；4）人细胞结果目前只看到“BH2或酪氨酸……”的截断信息，尚不清楚模型类型、效应大小和临床相关性；5）线虫中的温度适应机制能否外推到哺乳动物个体层面，仍需谨慎。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）优先查正文或图表中关于“肌肉特异CAT-4上调是否足够延寿”和“DHFR-1/PAH-1是否必需”的关键遗传证据；2）记录低温、常温和高温的具体温度设定及寿命效应量；3）核对BH2与BH4是否有组织分辨的定量或示踪数据；4）查看蛋白聚集模型具体是Aβ、polyQ、α-syn还是其他，并记下神经功能读出；5）补全摘要截断部分，确认人细胞实验到底支持到什么程度。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可见，研究对象主要是秀丽隐杆线虫的温度应答、衰老和蛋白稳态系统，重点分子包括CAT-4（人同源GCH1）、BH2、BH4、DHFR-1、PAH-1以及下游酪氨酸合成。论文试图回答的不是“低温是否延寿”这一已知现象，而是“低温如何通过可定义的代谢物和组织间通讯机制实现延寿与抗蛋白毒性”。证据链在线索上较完整：第一步，低温上调BH4合成通路起始酶CAT-4/GCH1；第二步，肌肉产生BH2，且BH2可运输到肠道和神经等远端组织；第三步，远端组织依赖DHFR-1将BH2转为BH4；第四步，BH4作为PAH-1必需辅因子促进苯丙氨酸向酪氨酸转化；第五步，这一代谢后果与寿命延长、疾病相关蛋白聚集减少和神经功能保护相联系。摘要还强调“肌肉特异性提高BH2合成足够产生系统性效应”，这意味着作者可能做了组织特异表达、组织特异救援或代谢操纵实验，以区分产生组织与作用组织。另一个值得注意的点是，BH2被定义为“可运输的BH4生物活性储备库”，这比传统只把BH4视为局部辅因子的框架更进一步，提出了代谢物在体内分工：BH2偏向运输/储备，BH4偏向局部执行功能。方法上，虽然摘要未列出具体技术，但大概率涉及温度切换寿命实验、组织特异遗传操作、代谢物定量、蛋白聚集模型、神经功能读出，以及在人细胞中的补充处理实验。对做衰老、代谢、神经退行性疾病或跨组织通讯研究的读者，这篇文章的价值在于它把环境因子、代谢辅因子和蛋白毒性联系到同一条可干预通路上；对转化方向，GCH1/BH2/BH4/酪氨酸轴可能成为药理或营养干预候选。但基于当前仅有摘要，仍需核对若干关键信息：寿命效应量大小、不同温度条件的具体设置、BH2与BH4的定量和组织分布证据、DHFR-1与PAH-1遗传依赖性是否充分、蛋白聚集模型种类、在人细胞中的具体疾病模型与效应强度，以及是否存在发育、摄食、活动或生殖等混杂因素。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Abstract Large language models are enabling a new generation of health agents, yet their ability to address the diverse needs of individuals in everyday health settings remains underexplored 1,2 . Here we developed a comprehensive personal health agent that reasons over multimodal data from consumer wellness devices and medical records to provide personalized health support. Through analysis of web search and health forum queries, together with user-centred research involving end users and health experts, we identified four key user journeys: general health knowledge, personal data interpretation, wellness advice, and symptom assessment. These journeys informed three specialist sub-agents: (1) a data science agent that analyses longitudinal wearable and medical data, incorporating population-level statistics to contextualize numerical insights; (2) a health domain expert agent that integrates personal and contextual data with health knowledge to generate personalized insights; and (3) a health coach agent that synthesizes insights, supports multi-turn interaction and goal setting, applies specified psychological strategies and tracks progress. We integrated these capabilities in the personal health agent, an open-source multi-agent framework for dynamic, personalized health interactions. We evaluated the sub-agents and full system across 11 benchmark tasks using automated and human evaluation, with more than 7,000 annotations and 1,350 h of effort from health experts and end users. This represents the most comprehensive evaluation of a personal health agent thus far and provides a concrete foundation for improving access to high-quality personalized health support more broadly.</p>
+          <p>Abstract Moderately cold temperatures extend lifespan and promote health across species 1–3 , yet the molecular mechanisms underlying these benefits remain unclear. Here we define a metabolite-driven, multi-tissue signalling system that links cold temperature to enhanced longevity and proteostasis in Caenorhabditis elegans . Cold temperature upregulates the biopterin-synthesis enzyme CAT-4 (GCH1 in humans), increasing production of dihydrobiopterin (BH2), a transportable reservoir for the bioactive cofactor tetrahydrobiopterin (BH4). BH2 is produced in muscle and transported to distal tissues, including the intestine and neurons, where it is converted into BH4 by the salvage enzyme DHFR-1. BH4 functions as an essential cofactor for phenylalanine hydroxylase PAH-1, promoting tyrosine synthesis and extending lifespan. This BH2–BH4 axis also prevents disease-related protein aggregation and subsequent neuronal dysfunction during ageing. Importantly, increasing BH2 synthesis specifically in muscle is sufficient to promote longevity and suppress pathological protein aggregation in distal tissues, even at normal or elevated temperatures. In human cells, BH2 or tyrosine supplementation reduces aggregation of polyQ-expanded proteins associated with Huntington’s disease, as well as mutant variants of TDP-43 and FUS that cause amyotrophic lateral sclerosis. Together, these findings identify BH2 as a cold-induced metabolite of which the synthesis, intertissue transport and conversion into bioactive BH4 preserve organism-wide proteostasis and extend lifespan.</p>
         </details>
         
         </div>
@@ -789,19 +771,19 @@
       <div class="paper-meta">
         <span class="source-pill">Nature</span>
         <span>2026-10-21</span>
-        <span>Score 42.0</span>
+        <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11188-x">WEE1 opposes APC/CCDH1 activity to promote S phase entry</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+WEE1+opposes+APC%2FCCDH1+activity+to+promote+S+phase+entry&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11188-x%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+WEE1+opposes+APC%2FCCDH1+activity+to+promote+S+phase+entry%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+WEE1+opposes+APC%2FCCDH1+activity+to+promote+S+phase+entry&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11188-x%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+WEE1+opposes+APC%2FCCDH1+activity+to+promote+S+phase+entry%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+WEE1+opposes+APC%2FCCDH1+activity+to+promote+S+phase+entry&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11188-x%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+WEE1+opposes+APC%2FCCDH1+activity+to+promote+S+phase+entry%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11207-x">A single archaeon couples long-chain fatty acid oxidation to methanogenesis</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+single+archaeon+couples+long-chain+fatty+acid+oxidation+to+methanogenesis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11207-x%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+A+single+archaeon+couples+long-chain+fatty+acid+oxidation+to+methanogenesis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+single+archaeon+couples+long-chain+fatty+acid+oxidation+to+methanogenesis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11207-x%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+A+single+archaeon+couples+long-chain+fatty+acid+oxidation+to+methanogenesis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+single+archaeon+couples+long-chain+fatty+acid+oxidation+to+methanogenesis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11207-x%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+A+single+archaeon+couples+long-chain+fatty+acid+oxidation+to+methanogenesis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Luc-Alban Vuillemenot、Lucas G. Morales、Calin-Mihai Dragoi、Betheney R. Pennycook 等 20 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11188-x">10.1038/s41586-026-11188-x</a></div>
+      <div class="authors">Yue Yi、Zuorong Cao、Kejia Wu、Hengwu Ding 等 12 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11207-x">10.1038/s41586-026-11207-x</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该研究围绕细胞周期调控因子WEE1在G0/G1到S期进入过程中的作用展开，提出WEE1不仅通过经典的CDK抑制参与G2/M检查点，还通过磷酸化CDH1（FZR1）拮抗APC/CCDH1活性，从而促进细胞从静息态重新进入细胞周期并启动S期。摘要还指向一个具体机制链：WEE1功能缺失会导致G1/S转换延迟、S期中p21异常积累以及p21依赖的G2阻滞，这可能解释WEE1抑制剂在TP53野生型肿瘤中的活性与毒性。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是提出并初步建立了WEE1的一个非经典功能框架：在G0/G1阶段，WEE1通过直接调控APC/CCDH1复合体辅因子CDH1的磷酸化状态，促进细胞周期再进入和S期启动，而不仅仅是作为G2/M期CDK抑制因子。进一步的潜在贡献是把WEE1抑制剂的药理效应与APC/CCDH1-p21轴联系起来，为解释其在TP53野生型肿瘤中的疗效和高毒性提供机制线索，并提示APC/CCDH1或p21状态可能影响WEE1抑制敏感性。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦“单个古菌是否能够将长链脂肪酸氧化与产甲烷过程直接偶联”这一具体代谢任务，核心对象是一个具备该能力的古菌。由于提供信息中摘要为空，目前只能确认研究主题指向长链脂肪酸降解与甲烷生成之间的新型代谢耦联，无法据此判断其机制细节和证据强度。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是报告并表征了一个单一古菌，其代谢能力突破了以往对长链脂肪酸厌氧降解通常依赖微生物共营养体系的认识，提出或证明该古菌可独立完成长链脂肪酸氧化并与产甲烷耦联。这一发现若被充分证实，将直接影响对厌氧碳流、甲烷生成生态位以及古菌代谢多样性的理解。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -818,37 +800,24 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>40.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：WEE1除了作为G2/M检查点中的CDK抑制因子外，是否还在G0/G1到S期进入过程中承担关键功能；如果是，这一功能是否能够解释WEE1抑制剂在TP53野生型肿瘤中的活性以及临床上观察到的高毒性。更细化地说，作者在问WEE1是否通过调控APC/CCDH1及其辅因子CDH1/FZR1来控制细胞周期再进入，以及这一过程如何连接到p21积累和后续G2阻滞。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：1）建立细胞静息（G0）后再刺激进入细胞周期的实验体系，比较正常与WEE1失活条件下的S期进入时间；2）使用急性WEE1抑制剂、RNA干扰、基因敲除或功能缺失突变来扰动WEE1；3）通过流式细胞术、EdU/BrdU掺入、DNA含量分析和细胞周期标志蛋白检测评估G1/S转换和G2阻滞；4）通过免疫印迹、免疫沉淀、APC/C结合实验或泛素化相关读出评估APC/CCDH1活性；5）通过体外激酶实验、磷酸化位点突变和可能的质谱鉴定证明WEE1直接磷酸化CDH1/FZR1关键残基；6）通过降低APC/CCDH1或p21表达进行遗传互作实验，测试其对急性WEE1抑制敏感性的影响。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点首先在于机制具体：不是笼统地说WEE1有“未知功能”，而是把新功能定位到CDH1/FZR1和APC/CCDH1这一明确轴线上。其次，摘要呈现出较完整的层级证据结构，从分子事件（CDH1磷酸化）到复合体功能（APC/CCDH1活性）再到细胞表型（G1/S延迟、S期p21积累、p21依赖G2阻滞），逻辑链较强。第三，研究问题具有明显转化意义，因为它直接回应了WEE1抑制剂为何在TP53野生型背景也有效、且为何毒性较高这一临床困惑。第四，如果文中确实展示了APC/CCDH1或p21降低会改变WEE1抑制敏感性，那么这为联合治疗设计和生物标志物开发提供了可操作方向。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）优先获取摘要完整版本和正文图1-3，确认WEE1作用发生的细胞周期阶段、CDH1具体磷酸化位点以及APC/CCDH1活性读出；2）记录一个核心因果链供后续阅读核对：WEE1失活→APC/CCDH1持续活跃→G1/S进入延迟→S期p21异常积累→p21依赖G2阻滞；3）查正文是否区分了药物抑制与遗传缺失的表型一致性；4）重点看是否有TP53野生型与突变型、正常细胞与肿瘤细胞的对照；5）如果你的研究涉及WEE1抑制剂，可立即把APC/CCDH1状态、FZR1/CDH1表达和p21水平加入候选分层指标清单。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题很可能是：在厌氧环境中，长链脂肪酸的氧化是否必须依赖跨物种协作，还是存在单一古菌能够独立完成底物降解并将电子流和碳流耦联到甲烷生成；进一步的问题可能包括这种能力的代谢机制、系统发育归属和生态意义。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从Nature论文常见配置和题名推测，作者可能结合了厌氧富集/分离培养、底物利用实验、甲烷产量监测、16S rRNA或宏基因组/单细胞基因组分析、完整基因组组装与代谢通路注释，以及同位素示踪来证明底物去向。若要支撑“单一古菌”这一强结论，还应看到纯度验证、显微镜观察、FISH、培养转接稳定性、抗生素或稀释至灭绝实验，甚至可能有转录组或蛋白组来支持脂肪酸氧化与甲烷生成通路同时活跃。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是题名所暗示的概念突破：把长链脂肪酸氧化和产甲烷这两个通常分属不同功能群或不同代谢阶段的过程统一到一个古菌中。如果证据充分，这将显著提升我们对古菌代谢可塑性和厌氧食物网组织方式的认识。另一个潜在亮点是应用价值：长链脂肪酸是厌氧消化和有机废弃物处理中的关键抑制性/能量性底物，若存在可直接利用它们并产甲烷的古菌，可能影响生物反应器设计、群落调控和甲烷排放预测。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，获取摘要并优先查看题目对应的摘要首句和结论句，确认研究对象与主张边界；第二，直接查主图中是否有培养纯度证据、底物消耗-甲烷生成曲线和代谢通路图；第三，记录作者用于证明“单一古菌”的证据类型；第四，核对被测试的长链脂肪酸种类、产甲烷计量关系和是否使用同位素示踪；第五，若与你的研究相关，建立一个对照表，把该古菌与已知合成营养型脂肪酸降解体系逐项比较。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：WEE1除了作为G2/M检查点中的CDK抑制因子外，是否还在G0/G1到S期进入过程中承担关键功能；如果是，这一功能是否能够解释WEE1抑制剂在TP53野生型肿瘤中的活性以及临床上观察到的高毒性。更细化地说，作者在问WEE1是否通过调控APC/CCDH1及其辅因子CDH1/FZR1来控制细胞周期再进入，以及这一过程如何连接到p21积累和后续G2阻滞。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：1）建立细胞静息（G0）后再刺激进入细胞周期的实验体系，比较正常与WEE1失活条件下的S期进入时间；2）使用急性WEE1抑制剂、RNA干扰、基因敲除或功能缺失突变来扰动WEE1；3）通过流式细胞术、EdU/BrdU掺入、DNA含量分析和细胞周期标志蛋白检测评估G1/S转换和G2阻滞；4）通过免疫印迹、免疫沉淀、APC/C结合实验或泛素化相关读出评估APC/CCDH1活性；5）通过体外激酶实验、磷酸化位点突变和可能的质谱鉴定证明WEE1直接磷酸化CDH1/FZR1关键残基；6）通过降低APC/CCDH1或p21表达进行遗传互作实验，测试其对急性WEE1抑制敏感性的影响。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点首先在于机制具体：不是笼统地说WEE1有“未知功能”，而是把新功能定位到CDH1/FZR1和APC/CCDH1这一明确轴线上。其次，摘要呈现出较完整的层级证据结构，从分子事件（CDH1磷酸化）到复合体功能（APC/CCDH1活性）再到细胞表型（G1/S延迟、S期p21积累、p21依赖G2阻滞），逻辑链较强。第三，研究问题具有明显转化意义，因为它直接回应了WEE1抑制剂为何在TP53野生型背景也有效、且为何毒性较高这一临床困惑。第四，如果文中确实展示了APC/CCDH1或p21降低会改变WEE1抑制敏感性，那么这为联合治疗设计和生物标志物开发提供了可操作方向。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，主要局限是信息不完整。第一，不清楚实验系统范围，若主要基于少数细胞系，则机制普适性和组织特异性仍待验证。第二，不清楚WEE1对CDH1的磷酸化是否为直接且主要机制，还是与CDK网络交织的间接效应之一。第三，摘要没有给出定量信息，例如S期进入延迟幅度、p21积累程度、敏感性变化大小，因此难以判断效应强弱。第四，临床相关性尚未明确，不知道是否分析了患者样本、药物反应数据或体内模型。第五，末尾内容被截断，可能遗漏了对正常细胞毒性、肿瘤选择性或两条通路协同关系的关键限定。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）优先获取摘要完整版本和正文图1-3，确认WEE1作用发生的细胞周期阶段、CDH1具体磷酸化位点以及APC/CCDH1活性读出；2）记录一个核心因果链供后续阅读核对：WEE1失活→APC/CCDH1持续活跃→G1/S进入延迟→S期p21异常积累→p21依赖G2阻滞；3）查正文是否区分了药物抑制与遗传缺失的表型一致性；4）重点看是否有TP53野生型与突变型、正常细胞与肿瘤细胞的对照；5）如果你的研究涉及WEE1抑制剂，可立即把APC/CCDH1状态、FZR1/CDH1表达和p21水平加入候选分层指标清单。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：WEE1、CDH1/FZR1、APC/CCDH1、p21以及细胞从G0退出后进入G1/S和G2阶段的动态。论文试图解决的不是WEE1经典的“阻止有丝分裂进入”问题，而是一个更早期的细胞周期问题：为什么抑制WEE1会在并非完全依赖G2检查点的背景下仍然产生显著生物学效应和毒性。摘要给出的答案是，WEE1在G0/G1阶段就已发挥作用，它通过磷酸化CDH1上介导其与APC/C相互作用的关键位点，抑制APC/CCDH1活性，从而允许细胞周期蛋白和其他S期进入所需因子积累，推动细胞重新进入增殖状态。
-
-从可能方法推断，这项工作大概率结合了细胞同步化或静息诱导/再刺激体系，用于观察细胞从G0重新进入细胞周期的过程；并通过急性WEE1抑制、WEE1功能缺失或敲低/敲除来比较G1/S进入时间、S期比例和G2阻滞。由于摘要明确提到“WEE1 phosphorylates CDH1 at key residues”，很可能包含体外激酶实验、磷酸化位点鉴定、磷酸化缺失/模拟突变体、以及CDH1与APC/C结合能力检测。关于功能后果，摘要中的“delayed S phase entry”“impaired G1/S transition”“abnormal S phase accumulation of p21”“p21-dependent G2 arrest”提示作者可能使用了流式细胞术、EdU/BrdU掺入、免疫印迹、免疫沉淀和遗传互作分析。最后一句提到降低APC/CCDH1或p21表达会增强对急性WEE1抑制的敏感性，说明文中可能做了联合遗传扰动或药理学敏感性实验，甚至可能延伸到肿瘤细胞背景。
-
-证据线索方面，摘要已经给出一条较完整的因果链：WEE1在G0/G1期抑制APC/CCDH1；若WEE1失活，则APC/CCDH1活性偏高，导致G1/S所需底物不能正常积累，S期进入延迟；同时p21在S期异常积累，最终触发p21依赖的G2阻滞。这里最值得科研读者关注的是两个层面。第一，WEE1与APC/CCDH1之间是直接酶-底物关系，而不是仅通过CDK活性间接影响。第二，WEE1抑制的细胞命运并不只由复制压力或过早进入有丝分裂解释，还可能包含“无法正确关闭APC/CCDH1并完成G1/S程序”这一前置缺陷。
-
-与潜在研究方向的关系上，如果读者关注细胞周期、肿瘤治疗、合成致死或药物毒性，这篇论文的价值在于重构了WEE1抑制剂作用图谱。对基础研究者，它提示在分析WEE1表型时应把观察窗口前移到G0/G1和细胞周期再进入，而不是只盯住G2/M。对转化研究者，它提示TP53状态可能不足以预测WEE1抑制剂反应，还需要考虑APC/CCDH1活性、CDH1调控状态和p21通路。对药理和生物标志物研究者，摘要暗示APC/CCDH1或p21表达/功能可能成为联合治疗或毒性分层的候选指标。
-
-需要核对的信息也很多。首先，摘要被截断，末尾“both pathwa ...”说明还有关键结论缺失，可能涉及两条通路在肿瘤和正常组织中的不同作用、临床相关性或联合治疗建议。其次，尚不清楚研究主要使用的是非转化细胞、肿瘤细胞、类器官还是动物模型，因此对生理普适性和临床外推需谨慎。第三，虽然摘要说WEE1磷酸化CDH1关键位点，但具体位点、是否与已知CDK位点重叠、以及WEE1对CDH1的作用是否独立于CDK活性，都需要看正文和图表确认。第四，所谓“降低APC/CCDH1或p21表达使细胞更敏感于急性WEE1抑制”在逻辑上提示这些通路可能既参与耐受也参与毒性，但具体是增强细胞死亡、复制灾难还是其他终点，摘要未说明。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题很可能是：在厌氧环境中，长链脂肪酸的氧化是否必须依赖跨物种协作，还是存在单一古菌能够独立完成底物降解并将电子流和碳流耦联到甲烷生成；进一步的问题可能包括这种能力的代谢机制、系统发育归属和生态意义。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从Nature论文常见配置和题名推测，作者可能结合了厌氧富集/分离培养、底物利用实验、甲烷产量监测、16S rRNA或宏基因组/单细胞基因组分析、完整基因组组装与代谢通路注释，以及同位素示踪来证明底物去向。若要支撑“单一古菌”这一强结论，还应看到纯度验证、显微镜观察、FISH、培养转接稳定性、抗生素或稀释至灭绝实验，甚至可能有转录组或蛋白组来支持脂肪酸氧化与甲烷生成通路同时活跃。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是题名所暗示的概念突破：把长链脂肪酸氧化和产甲烷这两个通常分属不同功能群或不同代谢阶段的过程统一到一个古菌中。如果证据充分，这将显著提升我们对古菌代谢可塑性和厌氧食物网组织方式的认识。另一个潜在亮点是应用价值：长链脂肪酸是厌氧消化和有机废弃物处理中的关键抑制性/能量性底物，若存在可直接利用它们并产甲烷的古菌，可能影响生物反应器设计、群落调控和甲烷排放预测。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大局限是摘要为空，无法确认研究对象、实验体系、底物范围、证据链完整性和统计稳健性。仅凭题名不能排除若干风险：所谓“single archaeon”可能基于高质量基因组推断而非严格纯培养；“couples”可能表示代谢网络层面的关联而非直接生化闭环；长链脂肪酸氧化的关键步骤是否完整、是否存在未检出的伴生细菌、甲烷生成是否由同一细胞完成，都需要正文和图表验证。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，获取摘要并优先查看题目对应的摘要首句和结论句，确认研究对象与主张边界；第二，直接查主图中是否有培养纯度证据、底物消耗-甲烷生成曲线和代谢通路图；第三，记录作者用于证明“单一古菌”的证据类型；第四，核对被测试的长链脂肪酸种类、产甲烷计量关系和是否使用同位素示踪；第五，若与你的研究相关，建立一个对照表，把该古菌与已知合成营养型脂肪酸降解体系逐项比较。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、期刊、作者和DOI元数据分析，这项工作很可能位于环境微生物学、古菌代谢、生物地球化学循环和厌氧能量代谢交叉处。题名中的“A single archaeon”非常关键，暗示作者不是在描述一个细菌-古菌共培养体系，而是强调单一古菌个体或单一古菌物种即可完成“long-chain fatty acid oxidation to methanogenesis”的代谢串联。长链脂肪酸通常是复杂有机质、脂类废弃物和厌氧消化体系中的重要底物，其厌氧降解常被认为需要多成员协作，尤其涉及脂肪酸氧化菌与产甲烷菌之间的电子转移或中间代谢物交换。因此，这篇论文若成立，可能挑战或细化现有模型：某些古菌可能同时具备脂肪酸活化、β-氧化相关步骤、还原当量处理以及甲烷生成通路。可能的方法线索包括：富集培养或分离培养证明单菌生长；稳定同位素示踪显示长链脂肪酸碳流进入甲烷或中间产物；基因组测序与代谢重建识别脂肪酸氧化和甲烷生成相关基因模块；转录组、蛋白组或酶活分析支持通路表达；显微成像或纯度验证排除隐性共生体；热力学分析解释该耦联在厌氧条件下如何可行。若你的研究方向涉及厌氧消化、甲烷排放、古菌生态、代谢工程或微生物进化，这篇论文值得重点关注，因为它可能重新定义长链脂肪酸在产甲烷体系中的关键功能群。不过目前摘要为空，最需要核对的是：研究对象究竟是新分离株、富集古菌还是基因组层面的候选类群；“single archaeon”是严格纯培养证据还是高纯度富集推断；被氧化的长链脂肪酸具体是哪几种；甲烷是否直接来源于该底物碳或经CO2/H2、乙酸等中间体转化；作者如何排除细菌参与；该代谢能力在生态系统中的普遍性如何。</p></div>
           </div>
           
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Abstract WEE1 phosphorylates and inhibits the activity of cyclin-dependent kinases to prevent mitotic entry and establish a G2 DNA damage checkpoint 1–3 . Consequently, WEE1 inhibitors have been developed to be synthetically lethal in TP53- mutated tumours that become reliant on this WEE1-mediated checkpoint, and such inhibitors are undergoing clinical trials. However, WEE1 inhibitors also have efficacy in TP53- wild-type tumours, and many trials have been terminated owing to high levels of toxic side effects, suggesting that WEE1 has unknown functions. Here we show that WEE1 promotes cell cycle re-entry from quiescence (G0) by opposing the activity of the E3 ubiquitin ligase, anaphase-promoting complex–cyclosome bound to CDH1 (APC/C CDH1 ). WEE1 phosphorylates CDH1 ( FZR1 ) at key residues that mediate the interaction between CDH1 and APC/C. Cells with loss of function of WEE1 during G0/G1 have delayed S phase entry, impaired G1/S transition, abnormal S phase accumulation of cyclin-dependent kinase inhibitor p21 Cip1/Kip1 and a p21-dependent G2 arrest. Reduced expression of APC/C CDH1 or p21 renders cells more sensitive to acute WEE1 inhibition, and both pathways are downregulated in cells with acquired WEE1 inhibitor resistance. These results reveal a mechanism of cell cycle control that has implications for how WEE1 inhibitors should be used in the clinic.</p>
-        </details>
-        
         </div>
       </details>
     
@@ -859,7 +828,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-10-24 00:41。
+      生成时间：2026-10-25 00:22。
     </div>
   </footer>
 </body>
