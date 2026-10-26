@@ -1,0 +1,603 @@
+{
+  "date": "2026-10-26",
+  "stats": {
+    "fetched": 451,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 58,
+      "science": 93
+    },
+    "deduped": 451,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 58,
+      "science": 93
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 256,
+    "keyword_filtered_by_source": {
+      "arxiv": 256
+    },
+    "keyword_optional_included": 130,
+    "keyword_optional_included_by_source": {
+      "nature": 53,
+      "science": 77
+    },
+    "ranked": 195,
+    "ranked_by_source": {
+      "arxiv": 44,
+      "nature": 58,
+      "science": 93
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 128,
+    "selected_by_source": {
+      "arxiv": 4,
+      "nature": 3,
+      "science": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天这组论文可分成两类阅读优先级。第一优先级是方法上有明确新意、且问题定义清晰的AI论文：其一，DConstrain针对扩散语言模型在并行多token生成下的精确约束解码，核心价值在于把“局部语法状态可编译”与“全局解析上下文不可预枚举”之间的矛盾拆成冷编译+运行时绑定，直指DLM落地时最棘手的结构合法性问题；其二，ToM论文把大模型“知道他人信念”和“能据此预测行为”拆开评测，指出总分可能掩盖能力断裂，这对当前认知评测设计很有启发；其三，SpaceDC中的MoE推理工作虽然场景较特殊，但它把专家负载不均、供电约束和无线能量传输联立，属于较完整的系统建模问题。第二优先级是高影响力自然科学论文中值得跟进摘要/正文的机制与临床线索：气候论文给出一个相对明确的信息，即空气污染治理可显著改变热带太平洋平均态环流，却未在多模型集合中检测到El Nino振幅显著变化，这对“平均态变化是否必然放大ENSO”的直觉形成约束；肺癌ctDNA、Angelman综合征、GRP75-SIMPA等Nature论文都指向潜在重要机制或转化价值，但当前信息不足，适合待摘要后再深入。若从“今天最值得立即读”的角度排序，我会优先看DConstrain，其次看ToM gap，再看气候论文；若从“可能引出后续项目”的角度，则DConstrain和ToM最适合快速复现或做对照分析，气候论文最适合做文献整合与机制核查。",
+    "themes": [
+      "扩散语言模型开始面对比自回归模型更困难的“并行生成下全局结构合法性”问题，约束解码的核心瓶颈从打分转向状态表示与上下文编译。",
+      "大模型能力评测正在从单一总分转向能力分解：显式表征、应用推理、测试时适配分别衡量，说明“会说”与“会用”可能是不同能力层。",
+      "AI系统论文继续向非传统部署环境外溢：从地面数据中心转向卫星空间数据中心，计算调度与能源调度被统一建模。",
+      "气候系统研究中，空气污染治理不再只是区域环境议题，而被直接连接到热带太平洋平均态、Walker环流和ENSO可检测性问题。",
+      "本日生物医学高刊论文多集中于“动态状态信号与结局”的关系：ctDNA清除对应临床结局，持续神经元应激对应疾病表型，跨细胞器质量控制对应稳态维持。"
+    ],
+    "research_ideas": [
+      {
+        "idea": "复现并比较“能力拆分”后的ToM评测：把现有ToM基准中的题目重新标注为belief recognition与behavior prediction两类，检查不同模型在两类题上的性能差距是否稳定存在。",
+        "why": "这项工作门槛低、可快速验证论文主张是否具有数据集无关性；如果差距稳定存在，就说明很多ToM总分结论需要重写。",
+        "first_step": "先收集论文提到的四个ToM基准及公开样例，人工抽取每个基准各50-100题，建立最小二分类标注规则并做双人一致性检查。",
+        "risk": "题目类型划分可能并不干净，很多题同时包含信念识别与行为预测，导致结论依赖标注标准。"
+      },
+      {
+        "idea": "为结构化生成任务建立一个小型DLM约束解码基准，专门测“并行多token提议下的全局合法率”而不是只测最终输出格式正确率。",
+        "why": "DConstrain的价值点在于并行步内的联合合法性，但现有很多基准只看最终字符串是否合法，难以体现方法优势。",
+        "first_step": "选JSON schema、括号文法和属性顺序可交换的对象生成三类任务，先用模拟并行token块生成器构造候选，再统计不同约束策略的块级合法率与运行开销。",
+        "risk": "如果没有现成DLM实现，前期可能只能做模拟实验，离真实模型行为仍有距离。"
+      },
+      {
+        "idea": "检查“任意属性顺序”是否真是现有精确约束解码器的系统性弱点，做一份面向JSON/schema解码器的对照综述或实验笔记。",
+        "why": "这是DConstrain摘要里很关键但容易被忽略的卖点；若成立，说明很多现有方法通过固定property order换取可 tractable 状态空间，实际牺牲了合法输出覆盖。",
+        "first_step": "选3-5个常见约束解码工具或论文实现，设计包含可交换字段顺序、历史依赖字段和值约束的最小schema，逐个测试可接受输出集合是否被错误收缩。",
+        "risk": "不同工具支持的schema子集差异很大，比较时容易变成接口能力比较而非核心算法比较。"
+      },
+      {
+        "idea": "对SpaceDC-MoE问题做一个“去航天化”的抽象复现：把卫星改写为受能量预算约束的分布式节点，研究负载偏斜下能量转移是否优于任务迁移。",
+        "why": "原论文场景新颖但较专用；抽象后可连接边缘计算、机器人集群或移动算力网络，更容易形成可发表的系统模型或理论分析。",
+        "first_step": "先写出一个最小两节点模型：节点A/B各有本地能量、计算速度-功率函数和MoE负载到达率，比对三种策略——不转移、转移任务、转移能量。",
+        "risk": "若关键收益完全依赖卫星太阳能与激光WPT的特殊物理条件，抽象后结论可能不再成立。"
+      },
+      {
+        "idea": "围绕“空气污染治理影响ENSO但未显著改变振幅”做一篇机制核查型综述或再分析计划，重点梳理平均态改变、区域降温/增暖差异与ENSO可检测性的关系。",
+        "why": "这类结论很容易被过度传播成‘减排不影响El Nino’，但摘要实际更细：可能影响信风和区域气候影响，却未检测到振幅显著变化，值得做概念澄清。",
+        "first_step": "收集该文及近年关于aerosol reduction、Walker circulation、ENSO amplitude的模型研究，先做一页表格，记录情景设计、模型数、平均态响应和ENSO指标定义。",
+        "risk": "不同论文对ENSO的定义、时间窗和显著性标准不一致，综述时很难直接横向比较。"
+      },
+      {
+        "idea": "跟踪本日生物医学高刊中的“动态生物标志物/应激状态”主线，做一个跨论文阅读清单：ctDNA清除、持续神经元应激、跨细胞器质量控制三者都可放入‘动态状态是否比静态分型更接近因果机制’这一框架。",
+        "why": "虽然三篇论文领域不同，但都在强调动态过程与结局/表型的联系；把它们放在同一方法论框架下，有助于形成跨领域综述视角。",
+        "first_step": "先补齐三篇论文摘要，分别提取‘状态变量是什么、何时测量、与什么结局关联、是否有因果干预’四列，做一张比较表。",
+        "risk": "跨领域抽象可能过强，最后只能得到很泛的类比，难形成实质性科研产出。"
+      }
+    ],
+    "papers": {
+      "arxiv:2610.30920v1": {
+        "summary": "这篇论文聚焦于扩散语言模型（Diffusion Language Models, DLMs）在受模式/语法约束解码时的精确推理问题，目标是在并行生成多个 token 的场景下，保证这些 token 组合后仍满足 schema 或 grammar 的全局兼容性。作者提出 DConstrain，通过把 schema 编译为“上下文参数化的转移程序”，在不预先枚举所有解析上下文的情况下，为 DLM 构造精确的受约束后继状态。",
+        "contribution": "从摘要看，核心贡献是提出一种面向 DLM 约束解码的编译式框架 DConstrain：一方面用冷编译将 token 消费逻辑特化到局部语法状态，同时把栈操作、环境守卫和调用者相关的延迟解析保留为符号化上下文；另一方面用运行时的热编译把实际到达的解析配置绑定到这些程序上，从而精确构造后继而不依赖模型分数，并可与模型前向并行重叠。另一个重要贡献线索是以运行时值跟踪字段历史，支持任意属性顺序，避免以往精确解码器因状态爆炸而固定 property order、排除合法输出的问题；此外还引入 token-effect grouping，在运行前合并具有相同编译效果的 token，以降低运行时开销。",
+        "details": "研究对象非常具体：不是一般的自回归语言模型约束解码，而是扩散语言模型在“并行解多个 token”时的 schema/grammar-constrained decoding。摘要指出该类模型的特殊困难在于：单个 token 各自合法，并不代表它们同时出现时仍满足结构约束，例如 JSON、函数调用参数、结构化字段填充等任务中，多个位置并行更新可能共同破坏字段唯一性、嵌套结构或语法栈一致性。论文试图解决的是“精确联合推理”与“可扩展性”之间的矛盾：如果在 grammar graph 上做精确联合推理，就需要在大量假设 parser configuration 上维护 token-labeled successors；但若把栈、字段历史等上下文都编码进编译状态，又会导致指数级状态增长。\n\n从方法线索看，DConstrain 的关键思想是把“与局部语法状态强相关的部分”提前编译，把“依赖运行时上下文的部分”延后绑定。摘要中的 cold compilation 应该是离线阶段：将 schema 编译成某种 transition program，对 token consumption 做局部状态特化；但对 stack operations、environment guards、caller-dependent deferred parsing 保持参数化或符号化。这里的 environment guards 很可能对应字段是否已出现、当前对象/数组上下文、可选分支条件等；caller-dependent deferred parsing 则暗示存在类似子语法调用返回后再决定后继的机制。warm compilation 则是在线阶段：当解码过程中真正到达某些 parser configurations 时，再把这些配置绑定到已编译程序上，构造精确后继集合。摘要特别强调这一图构建过程“不需要模型分数”，因此可以与 DLM 的 forward pass 重叠，这说明作者关注的不只是正确性，也包括系统层面的吞吐优化。\n\n另一个很具体的技术点是“tracking field histories as runtime values supports arbitrary property order without enumerating field subsets offline”。这说明论文很可能面向 JSON Schema、结构化 API 输出或对象字段约束等任务。以往若要精确约束对象属性，常见做法是把“哪些字段已经出现过”编码进自动机状态；但字段数一多就会出现 2^n 级别的子集爆炸，因此一些方法会固定字段输出顺序来规避复杂度，却因此排除了本来合法的任意属性顺序输出。DConstrain 似乎把字段历史从“离线状态空间的一部分”改为“运行时携带的值”，从而避免离线枚举所有字段子集。这是摘要中最值得关注的设计之一，因为它直接对应 prior exact decoders 的已知局限。\n\n证据线索主要来自摘要中的问题设定与方法描述，而不是实验结果。可以合理推测论文会在结构化生成任务上评估：例如 JSON schema constrained generation、函数调用/工具调用参数生成、可能还有通用 CFG/PEG 风格语法约束下的 DLM 解码。作者声称方法是 exact successors，意味着其目标不是近似过滤，而是与目标语法/模式严格一致的后继构造；但目前题录信息没有给出具体 benchmark、速度提升倍数、支持的 schema 语言范围、与哪些基线比较、以及在多大规模 schema 上仍可运行，这些都需要阅读全文核对。\n\n与相关研究方向的关系上，这篇工作更接近“结构化输出约束解码 + 编译器/程序化推理 + 新型生成模型推断”交叉点。若读者关注的是 LLM/DLM 的可靠结构化输出、JSON constrained decoding、tool use 参数合法性、或 grammar-guided generation，这篇论文的价值在于它把传统自动机/解析器约束方法扩展到了并行 token 解码的扩散语言模型场景，并试图在精确性与效率之间给出编译式折中。若读者更偏系统实现，则 warm/cold compilation 分离、与模型前向重叠、token-effect grouping 都是值得重点检查的工程设计。\n\n需要核对的信息包括：1）DConstrain 具体支持哪类 schema/grammar，是否仅限某种结构化模式；2）“exact”是对单步后继精确，还是对整个并行解码过程全局精确；3）token-effect grouping 的分组粒度、正确性条件和收益来源；4）warm compilation 的缓存策略与最坏情况复杂度；5）与 prior exact decoders 相比，是否真的在不固定 property order 的前提下保持可扩展；6）实验是否覆盖真实 DLM，而非仅在模拟并行解码上验证。由于当前只有摘要，不能声称其效果已被充分证明。",
+        "why_read": "来源为 arXiv，关键词匹配：language model、language models、ai、diffusion、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在扩散语言模型一次并行解码多个 token 时，如何在 schema 或 grammar 约束下进行精确解码，使这些 token 不仅各自合法，而且联合起来也满足全局结构约束；同时避免因显式编码解析栈、字段历史和调用上下文而导致编译状态指数爆炸。",
+          "method": "从摘要推测，方法分为两阶段。离线的 cold compilation 将 schema/grammar 编译为上下文参数化的 transition programs：对局部 grammar state 上的 token 消费进行特化，但把依赖上下文的栈操作、环境守卫、延迟解析符号保留为符号参数。在线的 warm compilation 在解码时把实际到达的 parser configurations 绑定到这些程序上，构造精确后继图；由于该过程不依赖模型分数，可与 DLM 前向并行。为支持对象字段任意顺序，字段历史不再离线枚举为状态，而是作为运行时值跟踪；为降低开销，先按 compiled effects 对 token 分组，把具有相同效果的 token 合并处理。可能的实验对象是 JSON/schema 约束结构化生成或其他 grammar-constrained DLM decoding 任务。",
+          "strengths": "最突出的亮点有三点。第一，问题抓得很准：DLM 的并行 token 解码确实比自回归 LM 更容易出现“局部合法、联合不合法”的结构冲突。第二，方法设计有明显的编译思想，把离线可特化部分与在线依赖上下文部分拆开，理论上有助于同时保留精确性和可扩展性。第三，摘要明确针对 prior exact decoders 的痛点——固定 property order、排除合法输出——提出运行时字段历史跟踪，这对 JSON/结构化对象生成很有实际价值。系统层面上，图构建与模型前向重叠、token-effect grouping 也显示出对推理效率的关注。",
+          "weaknesses": "基于当前题录和摘要，主要局限是证据仍不足。首先，没有看到具体实验结果、复杂度分析、支持的语法表达能力和失败案例，因此无法判断方法在大规模 schema、深层嵌套结构或高并行度 DLM 上是否仍稳定。其次，摘要中的“environment guards”“caller-dependent deferred parsing”较抽象，实际实现可能较复杂，工程门槛和维护成本未知。再次，虽然运行时字段历史避免了离线状态爆炸，但是否把复杂度转移到在线阶段、缓存是否会膨胀、最坏情况是否仍然很重，都需要核对。最后，论文面向 DLM；若读者主要使用自回归 LLM，需要评估其思想能否直接迁移。",
+          "next_step": "最小可执行动作：1）先阅读全文中的方法图和形式化定义，确认 cold/warm compilation 的输入输出对象分别是什么；2）重点查找是否有 JSON Schema 或结构化对象生成的示例，验证“任意属性顺序”如何实现；3）记录实验表中与 prior exact decoders 的对比项，特别是正确性、吞吐、内存和 schema 规模；4）查看 token-effect grouping 的例子，判断它是按词表 token、子词片段还是语义效果分组；5）若准备复现，可先尝试用一个小型 JSON schema 手工模拟字段历史作为运行时值的状态转移过程，检查是否确实避免字段子集枚举。"
+        }
+      },
+      "arxiv:2610.30923v1": {
+        "summary": "这篇论文聚焦“空间数据中心”中的MoE大模型推理任务，研究在太阳同步轨道卫星间专家激活不均导致算力供电失衡时，如何通过星间激光无线能量传输来降低平均推理时延。摘要显示其核心对象是部署在多颗卫星上的MoE专家与对应的供电/计算协同控制，而不是一般性的卫星网络或通用LLM加速。",
+        "contribution": "从摘要看，论文的核心贡献应是提出一个名为SpaceWPT的框架，把星间激光无线能量传输引入SpaceDC中的MoE推理；围绕“供电卫星与受电卫星在传能损耗下的计算-能量分配权衡”给出设计原则；并用一个可处理的平均推理时延代理模型来刻画时延折中关系。若正文完整，这篇工作可能同时贡献了面向轨道太阳能均匀供给、但专家负载高度偏斜场景的系统建模与控制优化思路。",
+        "details": "根据题名、摘要和关键词，这项工作研究的是一种很具体的系统：在dawn-dusk太阳同步轨道上运行的空间数据中心，利用持续太阳能供电承载大语言模型推理，且模型采用Mixture-of-Experts架构，把不同专家分布部署到不同卫星。摘要给出的关键现象是：虽然该轨道条件下各卫星的太阳能获取相对均匀，但MoE推理中的专家激活是偏斜的，因此少数活跃专家所在卫星计算功耗需求高、成为功率瓶颈，而空闲专家所在卫星的已收集能量被闲置，最终拉低推理效率并增加时延。论文提出的SpaceWPT框架试图用星间激光无线能量传输把“闲置电力”从低负载卫星转移到高负载卫星。这里的难点不是单纯多传能量，而是在传输损耗存在时平衡捐赠方和接收方的计算需求：接收方得到更多能量后可更快完成专家计算，但捐赠方自身可用能量减少，可能拖慢其本地任务。摘要还提到作者先推导了可简化WPT控制的设计原则，再通过一个“tractable surrogate of average inference latency”来表征时延权衡，这说明方法上很可能包含：1）对MoE推理负载、卫星能量收支、WPT效率和计算时延之间关系的解析建模；2）把原本复杂的联合优化问题转化为更易求解的代理目标；3）在不同专家激活分布或WPT损耗条件下分析最优传能策略。对相关研究者而言，这篇论文的价值在于它把LLM系统问题、能源调度问题和空间网络问题耦合起来，尤其适合关注“边缘/分布式AI推理”“能量受限推理系统”“卫星计算网络”的读者。需要重点核对的信息包括：其时延模型是否覆盖通信时延与仅覆盖计算时延；MoE路由是否固定、统计已知还是在线变化；WPT控制是集中式还是分布式；所谓平均推理时延代理与真实端到端时延之间的误差；以及实验或仿真是否使用真实MoE激活统计、卫星链路参数和激光WPT效率假设。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、ai、satellite。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：在SpaceDC中将MoE专家分散部署到多颗卫星后，由于不同token/请求触发的专家激活高度不均，导致部分卫星计算功率需求远高于其本地稳定太阳能供给，而其他卫星虽有富余太阳能却未被利用。作者关注的是，如何在存在星间激光WPT损耗的前提下，设计卫星间能量重分配策略，以降低MoE推理的平均时延。",
+          "method": "从摘要推断，方法应先建立一个联合模型，把卫星太阳能采集、专家激活引起的计算负载、卫星计算速度与供电关系、以及激光WPT效率/损耗联系起来；随后分析“捐赠更多能量会提升接收方计算速度，但压缩捐赠方可用功率”的双边权衡，并据此提炼若干设计原则以简化控制变量；最后使用一个可解析或可优化的平均推理时延代理函数来求解或刻画最优WPT策略。实验层面大概率是参数化仿真，而非真实在轨实验；可能比较无WPT、简单均分传能、以及所提设计原则下的优化方案。",
+          "strengths": "最值得关注的亮点是问题设定非常具体：不是泛泛讨论卫星供能，也不是泛泛讨论MoE加速，而是抓住了“均匀供能+偏斜专家激活”这一结构性失配。第二个亮点是把激光WPT作为系统级资源重分配手段引入LLM推理场景，这比传统只做任务迁移或负载均衡更有新意。第三，摘要强调先推导设计原则再构造可处理的时延代理，说明作者可能给出了一定解析洞见，而不只是黑箱数值优化。若这些推导成立，论文对未来能量受限分布式AI系统设计会有较强参考价值。",
+          "weaknesses": "基于当前题录信息，首先要警惕其结果可能高度依赖理想化假设，例如太阳能供给近乎恒定、卫星姿态与对准误差可忽略、激光WPT效率稳定、储能与热约束未显式建模。其次，摘要只明确提到平均推理时延代理，尚不清楚是否覆盖完整端到端链路，包括token路由通信、星间数据交换、排队和批处理效应。再次，MoE激活偏斜通常与具体模型、数据分布和路由机制强相关，如果实验只用抽象负载分布，结论的可迁移性需要核对。最后，作为arXiv预印本且仅凭摘要，无法确认其理论证明深度、仿真规模和与现有能量调度/卫星边缘计算工作的实证对比是否充分。",
+          "next_step": "最小可执行动作：第一，优先查看正文中的系统模型图和问题公式，确认优化变量到底是传能功率、传能拓扑、还是计算频率/任务分配的联合控制；第二，查找平均推理时延代理的定义，记录它与真实时延之间的假设关系；第三，查看实验部分的关键参数表，特别是WPT效率、卫星数量、专家分布、激活偏斜分布和太阳能/储能设定；第四，若你关注MoE系统，可把这篇论文与传统负载均衡MoE方法对照，问一个具体问题：在允许迁移token/专家与允许传输能量两种机制下，哪种在空间场景更优；第五，阅读时记录一个核对清单：是否考虑通信时延、是否考虑储能、是否有理论最优性或仅经验设计、是否使用真实MoE激活统计。"
+        }
+      },
+      "arxiv:2610.31060v1": {
+        "summary": "这篇论文聚焦大语言模型在“心智理论（Theory of Mind, ToM）”上的一个具体断裂：模型往往能显式识别他人的信念状态，却未必能把该信念用于行为预测。作者基于四个结构差异较大的ToM基准，分析显式ToM与应用型ToM之间的差距，并测试通过结构化提示、匹配式上下文学习和Belief-State Test-Time Training（BSTTT）能否恢复这种能力。",
+        "contribution": "核心贡献在于把现有ToM评测中的总分拆解为两个更具体的能力维度——显式ToM（识别某人相信什么）与应用型ToM（据此预测其行为）——并指出总分会掩盖模型能力的不均衡。论文还提出一种面向测试时适配的BSTTT方法，通过在已回答的支持问题上做动作重建来更新轻量参数，用于恢复行为预测能力；同时给出跨Qwen2.5-7B、Llama-3.1-8B、GPT-oss-20B及多个ToM任务的比较证据。",
+        "details": "从题名和摘要看，论文研究对象非常明确：不是泛泛讨论LLM是否“有ToM”，而是诊断其在ToM推理链条中的哪一环失效。作者认为现有基准通常只报一个聚合分数，但“知道角色相信什么”和“能据此推出角色会怎么做”是两种不同能力，前者更接近显式表征，后者更接近可执行推理。摘要给出的SimpleToM例子很关键：Llama-3.1-8B总体51.5%，但心理状态识别达99.4%，行为预测仅28.9%，这直接支持“总分掩盖结构性短板”的论点。\n\n方法线索上，作者似乎在四个结构多样的ToM benchmark上，把题目拆成支持性子问题或配对任务：一类问角色的信念/心理状态，另一类问角色接下来会采取什么行为。然后比较三类干预：第一是structured prompting，可能是显式提醒模型先表征信念再预测行动；第二是matched in-context learning，可能是给与当前任务结构匹配的示例；第三是作者提出的BSTTT，即Belief-State Test-Time Training。根据摘要，BSTTT通过“answered support questions through action reconstruction”进行适配，说明它可能先利用支持问题得到信念状态相关答案，再用这些答案监督一个轻量参数模块，使模型在测试时更好地把belief映射到action。这里“lightweight parameters”暗示可能不是全模型微调，而是LoRA、adapter或类似低成本测试时更新。\n\n证据线索方面，摘要强调恢复效果依赖于模型、任务和干预方式，说明作者并未宣称一种普适方法在所有设置下都有效。一个具体结果是：在SimpleToM上，提醒语结合BSTTT可把Llama的行为预测提高40.8个百分点；但摘要同时指出总体提升主要来自reminders，说明BSTTT的增益可能是附加性的、条件性的，而不是压倒性的。这一点对科研判断很重要：论文的真正价值可能不只是提出新方法，更在于建立一种更细粒度的诊断框架，帮助区分“模型不会表示belief”与“模型不会把belief用于action prediction”。\n\n与相关研究方向的关系上，这篇工作对LLM社会认知评测、可解释推理、测试时适配、以及高风险应用中的行为可靠性都很相关。尤其在治疗、教育、个人助理等场景，系统若只能口头上识别用户信念，却不能在决策或建议中正确使用这些信念，风险会高于单纯的基准低分所显示的程度。对做benchmark设计的人，这篇论文提示应避免只报aggregate score；对做推理增强的人，它提供了一个更具体的干预目标：提升belief-to-action映射，而不是笼统提升ToM总分。\n\n需要核对的信息主要有：四个benchmark分别是什么、它们如何保证“显式ToM”和“应用型ToM”拆分是结构上可比的；BSTTT具体更新哪些参数、是否需要标签、支持问题答案来自人工标注还是模型自答；matched ICL与structured prompting的模板是否严格控制了信息量；不同模型上的增益是否稳定；以及作者如何排除语言表面模式匹配而非真正belief reasoning的解释。由于当前只有摘要，不能确认实验统计显著性、误差分析、失败案例和计算成本。",
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、test-time training。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文要解决的具体问题是：当前LLM的Theory of Mind评测是否把两种不同能力混在了一起——一是显式识别他人的信念状态，二是把该信念用于预测其行为；如果确实存在“显式到应用”的能力鸿沟，这种鸿沟在不同模型和任务上有多大，又能否通过提示或测试时适配被恢复。",
+          "method": "可能的方法路径是：在四个结构差异较大的ToM基准上，将任务拆分或配对为“belief recognition”和“behavior prediction”两类问题，分别统计性能，而不是只看总分；选取Qwen2.5-7B、Llama-3.1-8B、GPT-oss-20B进行横向比较；设置三类干预条件——结构化提示、匹配式上下文学习、BSTTT。BSTTT大概率是在测试阶段利用已回答的支持问题，对轻量参数进行小步更新，并通过动作重建目标强化从belief state到action prediction的映射。",
+          "strengths": "最值得关注的亮点是评测分解思路非常具体，且摘要给出了强烈的反例证据：同一模型在SimpleToM上几乎能完美识别心理状态，却严重失误于行为预测，这比单一总分更有诊断价值。第二个亮点是干预设计覆盖了从无参数方法（prompt、ICL）到轻量测试时训练（BSTTT）的连续谱，便于判断问题究竟是提示可恢复、示例可恢复，还是需要参数层面的适配。第三个亮点是面向高风险社会交互应用，问题设定具有直接应用意义。",
+          "weaknesses": "基于摘要需要警惕的边界包括：第一，四个benchmark的构造与拆分是否真正隔离了显式ToM和应用型ToM，尚需看任务细节；第二，行为预测低分可能部分来自输出格式、叙事歧义或常识冲突，而不一定纯粹是ToM应用失败；第三，BSTTT是否依赖额外支持问题答案、是否引入测试时监督信号、以及计算成本和部署可行性，目前都不清楚；第四，摘要已提示提醒语贡献了大部分总体提升，因此新方法的独立增益需要仔细核对。",
+          "next_step": "最小可执行动作是：先查论文中的四个benchmark名称与任务拆分方式，确认每个数据集如何定义belief题和action题；再看SimpleToM对应表格，记录Llama-3.1-8B在总分、belief识别、behavior预测上的原始数值及干预后变化；随后核对BSTTT的参数更新对象、是否需要真值标签、与prompt/ICL的公平对照设置；最后整理一个自己的评测清单，今后在ToM或社会推理实验中分开报告“状态识别”和“行为应用”两项指标。"
+        }
+      },
+      "arxiv:2610.31236v1": {
+        "summary": "这篇论文研究空气质量政策导致的气溶胶与臭氧前体物减排，如何影响热带太平洋环流与ENSO。基于12个地球系统模型的有无减排对照，作者声称减排会增强太平洋信风、抵消约一半到三分之二的未来减弱趋势，但对厄尔尼诺振幅没有可检测的显著变化。",
+        "contribution": "核心贡献在于把“空气污染治理”与“热带太平洋平均态环流变化”直接联系起来，并给出一个较具体的机制线索：印度洋相对太平洋增暖与信风增强一致；同时论文强调，尽管平均态发生变化，ENSO振幅变化小到低于该多模型集合的检测能力，这有助于澄清此前关于减排是否会显著改变厄尔尼诺强度的分歧。",
+        "details": "从题名和摘要看，研究对象非常具体：不是泛泛讨论气候变化，而是讨论空气质量控制政策下，气溶胶和臭氧前体物排放削减对热带太平洋大尺度环流、尤其是信风，以及对ENSO振幅和厄尔尼诺区域影响的作用。方法上，摘要明确提到使用12个Earth system models，并比较“有空气质量控制”和“无空气质量控制”的情景；还提到一个关键对照是“规定海表温度”的实验，在该实验中响应消失，这说明作者试图区分海气耦合反馈与纯大气快速响应。证据链大致是：第一，多模型一致显示减排会增强太平洋信风；第二，这种增强可抵消无减排情景下约1/2到2/3的信风减弱；第三，响应到2040年后才可检测，说明信号较弱且需要长期强迫累积；第四，空间机制上与“印度洋相对太平洋更强增暖”一致，并且这种相对增暖还能对不同区域减排的响应强弱进行排序；第五，ENSO振幅变化不到其本身值的十分之一，被作者解释为该集合可检测到的最小变化量，而由平均态位移所隐含的ENSO变化仅为这一阈值的六分之一；第六，一个在未包含减排实验数据上训练的ENSO模型也预测不出振幅变化，从而支持“平均态变了，但ENSO振幅未显著改变”的结论。与气候动力学、地球系统建模、海气相互作用研究者的关系较强，尤其适合关注外强迫如何改变Walker环流、热带海盆间温差梯度、以及平均态与模态变率解耦问题的读者。需要核对的信息包括：12个模型来自哪些计划或情景框架；空气质量控制具体对应哪些排放路径；“region by region”的减排区域划分；ENSO模型是统计模型、机器学习模型还是简化动力模型；“detectable”采用何种统计检验与信噪比定义；以及“区域影响改变”具体指降水、温度还是遥相关响应。",
+        "why_read": "来源为 arXiv，关键词匹配：ai、earth、earth system、climate、ocean。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图回答两个紧密相关的具体问题：第一，未来空气质量政策引起的气溶胶和臭氧前体物减排，是否会改变热带太平洋平均态环流，特别是太平洋信风和Walker环流；第二，这种平均态改变是否会进一步显著改变ENSO，尤其是厄尔尼诺振幅，还是只改变厄尔尼诺事件在不同地区的气候影响。",
+          "method": "从摘要可推断，作者主要采用多模式情景对照分析。核心数据应来自12个地球系统模型，在“实施空气质量控制减排”和“未实施相应减排”的情景下比较热带太平洋风场、海温梯度和ENSO统计量。方法上可能包括：多模型集合平均与离散度分析；信风趋势和显著性检验；规定SST实验与耦合实验对照，用于识别海气耦合是否必要；按减排区域分别施加或归因，比较不同地区减排对印度洋-太平洋相对增暖及信风响应的贡献；用某种ENSO预测或诊断模型，在不含减排实验的训练集上学习平均态到ENSO振幅的关系，再外推到减排情景，检验平均态变化是否足以推出ENSO振幅变化。",
+          "strengths": "最值得关注的亮点有四点。第一，问题设定具有政策相关性：不是抽象外强迫，而是直接针对空气质量治理。第二，证据链较完整，不只报告信风变化，还通过规定SST实验说明该响应依赖海表温度调整，并提出印度洋相对太平洋增暖这一可检验机制。第三，论文没有把平均态变化简单等同于ENSO变化，而是明确区分“背景态改变”和“模态振幅未显著改变”，这对解释文献分歧很重要。第四，作者进一步指出即便ENSO振幅不变，厄尔尼诺的区域影响仍会因背景气候改变而变化，这对影响评估和风险沟通有实际价值。",
+          "weaknesses": "基于摘要需要警惕几类边界。第一，12个模型的样本量对ENSO这类内部变率问题仍可能偏小，尤其当作者自己承认振幅变化低于集合检测阈值时，结论更接近“未检测到变化”而非“证明没有变化”。第二，摘要没有说明减排情景的具体排放路径、温室气体背景是否一致、以及气溶胶与臭氧前体物效应如何分离，因此归因精度需要核对。第三，题名强调“El Nino无可检测变化”，但这主要指振幅；ENSO频率、偏态、事件类型或季节锁相是否变化，摘要未交代。第四，区域影响改变的结论较重要，但摘要未给出影响变量和区域范围，需防止过度解读。第五，若ENSO模型是经验或机器学习模型，其训练数据范围和可外推性需要仔细检查。",
+          "next_step": "最小可执行动作可以是五步：一，先查论文主图，确认信风增强的定义区域、时间窗和量级；二，记录12个模型名单及对应情景，核对是否来自统一计划；三，重点看规定SST实验和耦合实验的对照图，判断海气耦合证据是否充分；四，查ENSO振幅“不到十分之一”与“检测阈值”的统计定义，避免把不可检测误读为零效应；五，若你的方向与区域气候影响相关，优先找文中关于厄尔尼诺遥相关或降水影响变化的图表，判断背景态改变对应用研究的意义。"
+        }
+      },
+      "doi:10.1038/s41586-026-11328-3": {
+        "summary": "这篇Nature论文从题名看，聚焦可切除肺癌在NeoCOAST-2研究中的循环肿瘤DNA（ctDNA）清除与临床结局之间的关系，核心任务应是评估围手术期治疗后ctDNA动态是否可作为疗效或预后相关指标。由于当前未提供摘要，无法确认其具体患者分层、治疗方案、检测时间点和统计结果。",
+        "contribution": "基于题名与期刊来源，论文的核心贡献很可能是把NeoCOAST-2这一可切除肺癌研究中的ctDNA清除现象，与病理缓解、复发风险、生存结局或围手术期治疗获益建立关联，为ctDNA作为早期替代终点、分层工具或术后风险监测指标提供临床证据线索；但具体贡献强度仍需摘要和正文核对。",
+        "details": "已知信息非常有限：题名明确涉及“ctDNA clearance and outcomes for resectable lung cancer from NeoCOAST-2”，说明研究对象是可切除肺癌患者，研究场景大概率是新辅助或围手术期治疗，研究变量是ctDNA清除，结局变量是“outcomes”，可能包括病理完全缓解、主要病理缓解、无事件生存、无病生存或总生存。NeoCOAST-2从命名上看像是特定临床研究或试验队列，论文很可能是在该队列中做ctDNA转化分析，即比较治疗前后或手术前后ctDNA阳性/阴性转换与临床终点的关系。由于发表在Nature，可能提示其结果具有较强临床转化意义，例如支持ctDNA动态作为围手术期肺癌疗效评估或风险分层工具。\n\n但必须强调：当前摘要为空，因此无法确认以下关键信息：第一，肺癌具体病理类型是非小细胞肺癌总体，还是局限于某一亚型；第二，NeoCOAST-2的治疗构成是否包含免疫治疗、化疗、抗体药物或联合方案；第三，ctDNA检测平台是肿瘤知情型（tumor-informed）还是固定panel，检测样本采集于基线、术前、术后还是多个时间点；第四，ctDNA“清除”的操作定义是什么，是变异等位基因频率降至检测下限以下，还是从阳性转阴；第五，结局分析是探索性相关分析还是预设终点；第六，样本量、随访时长、统计显著性和效应量均未知。\n\n如果你的研究方向与肺癌围手术期治疗、微小残留病灶（MRD）、液体活检或替代终点验证有关，这篇论文值得优先关注，因为它很可能提供一个具体临床试验框架下的ctDNA动态证据，而不是单纯回顾性观察。最需要核对的是：ctDNA清除是否独立于病理缓解预测结局；不同治疗臂之间ctDNA清除率是否不同；术前清除与术后持续阴性哪个更有预后价值；以及是否存在对临床决策可操作的阈值或时间窗。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，推测是：在可切除肺癌的NeoCOAST-2研究中，围手术期治疗后ctDNA是否会发生清除，以及这种清除是否与更好的临床结局相关；进一步说，ctDNA动态能否作为早期疗效评估指标、复发风险标志物或替代终点。",
+          "method": "从题名推测，方法上应基于NeoCOAST-2临床研究队列，采集患者治疗前后血浆样本进行ctDNA检测，按ctDNA是否清除进行分组，并与临床结局做关联分析。可能涉及的对象包括可切除肺癌患者；可能的数据包括基线肿瘤特征、治疗方案、手术病理结果、随访复发/生存数据；可能的分析路径包括ctDNA阳转阴比例统计、与病理缓解的一致性分析、Kaplan-Meier生存比较、Cox回归或分层亚组分析。由于没有摘要，这些都只能视为高概率推断。",
+          "strengths": "最值得关注的亮点可能有三点。第一，研究嵌入具体临床试验NeoCOAST-2，而非松散真实世界队列，因此治疗路径和采样时间点可能更规范。第二，研究对象是可切除肺癌，这正是ctDNA/MRD最具临床决策价值的场景之一，因为术前和术后都存在治疗调整需求。第三，若论文证明ctDNA清除与结局强相关，它对围手术期药物开发、早期终点设计和个体化随访都有直接应用价值。",
+          "weaknesses": "基于当前题录信息，最大局限是摘要缺失，导致无法判断研究是前瞻性预设分析还是事后探索性分析，也无法判断样本量是否足以支持稳健结论。还需警惕ctDNA检测灵敏度、不同分期/组织学异质性、治疗臂混杂、手术时点差异、随访不足以及“清除”定义不统一等问题。如果NeoCOAST-2包含多种联合治疗，ctDNA与结局的关系也可能受方案差异影响。",
+          "next_step": "最小可执行动作：1）先补查摘要，确认NeoCOAST-2的患者范围、治疗方案和ctDNA采样时间点；2）重点找正文或图表中关于ctDNA清除定义、样本量、阳性率、病理缓解和生存终点的对应关系；3）记录是否有多变量分析证明ctDNA清除的独立预测价值；4）若你做相关研究，可把这篇文章与可切除NSCLC中既有MRD/ctDNA研究并列，建立一个对照表，比较检测平台、时间点、终点和效应量。"
+        }
+      },
+      "doi:10.1126/science.aem1247": {
+        "summary": "这篇Science论文从题名和摘要看，聚焦两种能够使线粒体膜通透化的蛋白，讨论它们如何通过彼此不同的机制促进细胞死亡。具体任务不是泛泛描述细胞死亡，而是区分“同样作用于线粒体通透化”的两个蛋白在致死路径上的差异。",
+        "contribution": "可能的核心贡献是提出或综述一种“两幕式”的细胞死亡框架：两种线粒体通透化蛋白虽然都与细胞死亡相关，但其作用阶段、分子后果或下游死亡程序并不相同，从而帮助研究者更精细地区分线粒体外膜通透化相关死亡机制。",
+        "details": "仅根据题名、摘要和期刊元数据，这更像一篇面向机制阐释的评论、观点或导读性文章，而不一定是原始研究论文；这一点需要首先核对。题名“A cell death ballet in two acts”暗示作者可能将细胞死亡过程组织为两个连续但可区分的阶段；摘要明确指出“Two proteins that permeabilize mitochondria promote cell death through distinct mechanisms”，因此研究对象非常具体：是两种可导致线粒体通透化的蛋白，而不是一般性的凋亡因子。结合该领域常识，线粒体通透化通常与BCL-2家族、线粒体外膜通透化、细胞色素c释放、caspase激活、以及某些caspase非依赖性死亡后果相关，但这里不能据此断言具体蛋白名称，必须回到正文或配套研究核实。若这是Science中的评论文章，其方法更可能是对近期一项或几项原始研究进行整合解读，而不是作者自己报告系统实验；证据线索可能来自遗传操作、线粒体膜完整性检测、细胞死亡表型比较、下游效应分子释放谱、以及不同死亡抑制条件下的机制拆分。对做细胞死亡、线粒体生物学、肿瘤治疗或药物诱导死亡研究的读者，这篇文章的价值在于提醒：不能把“线粒体被通透化”简单等同于单一路径，具体由哪种蛋白介导、发生在哪一阶段、释放哪些线粒体内容物、是否依赖caspase或炎症通路，都会影响机制解释和干预策略。当前最需要核对的信息包括：这两种蛋白的确切身份；文章类型是评论还是研究；所谓distinct mechanisms具体指膜孔形成方式、亚细胞定位、动力学差异，还是下游死亡执行程序不同；以及作者讨论的是凋亡、坏死样死亡、炎症性死亡还是它们之间的串扰。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "研究问题是：当两种蛋白都能使线粒体发生通透化时，它们究竟如何以不同机制推动细胞死亡？更细一点说，论文试图区分“共同作用对象是线粒体”与“致死机制相同”这两个常被混淆的命题。",
+          "method": "从现有信息推测，若为评论/观点文，方法主要是整合近期原始研究结果并提出机制框架；若关联原始实验，则可能涉及蛋白过表达或敲除/敲低、线粒体膜通透化检测、细胞死亡定量、下游分子释放分析、以及用抑制剂或遗传背景区分不同死亡通路。由于摘要未给出样本、模型系统、蛋白名称和实验读数，任何更具体的方法判断都需要谨慎。",
+          "strengths": "亮点在于问题聚焦且机制导向明确：不是笼统讨论细胞死亡，而是抓住“线粒体通透化蛋白的机制异质性”这一关键点。若文章确实提出“两幕式”框架，它可能有助于研究者重新组织对线粒体相关死亡事件先后顺序和因果关系的理解，并为药物靶向不同死亡阶段提供概念工具。发表在Science也提示其讨论对象可能对应近期具有较高影响力的发现。",
+          "weaknesses": "基于当前题录信息，局限非常明显：摘要极短，没有给出两种蛋白的名称、实验体系、证据类型、适用细胞类型或疾病背景；因此无法判断结论是普适机制还是特定模型中的现象。另一个重要边界是文章类型不明，若它是评论而非原始研究，则其“贡献”主要是解释框架而非新数据。还需警惕题名中的修辞表达可能强化概念模型，但不代表所有步骤都已被直接实验验证。",
+          "next_step": "最小可执行动作：第一，进入DOI页面确认文章类型，并记录这两种蛋白的准确名称；第二，查看摘要全文或导语，提取作者所说的distinct mechanisms具体对应哪些分子事件；第三，若这是评论，追溯其所评述的原始研究论文；第四，重点查图示或示意图，整理“两幕式”中每一幕的触发条件、线粒体事件和下游死亡输出；第五，把这些机制与你自己的研究体系中的死亡读数逐项对照，避免把不同线粒体致死机制混为一谈。"
+        }
+      },
+      "doi:10.1126/science.aem0762": {
+        "summary": "这篇Science题录显示，研究对象是小鼠葡萄糖稳态调控，核心任务是用一种电子装置去控制参与血糖调节的氧化还原机制。根据摘要，作者声称该装置能够对小鼠体内调节葡萄糖浓度的红氧过程实施电子控制，指向生物电子学与代谢调控的交叉方案。",
+        "contribution": "从题名和摘要看，核心贡献很可能是提出并演示了一种“电子—红氧—代谢”耦合框架：不是单纯监测血糖，而是通过电子器件主动干预与葡萄糖调控相关的氧化还原机制，并在小鼠中观察到血糖浓度受控这一结果。如果成立，这意味着代谢控制可部分转化为可编程、可外部接口化的生物电子调节问题。",
+        "details": "基于现有元数据，论文聚焦于小鼠中的葡萄糖代谢控制，而不是一般性的体外电化学现象。题名“Putting glucose metabolism under electronic control”与摘要“An electronic device controls the redox mechanisms that regulate glucose concentrations in mice”共同指向一个较具体的研究命题：作者构建了某种电子设备，并利用其调节与血糖稳态相关的氧化还原过程，最终影响小鼠葡萄糖浓度。\n\n从方法线索看，最可能的对象不是单一酶促反应本身，而是更上游或更系统层面的红氧调节节点，例如影响胰岛素分泌、肝糖输出、葡萄糖摄取或相关信号通路的氧化还原状态。由于摘要明确写的是“redox mechanisms that regulate glucose concentrations”，说明作者强调的是机制层面的红氧控制，而非仅仅把电子器件当作传感器。因此，设备可能具备电刺激、电化学调制、可植入/贴附式接口、或通过电子供受体改变局部生化环境的能力。也不排除其通过材料表面、导电聚合物、红氧介体或生物电子界面与组织发生作用。\n\n证据线索方面，摘要只给出“in mice”和“controls”，因此至少应存在动物实验数据，可能包括血糖时间曲线、干预前后对照、装置开/关响应、剂量或电参数依赖性，以及与红氧状态相关的生化指标。若论文是Science短文或评论式研究报道，正文可能会集中展示几个关键图：装置结构与工作原理、小鼠血糖变化、红氧标志物变化、以及机制阻断或对照实验。需要特别核对的是：1）控制效果是急性还是长期；2）作用位点是胰腺、肝脏、外周组织还是循环系统；3）“控制”是降低高血糖、维持稳态，还是双向调节；4）是否与糖尿病模型相关，还是仅在正常小鼠中验证概念。\n\n与科研读者的关系上，这篇工作对生物电子学、代谢工程、可穿戴/植入医疗器件、糖尿病干预和红氧生物学方向都值得关注。它可能代表一种不同于药物和闭环胰岛素泵的思路：直接把代谢调控中的可电化学耦合环节作为干预靶点。如果你的方向偏向器件，则应重点看电子界面如何与生物红氧网络耦合；如果偏向代谢或内分泌，则应重点看其是否真正识别并操纵了决定血糖的关键机制，而非产生非特异性刺激效应。\n\n但目前信息明显不足。仅凭题录无法确认装置类型、实验规模、统计显著性、动物模型、具体红氧机制、是否可逆、是否安全、是否优于现有方法，也无法判断这是原创研究论文、观点文章还是配套评述。另一个需要警惕的点是元数据中的发表日期为2026-10-22，需核对是否为在线发布日期、预印本式记录或数据库时间戳。总之，这是一篇高度值得跟进的题录，但任何关于机制细节、疗效强度和转化前景的判断都必须回到全文和图表核实。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文试图解决的具体问题，应该是：能否借助电子装置直接操纵参与血糖稳态的氧化还原机制，从而在活体小鼠中实现对葡萄糖浓度的主动控制。更细一点说，它挑战的是传统代谢调控主要依赖药物、激素或遗传手段的范式，转而问：葡萄糖代谢是否存在可被电子接口接管或重编程的红氧控制节点。",
+          "method": "从摘要推断，研究路径大概率包括三部分：第一，设计一个能够与生物体系发生红氧耦合的电子装置；第二，在小鼠体内或与小鼠组织相关的环境中施加电子控制，改变特定红氧机制；第三，用血糖读数及相关生化/生理指标证明这种干预确实影响了葡萄糖浓度。可能使用的数据和实验包括小鼠血糖监测、装置通断或参数变化实验、红氧状态指标检测、组织或器官定位实验，以及必要的对照组。若要判断机制是否成立，还应寻找是否有药理阻断、遗传缺失、离体组织验证或时间因果分析。",
+          "strengths": "最值得关注的亮点是把“电子装置”与“葡萄糖代谢调控”直接连接起来，而且摘要明确落到小鼠体内结果，不只是体外概念验证。第二个亮点是靶向“redox mechanisms”，这提示作者不是做简单刺激，而是试图抓住代谢调控中的化学机制层。第三个潜在价值是应用前景：如果电子控制能稳定、可逆且可编程，它可能为糖代谢疾病提供不同于给药和激素替代的新型干预框架。",
+          "weaknesses": "基于题录信息，最大局限是机制、装置和数据都不透明。我们不知道控制的是哪一类红氧过程，也不知道装置是植入式、外部式还是局部接口；不知道样本量、效应大小、持续时间和安全性；也不知道实验对象是正常小鼠还是疾病模型。题名容易给人“全面电子控制葡萄糖代谢”的强印象，但摘要实际上只说控制了调节葡萄糖浓度的红氧机制，因此需要警惕标题外延大于证据边界。另需核对这篇记录在Science中的文献类型，避免把评论/导读误当作完整原创研究。",
+          "next_step": "最小可执行动作：第一，打开DOI页面确认文献类型、全文摘要和图表目录；第二，优先查找装置示意图、动物模型说明和血糖变化主图，记录“装置类型—作用位点—血糖效应”三项关键信息；第三，检索文中是否出现胰岛素、肝脏、胰腺、ROS、redox mediator、bioelectronic等关键词，以定位具体机制；第四，核对是否有疾病模型、长期实验和安全性数据；第五，如果你做相关研究，可建立一个一页笔记表，专门记录其电子接口材料、刺激参数、红氧靶点和对照设计，便于与现有神经刺激或闭环血糖控制方案比较。"
+        }
+      },
+      "doi:10.1126/science.aem0341": {
+        "summary": "这篇Science论文从题名与摘要看，聚焦“鸟类大脑的认知能力”，并以腐肉乌鸦在决策任务中“比猴和人更快”这一具体现象作为核心证据线索。就现有元数据而言，论文很可能围绕跨物种决策速度比较，讨论鸟类神经系统如何支持高水平认知加工。",
+        "contribution": "可能的核心贡献是：以腐肉乌鸦、猴和人类在同类或可比决策任务中的行为表现为依据，提出鸟类大脑虽与哺乳动物皮层结构不同，但仍能实现强大的认知功能，甚至在某些决策速度指标上占优；这为“认知能力是否依赖特定皮层样结构”提供了新的比较认知与神经科学论据。",
+        "details": "仅根据题名、期刊、摘要和元数据，这篇文章的研究对象应是鸟类，尤其是腐肉乌鸦，研究任务是决策行为的跨物种比较。摘要给出的唯一明确结果是“腐肉乌鸦做决定比猴和人更快”，因此论文的证据主轴大概率是某种标准化决策范式下的反应时或决策时延比较，并借此上升到对“avian brain（鸟类大脑）认知能力”的讨论。题名使用“The cognitive power of the avian brain”而非单纯行为学标题，说明作者可能不仅报告行为差异，还会联系鸟类前脑/端脑功能组织、神经表征效率，或讨论鸟类与灵长类在不同脑结构下实现相似认知功能的机制意义。由于来源是Science，且篇幅可能偏评论、观点或随文解读，也不能排除这是一篇基于最新研究结果的评述性文章，而非完整原始实验论文；这一点必须通过文章类型核对。现阶段不能确认具体任务类型，可能是知觉决策、分类判断、证据积累、延迟反应或二选一任务；也不能确认“更快”是否伴随准确率相当、是否存在速度-准确率权衡控制、样本量多少、训练程度是否一致、刺激是否跨物种等关键方法学细节。对科研读者而言，这篇文章与比较认知、动物行为学、神经科学、脑进化和类脑计算都相关：如果乌鸦在可比任务中确实表现出更快决策且不牺牲准确性，那么它支持一种重要观点，即高效认知并不必然依赖灵长类新皮层式架构，而可能由不同演化路径收敛实现。需要优先核对的信息包括：文章类型（研究论文还是评论）、具体任务范式、比较指标（反应时、正确率、漂移扩散模型参数等）、物种样本与训练方案、统计检验、以及作者是否将行为结果与神经记录或脑区功能联系起来。",
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+        "detail_sections": {
+          "question": "论文想解决的具体问题，按现有信息推测，是鸟类大脑能否支持与灵长类相当甚至更高效的认知决策，以及这种能力是否能通过腐肉乌鸦与猴、人在同类决策任务中的速度比较得到体现。更深一层的问题是：复杂认知是否必须依赖哺乳动物尤其灵长类的大脑皮层样结构，还是鸟类脑组织也能以不同解剖架构实现高性能决策。",
+          "method": "可能方法是让腐肉乌鸦、猴和人类执行结构尽量一致的决策任务，并比较反应时、正确率及可能的速度-准确率关系。若为原始研究，可能包含行为实验、心理物理任务设计、统计比较，甚至使用序列采样/证据积累模型分析决策过程；若为评述文章，则方法主要是综合近期关于乌鸦决策行为和鸟类神经认知的实验结果，借单项关键发现展开解释。由于摘要极短，具体刺激类型、任务难度控制、训练时长、样本规模和神经数据是否存在都无法确定。",
+          "strengths": "最值得关注的亮点是跨物种比较对象非常具体：腐肉乌鸦对比猴和人，这使“鸟类认知能力强”不再停留于泛泛描述，而落到可量化的决策速度指标上。若实验控制充分，这类结果对脑进化理论和认知神经科学都很有冲击力，因为它暗示不同脑结构可以收敛地产生高效认知。题名也提示论文可能把单一行为现象提升到“avian brain”的一般性讨论，具有较强概念整合价值。",
+          "weaknesses": "基于当前题录信息，最大局限是证据极少：摘要只给出一个结论性现象，没有任务名称、样本量、效应大小、准确率、统计显著性和控制条件。还需警惕“更快”是否只是训练熟练度、动机、感觉运动通道差异或任务适配性造成，而非更强认知本身。另一个重要不确定性是文章类型：如果这是Science中的评论或观点文，其贡献可能是解释和整合，而不是报告新实验。题名中的“cognitive power”也可能带有一定传播性表达，不能直接等同于全面认知优势。",
+          "next_step": "最小可执行动作是先核对文章类型与正文结构：确认它是Research Article、Perspective还是Editorial；随后优先查看摘要扩展版、首图和结果部分，记录具体决策任务、三个物种的样本量、反应时与准确率数据、是否控制速度-准确率权衡。若你做比较认知或神经建模，可进一步查是否使用漂移扩散模型或神经记录；若没有，则把“乌鸦更快”暂时标记为行为层面的现象结论，避免过度推断到机制层面。"
+        }
+      },
+      "doi:10.1038/s41586-026-10733-y": {
+        "summary": "这篇Nature论文从题名判断，聚焦GRP75依赖的“SIMPA”过程，讨论其如何介导细胞内不同细胞器之间的质量控制。由于当前未提供摘要和关键词，能够确认的具体对象主要是GRP75、SIMPA以及“inter-organellar quality control（跨细胞器质量控制）”这一任务，具体涉及哪些细胞器、何种损伤场景和实验结论仍信息不足。",
+        "contribution": "基于题名推测，论文的核心贡献很可能是提出或定义了一种由GRP75依赖的SIMPA机制，并将其定位为跨细胞器质量控制中的关键环节；如果属实，这意味着作者可能把一个分子伴侣相关因子GRP75与细胞器间稳态维持、损伤识别或清除通路直接联系起来。但在没有摘要的情况下，不能确认SIMPA是新命名通路、复合体、结构事件还是分析框架。",
+        "details": "从现有元数据可提取的信息非常有限。题名中的GRP75通常指线粒体相关分子伴侣/应激相关蛋白，常与线粒体蛋白稳态、线粒体-内质网接触、应激响应等主题相关；“inter-organellar quality control”则明确指向细胞器之间而非单一细胞器内部的质量控制，因此论文很可能研究的是线粒体与另一类细胞器之间的协同稳态机制，例如内质网、溶酶体、过氧化物酶体或自噬相关结构。题名中的“SIMPA”是最关键但也最不透明的信息：它可能是作者提出的新过程名称、蛋白复合体、膜接触事件、选择性清除路径，或某种应激诱导的细胞器互作现象。若论文发表于Nature，通常意味着作者可能提供了较强的机制证据链，例如遗传扰动、蛋白互作、活细胞成像、超分辨或电镜、细胞器功能读出，以及在不同模型中的一致性验证。可能的数据类型包括：GRP75敲低/敲除或过表达后的细胞器形态与功能变化；SIMPA相关标志事件的定量；细胞器接触位点、蛋白定位或转运变化；应激条件下质量控制效率、蛋白聚集、膜电位、ROS、降解通量或细胞存活的变化。与科研读者的关系上，如果你的方向涉及线粒体稳态、细胞器互作、蛋白质质量控制、自噬/线粒体自噬、神经退行性疾病、代谢应激或衰老，这篇论文值得优先核对，因为它可能提供新的机制节点GRP75-SIMPA轴。当前最需要核对的信息包括：1，SIMPA的全称与定义；2，具体涉及哪些细胞器；3，GRP75在该过程中的角色是结构支架、分子伴侣、信号转导节点还是运输因子；4，质量控制的输出是修复、隔离、降解还是细胞命运改变；5，证据是否来自细胞系、动物模型或患者样本；6，是否与已知通路如UPRmt、mitophagy、ER-phagy、MAMs或溶酶体应激存在交叉。由于摘要为空，以上均只能作为基于题名和期刊定位的审慎推断，不能视为论文已证实内容。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名判断，是GRP75依赖的SIMPA是否构成一种跨细胞器质量控制机制，以及该机制如何识别细胞器损伤、协调细胞器间互作并维持细胞稳态。更细一点说，作者可能在问：当某一细胞器发生蛋白质或功能异常时，GRP75是否驱动一种特定的细胞器间响应过程，从而实现质量控制。",
+          "method": "在没有摘要的前提下，可能的方法路径包括：以细胞生物学和机制实验为主，结合GRP75遗传操作、SIMPA事件追踪、细胞器共定位/接触成像、蛋白互作鉴定、功能读出和应激模型。若要支撑Nature级别结论，常见组合会包括共聚焦或活细胞成像观察细胞器互作，电镜或冷冻电镜观察超微结构，免疫共沉淀/质谱寻找GRP75相关因子，敲除或点突变验证因果关系，以及在动物或疾病模型中测试该质量控制机制的生理意义。",
+          "strengths": "最值得关注的潜在亮点有三点。第一，如果SIMPA是新定义的过程，那么论文可能提供了一个新的跨细胞器质量控制概念框架。第二，GRP75本身具有较强的线粒体与应激生物学背景，若其被证明是跨细胞器质量控制的核心节点，机制整合价值会很高。第三，题名直接强调“mediates inter-organellar quality control”，说明作者可能不仅描述相关性，还尝试建立GRP75-SIMPA与质量控制输出之间的因果联系。",
+          "weaknesses": "当前最大的局限是摘要为空，导致无法确认研究对象、模型系统、实验设计和主要结论。需要警惕的边界包括：SIMPA究竟是什么尚不明确；GRP75依赖性是直接机制还是上游伴随现象；“inter-organellar”涉及的细胞器范围未知；质量控制的定义可能很宽泛，可能是形态学接触、物质转运、损伤隔离或降解通路中的任一层面。此外，仅凭题名无法判断结果是否具有普适性，还是局限于特定细胞类型、应激条件或疾病模型。",
+          "next_step": "最小可执行动作是先补齐摘要和首图信息，并重点记录五个问题：1，SIMPA全称；2，涉及哪两个或多个细胞器；3，GRP75的直接分子作用；4，核心实验读出是什么；5，是否有体内证据。若你准备做阅读笔记或复现，建议优先查Figure 1和Figure 2的模型建立部分，以及方法中GRP75操作方式和SIMPA定量指标；同时把该工作与已知GRP75、MAMs、线粒体质量控制文献做一页对照表。"
+        }
+      },
+      "doi:10.1038/s41586-026-11165-4": {
+        "summary": "这篇Nature论文从题名判断，聚焦Angelman综合征，提出“持续性神经元应激信号”可能是驱动该病表型的关键机制，任务是把一种细胞状态异常与疾病行为/分子表型联系起来。由于提供信息中摘要为空，目前只能做基于题名与作者/期刊元数据的机制性推断，无法确认其具体实验体系、数据规模和结论强度。",
+        "contribution": "可能的核心贡献是：将Angelman综合征的致病解释从经典的基因缺失/突触功能异常，进一步推进到“神经元持续应激通路失衡”这一可检验机制框架，并可能据此提出新的生物标志物、干预靶点或跨表型统一解释。但摘要缺失，具体是发现某条应激通路、证明因果关系，还是仅建立相关性，仍需核对。",
+        "details": "从题名“Persistent neuronal stress signalling underlies Angelman syndrome phenotypes”看，研究对象应是Angelman综合征相关神经元，以及该疾病的若干“phenotypes”，这些表型可能包括分子、细胞、电生理、行为或代谢层面的异常。题名中的“underlies”通常暗示作者不仅报告伴随现象，还试图论证持续性神经元应激信号位于病理链条较上游的位置，至少在解释多个表型方面具有统一性。作者名单中包含Harrison W. Gabel和Gary J. Patti，前者常与神经发育/转录调控相关，后者与代谢组学相关，因此仅从作者背景线索推测，论文可能结合神经元模型与代谢/分子层分析，去描绘应激状态的持续激活及其后果；但这只是线索，不应视为已证实事实。若研究遵循该题名逻辑，常见证据链可能包括：Angelman模型与对照比较，检测应激信号通路激活；将该激活与具体病理表型关联；再通过遗传或药理方式缓解应激信号，观察表型是否被部分救援。也可能使用小鼠、iPSC来源神经元、脑组织组学、蛋白磷酸化读出、转录组或代谢组等手段。与科研读者的关系在于，这篇工作若成立，会影响Angelman综合征及更广义神经发育障碍的机制建模：重点不再只是单一突触缺陷，而是慢性细胞应激如何重塑神经元稳态、网络功能和发育轨迹。当前最需要核对的信息包括：1）具体应激信号是哪一类，如ISR、ER stress、氧化应激、线粒体应激或DNA损伤反应；2）“persistent”是发育早期持续存在，还是在成熟神经元中维持；3）证据是相关还是因果；4）表型覆盖哪些层级；5）模型系统与样本量；6）是否提出可逆性和治疗窗口；7）与UBE3A缺失这一Angelman核心遗传背景的直接连接机制是什么。由于摘要为空，以上均属于基于题名和元数据的审慎推断，不能替代对摘要、图表和正文的核实。",
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+        "detail_sections": {
+          "question": "这篇论文想解决的具体问题，按题名推断，是Angelman综合征的多种病理表型是否可以由一种持续存在的神经元应激信号异常来统一解释，以及这种应激状态在疾病机制中究竟是上游驱动因素、并行伴随现象，还是下游结果。",
+          "method": "可能的方法路径包括：在Angelman综合征相关模型中比较神经元应激通路活性与对照差异；使用转录组、蛋白组、代谢组、免疫染色、电生理或行为学读出刻画表型；通过遗传操作或药理干预抑制特定应激通路，测试分子/细胞/行为表型是否得到救援；并将应激信号与UBE3A缺失或其下游网络建立联系。若作者背景线索成立，代谢层证据可能是重要组成部分，但需以正文核实。",
+          "strengths": "最值得关注的潜在亮点是其机制整合能力：如果作者证明“持续性神经元应激”能够串联多个Angelman表型，这会比单点分子异常更具解释力，也更容易导向可干预靶点。另一亮点可能是跨层级证据链，即从分子应激标志到神经元功能再到整体表型的闭环验证。发表在Nature也提示其证据体系可能较完整，但这不能替代具体内容审查。",
+          "weaknesses": "当前最大的局限是摘要为空，导致无法确认研究模型、样本、应激通路类型、因果证据强度和统计设计。仅凭题名，“stress signalling”概念较宽，存在过度泛化风险；“underlies”也可能在媒体传播中被理解为强因果，但正文未必达到完全因果证明。此外，若研究主要基于单一模型系统，其对人类患者异质性的外推需要谨慎。",
+          "next_step": "最小可执行动作：先获取摘要与图1，确认研究对象是小鼠、患者来源细胞还是其他模型；记录文中明确指向的应激通路名称及核心标志物；查看是否有干预救援实验和行为/电生理结果；把所有表型按“分子-细胞-回路-行为”四层整理成表；最后专门核对UBE3A缺失如何连接到应激信号持续激活。"
+        }
+      }
+    },
+    "llm_used": true,
+    "warnings": []
+  },
+  "papers": [
+    {
+      "id": "arxiv:2610.30920v1",
+      "source": "arxiv",
+      "title": "DConstrain: Compiling Context-Parameterized Transitions for Diffusion Language Model Constrained Decoding",
+      "authors": [
+        "Shidong Cao",
+        "Jing Ma",
+        "Wenhao Chai",
+        "Yuchen Tian",
+        "Lun Du",
+        "Da Zheng"
+      ],
+      "published": "2026-10-22T08:40:11Z",
+      "updated": "2026-10-22T08:40:11Z",
+      "abstract": "Diffusion language models (DLMs) decode multiple tokens in parallel, so individually valid tokens can be incompatible together under a schema. Exact joint inference over a grammar graph enforces compatibility, but it requires token-labeled successors across many hypothetical parser configurations. Encoding stacks and field histories in compiled states can cause exponential growth, which forces prior exact decoders to fix property orders and exclude valid outputs. We present DConstrain, which compiles schemas into context-parameterized transition programs. Cold compilation specializes token consumption to local grammar states while retaining context-dependent stack operations, environment guards, and caller-dependent deferred parsing symbolically. Tracking field histories as runtime values supports arbitrary property order without enumerating field subsets offline. At runtime, warm compilation binds reached configurations to these programs to construct exact successors, overlapping with the model forward pass because graph construction requires no model scores. Furthermore, token-effect grouping merges tokens with identical compiled effects before runtime contexts are bound, so groups are reused across stacks and environments even when concrete successors differ. Objective-specific score aggregation and token restoration provably preserve both the Viterbi optimum and the token-labeled path distribution of ungrouped inference. Across three benchmarks and two DLM families, DConstrain compiles 100% of BFCL schemas under arbitrary property orders, whereas an optimized finite-state baseline compiles only 71.30-85.81%. Under arbitrary property order, it reduces BFCL end-to-end decoding latency by 6.65-46.26 times with 100% schema validity and raises DiffusionGemma's BFCL accuracy from 37.27% under fixed order to 81.56%.",
+      "url": "http://arxiv.org/abs/2610.30920v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30920v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "language model",
+        "language models",
+        "ai",
+        "diffusion",
+        "environment"
+      ],
+      "score": 58.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2610.30923v1",
+      "source": "arxiv",
+      "title": "Low-Latency MoE Inference in Space Data Centers: A Wireless-Power-Transfer Perspective",
+      "authors": [
+        "Haotian Zheng",
+        "Zhanwei Wang",
+        "Kaibin Huang"
+      ],
+      "published": "2026-10-22T08:42:28Z",
+      "updated": "2026-10-22T08:42:28Z",
+      "abstract": "Space data centers (SpaceDCs) are emerging as platforms for large language models (LLMs), supported by continuous solar-energy harvesting and high-speed interconnections. The mixture-of-experts (MoE) architecture supports distributed LLM inference by deploying experts across satellites. However, skewed expert activation creates uneven computation power demands despite uniform solar-power supply at the dawn-dusk sun-synchronous orbit (SSO). Consequently, active experts remain power-constrained while harvested power at idle experts is underused. These reduce inference efficiency and increase latency. To address this supply-demand mismatch, we propose the SpaceWPT framework, which uses inter-satellite laser-based wireless power transfer (WPT) to redistribute harvested power. The key design challenge is to balance the computation demands of power-donating and power-receiving satellites under WPT losses: transferring more power accelerates computation at the receiver but leaves less power for the donor. After deriving design principles that simplify WPT control, we characterize the resulting latency tradeoff through a tractable surrogate of average inference latency. Minimizing the surrogate yields a novel two-sided water-filling strategy that determines whether each active expert donates, retains, or receives power according to the water level and its WPT link efficiency. Simulations with Mixtral-8x7B and Phi-3.5-MoE show up to 29.25% lower inference latency than without WPT, with larger gains under more compact formations and higher transfer efficiencies.",
+      "url": "http://arxiv.org/abs/2610.30923v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30923v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.DC",
+        "cs.AI",
+        "cs.NI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "ai",
+        "satellite"
+      ],
+      "score": 57.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2610.31060v1",
+      "source": "arxiv",
+      "title": "Diagnosing the Explicit-to-Applied Theory of Mind Gap in LLMs",
+      "authors": [
+        "Prajvi Saxena",
+        "Sabine Janzen",
+        "Wolfgang Maass"
+      ],
+      "published": "2026-10-22T10:39:50Z",
+      "updated": "2026-10-22T10:39:50Z",
+      "abstract": "As large language models are deployed in high-stakes roles such as therapy, education, and personal assistance, their social cognition must be assessed reliably. Current Theory of Mind (ToM) benchmarks report aggregate scores that conflate two distinct competencies: explicit ToM (recognizing what someone believes) and applied ToM (using that belief to predict behavior). Building on this distinction, we investigate the gap and its recoverability using four structurally diverse benchmarks. Aggregate reporting obscures uneven competence: on SimpleToM, Llama-3.1-8B scores 51.5 percent overall while recognizing mental states at 99.4 percent and predicting behavior at only 28.9 percent. To assess recovery, we compare structured prompting, matched in-context learning, and our proposed Belief-State Test-Time Training (BSTTT), which adapts lightweight parameters on answered support questions through action reconstruction. Across Qwen2.5-7B, Llama-3.1-8B, and GPT-oss-20B, recovery depends on the model, task, and intervention. On SimpleToM, reminders combined with BSTTT improve Llama's behavior prediction by 40.8 percentage points; reminders account for most of the overall improvement, with BSTTT adding 1.3 to 5.5 points beyond reminders across models. Contextual examples often outperform weight updates, while BSTTT remains stronger in specific model-benchmark settings. Temporal belief tracking remains difficult despite partial recovery. These findings show that aggregate ToM scores can overstate applied competence while hiding performance recoverable through targeted assistance. We recommend decomposed reporting of explicit and applied accuracy alongside intervention comparisons that establish which failures are recoverable and under what conditions.",
+      "url": "http://arxiv.org/abs/2610.31060v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.31060v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "ai",
+        "test-time training"
+      ],
+      "score": 56.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2610.31236v1",
+      "source": "arxiv",
+      "title": "Cleaner air strengthens the Pacific trade winds without a detectable change in El Nino",
+      "authors": [
+        "Ioana Colfescu",
+        "Alice Pigelet",
+        "Chen Lu",
+        "Massimo A. Bollasina",
+        "Silvio Gualdi"
+      ],
+      "published": "2026-10-22T13:16:04Z",
+      "updated": "2026-10-22T13:16:04Z",
+      "abstract": "Air quality policy will cut aerosol and ozone precursor emissions, and studies disagree on how the tropical Pacific circulation and the El Nino Southern Oscillation (ENSO) will respond. Here we show, in 12 Earth system models with and without air quality controls, that the cuts strengthen the Pacific trade winds and offset half to two thirds of the weakening projected without them. The response is absent with prescribed sea surface temperatures and detectable only after 2040. It is consistent with the Indian Ocean warming relative to the Pacific, which also ranks the responses to cuts made region by region. ENSO amplitude changes by less than a tenth of its value, the smallest change this ensemble could detect. The change implied by the mean state shift is a sixth of that, and an ENSO model trained without the reduced emission runs predicts none. El Nino's regional impacts still change, because the background climate does.",
+      "url": "http://arxiv.org/abs/2610.31236v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.31236v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "physics.ao-ph"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "ai",
+        "earth",
+        "earth system",
+        "climate",
+        "ocean"
+      ],
+      "score": 54.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11328-3",
+      "source": "nature",
+      "title": "ctDNA clearance and outcomes for resectable lung cancer from NeoCOAST-2",
+      "authors": [
+        "Lara McGrath",
+        "Gozde Kar",
+        "Laura Bonanno",
+        "Florian Guisier",
+        "Amelia Insa",
+        "Moishe Liberman",
+        "Olivier Bylicki",
+        "Lorenzo Livi",
+        "Thomas Egenod",
+        "Romain Corre",
+        "Dong-Wan Kim",
+        "Maria Rosario Garcia Campelo",
+        "Mariano Provencio Pulla",
+        "Byoung Yong Shim",
+        "Giulio Metro",
+        "Jaafar Bennouna",
+        "Agata A. Bielska",
+        "Alula R. Yohannes",
+        "Joanna Shaju",
+        "Yun He",
+        "Adam Dowson",
+        "Italia Grenga",
+        "Jonathan Spicer",
+        "Patrick M. Forde",
+        "Tina Cascone"
+      ],
+      "published": "2026-10-25",
+      "updated": "2026-10-25",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11328-3",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11328-3",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 0,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11328-3"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aem1247",
+      "source": "science",
+      "title": "A cell death ballet in two acts",
+      "authors": [
+        "Cristina Muñoz-Pinedo",
+        "Seamus J. Martin"
+      ],
+      "published": "2026-10-22",
+      "updated": "2026-10-22",
+      "abstract": "Two proteins that permeabilize mitochondria promote cell death through distinct mechanisms",
+      "url": "https://doi.org/10.1126/science.aem1247",
+      "pdf_url": "",
+      "doi": "10.1126/science.aem1247",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6822",
+        "page": "383-384",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aem1247"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aem0762",
+      "source": "science",
+      "title": "Putting glucose metabolism under electronic control",
+      "authors": [
+        "W. E. Bentley",
+        "G. F. Payne"
+      ],
+      "published": "2026-10-22",
+      "updated": "2026-10-22",
+      "abstract": "An electronic device controls the redox mechanisms that regulate glucose concentrations in mice",
+      "url": "https://doi.org/10.1126/science.aem0762",
+      "pdf_url": "",
+      "doi": "10.1126/science.aem0762",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6822",
+        "page": "382-383",
+        "reference_count": 9,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aem0762"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aem0341",
+      "source": "science",
+      "title": "The cognitive power of the avian brain",
+      "authors": [
+        "Michael Colombo",
+        "Oriane Poutrain-Sorel"
+      ],
+      "published": "2026-10-22",
+      "updated": "2026-10-22",
+      "abstract": "Carrion crows make decisions faster than monkeys and humans",
+      "url": "https://doi.org/10.1126/science.aem0341",
+      "pdf_url": "",
+      "doi": "10.1126/science.aem0341",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6822",
+        "page": "385-385",
+        "reference_count": 7,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aem0341"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-10733-y",
+      "source": "nature",
+      "title": "GRP75-dependent SIMPA mediates inter-organellar quality control",
+      "authors": [
+        "Fan Yu",
+        "Lingyu Jiang",
+        "Hanyu Liu",
+        "Song Yang",
+        "Yuan Yuan",
+        "Hongzhen Jin",
+        "Jinming Liu",
+        "Xi Liu",
+        "Yu Dong",
+        "Dongfeng Ren",
+        "Jie Kang",
+        "Yan Huang",
+        "Qi Meng",
+        "Feng Bai",
+        "Yanjun Li",
+        "Shuoguo Li",
+        "Huadong Liu",
+        "Wei Zhao",
+        "Jia Xiao",
+        "Quan Chen"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-25",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-10733-y",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-10733-y",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 40,
+        "resource_url": "https://www.nature.com/articles/s41586-026-10733-y"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11165-4",
+      "source": "nature",
+      "title": "Persistent neuronal stress signalling underlies Angelman syndrome phenotypes",
+      "authors": [
+        "Kwang-Soo Kim",
+        "Cory Gardner",
+        "Alissa Cullen",
+        "Jalin A. Stelzer",
+        "Kevin Cho",
+        "Ashish Sharma",
+        "Mati T. Nemera",
+        "Travis Law",
+        "Huma Naz",
+        "Guoyan Zhao",
+        "Harrison W. Gabel",
+        "Gary J. Patti",
+        "Erik S. Musiek",
+        "Tae-Hyuk Ahn",
+        "Jason J. Yi"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-25",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11165-4",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11165-4",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 61,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11165-4"
+      }
+    }
+  ]
+}
