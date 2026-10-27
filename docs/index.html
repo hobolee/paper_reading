@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-10-26</title>
+  <title>Paper Reading · 2026-10-27</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,12 +19,12 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-10-26 · 中文论文简报</div>
+        <div class="eyebrow">2026-10-27 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天这组论文可分成两类阅读优先级。第一优先级是方法上有明确新意、且问题定义清晰的AI论文：其一，DConstrain针对扩散语言模型在并行多token生成下的精确约束解码，核心价值在于把“局部语法状态可编译”与“全局解析上下文不可预枚举”之间的矛盾拆成冷编译+运行时绑定，直指DLM落地时最棘手的结构合法性问题；其二，ToM论文把大模型“知道他人信念”和“能据此预测行为”拆开评测，指出总分可能掩盖能力断裂，这对当前认知评测设计很有启发；其三，SpaceDC中的MoE推理工作虽然场景较特殊，但它把专家负载不均、供电约束和无线能量传输联立，属于较完整的系统建模问题。第二优先级是高影响力自然科学论文中值得跟进摘要/正文的机制与临床线索：气候论文给出一个相对明确的信息，即空气污染治理可显著改变热带太平洋平均态环流，却未在多模型集合中检测到El Nino振幅显著变化，这对“平均态变化是否必然放大ENSO”的直觉形成约束；肺癌ctDNA、Angelman综合征、GRP75-SIMPA等Nature论文都指向潜在重要机制或转化价值，但当前信息不足，适合待摘要后再深入。若从“今天最值得立即读”的角度排序，我会优先看DConstrain，其次看ToM gap，再看气候论文；若从“可能引出后续项目”的角度，则DConstrain和ToM最适合快速复现或做对照分析，气候论文最适合做文献整合与机制核查。</p>
+        <p class="summary">今天这组论文里，最值得优先读的是4篇LLM/agent方向工作，因为它们共同指向一个很清晰的前沿：大模型系统正在从“会回答”转向“会在复杂环境中形成稳定行为、开展长期研究流程、并在真实基础设施上高效运行”。其中，arxiv:2610.33651v1 讨论LLM在社会困境中的偏好与行为是否一致，价值在于它把“偏好测量”和“实际决策噪声/有限理性”放进同一逆博弈框架，适合关注AI行为、AI alignment、agent社会模拟的人优先阅读；arxiv:2610.33845v1 则更激进，声称LLM研究代理能在缺少现成环境的情况下，自主搭建《Hearthstone Battlegrounds》模拟器、训练策略并在真实天梯达到接近顶尖玩家水平，这篇如果结果可靠，意义不只是游戏AI，而是“自改进科研代理”是否能承担长周期工程研究任务；arxiv:2610.33475v1 是云中LLM部署的系统综述，适合作为基础设施视角的入口，帮助把HBM瓶颈、prefill/decode异构性、KV cache、冷启动和可靠性放到统一框架里；arxiv:2610.33366v1 则聚焦科研创意生成，强调多智能体的“专长”应来自文献图蒸馏而非人工角色设定，适合做AI for Science、scientific discovery、RAG/agent pipeline的人快速跟进。整体上，这4篇形成了一个从行为建模、科研代理、知识组织到云部署的连续链条：如果把LLM看成可行动的研究系统，那么既要解释它为什么这样行动，也要让它能在真实任务中持续改进，还要给它可追踪的知识来源与可扩展的运行底座。非AI方向里，Science/Nature几篇虽然与本轮关键词关联弱，但科学价值很高：柔性钙钛矿组件论文给出面向大面积制造的界面-成膜协同策略，偏应用转化；两篇强关联凝聚态工作都依赖扫描隧道显微镜直接成像量子关联态及其熔化过程，属于高信息密度的实空间机制研究；另外3篇Nature题名级信息提示其分别落在病毒受体识别、临床异种移植精准诊断、可交互电子纤维界面，值得按各自领域需求补摘要后再决定是否深读。若按阅读优先级排序：第一梯队建议读 PBM、AutoTavern、InsightAgents；第二梯队读云中LLM综述作为背景框架；第三梯队按个人领域选择柔性钙钛矿或两篇莫尔/霍夫施塔特关联态成像论文；其余仅有题名级信息的Nature论文暂列观察名单。</p>
         <div class="metrics">
-          <div class="metric"><strong>451</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>195</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>450</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>201</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -44,14 +44,14 @@
             
 
             <div class="bar-row">
-              <div class="bar-label">Nature</div>
+              <div class="bar-label">Science</div>
               <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
               <div class="bar-count">3</div>
             </div>
             
 
             <div class="bar-row">
-              <div class="bar-label">Science</div>
+              <div class="bar-label">Nature</div>
               <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
               <div class="bar-count">3</div>
             </div>
@@ -59,21 +59,22 @@
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">ai <strong>4</strong></span>
+          <div class="chips"><span class="chip">llm <strong>4</strong></span>
+<span class="chip">agent <strong>4</strong></span>
+<span class="chip">ai <strong>4</strong></span>
+<span class="chip">large language model <strong>3</strong></span>
+<span class="chip">large language models <strong>3</strong></span>
 <span class="chip">language model <strong>3</strong></span>
 <span class="chip">language models <strong>3</strong></span>
-<span class="chip">large language model <strong>2</strong></span>
-<span class="chip">large language models <strong>2</strong></span>
-<span class="chip">llm <strong>2</strong></span>
-<span class="chip">diffusion <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">satellite <strong>1</strong></span>
-<span class="chip">test-time training <strong>1</strong></span>
+<span class="chip">agents <strong>3</strong></span>
+<span class="chip">environment <strong>2</strong></span>
+<span class="chip">rag <strong>2</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
 <span class="chip">earth <strong>1</strong></span>
-<span class="chip">earth system <strong>1</strong></span>
-<span class="chip">climate <strong>1</strong></span>
-<span class="chip">ocean <strong>1</strong></span></div>
+<span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">foundation models <strong>1</strong></span>
+<span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">scientific discovery <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -99,7 +100,7 @@
             <div class="bar-row">
               <div class="bar-label">nature</div>
               <div class="bar-track"><div class="bar-fill" style="width: 19%"></div></div>
-              <div class="bar-count">58</div>
+              <div class="bar-count">57</div>
             </div>
             
       </div>
@@ -108,11 +109,12 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">扩散语言模型开始面对比自回归模型更困难的“并行生成下全局结构合法性”问题，约束解码的核心瓶颈从打分转向状态表示与上下文编译。</span>
-<span class="chip">大模型能力评测正在从单一总分转向能力分解：显式表征、应用推理、测试时适配分别衡量，说明“会说”与“会用”可能是不同能力层。</span>
-<span class="chip">AI系统论文继续向非传统部署环境外溢：从地面数据中心转向卫星空间数据中心，计算调度与能源调度被统一建模。</span>
-<span class="chip">气候系统研究中，空气污染治理不再只是区域环境议题，而被直接连接到热带太平洋平均态、Walker环流和ENSO可检测性问题。</span>
-<span class="chip">本日生物医学高刊论文多集中于“动态状态信号与结局”的关系：ctDNA清除对应临床结局，持续神经元应激对应疾病表型，跨细胞器质量控制对应稳态维持。</span></div>
+        <div class="chips"><span class="chip">从“偏好表述”到“真实行为”的LLM一致性问题：仅测偏好不足以预测社会困境中的策略，必须显式建模不完全理性、决策噪声与情境依赖。</span>
+<span class="chip">LLM agent从工具走向长期闭环研究者：不仅生成代码或文本，还尝试自主构建环境、验证结论、利用真实反馈持续改进。</span>
+<span class="chip">多智能体科研系统的关键不再只是“多角色”，而是专长如何被文献图谱和结构化记忆真正扎根与区分。</span>
+<span class="chip">LLM基础设施进入跨层协同阶段：模型服务性能瓶颈已不能只看单机推理，而要联动硬件内存墙、集群编排、KV cache管理与serverless冷启动。</span>
+<span class="chip">高分辨实空间成像继续推动强关联量子材料研究：量子熔化、电子-空穴不对称、对称性破缺Chern绝缘体等问题正从输运迹象走向直接可视化机制。</span>
+<span class="chip">器件与生医方向都在强调“从机制到可转化系统”：柔性钙钛矿关注大面积稳定制造，异种移植诊断与病毒受体识别则指向临床监测和干预设计。</span></div>
       </div>
     </section>
 
@@ -121,50 +123,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>复现并比较“能力拆分”后的ToM评测：把现有ToM基准中的题目重新标注为belief recognition与behavior prediction两类，检查不同模型在两类题上的性能差距是否稳定存在。</strong>
-              <p>这项工作门槛低、可快速验证论文主张是否具有数据集无关性；如果差距稳定存在，就说明很多ToM总分结论需要重写。</p>
-              <p><span>第一步：</span>先收集论文提到的四个ToM基准及公开样例，人工抽取每个基准各50-100题，建立最小二分类标注规则并做双人一致性检查。</p>
-              <p><span>风险：</span>题目类型划分可能并不干净，很多题同时包含信念识别与行为预测，导致结论依赖标注标准。</p>
+              <strong>复现并压力测试PBM式“偏好-行为联合建模”在开源LLM上的可迁移性</strong>
+              <p>这篇工作最有价值的地方不只是提出PBM，而是挑战一个常见默认前提：问卷或elicitation里测到的偏好能直接外推到策略行为。若这一点在不同模型、提示模板、温度设置下都不稳，那么很多基于LLM“价值观测量”的结论都需要重估。</p>
+              <p><span>第一步：</span>先选2个开源模型和1个闭源模型，在一个最小化社会困境集合上做小样本复现：至少包含1个偏好测量任务和1个公共物品博弈，比较“只用偏好参数预测行为”与“偏好+softmax/噪声参数联合拟合”的预测差异。</p>
+              <p><span>风险：</span>原论文细节尚未看到，具体效用形式、估计方法和任务实现可能影响很大；如果实验协议不一致，复现结果难以直接比较。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>为结构化生成任务建立一个小型DLM约束解码基准，专门测“并行多token提议下的全局合法率”而不是只测最终输出格式正确率。</strong>
-              <p>DConstrain的价值点在于并行步内的联合合法性，但现有很多基准只看最终字符串是否合法，难以体现方法优势。</p>
-              <p><span>第一步：</span>选JSON schema、括号文法和属性顺序可交换的对象生成三类任务，先用模拟并行token块生成器构造候选，再统计不同约束策略的块级合法率与运行开销。</p>
-              <p><span>风险：</span>如果没有现成DLM实现，前期可能只能做模拟实验，离真实模型行为仍有距离。</p>
+              <strong>把AutoTavern式自改进研究代理拆成可评测模块，做“哪一环真正贡献最大”的消融研究</strong>
+              <p>这类系统最容易出现整体叙事很强、但关键增益来源不清的问题。typed memory、verification gates、live feedback、环境构建、对手校准都可能重要，但需要模块化证据。做消融能帮助判断哪些设计可迁移到非游戏科研任务。</p>
+              <p><span>第一步：</span>不必复现完整炉石系统，先在一个规则复杂但规模较小的开源游戏环境中搭建最小版本，分别去掉verification gate、结构化记忆、真实反馈校准三项机制，比较环境正确率、训练稳定性和最终策略表现。</p>
+              <p><span>风险：</span>完整系统工程量极大，且真实服务器反馈难以替代；在简化环境中的结论未必能外推到原论文那种高复杂度场景。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>检查“任意属性顺序”是否真是现有精确约束解码器的系统性弱点，做一份面向JSON/schema解码器的对照综述或实验笔记。</strong>
-              <p>这是DConstrain摘要里很关键但容易被忽略的卖点；若成立，说明很多现有方法通过固定property order换取可 tractable 状态空间，实际牺牲了合法输出覆盖。</p>
-              <p><span>第一步：</span>选3-5个常见约束解码工具或论文实现，设计包含可交换字段顺序、历史依赖字段和值约束的最小schema，逐个测试可接受输出集合是否被错误收缩。</p>
-              <p><span>风险：</span>不同工具支持的schema子集差异很大，比较时容易变成接口能力比较而非核心算法比较。</p>
+              <strong>检验“图蒸馏洞见”是否真的优于普通RAG文献拼接来支持多智能体科研构思</strong>
+              <p>InsightAgents的核心主张是agent专长应来自图结构蒸馏出的演化、假设和未解挑战，而不是简单检索。这个命题非常适合做可控对照，因为它关系到未来科研agent到底该依赖何种知识组织方式。</p>
+              <p><span>第一步：</span>选10个NLP主题，构建两套输入：一套是普通top-k论文摘要RAG，另一套是按方法演化/假设/挑战整理的结构化图蒸馏摘要；在相同多agent辩论框架下生成proposal，再用盲评比较新颖性、可行性和文献扎实度。</p>
+              <p><span>风险：</span>评价科研想法高度主观，LLM judge可能偏好表述风格；需要至少加入人工评审或更细粒度rubric。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>对SpaceDC-MoE问题做一个“去航天化”的抽象复现：把卫星改写为受能量预算约束的分布式节点，研究负载偏斜下能量转移是否优于任务迁移。</strong>
-              <p>原论文场景新颖但较专用；抽象后可连接边缘计算、机器人集群或移动算力网络，更容易形成可发表的系统模型或理论分析。</p>
-              <p><span>第一步：</span>先写出一个最小两节点模型：节点A/B各有本地能量、计算速度-功率函数和MoE负载到达率，比对三种策略——不转移、转移任务、转移能量。</p>
-              <p><span>风险：</span>若关键收益完全依赖卫星太阳能与激光WPT的特殊物理条件，抽象后结论可能不再成立。</p>
+              <strong>基于云中LLM综述整理一份“prefill/decode分离 + KV cache治理”研究地图，并补一个小型实验基线</strong>
+              <p>这篇综述的价值在于跨层整合，但综述本身不一定给出统一实验基线。当前很多系统论文只优化单点，缺少可横向比较的负载模型。做一份研究地图加最小实验，有助于后续选题。</p>
+              <p><span>第一步：</span>先按论文中提到的瓶颈维度手工建表：HBM、prefill/decode、KV cache、冷启动、可靠性；然后在vLLM或同类框架上跑一个最小实验，测不同输入长度和并发下prefill与decode的时延占比及KV cache占用。</p>
+              <p><span>风险：</span>综述尚未细读，taxonomy边界可能与原文不完全一致；不同推理框架和硬件平台差异很大，实验结果容易受环境影响。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕“空气污染治理影响ENSO但未显著改变振幅”做一篇机制核查型综述或再分析计划，重点梳理平均态改变、区域降温/增暖差异与ENSO可检测性的关系。</strong>
-              <p>这类结论很容易被过度传播成‘减排不影响El Nino’，但摘要实际更细：可能影响信风和区域气候影响，却未检测到振幅显著变化，值得做概念澄清。</p>
-              <p><span>第一步：</span>收集该文及近年关于aerosol reduction、Walker circulation、ENSO amplitude的模型研究，先做一页表格，记录情景设计、模型数、平均态响应和ENSO指标定义。</p>
-              <p><span>风险：</span>不同论文对ENSO的定义、时间窗和显著性标准不一致，综述时很难直接横向比较。</p>
+              <strong>围绕两篇凝聚态成像论文做一篇“小综述+对照表”，聚焦‘量子熔化的实空间证据类型’</strong>
+              <p>这两篇Science论文都强调直接成像量子熔化，但体系不同、熔化机制也不同。把它们并列整理，可形成一个很具体的阅读产出：哪些实空间特征支持拓扑缺陷增殖，哪些支持相分离或无序化，哪些体现电子-空穴不对称。</p>
+              <p><span>第一步：</span>先只基于摘要和可获得图注，建立一个对照表，列出材料体系、关联态类型、调控参数、成像手段、熔化表征、对称性信息；再决定是否扩展到近两年类似STM研究。</p>
+              <p><span>风险：</span>如果没有全文图表，证据链会比较粗；不同论文对“熔化”的定义和观测指标可能并不完全可比。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>跟踪本日生物医学高刊中的“动态生物标志物/应激状态”主线，做一个跨论文阅读清单：ctDNA清除、持续神经元应激、跨细胞器质量控制三者都可放入‘动态状态是否比静态分型更接近因果机制’这一框架。</strong>
-              <p>虽然三篇论文领域不同，但都在强调动态过程与结局/表型的联系；把它们放在同一方法论框架下，有助于形成跨领域综述视角。</p>
-              <p><span>第一步：</span>先补齐三篇论文摘要，分别提取‘状态变量是什么、何时测量、与什么结局关联、是否有因果干预’四列，做一张比较表。</p>
-              <p><span>风险：</span>跨领域抽象可能过强，最后只能得到很泛的类比，难形成实质性科研产出。</p>
+              <strong>跟踪柔性钙钛矿组件中的‘界面分子层稳定性—结晶质量—大面积效率’三者关系，做一份面向工艺复现的文献清单</strong>
+              <p>这篇Science论文看起来很接近可转化工艺问题，不只是材料性能刷新。对于想进入柔性钙钛矿的人，最有价值的往往不是最高效率数字，而是哪些工艺变量同时影响SAM锚定、结晶和稳定性。</p>
+              <p><span>第一步：</span>从这篇论文出发，回溯近两年柔性钙钛矿中涉及SAM、共沉积、界面钝化的代表工作，整理成变量表：基底处理、SAM类型、沉积时序、钝化分子、面积、认证效率、热湿稳定性。</p>
+              <p><span>风险：</span>当前只有摘要级信息，具体工艺窗口和机理证据尚不清楚；不同实验室的柔性基底与封装条件差异会降低可比性。</p>
             </div>
             </div>
       </div>
@@ -177,24 +179,29 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-22T08:40:11Z</span>
-        <span>Score 58.5</span>
+        <span>2026-10-24T13:06:54Z</span>
+        <span>Score 82.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2610.30920v1">DConstrain: Compiling Context-Parameterized Transitions for Diffusion Language Model Constrained Decoding</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+DConstrain%3A+Compiling+Context-Parameterized+Transitions+for+Diffusion+Language+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30920v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+DConstrain%3A+Compiling+Context-Parameterized+Transitions+for+Diffusion+Language+Model+Constrained+Decoding%0Akeywords%3A+language+model%2C+language+models%2C+ai%2C+diffusion%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+DConstrain%3A+Compiling+Context-Parameterized+Transitions+for+Diffusion+Language+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30920v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+DConstrain%3A+Compiling+Context-Parameterized+Transitions+for+Diffusion+Language+Model+Constrained+Decoding%0Akeywords%3A+language+model%2C+language+models%2C+ai%2C+diffusion%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+DConstrain%3A+Compiling+Context-Parameterized+Transitions+for+Diffusion+Language+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30920v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+DConstrain%3A+Compiling+Context-Parameterized+Transitions+for+Diffusion+Language+Model+Constrained+Decoding%0Akeywords%3A+language+model%2C+language+models%2C+ai%2C+diffusion%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2610.33651v1">Jointly Modeling Preferences and Imperfect Decision-Making in Large Language Models</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Jointly+Modeling+Preferences+and+Imperfect+Decision-Making+in+Large+Language+Mod&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33651v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Jointly+Modeling+Preferences+and+Imperfect+Decision-Making+in+Large+Language+Models%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Jointly+Modeling+Preferences+and+Imperfect+Decision-Making+in+Large+Language+Mod&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33651v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Jointly+Modeling+Preferences+and+Imperfect+Decision-Making+in+Large+Language+Models%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Jointly+Modeling+Preferences+and+Imperfect+Decision-Making+in+Large+Language+Mod&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33651v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Jointly+Modeling+Preferences+and+Imperfect+Decision-Making+in+Large+Language+Models%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Shidong Cao、Jing Ma、Wenhao Chai、Yuchen Tian 等 6 人 · <a href="https://arxiv.org/pdf/2610.30920v1">PDF</a></div>
-      <div class="chips"><span class="chip">language model <strong>1</strong></span>
+      <div class="authors">Axel Abels、Elias Fernández Domingos、Tom Lenaerts · <a href="https://arxiv.org/pdf/2610.33651v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
 <span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">diffusion <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦于扩散语言模型（Diffusion Language Models, DLMs）在受模式/语法约束解码时的精确推理问题，目标是在并行生成多个 token 的场景下，保证这些 token 组合后仍满足 schema 或 grammar 的全局兼容性。作者提出 DConstrain，通过把 schema 编译为“上下文参数化的转移程序”，在不预先枚举所有解析上下文的情况下，为 DLM 构造精确的受约束后继状态。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献是提出一种面向 DLM 约束解码的编译式框架 DConstrain：一方面用冷编译将 token 消费逻辑特化到局部语法状态，同时把栈操作、环境守卫和调用者相关的延迟解析保留为符号化上下文；另一方面用运行时的热编译把实际到达的解析配置绑定到这些程序上，从而精确构造后继而不依赖模型分数，并可与模型前向并行重叠。另一个重要贡献线索是以运行时值跟踪字段历史，支持任意属性顺序，避免以往精确解码器因状态爆炸而固定 property order、排除合法输出的问题；此外还引入 token-effect grouping，在运行前合并具有相同编译效果的 token，以降低运行时开销。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“大语言模型在偏好测量任务中表达的偏好，能否预测其在社会困境中的策略行为”这一具体问题，提出了一个Preference-Behavior Model（PBM），用于在公共物品博弈、集体风险困境和公共池资源困境中联合建模LLM的多重目标偏好与不完全理性决策。摘要信息表明，作者将问题表述为逆博弈推断：从观察到的选择中同时估计偏好表示和行为参数，以检验跨任务的一致性与可预测性。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于提出一个把“偏好表示”与“非完美效用最大化机制”结合起来的统一框架PBM，而不是像既有工作那样孤立测量单一偏好维度；并将参数估计写成逆博弈问题，用于从LLM在多个社会困境任务中的行为数据中联合反推出偏好和决策噪声/偏差参数。就摘要所示结果线索看，论文的重要发现可能是：传统行为经济学或心理学偏好测量得到的偏好，对预测LLM在其他战略环境中的行为有一定但有限的解释力，而显式建模不完全决策过程后，跨情境预测会更合理。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -206,42 +213,40 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 5</div>
-              <div class="signal-meter"><span style="width: 90%"></span></div>
+              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>58.5</strong>
+              <strong>82.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在扩散语言模型一次并行解码多个 token 时，如何在 schema 或 grammar 约束下进行精确解码，使这些 token 不仅各自合法，而且联合起来也满足全局结构约束；同时避免因显式编码解析栈、字段历史和调用上下文而导致编译状态指数爆炸。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法分为两阶段。离线的 cold compilation 将 schema/grammar 编译为上下文参数化的 transition programs：对局部 grammar state 上的 token 消费进行特化，但把依赖上下文的栈操作、环境守卫、延迟解析符号保留为符号参数。在线的 warm compilation 在解码时把实际到达的 parser configurations 绑定到这些程序上，构造精确后继图；由于该过程不依赖模型分数，可与 DLM 前向并行。为支持对象字段任意顺序，字段历史不再离线枚举为状态，而是作为运行时值跟踪；为降低开销，先按 compiled effects 对 token 分组，把具有相同效果的 token 合并处理。可能的实验对象是 JSON/schema 约束结构化生成或其他 grammar-constrained DLM decoding 任务。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点有三点。第一，问题抓得很准：DLM 的并行 token 解码确实比自回归 LM 更容易出现“局部合法、联合不合法”的结构冲突。第二，方法设计有明显的编译思想，把离线可特化部分与在线依赖上下文部分拆开，理论上有助于同时保留精确性和可扩展性。第三，摘要明确针对 prior exact decoders 的痛点——固定 property order、排除合法输出——提出运行时字段历史跟踪，这对 JSON/结构化对象生成很有实际价值。系统层面上，图构建与模型前向重叠、token-effect grouping 也显示出对推理效率的关注。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先阅读全文中的方法图和形式化定义，确认 cold/warm compilation 的输入输出对象分别是什么；2）重点查找是否有 JSON Schema 或结构化对象生成的示例，验证“任意属性顺序”如何实现；3）记录实验表中与 prior exact decoders 的对比项，特别是正确性、吞吐、内存和 schema 规模；4）查看 token-effect grouping 的例子，判断它是按词表 token、子词片段还是语义效果分组；5）若准备复现，可先尝试用一个小型 JSON schema 手工模拟字段历史作为运行时值的状态转移过程，检查是否确实避免字段子集枚举。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在标准偏好测量任务中 elicitation 出来的LLM偏好，是否能够预测其在其他战略互动环境中的实际选择；如果不能，是否需要一个同时包含多目标偏好与不完全理性决策机制的统一模型，才能解释LLM在社会困境中的行为一致性与跨任务泛化。更细一点说，它关注的是当个体收益、群体收益和环境/资源保护目标相互冲突时，LLM到底是在“按偏好行动”，还是受到决策噪声、有限优化或情境依赖的显著影响。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法大概率包括三步。第一步，在若干标准行为经济学/心理学偏好 elicitation 任务中收集LLM选择，用于得到初始偏好线索或与PBM做对照。第二步，在三个社会困境博弈——公共物品博弈、集体风险困境、公共池资源困境——中观察LLM代理的动作序列或单轮决策。第三步，构建PBM：用一个多维效用函数表示对自我、他人、群体和环境结果的权衡，再用不完全效用最大化机制生成选择概率，并通过逆博弈估计同时拟合偏好参数与行为参数。评估上应包括拟合解释、跨任务预测，可能还包括与“只用偏好、不建模行为偏差”的基线比较。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，任务选择具体且有区分度：公共物品、集体风险、公共池资源分别对应合作供给、风险共担、资源开采约束，能较系统地暴露不同动机冲突。其二，方法上不是停留在描述性统计，而是尝试做结构化建模，把偏好和决策机制拆开，这有助于解释“同一模型为何在不同场景下看起来价值观不一致”。其三，逆博弈视角很有应用价值：如果能稳定估计参数，就可能用于预测LLM agent在新型多智能体环境中的行为，服务于agent设计、对齐评估和风险审计。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，先获取完整摘要或论文PDF，重点补全被截断的结果句，确认作者到底发现了什么。第二，读图表时优先找三类内容：PBM的效用函数定义、行为噪声/不完全理性参数形式、跨任务预测结果表。第三，记录一个对照清单：有哪些基线（仅偏好、仅行为、黑箱预测器）、用了哪些LLM、每个博弈的动作空间和回合结构是什么。第四，如果要复现，可先从单一任务如公共物品博弈做一个简化版：设定自利/利他/环境三维效用，加一个softmax决策规则，测试是否能从模拟选择中反推出参数。第五，若你的研究涉及LLM agents或AI alignment，可把这篇论文作为“静态偏好测量是否足以预测交互行为”的关键参考，并特别核对其样本外预测设置。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在扩散语言模型一次并行解码多个 token 时，如何在 schema 或 grammar 约束下进行精确解码，使这些 token 不仅各自合法，而且联合起来也满足全局结构约束；同时避免因显式编码解析栈、字段历史和调用上下文而导致编译状态指数爆炸。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法分为两阶段。离线的 cold compilation 将 schema/grammar 编译为上下文参数化的 transition programs：对局部 grammar state 上的 token 消费进行特化，但把依赖上下文的栈操作、环境守卫、延迟解析符号保留为符号参数。在线的 warm compilation 在解码时把实际到达的 parser configurations 绑定到这些程序上，构造精确后继图；由于该过程不依赖模型分数，可与 DLM 前向并行。为支持对象字段任意顺序，字段历史不再离线枚举为状态，而是作为运行时值跟踪；为降低开销，先按 compiled effects 对 token 分组，把具有相同效果的 token 合并处理。可能的实验对象是 JSON/schema 约束结构化生成或其他 grammar-constrained DLM decoding 任务。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点有三点。第一，问题抓得很准：DLM 的并行 token 解码确实比自回归 LM 更容易出现“局部合法、联合不合法”的结构冲突。第二，方法设计有明显的编译思想，把离线可特化部分与在线依赖上下文部分拆开，理论上有助于同时保留精确性和可扩展性。第三，摘要明确针对 prior exact decoders 的痛点——固定 property order、排除合法输出——提出运行时字段历史跟踪，这对 JSON/结构化对象生成很有实际价值。系统层面上，图构建与模型前向重叠、token-effect grouping 也显示出对推理效率的关注。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，主要局限是证据仍不足。首先，没有看到具体实验结果、复杂度分析、支持的语法表达能力和失败案例，因此无法判断方法在大规模 schema、深层嵌套结构或高并行度 DLM 上是否仍稳定。其次，摘要中的“environment guards”“caller-dependent deferred parsing”较抽象，实际实现可能较复杂，工程门槛和维护成本未知。再次，虽然运行时字段历史避免了离线状态爆炸，但是否把复杂度转移到在线阶段、缓存是否会膨胀、最坏情况是否仍然很重，都需要核对。最后，论文面向 DLM；若读者主要使用自回归 LLM，需要评估其思想能否直接迁移。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先阅读全文中的方法图和形式化定义，确认 cold/warm compilation 的输入输出对象分别是什么；2）重点查找是否有 JSON Schema 或结构化对象生成的示例，验证“任意属性顺序”如何实现；3）记录实验表中与 prior exact decoders 的对比项，特别是正确性、吞吐、内存和 schema 规模；4）查看 token-effect grouping 的例子，判断它是按词表 token、子词片段还是语义效果分组；5）若准备复现，可先尝试用一个小型 JSON schema 手工模拟字段历史作为运行时值的状态转移过程，检查是否确实避免字段子集枚举。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常具体：不是一般的自回归语言模型约束解码，而是扩散语言模型在“并行解多个 token”时的 schema/grammar-constrained decoding。摘要指出该类模型的特殊困难在于：单个 token 各自合法，并不代表它们同时出现时仍满足结构约束，例如 JSON、函数调用参数、结构化字段填充等任务中，多个位置并行更新可能共同破坏字段唯一性、嵌套结构或语法栈一致性。论文试图解决的是“精确联合推理”与“可扩展性”之间的矛盾：如果在 grammar graph 上做精确联合推理，就需要在大量假设 parser configuration 上维护 token-labeled successors；但若把栈、字段历史等上下文都编码进编译状态，又会导致指数级状态增长。
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在标准偏好测量任务中 elicitation 出来的LLM偏好，是否能够预测其在其他战略互动环境中的实际选择；如果不能，是否需要一个同时包含多目标偏好与不完全理性决策机制的统一模型，才能解释LLM在社会困境中的行为一致性与跨任务泛化。更细一点说，它关注的是当个体收益、群体收益和环境/资源保护目标相互冲突时，LLM到底是在“按偏好行动”，还是受到决策噪声、有限优化或情境依赖的显著影响。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法大概率包括三步。第一步，在若干标准行为经济学/心理学偏好 elicitation 任务中收集LLM选择，用于得到初始偏好线索或与PBM做对照。第二步，在三个社会困境博弈——公共物品博弈、集体风险困境、公共池资源困境——中观察LLM代理的动作序列或单轮决策。第三步，构建PBM：用一个多维效用函数表示对自我、他人、群体和环境结果的权衡，再用不完全效用最大化机制生成选择概率，并通过逆博弈估计同时拟合偏好参数与行为参数。评估上应包括拟合解释、跨任务预测，可能还包括与“只用偏好、不建模行为偏差”的基线比较。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，任务选择具体且有区分度：公共物品、集体风险、公共池资源分别对应合作供给、风险共担、资源开采约束，能较系统地暴露不同动机冲突。其二，方法上不是停留在描述性统计，而是尝试做结构化建模，把偏好和决策机制拆开，这有助于解释“同一模型为何在不同场景下看起来价值观不一致”。其三，逆博弈视角很有应用价值：如果能稳定估计参数，就可能用于预测LLM agent在新型多智能体环境中的行为，服务于agent设计、对齐评估和风险审计。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前信息，需要警惕几类局限。第一，摘要被截断，核心结果不完整，无法确认PBM到底带来了多大预测增益，也无法判断结论强弱。第二，结构模型常见问题是可识别性：某些“偏好变化”与“决策噪声变化”可能在观测行为上等价，如果论文没有强约束或充分实验设计，联合估计可能不稳。第三，LLM行为高度依赖提示词、系统消息、采样温度和角色设定，若这些控制不足，估计出的偏好参数可能混入提示效应。第四，社会困境任务虽经典，但仍是文本化、低维、规则明确的实验环境，外推到开放式agent场景需要谨慎。第五，不清楚是否比较了不同模型家族、不同规模、不同对齐阶段；若只测少数模型，结论的普适性有限。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，先获取完整摘要或论文PDF，重点补全被截断的结果句，确认作者到底发现了什么。第二，读图表时优先找三类内容：PBM的效用函数定义、行为噪声/不完全理性参数形式、跨任务预测结果表。第三，记录一个对照清单：有哪些基线（仅偏好、仅行为、黑箱预测器）、用了哪些LLM、每个博弈的动作空间和回合结构是什么。第四，如果要复现，可先从单一任务如公共物品博弈做一个简化版：设定自利/利他/环境三维效用，加一个softmax决策规则，测试是否能从模拟选择中反推出参数。第五，若你的研究涉及LLM agents或AI alignment，可把这篇论文作为“静态偏好测量是否足以预测交互行为”的关键参考，并特别核对其样本外预测设置。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常具体：不是泛泛讨论“LLM价值观”，而是考察LLM代理在存在目标冲突的社会困境中如何行动，这些目标至少包括个体福利、群体福利以及环境相关关切。任务层面，作者选取了三类经典但动机结构不同的博弈环境：Public Goods Game（公共物品博弈）、Collective-Risk Dilemma（集体风险困境）和Common-Pool Resource dilemma（公共池资源困境）。这三个任务都能把自利、合作、风险规避、长期资源保护等动机拉开，因此适合测试“在标准偏好 elicitation 任务里测到的偏好”是否真能外推到策略互动。
 
-从方法线索看，DConstrain 的关键思想是把“与局部语法状态强相关的部分”提前编译，把“依赖运行时上下文的部分”延后绑定。摘要中的 cold compilation 应该是离线阶段：将 schema 编译成某种 transition program，对 token consumption 做局部状态特化；但对 stack operations、environment guards、caller-dependent deferred parsing 保持参数化或符号化。这里的 environment guards 很可能对应字段是否已出现、当前对象/数组上下文、可选分支条件等；caller-dependent deferred parsing 则暗示存在类似子语法调用返回后再决定后继的机制。warm compilation 则是在线阶段：当解码过程中真正到达某些 parser configurations 时，再把这些配置绑定到已编译程序上，构造精确后继集合。摘要特别强调这一图构建过程“不需要模型分数”，因此可以与 DLM 的 forward pass 重叠，这说明作者关注的不只是正确性，也包括系统层面的吞吐优化。
+方法线索也较明确。作者“借鉴效用理论”构造PBM，说明其核心可能是先定义一个多维效用函数或偏好表示，把个体收益、他人收益、群体结果、环境损害/资源耗竭等因素纳入同一效用结构；再叠加一个不完全理性机制，来解释为什么模型不会总是选择效用最高的动作。摘要中的“imperfect utility maximization”通常意味着决策规则里可能包含温度参数、噪声、有限前瞻、启发式、概率选择或系统性偏差。进一步，“we formulate estimation as an inverse-game problem”说明作者不是只做前向模拟，而是从LLM已观测到的选择反推参数，这比单纯报告合作率更接近结构化行为建模。
 
-另一个很具体的技术点是“tracking field histories as runtime values supports arbitrary property order without enumerating field subsets offline”。这说明论文很可能面向 JSON Schema、结构化 API 输出或对象字段约束等任务。以往若要精确约束对象属性，常见做法是把“哪些字段已经出现过”编码进自动机状态；但字段数一多就会出现 2^n 级别的子集爆炸，因此一些方法会固定字段输出顺序来规避复杂度，却因此排除了本来合法的任意属性顺序输出。DConstrain 似乎把字段历史从“离线状态空间的一部分”改为“运行时携带的值”，从而避免离线枚举所有字段子集。这是摘要中最值得关注的设计之一，因为它直接对应 prior exact decoders 的已知局限。
+证据线索方面，摘要至少给出两层比较：第一层是既有偏好测量方法与PBM之间的比较，即传统 elicitation 是否足以预测战略行为；第二层是跨环境预测，即在某一类任务中估计出的偏好/行为参数，能否解释另一类社会困境中的选择。如果论文做得扎实，读者应重点核对：参数是在单任务内拟合还是跨任务联合拟合；预测评估是样本内解释还是样本外泛化；不同LLM、不同提示词、不同温度设置是否共享同一参数化；环境关切是作为独立偏好维度还是通过长期收益间接体现。
 
-证据线索主要来自摘要中的问题设定与方法描述，而不是实验结果。可以合理推测论文会在结构化生成任务上评估：例如 JSON schema constrained generation、函数调用/工具调用参数生成、可能还有通用 CFG/PEG 风格语法约束下的 DLM 解码。作者声称方法是 exact successors，意味着其目标不是近似过滤，而是与目标语法/模式严格一致的后继构造；但目前题录信息没有给出具体 benchmark、速度提升倍数、支持的 schema 语言范围、与哪些基线比较、以及在多大规模 schema 上仍可运行，这些都需要阅读全文核对。
+与科研方向的关系上，这篇工作同时连接了LLM行为评测、AI alignment、计算社会科学和博弈论建模。对做LLM agent的人，它提供了一个比“问卷式价值观测量”更接近真实交互行为的分析框架；对做AI安全或多智能体系统的人，它提示仅凭静态偏好测试不足以预测模型在资源竞争、公共合作、风险共担中的实际行为；对做行为建模的人，它把逆强化学习/结构估计式思路引入了LLM社会行为研究。
 
-与相关研究方向的关系上，这篇工作更接近“结构化输出约束解码 + 编译器/程序化推理 + 新型生成模型推断”交叉点。若读者关注的是 LLM/DLM 的可靠结构化输出、JSON constrained decoding、tool use 参数合法性、或 grammar-guided generation，这篇论文的价值在于它把传统自动机/解析器约束方法扩展到了并行 token 解码的扩散语言模型场景，并试图在精确性与效率之间给出编译式折中。若读者更偏系统实现，则 warm/cold compilation 分离、与模型前向重叠、token-effect grouping 都是值得重点检查的工程设计。
-
-需要核对的信息包括：1）DConstrain 具体支持哪类 schema/grammar，是否仅限某种结构化模式；2）“exact”是对单步后继精确，还是对整个并行解码过程全局精确；3）token-effect grouping 的分组粒度、正确性条件和收益来源；4）warm compilation 的缓存策略与最坏情况复杂度；5）与 prior exact decoders 相比，是否真的在不固定 property order 的前提下保持可扩展；6）实验是否覆盖真实 DLM，而非仅在模拟并行解码上验证。由于当前只有摘要，不能声称其效果已被充分证明。</p></div>
+需要核对的信息也很多，因为目前只有题录和摘要。首先，摘要末尾被截断，关键实验结论不完整，尤其是不知道PBM相对哪些基线提升了多少、在哪些任务上最明显。其次，不清楚“observed choices”来自哪些LLM、多少轮交互、是否有人类对照组、是否做了多次随机种子采样。再次，偏好表示的具体维度、函数形式、可识别性约束、参数估计算法、以及逆博弈问题是否存在多解，都是判断方法可信度的关键。最后，若论文涉及“环境关切”，需要确认这是真正独立的价值维度，还是任务叙事诱导出的表面合作行为。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Diffusion language models (DLMs) decode multiple tokens in parallel, so individually valid tokens can be incompatible together under a schema. Exact joint inference over a grammar graph enforces compatibility, but it requires token-labeled successors across many hypothetical parser configurations. Encoding stacks and field histories in compiled states can cause exponential growth, which forces prior exact decoders to fix property orders and exclude valid outputs. We present DConstrain, which compiles schemas into context-parameterized transition programs. Cold compilation specializes token consumption to local grammar states while retaining context-dependent stack operations, environment guards, and caller-dependent deferred parsing symbolically. Tracking field histories as runtime values supports arbitrary property order without enumerating field subsets offline. At runtime, warm compilation binds reached configurations to these programs to construct exact successors, overlapping with the model forward pass because graph construction requires no model scores. Furthermore, token-effect grouping merges tokens with identical compiled effects before runtime contexts are bound, so groups are reused across stacks and environments even when concrete successors differ. Objective-specific score aggregation and token restoration provably preserve both the Viterbi optimum and the token-labeled path distribution of ungrouped inference. Across three benchmarks and two DLM families, DConstrain compiles 100% of BFCL schemas under arbitrary property orders, whereas an optimized finite-state baseline compiles only 71.30-85.81%. Under arbitrary property order, it reduces BFCL end-to-end decoding latency by 6.65-46.26 times with 100% schema validity and raises DiffusionGemma&#x27;s BFCL accuracy from 37.27% under fixed order to 81.56%.</p>
+          <p>Do preferences Large Language Models (LLMs) express in standard elicitation tasks predict their strategic behaviour? LLM agents interacting with humans and other AI systems face potentially conflicting objectives, such as individual welfare, group welfare, and environmental concerns. Prior work characterizes LLM preferences through behavioral-economic and psychological elicitation or strategic games, but rarely tests consistency across settings and prediction in other strategic environments. This requires modeling how competing objectives jointly shape behavior, whereas existing approaches typically measure preference dimensions in isolation. Drawing on utility theory, we introduce the Preference-Behavior Model (PBM), which combines a preference representation with mechanisms capturing imperfect utility maximization. We formulate estimation as an inverse-game problem, jointly inferring preferences and behavioral parameters from observed choices. We evaluate PBM in three social dilemmas that expose conflicting motives: a Public Goods Game, a Collective-Risk Dilemma, and a Common-Pool Resource dilemma. We find that while preferences estimated from established behavioral economic elicitation instruments do not consistently predict behavior in these dilemmas, models fitted in one dilemma retain predictive value in others, suggesting that inferred preferences capture meaningful aspects of LLM decision-making that elicitation instruments may miss. Finally, we assess alignment with persona instructions, finding that inferred preferences broadly reflect intended priorities with specific divergences across dimensions, LLMs, and games being identified by our approach. Our methodology provides a framework for studying how consistently LLM preferences explain behavior, assessing alignment with intended priorities, and revealing trade-offs and behavioral patterns that standard elicitation may miss.</p>
         </details>
         
         </div>
@@ -253,27 +258,25 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-22T08:42:28Z</span>
-        <span>Score 57.0</span>
+        <span>2026-10-24T18:33:51Z</span>
+        <span>Score 74.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2610.30923v1">Low-Latency MoE Inference in Space Data Centers: A Wireless-Power-Transfer Perspective</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Low-Latency+MoE+Inference+in+Space+Data+Centers%3A+A+Wireless-Power-Transfer+Persp&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30923v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Low-Latency+MoE+Inference+in+Space+Data+Centers%3A+A+Wireless-Power-Transfer+Perspective%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+satellite%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Low-Latency+MoE+Inference+in+Space+Data+Centers%3A+A+Wireless-Power-Transfer+Persp&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30923v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Low-Latency+MoE+Inference+in+Space+Data+Centers%3A+A+Wireless-Power-Transfer+Perspective%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+satellite%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Low-Latency+MoE+Inference+in+Space+Data+Centers%3A+A+Wireless-Power-Transfer+Persp&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.30923v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Low-Latency+MoE+Inference+in+Space+Data+Centers%3A+A+Wireless-Power-Transfer+Perspective%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+satellite%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>2. <a href="http://arxiv.org/abs/2610.33845v1">Build, Don&#x27;t Play: Self-Improving LLM Research Agents Develop a Hearthstone Battlegrounds AI That Rivals Top Players</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Build%2C+Don%27t+Play%3A+Self-Improving+LLM+Research+Agents+Develop+a+Hearthstone+Batt&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33845v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Build%2C+Don%27t+Play%3A+Self-Improving+LLM+Research+Agents+Develop+a+Hearthstone+Battlegrounds+AI+That+Rivals+Top+Players%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Build%2C+Don%27t+Play%3A+Self-Improving+LLM+Research+Agents+Develop+a+Hearthstone+Batt&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33845v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Build%2C+Don%27t+Play%3A+Self-Improving+LLM+Research+Agents+Develop+a+Hearthstone+Battlegrounds+AI+That+Rivals+Top+Players%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Build%2C+Don%27t+Play%3A+Self-Improving+LLM+Research+Agents+Develop+a+Hearthstone+Batt&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33845v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Build%2C+Don%27t+Play%3A+Self-Improving+LLM+Research+Agents+Develop+a+Hearthstone+Battlegrounds+AI+That+Rivals+Top+Players%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Haotian Zheng、Zhanwei Wang、Kaibin Huang · <a href="https://arxiv.org/pdf/2610.30923v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
+      <div class="authors">Changlian Ma、Limin Wang · <a href="https://arxiv.org/pdf/2610.33845v1">PDF</a></div>
+      <div class="chips"><span class="chip">llm <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
 <span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">satellite <strong>1</strong></span></div>
+<span class="chip">earth <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦“空间数据中心”中的MoE大模型推理任务，研究在太阳同步轨道卫星间专家激活不均导致算力供电失衡时，如何通过星间激光无线能量传输来降低平均推理时延。摘要显示其核心对象是部署在多颗卫星上的MoE专家与对应的供电/计算协同控制，而不是一般性的卫星网络或通用LLM加速。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献应是提出一个名为SpaceWPT的框架，把星间激光无线能量传输引入SpaceDC中的MoE推理；围绕“供电卫星与受电卫星在传能损耗下的计算-能量分配权衡”给出设计原则；并用一个可处理的平均推理时延代理模型来刻画时延折中关系。若正文完整，这篇工作可能同时贡献了面向轨道太阳能均匀供给、但专家负载高度偏斜场景的系统建模与控制优化思路。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文研究的是：能否让由大语言模型驱动的“研究代理”从原始数据出发，在复杂、随机、含隐藏信息且规则繁多的《Hearthstone Battlegrounds》环境中，自动构建模拟器、训练对战策略，并把AI打到接近或超过顶尖真人玩家的水平。摘要声称作者提出了自我改进系统 AutoTavern，在20天内构建出完整复现环境 TavernGym，并迭代训练出可在真实天梯自主完整对局的 TavernAgent。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献可能有三层：第一，提出一个面向复杂真实任务的自我改进式 LLM 研究系统 AutoTavern，其中多类研究代理共享“类型化研究记忆”，并通过验证门控与真实对局反馈闭环来同时改进环境、对手、策略以及研究流程本身；第二，在具体对象上，构建了据称是首个忠实覆盖《Battlegrounds》全内容的复现环境 TavernGym，并配套建立了基于真实对局校准的训练对手与基准 TavernBench；第三，给出一个强实证主张：PPO 训练得到的 TavernAgent 能在真实服务器天梯自主对局，评分从约6000升至约15000，且最后20条公开战绩的平均名次与吃鸡率优于服务器前十高分玩家统计。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -285,32 +288,32 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-kicker">关键词命中 6</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>57.0</strong>
+              <strong>74.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在SpaceDC中将MoE专家分散部署到多颗卫星后，由于不同token/请求触发的专家激活高度不均，导致部分卫星计算功率需求远高于其本地稳定太阳能供给，而其他卫星虽有富余太阳能却未被利用。作者关注的是，如何在存在星间激光WPT损耗的前提下，设计卫星间能量重分配策略，以降低MoE推理的平均时延。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法应先建立一个联合模型，把卫星太阳能采集、专家激活引起的计算负载、卫星计算速度与供电关系、以及激光WPT效率/损耗联系起来；随后分析“捐赠更多能量会提升接收方计算速度，但压缩捐赠方可用功率”的双边权衡，并据此提炼若干设计原则以简化控制变量；最后使用一个可解析或可优化的平均推理时延代理函数来求解或刻画最优WPT策略。实验层面大概率是参数化仿真，而非真实在轨实验；可能比较无WPT、简单均分传能、以及所提设计原则下的优化方案。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是问题设定非常具体：不是泛泛讨论卫星供能，也不是泛泛讨论MoE加速，而是抓住了“均匀供能+偏斜专家激活”这一结构性失配。第二个亮点是把激光WPT作为系统级资源重分配手段引入LLM推理场景，这比传统只做任务迁移或负载均衡更有新意。第三，摘要强调先推导设计原则再构造可处理的时延代理，说明作者可能给出了一定解析洞见，而不只是黑箱数值优化。若这些推导成立，论文对未来能量受限分布式AI系统设计会有较强参考价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看正文中的系统模型图和问题公式，确认优化变量到底是传能功率、传能拓扑、还是计算频率/任务分配的联合控制；第二，查找平均推理时延代理的定义，记录它与真实时延之间的假设关系；第三，查看实验部分的关键参数表，特别是WPT效率、卫星数量、专家分布、激活偏斜分布和太阳能/储能设定；第四，若你关注MoE系统，可把这篇论文与传统负载均衡MoE方法对照，问一个具体问题：在允许迁移token/专家与允许传输能量两种机制下，哪种在空间场景更优；第五，阅读时记录一个核对清单：是否考虑通信时延、是否考虑储能、是否有理论最优性或仅经验设计、是否使用真实MoE激活统计。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题是：大语言模型驱动的研究代理，是否能够在几乎没有现成完整环境和规则实现的前提下，从原始游戏数据与真实反馈出发，自主完成复杂真实游戏《Hearthstone Battlegrounds》的规则复现、训练环境搭建、策略学习与线上部署，并把系统性能推进到可与顶尖真人玩家竞争的水平。更方法论地说，它在问：LLM agent 能否承担“长期、可验证、闭环自改进”的科研与工程任务，而不只是执行局部编码或问答。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法链条大致包括：1）构建一个多代理 LLM 研究系统 AutoTavern，不同代理负责规则整理、代码实现、实验设计、结果验证、对手建模等子任务；2）使用 typed research memory 作为共享知识库，减少非结构化上下文漂移，并让中间结论可追踪；3）设置 verification gates，对每个研究结论或实现结果进行门控验证，避免错误知识进入主流程；4）通过 live games 获取真实服务器反馈，反向修正模拟器、对手分布和策略；5）在自建环境 TavernGym 中，用 PPO 训练 TavernAgent，并让训练对手分布与真实对局校准；6）用 TavernBench 这类任务基准检查规则覆盖、机制理解或策略能力。数据来源可能包括游戏原始卡牌/机制数据、真实对局记录、公开排行榜战绩，以及线上实战回放。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，任务对象足够“硬”：八人随机博弈、隐藏信息、近千卡交互，比很多标准 RL benchmark 更接近真实复杂系统。第二，系统设计强调可验证性而非单纯自主性，typed memory 和 verification gates 这两个关键词说明作者意识到 LLM agent 在长期科研任务中的核心风险是错误累积。第三，证据链跨越离线与在线：不仅有自建环境和基准，还直接声称在真实天梯自主完整对局并取得高分，这比只在模拟器中报告胜率更有说服力。第四，产出物较完整：环境 TavernGym、策略 TavernAgent、基准 TavernBench、以及自我改进研究框架 AutoTavern，若开源则对游戏AI、agent systems 和自动科研社区都有较高复用价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先核对论文正文中的系统图和实验表，重点找 AutoTavern 的代理分工、typed research memory 结构、verification gates 实现；2）查 TavernGym 的一致性验证章节，看是否有与真实服务器逐机制对照、回放比对或单元测试覆盖率；3）查 TavernAgent 的训练细节，包括 PPO 配置、状态/动作编码、对手池、奖励和校准方法；4）查线上评测协议，确认15000分、最近20局1.60平均名次和80%第一名的统计口径与可重复性；5）查消融实验，判断没有 LLM 研究代理、没有验证门控、没有 live-game 闭环时性能会下降多少；6）如果你的方向是 LLM agents 或自动科研，可优先记录一个问题清单：哪些模块是真正由 LLM 决策驱动，哪些只是传统 RL/工程流水线，二者边界在哪里。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在SpaceDC中将MoE专家分散部署到多颗卫星后，由于不同token/请求触发的专家激活高度不均，导致部分卫星计算功率需求远高于其本地稳定太阳能供给，而其他卫星虽有富余太阳能却未被利用。作者关注的是，如何在存在星间激光WPT损耗的前提下，设计卫星间能量重分配策略，以降低MoE推理的平均时延。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法应先建立一个联合模型，把卫星太阳能采集、专家激活引起的计算负载、卫星计算速度与供电关系、以及激光WPT效率/损耗联系起来；随后分析“捐赠更多能量会提升接收方计算速度，但压缩捐赠方可用功率”的双边权衡，并据此提炼若干设计原则以简化控制变量；最后使用一个可解析或可优化的平均推理时延代理函数来求解或刻画最优WPT策略。实验层面大概率是参数化仿真，而非真实在轨实验；可能比较无WPT、简单均分传能、以及所提设计原则下的优化方案。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是问题设定非常具体：不是泛泛讨论卫星供能，也不是泛泛讨论MoE加速，而是抓住了“均匀供能+偏斜专家激活”这一结构性失配。第二个亮点是把激光WPT作为系统级资源重分配手段引入LLM推理场景，这比传统只做任务迁移或负载均衡更有新意。第三，摘要强调先推导设计原则再构造可处理的时延代理，说明作者可能给出了一定解析洞见，而不只是黑箱数值优化。若这些推导成立，论文对未来能量受限分布式AI系统设计会有较强参考价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，首先要警惕其结果可能高度依赖理想化假设，例如太阳能供给近乎恒定、卫星姿态与对准误差可忽略、激光WPT效率稳定、储能与热约束未显式建模。其次，摘要只明确提到平均推理时延代理，尚不清楚是否覆盖完整端到端链路，包括token路由通信、星间数据交换、排队和批处理效应。再次，MoE激活偏斜通常与具体模型、数据分布和路由机制强相关，如果实验只用抽象负载分布，结论的可迁移性需要核对。最后，作为arXiv预印本且仅凭摘要，无法确认其理论证明深度、仿真规模和与现有能量调度/卫星边缘计算工作的实证对比是否充分。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看正文中的系统模型图和问题公式，确认优化变量到底是传能功率、传能拓扑、还是计算频率/任务分配的联合控制；第二，查找平均推理时延代理的定义，记录它与真实时延之间的假设关系；第三，查看实验部分的关键参数表，特别是WPT效率、卫星数量、专家分布、激活偏斜分布和太阳能/储能设定；第四，若你关注MoE系统，可把这篇论文与传统负载均衡MoE方法对照，问一个具体问题：在允许迁移token/专家与允许传输能量两种机制下，哪种在空间场景更优；第五，阅读时记录一个核对清单：是否考虑通信时延、是否考虑储能、是否有理论最优性或仅经验设计、是否使用真实MoE激活统计。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>根据题名、摘要和关键词，这项工作研究的是一种很具体的系统：在dawn-dusk太阳同步轨道上运行的空间数据中心，利用持续太阳能供电承载大语言模型推理，且模型采用Mixture-of-Experts架构，把不同专家分布部署到不同卫星。摘要给出的关键现象是：虽然该轨道条件下各卫星的太阳能获取相对均匀，但MoE推理中的专家激活是偏斜的，因此少数活跃专家所在卫星计算功耗需求高、成为功率瓶颈，而空闲专家所在卫星的已收集能量被闲置，最终拉低推理效率并增加时延。论文提出的SpaceWPT框架试图用星间激光无线能量传输把“闲置电力”从低负载卫星转移到高负载卫星。这里的难点不是单纯多传能量，而是在传输损耗存在时平衡捐赠方和接收方的计算需求：接收方得到更多能量后可更快完成专家计算，但捐赠方自身可用能量减少，可能拖慢其本地任务。摘要还提到作者先推导了可简化WPT控制的设计原则，再通过一个“tractable surrogate of average inference latency”来表征时延权衡，这说明方法上很可能包含：1）对MoE推理负载、卫星能量收支、WPT效率和计算时延之间关系的解析建模；2）把原本复杂的联合优化问题转化为更易求解的代理目标；3）在不同专家激活分布或WPT损耗条件下分析最优传能策略。对相关研究者而言，这篇论文的价值在于它把LLM系统问题、能源调度问题和空间网络问题耦合起来，尤其适合关注“边缘/分布式AI推理”“能量受限推理系统”“卫星计算网络”的读者。需要重点核对的信息包括：其时延模型是否覆盖通信时延与仅覆盖计算时延；MoE路由是否固定、统计已知还是在线变化；WPT控制是集中式还是分布式；所谓平均推理时延代理与真实端到端时延之间的误差；以及实验或仿真是否使用真实MoE激活统计、卫星链路参数和激光WPT效率假设。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题是：大语言模型驱动的研究代理，是否能够在几乎没有现成完整环境和规则实现的前提下，从原始游戏数据与真实反馈出发，自主完成复杂真实游戏《Hearthstone Battlegrounds》的规则复现、训练环境搭建、策略学习与线上部署，并把系统性能推进到可与顶尖真人玩家竞争的水平。更方法论地说，它在问：LLM agent 能否承担“长期、可验证、闭环自改进”的科研与工程任务，而不只是执行局部编码或问答。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法链条大致包括：1）构建一个多代理 LLM 研究系统 AutoTavern，不同代理负责规则整理、代码实现、实验设计、结果验证、对手建模等子任务；2）使用 typed research memory 作为共享知识库，减少非结构化上下文漂移，并让中间结论可追踪；3）设置 verification gates，对每个研究结论或实现结果进行门控验证，避免错误知识进入主流程；4）通过 live games 获取真实服务器反馈，反向修正模拟器、对手分布和策略；5）在自建环境 TavernGym 中，用 PPO 训练 TavernAgent，并让训练对手分布与真实对局校准；6）用 TavernBench 这类任务基准检查规则覆盖、机制理解或策略能力。数据来源可能包括游戏原始卡牌/机制数据、真实对局记录、公开排行榜战绩，以及线上实战回放。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，任务对象足够“硬”：八人随机博弈、隐藏信息、近千卡交互，比很多标准 RL benchmark 更接近真实复杂系统。第二，系统设计强调可验证性而非单纯自主性，typed memory 和 verification gates 这两个关键词说明作者意识到 LLM agent 在长期科研任务中的核心风险是错误累积。第三，证据链跨越离线与在线：不仅有自建环境和基准，还直接声称在真实天梯自主完整对局并取得高分，这比只在模拟器中报告胜率更有说服力。第四，产出物较完整：环境 TavernGym、策略 TavernAgent、基准 TavernBench、以及自我改进研究框架 AutoTavern，若开源则对游戏AI、agent systems 和自动科研社区都有较高复用价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要，主要局限和风险也很明显。第一，很多关键结论依赖作者对“faithful reproduction”的定义，但摘要未说明如何系统验证模拟器与真实游戏的一致性，尤其是复杂边角机制。第二，线上成绩虽然亮眼，但只给出最近20条记录和排行榜统计口径，样本量、方差、版本漂移、匹配对手强度与时间窗口都可能影响结论。第三，论文标题强调“self-improving LLM research agents”，但摘要中真正带来最终强度的策略学习核心仍是 PPO；LLM 代理究竟贡献了多少不可替代的研究增益，需要通过消融实验核实。第四，人类在模糊机制上“设定目标和规则”意味着系统并非完全自主，人工介入的频率、难度和关键性需要量化。第五，摘要没有说明计算成本、API/模型调用规模、失败案例和研究代理错误恢复机制，这些对评估可扩展性很重要。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先核对论文正文中的系统图和实验表，重点找 AutoTavern 的代理分工、typed research memory 结构、verification gates 实现；2）查 TavernGym 的一致性验证章节，看是否有与真实服务器逐机制对照、回放比对或单元测试覆盖率；3）查 TavernAgent 的训练细节，包括 PPO 配置、状态/动作编码、对手池、奖励和校准方法；4）查线上评测协议，确认15000分、最近20局1.60平均名次和80%第一名的统计口径与可重复性；5）查消融实验，判断没有 LLM 研究代理、没有验证门控、没有 live-game 闭环时性能会下降多少；6）如果你的方向是 LLM agents 或自动科研，可优先记录一个问题清单：哪些模块是真正由 LLM 决策驱动，哪些只是传统 RL/工程流水线，二者边界在哪里。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这篇工作不是一般意义上的“用LLM直接打游戏”，而是把 LLM 用作“科研/工程自动化代理”，目标是在一个高复杂度、强随机性、多主体博弈、部分信息可见、规则交互极多的真实在线游戏中，完成从规则理解、环境复现、训练管线搭建到策略优化和线上验证的端到端研发流程。研究对象非常具体：八人自动战棋《Hearthstone Battlegrounds》，其难点包括随机商店、随机战斗、隐藏信息、近千张相互作用卡牌，以及可能存在的模糊机制需要人工裁决。摘要给出的系统结构线索也较具体：AutoTavern 由“专门化 LLM 研究代理”组成，代理之间共享 typed research memory，所有结论都要经过 verification gates，且 live games 形成闭环反馈；人类在机制歧义处负责设定目标和规则边界。这意味着作者试图把“科研代理系统”落到可审计、可验证、可持续迭代的工程框架上，而不是单次提示驱动的 agent demo。方法上，摘要明确提到 TavernAgent 是用 PPO 训练的，训练对手经过“与真实对局校准”，说明最终强度并非只在自建环境中自洽，而是试图缩小模拟器与真实服务器之间的分布差异。证据线索主要来自三类：一是开发产物数量与周期，例如20天内完成 TavernGym 和23个版本的 TavernAgent；二是线上真实天梯表现，例如评分从6000到约15000；三是公开排行榜统计口径下的最近20局平均名次1.60、80%第一名，对比服务器前十高分玩家的2.34、59%。如果这些数字和评估协议可靠，这篇论文对“LLM 研究代理是否能承担高难度真实研发任务”提供了非常强的案例证据。与科研读者的关系上，这篇工作同时关联多个方向：LLM agents、自动科研、可验证 agent memory、RL in complex games、sim2real/环境校准、benchmark 构建，以及人机协同规范化。尤其值得注意的是，它把“研究代理自我改进”定义为不仅改进被研究对象的模型和策略，也改进代理自己的研究过程，这比常见 coding agent 或 web agent 更接近科研自动化。需要核对的信息也很多：例如 TavernGym 的“faithful”如何定义和验证；typed research memory 的数据结构与检索/写入规则是什么；verification gates 是单元测试、规则证明、对局回放比对还是多代理交叉审查；PPO 的状态表示、动作空间、奖励设计、对手池构造和校准方法是什么；线上成绩是否有足够样本量、是否跨版本稳定、是否受匹配池和时间段影响；TavernBench 的960任务和40场景具体覆盖哪些机制；以及“better than top players on every statistic”是否基于严格可比的统计窗口。总之，摘要展示的是一个非常雄心勃勃且对象明确的系统论文/实证论文，但其关键说服力高度依赖环境忠实度、线上评测协议和自我改进机制的可审计细节。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Space data centers (SpaceDCs) are emerging as platforms for large language models (LLMs), supported by continuous solar-energy harvesting and high-speed interconnections. The mixture-of-experts (MoE) architecture supports distributed LLM inference by deploying experts across satellites. However, skewed expert activation creates uneven computation power demands despite uniform solar-power supply at the dawn-dusk sun-synchronous orbit (SSO). Consequently, active experts remain power-constrained while harvested power at idle experts is underused. These reduce inference efficiency and increase latency. To address this supply-demand mismatch, we propose the SpaceWPT framework, which uses inter-satellite laser-based wireless power transfer (WPT) to redistribute harvested power. The key design challenge is to balance the computation demands of power-donating and power-receiving satellites under WPT losses: transferring more power accelerates computation at the receiver but leaves less power for the donor. After deriving design principles that simplify WPT control, we characterize the resulting latency tradeoff through a tractable surrogate of average inference latency. Minimizing the surrogate yields a novel two-sided water-filling strategy that determines whether each active expert donates, retains, or receives power according to the water level and its WPT link efficiency. Simulations with Mixtral-8x7B and Phi-3.5-MoE show up to 29.25% lower inference latency than without WPT, with larger gains under more compact formations and higher transfer efficiencies.</p>
+          <p>Can LLM agents carry a hard real-world problem from raw data to a system that holds its own against people? We study this in Hearthstone Battlegrounds, an eight-player auto-battler with stochastic shops and battles, hidden information and nearly a thousand interacting cards. We present AutoTavern, a self-improving research system: specialised LLM research agents share a typed research memory, every claim passes verification gates, and live games close the loop, so the agents improve the simulator, opponents and policy and, from the same feedback, their own research process; a human sets goals and rules on ambiguous mechanics. In 20 days AutoTavern built TavernGym, the first faithful, full-content reproduction of the live game, and delivered 23 versions of TavernAgent, trained with PPO against opponents calibrated to real games. TavernAgent plays complete games on the live ladder by itself: its rating rose from 6,000 to about 15,000 and, on the public leaderboard&#x27;s measure, its last 20 records average a placement of 1.60 with 80% first places, better than the server&#x27;s ten highest-rated players on every statistic (2.34, 59%). TavernBench, 960 tasks in 40 scenarios, shows that the system the agents built is the strongest player: TavernAgent answers 91% of the play tasks against at most 63% for frontier LLMs, and decides in 0.03 s where they need up to 26 s; within the second a live turn allows, it keeps 90% and no LLM more than 26%. LLM agents build far better than they play. We will open-source TavernBench and TavernGym at https://github.com/MCG-NJU/AutoTavern.</p>
         </details>
         
         </div>
@@ -322,26 +325,30 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-22T10:39:50Z</span>
-        <span>Score 56.0</span>
+        <span>2026-10-24T05:53:48Z</span>
+        <span>Score 73.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2610.31060v1">Diagnosing the Explicit-to-Applied Theory of Mind Gap in LLMs</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Diagnosing+the+Explicit-to-Applied+Theory+of+Mind+Gap+in+LLMs&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31060v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Diagnosing+the+Explicit-to-Applied+Theory+of+Mind+Gap+in+LLMs%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+test-time+training%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Diagnosing+the+Explicit-to-Applied+Theory+of+Mind+Gap+in+LLMs&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31060v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Diagnosing+the+Explicit-to-Applied+Theory+of+Mind+Gap+in+LLMs%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+test-time+training%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Diagnosing+the+Explicit-to-Applied+Theory+of+Mind+Gap+in+LLMs&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31060v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Diagnosing+the+Explicit-to-Applied+Theory+of+Mind+Gap+in+LLMs%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+test-time+training%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>3. <a href="http://arxiv.org/abs/2610.33475v1">LLMs in Cloud: A Discussion on Architecture, Orchestration, and Inference</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+LLMs+in+Cloud%3A+A+Discussion+on+Architecture%2C+Orchestration%2C+and+Inference&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33475v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+LLMs+in+Cloud%3A+A+Discussion+on+Architecture%2C+Orchestration%2C+and+Inference%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+foundation+model%2C+foundation+models%2C+agent%2C+ai%2C+deep+learning%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+LLMs+in+Cloud%3A+A+Discussion+on+Architecture%2C+Orchestration%2C+and+Inference&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33475v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+LLMs+in+Cloud%3A+A+Discussion+on+Architecture%2C+Orchestration%2C+and+Inference%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+foundation+model%2C+foundation+models%2C+agent%2C+ai%2C+deep+learning%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+LLMs+in+Cloud%3A+A+Discussion+on+Architecture%2C+Orchestration%2C+and+Inference&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33475v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+LLMs+in+Cloud%3A+A+Discussion+on+Architecture%2C+Orchestration%2C+and+Inference%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+foundation+model%2C+foundation+models%2C+agent%2C+ai%2C+deep+learning%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Prajvi Saxena、Sabine Janzen、Wolfgang Maass · <a href="https://arxiv.org/pdf/2610.31060v1">PDF</a></div>
+      <div class="authors">Jannatun Noor、Athar Noor Mohammad Rafee、Md. Sadman Haque、Sreezon Das Gupta 等 6 人 · <a href="https://arxiv.org/pdf/2610.33475v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
 <span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
 <span class="chip">language models <strong>1</strong></span>
+<span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">foundation models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">test-time training <strong>1</strong></span></div>
+<span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦大语言模型在“心智理论（Theory of Mind, ToM）”上的一个具体断裂：模型往往能显式识别他人的信念状态，却未必能把该信念用于行为预测。作者基于四个结构差异较大的ToM基准，分析显式ToM与应用型ToM之间的差距，并测试通过结构化提示、匹配式上下文学习和Belief-State Test-Time Training（BSTTT）能否恢复这种能力。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把现有ToM评测中的总分拆解为两个更具体的能力维度——显式ToM（识别某人相信什么）与应用型ToM（据此预测其行为）——并指出总分会掩盖模型能力的不均衡。论文还提出一种面向测试时适配的BSTTT方法，通过在已回答的支持问题上做动作重建来更新轻量参数，用于恢复行为预测能力；同时给出跨Qwen2.5-7B、Llama-3.1-8B、GPT-oss-20B及多个ToM任务的比较证据。</p></div>
+        <div class="note"><strong>一句话</strong><p>这是一篇面向云数据中心中大规模语言模型服务的系统性综述，聚焦LLM部署在架构、集群编排与推理运行时三个层面的协同问题，具体讨论HBM带宽瓶颈、prefill/decoding负载不对称、KV cache膨胀、serverless冷启动和硬件可靠性等关键挑战。论文的任务不是提出单一新模型，而是基于PRISMA 2020框架整合2024–2026年的跨层研究进展，形成统一分类体系。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献应在于：第一，针对现有综述“分层割裂”的问题，把底层加速器虚拟化、集群级调度和运行时推理优化放到同一分析框架下；第二，以PRISMA 2020为方法学基础，对云中LLM服务文献进行系统筛选与综合；第三，围绕云端LLM推理的几个具体瓶颈——HBM wall、prefill与decode阶段异构性、KV cache管理、冷启动、可靠性——构建一套跨层taxonomy；第四，补足既有综述对2024到2026年新进展覆盖不足的问题，为后续系统设计或研究选题提供路线图。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -353,40 +360,32 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 7</div>
+              <div class="signal-kicker">关键词命中 11</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>56.0</strong>
+              <strong>73.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：当前LLM的Theory of Mind评测是否把两种不同能力混在了一起——一是显式识别他人的信念状态，二是把该信念用于预测其行为；如果确实存在“显式到应用”的能力鸿沟，这种鸿沟在不同模型和任务上有多大，又能否通过提示或测试时适配被恢复。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径是：在四个结构差异较大的ToM基准上，将任务拆分或配对为“belief recognition”和“behavior prediction”两类问题，分别统计性能，而不是只看总分；选取Qwen2.5-7B、Llama-3.1-8B、GPT-oss-20B进行横向比较；设置三类干预条件——结构化提示、匹配式上下文学习、BSTTT。BSTTT大概率是在测试阶段利用已回答的支持问题，对轻量参数进行小步更新，并通过动作重建目标强化从belief state到action prediction的映射。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是评测分解思路非常具体，且摘要给出了强烈的反例证据：同一模型在SimpleToM上几乎能完美识别心理状态，却严重失误于行为预测，这比单一总分更有诊断价值。第二个亮点是干预设计覆盖了从无参数方法（prompt、ICL）到轻量测试时训练（BSTTT）的连续谱，便于判断问题究竟是提示可恢复、示例可恢复，还是需要参数层面的适配。第三个亮点是面向高风险社会交互应用，问题设定具有直接应用意义。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：先查论文中的四个benchmark名称与任务拆分方式，确认每个数据集如何定义belief题和action题；再看SimpleToM对应表格，记录Llama-3.1-8B在总分、belief识别、behavior预测上的原始数值及干预后变化；随后核对BSTTT的参数更新对象、是否需要真值标签、与prompt/ICL的公平对照设置；最后整理一个自己的评测清单，今后在ToM或社会推理实验中分开报告“状态识别”和“行为应用”两项指标。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：面对云数据中心中LLM服务从“无状态深度学习”转向“分布式、内存密集型生成式负载”的范式变化，研究者应如何统一理解跨层瓶颈与优化手段？更具体地说，它关注在SLO约束下，如何系统梳理并关联HBM瓶颈、prefill/decode阶段资源需求不对称、KV cache扩张、serverless冷启动和硬件可靠性等问题，以及现有研究在硬件虚拟化、集群编排和推理运行时之间为何存在割裂。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法是标准系统综述路径而非新模型实验：作者声明采用PRISMA 2020框架，意味着应包含检索、去重、筛选、纳入与排除标准等步骤；数据来源大概率包括arXiv与主流系统/AI会议论文；分析路径可能是先按问题域收集文献，再按层次或机制构建taxonomy。摘要中的“cross-layer systematic review”暗示其分析单元可能不是单篇论文，而是“技术机制—系统层级—目标指标”的三元关系，例如把加速器虚拟化、GPU共享、内存扩展、调度、批处理、KV cache管理、推测解码等方法映射到吞吐、延迟、成本、可靠性和SLO。若全文完整，通常还会有PRISMA流程图、纳入文献统计表、分类图和未来研究议程。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点在于其问题定义足够具体且具有现实系统意义：不是泛泛讨论“LLM很大”，而是点名HBM wall、prefill/decode异构性、KV cache、冷启动和可靠性这些云端服务中的真实瓶颈。第二个亮点是跨层视角，理论上能把底层资源抽象、集群调度和运行时优化放在同一框架中，适合做系统设计综述或开题调研。第三个亮点是时间窗口新，摘要明确强调补充2024–2026年的进展，这对快速演化的LLM serving领域尤其重要。第四，如果taxonomy做得好，它可能成为研究者定位问题与方法的索引，例如区分“显存受限型优化”“调度协同型优化”“冷启动缓解型优化”等。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看全文中的PRISMA流程图和纳入文献统计，确认其检索范围是否覆盖你关心的系统论文；第二，直接查taxonomy总图或总表，记录其一级分类是否包含虚拟化、调度、运行时、内存/KV、serverless、可靠性；第三，检索文中是否单独讨论prefill/decode分离、KV cache分页/卸载、推测解码、连续批处理、GPU池化或多租户隔离；第四，若你做相关研究，可把文中分类与自己关注的问题一一对照，标出尚未覆盖的空白；第五，记录三个需要核对的问题：纳入文献数、是否有定量对比表、是否给出开放挑战与未来研究清单。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：当前LLM的Theory of Mind评测是否把两种不同能力混在了一起——一是显式识别他人的信念状态，二是把该信念用于预测其行为；如果确实存在“显式到应用”的能力鸿沟，这种鸿沟在不同模型和任务上有多大，又能否通过提示或测试时适配被恢复。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径是：在四个结构差异较大的ToM基准上，将任务拆分或配对为“belief recognition”和“behavior prediction”两类问题，分别统计性能，而不是只看总分；选取Qwen2.5-7B、Llama-3.1-8B、GPT-oss-20B进行横向比较；设置三类干预条件——结构化提示、匹配式上下文学习、BSTTT。BSTTT大概率是在测试阶段利用已回答的支持问题，对轻量参数进行小步更新，并通过动作重建目标强化从belief state到action prediction的映射。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是评测分解思路非常具体，且摘要给出了强烈的反例证据：同一模型在SimpleToM上几乎能完美识别心理状态，却严重失误于行为预测，这比单一总分更有诊断价值。第二个亮点是干预设计覆盖了从无参数方法（prompt、ICL）到轻量测试时训练（BSTTT）的连续谱，便于判断问题究竟是提示可恢复、示例可恢复，还是需要参数层面的适配。第三个亮点是面向高风险社会交互应用，问题设定具有直接应用意义。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的边界包括：第一，四个benchmark的构造与拆分是否真正隔离了显式ToM和应用型ToM，尚需看任务细节；第二，行为预测低分可能部分来自输出格式、叙事歧义或常识冲突，而不一定纯粹是ToM应用失败；第三，BSTTT是否依赖额外支持问题答案、是否引入测试时监督信号、以及计算成本和部署可行性，目前都不清楚；第四，摘要已提示提醒语贡献了大部分总体提升，因此新方法的独立增益需要仔细核对。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：先查论文中的四个benchmark名称与任务拆分方式，确认每个数据集如何定义belief题和action题；再看SimpleToM对应表格，记录Llama-3.1-8B在总分、belief识别、behavior预测上的原始数值及干预后变化；随后核对BSTTT的参数更新对象、是否需要真值标签、与prompt/ICL的公平对照设置；最后整理一个自己的评测清单，今后在ToM或社会推理实验中分开报告“状态识别”和“行为应用”两项指标。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常明确：不是泛泛讨论LLM是否“有ToM”，而是诊断其在ToM推理链条中的哪一环失效。作者认为现有基准通常只报一个聚合分数，但“知道角色相信什么”和“能据此推出角色会怎么做”是两种不同能力，前者更接近显式表征，后者更接近可执行推理。摘要给出的SimpleToM例子很关键：Llama-3.1-8B总体51.5%，但心理状态识别达99.4%，行为预测仅28.9%，这直接支持“总分掩盖结构性短板”的论点。
-
-方法线索上，作者似乎在四个结构多样的ToM benchmark上，把题目拆成支持性子问题或配对任务：一类问角色的信念/心理状态，另一类问角色接下来会采取什么行为。然后比较三类干预：第一是structured prompting，可能是显式提醒模型先表征信念再预测行动；第二是matched in-context learning，可能是给与当前任务结构匹配的示例；第三是作者提出的BSTTT，即Belief-State Test-Time Training。根据摘要，BSTTT通过“answered support questions through action reconstruction”进行适配，说明它可能先利用支持问题得到信念状态相关答案，再用这些答案监督一个轻量参数模块，使模型在测试时更好地把belief映射到action。这里“lightweight parameters”暗示可能不是全模型微调，而是LoRA、adapter或类似低成本测试时更新。
-
-证据线索方面，摘要强调恢复效果依赖于模型、任务和干预方式，说明作者并未宣称一种普适方法在所有设置下都有效。一个具体结果是：在SimpleToM上，提醒语结合BSTTT可把Llama的行为预测提高40.8个百分点；但摘要同时指出总体提升主要来自reminders，说明BSTTT的增益可能是附加性的、条件性的，而不是压倒性的。这一点对科研判断很重要：论文的真正价值可能不只是提出新方法，更在于建立一种更细粒度的诊断框架，帮助区分“模型不会表示belief”与“模型不会把belief用于action prediction”。
-
-与相关研究方向的关系上，这篇工作对LLM社会认知评测、可解释推理、测试时适配、以及高风险应用中的行为可靠性都很相关。尤其在治疗、教育、个人助理等场景，系统若只能口头上识别用户信念，却不能在决策或建议中正确使用这些信念，风险会高于单纯的基准低分所显示的程度。对做benchmark设计的人，这篇论文提示应避免只报aggregate score；对做推理增强的人，它提供了一个更具体的干预目标：提升belief-to-action映射，而不是笼统提升ToM总分。
-
-需要核对的信息主要有：四个benchmark分别是什么、它们如何保证“显式ToM”和“应用型ToM”拆分是结构上可比的；BSTTT具体更新哪些参数、是否需要标签、支持问题答案来自人工标注还是模型自答；matched ICL与structured prompting的模板是否严格控制了信息量；不同模型上的增益是否稳定；以及作者如何排除语言表面模式匹配而非真正belief reasoning的解释。由于当前只有摘要，不能确认实验统计显著性、误差分析、失败案例和计算成本。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：面对云数据中心中LLM服务从“无状态深度学习”转向“分布式、内存密集型生成式负载”的范式变化，研究者应如何统一理解跨层瓶颈与优化手段？更具体地说，它关注在SLO约束下，如何系统梳理并关联HBM瓶颈、prefill/decode阶段资源需求不对称、KV cache扩张、serverless冷启动和硬件可靠性等问题，以及现有研究在硬件虚拟化、集群编排和推理运行时之间为何存在割裂。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能方法是标准系统综述路径而非新模型实验：作者声明采用PRISMA 2020框架，意味着应包含检索、去重、筛选、纳入与排除标准等步骤；数据来源大概率包括arXiv与主流系统/AI会议论文；分析路径可能是先按问题域收集文献，再按层次或机制构建taxonomy。摘要中的“cross-layer systematic review”暗示其分析单元可能不是单篇论文，而是“技术机制—系统层级—目标指标”的三元关系，例如把加速器虚拟化、GPU共享、内存扩展、调度、批处理、KV cache管理、推测解码等方法映射到吞吐、延迟、成本、可靠性和SLO。若全文完整，通常还会有PRISMA流程图、纳入文献统计表、分类图和未来研究议程。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点在于其问题定义足够具体且具有现实系统意义：不是泛泛讨论“LLM很大”，而是点名HBM wall、prefill/decode异构性、KV cache、冷启动和可靠性这些云端服务中的真实瓶颈。第二个亮点是跨层视角，理论上能把底层资源抽象、集群调度和运行时优化放在同一框架中，适合做系统设计综述或开题调研。第三个亮点是时间窗口新，摘要明确强调补充2024–2026年的进展，这对快速演化的LLM serving领域尤其重要。第四，如果taxonomy做得好，它可能成为研究者定位问题与方法的索引，例如区分“显存受限型优化”“调度协同型优化”“冷启动缓解型优化”等。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录与摘要，需要警惕几类局限。首先，这是一篇arXiv综述，尚不清楚是否经过同行评审，文献覆盖与分类标准可能存在主观性。其次，摘要虽列出多个瓶颈，但未说明是否提供定量比较、统一基准或证据强弱评估，因此可能更偏叙述性总结而非可操作的meta-analysis。第三，所谓“跨层统一”是否真正落到可验证的映射关系，还是仅把不同层面的工作并列罗列，需要看正文结构。第四，摘要被截断，缺失后半段内容，导致无法确认其最终taxonomy名称、纳入文献数量、主要结论和未来方向。第五，综述论文通常不直接给出新实验结果，因此对工程落地的指导力度取决于其表格、案例和比较深度。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看全文中的PRISMA流程图和纳入文献统计，确认其检索范围是否覆盖你关心的系统论文；第二，直接查taxonomy总图或总表，记录其一级分类是否包含虚拟化、调度、运行时、内存/KV、serverless、可靠性；第三，检索文中是否单独讨论prefill/decode分离、KV cache分页/卸载、推测解码、连续批处理、GPU池化或多租户隔离；第四，若你做相关研究，可把文中分类与自己关注的问题一一对照，标出尚未覆盖的空白；第五，记录三个需要核对的问题：纳入文献数、是否有定量对比表、是否给出开放挑战与未来研究清单。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这篇论文属于“云中LLM系统”方向的系统综述，而非提出新算法的原始实验论文。研究对象非常明确：在云数据中心中部署和服务foundation LLM时，如何在严格SLO约束下协调硬件资源、集群调度和推理运行时。摘要给出的证据线索表明，作者把问题拆成若干具体系统现象：一是HBM wall，说明模型服务受限于高带宽显存容量或带宽；二是prefill阶段偏计算密集、decode阶段偏内存带宽密集，意味着同一请求生命周期内资源需求动态变化；三是KV cache随上下文和并发增长而快速膨胀，成为显存与调度核心矛盾；四是serverless场景下大模型冷启动代价高；五是硬件可靠性在长时运行和大规模部署中成为风险点。基于这些线索，论文很可能不是简单按“硬件/软件”分章，而是试图建立跨层映射：例如某类虚拟化或内存分层技术如何影响KV cache管理，某类调度策略如何适配prefill/decode异构负载，某类运行时优化如何缓解SLO违约。与从事云计算、分布式系统、推理系统、GPU资源管理或LLM serving的读者关系很直接：它可能帮助快速定位当前主流优化对象、常见设计空间和研究空白。需要核对的信息包括：文献检索范围与纳入标准、taxonomy的一级/二级分类、是否比较不同服务场景（在线推理、批处理、serverless、多租户）、是否给出定量趋势统计、以及是否覆盖2025–2026年代表性系统如连续批处理、分页KV、推测解码、分离式prefill/decode、异构内存扩展、GPU切分/池化等。由于没有全文，不能判断其综述是否真正系统、是否有可复用数据表，或是否对各方法进行了公平比较。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>As large language models are deployed in high-stakes roles such as therapy, education, and personal assistance, their social cognition must be assessed reliably. Current Theory of Mind (ToM) benchmarks report aggregate scores that conflate two distinct competencies: explicit ToM (recognizing what someone believes) and applied ToM (using that belief to predict behavior). Building on this distinction, we investigate the gap and its recoverability using four structurally diverse benchmarks. Aggregate reporting obscures uneven competence: on SimpleToM, Llama-3.1-8B scores 51.5 percent overall while recognizing mental states at 99.4 percent and predicting behavior at only 28.9 percent. To assess recovery, we compare structured prompting, matched in-context learning, and our proposed Belief-State Test-Time Training (BSTTT), which adapts lightweight parameters on answered support questions through action reconstruction. Across Qwen2.5-7B, Llama-3.1-8B, and GPT-oss-20B, recovery depends on the model, task, and intervention. On SimpleToM, reminders combined with BSTTT improve Llama&#x27;s behavior prediction by 40.8 percentage points; reminders account for most of the overall improvement, with BSTTT adding 1.3 to 5.5 points beyond reminders across models. Contextual examples often outperform weight updates, while BSTTT remains stronger in specific model-benchmark settings. Temporal belief tracking remains difficult despite partial recovery. These findings show that aggregate ToM scores can overstate applied competence while hiding performance recoverable through targeted assistance. We recommend decomposed reporting of explicit and applied accuracy alongside intervention comparisons that establish which failures are recoverable and under what conditions.</p>
+          <p>The widespread deployment of foundational Large Language Models (LLM) across cloud datacenters marks a fundamental paradigm shift from stateless deep learning toward distributed, memory-intensive generative workloads. However, serving massive foundation models under stringent Service Level Objectives (SLO) exposes critical physical and system bottlenecks. These challenges include the persistent High Bandwidth Memory (HBM) wall, operational asymmetry between compute-bound prefilling and memory-bandwidth-bound decoding, explosive Key-Value (KV) cache expansion, prohibitive serverless cold starts, and hardware reliability vulnerabilities. Existing literature reviews remain layer-siloed, decoupling low-level accelerator virtualization from cluster orchestration and runtime inference, while largely overlooking defining advancements from 2024 to 2026. To address these limitations, this study presents a comprehensive, cross-layer systematic review guided by the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) 2020 framework. We synthesize a holistic taxonomy unifying hardware virtualization, cluster-level scheduling, and runtime inference optimizations, including iteration-level continuous batching, prefill-decoding disaggregation, and hierarchical KV cache offloading. Furthermore, we evaluate resilient cloud-native service architectures, examining scale-to-zero serverless paradigms, fault-tolerant checkpointing against silent data corruption, and hardware-enforced Trusted Execution Environments (TEEs) for multi-tenant isolation. Finally, we formalize the multi-dimensional Pareto trade-offs governing throughput, latency, monetary cost, and confidentiality, outlining a forward-looking research roadmap spanning Compute Express Link (CXL) memory pooling, in-memory computing, and autonomous multi-agent control planes to guide future cloud LLM infrastructure.</p>
         </details>
         
         </div>
@@ -398,24 +397,29 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-10-22T13:16:04Z</span>
-        <span>Score 54.5</span>
+        <span>2026-10-23T23:27:35Z</span>
+        <span>Score 68.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2610.31236v1">Cleaner air strengthens the Pacific trade winds without a detectable change in El Nino</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Cleaner+air+strengthens+the+Pacific+trade+winds+without+a+detectable+change+in+E&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31236v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Cleaner+air+strengthens+the+Pacific+trade+winds+without+a+detectable+change+in+El+Nino%0Akeywords%3A+ai%2C+earth%2C+earth+system%2C+climate%2C+ocean%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Cleaner+air+strengthens+the+Pacific+trade+winds+without+a+detectable+change+in+E&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31236v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Cleaner+air+strengthens+the+Pacific+trade+winds+without+a+detectable+change+in+El+Nino%0Akeywords%3A+ai%2C+earth%2C+earth+system%2C+climate%2C+ocean%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Cleaner+air+strengthens+the+Pacific+trade+winds+without+a+detectable+change+in+E&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.31236v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Cleaner+air+strengthens+the+Pacific+trade+winds+without+a+detectable+change+in+El+Nino%0Akeywords%3A+ai%2C+earth%2C+earth+system%2C+climate%2C+ocean%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>4. <a href="http://arxiv.org/abs/2610.33366v1">Distill, Debate, Discover: Grounding Multi-Agent Research Ideation in Graph-Distilled Insights</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Distill%2C+Debate%2C+Discover%3A+Grounding+Multi-Agent+Research+Ideation+in+Graph-Dist&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33366v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Distill%2C+Debate%2C+Discover%3A+Grounding+Multi-Agent+Research+Ideation+in+Graph-Distilled+Insights%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+scientific+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Distill%2C+Debate%2C+Discover%3A+Grounding+Multi-Agent+Research+Ideation+in+Graph-Dist&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33366v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Distill%2C+Debate%2C+Discover%3A+Grounding+Multi-Agent+Research+Ideation+in+Graph-Distilled+Insights%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+scientific+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Distill%2C+Debate%2C+Discover%3A+Grounding+Multi-Agent+Research+Ideation+in+Graph-Dist&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.33366v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Distill%2C+Debate%2C+Discover%3A+Grounding+Multi-Agent+Research+Ideation+in+Graph-Distilled+Insights%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+scientific+discovery%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Ioana Colfescu、Alice Pigelet、Chen Lu、Massimo A. Bollasina 等 5 人 · <a href="https://arxiv.org/pdf/2610.31236v1">PDF</a></div>
-      <div class="chips"><span class="chip">ai <strong>1</strong></span>
-<span class="chip">earth <strong>1</strong></span>
-<span class="chip">earth system <strong>1</strong></span>
-<span class="chip">climate <strong>1</strong></span>
-<span class="chip">ocean <strong>1</strong></span></div>
+      <div class="authors">Qianran Ma、Muxin Liu、Grace Kim、Xiao Liang 等 5 人 · <a href="https://arxiv.org/pdf/2610.33366v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">scientific discovery <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文研究空气质量政策导致的气溶胶与臭氧前体物减排，如何影响热带太平洋环流与ENSO。基于12个地球系统模型的有无减排对照，作者声称减排会增强太平洋信风、抵消约一半到三分之二的未来减弱趋势，但对厄尔尼诺振幅没有可检测的显著变化。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把“空气污染治理”与“热带太平洋平均态环流变化”直接联系起来，并给出一个较具体的机制线索：印度洋相对太平洋增暖与信风增强一致；同时论文强调，尽管平均态发生变化，ENSO振幅变化小到低于该多模型集合的检测能力，这有助于澄清此前关于减排是否会显著改变厄尔尼诺强度的分歧。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 InsightAgents，用“相关论文图”中蒸馏出的文献洞见来为多智能体研究构思系统赋予差异化专长，目标任务是围绕 100 个 NLP 研究主题生成并辩论研究问题与方案。根据摘要，它关注的是“如何让多智能体在科研创意生成中拥有有根据且彼此不同的专业视角”，并在在线/离线知识两种设置下与其他研究想法生成框架比较。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献很可能有三点：第一，提出一种把相关论文组织成图并从中蒸馏 insight 的方法，用这些 insight 作为 agent 的文献扎根式“经验”；第二，设计了一个多智能体辩论流程，使 agent 能围绕研究问题识别、方案提出、质疑与 refinement 形成研究 proposal；第三，在 100 个 NLP 主题上，与 3 个研究 idea generation 框架进行比较，并通过两名 LLM judge 的成对评测，在五个评价维度上的平均分取得最好结果。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -427,95 +431,34 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 5</div>
-              <div class="signal-meter"><span style="width: 90%"></span></div>
+              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>54.5</strong>
+              <strong>68.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答两个紧密相关的具体问题：第一，未来空气质量政策引起的气溶胶和臭氧前体物减排，是否会改变热带太平洋平均态环流，特别是太平洋信风和Walker环流；第二，这种平均态改变是否会进一步显著改变ENSO，尤其是厄尔尼诺振幅，还是只改变厄尔尼诺事件在不同地区的气候影响。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推断，作者主要采用多模式情景对照分析。核心数据应来自12个地球系统模型，在“实施空气质量控制减排”和“未实施相应减排”的情景下比较热带太平洋风场、海温梯度和ENSO统计量。方法上可能包括：多模型集合平均与离散度分析；信风趋势和显著性检验；规定SST实验与耦合实验对照，用于识别海气耦合是否必要；按减排区域分别施加或归因，比较不同地区减排对印度洋-太平洋相对增暖及信风响应的贡献；用某种ENSO预测或诊断模型，在不含减排实验的训练集上学习平均态到ENSO振幅的关系，再外推到减排情景，检验平均态变化是否足以推出ENSO振幅变化。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，问题设定具有政策相关性：不是抽象外强迫，而是直接针对空气质量治理。第二，证据链较完整，不只报告信风变化，还通过规定SST实验说明该响应依赖海表温度调整，并提出印度洋相对太平洋增暖这一可检验机制。第三，论文没有把平均态变化简单等同于ENSO变化，而是明确区分“背景态改变”和“模态振幅未显著改变”，这对解释文献分歧很重要。第四，作者进一步指出即便ENSO振幅不变，厄尔尼诺的区域影响仍会因背景气候改变而变化，这对影响评估和风险沟通有实际价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作可以是五步：一，先查论文主图，确认信风增强的定义区域、时间窗和量级；二，记录12个模型名单及对应情景，核对是否来自统一计划；三，重点看规定SST实验和耦合实验的对照图，判断海气耦合证据是否充分；四，查ENSO振幅“不到十分之一”与“检测阈值”的统计定义，避免把不可检测误读为零效应；五，若你的方向与区域气候影响相关，优先找文中关于厄尔尼诺遥相关或降水影响变化的图表，判断背景态改变对应用研究的意义。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在用多智能体做科研想法生成时，如何给不同 agent 配置“有意义且彼此不同”的专业知识，使其在围绕某个 NLP 研究主题讨论时，不只是重复常识或表面分工，而是能基于文献脉络提出问题、挑战假设并形成更扎实的研究 proposal。更细一点说，它关注的是 agent expertise grounding：这些专长如何从已有研究积累中获得，而不是人工硬编码。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法路径可能是：1）针对每个研究主题收集相关论文，构建 related papers graph，图中可能编码引用、主题相似性、方法演化或问题-方法关系；2）从图中蒸馏 insight，摘要点名了三类线索：研究方法的演进、底层假设、未解决挑战；3）将这些 insight 作为 agent 的知识背景或角色依据，让多个 agent 在 debate 框架下依次完成研究问题识别、候选方法提出、相互质疑和方案细化；4）在 100 个 NLP topics 上，与 3 个基线框架比较；5）在 online/offline knowledge 两种设置下，用两名 LLM judge 做成对比较，按五个维度打分或判优。这里最值得进一步确认的是图蒸馏模块：它可能是图检索+LLM 总结，也可能包含图算法、聚类、路径抽取或时间演化分析。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点首先在于把“多智能体的差异化”建立在文献图 insight 上，而不是仅靠不同 system prompt，这使 agent 的分工更可能对应真实研究脉络。第二，摘要中的 insight 类型很有科研味道：方法演化、假设、未解挑战，这些比普通文献摘要更接近研究者构思新课题时真正依赖的信息。第三，任务定义完整，不只生成一个 idea，而是经过 propose-challenge-refine 的 debate 过程形成 proposal，更符合科研讨论流程。第四，评测覆盖 100 个 NLP 主题，且区分 online/offline knowledge setting，说明作者试图检验系统在不同知识可用条件下的稳定性。第五，如果结果可靠，这项工作对自动科研助手、文献综述辅助、选题支持和研究 brainstorming 都有直接应用价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先获取全文，优先查看方法总览图，确认 related papers graph 的节点、边和 insight 蒸馏流程；2）记录 3 个对比基线名称，以及 online/offline knowledge setting 的定义；3）查实验表，补全五个评价维度、具体胜率或平均分，以及是否有人类评审；4）重点找一个案例分析，观察 agent 是否真的基于不同 insight 提出互补观点，而不是表面角色扮演；5）如果你做 LLM agent 或科研辅助，可尝试复现一个最小版本：选一个 NLP topic，构建小型论文图，手工抽取“演化-假设-挑战”三类 insight，测试其是否比普通 RAG 提示更能产生差异化讨论；6）阅读时特别记下两个问题：insight 蒸馏是否可解释、以及 proposal 质量是否与图质量强相关。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答两个紧密相关的具体问题：第一，未来空气质量政策引起的气溶胶和臭氧前体物减排，是否会改变热带太平洋平均态环流，特别是太平洋信风和Walker环流；第二，这种平均态改变是否会进一步显著改变ENSO，尤其是厄尔尼诺振幅，还是只改变厄尔尼诺事件在不同地区的气候影响。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推断，作者主要采用多模式情景对照分析。核心数据应来自12个地球系统模型，在“实施空气质量控制减排”和“未实施相应减排”的情景下比较热带太平洋风场、海温梯度和ENSO统计量。方法上可能包括：多模型集合平均与离散度分析；信风趋势和显著性检验；规定SST实验与耦合实验对照，用于识别海气耦合是否必要；按减排区域分别施加或归因，比较不同地区减排对印度洋-太平洋相对增暖及信风响应的贡献；用某种ENSO预测或诊断模型，在不含减排实验的训练集上学习平均态到ENSO振幅的关系，再外推到减排情景，检验平均态变化是否足以推出ENSO振幅变化。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，问题设定具有政策相关性：不是抽象外强迫，而是直接针对空气质量治理。第二，证据链较完整，不只报告信风变化，还通过规定SST实验说明该响应依赖海表温度调整，并提出印度洋相对太平洋增暖这一可检验机制。第三，论文没有把平均态变化简单等同于ENSO变化，而是明确区分“背景态改变”和“模态振幅未显著改变”，这对解释文献分歧很重要。第四，作者进一步指出即便ENSO振幅不变，厄尔尼诺的区域影响仍会因背景气候改变而变化，这对影响评估和风险沟通有实际价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕几类边界。第一，12个模型的样本量对ENSO这类内部变率问题仍可能偏小，尤其当作者自己承认振幅变化低于集合检测阈值时，结论更接近“未检测到变化”而非“证明没有变化”。第二，摘要没有说明减排情景的具体排放路径、温室气体背景是否一致、以及气溶胶与臭氧前体物效应如何分离，因此归因精度需要核对。第三，题名强调“El Nino无可检测变化”，但这主要指振幅；ENSO频率、偏态、事件类型或季节锁相是否变化，摘要未交代。第四，区域影响改变的结论较重要，但摘要未给出影响变量和区域范围，需防止过度解读。第五，若ENSO模型是经验或机器学习模型，其训练数据范围和可外推性需要仔细检查。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作可以是五步：一，先查论文主图，确认信风增强的定义区域、时间窗和量级；二，记录12个模型名单及对应情景，核对是否来自统一计划；三，重点看规定SST实验和耦合实验的对照图，判断海气耦合证据是否充分；四，查ENSO振幅“不到十分之一”与“检测阈值”的统计定义，避免把不可检测误读为零效应；五，若你的方向与区域气候影响相关，优先找文中关于厄尔尼诺遥相关或降水影响变化的图表，判断背景态改变对应用研究的意义。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：不是泛泛讨论气候变化，而是讨论空气质量控制政策下，气溶胶和臭氧前体物排放削减对热带太平洋大尺度环流、尤其是信风，以及对ENSO振幅和厄尔尼诺区域影响的作用。方法上，摘要明确提到使用12个Earth system models，并比较“有空气质量控制”和“无空气质量控制”的情景；还提到一个关键对照是“规定海表温度”的实验，在该实验中响应消失，这说明作者试图区分海气耦合反馈与纯大气快速响应。证据链大致是：第一，多模型一致显示减排会增强太平洋信风；第二，这种增强可抵消无减排情景下约1/2到2/3的信风减弱；第三，响应到2040年后才可检测，说明信号较弱且需要长期强迫累积；第四，空间机制上与“印度洋相对太平洋更强增暖”一致，并且这种相对增暖还能对不同区域减排的响应强弱进行排序；第五，ENSO振幅变化不到其本身值的十分之一，被作者解释为该集合可检测到的最小变化量，而由平均态位移所隐含的ENSO变化仅为这一阈值的六分之一；第六，一个在未包含减排实验数据上训练的ENSO模型也预测不出振幅变化，从而支持“平均态变了，但ENSO振幅未显著改变”的结论。与气候动力学、地球系统建模、海气相互作用研究者的关系较强，尤其适合关注外强迫如何改变Walker环流、热带海盆间温差梯度、以及平均态与模态变率解耦问题的读者。需要核对的信息包括：12个模型来自哪些计划或情景框架；空气质量控制具体对应哪些排放路径；“region by region”的减排区域划分；ENSO模型是统计模型、机器学习模型还是简化动力模型；“detectable”采用何种统计检验与信噪比定义；以及“区域影响改变”具体指降水、温度还是遥相关响应。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在用多智能体做科研想法生成时，如何给不同 agent 配置“有意义且彼此不同”的专业知识，使其在围绕某个 NLP 研究主题讨论时，不只是重复常识或表面分工，而是能基于文献脉络提出问题、挑战假设并形成更扎实的研究 proposal。更细一点说，它关注的是 agent expertise grounding：这些专长如何从已有研究积累中获得，而不是人工硬编码。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法路径可能是：1）针对每个研究主题收集相关论文，构建 related papers graph，图中可能编码引用、主题相似性、方法演化或问题-方法关系；2）从图中蒸馏 insight，摘要点名了三类线索：研究方法的演进、底层假设、未解决挑战；3）将这些 insight 作为 agent 的知识背景或角色依据，让多个 agent 在 debate 框架下依次完成研究问题识别、候选方法提出、相互质疑和方案细化；4）在 100 个 NLP topics 上，与 3 个基线框架比较；5）在 online/offline knowledge 两种设置下，用两名 LLM judge 做成对比较，按五个维度打分或判优。这里最值得进一步确认的是图蒸馏模块：它可能是图检索+LLM 总结，也可能包含图算法、聚类、路径抽取或时间演化分析。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点首先在于把“多智能体的差异化”建立在文献图 insight 上，而不是仅靠不同 system prompt，这使 agent 的分工更可能对应真实研究脉络。第二，摘要中的 insight 类型很有科研味道：方法演化、假设、未解挑战，这些比普通文献摘要更接近研究者构思新课题时真正依赖的信息。第三，任务定义完整，不只生成一个 idea，而是经过 propose-challenge-refine 的 debate 过程形成 proposal，更符合科研讨论流程。第四，评测覆盖 100 个 NLP 主题，且区分 online/offline knowledge setting，说明作者试图检验系统在不同知识可用条件下的稳定性。第五，如果结果可靠，这项工作对自动科研助手、文献综述辅助、选题支持和研究 brainstorming 都有直接应用价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与摘要，首先要警惕评测主要依赖 LLM judges，虽然便于大规模比较，但可能存在偏好同类文风、对“看起来合理”的 proposal 过度奖励、与真实科研价值不完全一致的问题。第二，摘要没有说明是否有人类专家评审，也未说明五个评价维度的定义，因此结果解释空间较大。第三，related papers graph 的构建质量可能决定上限；如果检索召回不足、图边定义粗糙或主题边界不清，蒸馏出的 insight 可能失真。第四，多智能体 debate 常见的问题包括成本高、冗余讨论、角色漂移和结论趋同，摘要未说明如何控制。第五，论文聚焦 NLP topics，跨学科或数据稀疏领域是否同样有效尚不清楚。第六，当前摘要被截断，缺少具体数值结果、基线名称和误差分析，不能据此判断提升幅度与统计稳健性。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先获取全文，优先查看方法总览图，确认 related papers graph 的节点、边和 insight 蒸馏流程；2）记录 3 个对比基线名称，以及 online/offline knowledge setting 的定义；3）查实验表，补全五个评价维度、具体胜率或平均分，以及是否有人类评审；4）重点找一个案例分析，观察 agent 是否真的基于不同 insight 提出互补观点，而不是表面角色扮演；5）如果你做 LLM agent 或科研辅助，可尝试复现一个最小版本：选一个 NLP topic，构建小型论文图，手工抽取“演化-假设-挑战”三类 insight，测试其是否比普通 RAG 提示更能产生差异化讨论；6）阅读时特别记下两个问题：insight 蒸馏是否可解释、以及 proposal 质量是否与图质量强相关。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常具体：不是一般性的多智能体协作，而是“面向科研 ideation 的多智能体系统”，并且其知识来源不是自由生成，而是来自 related papers graph 中蒸馏出的 insight。摘要给出的 insight 类型也较具体，包括：追踪某条研究线中方法如何演化、揭示潜在假设、识别未解决挑战。这说明作者可能不是简单做文献检索增强，而是在图结构上抽取跨论文关系与演进脉络，再把这些结构化认识分配给不同 agent，形成有区分度的角色或专长。方法层面，InsightAgents 可能包含至少三个阶段：先围绕某个 NLP topic 收集相关论文并构图；再从图中 distill 出可供 agent 使用的 insight；最后让多个 agent 在这些 insight 引导下进行 debate，联合完成 problem identification、approach proposal、critique 和 refinement，输出研究提案。证据线索方面，摘要明确提到评测对象是 100 个 NLP research topics，比较基线是 3 个 research idea generation frameworks，评估方式是由 2 个 LLM judges 做 pairwise comparisons，并且区分 online/offline knowledge settings。对关注 LLM agent、RAG、科学发现、自动科研辅助的读者，这篇论文的价值在于它把“agent 的差异化能力来源”落到了文献图蒸馏，而不是仅靠 prompt 设定人格；这对提升多智能体讨论的互补性、减少同质化输出可能很关键。不过目前仅凭摘要仍需核对若干关键信息：论文图的节点/边如何定义，insight 是抽取式还是生成式，agent 专长如何映射到 insight，五个评价维度具体是什么，LLM judge 是否有人类校验，以及所谓 online/offline knowledge setting 的精确定义。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Air quality policy will cut aerosol and ozone precursor emissions, and studies disagree on how the tropical Pacific circulation and the El Nino Southern Oscillation (ENSO) will respond. Here we show, in 12 Earth system models with and without air quality controls, that the cuts strengthen the Pacific trade winds and offset half to two thirds of the weakening projected without them. The response is absent with prescribed sea surface temperatures and detectable only after 2040. It is consistent with the Indian Ocean warming relative to the Pacific, which also ranks the responses to cuts made region by region. ENSO amplitude changes by less than a tenth of its value, the smallest change this ensemble could detect. The change implied by the mean state shift is a sixth of that, and an ENSO model trained without the reduced emission runs predicts none. El Nino&#x27;s regional impacts still change, because the background climate does.</p>
+          <p>Large language models (LLMs) are increasingly used to support research idea generation and scientific discovery. Multi-agent debate offers a collaborative approach to this task by bringing together diverse perspectives to develop research ideas. However, a key challenge is how to equip agents with distinct and meaningful expertise to guide their contributions. Inspired by how researchers draw on accumulated research experience during collaboration, we introduce InsightAgents, a framework that constructs literature-grounded agent expertise by distilling insights from graphs of related papers. Guided by insights that trace evolving research approaches, reveal underlying assumptions, and identify unresolved challenges, within a line of research, agents jointly identify a research problem and propose, challenge, and refine potential approaches through debate to develop a research proposal. We evaluate InsightAgents against three research idea generation frameworks on 100 NLP research topics through pairwise comparisons by two LLM judges. In both online and offline knowledge settings, InsightAgents achieves the highest average score across the five evaluation dimensions under both judges.</p>
         </details>
         
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-10-25</span>
-        <span>Score 45.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1038/s41586-026-11328-3">ctDNA clearance and outcomes for resectable lung cancer from NeoCOAST-2</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+ctDNA+clearance+and+outcomes+for+resectable+lung+cancer+from+NeoCOAST-2&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11328-3%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+ctDNA+clearance+and+outcomes+for+resectable+lung+cancer+from+NeoCOAST-2%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+ctDNA+clearance+and+outcomes+for+resectable+lung+cancer+from+NeoCOAST-2&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11328-3%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+ctDNA+clearance+and+outcomes+for+resectable+lung+cancer+from+NeoCOAST-2%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+ctDNA+clearance+and+outcomes+for+resectable+lung+cancer+from+NeoCOAST-2&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11328-3%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+ctDNA+clearance+and+outcomes+for+resectable+lung+cancer+from+NeoCOAST-2%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Lara McGrath、Gozde Kar、Laura Bonanno、Florian Guisier 等 25 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11328-3">10.1038/s41586-026-11328-3</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦可切除肺癌在NeoCOAST-2研究中的循环肿瘤DNA（ctDNA）清除与临床结局之间的关系，核心任务应是评估围手术期治疗后ctDNA动态是否可作为疗效或预后相关指标。由于当前未提供摘要，无法确认其具体患者分层、治疗方案、检测时间点和统计结果。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名与期刊来源，论文的核心贡献很可能是把NeoCOAST-2这一可切除肺癌研究中的ctDNA清除现象，与病理缓解、复发风险、生存结局或围手术期治疗获益建立关联，为ctDNA作为早期替代终点、分层工具或术后风险监测指标提供临床证据线索；但具体贡献强度仍需摘要和正文核对。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>45.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，推测是：在可切除肺癌的NeoCOAST-2研究中，围手术期治疗后ctDNA是否会发生清除，以及这种清除是否与更好的临床结局相关；进一步说，ctDNA动态能否作为早期疗效评估指标、复发风险标志物或替代终点。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从题名推测，方法上应基于NeoCOAST-2临床研究队列，采集患者治疗前后血浆样本进行ctDNA检测，按ctDNA是否清除进行分组，并与临床结局做关联分析。可能涉及的对象包括可切除肺癌患者；可能的数据包括基线肿瘤特征、治疗方案、手术病理结果、随访复发/生存数据；可能的分析路径包括ctDNA阳转阴比例统计、与病理缓解的一致性分析、Kaplan-Meier生存比较、Cox回归或分层亚组分析。由于没有摘要，这些都只能视为高概率推断。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，研究嵌入具体临床试验NeoCOAST-2，而非松散真实世界队列，因此治疗路径和采样时间点可能更规范。第二，研究对象是可切除肺癌，这正是ctDNA/MRD最具临床决策价值的场景之一，因为术前和术后都存在治疗调整需求。第三，若论文证明ctDNA清除与结局强相关，它对围手术期药物开发、早期终点设计和个体化随访都有直接应用价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先补查摘要，确认NeoCOAST-2的患者范围、治疗方案和ctDNA采样时间点；2）重点找正文或图表中关于ctDNA清除定义、样本量、阳性率、病理缓解和生存终点的对应关系；3）记录是否有多变量分析证明ctDNA清除的独立预测价值；4）若你做相关研究，可把这篇文章与可切除NSCLC中既有MRD/ctDNA研究并列，建立一个对照表，比较检测平台、时间点、终点和效应量。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，推测是：在可切除肺癌的NeoCOAST-2研究中，围手术期治疗后ctDNA是否会发生清除，以及这种清除是否与更好的临床结局相关；进一步说，ctDNA动态能否作为早期疗效评估指标、复发风险标志物或替代终点。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从题名推测，方法上应基于NeoCOAST-2临床研究队列，采集患者治疗前后血浆样本进行ctDNA检测，按ctDNA是否清除进行分组，并与临床结局做关联分析。可能涉及的对象包括可切除肺癌患者；可能的数据包括基线肿瘤特征、治疗方案、手术病理结果、随访复发/生存数据；可能的分析路径包括ctDNA阳转阴比例统计、与病理缓解的一致性分析、Kaplan-Meier生存比较、Cox回归或分层亚组分析。由于没有摘要，这些都只能视为高概率推断。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，研究嵌入具体临床试验NeoCOAST-2，而非松散真实世界队列，因此治疗路径和采样时间点可能更规范。第二，研究对象是可切除肺癌，这正是ctDNA/MRD最具临床决策价值的场景之一，因为术前和术后都存在治疗调整需求。第三，若论文证明ctDNA清除与结局强相关，它对围手术期药物开发、早期终点设计和个体化随访都有直接应用价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，最大局限是摘要缺失，导致无法判断研究是前瞻性预设分析还是事后探索性分析，也无法判断样本量是否足以支持稳健结论。还需警惕ctDNA检测灵敏度、不同分期/组织学异质性、治疗臂混杂、手术时点差异、随访不足以及“清除”定义不统一等问题。如果NeoCOAST-2包含多种联合治疗，ctDNA与结局的关系也可能受方案差异影响。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先补查摘要，确认NeoCOAST-2的患者范围、治疗方案和ctDNA采样时间点；2）重点找正文或图表中关于ctDNA清除定义、样本量、阳性率、病理缓解和生存终点的对应关系；3）记录是否有多变量分析证明ctDNA清除的独立预测价值；4）若你做相关研究，可把这篇文章与可切除NSCLC中既有MRD/ctDNA研究并列，建立一个对照表，比较检测平台、时间点、终点和效应量。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>已知信息非常有限：题名明确涉及“ctDNA clearance and outcomes for resectable lung cancer from NeoCOAST-2”，说明研究对象是可切除肺癌患者，研究场景大概率是新辅助或围手术期治疗，研究变量是ctDNA清除，结局变量是“outcomes”，可能包括病理完全缓解、主要病理缓解、无事件生存、无病生存或总生存。NeoCOAST-2从命名上看像是特定临床研究或试验队列，论文很可能是在该队列中做ctDNA转化分析，即比较治疗前后或手术前后ctDNA阳性/阴性转换与临床终点的关系。由于发表在Nature，可能提示其结果具有较强临床转化意义，例如支持ctDNA动态作为围手术期肺癌疗效评估或风险分层工具。
-
-但必须强调：当前摘要为空，因此无法确认以下关键信息：第一，肺癌具体病理类型是非小细胞肺癌总体，还是局限于某一亚型；第二，NeoCOAST-2的治疗构成是否包含免疫治疗、化疗、抗体药物或联合方案；第三，ctDNA检测平台是肿瘤知情型（tumor-informed）还是固定panel，检测样本采集于基线、术前、术后还是多个时间点；第四，ctDNA“清除”的操作定义是什么，是变异等位基因频率降至检测下限以下，还是从阳性转阴；第五，结局分析是探索性相关分析还是预设终点；第六，样本量、随访时长、统计显著性和效应量均未知。
-
-如果你的研究方向与肺癌围手术期治疗、微小残留病灶（MRD）、液体活检或替代终点验证有关，这篇论文值得优先关注，因为它很可能提供一个具体临床试验框架下的ctDNA动态证据，而不是单纯回顾性观察。最需要核对的是：ctDNA清除是否独立于病理缓解预测结局；不同治疗臂之间ctDNA清除率是否不同；术前清除与术后持续阴性哪个更有预后价值；以及是否存在对临床决策可操作的阈值或时间窗。</p></div>
-          </div>
-          
         </div>
       </details>
     
@@ -529,16 +472,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.aem1247">A cell death ballet in two acts</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+cell+death+ballet+in+two+acts&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem1247%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+A+cell+death+ballet+in+two+acts%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+cell+death+ballet+in+two+acts&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem1247%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+A+cell+death+ballet+in+two+acts%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+cell+death+ballet+in+two+acts&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem1247%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+A+cell+death+ballet+in+two+acts%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>5. <a href="https://doi.org/10.1126/science.aef9745">Decoupled self-assembled monolayer and perovskite deposition for efficient flexible solar modules</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Decoupled+self-assembled+monolayer+and+perovskite+deposition+for+efficient+flexi&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef9745%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Decoupled+self-assembled+monolayer+and+perovskite+deposition+for+efficient+flexible+solar+modules%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Decoupled+self-assembled+monolayer+and+perovskite+deposition+for+efficient+flexi&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef9745%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Decoupled+self-assembled+monolayer+and+perovskite+deposition+for+efficient+flexible+solar+modules%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Decoupled+self-assembled+monolayer+and+perovskite+deposition+for+efficient+flexi&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef9745%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Decoupled+self-assembled+monolayer+and+perovskite+deposition+for+efficient+flexible+solar+modules%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Cristina Muñoz-Pinedo、Seamus J. Martin · DOI: <a href="https://doi.org/10.1126/science.aem1247">10.1126/science.aem1247</a></div>
+      <div class="authors">Yeyong Wu、Xikun Zhang、Tiankai Zhang、Guiying Xu 等 21 人 · DOI: <a href="https://doi.org/10.1126/science.aef9745">10.1126/science.aef9745</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文从题名和摘要看，聚焦两种能够使线粒体膜通透化的蛋白，讨论它们如何通过彼此不同的机制促进细胞死亡。具体任务不是泛泛描述细胞死亡，而是区分“同样作用于线粒体通透化”的两个蛋白在致死路径上的差异。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是提出或综述一种“两幕式”的细胞死亡框架：两种线粒体通透化蛋白虽然都与细胞死亡相关，但其作用阶段、分子后果或下游死亡程序并不相同，从而帮助研究者更精细地区分线粒体外膜通透化相关死亡机制。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦柔性钙钛矿太阳能组件，针对柔性基底表面羟基脱附导致SAM锚定失效和钙钛矿结晶受扰的问题，提出了“SAM-钙钛矿解耦共沉积”策略。摘要显示，该方法在大面积柔性组件上实现了20.2%认证效率，并在14.55 cm²器件上达到22.0%效率且在85°C、65%相对湿度、最大功率点跟踪1044小时后仅衰减8%。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是提出一种面向柔性钙钛矿太阳能组件的界面与成膜协同策略：通过降低SAM与钙钛矿之间的相互作用，加快SAM在柔性基底上的锚定，同时改善钙钛矿结晶，从而兼顾大面积效率、热湿稳定性和商业化评估标准通过性。就摘要信息看，论文还比较了不同钝化分子体系，分别展示了超大面积认证效率和较高稳定性。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -559,23 +502,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>研究问题是：当两种蛋白都能使线粒体发生通透化时，它们究竟如何以不同机制推动细胞死亡？更细一点说，论文试图区分“共同作用对象是线粒体”与“致死机制相同”这两个常被混淆的命题。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从现有信息推测，若为评论/观点文，方法主要是整合近期原始研究结果并提出机制框架；若关联原始实验，则可能涉及蛋白过表达或敲除/敲低、线粒体膜通透化检测、细胞死亡定量、下游分子释放分析、以及用抑制剂或遗传背景区分不同死亡通路。由于摘要未给出样本、模型系统、蛋白名称和实验读数，任何更具体的方法判断都需要谨慎。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点在于问题聚焦且机制导向明确：不是笼统讨论细胞死亡，而是抓住“线粒体通透化蛋白的机制异质性”这一关键点。若文章确实提出“两幕式”框架，它可能有助于研究者重新组织对线粒体相关死亡事件先后顺序和因果关系的理解，并为药物靶向不同死亡阶段提供概念工具。发表在Science也提示其讨论对象可能对应近期具有较高影响力的发现。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，进入DOI页面确认文章类型，并记录这两种蛋白的准确名称；第二，查看摘要全文或导语，提取作者所说的distinct mechanisms具体对应哪些分子事件；第三，若这是评论，追溯其所评述的原始研究论文；第四，重点查图示或示意图，整理“两幕式”中每一幕的触发条件、线粒体事件和下游死亡输出；第五，把这些机制与你自己的研究体系中的死亡读数逐项对照，避免把不同线粒体致死机制混为一谈。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在柔性钙钛矿太阳能组件中，柔性基底表面羟基脱附会削弱SAM在基底上的稳定锚定，并扰乱后续钙钛矿薄膜结晶，导致柔性器件的效率和稳定性落后于刚性器件。作者试图找到一种既能稳定界面分子层、又能保证高质量钙钛矿成膜、并适用于大面积柔性组件制造的工艺方案。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法核心是“解耦的SAM-钙钛矿共沉积策略”。可能的实验路径包括：在柔性基底上重新设计SAM引入与钙钛矿沉积的时序或共处理方式；通过降低SAM与钙钛矿前驱体/中间相之间的不利相互作用来促进SAM快速锚定；再结合有机铵碘盐钝化分子进行界面或晶界缺陷钝化。摘要明确提到两种钝化分子：phenethylammonium iodide和1,3-diaminopropane dihydroiodide，说明作者可能比较了不同钝化化学对效率与稳定性的影响。证据应来自大面积组件效率认证、14.55 cm²器件的运行稳定性测试，以及柔性商业化评估标准测试。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是问题抓得很具体，不是泛泛提升柔性器件性能，而是直指柔性基底表面羟基脱附这一界面化学根因。亮点二是方案兼顾界面锚定和钙钛矿结晶两个通常相互牵制的过程，具有明显的方法学价值。亮点三是数据覆盖了超大面积750 cm²认证效率、较高效率的中等面积器件以及高温高湿最大功率点跟踪稳定性，证据链比只报小面积冠军效率更接近应用。亮点四是通过国际商业化评估标准全部序列，说明论文强调柔性便携式组件的实际可用性，而不仅是实验室演示。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查正文或补充材料中“decoupled SAM-perovskite codeposition”的工艺示意图，明确它与常规SAM处理/钙钛矿沉积的差别。第二，记录两组关键结果的对应条件：750 cm²、20.2%认证效率对应的钝化分子和器件结构；14.55 cm²、22.0%、1044小时稳定性对应的完整测试条件。第三，查对照图表，确认该策略对SAM锚定、接触角、表面化学、结晶取向、缺陷态或载流子复合的直接证据。第四，如果你做柔性器件，可据此设计一个最小复现实验：在现有柔性基底上比较常规SAM工艺与解耦处理后薄膜形貌、开路电压和弯折后保持率。第五，整理待核对问题清单：SAM具体分子、基底类型、封装方式、商业化评估标准名称、弯折测试参数和模块互联设计。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>研究问题是：当两种蛋白都能使线粒体发生通透化时，它们究竟如何以不同机制推动细胞死亡？更细一点说，论文试图区分“共同作用对象是线粒体”与“致死机制相同”这两个常被混淆的命题。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从现有信息推测，若为评论/观点文，方法主要是整合近期原始研究结果并提出机制框架；若关联原始实验，则可能涉及蛋白过表达或敲除/敲低、线粒体膜通透化检测、细胞死亡定量、下游分子释放分析、以及用抑制剂或遗传背景区分不同死亡通路。由于摘要未给出样本、模型系统、蛋白名称和实验读数，任何更具体的方法判断都需要谨慎。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点在于问题聚焦且机制导向明确：不是笼统讨论细胞死亡，而是抓住“线粒体通透化蛋白的机制异质性”这一关键点。若文章确实提出“两幕式”框架，它可能有助于研究者重新组织对线粒体相关死亡事件先后顺序和因果关系的理解，并为药物靶向不同死亡阶段提供概念工具。发表在Science也提示其讨论对象可能对应近期具有较高影响力的发现。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，局限非常明显：摘要极短，没有给出两种蛋白的名称、实验体系、证据类型、适用细胞类型或疾病背景；因此无法判断结论是普适机制还是特定模型中的现象。另一个重要边界是文章类型不明，若它是评论而非原始研究，则其“贡献”主要是解释框架而非新数据。还需警惕题名中的修辞表达可能强化概念模型，但不代表所有步骤都已被直接实验验证。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，进入DOI页面确认文章类型，并记录这两种蛋白的准确名称；第二，查看摘要全文或导语，提取作者所说的distinct mechanisms具体对应哪些分子事件；第三，若这是评论，追溯其所评述的原始研究论文；第四，重点查图示或示意图，整理“两幕式”中每一幕的触发条件、线粒体事件和下游死亡输出；第五，把这些机制与你自己的研究体系中的死亡读数逐项对照，避免把不同线粒体致死机制混为一谈。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和期刊元数据，这更像一篇面向机制阐释的评论、观点或导读性文章，而不一定是原始研究论文；这一点需要首先核对。题名“A cell death ballet in two acts”暗示作者可能将细胞死亡过程组织为两个连续但可区分的阶段；摘要明确指出“Two proteins that permeabilize mitochondria promote cell death through distinct mechanisms”，因此研究对象非常具体：是两种可导致线粒体通透化的蛋白，而不是一般性的凋亡因子。结合该领域常识，线粒体通透化通常与BCL-2家族、线粒体外膜通透化、细胞色素c释放、caspase激活、以及某些caspase非依赖性死亡后果相关，但这里不能据此断言具体蛋白名称，必须回到正文或配套研究核实。若这是Science中的评论文章，其方法更可能是对近期一项或几项原始研究进行整合解读，而不是作者自己报告系统实验；证据线索可能来自遗传操作、线粒体膜完整性检测、细胞死亡表型比较、下游效应分子释放谱、以及不同死亡抑制条件下的机制拆分。对做细胞死亡、线粒体生物学、肿瘤治疗或药物诱导死亡研究的读者，这篇文章的价值在于提醒：不能把“线粒体被通透化”简单等同于单一路径，具体由哪种蛋白介导、发生在哪一阶段、释放哪些线粒体内容物、是否依赖caspase或炎症通路，都会影响机制解释和干预策略。当前最需要核对的信息包括：这两种蛋白的确切身份；文章类型是评论还是研究；所谓distinct mechanisms具体指膜孔形成方式、亚细胞定位、动力学差异，还是下游死亡执行程序不同；以及作者讨论的是凋亡、坏死样死亡、炎症性死亡还是它们之间的串扰。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在柔性钙钛矿太阳能组件中，柔性基底表面羟基脱附会削弱SAM在基底上的稳定锚定，并扰乱后续钙钛矿薄膜结晶，导致柔性器件的效率和稳定性落后于刚性器件。作者试图找到一种既能稳定界面分子层、又能保证高质量钙钛矿成膜、并适用于大面积柔性组件制造的工艺方案。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法核心是“解耦的SAM-钙钛矿共沉积策略”。可能的实验路径包括：在柔性基底上重新设计SAM引入与钙钛矿沉积的时序或共处理方式；通过降低SAM与钙钛矿前驱体/中间相之间的不利相互作用来促进SAM快速锚定；再结合有机铵碘盐钝化分子进行界面或晶界缺陷钝化。摘要明确提到两种钝化分子：phenethylammonium iodide和1,3-diaminopropane dihydroiodide，说明作者可能比较了不同钝化化学对效率与稳定性的影响。证据应来自大面积组件效率认证、14.55 cm²器件的运行稳定性测试，以及柔性商业化评估标准测试。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是问题抓得很具体，不是泛泛提升柔性器件性能，而是直指柔性基底表面羟基脱附这一界面化学根因。亮点二是方案兼顾界面锚定和钙钛矿结晶两个通常相互牵制的过程，具有明显的方法学价值。亮点三是数据覆盖了超大面积750 cm²认证效率、较高效率的中等面积器件以及高温高湿最大功率点跟踪稳定性，证据链比只报小面积冠军效率更接近应用。亮点四是通过国际商业化评估标准全部序列，说明论文强调柔性便携式组件的实际可用性，而不仅是实验室演示。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要仍有若干边界需要警惕。第一，尚不清楚该策略对不同柔性基底、不同SAM分子和不同钙钛矿配方是否具有普适性。第二，两个最佳结果分别对应不同钝化分子和不同器件面积，不能直接视为同一器件体系同时实现全部指标。第三，摘要没有给出与基线工艺相比的提升幅度、统计分布、批次重复性和失效模式。第四，稳定性测试虽然条件较严苛，但仅给出1044小时和8%衰减，仍需查看是否包含弯折循环前后性能、封装条件、光照谱和测试标准细节。第五，“解耦共沉积”概念较新，具体工艺复杂度、可制造性成本和窗口宽度需要从正文核实。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查正文或补充材料中“decoupled SAM-perovskite codeposition”的工艺示意图，明确它与常规SAM处理/钙钛矿沉积的差别。第二，记录两组关键结果的对应条件：750 cm²、20.2%认证效率对应的钝化分子和器件结构；14.55 cm²、22.0%、1044小时稳定性对应的完整测试条件。第三，查对照图表，确认该策略对SAM锚定、接触角、表面化学、结晶取向、缺陷态或载流子复合的直接证据。第四，如果你做柔性器件，可据此设计一个最小复现实验：在现有柔性基底上比较常规SAM工艺与解耦处理后薄膜形貌、开路电压和弯折后保持率。第五，整理待核对问题清单：SAM具体分子、基底类型、封装方式、商业化评估标准名称、弯折测试参数和模块互联设计。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：柔性钙钛矿太阳能组件，而不是刚性小面积电池。作者识别的关键瓶颈是柔性基底上的表面羟基会发生脱附，这会破坏自组装单分子层（SAM）的锚定，并进一步影响上层钙钛矿薄膜的结晶质量。为此，他们提出“decoupled SAM-perovskite codeposition strategy”，可理解为一种将SAM组装过程与钙钛矿沉积过程中的不利耦合效应削弱或重新设计的工艺路线。摘要给出的机制线索是：该策略通过减少SAM-钙钛矿相互作用来加速SAM锚定，并改善钙钛矿结晶，这说明论文很可能围绕界面化学、成核/生长动力学和柔性基底表面状态展开。证据线索主要有三类。第一是效率数据：使用phenethylammonium iodide作为钝化分子时，750 cm²器件面积的柔性组件认证PCE达到20.2%，这是非常强调大面积可扩展性的结果。第二是稳定性数据：使用1,3-diaminopropane dihydroiodide作为钝化剂时，14.55 cm²器件PCE达到22.0%，并在85°C、65% RH、最大功率点跟踪1044小时后仅下降8%，说明作者不仅关注初始效率，也关注热湿耦合工况下的运行稳定性。第三是应用导向证据：器件通过了国际商业化评估标准中针对柔性便携式PSM的全部测试序列，表明论文试图把结果从实验室性能推进到产业可评估层面。与相关研究方向的关系上，这篇论文对柔性光伏、界面工程、SAM空穴选择接触层、钙钛矿结晶调控、大面积模块制备和可靠性测试都直接相关。如果你的方向是柔性器件或大面积制备，这篇文章最值得关注的是“柔性基底表面化学不稳定”如何被工艺解耦策略克服；如果你的方向是界面分子设计，则需要重点看SAM分子、钝化分子与基底/前驱体之间的竞争吸附和反应路径。需要核对的信息包括：所谓“codeposition”具体是同步沉积、分步共处理还是中间层辅助；SAM的具体化学组成和适用基底类型；与传统顺序沉积或常规SAM处理相比的对照幅度；750 cm²模块的分区、互联方式和认证条件；“国际商业化评估标准”具体对应哪一套标准及测试项目。由于目前只有摘要，不能确认其完整器件结构、统计重复性、失效分析深度和工艺窗口宽度。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Two proteins that permeabilize mitochondria promote cell death through distinct mechanisms</p>
+          <p>The power conversion efficiency (PCE) and stability of flexible perovskite solar modules (PSMs) are less than those of their rigid devices because surface hydroxyls desorption on flexible substrates, which disrupts self-assembled monolayer (SAM) anchoring and perovskite crystallization. We developed a decoupled SAM-perovskite codeposition strategy that accelerates SAM anchoring by reducing the SAM-perovskite interaction and ameliorates perovskite crystallization. The certified PCE with phenethylammonium iodide as the passivation molecule was 20.2% on PSMs with device areas of 750 cm 2 . With 1,3-diaminopropane dihydroiodide as the passivator, the PCE of 22.0% for a device area of 14.55 cm 2 decreased by 8% after 1044 hours under maximum power point tracking at 85°C and 65% relative humidity. The devices pass all sequences of an international commercialization assessment standard for flexible portable PSMs.</p>
         </details>
         
         </div>
@@ -591,16 +534,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.aem0762">Putting glucose metabolism under electronic control</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Putting+glucose+metabolism+under+electronic+control&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem0762%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Putting+glucose+metabolism+under+electronic+control%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Putting+glucose+metabolism+under+electronic+control&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem0762%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Putting+glucose+metabolism+under+electronic+control%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Putting+glucose+metabolism+under+electronic+control&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem0762%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Putting+glucose+metabolism+under+electronic+control%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1126/science.aee6967">Imaging electron-hole asymmetry in the quantum melting of generalized Wigner crystals</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Imaging+electron-hole+asymmetry+in+the+quantum+melting+of+generalized+Wigner+cry&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aee6967%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Imaging+electron-hole+asymmetry+in+the+quantum+melting+of+generalized+Wigner+crystals%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Imaging+electron-hole+asymmetry+in+the+quantum+melting+of+generalized+Wigner+cry&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aee6967%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Imaging+electron-hole+asymmetry+in+the+quantum+melting+of+generalized+Wigner+crystals%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Imaging+electron-hole+asymmetry+in+the+quantum+melting+of+generalized+Wigner+cry&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aee6967%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Imaging+electron-hole+asymmetry+in+the+quantum+melting+of+generalized+Wigner+crystals%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">W. E. Bentley、G. F. Payne · DOI: <a href="https://doi.org/10.1126/science.aem0762">10.1126/science.aem0762</a></div>
+      <div class="authors">Emma Berger、Michael Arumainayagam、Zhihuan Dong、Lucas Schneider 等 15 人 · DOI: <a href="https://doi.org/10.1126/science.aee6967">10.1126/science.aee6967</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science题录显示，研究对象是小鼠葡萄糖稳态调控，核心任务是用一种电子装置去控制参与血糖调节的氧化还原机制。根据摘要，作者声称该装置能够对小鼠体内调节葡萄糖浓度的红氧过程实施电子控制，指向生物电子学与代谢调控的交叉方案。</p></div>
-        <div class="note"><strong>贡献</strong><p>从题名和摘要看，核心贡献很可能是提出并演示了一种“电子—红氧—代谢”耦合框架：不是单纯监测血糖，而是通过电子器件主动干预与葡萄糖调控相关的氧化还原机制，并在小鼠中观察到血糖浓度受控这一结果。如果成立，这意味着代谢控制可部分转化为可编程、可外部接口化的生物电子调节问题。</p></div>
+        <div class="note"><strong>一句话</strong><p>该论文聚焦于近60°扭转的二硒化钼双层莫尔三角超晶格，在电子掺杂条件下用扫描隧道显微镜直接成像广义Wigner晶体和Mott绝缘体随载流子密度变化发生的量子熔化过程。摘要强调其核心发现是广义Wigner晶体熔化存在显著电子-空穴不对称：空穴侧更倾向形成相互作用驱动的无序态，而电子侧更倾向熔化为离域的液态。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把“广义Wigner晶体量子熔化中的电子-空穴不对称”从理论或输运迹象推进到实空间成像层面，并将这种不对称归因于莫尔超晶格中破缺的粒子-空穴对称性及其导致的电子/空穴费米口袋动量几何差异。论文还给出一个重要对照：Mott绝缘体的熔化不表现出类似不对称，这支持了“是否存在打破对称性的密度调制”是区分两类熔化行为的关键。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -621,31 +564,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题，应该是：能否借助电子装置直接操纵参与血糖稳态的氧化还原机制，从而在活体小鼠中实现对葡萄糖浓度的主动控制。更细一点说，它挑战的是传统代谢调控主要依赖药物、激素或遗传手段的范式，转而问：葡萄糖代谢是否存在可被电子接口接管或重编程的红氧控制节点。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，研究路径大概率包括三部分：第一，设计一个能够与生物体系发生红氧耦合的电子装置；第二，在小鼠体内或与小鼠组织相关的环境中施加电子控制，改变特定红氧机制；第三，用血糖读数及相关生化/生理指标证明这种干预确实影响了葡萄糖浓度。可能使用的数据和实验包括小鼠血糖监测、装置通断或参数变化实验、红氧状态指标检测、组织或器官定位实验，以及必要的对照组。若要判断机制是否成立，还应寻找是否有药理阻断、遗传缺失、离体组织验证或时间因果分析。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把“电子装置”与“葡萄糖代谢调控”直接连接起来，而且摘要明确落到小鼠体内结果，不只是体外概念验证。第二个亮点是靶向“redox mechanisms”，这提示作者不是做简单刺激，而是试图抓住代谢调控中的化学机制层。第三个潜在价值是应用前景：如果电子控制能稳定、可逆且可编程，它可能为糖代谢疾病提供不同于给药和激素替代的新型干预框架。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，打开DOI页面确认文献类型、全文摘要和图表目录；第二，优先查找装置示意图、动物模型说明和血糖变化主图，记录“装置类型—作用位点—血糖效应”三项关键信息；第三，检索文中是否出现胰岛素、肝脏、胰腺、ROS、redox mediator、bioelectronic等关键词，以定位具体机制；第四，核对是否有疾病模型、长期实验和安全性数据；第五，如果你做相关研究，可建立一个一页笔记表，专门记录其电子接口材料、刺激参数、红氧靶点和对照设计，便于与现有神经刺激或闭环血糖控制方案比较。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在三角莫尔超晶格中，广义Wigner晶体和Mott绝缘体在载流子密度调控下如何发生量子熔化；这种熔化在电子掺杂与空穴掺杂两侧是否对称；若不对称，其微观来源是否与莫尔能带的粒子-空穴对称性破缺及费米口袋几何有关。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>依据摘要，主要方法是对近60°扭转MoSe2双层进行扫描隧道显微镜成像，在电子掺杂条件下追踪不同关联态随密度变化的局域空间结构与可能的谱学响应。分析路径很可能包括：先在特定填充识别GWC和MI的空间图样或能隙特征，再逐步偏离该填充观察有序度、局域化程度和液体样行为的变化，并比较电子侧与空穴侧的差异；随后结合莫尔超晶格破缺粒子-空穴对称性的理论图像，用电子/空穴费米口袋的动量几何差异解释GWC熔化路径不同，而用MI缺乏相应密度调制解释其熔化近似对称。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是“直接成像量子熔化过程”，这比仅靠输运或压缩率更能区分有序晶体、无序相和离域液体样相。第二个亮点是设置了GWC与MI两类关联绝缘态的并行对照，使电子-空穴不对称不是泛泛而谈，而是被限定在具有密度调制的GWC熔化中。第三个亮点是把实空间现象与动量空间费米口袋几何联系起来，说明作者不仅报告现象，还尝试给出统一机制。第四个亮点是材料平台选择具有代表性：近60°扭转MoSe2双层和三角莫尔超晶格是研究分数填充强关联态的重要体系，因此结果对更广泛的TMD莫尔材料可能有参考价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，优先查看正文或图1-图3，确认GWC与MI在实空间图像中的识别标准，以及电子侧和空穴侧熔化分别对应哪些具体图样变化。第二，记录所有填充因子、栅压区间、温度和扭角参数，建立一页相图笔记。第三，核对“particle-hole symmetry breaking”对应的理论图或能带计算，特别是电子/空穴费米口袋几何如何不同。第四，如果你的方向是莫尔STM或强关联相变，可把本文与已有Wigner crystal、Mott melting、compressibility或transport工作做一张对照表，比较各自对熔化终态的定义。第五，带着两个问题继续读：GWC与MI的实验判据是否足够可分；电子-空穴不对称究竟是普适于该类莫尔三角晶格，还是依赖近60°扭角MoSe2双层的特定能带结构。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题，应该是：能否借助电子装置直接操纵参与血糖稳态的氧化还原机制，从而在活体小鼠中实现对葡萄糖浓度的主动控制。更细一点说，它挑战的是传统代谢调控主要依赖药物、激素或遗传手段的范式，转而问：葡萄糖代谢是否存在可被电子接口接管或重编程的红氧控制节点。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，研究路径大概率包括三部分：第一，设计一个能够与生物体系发生红氧耦合的电子装置；第二，在小鼠体内或与小鼠组织相关的环境中施加电子控制，改变特定红氧机制；第三，用血糖读数及相关生化/生理指标证明这种干预确实影响了葡萄糖浓度。可能使用的数据和实验包括小鼠血糖监测、装置通断或参数变化实验、红氧状态指标检测、组织或器官定位实验，以及必要的对照组。若要判断机制是否成立，还应寻找是否有药理阻断、遗传缺失、离体组织验证或时间因果分析。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把“电子装置”与“葡萄糖代谢调控”直接连接起来，而且摘要明确落到小鼠体内结果，不只是体外概念验证。第二个亮点是靶向“redox mechanisms”，这提示作者不是做简单刺激，而是试图抓住代谢调控中的化学机制层。第三个潜在价值是应用前景：如果电子控制能稳定、可逆且可编程，它可能为糖代谢疾病提供不同于给药和激素替代的新型干预框架。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录信息，最大局限是机制、装置和数据都不透明。我们不知道控制的是哪一类红氧过程，也不知道装置是植入式、外部式还是局部接口；不知道样本量、效应大小、持续时间和安全性；也不知道实验对象是正常小鼠还是疾病模型。题名容易给人“全面电子控制葡萄糖代谢”的强印象，但摘要实际上只说控制了调节葡萄糖浓度的红氧机制，因此需要警惕标题外延大于证据边界。另需核对这篇记录在Science中的文献类型，避免把评论/导读误当作完整原创研究。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，打开DOI页面确认文献类型、全文摘要和图表目录；第二，优先查找装置示意图、动物模型说明和血糖变化主图，记录“装置类型—作用位点—血糖效应”三项关键信息；第三，检索文中是否出现胰岛素、肝脏、胰腺、ROS、redox mediator、bioelectronic等关键词，以定位具体机制；第四，核对是否有疾病模型、长期实验和安全性数据；第五，如果你做相关研究，可建立一个一页笔记表，专门记录其电子接口材料、刺激参数、红氧靶点和对照设计，便于与现有神经刺激或闭环血糖控制方案比较。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>基于现有元数据，论文聚焦于小鼠中的葡萄糖代谢控制，而不是一般性的体外电化学现象。题名“Putting glucose metabolism under electronic control”与摘要“An electronic device controls the redox mechanisms that regulate glucose concentrations in mice”共同指向一个较具体的研究命题：作者构建了某种电子设备，并利用其调节与血糖稳态相关的氧化还原过程，最终影响小鼠葡萄糖浓度。
-
-从方法线索看，最可能的对象不是单一酶促反应本身，而是更上游或更系统层面的红氧调节节点，例如影响胰岛素分泌、肝糖输出、葡萄糖摄取或相关信号通路的氧化还原状态。由于摘要明确写的是“redox mechanisms that regulate glucose concentrations”，说明作者强调的是机制层面的红氧控制，而非仅仅把电子器件当作传感器。因此，设备可能具备电刺激、电化学调制、可植入/贴附式接口、或通过电子供受体改变局部生化环境的能力。也不排除其通过材料表面、导电聚合物、红氧介体或生物电子界面与组织发生作用。
-
-证据线索方面，摘要只给出“in mice”和“controls”，因此至少应存在动物实验数据，可能包括血糖时间曲线、干预前后对照、装置开/关响应、剂量或电参数依赖性，以及与红氧状态相关的生化指标。若论文是Science短文或评论式研究报道，正文可能会集中展示几个关键图：装置结构与工作原理、小鼠血糖变化、红氧标志物变化、以及机制阻断或对照实验。需要特别核对的是：1）控制效果是急性还是长期；2）作用位点是胰腺、肝脏、外周组织还是循环系统；3）“控制”是降低高血糖、维持稳态，还是双向调节；4）是否与糖尿病模型相关，还是仅在正常小鼠中验证概念。
-
-与科研读者的关系上，这篇工作对生物电子学、代谢工程、可穿戴/植入医疗器件、糖尿病干预和红氧生物学方向都值得关注。它可能代表一种不同于药物和闭环胰岛素泵的思路：直接把代谢调控中的可电化学耦合环节作为干预靶点。如果你的方向偏向器件，则应重点看电子界面如何与生物红氧网络耦合；如果偏向代谢或内分泌，则应重点看其是否真正识别并操纵了决定血糖的关键机制，而非产生非特异性刺激效应。
-
-但目前信息明显不足。仅凭题录无法确认装置类型、实验规模、统计显著性、动物模型、具体红氧机制、是否可逆、是否安全、是否优于现有方法，也无法判断这是原创研究论文、观点文章还是配套评述。另一个需要警惕的点是元数据中的发表日期为2026-10-22，需核对是否为在线发布日期、预印本式记录或数据库时间戳。总之，这是一篇高度值得跟进的题录，但任何关于机制细节、疗效强度和转化前景的判断都必须回到全文和图表核实。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在三角莫尔超晶格中，广义Wigner晶体和Mott绝缘体在载流子密度调控下如何发生量子熔化；这种熔化在电子掺杂与空穴掺杂两侧是否对称；若不对称，其微观来源是否与莫尔能带的粒子-空穴对称性破缺及费米口袋几何有关。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>依据摘要，主要方法是对近60°扭转MoSe2双层进行扫描隧道显微镜成像，在电子掺杂条件下追踪不同关联态随密度变化的局域空间结构与可能的谱学响应。分析路径很可能包括：先在特定填充识别GWC和MI的空间图样或能隙特征，再逐步偏离该填充观察有序度、局域化程度和液体样行为的变化，并比较电子侧与空穴侧的差异；随后结合莫尔超晶格破缺粒子-空穴对称性的理论图像，用电子/空穴费米口袋的动量几何差异解释GWC熔化路径不同，而用MI缺乏相应密度调制解释其熔化近似对称。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是“直接成像量子熔化过程”，这比仅靠输运或压缩率更能区分有序晶体、无序相和离域液体样相。第二个亮点是设置了GWC与MI两类关联绝缘态的并行对照，使电子-空穴不对称不是泛泛而谈，而是被限定在具有密度调制的GWC熔化中。第三个亮点是把实空间现象与动量空间费米口袋几何联系起来，说明作者不仅报告现象，还尝试给出统一机制。第四个亮点是材料平台选择具有代表性：近60°扭转MoSe2双层和三角莫尔超晶格是研究分数填充强关联态的重要体系，因此结果对更广泛的TMD莫尔材料可能有参考价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅凭题录和摘要，仍有若干边界需要警惕。第一，摘要没有给出具体填充数、能隙大小、温度范围和相边界，因此目前无法判断这些相变的普适性与参数窗口。第二，“无序态”和“液体样态”的判据在摘要中较概念化，需核对是否有充分的图像统计、谱学证据或理论拟合支持。第三，摘要强调电子掺杂条件下成像，但又讨论空穴掺杂GWC的熔化，需要确认这里的“electron-doped”是样品总体工作区间还是同时覆盖电子/空穴偏离某一分数填充的两侧。第四，STM对绝缘态和局域电荷序的解释可能受尖端条件、局域势起伏和样品不均匀性影响，这些控制实验在摘要中未体现。第五，机制归因到费米口袋几何虽有吸引力，但仍需查看理论部分是否排除了带宽、谷/自旋结构、长程库仑屏蔽和无序等竞争因素。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，优先查看正文或图1-图3，确认GWC与MI在实空间图像中的识别标准，以及电子侧和空穴侧熔化分别对应哪些具体图样变化。第二，记录所有填充因子、栅压区间、温度和扭角参数，建立一页相图笔记。第三，核对“particle-hole symmetry breaking”对应的理论图或能带计算，特别是电子/空穴费米口袋几何如何不同。第四，如果你的方向是莫尔STM或强关联相变，可把本文与已有Wigner crystal、Mott melting、compressibility或transport工作做一张对照表，比较各自对熔化终态的定义。第五，带着两个问题继续读：GWC与MI的实验判据是否足够可分；电子-空穴不对称究竟是普适于该类莫尔三角晶格，还是依赖近60°扭角MoSe2双层的特定能带结构。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象是二维莫尔材料中的强关联相变，具体体系为近60°扭转的MoSe2双层，具有三角莫尔超晶格。作者关注两类关联绝缘态：广义Wigner晶体（GWC）与Mott绝缘体（MI），并研究它们在电子掺杂、尤其是密度调控下如何发生量子熔化。方法上，最关键的实验手段是扫描隧道显微镜，且摘要用词是“imaged”，说明论文的主要证据应来自局域实空间电子态或电荷调制图像，而不仅是整体输运。就证据链而言，作者应当比较不同填充、不同掺杂极性下的局域图样演化：GWC在空穴掺杂时从有序电荷晶体转向一种仍受相互作用主导但空间上无序的态；在电子掺杂时则转向更离域、液体样的态。摘要进一步给出机制解释：莫尔超晶格本身破坏粒子-空穴对称性，使得GWC凝聚后电子与空穴对应的费米口袋具有不同动量空间几何，因此熔化路径不同。相对地，MI熔化没有这种不对称，且作者将其与“缺乏打破对称性的密度调制”联系起来，这意味着论文可能把GWC视为伴随显著电荷空间调制的有序态，而MI更多体现局域占据与关联开隙，不一定引入同类空间对称性破缺。对做莫尔体系、STM、强关联相变、Wigner晶体或电子-空穴不对称研究的读者，这篇文章的价值在于：它提供了一个把实空间成像、掺杂驱动相变和动量空间几何解释联系起来的案例，也提示在分析莫尔体系相图时不能简单假设电子侧与空穴侧镜像对应。需要核对的信息包括：具体填充因子定义、GWC与MI分别出现在哪些分数量子化或整数填充附近；STM观测的是dI/dV、局域态密度还是直接电荷调制代理量；“interaction-driven disordered states”和“delocalized liquid-like states”在实验上分别由哪些图像或谱学特征判定；理论解释是否来自连续模型、Hubbard/Wigner有效模型还是第一性原理参数化；以及样品制备、扭角分布、温度和栅压范围等实验条件。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>An electronic device controls the redox mechanisms that regulate glucose concentrations in mice</p>
+          <p>Two-dimensional moiré materials provide a versatile platform to explore phase transitions in strongly correlated systems. Using scanning tunneling microscopy, we imaged the density-driven melting of generalized Wigner crystals (GWCs) and Mott insulators (MIs) in electron-doped, near-60°–twisted molybdenum diselenide bilayers featuring a triangular moiré superlattice. We observed notable electron-hole asymmetry in GWC melting: Hole-doped GWCs yielded interaction-driven disordered states, whereas electron-doped GWCs melted into delocalized liquid-like states. This asymmetry arose from the broken particle-hole symmetry of the moiré superlattice, which produced electron and hole Fermi pockets with different momentum geometries upon GWC condensation. MI states melted without such asymmetry, consistent with the absence of a symmetry-breaking density modulation. This work provides direct visualization of the emergent phases that appear as GWCs undergo quantum melting transitions.</p>
         </details>
         
         </div>
@@ -661,16 +596,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1126/science.aem0341">The cognitive power of the avian brain</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+The+cognitive+power+of+the+avian+brain&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem0341%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+The+cognitive+power+of+the+avian+brain%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+The+cognitive+power+of+the+avian+brain&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem0341%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+The+cognitive+power+of+the+avian+brain%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+The+cognitive+power+of+the+avian+brain&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aem0341%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+The+cognitive+power+of+the+avian+brain%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1126/science.aef0940">Visualizing symmetry-broken Chern insulators and their quantum melting</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Visualizing+symmetry-broken+Chern+insulators+and+their+quantum+melting&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef0940%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Visualizing+symmetry-broken+Chern+insulators+and+their+quantum+melting%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Visualizing+symmetry-broken+Chern+insulators+and+their+quantum+melting&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef0940%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Visualizing+symmetry-broken+Chern+insulators+and+their+quantum+melting%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Visualizing+symmetry-broken+Chern+insulators+and+their+quantum+melting&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef0940%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Visualizing+symmetry-broken+Chern+insulators+and+their+quantum+melting%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Michael Colombo、Oriane Poutrain-Sorel · DOI: <a href="https://doi.org/10.1126/science.aem0341">10.1126/science.aem0341</a></div>
+      <div class="authors">Minhao He、Yen-Chen Tsui、Ran Peng、Kenji Watanabe 等 7 人 · DOI: <a href="https://doi.org/10.1126/science.aef0940">10.1126/science.aef0940</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文从题名与摘要看，聚焦“鸟类大脑的认知能力”，并以腐肉乌鸦在决策任务中“比猴和人更快”这一具体现象作为核心证据线索。就现有元数据而言，论文很可能围绕跨物种决策速度比较，讨论鸟类神经系统如何支持高水平认知加工。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是：以腐肉乌鸦、猴和人类在同类或可比决策任务中的行为表现为依据，提出鸟类大脑虽与哺乳动物皮层结构不同，但仍能实现强大的认知功能，甚至在某些决策速度指标上占优；这为“认知能力是否依赖特定皮层样结构”提供了新的比较认知与神经科学论据。</p></div>
+        <div class="note"><strong>一句话</strong><p>该论文围绕“磁场下hBN对齐双层石墨烯中的Hofstadter能带”这一具体体系，利用扫描隧道显微镜直接可视化了相互作用驱动的对称性破缺Chern绝缘体及其量子熔化现象。摘要显示作者重点解析了分数量子填充下出现的倍增/三倍/四倍莫尔超胞相、复杂胞内波函数，以及不同Chern态中的两类量子相变行为。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献在于把“拓扑能带+强电子关联”问题落到可实空间成像的莫尔Hofstadter体系中：一是直接观测相互作用驱动的对称性破缺Chern绝缘相；二是分辨出分数填充Hofstadter带中的超胞重构与胞内波函数结构；三是可视化两类不同的量子演化机制，包括由拓扑缺陷出现与增殖驱动的量子熔化，以及伴随相竞争和相分离的量子转变。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -691,23 +626,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，按现有信息推测，是鸟类大脑能否支持与灵长类相当甚至更高效的认知决策，以及这种能力是否能通过腐肉乌鸦与猴、人在同类决策任务中的速度比较得到体现。更深一层的问题是：复杂认知是否必须依赖哺乳动物尤其灵长类的大脑皮层样结构，还是鸟类脑组织也能以不同解剖架构实现高性能决策。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法是让腐肉乌鸦、猴和人类执行结构尽量一致的决策任务，并比较反应时、正确率及可能的速度-准确率关系。若为原始研究，可能包含行为实验、心理物理任务设计、统计比较，甚至使用序列采样/证据积累模型分析决策过程；若为评述文章，则方法主要是综合近期关于乌鸦决策行为和鸟类神经认知的实验结果，借单项关键发现展开解释。由于摘要极短，具体刺激类型、任务难度控制、训练时长、样本规模和神经数据是否存在都无法确定。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是跨物种比较对象非常具体：腐肉乌鸦对比猴和人，这使“鸟类认知能力强”不再停留于泛泛描述，而落到可量化的决策速度指标上。若实验控制充分，这类结果对脑进化理论和认知神经科学都很有冲击力，因为它暗示不同脑结构可以收敛地产生高效认知。题名也提示论文可能把单一行为现象提升到“avian brain”的一般性讨论，具有较强概念整合价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先核对文章类型与正文结构：确认它是Research Article、Perspective还是Editorial；随后优先查看摘要扩展版、首图和结果部分，记录具体决策任务、三个物种的样本量、反应时与准确率数据、是否控制速度-准确率权衡。若你做比较认知或神经建模，可进一步查是否使用漂移扩散模型或神经记录；若没有，则把“乌鸦更快”暂时标记为行为层面的现象结论，避免过度推断到机制层面。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在磁场诱导的莫尔Hofstadter谱中，双层石墨烯/hBN体系的强电子相互作用如何生成具有非平庸Chern数的对称性破缺绝缘相；这些相在分数填充时为何会形成更大周期的超胞与复杂胞内电子波函数；以及不同Chern态在量子相变或“量子熔化”过程中分别遵循什么微观机制。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推断，作者以hBN对齐双层石墨烯器件为样品，在外磁场下用扫描隧道显微镜/谱研究Hofstadter态。可能的数据类型包括局域隧穿谱、能量-位置二维映射、不同填充因子和磁场下的实空间电子态图像。分析路径可能是：先识别Hofstadter带与分数量子填充位置，再在这些填充附近成像局域态分布，提取是否存在2倍、3倍、4倍莫尔周期的空间调制；随后比较不同Chern态中的缺陷纹理、畴结构、相共存区域或胞内相位/振幅分布，以区分拓扑缺陷增殖驱动的熔化与相竞争/相分离驱动的转变。理论上可能借助Chern带、对称性破缺序和莫尔超晶格相互作用的框架解释观测。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是“直接可视化”这一点：相较仅凭输运信号推断Chern绝缘相，STM能够把对称性破缺、超胞形成和胞内波函数结构落到实空间图像上。第二个亮点是对象选择具有代表性：磁场下的莫尔双层石墨烯天然承载Hofstadter拓扑带，适合研究拓扑与关联耦合。第三个亮点是现象层次丰富，不仅有静态相结构，还有两类不同量子演化机制，尤其“拓扑缺陷出现与增殖”若被清晰成像，将为量子熔化提供很强的微观证据。第四个亮点是分数填充下二倍、三倍、四倍超胞的报告，说明体系可能支持多种竞争有序态，对理解Chern带中的电子晶体化或对称性破缺序很有价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，优先查看正文或图1-2确认样品结构、莫尔周期、磁场/填充坐标系以及Hofstadter谱的基本识别方式；第二，定位展示2倍、3倍、4倍超胞和胞内波函数的核心图，记录这些纹理分别出现在哪些填充和磁场条件下；第三，查找“quantum melting”对应的缺陷图像或统计分析，明确缺陷类型、序参量和演化路径；第四，核对Chern态编号是否来自输运对照、理论计算还是STM谱特征；第五，如果你的研究方向涉及莫尔关联态，可把文中相图与自己熟悉的Wigner晶体、条纹相、谷/自旋极化态或分数量子霍尔相关图景做一页对照笔记。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，按现有信息推测，是鸟类大脑能否支持与灵长类相当甚至更高效的认知决策，以及这种能力是否能通过腐肉乌鸦与猴、人在同类决策任务中的速度比较得到体现。更深一层的问题是：复杂认知是否必须依赖哺乳动物尤其灵长类的大脑皮层样结构，还是鸟类脑组织也能以不同解剖架构实现高性能决策。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能方法是让腐肉乌鸦、猴和人类执行结构尽量一致的决策任务，并比较反应时、正确率及可能的速度-准确率关系。若为原始研究，可能包含行为实验、心理物理任务设计、统计比较，甚至使用序列采样/证据积累模型分析决策过程；若为评述文章，则方法主要是综合近期关于乌鸦决策行为和鸟类神经认知的实验结果，借单项关键发现展开解释。由于摘要极短，具体刺激类型、任务难度控制、训练时长、样本规模和神经数据是否存在都无法确定。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是跨物种比较对象非常具体：腐肉乌鸦对比猴和人，这使“鸟类认知能力强”不再停留于泛泛描述，而落到可量化的决策速度指标上。若实验控制充分，这类结果对脑进化理论和认知神经科学都很有冲击力，因为它暗示不同脑结构可以收敛地产生高效认知。题名也提示论文可能把单一行为现象提升到“avian brain”的一般性讨论，具有较强概念整合价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，最大局限是证据极少：摘要只给出一个结论性现象，没有任务名称、样本量、效应大小、准确率、统计显著性和控制条件。还需警惕“更快”是否只是训练熟练度、动机、感觉运动通道差异或任务适配性造成，而非更强认知本身。另一个重要不确定性是文章类型：如果这是Science中的评论或观点文，其贡献可能是解释和整合，而不是报告新实验。题名中的“cognitive power”也可能带有一定传播性表达，不能直接等同于全面认知优势。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先核对文章类型与正文结构：确认它是Research Article、Perspective还是Editorial；随后优先查看摘要扩展版、首图和结果部分，记录具体决策任务、三个物种的样本量、反应时与准确率数据、是否控制速度-准确率权衡。若你做比较认知或神经建模，可进一步查是否使用漂移扩散模型或神经记录；若没有，则把“乌鸦更快”暂时标记为行为层面的现象结论，避免过度推断到机制层面。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、期刊、摘要和元数据，这篇文章的研究对象应是鸟类，尤其是腐肉乌鸦，研究任务是决策行为的跨物种比较。摘要给出的唯一明确结果是“腐肉乌鸦做决定比猴和人更快”，因此论文的证据主轴大概率是某种标准化决策范式下的反应时或决策时延比较，并借此上升到对“avian brain（鸟类大脑）认知能力”的讨论。题名使用“The cognitive power of the avian brain”而非单纯行为学标题，说明作者可能不仅报告行为差异，还会联系鸟类前脑/端脑功能组织、神经表征效率，或讨论鸟类与灵长类在不同脑结构下实现相似认知功能的机制意义。由于来源是Science，且篇幅可能偏评论、观点或随文解读，也不能排除这是一篇基于最新研究结果的评述性文章，而非完整原始实验论文；这一点必须通过文章类型核对。现阶段不能确认具体任务类型，可能是知觉决策、分类判断、证据积累、延迟反应或二选一任务；也不能确认“更快”是否伴随准确率相当、是否存在速度-准确率权衡控制、样本量多少、训练程度是否一致、刺激是否跨物种等关键方法学细节。对科研读者而言，这篇文章与比较认知、动物行为学、神经科学、脑进化和类脑计算都相关：如果乌鸦在可比任务中确实表现出更快决策且不牺牲准确性，那么它支持一种重要观点，即高效认知并不必然依赖灵长类新皮层式架构，而可能由不同演化路径收敛实现。需要优先核对的信息包括：文章类型（研究论文还是评论）、具体任务范式、比较指标（反应时、正确率、漂移扩散模型参数等）、物种样本与训练方案、统计检验、以及作者是否将行为结果与神经记录或脑区功能联系起来。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在磁场诱导的莫尔Hofstadter谱中，双层石墨烯/hBN体系的强电子相互作用如何生成具有非平庸Chern数的对称性破缺绝缘相；这些相在分数填充时为何会形成更大周期的超胞与复杂胞内电子波函数；以及不同Chern态在量子相变或“量子熔化”过程中分别遵循什么微观机制。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推断，作者以hBN对齐双层石墨烯器件为样品，在外磁场下用扫描隧道显微镜/谱研究Hofstadter态。可能的数据类型包括局域隧穿谱、能量-位置二维映射、不同填充因子和磁场下的实空间电子态图像。分析路径可能是：先识别Hofstadter带与分数量子填充位置，再在这些填充附近成像局域态分布，提取是否存在2倍、3倍、4倍莫尔周期的空间调制；随后比较不同Chern态中的缺陷纹理、畴结构、相共存区域或胞内相位/振幅分布，以区分拓扑缺陷增殖驱动的熔化与相竞争/相分离驱动的转变。理论上可能借助Chern带、对称性破缺序和莫尔超晶格相互作用的框架解释观测。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是“直接可视化”这一点：相较仅凭输运信号推断Chern绝缘相，STM能够把对称性破缺、超胞形成和胞内波函数结构落到实空间图像上。第二个亮点是对象选择具有代表性：磁场下的莫尔双层石墨烯天然承载Hofstadter拓扑带，适合研究拓扑与关联耦合。第三个亮点是现象层次丰富，不仅有静态相结构，还有两类不同量子演化机制，尤其“拓扑缺陷出现与增殖”若被清晰成像，将为量子熔化提供很强的微观证据。第四个亮点是分数填充下二倍、三倍、四倍超胞的报告，说明体系可能支持多种竞争有序态，对理解Chern带中的电子晶体化或对称性破缺序很有价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前信息仍不足以判断若干关键点。首先，Chern态的确认方式不明；STM本身不直接测霍尔电导，若无并行输运或可靠理论指认，Chern数归属需要谨慎。其次，“quantum melting”与“quantum transition”是强表述，但摘要未说明温度、调控参数、序参量定义和统计证据，需核对是否真正区分量子涨落与热效应。再次，超胞与复杂胞内波函数的解释可能存在多解性，例如局域应变、基底势、畴结构或电荷不均匀性也可能影响成像。最后，摘要没有给出样品数量、可重复性、参数窗口和相图范围，因此对普适性与稳健性的判断仍有限。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，优先查看正文或图1-2确认样品结构、莫尔周期、磁场/填充坐标系以及Hofstadter谱的基本识别方式；第二，定位展示2倍、3倍、4倍超胞和胞内波函数的核心图，记录这些纹理分别出现在哪些填充和磁场条件下；第三，查找“quantum melting”对应的缺陷图像或统计分析，明确缺陷类型、序参量和演化路径；第四，核对Chern态编号是否来自输运对照、理论计算还是STM谱特征；第五，如果你的研究方向涉及莫尔关联态，可把文中相图与自己熟悉的Wigner晶体、条纹相、谷/自旋极化态或分数量子霍尔相关图景做一页对照笔记。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>根据题名、期刊与摘要，这项工作研究的是“六方氮化硼对齐的双层石墨烯”在外加磁场中的莫尔电子态，具体任务是理解Hofstadter谱中带拓扑与强电子-电子相互作用如何共同产生对称性破缺的Chern绝缘体。实验手段明确是扫描隧道显微镜，且从“directly visualized”“complex intra–unit cell wave functions”等表述推测，作者不仅做了局域谱学测量，还可能结合实空间dI/dV映射、能量分辨成像、随填充和磁场变化的局域态纹理分析，以识别不同Chern态下的空间对称性破缺模式。摘要给出的最具体证据线索包括：在Hofstadter带分数填充时出现了莫尔晶胞的二倍、三倍、四倍重构；存在复杂的胞内波函数；并且在不同Chern态中观察到两种不同量子现象，其一是由拓扑缺陷的出现和增殖导致的量子熔化，其二是与相竞争、相分离同时发生的量子转变。这说明论文可能把“Chern绝缘相”从传统输运判据推进到局域显微层面的结构识别，并尝试区分不同相变路径。对从事莫尔体系、量子霍尔/Hofstadter物理、强关联拓扑态、STM局域成像的读者，这篇论文的价值在于提供了一个把拓扑量子数、实空间对称性破缺和缺陷动力学联系起来的实验范式。需要核对的信息包括：具体磁场范围、双层石墨烯是AB堆垛还是其他构型、hBN对齐角度与莫尔周期、STM测量温度与能量分辨率、Chern数的判定依据是否来自与既有输运结果对照、所谓“quantum melting”是通过何种序参量或缺陷统计量定义、以及相分离是空间上直接成像还是由谱学不均匀性间接推断。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Carrion crows make decisions faster than monkeys and humans</p>
+          <p>In the presence of a magnetic field, electronic states of moiré quantum materials develop a Hofstadter spectrum that provides a distinctive setting for studying the interplay between band topology and strong electron-electron interaction. Using scanning tunneling microscopy, we studied Hofstadter’s states in bilayer graphene aligned with hexagonal boron nitride and directly visualized the formation of interaction-driven symmetry breaking Chern insulators. Our measurements revealed the formation of phases that double, triple, or quadruple the moiré unit cell at fractional filling of the Hofstadter bands as well as states with complex intra–unit cell wave functions. We visualized two distinct quantum phenomena in different Chern states, including quantum melting driven by the appearance and proliferation of topological defects and a quantum transition co-occurring with phase competition and separation.</p>
         </details>
         
         </div>
@@ -723,16 +658,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-10733-y">GRP75-dependent SIMPA mediates inter-organellar quality control</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+GRP75-dependent+SIMPA+mediates+inter-organellar+quality+control&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-10733-y%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+GRP75-dependent+SIMPA+mediates+inter-organellar+quality+control%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+GRP75-dependent+SIMPA+mediates+inter-organellar+quality+control&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-10733-y%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+GRP75-dependent+SIMPA+mediates+inter-organellar+quality+control%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+GRP75-dependent+SIMPA+mediates+inter-organellar+quality+control&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-10733-y%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+GRP75-dependent+SIMPA+mediates+inter-organellar+quality+control%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11184-1">Structural basis for protocadherin-1 recognition by New World hantaviruses</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Structural+basis+for+protocadherin-1+recognition+by+New+World+hantaviruses&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11184-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Structural+basis+for+protocadherin-1+recognition+by+New+World+hantaviruses%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Structural+basis+for+protocadherin-1+recognition+by+New+World+hantaviruses&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11184-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Structural+basis+for+protocadherin-1+recognition+by+New+World+hantaviruses%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Structural+basis+for+protocadherin-1+recognition+by+New+World+hantaviruses&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11184-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Structural+basis+for+protocadherin-1+recognition+by+New+World+hantaviruses%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Fan Yu、Lingyu Jiang、Hanyu Liu、Song Yang 等 20 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-10733-y">10.1038/s41586-026-10733-y</a></div>
+      <div class="authors">Leandro Battini、Megan M. Slough、Ramandeep Kaur、Luqiang Guo 等 23 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11184-1">10.1038/s41586-026-11184-1</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦GRP75依赖的“SIMPA”过程，讨论其如何介导细胞内不同细胞器之间的质量控制。由于当前未提供摘要和关键词，能够确认的具体对象主要是GRP75、SIMPA以及“inter-organellar quality control（跨细胞器质量控制）”这一任务，具体涉及哪些细胞器、何种损伤场景和实验结论仍信息不足。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名推测，论文的核心贡献很可能是提出或定义了一种由GRP75依赖的SIMPA机制，并将其定位为跨细胞器质量控制中的关键环节；如果属实，这意味着作者可能把一个分子伴侣相关因子GRP75与细胞器间稳态维持、损伤识别或清除通路直接联系起来。但在没有摘要的情况下，不能确认SIMPA是新命名通路、复合体、结构事件还是分析框架。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦“新大陆汉坦病毒如何识别宿主受体protocadherin-1（PCDH1）”这一具体分子识别问题，核心任务应是解析病毒-受体相互作用的结构基础。由于提供的摘要为空，目前只能较有把握地确认其研究对象是New World hantaviruses与PCDH1，具体实验结果和机制细节仍信息不足。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名与期刊定位，论文的核心贡献很可能是给出新大陆汉坦病毒识别PCDH1的结构层面解释，并据此界定关键结合界面、宿主进入相关决定因素，或为抗体/受体阻断剂/广谱干预设计提供结构模板。但在没有摘要和正文的情况下，不能确认其是否覆盖多毒株比较、功能验证或中和应用。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -753,18 +688,24 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名判断，是GRP75依赖的SIMPA是否构成一种跨细胞器质量控制机制，以及该机制如何识别细胞器损伤、协调细胞器间互作并维持细胞稳态。更细一点说，作者可能在问：当某一细胞器发生蛋白质或功能异常时，GRP75是否驱动一种特定的细胞器间响应过程，从而实现质量控制。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>在没有摘要的前提下，可能的方法路径包括：以细胞生物学和机制实验为主，结合GRP75遗传操作、SIMPA事件追踪、细胞器共定位/接触成像、蛋白互作鉴定、功能读出和应激模型。若要支撑Nature级别结论，常见组合会包括共聚焦或活细胞成像观察细胞器互作，电镜或冷冻电镜观察超微结构，免疫共沉淀/质谱寻找GRP75相关因子，敲除或点突变验证因果关系，以及在动物或疾病模型中测试该质量控制机制的生理意义。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的潜在亮点有三点。第一，如果SIMPA是新定义的过程，那么论文可能提供了一个新的跨细胞器质量控制概念框架。第二，GRP75本身具有较强的线粒体与应激生物学背景，若其被证明是跨细胞器质量控制的核心节点，机制整合价值会很高。第三，题名直接强调“mediates inter-organellar quality control”，说明作者可能不仅描述相关性，还尝试建立GRP75-SIMPA与质量控制输出之间的因果联系。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先补齐摘要和首图信息，并重点记录五个问题：1，SIMPA全称；2，涉及哪两个或多个细胞器；3，GRP75的直接分子作用；4，核心实验读出是什么；5，是否有体内证据。若你准备做阅读笔记或复现，建议优先查Figure 1和Figure 2的模型建立部分，以及方法中GRP75操作方式和SIMPA定量指标；同时把该工作与已知GRP75、MAMs、线粒体质量控制文献做一页对照表。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题应是：新大陆汉坦病毒在分子层面如何识别宿主受体PCDH1，这种识别由哪些病毒和受体残基/结构域介导，以及这种结构关系如何解释病毒进入、宿主特异性或潜在干预靶点。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从题名推断，最可能的方法路径是结构生物学结合功能验证：解析病毒糖蛋白-PCDH1复合物结构；通过界面突变、结合实验、细胞入侵或感染实验验证关键位点；可能辅以序列保守性分析、不同毒株比较、受体截短体或结构域交换实验，以定位最小识别单元并评估普适性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点很可能是把“PCDH1是受体/进入因子”这一生物学认识推进到原子或近原子层面的结合机制解释。如果论文同时包含多毒株比较和功能回补实验，其价值会更高，因为这能把静态结构与真实入侵表型连接起来，并为阻断病毒-受体相互作用提供可操作靶点。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要，确认研究的具体病毒种类、受体结构域和主要方法；2）优先查看图1和结构主图，记录病毒蛋白与PCDH1的直接接触界面；3）查功能验证图，核对界面突变是否影响结合和入侵；4）整理一个两列表：病毒残基/PCDH1残基及其对应表型变化；5）如果你的方向是抗病毒设计，进一步查论文是否提供可用于抗体、可溶性受体或小分子阻断的界面信息。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名判断，是GRP75依赖的SIMPA是否构成一种跨细胞器质量控制机制，以及该机制如何识别细胞器损伤、协调细胞器间互作并维持细胞稳态。更细一点说，作者可能在问：当某一细胞器发生蛋白质或功能异常时，GRP75是否驱动一种特定的细胞器间响应过程，从而实现质量控制。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>在没有摘要的前提下，可能的方法路径包括：以细胞生物学和机制实验为主，结合GRP75遗传操作、SIMPA事件追踪、细胞器共定位/接触成像、蛋白互作鉴定、功能读出和应激模型。若要支撑Nature级别结论，常见组合会包括共聚焦或活细胞成像观察细胞器互作，电镜或冷冻电镜观察超微结构，免疫共沉淀/质谱寻找GRP75相关因子，敲除或点突变验证因果关系，以及在动物或疾病模型中测试该质量控制机制的生理意义。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的潜在亮点有三点。第一，如果SIMPA是新定义的过程，那么论文可能提供了一个新的跨细胞器质量控制概念框架。第二，GRP75本身具有较强的线粒体与应激生物学背景，若其被证明是跨细胞器质量控制的核心节点，机制整合价值会很高。第三，题名直接强调“mediates inter-organellar quality control”，说明作者可能不仅描述相关性，还尝试建立GRP75-SIMPA与质量控制输出之间的因果联系。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究对象、模型系统、实验设计和主要结论。需要警惕的边界包括：SIMPA究竟是什么尚不明确；GRP75依赖性是直接机制还是上游伴随现象；“inter-organellar”涉及的细胞器范围未知；质量控制的定义可能很宽泛，可能是形态学接触、物质转运、损伤隔离或降解通路中的任一层面。此外，仅凭题名无法判断结果是否具有普适性，还是局限于特定细胞类型、应激条件或疾病模型。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先补齐摘要和首图信息，并重点记录五个问题：1，SIMPA全称；2，涉及哪两个或多个细胞器；3，GRP75的直接分子作用；4，核心实验读出是什么；5，是否有体内证据。若你准备做阅读笔记或复现，建议优先查Figure 1和Figure 2的模型建立部分，以及方法中GRP75操作方式和SIMPA定量指标；同时把该工作与已知GRP75、MAMs、线粒体质量控制文献做一页对照表。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从现有元数据可提取的信息非常有限。题名中的GRP75通常指线粒体相关分子伴侣/应激相关蛋白，常与线粒体蛋白稳态、线粒体-内质网接触、应激响应等主题相关；“inter-organellar quality control”则明确指向细胞器之间而非单一细胞器内部的质量控制，因此论文很可能研究的是线粒体与另一类细胞器之间的协同稳态机制，例如内质网、溶酶体、过氧化物酶体或自噬相关结构。题名中的“SIMPA”是最关键但也最不透明的信息：它可能是作者提出的新过程名称、蛋白复合体、膜接触事件、选择性清除路径，或某种应激诱导的细胞器互作现象。若论文发表于Nature，通常意味着作者可能提供了较强的机制证据链，例如遗传扰动、蛋白互作、活细胞成像、超分辨或电镜、细胞器功能读出，以及在不同模型中的一致性验证。可能的数据类型包括：GRP75敲低/敲除或过表达后的细胞器形态与功能变化；SIMPA相关标志事件的定量；细胞器接触位点、蛋白定位或转运变化；应激条件下质量控制效率、蛋白聚集、膜电位、ROS、降解通量或细胞存活的变化。与科研读者的关系上，如果你的方向涉及线粒体稳态、细胞器互作、蛋白质质量控制、自噬/线粒体自噬、神经退行性疾病、代谢应激或衰老，这篇论文值得优先核对，因为它可能提供新的机制节点GRP75-SIMPA轴。当前最需要核对的信息包括：1，SIMPA的全称与定义；2，具体涉及哪些细胞器；3，GRP75在该过程中的角色是结构支架、分子伴侣、信号转导节点还是运输因子；4，质量控制的输出是修复、隔离、降解还是细胞命运改变；5，证据是否来自细胞系、动物模型或患者样本；6，是否与已知通路如UPRmt、mitophagy、ER-phagy、MAMs或溶酶体应激存在交叉。由于摘要为空，以上均只能作为基于题名和期刊定位的审慎推断，不能视为论文已证实内容。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题应是：新大陆汉坦病毒在分子层面如何识别宿主受体PCDH1，这种识别由哪些病毒和受体残基/结构域介导，以及这种结构关系如何解释病毒进入、宿主特异性或潜在干预靶点。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从题名推断，最可能的方法路径是结构生物学结合功能验证：解析病毒糖蛋白-PCDH1复合物结构；通过界面突变、结合实验、细胞入侵或感染实验验证关键位点；可能辅以序列保守性分析、不同毒株比较、受体截短体或结构域交换实验，以定位最小识别单元并评估普适性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点很可能是把“PCDH1是受体/进入因子”这一生物学认识推进到原子或近原子层面的结合机制解释。如果论文同时包含多毒株比较和功能回补实验，其价值会更高，因为这能把静态结构与真实入侵表型连接起来，并为阻断病毒-受体相互作用提供可操作靶点。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大局限是摘要为空，导致无法确认研究范围、实验体系和证据强度。需要警惕的边界包括：是否只研究单一代表毒株；结构是否使用截短蛋白或稳定化构建体，因而与天然膜环境存在差异；功能验证是否仅限体外细胞系统；结论是否能外推到全部新大陆汉坦病毒。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要，确认研究的具体病毒种类、受体结构域和主要方法；2）优先查看图1和结构主图，记录病毒蛋白与PCDH1的直接接触界面；3）查功能验证图，核对界面突变是否影响结合和入侵；4）整理一个两列表：病毒残基/PCDH1残基及其对应表型变化；5）如果你的方向是抗病毒设计，进一步查论文是否提供可用于抗体、可溶性受体或小分子阻断的界面信息。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名“Structural basis for protocadherin-1 recognition by New World hantaviruses”可推断，研究对象非常明确：一类新大陆汉坦病毒，以及其宿主受体PCDH1。该题名中的“structural basis”通常意味着作者通过冷冻电镜、X射线晶体学，或二者结合，解析病毒表面糖蛋白与PCDH1胞外结构域的复合物结构，进而解释病毒进入宿主细胞时的受体识别机制。由于PCDH1已被认为与部分新大陆汉坦病毒入侵相关，这篇工作很可能进一步回答：究竟是病毒哪一个糖蛋白区域与PCDH1结合、PCDH1的哪一个胞外cadherin重复结构域参与识别、不同新大陆汉坦病毒之间是否共享保守受体结合模式、以及哪些氨基酸位点决定宿主范围或感染效率。
+
+从作者名单和Nature发表层级看，论文大概率不止停留在单一结构描述，而会结合功能实验形成证据链。可能的方法包括：表达纯化病毒糖蛋白复合体和PCDH1胞外片段；进行复合物结构解析；通过定点突变验证界面残基；用细胞结合、假病毒入侵、感染抑制或竞争实验测试结构推断；也可能比较不同病毒株或不同PCDH1结构域构建体，以界定最小结合单元。如果论文涉及“recognition”而非单纯“binding”，还可能讨论受体识别与膜融合前构象、pH依赖变化、或病毒跨物种传播相关的分子基础。
+
+对科研读者而言，这篇论文的直接价值在于：第一，如果你关注病毒入侵机制，它可能提供新大陆汉坦病毒受体使用的高分辨率分子图谱；第二，如果你做抗病毒药物或抗体设计，结构界面可用于寻找阻断位点；第三，如果你研究宿主范围、组织嗜性或致病性，PCDH1识别模式可能与这些表型相关；第四，如果你做受体生物学，论文可能揭示PCDH1哪些胞外结构域具有病毒结合功能，而非仅仅作为相关因子存在。
+
+但必须强调，当前元数据没有摘要，无法确认以下关键信息：具体研究了哪些新大陆汉坦病毒（如Andes virus、Sin Nombre virus等，不能凭经验替论文代填）；解析的是完整糖蛋白复合体、Gn/Gc之一，还是更小的受体结合片段；结构分辨率和样品状态；是否做了体内实验；是否提出广谱中和或治疗启发；以及结论是否适用于“新大陆汉坦病毒”整体，还是仅限少数代表株。因此，现阶段最稳妥的阅读策略是把它视为一篇“病毒-受体结构识别机制”论文，并在获取摘要、图1、结构图和功能验证图后再判断其真正贡献边界。</p></div>
           </div>
           
         </div>
@@ -780,16 +721,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11165-4">Persistent neuronal stress signalling underlies Angelman syndrome phenotypes</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Persistent+neuronal+stress+signalling+underlies+Angelman+syndrome+phenotypes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11165-4%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Persistent+neuronal+stress+signalling+underlies+Angelman+syndrome+phenotypes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Persistent+neuronal+stress+signalling+underlies+Angelman+syndrome+phenotypes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11165-4%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Persistent+neuronal+stress+signalling+underlies+Angelman+syndrome+phenotypes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Persistent+neuronal+stress+signalling+underlies+Angelman+syndrome+phenotypes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11165-4%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Persistent+neuronal+stress+signalling+underlies+Angelman+syndrome+phenotypes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11096-0">Multimodal precision diagnostics in clinical xenotransplantation</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Multimodal+precision+diagnostics+in+clinical+xenotransplantation&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11096-0%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Multimodal+precision+diagnostics+in+clinical+xenotransplantation%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Multimodal+precision+diagnostics+in+clinical+xenotransplantation&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11096-0%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Multimodal+precision+diagnostics+in+clinical+xenotransplantation%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Multimodal+precision+diagnostics+in+clinical+xenotransplantation&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11096-0%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Multimodal+precision+diagnostics+in+clinical+xenotransplantation%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Kwang-Soo Kim、Cory Gardner、Alissa Cullen、Jalin A. Stelzer 等 15 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11165-4">10.1038/s41586-026-11165-4</a></div>
+      <div class="authors">Raphael P. H. Meier、Erwan Morgand、Fariza Mezine、Michael Mengel 等 8 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11096-0">10.1038/s41586-026-11096-0</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦Angelman综合征，提出“持续性神经元应激信号”可能是驱动该病表型的关键机制，任务是把一种细胞状态异常与疾病行为/分子表型联系起来。由于提供信息中摘要为空，目前只能做基于题名与作者/期刊元数据的机制性推断，无法确认其具体实验体系、数据规模和结论强度。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是：将Angelman综合征的致病解释从经典的基因缺失/突触功能异常，进一步推进到“神经元持续应激通路失衡”这一可检验机制框架，并可能据此提出新的生物标志物、干预靶点或跨表型统一解释。但摘要缺失，具体是发现某条应激通路、证明因果关系，还是仅建立相关性，仍需核对。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦“临床异种移植”场景中的“多模态精准诊断”任务，目标很可能是为接受异种器官移植的患者建立更精细的监测、分型或预后评估框架。由于当前未提供摘要和关键词，能够确认的具体对象主要是临床异种移植及其诊断流程，其他内容均需谨慎推断。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名与作者构成，这项工作的核心贡献很可能是把多种诊断模态整合到临床异种移植监测中，用于识别排斥、损伤、感染或其他移植后事件，并推动异种移植从传统病理/实验室监测走向更高分辨率的精准诊断。若属实，其价值在于为极少数但高风险的临床异种移植病例提供标准化、可解释、可转化的诊断证据体系。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -810,18 +751,83 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名推断，是Angelman综合征的多种病理表型是否可以由一种持续存在的神经元应激信号异常来统一解释，以及这种应激状态在疾病机制中究竟是上游驱动因素、并行伴随现象，还是下游结果。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：在Angelman综合征相关模型中比较神经元应激通路活性与对照差异；使用转录组、蛋白组、代谢组、免疫染色、电生理或行为学读出刻画表型；通过遗传操作或药理干预抑制特定应激通路，测试分子/细胞/行为表型是否得到救援；并将应激信号与UBE3A缺失或其下游网络建立联系。若作者背景线索成立，代谢层证据可能是重要组成部分，但需以正文核实。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的潜在亮点是其机制整合能力：如果作者证明“持续性神经元应激”能够串联多个Angelman表型，这会比单点分子异常更具解释力，也更容易导向可干预靶点。另一亮点可能是跨层级证据链，即从分子应激标志到神经元功能再到整体表型的闭环验证。发表在Nature也提示其证据体系可能较完整，但这不能替代具体内容审查。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：先获取摘要与图1，确认研究对象是小鼠、患者来源细胞还是其他模型；记录文中明确指向的应激通路名称及核心标志物；查看是否有干预救援实验和行为/电生理结果；把所有表型按“分子-细胞-回路-行为”四层整理成表；最后专门核对UBE3A缺失如何连接到应激信号持续激活。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，推测是在临床异种移植中，如何比传统单一指标更早、更准地区分和识别移植物相关事件，例如排斥反应、抗体介导损伤、缺血再灌注损伤、感染、凝血/血管并发症或跨物种特异性病理改变，并据此建立可用于临床决策的精准诊断体系。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：收集临床异种移植受者的纵向样本与临床数据；结合移植活检病理、免疫组化或数字病理评估；加入分子层面的检测，如转录组、靶向基因表达、供体来源游离DNA、微生物检测或免疫谱分析；再将这些模态与临床实验室指标、影像和结局进行整合分析。若作者团队延续既往移植精准诊断工作，论文还可能使用分子病理分类、机器学习整合模型或与同种异体移植诊断框架的对照映射。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点：第一，把极其稀缺且复杂的临床异种移植病例转化为系统化诊断研究对象，本身具有高临床与方法学价值；第二，多模态整合有望解决异种移植中传统病理解释不足、机制归因不清的问题；第三，如果论文建立了可复用的诊断流程、判读标准或生物标志物组合，将对后续异种移植临床试验、监管评估和跨中心标准化产生直接影响。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先获取摘要并核对研究对象是何种器官异种移植、样本量多少、是否为纵向随访；第二，查看论文图1和方法部分，确认所谓multimodal具体包含哪些模态；第三，记录其主要诊断终点和判定标准，特别是是否区分排斥、感染和非免疫性损伤；第四，查是否提出新的病理/分子分类框架或阈值；第五，若你的方向是移植诊断或生物标志物，可把文中模态列表与现有同种异体移植监测体系逐项对照，评估哪些是异种移植特有问题。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名推断，是Angelman综合征的多种病理表型是否可以由一种持续存在的神经元应激信号异常来统一解释，以及这种应激状态在疾病机制中究竟是上游驱动因素、并行伴随现象，还是下游结果。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：在Angelman综合征相关模型中比较神经元应激通路活性与对照差异；使用转录组、蛋白组、代谢组、免疫染色、电生理或行为学读出刻画表型；通过遗传操作或药理干预抑制特定应激通路，测试分子/细胞/行为表型是否得到救援；并将应激信号与UBE3A缺失或其下游网络建立联系。若作者背景线索成立，代谢层证据可能是重要组成部分，但需以正文核实。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的潜在亮点是其机制整合能力：如果作者证明“持续性神经元应激”能够串联多个Angelman表型，这会比单点分子异常更具解释力，也更容易导向可干预靶点。另一亮点可能是跨层级证据链，即从分子应激标志到神经元功能再到整体表型的闭环验证。发表在Nature也提示其证据体系可能较完整，但这不能替代具体内容审查。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究模型、样本、应激通路类型、因果证据强度和统计设计。仅凭题名，“stress signalling”概念较宽，存在过度泛化风险；“underlies”也可能在媒体传播中被理解为强因果，但正文未必达到完全因果证明。此外，若研究主要基于单一模型系统，其对人类患者异质性的外推需要谨慎。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：先获取摘要与图1，确认研究对象是小鼠、患者来源细胞还是其他模型；记录文中明确指向的应激通路名称及核心标志物；查看是否有干预救援实验和行为/电生理结果；把所有表型按“分子-细胞-回路-行为”四层整理成表；最后专门核对UBE3A缺失如何连接到应激信号持续激活。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Persistent neuronal stress signalling underlies Angelman syndrome phenotypes”看，研究对象应是Angelman综合征相关神经元，以及该疾病的若干“phenotypes”，这些表型可能包括分子、细胞、电生理、行为或代谢层面的异常。题名中的“underlies”通常暗示作者不仅报告伴随现象，还试图论证持续性神经元应激信号位于病理链条较上游的位置，至少在解释多个表型方面具有统一性。作者名单中包含Harrison W. Gabel和Gary J. Patti，前者常与神经发育/转录调控相关，后者与代谢组学相关，因此仅从作者背景线索推测，论文可能结合神经元模型与代谢/分子层分析，去描绘应激状态的持续激活及其后果；但这只是线索，不应视为已证实事实。若研究遵循该题名逻辑，常见证据链可能包括：Angelman模型与对照比较，检测应激信号通路激活；将该激活与具体病理表型关联；再通过遗传或药理方式缓解应激信号，观察表型是否被部分救援。也可能使用小鼠、iPSC来源神经元、脑组织组学、蛋白磷酸化读出、转录组或代谢组等手段。与科研读者的关系在于，这篇工作若成立，会影响Angelman综合征及更广义神经发育障碍的机制建模：重点不再只是单一突触缺陷，而是慢性细胞应激如何重塑神经元稳态、网络功能和发育轨迹。当前最需要核对的信息包括：1）具体应激信号是哪一类，如ISR、ER stress、氧化应激、线粒体应激或DNA损伤反应；2）“persistent”是发育早期持续存在，还是在成熟神经元中维持；3）证据是相关还是因果；4）表型覆盖哪些层级；5）模型系统与样本量；6）是否提出可逆性和治疗窗口；7）与UBE3A缺失这一Angelman核心遗传背景的直接连接机制是什么。由于摘要为空，以上均属于基于题名和元数据的审慎推断，不能替代对摘要、图表和正文的核实。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，推测是在临床异种移植中，如何比传统单一指标更早、更准地区分和识别移植物相关事件，例如排斥反应、抗体介导损伤、缺血再灌注损伤、感染、凝血/血管并发症或跨物种特异性病理改变，并据此建立可用于临床决策的精准诊断体系。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：收集临床异种移植受者的纵向样本与临床数据；结合移植活检病理、免疫组化或数字病理评估；加入分子层面的检测，如转录组、靶向基因表达、供体来源游离DNA、微生物检测或免疫谱分析；再将这些模态与临床实验室指标、影像和结局进行整合分析。若作者团队延续既往移植精准诊断工作，论文还可能使用分子病理分类、机器学习整合模型或与同种异体移植诊断框架的对照映射。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点：第一，把极其稀缺且复杂的临床异种移植病例转化为系统化诊断研究对象，本身具有高临床与方法学价值；第二，多模态整合有望解决异种移植中传统病理解释不足、机制归因不清的问题；第三，如果论文建立了可复用的诊断流程、判读标准或生物标志物组合，将对后续异种移植临床试验、监管评估和跨中心标准化产生直接影响。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，主要局限是信息严重不足。无法判断研究是单病例、少量病例系列还是多中心队列；无法确认是否存在充分对照，例如与同种异体移植、动物模型或历史病例比较；也无法知道多模态整合是定性会诊式整合，还是有严格统计/算法框架。异种移植临床样本通常极少，因此外推性、统计稳健性和标准化可重复性都需要特别警惕。此外，若论文高度依赖个案深描，其“精准诊断”价值可能更多是概念验证而非立即可普及的临床标准。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先获取摘要并核对研究对象是何种器官异种移植、样本量多少、是否为纵向随访；第二，查看论文图1和方法部分，确认所谓multimodal具体包含哪些模态；第三，记录其主要诊断终点和判定标准，特别是是否区分排斥、感染和非免疫性损伤；第四，查是否提出新的病理/分子分类框架或阈值；第五，若你的方向是移植诊断或生物标志物，可把文中模态列表与现有同种异体移植监测体系逐项对照，评估哪些是异种移植特有问题。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从元数据看，研究对象应是临床异种移植受者及其移植物，最可能涉及猪到人的器官移植情境；作者中包含移植病理、临床移植和精准诊断领域的知名研究者，这提示论文可能不是单一病例报道，而是围绕临床样本、病理评估和分子层面检测构建综合诊断框架。题名中的multimodal precision diagnostics暗示其方法可能联合组织病理、分子检测、免疫学指标、循环生物标志物、影像或临床时序数据，对移植物状态进行更细粒度判读。题名中的clinical xenotransplantation说明研究重点不是基础动物实验，而是已经进入临床应用或临床级评估的异种移植案例。就证据线索而言，Nature发表、作者阵容以及“precision diagnostics”表述，提示论文可能强调诊断分类、机制归因、风险分层或事件追踪，而不只是描述手术过程。与科研读者的关系在于：如果你关注移植免疫、病理AI、液体活检、空间组学、供受体相互作用或新型临床监测体系，这篇论文可能提供一个异种移植场景下的高价值范式案例。但必须明确，当前摘要为空，无法确认样本量、器官类型、具体模态、终点定义、统计设计、是否有对照组、是否提出新分类标准、以及诊断结果是否真正改变临床决策，这些都需要后续核对。</p></div>
+          </div>
+          
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-10-21</span>
+        <span>Score 40.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11128-9">Touch-sensing digital pixel fibre enables interactive garment GUI</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Touch-sensing+digital+pixel+fibre+enables+interactive+garment+GUI&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11128-9%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Touch-sensing+digital+pixel+fibre+enables+interactive+garment+GUI%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Touch-sensing+digital+pixel+fibre+enables+interactive+garment+GUI&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11128-9%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Touch-sensing+digital+pixel+fibre+enables+interactive+garment+GUI%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Touch-sensing+digital+pixel+fibre+enables+interactive+garment+GUI&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11128-9%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Touch-sensing+digital+pixel+fibre+enables+interactive+garment+GUI%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Heng Fu、Ziang Li、Swetika Chaturvedi、Xiaoyu Zhang 等 7 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11128-9">10.1038/s41586-026-11128-9</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，研究对象是“可触摸感知的数字像素纤维（touch-sensing digital pixel fibre）”，目标任务是把这种纤维集成到服装中，形成可交互的 garment GUI（服装图形用户界面）。由于当前未提供摘要与关键词，能够确认的信息主要来自题名和期刊元数据，具体性能、实验设置和应用演示仍信息不足。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名可推测，其核心贡献是提出一种兼具“数字像素”显示/寻址属性与“触觉感知”能力的纤维器件或纤维系统，并将其织入服装后实现可穿戴交互界面；如果属实，这意味着研究不仅关注柔性显示或电子纺织，还进一步把输入（触摸）与可能的输出/寻址单元统一到纤维级平台中。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>40.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，推测是：如何构建一种既能像“像素化界面”那样被组织和寻址、又能直接感知用户触摸输入的纤维器件，并把它真正织入服装，使衣物表面从被动材料变成可交互GUI载体。更细一点说，它可能在回答“服装能否像屏幕/控制面板一样进行人机交互，但仍保持纤维与织物形态”这一方法问题。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于题名和作者背景，可能的方法路径是：设计多材料数字像素纤维；在纤维内部集成导电、绝缘、传感及可能的显示/响应单元；通过纤维制备工艺形成可离散寻址的像素结构；将纤维织造成织物或直接集成到成衣；配合读出电路和控制程序，把触摸事件映射为GUI交互。可能使用的数据和实验包括器件结构表征、触摸响应曲线、空间分辨测试、机械耐久测试、服装穿戴演示和交互任务展示。但这些都需要摘要或正文确认。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名显示的最大亮点是把“触摸输入”和“数字像素纤维”放在同一平台上，并直接指向“interactive garment GUI”这一系统级应用，而不是停留在单个传感器或单个发光纤维层面。如果论文确实实现了纤维级像素化寻址与服装级交互，那么其价值在于：一，推动电子纺织从感知走向界面；二，把GUI概念从平面硬屏迁移到可穿戴织物；三，可能提供一种更自然的人机交互入口，适合服装控制、辅助通信或可穿戴设备操作。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先获取摘要和图1，确认“digital pixel fibre”到底是显示像素、传感像素还是双功能像素；第二，记录并核对四类关键指标：像素/触点分辨率、响应时间、机械耐久性、系统功耗；第三，查看是否有服装级演示任务及其交互流程，而不只是一块织物样片；第四，查对比文献，特别是已有触摸织物、发光纤维和可编址电子纺织工作，判断其真正新增点；第五，如果你做相关研究，可先画出该系统的“纤维结构—织物阵列—读出电路—GUI任务”四层框图，作为后续精读模板。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，推测是：如何构建一种既能像“像素化界面”那样被组织和寻址、又能直接感知用户触摸输入的纤维器件，并把它真正织入服装，使衣物表面从被动材料变成可交互GUI载体。更细一点说，它可能在回答“服装能否像屏幕/控制面板一样进行人机交互，但仍保持纤维与织物形态”这一方法问题。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>基于题名和作者背景，可能的方法路径是：设计多材料数字像素纤维；在纤维内部集成导电、绝缘、传感及可能的显示/响应单元；通过纤维制备工艺形成可离散寻址的像素结构；将纤维织造成织物或直接集成到成衣；配合读出电路和控制程序，把触摸事件映射为GUI交互。可能使用的数据和实验包括器件结构表征、触摸响应曲线、空间分辨测试、机械耐久测试、服装穿戴演示和交互任务展示。但这些都需要摘要或正文确认。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>题名显示的最大亮点是把“触摸输入”和“数字像素纤维”放在同一平台上，并直接指向“interactive garment GUI”这一系统级应用，而不是停留在单个传感器或单个发光纤维层面。如果论文确实实现了纤维级像素化寻址与服装级交互，那么其价值在于：一，推动电子纺织从感知走向界面；二，把GUI概念从平面硬屏迁移到可穿戴织物；三，可能提供一种更自然的人机交互入口，适合服装控制、辅助通信或可穿戴设备操作。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究是否包含显示功能、仅有触摸感知还是输入输出一体化，也无法判断其性能是否达到实用水平。题名中的“digital pixel”容易引发对高分辨显示的联想，但实际可能只是离散可寻址单元，不一定等同于传统显示像素。另一个需要警惕的边界是，服装GUI演示可能是原型级概念验证，而非可量产、可洗涤、长期稳定的系统。没有摘要和关键词时，任何关于创新幅度、对比基线和实验结果的判断都应保守。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先获取摘要和图1，确认“digital pixel fibre”到底是显示像素、传感像素还是双功能像素；第二，记录并核对四类关键指标：像素/触点分辨率、响应时间、机械耐久性、系统功耗；第三，查看是否有服装级演示任务及其交互流程，而不只是一块织物样片；第四，查对比文献，特别是已有触摸织物、发光纤维和可编址电子纺织工作，判断其真正新增点；第五，如果你做相关研究，可先画出该系统的“纤维结构—织物阵列—读出电路—GUI任务”四层框图，作为后续精读模板。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名“Touch-sensing digital pixel fibre enables interactive garment GUI”判断，论文聚焦电子纺织与可穿戴人机交互的交叉问题：如何把传统屏幕式GUI中的像素化显示/寻址逻辑迁移到纤维和织物尺度，并同时赋予服装触摸输入能力。这里的具体对象不是一般柔性薄膜器件，而是“digital pixel fibre”，说明作者可能设计了一种沿纤维方向或织物阵列方向可离散寻址的像素化纤维结构；“touch-sensing”则提示该纤维不仅能作为被动显示/导电单元，还能感知按压、触碰或接触位置/状态。题名中的“interactive garment GUI”进一步表明，最终任务不是单一传感演示，而是把纤维织入服装后构成可操作的界面，例如在衣物表面完成输入、选择、控制或反馈。
+
+但由于摘要为空，现阶段不能确认其具体技术路线。可能的方法线索包括：在纤维内部集成多层导体、介电层、发光/变色单元、压阻/电容触觉传感结构，或通过热拉伸、多材料预制棒、纤维电子器件集成等方式实现像素化与触摸感知；也可能通过织造后的阵列寻址、电路读出和软件映射，把触摸位置转换为GUI事件。若论文来自Tural Khudiyev团队，还可合理联想到纤维器件制造、热拉伸多材料纤维、可编织电子系统等方向，但这仍需正文核对，不能当作已证实事实。
+
+对科研读者而言，这篇论文最值得关注的不是“智能服装”这一泛化概念，而是几个更具体的问题：第一，像素是如何在纤维层面定义和寻址的，是离散段式像素、交叉织物节点像素，还是连续纤维上的可编址单元；第二，触摸感知的物理机制是什么，能否区分位置、压力、滑动或多点触控；第三，服装GUI是否只是概念演示，还是具备稳定的人机交互流程，例如菜单选择、设备控制、状态显示；第四，纤维在弯折、洗涤、拉伸、穿着摩擦下的可靠性如何；第五，系统是否需要外接刚性电子模块，还是大部分功能已在纤维/织物层完成。
+
+与相关研究方向的关系上，这项工作可能连接三类文献：可穿戴触觉传感织物、纤维显示/发光器件、电子纺织人机交互系统。如果你的研究方向涉及智能纺织、柔性传感、可穿戴界面、纤维电子制造或织物级计算/显示，这篇论文可能提供一个“输入-界面-服装载体”一体化案例。反之，如果你更关注算法或纯材料性能，则需要重点核对其系统层创新是否真正超越已有触摸织物和可编址电子纺织。
+
+目前最需要核对的信息包括：数字像素纤维的结构示意图、制造工艺、像素尺寸与密度、触摸检测分辨率、响应时间、功耗、耐久性、洗涤/弯折测试、服装集成方式、GUI演示任务、与现有电子纺织方案的定量对比。由于摘要缺失，任何关于实验结果优越性、具体指标或应用成熟度的判断都不能提前下结论。</p></div>
           </div>
           
         </div>
@@ -834,7 +840,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-10-26 00:21。
+      生成时间：2026-10-27 01:33。
     </div>
   </footer>
 </body>
