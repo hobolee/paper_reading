@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Reading · 2026-11-01</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">Paper Reading</div>
+      <nav class="nav">
+        <a href="../index.html">最新报告</a>
+        <a href="index.html">历史报告</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow">2026-11-01 · 中文论文简报</div>
+        <h1>今日论文阅读报告</h1>
+        <p class="summary">今天这组论文里，AI/ML 方向明显占主导，而且集中在一个共同问题上：如何把大模型或神经网络从“会生成”推进到“更可控地推理、执行和交互”。其中最值得优先读的是 4 篇 arXiv：一类是把结构显式注入模型或训练过程，以缓解纯 token 生成的脆弱性。代表作包括 Non-Zero Radius，它从表示几何层面质疑传统点向量表示是否天然缺少“区域/半径”这一成分，并试图用球体表示支撑无需训练数据的三段论推理；H^2R 则把数学题的层级子问题结构转成强化学习中的中间奖励，直接针对长程推理中的奖励稀疏问题。另一类是把 agent 的执行链条做“去随机化”和“环境化”：Compile Away Uncertainty 试图把已学会技能中的确定性部分编译成可验证程序，只把上下文依赖部分留给 LLM；Training language models in simulation for psychiatric intake 则把语言模型放进多轮临床访谈仿真环境，用 RL 优化连续交互质量，并采用医生盲评，离真实应用更近。若按阅读优先级排序，我会建议先读 H^2R 和 Compile Away Uncertainty，因为二者问题定义清楚、评测路径相对可落地，也最容易迁移到现有 LLM 训练与 agent 系统；随后读 psychiatric intake 这篇，重点看仿真环境、评分 rubric 和安全边界；Non-Zero Radius 最有概念新意，但也最需要警惕“抽象框架是否真正带来可验证增益”。非 AI 方向里，几篇顶刊都围绕“经典约束被重新打开”的主题展开。Science 的 stimulated protein degradation 提出不是降解单一病理蛋白，而是激活内源性应激 E3 连接酶以重塑一组底物，属于蛋白稳态干预范式的扩展，机制和转化潜力都很强，值得相关生物医学读者优先关注。Nature 的 pseudo-direct semiconductor 则挑战“强吸收必然伴随快复合”的常见直觉，若其伪直接带隙机制成立，对光伏材料设计很有启发。其余如西太平洋双俯冲驱动加州湾裂谷、MnTe 中手性 altermagnon、石墨烯中 Landau–Zener–Majorana 跃迁的亚周期成像，以及 Delta toxin-CD9 驱动 NEC/脑损伤，分别代表地球动力学、量子材料/超快物理和感染致病机制中的高价值进展，但从当前提供信息看，后两篇 Nature 摘要不完整，阅读时应先补摘要与关键图。总体上，今天最清晰的主线不是“模型更大”，而是“给系统加入结构、验证、环境和中间状态”，无论在 AI 还是自然科学中，都是在寻找比端到端黑箱更稳的中层机制。</p>
+        <div class="metrics">
+          <div class="metric"><strong>452</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>204</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>10</strong><span>进入报告</span></div>
+          <div class="metric"><strong>3</strong><span>来源数量</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell viz-grid">
+        <div>
+          <h2>入选来源</h2>
+          
+            <div class="bar-row">
+              <div class="bar-label">arXiv</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">4</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Science</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
+              <div class="bar-count">3</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Nature</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
+              <div class="bar-count">3</div>
+            </div>
+            
+        </div>
+        <div>
+          <h2>关键词命中</h2>
+          <div class="chips"><span class="chip">ai <strong>4</strong></span>
+<span class="chip">language model <strong>3</strong></span>
+<span class="chip">language models <strong>3</strong></span>
+<span class="chip">large language model <strong>2</strong></span>
+<span class="chip">large language models <strong>2</strong></span>
+<span class="chip">llm <strong>2</strong></span>
+<span class="chip">agent <strong>2</strong></span>
+<span class="chip">agents <strong>2</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">neural networks <strong>1</strong></span>
+<span class="chip">symbolic reasoning <strong>1</strong></span>
+<span class="chip">ai agent <strong>1</strong></span>
+<span class="chip">ai agents <strong>1</strong></span>
+<span class="chip">program synthesis <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">mathematical reasoning <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>抓取来源</h2>
+        
+            <div class="bar-row">
+              <div class="bar-label">arxiv</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+              <div class="bar-count">300</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">science</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 32%"></div></div>
+              <div class="bar-count">96</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">nature</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 19%"></div></div>
+              <div class="bar-count">56</div>
+            </div>
+            
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>主题线索</h2>
+        <div class="chips"><span class="chip">从端到端生成转向显式中间结构：球体表示、层级提示奖励、混合技能骨架都在给模型加入可解释的中层对象。</span>
+<span class="chip">从一次性回答转向可执行过程：agent 技能编译和精神科访谈仿真训练都强调多步执行、环境反馈与稳定复用。</span>
+<span class="chip">用几何或层级结构承载推理：一个走表示几何路线，把概念从点扩成区域；一个走任务分解路线，把数学推理拆成层级子问题。</span>
+<span class="chip">在复杂系统中绕开单一靶点或单一约束：SPD 通过激活 E3 重塑多底物网络，伪直接半导体通过特殊能带结构同时追求高吸收与慢复合。</span>
+<span class="chip">远场耦合与隐藏机制成为解释突破口：从西太平洋双俯冲对北美裂谷的远程应力传递，到 altermagnetic 对称性对动态磁激发的塑造，都是在寻找表面现象背后的非局部或非显然驱动。</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>可做研究点</h2>
+        <div class="idea-list">
+            <div class="idea-item">
+              <strong>复现并拆解 H^2R 的收益来源，区分“层级提示本身有效”还是“额外中间监督密度提高”有效。</strong>
+              <p>这决定了方法能否泛化到数学之外的代码、规划、定理证明等任务；如果收益主要来自奖励变密，而非层级结构本身，那么更简单的中间奖励设计可能就足够。</p>
+              <p><span>第一步：</span>先通读摘要和实验设置后，复现一个最小版本：在公开数学数据上比较 4 个条件——仅最终答案奖励、随机中间提示、人工层级提示、oracle 层级提示，观察准确率和训练稳定性差异。</p>
+              <p><span>风险：</span>论文可能依赖作者自建 HiMath 标注或特定 RLVR 细节，外部复现时很难严格对齐。</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>把 SkillCompiler 的“可编译步骤识别”单独抽出来，做一个小规模 agent 技能语料的可编译性标注集。</strong>
+              <p>当前这类工作最关键也最容易被忽略的是边界判定：哪些步骤真的适合编译、哪些必须保留给 LLM。先把判定问题数据化，才能比较不同编译策略。</p>
+              <p><span>第一步：</span>收集 50-100 条常见 agent 技能描述，人工标注每一步属于确定性 API/脚本操作、需上下文语义判断、还是混合型，再用简单规则或小模型做分类基线。</p>
+              <p><span>风险：</span>技能分解粒度高度主观，不同标注者一致性可能较低，导致结论不稳。</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>对 Non-Zero Radius 做一个最小几何基准，检验球体表示是否真的比点表示更自然地表达包含、重叠、相离等逻辑关系。</strong>
+              <p>这篇工作概念上很新，但最需要先验证的是“半径”是否带来可测的表示优势，而不是只在叙述上更贴近认知直觉。</p>
+              <p><span>第一步：</span>不必等完整代码，先自建一个玩具概念关系集，用点嵌入、盒嵌入和球嵌入分别拟合包含/相交/互斥关系，比较约束满足率和参数效率。</p>
+              <p><span>风险：</span>论文中的关键可能不只是球嵌入，而是特定 transition map；若只测静态表示，可能低估其方法。</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>围绕精神科 intake 仿真训练，整理一个“多轮临床对话 RL 评测框架”综述或复现实验计划。</strong>
+              <p>这类工作离高风险应用很近，真正重要的不只是平均得分提升，而是评分维度、失败模式、患者安全和泛化边界。系统梳理会比单看 headline 结果更有价值。</p>
+              <p><span>第一步：</span>先提取论文中可确认的评测元素：场景库、双盲交叉设计、标准化病人、独立医生评分维度；再与已有医疗对话评测框架做对照表。</p>
+              <p><span>风险：</span>如果正文未充分公开场景、rubric 或训练细节，复现和横向比较会受限。</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>做一个跨论文的小型方法学综述：‘把中间结构注入 LLM/agent 系统’的三条路线——表示几何、程序编译、层级奖励。</strong>
+              <p>今天几篇 AI 论文虽然任务不同，但都在解决同一个核心问题：如何减少纯生成式系统的不稳定性。把它们放在同一框架下比较，容易形成后续研究选题。</p>
+              <p><span>第一步：</span>按“中间结构是什么、如何获得、是否可验证、是否依赖人工标注、适用任务”五个维度，先做一页比较表，覆盖 SphNN、SkillCompiler、H^2R。</p>
+              <p><span>风险：</span>由于目前信息主要来自摘要级笔记，过早统一框架可能忽略各方法真正的技术细节差异。</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>针对 pseudo-direct semiconductor，做一次文献核查，梳理‘高吸收且慢复合’是否真能突破常见互易直觉，还是只是在特定条件下重分配了通道。</strong>
+              <p>这类结果如果成立，对光伏材料筛选标准影响很大；但相关表述容易被过度泛化，值得尽快做概念澄清。</p>
+              <p><span>第一步：</span>先查该 Nature 论文摘要和相关背景文献，整理直接带隙、间接带隙、伪直接带隙在吸收系数、PL、双分子复合上的典型判据与反例。</p>
+              <p><span>风险：</span>如果不深入正文和补充材料，仅凭摘要很难判断作者是否真的挑战了经典关系的适用边界，还是在特定实验条件下观察到表观偏离。</p>
+            </div>
+            </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2>论文列表</h2>
+        <div class="paper-list">
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-29T07:59:07Z</span>
+        <span>Score 67.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>1. <a href="http://arxiv.org/abs/2610.39559v1">Non-Zero Radius: The Missing Component of Neural Networks</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Non-Zero+Radius%3A+The+Missing+Component+of+Neural+Networks&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39559v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Non-Zero+Radius%3A+The+Missing+Component+of+Neural+Networks%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+ai%2C+neural+network%2C+neural+networks%2C+symbolic+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Non-Zero+Radius%3A+The+Missing+Component+of+Neural+Networks&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39559v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Non-Zero+Radius%3A+The+Missing+Component+of+Neural+Networks%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+ai%2C+neural+network%2C+neural+networks%2C+symbolic+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Non-Zero+Radius%3A+The+Missing+Component+of+Neural+Networks&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39559v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Non-Zero+Radius%3A+The+Missing+Component+of+Neural+Networks%0Akeywords%3A+large+language+model%2C+large+language+models%2C+language+model%2C+language+models%2C+ai%2C+neural+network%2C+neural+networks%2C+symbolic+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Tiansi Dong、Mateja Jamnik、Pietro Liò · <a href="https://arxiv.org/pdf/2610.39559v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">neural network <strong>1</strong></span>
+<span class="chip">neural networks <strong>1</strong></span>
+<span class="chip">symbolic reasoning <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“神经网络中的表示半径”提出一种以球体而非零半径向量表示概念的框架，并据此构建 Sphere Neural Networks（SphNNs），目标是在没有训练数据的条件下完成符号层面的亚里士多德三段论推理。摘要显示其核心任务不是常规感知学习，而是让神经网络通过非零半径的概念表示支持更可靠的符号推理与模型构造式推理。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要可见，论文的核心贡献可能有三点：第一，提出“向量可视为零半径球体”的统一视角，并主张放松零半径约束，用非零半径球体表示概念；第二，在球嵌入基础上设计 Sphere Neural Networks，通过某种 transition map 实现无需训练数据的三段论推理；第三，试图把神经网络表示学习与生物认知中的区域表征、空间概念表征和基于模型构造/检查的推理联系起来，为神经网络中的符号推理提供一种新组件。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>67.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：为什么传统以向量/点为基础的神经网络表示难以支持可靠的符号推理，以及是否可以通过给概念表示引入“非零半径”这一几何属性，把概念从点扩展为区域，从而更自然地表达类别、空间关系和逻辑关系，并在此基础上实现无需训练数据的三段论推理。更直接地说，它在问：神经网络缺失的是否正是“半径”这一表示成分。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法由三层组成。第一层是表示层：把概念表示为球体而非向量点，即 sphere embeddings，球心可能对应概念位置，半径对应概念范围、泛化边界或区域性。第二层是关系/推理层：设计 transition map，把球体之间的几何关系映射为逻辑关系，可能涉及包含、重叠、相离等操作，以支持亚里士多德三段论。第三层是系统层：构建 Sphere Neural Networks（SphNNs），其“网络”成分可能体现在球体状态的变换、组合或传播机制上。摘要没有给出数据集信息，反而强调“without training data”，因此实验很可能集中在规则推理案例、合成逻辑任务、示意性知识库或形式化验证，而不是大规模监督学习基准。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，问题切入点很具体：不是泛泛谈可解释性，而是指出向量表示默认零半径这一隐含约束，并把它上升为神经网络缺失的关键组件。其二，表示与推理之间的桥梁较明确：如果概念是区域，那么很多逻辑关系可以转写为几何关系，这为符号推理提供了可检查、可视化的中间结构。其三，摘要声称可在无训练数据条件下实现符号级三段论推理，这意味着方法若成立，可能在数据稀缺、规则明确、需要高可靠性的推理任务中有应用价值，也可能为神经网络与符号系统融合提供新的几何接口。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议如下：第一，优先查看论文中对 transition map 的正式定义，确认它如何把球体几何关系转成三段论结论。第二，查找是否给出四类经典范畴命题（全称肯定、全称否定、特称肯定、特称否定）在球表示中的对应规则。第三，记录作者是否提供与标准向量嵌入或其他区域嵌入的对照实验。第四，检查“无需训练数据”具体指哪些任务设置，是否仍需人工初始化知识结构。第五，如果你关注 neuro-symbolic 方向，可尝试把该工作与 box embeddings、conceptual spaces、description logic embeddings 放在同一表中比较表示对象、可表达关系、是否可学习、是否支持演绎推理。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：为什么传统以向量/点为基础的神经网络表示难以支持可靠的符号推理，以及是否可以通过给概念表示引入“非零半径”这一几何属性，把概念从点扩展为区域，从而更自然地表达类别、空间关系和逻辑关系，并在此基础上实现无需训练数据的三段论推理。更直接地说，它在问：神经网络缺失的是否正是“半径”这一表示成分。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法由三层组成。第一层是表示层：把概念表示为球体而非向量点，即 sphere embeddings，球心可能对应概念位置，半径对应概念范围、泛化边界或区域性。第二层是关系/推理层：设计 transition map，把球体之间的几何关系映射为逻辑关系，可能涉及包含、重叠、相离等操作，以支持亚里士多德三段论。第三层是系统层：构建 Sphere Neural Networks（SphNNs），其“网络”成分可能体现在球体状态的变换、组合或传播机制上。摘要没有给出数据集信息，反而强调“without training data”，因此实验很可能集中在规则推理案例、合成逻辑任务、示意性知识库或形式化验证，而不是大规模监督学习基准。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，问题切入点很具体：不是泛泛谈可解释性，而是指出向量表示默认零半径这一隐含约束，并把它上升为神经网络缺失的关键组件。其二，表示与推理之间的桥梁较明确：如果概念是区域，那么很多逻辑关系可以转写为几何关系，这为符号推理提供了可检查、可视化的中间结构。其三，摘要声称可在无训练数据条件下实现符号级三段论推理，这意味着方法若成立，可能在数据稀缺、规则明确、需要高可靠性的推理任务中有应用价值，也可能为神经网络与符号系统融合提供新的几何接口。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，需要警惕几类局限。第一，推理能力的范围可能很窄，摘要只明确提到亚里士多德三段论，未说明能否扩展到一阶逻辑、关系推理、多跳推理或不确定推理。第二，“without training data”虽吸引人，但也可能意味着方法主要是规则编码而非可扩展学习框架，对开放世界任务的适应性未知。第三，球体表示并非唯一的区域表示，需比较其相对盒嵌入、超矩形、锥体、概率分布表示等方法的表达能力与计算代价。第四，摘要强调生物认知类比，但这种类比是否转化为可检验的计算优势仍需证据。第五，缺少实验、误差分析和复杂度信息，暂时无法判断其在真实神经网络场景中的可训练性、鲁棒性和规模化潜力。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议如下：第一，优先查看论文中对 transition map 的正式定义，确认它如何把球体几何关系转成三段论结论。第二，查找是否给出四类经典范畴命题（全称肯定、全称否定、特称肯定、特称否定）在球表示中的对应规则。第三，记录作者是否提供与标准向量嵌入或其他区域嵌入的对照实验。第四，检查“无需训练数据”具体指哪些任务设置，是否仍需人工初始化知识结构。第五，如果你关注 neuro-symbolic 方向，可尝试把该工作与 box embeddings、conceptual spaces、description logic embeddings 放在同一表中比较表示对象、可表达关系、是否可学习、是否支持演绎推理。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这篇工作研究的具体对象是“概念表示形式”与“基于该表示的符号推理能力”。作者将传统神经网络中的向量表示解释为“零半径球体”，认为这种表示缺失了一个关键自由度，即半径；因此提出用具有非零半径的球体来表示概念。这个设定直接对应到摘要中提到的两个认知/推理目标：一是把空间概念表示为区域而不是点，二是通过构造并检查模型来进行推理，而不是仅依赖参数拟合后的黑箱映射。方法线索上，摘要明确提到 sphere embeddings 和 transition map，说明其技术路线可能是：先在某个几何空间中把概念编码为球体对象，再定义球体之间的变换或关系映射，使得包含、相交、分离等几何关系对应到亚里士多德三段论中的逻辑关系，进而在没有训练数据的情况下直接执行推理。这里“without training data”很关键，暗示其推理能力可能主要来自手工构造的几何-逻辑对应机制，而不是从数据中学习规则。与当前大语言模型和神经网络研究的关系在于：论文明确把工作放在“现代神经网络虽经验成功但仍是黑箱、且难以可靠符号推理”的背景下，因此它更像是在探索一种神经表示层面的结构性改造，而不是单纯提出新的训练技巧。对关注 neuro-symbolic AI、可解释表示、几何知识表示、逻辑推理网络的人，这篇论文值得关注。与此同时，需要重点核对的信息也很多：第一，SphNNs 是否真的是“神经网络”，还是更接近几何逻辑系统；第二，transition map 的数学定义、可学习性和计算复杂度；第三，所谓“symbolic-level Aristotelian syllogistic reasoning”覆盖哪些具体推理形式，是否仅限经典范畴命题（如 All/Some/No）；第四，无训练数据是否意味着零学习、规则驱动，还是仅在某些推理任务上不需要标注；第五，是否有与向量嵌入、盒嵌入、超球嵌入、区域逻辑表示等方法的系统比较。由于摘要被截断，实验设置、数据集、定量结果、失败案例和适用范围目前都无法确认，阅读时应避免把它过度解读为已解决通用符号推理。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Inspired by the analogy between the all-or-none activation of biological neurons and the true-false of logic circuits, McCulloch and Pitts proposed a mathematical model of the biological neuron in 1943 with the aim of simulating logical reasoning. Although Norbert Wiener considered the model overly simplistic at the time, it later became a building block of modern neural networks, including large language models. Despite their remarkable empirical success, however, conventional neural networks remain largely black-box systems and struggle with reliable symbolic reasoning. Viewing vectors as spheres of zero radius, we relax the zero-radius constraint and represent concepts as spheres with non-zero radii. We argue that sphere-based representations can capture additional features of biological cognition, including representing spatial concepts as regions and reasoning through model construction and inspection. Building on sphere embeddings, we introduce Sphere Neural Networks (SphNNs), which use a transition map to achieve symbolic-level Aristotelian syllogistic reasoning without training data, thereby taking an initial step toward the original goal of McCulloch and Pitts. We suggest that the zero-radius constraint may reflect an aspect of the oversimplification identified by Wiener and may limit conventional neural networks&#x27; capacity for symbolic-level logical reasoning.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-29T07:07:17Z</span>
+        <span>Score 63.5</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>2. <a href="http://arxiv.org/abs/2610.39508v1">Compile Away Uncertainty: Self-Evolving Agent Skills via Programmatic Compilation</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Compile+Away+Uncertainty%3A+Self-Evolving+Agent+Skills+via+Programmatic+Compilatio&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39508v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Compile+Away+Uncertainty%3A+Self-Evolving+Agent+Skills+via+Programmatic+Compilation%0Akeywords%3A+llm%2C+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+ai%2C+program+synthesis%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Compile+Away+Uncertainty%3A+Self-Evolving+Agent+Skills+via+Programmatic+Compilatio&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39508v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Compile+Away+Uncertainty%3A+Self-Evolving+Agent+Skills+via+Programmatic+Compilation%0Akeywords%3A+llm%2C+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+ai%2C+program+synthesis%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Compile+Away+Uncertainty%3A+Self-Evolving+Agent+Skills+via+Programmatic+Compilatio&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39508v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Compile+Away+Uncertainty%3A+Self-Evolving+Agent+Skills+via+Programmatic+Compilation%0Akeywords%3A+llm%2C+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+ai%2C+program+synthesis%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Chengyu Yang、Yunxiang Zheng、Zongzheng Li、Jiamei Li 等 9 人 · <a href="https://arxiv.org/pdf/2610.39508v1">PDF</a></div>
+      <div class="chips"><span class="chip">llm <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">ai agent <strong>1</strong></span>
+<span class="chip">ai agents <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">program synthesis <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“自进化智能体技能”这一具体对象，提出将以文本形式存储的技能在执行前部分编译为可验证程序，以降低AI agent在重复执行已学会流程时对LLM逐步解释与再生成的依赖。其目标任务是让agent在交互中积累的可复用程序性知识，以“混合技能骨架”的形式更稳定地执行，其中上下文依赖步骤保留LLM推理，规则明确步骤转为程序执行。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能是提出了名为SKillCompiler的自进化技能框架，把“技能演化”与“程序化编译”结合起来：先将技能分解为细粒度操作，再判断哪些操作可执行、可编译，最后形成同时包含LLM推理节点与已验证程序节点的混合技能表示。另一个可能贡献是引入避免重复程序合成的机制，用于在技能持续演化过程中复用已有编译结果，从而提升执行确定性、可验证性与效率。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 7</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>63.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在自进化agent中，已经从交互经验中学到的技能通常仍以文本形式保存，后续每次执行都要依赖LLM重新解释和生成步骤，导致重复引入随机性和错误。作者想回答的是，能否把技能中“定义明确、规则稳定、可验证”的操作编译成程序，只把真正需要语义理解的部分留给LLM，从而降低执行不确定性并提升技能复用质量。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法路径是：先从agent已有的技能表示中抽取或分解出细粒度操作；再对每个操作做可执行性分析，判断其是否适合程序化；随后构建混合技能骨架，将上下文依赖操作保留为LLM推理节点，将规则明确操作编译为可执行程序；对生成程序进行验证，以确保其可运行和行为符合预期；最后通过某种缓存、索引或组件复用机制避免重复程序合成。实验上大概率会在需要多步操作和技能复用的agent任务上，对比纯文本技能执行与编译后混合执行的成功率、稳定性、成本或时延。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把“技能演化”从文本记忆推进到程序工件层面，这比单纯总结经验更强调执行确定性和可验证性。第二个亮点是“选择性编译”而非全量代码化，说明作者意识到agent任务中既有可形式化步骤，也有必须保留开放推理的步骤。第三个亮点是摘要中提到的validated programs和避免冗余合成，这意味着系统可能兼顾正确性与长期复用效率。若实验充分，这种设计对高频重复任务、工具调用链和长期运行agent都可能有实际价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，拿到论文后先看方法总览图，确认“技能分解—可执行性分析—混合骨架—程序验证—复用机制”这条链是否完整存在。第二，直接查实验表，重点记录比较对象、任务类型、成功率、方差、调用成本和编译开销。第三，查一个具体案例，观察哪些步骤被编译、哪些保留LLM推理，以及失败案例是什么。第四，若你做agent系统，可尝试把自己任务中的高频稳定子流程列出来，判断是否适合按该论文思路做选择性编译。第五，阅读时重点记下三个问题：可执行性如何定义、程序如何验证、复用机制如何避免过时或错误传播。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在自进化agent中，已经从交互经验中学到的技能通常仍以文本形式保存，后续每次执行都要依赖LLM重新解释和生成步骤，导致重复引入随机性和错误。作者想回答的是，能否把技能中“定义明确、规则稳定、可验证”的操作编译成程序，只把真正需要语义理解的部分留给LLM，从而降低执行不确定性并提升技能复用质量。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法路径是：先从agent已有的技能表示中抽取或分解出细粒度操作；再对每个操作做可执行性分析，判断其是否适合程序化；随后构建混合技能骨架，将上下文依赖操作保留为LLM推理节点，将规则明确操作编译为可执行程序；对生成程序进行验证，以确保其可运行和行为符合预期；最后通过某种缓存、索引或组件复用机制避免重复程序合成。实验上大概率会在需要多步操作和技能复用的agent任务上，对比纯文本技能执行与编译后混合执行的成功率、稳定性、成本或时延。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把“技能演化”从文本记忆推进到程序工件层面，这比单纯总结经验更强调执行确定性和可验证性。第二个亮点是“选择性编译”而非全量代码化，说明作者意识到agent任务中既有可形式化步骤，也有必须保留开放推理的步骤。第三个亮点是摘要中提到的validated programs和避免冗余合成，这意味着系统可能兼顾正确性与长期复用效率。若实验充分，这种设计对高频重复任务、工具调用链和长期运行agent都可能有实际价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>目前最大的局限是信息只来自摘要，缺少实验细节与边界条件。首先，不知道哪些任务真正适合这种编译式技能表示；如果任务高度开放、环境变化快，编译收益可能有限。其次，可执行性分析本身可能很难，误判会导致该编译的没编译，或不该编译的被过早固化。再次，程序验证若只依赖有限测试，未必能真正保证正确性。还有，程序合成与维护本身有成本，若技能调用频率不高，编译未必划算。最后，摘要未说明与现有program-of-thought、tool abstraction、workflow induction等工作的差异，需要在相关工作和消融实验中仔细核对。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，拿到论文后先看方法总览图，确认“技能分解—可执行性分析—混合骨架—程序验证—复用机制”这条链是否完整存在。第二，直接查实验表，重点记录比较对象、任务类型、成功率、方差、调用成本和编译开销。第三，查一个具体案例，观察哪些步骤被编译、哪些保留LLM推理，以及失败案例是什么。第四，若你做agent系统，可尝试把自己任务中的高频稳定子流程列出来，判断是否适合按该论文思路做选择性编译。第五，阅读时重点记下三个问题：可执行性如何定义、程序如何验证、复用机制如何避免过时或错误传播。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>基于题名与摘要，这项工作研究的是LLM agent在长期交互中形成的“技能”如何从纯文本经验文档，转化为更稳定的执行资产。作者指出，现有自进化技能通常以文本保存，并在每次调用时依赖LLM重新理解和生成执行步骤；这意味着即便技能已经学到，执行时仍会反复引入语言模型的不确定性。论文的基本判断是：对于那些定义清晰、输入输出边界明确、可独立验证的操作，应该尽量“编译掉不确定性”，即转成可执行程序；而对于必须依赖上下文理解、开放式判断或环境语义解释的部分，则继续保留LLM推理。由此，SKillCompiler看起来不是简单地把整条技能脚本全部代码化，而是做“可执行性感知”的分解与选择性编译。
+
+从方法线索看，系统至少包含几个关键环节。第一，技能分解：把一个较高层的agent技能拆成细粒度操作单元。第二，可执行性分析：判断每个操作是否足够明确，能否被程序化实现并验证。第三，混合技能骨架构建：将可编译部分转为程序，不可编译部分保留为LLM驱动步骤，形成统一的技能表示。第四，程序验证：摘要明确提到“validated programs”，说明程序合成后可能经过测试、执行检查或约束验证。第五，冗余合成避免：摘要后半句虽被截断，但已明确提到“为避免冗余程序合成”，这暗示系统可能维护程序缓存、组件库、操作级复用索引，或在技能演化时做增量编译，而不是每次从零生成代码。
+
+如果你的研究方向与LLM agent、tool use、program synthesis、长期记忆或skill library有关，这篇论文值得关注，因为它试图把“技能记忆”从自然语言说明书推进到“部分可执行工件”。这与当前很多agent工作只做prompt级经验积累不同，更接近把经验沉淀为可复用、可验证、低方差的执行模块。它也可能与神经-符号混合执行、workflow induction、tool abstraction、API grounding等方向形成联系。特别值得注意的是，论文强调的是“compile away uncertainty”，这意味着其评价重点很可能不是单纯任务成功率，而是执行稳定性、重复调用一致性、错误传播减少、以及对LLM推理预算的节省。
+
+但基于现有信息，仍有多项关键内容必须核对。首先，不清楚论文评测的是哪类agent任务：网页操作、软件使用、API调用、数据处理，还是通用工具任务。其次，不清楚“技能”最初如何获得：来自成功轨迹总结、反思、示范蒸馏，还是在线试错。第三，不清楚程序合成的目标语言与运行环境：Python、DSL、工具调用图，还是函数级脚本。第四，不清楚“可执行性分析”是规则驱动、模型判别，还是基于环境接口签名。第五，不清楚验证机制是否真正保证正确性，还是仅做样例测试。第六，不清楚与哪些基线比较：纯文本技能库、ReAct式agent、tool-augmented planning、或其他self-evolving skill方法。第七，不清楚编译成本是否会抵消执行收益，尤其在技能频繁变化或任务分布漂移时。总之，这篇论文的想法相当具体：把agent技能中的确定性部分编译成程序，以减少重复推理带来的不确定性；但其实际价值仍取决于任务类型、编译成功率、验证强度、复用率和端到端收益。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Self-evolving agent skills enable AI agents to accumulate and refine reusable procedural knowledge from interaction experience without updating model parameters. However, since such skills are typically represented as textual documents and executed through LLM reasoning, even previously learned procedures must be repeatedly interpreted and regenerated, introducing avoidable uncertainty into every execution. In contrast, program execution is deterministic and independently verifiable. Intuitively, transforming well-specified operations into executable programs can reduce reliance on LLM reasoning and, consequently, reduce execution uncertainty. Motivated by this intuition, we introduce SKillCompiler, a self-evolving skill framework that integrates programmatic compilation into the skill evolution process. Specifically, SkillCompiler adopts an executability-aware skill compilation strategy that decomposes skills into fine-grained operations, analyzes their executability, and constructs hybrid skill skeletons that retain LLM reasoning for context-dependent operations while compiling well-specified ones into validated programs. To avoid redundant program synthesis and enable executable knowledge to accumulate across evolving skills, we further design a program asset reuse mechanism that organizes validated programs as reusable assets, retrieves existing implementations whenever applicable, and synthesizes and verifies new programs only when necessary. Extensive experiments on five benchmarks and six model families demonstrate that SkillCompiler consistently outperforms state-of-the-art methods, achieving up to 32.33\% improvement in task performance.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-29T12:36:21Z</span>
+        <span>Score 63.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2610.39934v1">H$^2$R: Hierarchical Hint-Based Reward for Mathematical Reasoning via Reinforcement Learning</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+H%24%5E2%24R%3A+Hierarchical+Hint-Based+Reward+for+Mathematical+Reasoning+via+Reinforcem&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39934v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+H%24%5E2%24R%3A+Hierarchical+Hint-Based+Reward+for+Mathematical+Reasoning+via+Reinforcement+Learning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+H%24%5E2%24R%3A+Hierarchical+Hint-Based+Reward+for+Mathematical+Reasoning+via+Reinforcem&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39934v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+H%24%5E2%24R%3A+Hierarchical+Hint-Based+Reward+for+Mathematical+Reasoning+via+Reinforcement+Learning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+H%24%5E2%24R%3A+Hierarchical+Hint-Based+Reward+for+Mathematical+Reasoning+via+Reinforcem&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.39934v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+H%24%5E2%24R%3A+Hierarchical+Hint-Based+Reward+for+Mathematical+Reasoning+via+Reinforcement+Learning%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+rag%2C+ai%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">He Tu、Siye Li、Hongyi Wen · <a href="https://arxiv.org/pdf/2610.39934v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">mathematical reasoning <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕大语言模型的数学推理强化学习训练，提出一种分层提示奖励框架 H^2R，用数学题内在的子问题层级结构作为中间监督信号，以改善复杂多步推理任务中的奖励稀疏问题。作者还引入了一个层级化数学问题基准 HiMath，并在摘要中报告该方法可提升 Qwen2.5-Math-7B 在该基准上的准确率。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应包括两部分：一是提出 Hierarchical Hint-based Reward（H^2R），把“层级提示/子问题”作为 RLVR 训练中的结构化中间条件或奖励锚点；二是构建 HiMath 基准，用于评测带有层级子问题结构的数学推理能力。摘要给出的直接证据是：层级提示即使不做任务特定训练也能稳定提升推理表现，而在 RL 训练中进一步带来从 30.4% 到 39.1%，以及在 Oracle Hierarchical Hints 下到 45.6% 的准确率提升。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>63.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在面向数学推理的大语言模型强化学习中，如何为复杂多步题目提供可靠的中间监督，缓解仅依赖最终可验证答案所带来的奖励稀疏、长程信用分配困难和推理路径不稳定问题。更具体地说，它关注的是能否利用数学题的子问题层级结构，把中间步骤变成可用于训练和推理的“逻辑里程碑”。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法上包含一个框架和一个基准。框架 H^2R 可能将数学题分解为层级化子问题，并把这些 hierarchical hints 作为 RLVR 训练中的中间条件信号或分层奖励来源，而不是把自由生成的思维链直接当监督。实验对象至少包括 Qwen2.5-Math-7B，并且摘要提到“Across diverse LLMs”，说明可能评测了多个模型。数据方面，作者提出 HiMath，应该是一个具有层级结构标注的数学推理基准。实验路径可能包括：无任务特定训练时直接使用层级提示的推理评测；将层级提示整合进 RL 训练后的对照实验；以及使用 Oracle Hierarchical Hints 的上界分析。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题定义很具体：不是泛泛提升数学能力，而是针对 RLVR 在多步数学推理中的中间监督缺失。第二，方法设计强调“层级提示”而非自由文本 CoT，这意味着中间信号可能更结构化、更可验证，也更适合奖励设计。第三，摘要给出了较明确的量化结果和对照：Qwen2.5-Math-7B 在 HiMath 上从 30.4% 提升到 39.1%，Oracle 提示下到 45.6%，说明中间结构信号可能确实显著影响最终解题正确率。此外，提出新基准 HiMath 也增加了工作的方法学价值，因为它为后续研究提供了统一测试床。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五项。第一，拿到全文后先看 HiMath 的定义：题目来源、规模、层级标注形式、是否公开。第二，重点查 H^2R 的奖励函数和训练流程图，确认层级提示如何进入 RLVR。第三，核对摘要中的三个关键实验设置：无任务特定训练、使用 hierarchical hints 的 RL 训练、Oracle hints 上界。第四，记录与基线方法的对照对象，尤其是否比较了 CoT、过程监督、step verifier 或其他中间奖励方法。第五，如果你做数学推理或过程监督，可立即设计一个小复现实验：在现有数学数据上手工或自动构造子问题提示，测试仅在推理时加入层级提示是否也能提升最终答案正确率。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在面向数学推理的大语言模型强化学习中，如何为复杂多步题目提供可靠的中间监督，缓解仅依赖最终可验证答案所带来的奖励稀疏、长程信用分配困难和推理路径不稳定问题。更具体地说，它关注的是能否利用数学题的子问题层级结构，把中间步骤变成可用于训练和推理的“逻辑里程碑”。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法上包含一个框架和一个基准。框架 H^2R 可能将数学题分解为层级化子问题，并把这些 hierarchical hints 作为 RLVR 训练中的中间条件信号或分层奖励来源，而不是把自由生成的思维链直接当监督。实验对象至少包括 Qwen2.5-Math-7B，并且摘要提到“Across diverse LLMs”，说明可能评测了多个模型。数据方面，作者提出 HiMath，应该是一个具有层级结构标注的数学推理基准。实验路径可能包括：无任务特定训练时直接使用层级提示的推理评测；将层级提示整合进 RL 训练后的对照实验；以及使用 Oracle Hierarchical Hints 的上界分析。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题定义很具体：不是泛泛提升数学能力，而是针对 RLVR 在多步数学推理中的中间监督缺失。第二，方法设计强调“层级提示”而非自由文本 CoT，这意味着中间信号可能更结构化、更可验证，也更适合奖励设计。第三，摘要给出了较明确的量化结果和对照：Qwen2.5-Math-7B 在 HiMath 上从 30.4% 提升到 39.1%，Oracle 提示下到 45.6%，说明中间结构信号可能确实显著影响最终解题正确率。此外，提出新基准 HiMath 也增加了工作的方法学价值，因为它为后续研究提供了统一测试床。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，主要局限是关键信息仍不足。首先，不清楚 hierarchical hints 的来源与成本：如果需要高质量人工分解，方法可扩展性可能受限。其次，摘要只报告了 HiMath 上的结果，尚不清楚对现有公开数学基准是否同样有效，是否存在对特定数据分布的适配。第三，Oracle Hierarchical Hints 的提升很大，但这类结果通常更像上界，未必代表真实部署条件。第四，不清楚奖励设计是否会引入提示泄漏、训练-测试不一致，或让模型过度依赖外部结构而非自主分解能力。最后，摘要没有说明与过程奖励模型、step-level verifier、self-consistency、tree search 等相关方法的直接比较。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五项。第一，拿到全文后先看 HiMath 的定义：题目来源、规模、层级标注形式、是否公开。第二，重点查 H^2R 的奖励函数和训练流程图，确认层级提示如何进入 RLVR。第三，核对摘要中的三个关键实验设置：无任务特定训练、使用 hierarchical hints 的 RL 训练、Oracle hints 上界。第四，记录与基线方法的对照对象，尤其是否比较了 CoT、过程监督、step verifier 或其他中间奖励方法。第五，如果你做数学推理或过程监督，可立即设计一个小复现实验：在现有数学数据上手工或自动构造子问题提示，测试仅在推理时加入层级提示是否也能提升最终答案正确率。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文聚焦的是“可验证奖励强化学习（RLVR）下的大模型数学推理”，具体痛点是现有方法对复杂、多步数学题通常只有最终答案级别的监督，缺少可靠的中间过程信号，导致推理跨度长、训练信用分配困难。作者的切入点不是直接依赖自由形式 chain-of-thought，而是利用数学题天然可分解为若干子问题这一结构，把这些层级化提示作为逻辑上更稳固的中间里程碑，从而缩短到最终答案的推理地平线。就方法形态推测，H^2R 很可能是在采样推理轨迹时，根据模型是否命中某些层级子目标、或是否在提示条件下完成局部子任务，给予分层奖励或条件化训练信号；而 Oracle Hierarchical Hints 则应代表使用人工或理想化高质量层级提示时的上界实验。HiMath 则很可能是一个带有显式子问题树、步骤依赖或层级解题结构标注的数学基准，用来检验模型是否能利用中间结构信息提升最终解题正确率。与数学推理、过程监督、奖励建模、可验证训练相关的研究者会特别关心这项工作，因为它试图在“只看最终答案”和“完全依赖自由文本思维链”之间，引入一种更结构化、可验证、可能更稳健的中间监督形式。当前需要重点核对的信息包括：层级提示是人工构造、规则生成还是由模型自动分解得到；奖励函数如何定义；HiMath 的规模、题型和标注成本；所谓“即使不做任务特定训练也能提升”具体是指推理时提供 hints 还是零样本迁移；以及该方法对不同模型族、不同难度题、不同提示质量的敏感性。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Reinforcement Learning with Verifiable Rewards has shown great promise in enhancing mathematical reasoning in large language models. However, existing approaches provide limited intermediate supervision for complex, multi-step reasoning tasks. To bridge this gap, we propose \textbf{Hierarchical Hint-based Reward}, a framework that leverages the intrinsic sub-question structure of mathematical problems as structured intermediate conditioning signals during RLVR training. Unlike chain-of-thought prompting, these hierarchical hints serve as logically grounded intermediate milestones that effectively reduce the reasoning horizon toward the final answer. To validate this framework, we introduce \textbf{HiMath}, a benchmark of hierarchically structured mathematical problems. Across diverse LLMs, hierarchical hints consistently improve reasoning performance even without task-specific training. When integrated into RL training via H$^2$R, they boost Qwen2.5-Math-7B accuracy on HiMath from 30.4\% to 39.1\% using hierarchical hints, and up to 45.6\% with Oracle Hierarchical Hints. This pronounced improvement demonstrates that incorporating reliable intermediate checkpoints into reward design is essential for sustaining complex mathematical reasoning.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-10-29T17:10:32Z</span>
+        <span>Score 62.5</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>4. <a href="http://arxiv.org/abs/2610.40476v1">Training language models in simulation for psychiatric intake</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Training+language+models+in+simulation+for+psychiatric+intake&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.40476v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Training+language+models+in+simulation+for+psychiatric+intake%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Training+language+models+in+simulation+for+psychiatric+intake&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.40476v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Training+language+models+in+simulation+for+psychiatric+intake%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Training+language+models+in+simulation+for+psychiatric+intake&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2610.40476v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Training+language+models+in+simulation+for+psychiatric+intake%0Akeywords%3A+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Samuel Schmidgall、Tim Strother、Alex Bijamov、Min Woo Sun 等 56 人 · <a href="https://arxiv.org/pdf/2610.40476v1">PDF</a></div>
+      <div class="chips"><span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文研究如何在模拟环境中用多轮强化学习训练语言模型，以完成结构化的精神科初诊访谈任务，包括病史采集、鉴别诊断和初始处理计划。根据摘要，作者将RL训练后的代理与相同提示下的基础模型进行随机、双盲、交叉对照比较，并用精神科医生扮演标准化病人和独立评分。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出并验证了一种面向精神科 intake 的“仿真训练+多轮RL”范式：不是只看单轮问答，而是在多轮临床对话中优化模型的访谈质量、以患者为中心的沟通和鉴别诊断适切性。摘要给出的证据显示，RL训练代理相对基础模型在匹配场景对中具有显著优势，说明模拟环境中的交互式训练可能提升临床访谈型LM代理的实用性。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 6</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>62.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：能否通过模拟环境中的多轮强化学习，提升语言模型在精神科初诊访谈中的连续交互能力，使其不仅会回答，还能像临床访谈者一样进行病史采集、建立关系、提出合适的鉴别诊断并给出初始管理建议；以及这种提升能否在由精神科医生参与的盲法评估中被观察到。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径是：先构建由精神科医生验证的模拟初诊场景库；让语言模型作为访谈代理，在多轮文本对话环境中与模拟病人或场景交互；通过RL优化多轮策略，而不是仅做监督微调。评估上采用随机、双盲、交叉设计，将RL训练代理与“identically prompted base model”比较，以控制提示词差异；由32名精神科医生扮演标准化病人生成对话，再由15名独立精神科医生对去标识化转录按改编临床考试rubric、患者中心沟通、鉴别诊断适切性等维度评分。摘要还暗示存在127个经精神科医生验证的模拟场景，可能用于训练、内部验证或补充分析。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点之一是任务定义贴近真实临床工作流，不是泛化的医疗QA，而是结构化精神科 intake 这一高交互、高歧义任务。亮点之二是评估设计较强：随机、双盲、交叉、匹配场景对、独立专家评分，这比单纯自动指标或非盲人工偏好更有说服力。亮点之三是结果维度具体，不只报告总体胜率，还区分了临床考试rubric、患者中心沟通和鉴别诊断适切性，说明作者关注的是临床交流质量与推理质量的组合。亮点之四是将RL放在simulation中训练，契合高风险领域“先在仿真中学策略、再谨慎外推”的路线。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查原文图表，确认60个matched scenario pairs、120 encounters、127 validated scenarios三者的关系；2）重点定位方法部分，记录RL环境的状态、动作、奖励和终止条件；3）查看评分rubric及评审者一致性，判断结果稳健性；4）核对基础模型名称、参数规模、提示词和是否冻结；5）如果你做医疗对话或agent研究，可把这篇文献作为“多轮仿真RL+专家盲评”的评测模板，整理出可迁移到你任务中的设计元素。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：能否通过模拟环境中的多轮强化学习，提升语言模型在精神科初诊访谈中的连续交互能力，使其不仅会回答，还能像临床访谈者一样进行病史采集、建立关系、提出合适的鉴别诊断并给出初始管理建议；以及这种提升能否在由精神科医生参与的盲法评估中被观察到。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径是：先构建由精神科医生验证的模拟初诊场景库；让语言模型作为访谈代理，在多轮文本对话环境中与模拟病人或场景交互；通过RL优化多轮策略，而不是仅做监督微调。评估上采用随机、双盲、交叉设计，将RL训练代理与“identically prompted base model”比较，以控制提示词差异；由32名精神科医生扮演标准化病人生成对话，再由15名独立精神科医生对去标识化转录按改编临床考试rubric、患者中心沟通、鉴别诊断适切性等维度评分。摘要还暗示存在127个经精神科医生验证的模拟场景，可能用于训练、内部验证或补充分析。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点之一是任务定义贴近真实临床工作流，不是泛化的医疗QA，而是结构化精神科 intake 这一高交互、高歧义任务。亮点之二是评估设计较强：随机、双盲、交叉、匹配场景对、独立专家评分，这比单纯自动指标或非盲人工偏好更有说服力。亮点之三是结果维度具体，不只报告总体胜率，还区分了临床考试rubric、患者中心沟通和鉴别诊断适切性，说明作者关注的是临床交流质量与推理质量的组合。亮点之四是将RL放在simulation中训练，契合高风险领域“先在仿真中学策略、再谨慎外推”的路线。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，首先无法确认训练细节：奖励函数、轨迹采样、是否使用人类反馈、是否有安全约束都未知。其次，评估仍是模拟文本场景，不等于真实门诊中的语音、非语言线索、时间压力和法律伦理约束，因此外部效度需要谨慎。第三，摘要只说明优于基础模型，但未说明与更强监督微调模型、检索增强系统或专门医疗模型相比如何。第四，精神科任务高度依赖风险识别与安全处置，若摘要未完整呈现自杀/他伤风险、急性躁狂、精神病性症状等关键亚任务表现，则不能据此判断临床可用性。第五，作者名单和发表来源显示目前是arXiv预印本，尚需关注同行评审后的修订。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查原文图表，确认60个matched scenario pairs、120 encounters、127 validated scenarios三者的关系；2）重点定位方法部分，记录RL环境的状态、动作、奖励和终止条件；3）查看评分rubric及评审者一致性，判断结果稳健性；4）核对基础模型名称、参数规模、提示词和是否冻结；5）如果你做医疗对话或agent研究，可把这篇文献作为“多轮仿真RL+专家盲评”的评测模板，整理出可迁移到你任务中的设计元素。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：精神科临床 intake interview 的文本化、结构化版本，任务覆盖三类临床核心活动：1）history-taking，2）differential diagnosis，3）initial management planning。方法线索也较清楚：作者构建了一个simulation environment，在其中对语言模型进行multi-turn reinforcement learning，使模型在连续对话中学习如何追问、建立rapport并处理症状重叠的复杂呈现。评估设计不是自动指标，而是较接近临床交流场景的人评：32名有资质的精神科医生扮演标准化病人，形成60个matched scenario pairs、共120次encounters；另有15名独立的、同样具备资质的精神科医生对去标识化转录进行评分。摘要报告的主要证据包括：RL代理在76.7%的匹配场景对中优于基础模型，p&lt;0.0001；在改编的临床考试rubric上有提升，效应量d_z=0.77；患者中心沟通82.0%对65.2%；鉴别诊断适切性68.3%对33.3%。此外，摘要还提到“Across 127 psychiatrist-validated simulated intake scenarios”但后文被截断，因此可以推测作者还在更大规模、经精神科医生验证的模拟场景集上分析了训练或泛化表现，但具体指标、任务定义和结果需要核对原文。与科研读者的关系上，这篇工作对医疗对话系统、LM agent、仿真训练、临床评测设计都很相关，尤其适合关注“如何把RL从通用对话迁移到高风险专业访谈任务”的研究者。需要特别核对的信息包括：模拟环境如何定义状态、动作和奖励；标准化病人是完全自由扮演还是按脚本约束；评分rubric的条目与一致性；基础模型的具体版本与参数规模；RL是否只在文本仿真中训练、是否存在reward hacking；以及该任务是否仅限精神科初诊而不能外推到真实临床决策。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>In psychiatric practice, the clinical intake interview remains a primary diagnostic instrument, requiring the clinician to establish rapport while disentangling complex, overlapping presentations. Here, we show that multi-turn reinforcement learning (RL) in simulation environments improves language model performance on structured text-based psychiatric intake, spanning history-taking, differential diagnosis, and initial management planning. In a randomized, double-blind crossover study ($N = 60$ matched scenario pairs, 120 encounters) comparing the RL-trained agent against its identically prompted base model, 32 board-certified psychiatrists role-played standardized patients while a separate panel of 15 independent, board-certified psychiatrists scored the de-identified transcripts. The trained agent outperformed the base model in 76.7% of matched scenario pairs ($p &lt; 0.0001$), with gains on an adapted clinical-examination rubric ($d_z = 0.77$, $p &lt; 0.0001$), patient-centered communication (82.0% vs. 65.2%, $p &lt; 0.001$), and differential diagnosis appropriateness (68.3% vs. 33.3%, $p &lt; 0.001$). Across 127 psychiatrist-validated simulated intake scenarios, the trained agent nearly doubled its base model&#x27;s clinical rubric score (0.706 vs. 0.379; composite reward 0.564 vs. 0.294, $p &lt; 0.0001$). To systematically probe conversational safety, we established two Delphi-consensus taxonomies, of clinical safety risks and relational competencies, from which 256 challenging adversarial presentations were derived; we find that training in simulation environments more than halved under-triage of acute safety risks (12.9% vs. 30.5%, $p &lt; 0.0001$). Simulation environments thus provide a controlled testbed for training and stress-testing psychiatric conversational agents, with gains that transferred to psychiatrist-enacted encounters, though residual gaps require safeguards and clinician oversight.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-10-29</span>
+        <span>Score 44.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>5. <a href="https://doi.org/10.1126/science.aed2525">Stimulated protein degradation to promote mitochondrial function and neuronal survival</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Stimulated+protein+degradation+to+promote+mitochondrial+function+and+neuronal+su&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed2525%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Stimulated+protein+degradation+to+promote+mitochondrial+function+and+neuronal+survival%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Stimulated+protein+degradation+to+promote+mitochondrial+function+and+neuronal+su&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed2525%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Stimulated+protein+degradation+to+promote+mitochondrial+function+and+neuronal+survival%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Stimulated+protein+degradation+to+promote+mitochondrial+function+and+neuronal+su&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed2525%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Stimulated+protein+degradation+to+promote+mitochondrial+function+and+neuronal+survival%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Srividya Chandrasekhar、Rachael McMinimy、Andrew G. Manford、Eddie Wehri 等 10 人 · DOI: <a href="https://doi.org/10.1126/science.aed2525">10.1126/science.aed2525</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该研究提出“刺激性蛋白降解”（stimulated protein degradation, SPD）策略，具体通过激活应激响应型E3泛素连接酶CUL2-FEM1B，促进多个生理底物降解，从而改善线粒体蛋白导入与电子传递链组装，并在神经退行性COX缺陷综合征和Friedreich共济失调模型中保护线粒体功能与神经元存活。论文的具体任务不是降解单一致病蛋白，而是利用E3连接酶激动剂同时清除多种病理相关因子，以应对广泛蛋白稳态失衡导致的疾病。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把化合物诱导蛋白降解从“靶向单一蛋白”的思路扩展到“激活内源性应激E3连接酶以重塑一组底物”的思路，即SPD。摘要显示作者以还原应激反应相关E3 CUL2-FEM1B为切入点，提出其激动剂可增强多种天然底物降解，进而改善线粒体导入和呼吸链装配，并在两类线粒体/神经退行性疾病模型中获得功能获益，这对复杂病理状态下的蛋白质稳态干预具有方法学意义。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Science</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>44.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：对于由广泛蛋白失调和线粒体功能障碍驱动的复杂疾病，尤其是神经退行性相关线粒体病，能否不依赖单一靶蛋白降解，而是通过激活一个内源性应激响应E3连接酶CUL2-FEM1B，同时促进多种天然底物降解，从而恢复线粒体蛋白导入、电子传递链组装和神经元生存。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要推测，方法包括：开发或鉴定CUL2-FEM1B激动剂；在细胞或疾病模型中检测该E3活化后多种生理底物的降解增强；通过线粒体导入实验、电子传递链复合体装配分析及线粒体功能读出评估机制后果；在COX deficiency syndrome和Friedreich’s ataxia模型中测量线粒体功能与神经元存活。为证明因果关系，正文中很可能还会包含FEM1B依赖性验证、底物谱分析、化学蛋白质组学或遗传学干预。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是概念新：提出SPD，强调“激活E3连接酶的生理保护程序”而非仅降解单一目标。亮点二是对象具体：锁定还原应激相关E3 CUL2-FEM1B，并把作用结果落到线粒体导入和电子传递链组装两个关键过程。亮点三是疾病相关性强：直接连接到COX缺陷综合征和Friedreich共济失调这类高未满足需求疾病。亮点四是潜在平台价值高：若多底物降解可控，可能适用于复杂病理而非单基因单靶点场景。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看正文图1和机制图，确认SPD定义、CUL2-FEM1B激动剂结构及其直接靶点证据。第二，整理所有被报告降解的天然底物，标注哪些与线粒体导入/呼吸链装配直接相关。第三，核对疾病模型层级：细胞、iPSC来源神经元、动物各有哪些。第四，重点查找FEM1B敲除/失活是否消除药效，这是判断机制特异性的关键。第五，记录安全性与脱靶数据，评估SPD是否具备转化潜力。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：对于由广泛蛋白失调和线粒体功能障碍驱动的复杂疾病，尤其是神经退行性相关线粒体病，能否不依赖单一靶蛋白降解，而是通过激活一个内源性应激响应E3连接酶CUL2-FEM1B，同时促进多种天然底物降解，从而恢复线粒体蛋白导入、电子传递链组装和神经元生存。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要推测，方法包括：开发或鉴定CUL2-FEM1B激动剂；在细胞或疾病模型中检测该E3活化后多种生理底物的降解增强；通过线粒体导入实验、电子传递链复合体装配分析及线粒体功能读出评估机制后果；在COX deficiency syndrome和Friedreich’s ataxia模型中测量线粒体功能与神经元存活。为证明因果关系，正文中很可能还会包含FEM1B依赖性验证、底物谱分析、化学蛋白质组学或遗传学干预。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是概念新：提出SPD，强调“激活E3连接酶的生理保护程序”而非仅降解单一目标。亮点二是对象具体：锁定还原应激相关E3 CUL2-FEM1B，并把作用结果落到线粒体导入和电子传递链组装两个关键过程。亮点三是疾病相关性强：直接连接到COX缺陷综合征和Friedreich共济失调这类高未满足需求疾病。亮点四是潜在平台价值高：若多底物降解可控，可能适用于复杂病理而非单基因单靶点场景。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要的主要局限是信息缺失。尚不清楚激动剂的化学性质、选择性和药代特征；不清楚被降解的“多个生理底物”具体名单及其必要性；不清楚疾病模型是否包含动物和长期给药；也不清楚多底物降解是否引发副作用。另一个需要警惕的边界是，摘要强调线粒体功能和神经元存活改善，但未给出效应大小、统计强度、与现有疗法比较或是否能逆转而非仅延缓病程。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看正文图1和机制图，确认SPD定义、CUL2-FEM1B激动剂结构及其直接靶点证据。第二，整理所有被报告降解的天然底物，标注哪些与线粒体导入/呼吸链装配直接相关。第三，核对疾病模型层级：细胞、iPSC来源神经元、动物各有哪些。第四，重点查找FEM1B敲除/失活是否消除药效，这是判断机制特异性的关键。第五，记录安全性与脱靶数据，评估SPD是否具备转化潜力。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可见，研究对象非常明确：一类是应激响应型E3泛素连接酶CUL2-FEM1B，另一类是线粒体功能障碍相关疾病模型，尤其是神经退行性COX deficiency syndrome和Friedreich’s ataxia。论文试图回答的关键问题是：对于并非由单一异常蛋白驱动、而是由广泛蛋白失调和线粒体功能受损构成的复杂疾病，是否可以通过激活某个内源性E3连接酶，系统性促进一组有害或限制性因子的降解，从而获得治疗效应。摘要给出的答案是肯定的，并将这一策略命名为SPD。
+
+方法线索方面，虽然没有全文，但摘要已经透露出较具体的实验路径。首先，作者应当筛选或设计了CUL2-FEM1B agonists，即能够激活该E3连接酶的化合物，而不是传统意义上把靶蛋白拉到E3上的双功能降解剂。其次，他们应检测了“multiple physiological substrates”的降解增强，这意味着实验中很可能结合了底物蛋白定量、泛素化读出、蛋白半衰期测定，或蛋白质组学来证明不是单一底物效应。再次，功能层面聚焦于“mitochondrial import”和“electron transport chain assembly”，因此大概率涉及线粒体导入实验、呼吸链复合体装配分析、氧耗/膜电位/ATP等线粒体功能指标。最后，在疾病相关性上，作者使用了COX缺陷综合征和Friedreich共济失调模型，并观察到线粒体功能维持和神经元存活改善，这提示模型可能包括细胞模型、患者来源细胞、神经元分化体系，甚至动物模型，但这一点必须回到正文核对。
+
+证据链的逻辑也比较清楚：激活CUL2-FEM1B→增强多种天然底物降解→改善线粒体蛋白导入与电子传递链组装→维持线粒体功能→提高神经元存活。这里最值得科研读者关注的是，作者并未把蛋白降解仅作为“去除致病蛋白”的工具，而是把E3连接酶视为细胞应激适应网络中的调控节点，通过放大其生理保护程序来纠正复杂病理。若这一证据链在正文中被严密支持，那么它对神经退行性疾病、线粒体病、蛋白稳态失衡疾病都具有较强启发性。
+
+与相关研究方向的关系上，这篇论文处在PROTAC/分子胶之外的一个重要分支：不是重新定向E3到底物，而是直接激活E3本身的应激功能。对于做蛋白稳态、线粒体生物学、神经退行性疾病、泛素系统药理学的研究者，这篇文章的价值在于提供了一个“网络级降解干预”的概念验证。尤其是Friedreich’s ataxia本身与线粒体铁硫簇、生物能量和神经元脆弱性密切相关，若CUL2-FEM1B激活确实能改善导入和呼吸链装配，则说明其作用点可能位于线粒体蛋白质质量控制的上游或并行层面，而不只是单个病因蛋白。
+
+但需要核对的信息也很多。第一，CUL2-FEM1B被激活的分子机制是什么：是直接结合FEM1B、改变底物识别、促进复合体组装，还是模拟还原应激信号。第二，“multiple physiological substrates”具体是哪些蛋白，它们与线粒体导入/呼吸链装配的因果关系是否逐一验证。第三，疾病模型的层级和强度如何：仅细胞水平还是包含体内神经保护证据。第四，神经元存活改善是否伴随广泛毒性评估，因为同时增强多底物降解可能带来脱靶或长期稳态代价。第五，SPD与传统靶向降解相比，在选择性、剂量窗、耐药性和可转化性上是否有实证比较。基于目前仅有题名和摘要，不能替代对正文图表、补充材料和方法学细节的核查。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Targeted protein degradation is a promising modality to treat cancer or inflammation, but whether it can provide a similar benefit for disorders caused by pervasive protein dysregulation is unclear. We describe stimulated protein degradation (SPD) as a strategy that leverages agonists of stress-responsive E3 ubiquitin ligases to simultaneously eliminate multiple pathogenic factors. Specifically, we show that activators of the reductive stress response E3 CUL2 FEM1B boost degradation of multiple physiological substrates to improve mitochondrial import and electron transport chain assembly. In this manner, CUL2 FEM1B agonists preserve mitochondrial function and neuronal survival in models of neurodegenerative COX deficiency syndrome and Friedreich’s ataxia. By activating E3 ligases that evolved to safeguard cellular integrity, SPD expands the use of compound-induced protein degradation to complex pathologies of high unmet need.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-10-29</span>
+        <span>Score 44.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>6. <a href="https://doi.org/10.1126/science.aef5187">Western Pacific double subduction drives Gulf of California rifting</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Western+Pacific+double+subduction+drives+Gulf+of+California+rifting&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef5187%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Western+Pacific+double+subduction+drives+Gulf+of+California+rifting%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Western+Pacific+double+subduction+drives+Gulf+of+California+rifting&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef5187%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Western+Pacific+double+subduction+drives+Gulf+of+California+rifting%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Western+Pacific+double+subduction+drives+Gulf+of+California+rifting&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef5187%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Western+Pacific+double+subduction+drives+Gulf+of+California+rifting%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Guido M. Gianni、Xiang He、Thorsten W. Becker、Claudio Faccenna · DOI: <a href="https://doi.org/10.1126/science.aef5187">10.1126/science.aef5187</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该研究围绕约600万至800万年前加利福尼亚湾斜向裂谷（GOCOR）为何发生快速裂解这一具体构造问题展开，提出其时序上与西太平洋“双俯冲”启动相吻合，并通过三维地球动力学模型论证俯冲重组可经太平洋板块向GOCOR及南段圣安德烈亚斯断层传递约5至15 MPa的伸展应力。论文的核心任务是把远场板块边界重组与北美西缘快速裂谷化联系起来，作为“预弱化岩石圈”上快速裂谷启动的外部驱动解释。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出并模型化了一个跨洋远程构造驱动机制：西太平洋双俯冲启动所引发的俯冲系统重组，能够通过太平洋板块传递足以加载加利福尼亚湾裂谷和南圣安德烈亚斯断层的伸展应力，从而为GOCOR快速裂谷化提供此前可能被忽视的外部动力来源。相较于仅将GOCOR解释为局部长期伸展加速或单纯边界运动学响应，这一工作可能把“远场俯冲重组—板内应力传输—预条件化大陆裂解”串联为统一框架。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Science</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>44.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：约6至8 Ma加利福尼亚湾斜向裂谷为何会出现快速裂谷化/裂解？这一事件是否仅由北美西缘局部长期伸展和边界运动学变化解释，还是存在来自西太平洋俯冲系统重组的远场外部驱动；以及这种远场驱动能否在量级上提供足以触发裂谷启动的应力。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>摘要表明主要方法是三维地球动力学模型。可推测作者构建了包含西太平洋双俯冲启动/重组的板块尺度数值模型，计算应力如何沿太平洋板块传播，并评估GOCOR与南圣安德烈亚斯断层区域所受伸展加载。支撑推理还应包括事件时序对比，即将GOCOR快速裂谷时间窗与西太平洋双俯冲启动时间进行匹配。若阅读全文，应重点看模型边界条件、流变参数、板块几何、应力提取方式，以及是否与地质/构造观测进行对照。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点之一是把通常分开讨论的两个区域过程——西太平洋俯冲重组与北美西缘裂谷化——放到同一动力学框架中，提出跨洋远场应力传输机制。亮点之二是给出可检验的定量应力量级（约5至15 MPa），使假说不止停留在定性关联。亮点之三是同时解释GOCOR与南段圣安德烈亚斯断层加载，说明该机制可能对区域构造系统具有整体意义。若模型稳健，这对理解“预弱化岩石圈中的快速裂谷启动”具有较高启发性。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看论文图1和时间轴相关图，确认GOCOR快速裂谷与西太平洋双俯冲启动的年代对应是否精确。第二，查模型主图，记录5至15 MPa应力的定义、位置、深度和时间演化。第三，整理作者比较的竞争假说：远场俯冲重组、外部运动学变化、长期伸展加速，各自证据是什么。第四，特别检查南圣安德烈亚斯断层在模型中的应力响应，因为这可能是验证区域一致性的关键。第五，如果你做相关研究，可把“远场俯冲重组是否能提供&gt;数MPa级板内应力”记为可复现问题，后续对照其他板块尺度模型或区域应力估算。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：约6至8 Ma加利福尼亚湾斜向裂谷为何会出现快速裂谷化/裂解？这一事件是否仅由北美西缘局部长期伸展和边界运动学变化解释，还是存在来自西太平洋俯冲系统重组的远场外部驱动；以及这种远场驱动能否在量级上提供足以触发裂谷启动的应力。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>摘要表明主要方法是三维地球动力学模型。可推测作者构建了包含西太平洋双俯冲启动/重组的板块尺度数值模型，计算应力如何沿太平洋板块传播，并评估GOCOR与南圣安德烈亚斯断层区域所受伸展加载。支撑推理还应包括事件时序对比，即将GOCOR快速裂谷时间窗与西太平洋双俯冲启动时间进行匹配。若阅读全文，应重点看模型边界条件、流变参数、板块几何、应力提取方式，以及是否与地质/构造观测进行对照。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点之一是把通常分开讨论的两个区域过程——西太平洋俯冲重组与北美西缘裂谷化——放到同一动力学框架中，提出跨洋远场应力传输机制。亮点之二是给出可检验的定量应力量级（约5至15 MPa），使假说不止停留在定性关联。亮点之三是同时解释GOCOR与南段圣安德烈亚斯断层加载，说明该机制可能对区域构造系统具有整体意义。若模型稳健，这对理解“预弱化岩石圈中的快速裂谷启动”具有较高启发性。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要可见的局限包括：因果链目前主要依赖时序吻合与模型结果，仍需警惕“同时发生”不等于“由其驱动”；模型结果对流变、边界条件和俯冲几何可能高度敏感；摘要未说明观测约束的独立性和强度，例如是否有应力场、构造旋转、沉积/火成活动或断层运动学证据支持该远场机制；“预条件化岩石圈”表述也意味着局部因素仍然关键，因此该机制可能是触发器而非完整解释。对其他裂谷事件的推广目前也只是可能性，尚不能直接接受为普遍规律。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看论文图1和时间轴相关图，确认GOCOR快速裂谷与西太平洋双俯冲启动的年代对应是否精确。第二，查模型主图，记录5至15 MPa应力的定义、位置、深度和时间演化。第三，整理作者比较的竞争假说：远场俯冲重组、外部运动学变化、长期伸展加速，各自证据是什么。第四，特别检查南圣安德烈亚斯断层在模型中的应力响应，因为这可能是验证区域一致性的关键。第五，如果你做相关研究，可把“远场俯冲重组是否能提供&gt;数MPa级板内应力”记为可复现问题，后续对照其他板块尺度模型或区域应力估算。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：一是约6至8 Ma的加利福尼亚湾斜向裂谷快速裂解事件，二是同时期西太平洋双俯冲的启动与重组，三是这种重组是否能通过太平洋板块向北美西缘传递可观的伸展应力。作者明确将争议聚焦在两类解释之间：GOCOR快速裂谷化究竟主要是岩石圈对外部板块运动学变化的响应，还是长期伸展过程的突然加速；而他们主张存在一个此前未充分纳入的远场动力源。
+
+方法线索较清楚：摘要直接说明使用了三维地球动力学模型。结合研究问题，模型很可能包含西太平洋俯冲几何重组、板块尺度应力传播、太平洋板块内部应力场演化，以及GOCOR和南圣安德烈亚斯断层区域的受力响应。摘要给出的关键定量结果是可传递约5至15 MPa的伸展应力，这一数值是论文最值得优先核对的结果之一，因为它直接决定该机制是否足以触发或显著促进预弱化岩石圈中的快速裂谷化。
+
+证据链目前可从摘要中提炼为三步：第一，时间对应关系，即GOCOR快速裂谷与西太平洋双俯冲启动“ coincides ”；第二，机制论证，即三维模型显示俯冲重组可跨太平洋传递伸展应力；第三，构造指向性，即该应力不仅加载GOCOR，也加载南段圣安德烈亚斯断层，暗示其与区域构造重组具有一致性。如果全文成立，这将是一个把太平洋两侧构造事件耦合起来的板块尺度动力学解释。
+
+对科研读者而言，这篇论文与以下方向关系密切：大陆裂谷启动机制、远场应力传递、俯冲带重组、板块内部应力场、斜向裂谷演化、圣安德烈亚斯断层系统动力学，以及“预条件化岩石圈”在裂解中的角色。如果你的研究涉及裂谷形成、板块边界重组或地球动力学建模，这篇文章的价值在于提供了一个可检验的远场驱动假说，而不只是局部构造叙事。
+
+但基于摘要也必须保持谨慎。首先，“时间 coincides”不等于因果，全文需要看年代学约束是否足够精确，以及是否排除了其他同时期驱动。其次，三维模型的边界条件、黏度结构、板块几何、俯冲启动方式和应力估算方法会强烈影响5至15 MPa这一结果。再次，摘要提到“preconditioned lithosphere”，说明作者并未否认局部岩石圈先天弱化或长期伸展的重要性，因此更可能是“远场触发+局部易损性”的组合机制，而非单一原因论。最后，是否能推广到“其他裂谷事件”仍需看论文是否给出一般化判据，还是仅为GOCOR个案。
+
+需要重点核对的信息包括：双俯冲具体指哪两个俯冲系统及其启动时间；模型如何表示太平洋板块与周缘边界；5至15 MPa是在何种深度、时段和空间范围上定义；GOCOR快速裂谷的观测约束来自哪些地质或地球物理证据；南圣安德烈亚斯断层加载在模型中表现为何种应力分量；以及作者如何比较“远场俯冲重组驱动”与“长期伸展加速”两种解释的相对贡献。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Continental rifting reflects the balance between tectonic forces and lithospheric strength, yet the mechanisms of breakup remain debated. Rapid rifting of the Gulf of California oblique rift (GOCOR) ~6 million to 8 million years ago is a key example; it may have resulted from the lithosphere responding to external kinematics or acceleration of long-lived extension. The dynamics of either scenario remain incompletely understood. In this study, we highlight that the rapid rifting of the GOCOR coincides with the initiation of Western Pacific double subduction. Using three-dimensional geodynamic models, we show that such subduction reorganization can transmit extensional stresses of ~5 to 15 megapascals across the Pacific plate, loading the GOCOR and the southern San Andreas fault. Subduction reorganization may represent the missing driver for the initiation of rapid GOCOR rifting within a preconditioned lithosphere and may be an overlooked tectonic force behind other rifting events.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-10-29</span>
+        <span>Score 44.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>7. <a href="https://doi.org/10.1126/science.adv3196">Chiral altermagnon in MnTe</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Chiral+altermagnon+in+MnTe&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adv3196%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Chiral+altermagnon+in+MnTe%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Chiral+altermagnon+in+MnTe&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adv3196%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Chiral+altermagnon+in+MnTe%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Chiral+altermagnon+in+MnTe&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adv3196%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Chiral+altermagnon+in+MnTe%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Daniel Jost、Resham Babu Regmi、Eder G. Lomeli、Samuel Sahel-Schackis 等 15 人 · DOI: <a href="https://doi.org/10.1126/science.adv3196">10.1126/science.adv3196</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>该论文围绕锰碲化物 MnTe 中是否存在并可被直接观测到的“手性 altermagnon（手性交错磁振子）”这一具体问题展开，报告了利用圆二色共振非弹性 x 射线散射对该激发模式的实验识别。摘要表明，该模式的动量依赖自旋极化与 MnTe 的 altermagnetic g-wave 对称性一致，指向交错磁序对自旋动力学的直接塑造。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是：在 altermagnet 候选材料 MnTe 中，给出了手性磁振子的直接实验线索，并将其明确命名为 chiral altermagnon；同时通过偏振分辨的圆二色 RIXS 证据，把该激发的动量依赖自旋极化与 MnTe 的 g-wave altermagnetic 对称性联系起来。若摘要表述成立，这项工作不仅补上了 altermagnetism 从静态能带自旋劈裂到动态磁激发的关键一环，也为面向自旋电子学和量子技术的手性自旋激发调控提供了材料与测量范式。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Science</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>44.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在 altermagnetic 候选材料 MnTe 中，是否存在由交错磁序对称性所允许的手性磁振子，并且这种激发能否被实验直接观测到；进一步地，该激发的自旋极化是否随动量呈现出与 MnTe 的 g-wave altermagnetic 对称性一致的规律。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推断，作者主要采用圆二色共振非弹性 x 射线散射（circular-dichroism RIXS）并结合偏振分辨测量，在 MnTe 的不同动量转移位置记录磁激发谱。分析路径可能包括：比较不同圆偏振条件下的散射强度差异；在能量损失谱中识别磁激发峰；提取该峰的动量依赖、偏振依赖和可能的自旋极化信息；再与基于 MnTe altermagnetic g-wave 对称性的理论预期或模型计算进行对应。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，研究对象具体且前沿：MnTe 是 altermagnetism 讨论中的代表性候选材料，若能在其中直接看到手性磁激发，意义很强。其二，测量手段具有针对性：圆二色加偏振分辨的 RIXS 天然适合探测与角动量和手性相关的磁激发选择规则。其三，证据不只停留在“看见一个峰”，而是强调该模式的动量依赖自旋极化与 g-wave 对称性一致，这使结果更接近对称性驱动的新型激发分类，而非普通谱学观察。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查看正文或图 1/主结果图，确认 MnTe 的晶体与磁结构、RIXS 测量几何、所用吸收边和样品条件；第二，定位展示圆二色信号与动量依赖的关键图，记录手性信号在哪些 q 点出现、符号是否翻转、与普通 magnon 分支如何区分；第三，查作者是否给出线性自旋波、群论或第一性原理/有效模型计算来支撑 g-wave 对称性解释；第四，整理一个核对清单：能量尺度、温度依赖、误差条、对照测量、是否存在替代解释。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在 altermagnetic 候选材料 MnTe 中，是否存在由交错磁序对称性所允许的手性磁振子，并且这种激发能否被实验直接观测到；进一步地，该激发的自旋极化是否随动量呈现出与 MnTe 的 g-wave altermagnetic 对称性一致的规律。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推断，作者主要采用圆二色共振非弹性 x 射线散射（circular-dichroism RIXS）并结合偏振分辨测量，在 MnTe 的不同动量转移位置记录磁激发谱。分析路径可能包括：比较不同圆偏振条件下的散射强度差异；在能量损失谱中识别磁激发峰；提取该峰的动量依赖、偏振依赖和可能的自旋极化信息；再与基于 MnTe altermagnetic g-wave 对称性的理论预期或模型计算进行对应。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，研究对象具体且前沿：MnTe 是 altermagnetism 讨论中的代表性候选材料，若能在其中直接看到手性磁激发，意义很强。其二，测量手段具有针对性：圆二色加偏振分辨的 RIXS 天然适合探测与角动量和手性相关的磁激发选择规则。其三，证据不只停留在“看见一个峰”，而是强调该模式的动量依赖自旋极化与 g-wave 对称性一致，这使结果更接近对称性驱动的新型激发分类，而非普通谱学观察。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要需要警惕几类边界。第一，MnTe 的 altermagnetic 身份是否已被充分确立，还是仍属于候选，需要看正文对磁结构和对称性的论证。第二，摘要没有给出能量尺度、温度范围、动量覆盖范围、样品形态和统计显著性，因此无法判断信号是否稳健、是否普适。第三，手性信号可能受实验几何、矩阵元和背景扣除影响，需核对作者如何排除非本征圆二色来源。第四，应用前景虽被提及，但摘要未提供关于寿命、相干性、可操控性或器件兼容性的实证信息。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查看正文或图 1/主结果图，确认 MnTe 的晶体与磁结构、RIXS 测量几何、所用吸收边和样品条件；第二，定位展示圆二色信号与动量依赖的关键图，记录手性信号在哪些 q 点出现、符号是否翻转、与普通 magnon 分支如何区分；第三，查作者是否给出线性自旋波、群论或第一性原理/有效模型计算来支撑 g-wave 对称性解释；第四，整理一个核对清单：能量尺度、温度依赖、误差条、对照测量、是否存在替代解释。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：六方或相关晶体结构中的锰碲化物 MnTe，被视为 altermagnetic candidate。论文聚焦的不是一般磁振子，而是一类具有手性和动量依赖自旋极化特征的离散磁激发，即“chiral altermagnon”。这里的科学任务是证明：MnTe 中由交错磁序和特定空间/磁对称性允许的手性磁激发，是否能够被实验直接分辨，并且其极化随动量变化的规律是否与理论上预期的 g-wave altermagnetic symmetry 相匹配。
+
+方法线索主要来自摘要中的 circular-dichroism resonant inelastic x-ray scattering 和 polarization-resolved data。由此可推断，作者应当在 Mn 吸收边附近进行共振非弹性 x 射线散射，通过左右圆偏振入射或相关偏振分析比较散射强度差异，以提取与手性、自旋角动量选择定则相关的磁激发信息。所谓“direct experimental evidence”很可能依赖于：在特定动量转移处观测到某一磁激发峰的圆二色信号、该信号的符号或强度随动量发生系统变化、并且这种变化不能简单归因于普通反铁磁磁振子或仪器几何效应。摘要还强调“distinct momentum dependence of its spin polarization”，说明作者不仅看到了能量-动量色散，还试图从偏振通道中恢复激发的自旋极化属性，并将其与 g-wave 对称性做对应。
+
+从证据链角度，论文最关键的论证应包括三层：第一，MnTe 的磁有序状态可支持 altermagnetic 描述，而非仅仅是常规反铁磁；第二，RIXS 中观测到的特定低能或中低能激发确属磁激发而非声子、dd 激发或其他背景；第三，该激发的圆二色与偏振分辨特征具有手性，并且其动量依赖符合 altermagnetic g-wave symmetry 的选择规则或理论计算。若这三层都成立，那么“chiral altermagnon”就不是命名上的延伸，而是一个由对称性、实验观测和动量空间结构共同支撑的新类别磁激发。
+
+与相关研究方向的关系方面，这篇论文对几个群体都值得关注。对磁性拓扑、自旋电子学和磁振子学研究者而言，它把 altermagnetism 从电子能带中的动量依赖自旋劈裂，推进到集体激发层面的手性模式识别；对散射实验研究者而言，它展示了圆二色 RIXS 在区分磁激发手性和自旋极化方面的能力；对理论研究者而言，MnTe 的 g-wave 对称性如何具体映射到磁振子极化纹理、以及这种纹理是否具有可计算和可泛化的表示，是后续建模重点。
+
+但基于当前仅有的题录和摘要，也有若干必须核对的信息。首先，MnTe 被称为“altermagnetic candidate”，说明其材料归类在文献中可能仍有讨论，需查看正文如何界定样品相、磁结构和对称性。其次，“direct experimental evidence”并不自动等于无歧义证明，需要核对是否有理论拟合、对照样品、温度依赖、布里渊区多点测量和误差分析支撑。再次，所谓“discrete class of magnetic excitations”是指在对称性上独立于普通 magnon 的新类，还是指在实验上可分辨的一支模式，需看作者的严格定义。最后，若你关心器件或量子技术应用，摘要中的应用前景仍偏前瞻性，距离可操控、可室温、可器件集成还有多远，需要从样品条件、能量尺度、寿命和可读出方式进一步判断。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Altermagnetism has been recognized as a magnetic phase that bridges the properties of ferro- and antiferromagnetism. The momentum-dependent spin splitting observed in these materials reflects their distinctive symmetry characteristics, which also establish the conditions for chiral magnons to emerge. Here we provide direct experimental evidence for a chiral magnon in the altermagnetic candidate manganese telluride (MnTe) revealed by circular-dichroism resonant inelastic x-ray scattering. This mode, which we term chiral altermagnon, exhibits a distinct momentum dependence of its spin polarization consistent with the altermagnetic g -wave symmetry of MnTe. Our polarization-resolved data corroborate the existence of a discrete class of magnetic excitations, demonstrating how altermagnetic order shapes spin dynamics and paving the way for advances in spintronic and quantum technologies.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-10-28</span>
+        <span>Score 40.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11223-x">Delayed electron–hole recombination in a pseudo-direct semiconductor</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Delayed+electron%E2%80%93hole+recombination+in+a+pseudo-direct+semiconductor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11223-x%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Delayed+electron%E2%80%93hole+recombination+in+a+pseudo-direct+semiconductor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Delayed+electron%E2%80%93hole+recombination+in+a+pseudo-direct+semiconductor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11223-x%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Delayed+electron%E2%80%93hole+recombination+in+a+pseudo-direct+semiconductor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Delayed+electron%E2%80%93hole+recombination+in+a+pseudo-direct+semiconductor&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11223-x%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Delayed+electron%E2%80%93hole+recombination+in+a+pseudo-direct+semiconductor%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Marcello Righetto、Debalina Banerjee、Zhenglin Jia、Joshua R. S. Lilly 等 13 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11223-x">10.1038/s41586-026-11223-x</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文围绕半导体硫化铋（bismuth sulfide）这一具体材料，讨论其“伪直接带隙”特征如何在保持高吸收系数的同时延缓电子-空穴双分子复合。作者声称这种由低能间接跃迁与高出数个kBT的直接跃迁共同构成的能带结构，可能帮助突破传统由广义普朗克定律和van Roosbroeck–Shockley关系带来的光伏转换限制。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于摘要可判断，论文的核心贡献是：提出并在硫化铋中识别出一种可规避“强吸收必然强发射/快辐射复合”传统互易约束的伪直接半导体机制；并将这种机制与“高吸收+延迟电子-空穴复合”的组合联系起来，指向太阳能转换材料设计的新范式。若摘要表述成立，其贡献不只是材料发现，也包括对半导体吸收-发射互易关系适用边界的重新界定。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>40.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体科学问题是：半导体中由吸收率与发射率互易关系导出的经典限制，是否可以通过特殊能带结构被部分规避；更具体地说，是否存在一种材料在太阳能相关能区保持高吸收系数，同时因带边复合通道具有间接特征而显著减慢电子-空穴双分子复合。作者以硫化铋为对象，检验其是否属于这种“伪直接带隙”半导体。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>仅根据摘要推测，研究路径大概率包括两部分。其一是带隙性质判定：通过实验光谱与理论能带分析识别低能间接跃迁和略高能直接跃迁的共存，并量化两者能量差处于数个kBT量级。可能用到吸收系数提取、温度依赖吸收边/PL、以及第一性原理计算。其二是复合动力学表征：通过时间分辨手段测量光生载流子复合速率，特别是双分子电子-空穴复合，并与典型直接带隙半导体进行对照，证明硫化铋中的复合被显著延缓。若论文讨论太阳能转换意义，还可能结合准费米能级分裂、发光效率或器件相关指标进行推断。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>从摘要看，最突出的亮点有三点。第一，研究对象具体且具有应用潜力：硫化铋是实际可用于光电的半导体，而非纯理论模型。第二，概念上提出了“伪直接带隙”作为连接高吸收与慢复合的机制，这比单纯报告长寿命或高吸收更有可迁移性，可能指导材料筛选。第三，工作把基础物理中的吸收-发射互易关系与太阳能转换极限联系起来，若证据充分，意义会超出单一材料，影响对光伏吸收层理想特征的理解。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五项。第一，优先查正文或补充信息中硫化铋的具体相、样品形态和制备方法，确认研究对象是否为Bi2S3及其晶体结构。第二，记录伪直接带隙的两个关键能量：间接带隙、直接带隙，以及它们的差值是否确为数个kBT。第三，查找复合动力学图，提取双分子复合系数或寿命，并与摘要所称“经典直接半导体”对照。第四，核对作者是否通过缺陷分析、量子效率或温度依赖实验排除了缺陷诱导长寿命的替代解释。第五，若你的方向是光伏材料筛选，可据此建立一个候选标准：寻找“直接跃迁仅高于间接带边几十到百余meV、且直接跃迁振子强度高”的材料，并与现有数据库或DFT结果做初筛。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体科学问题是：半导体中由吸收率与发射率互易关系导出的经典限制，是否可以通过特殊能带结构被部分规避；更具体地说，是否存在一种材料在太阳能相关能区保持高吸收系数，同时因带边复合通道具有间接特征而显著减慢电子-空穴双分子复合。作者以硫化铋为对象，检验其是否属于这种“伪直接带隙”半导体。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>仅根据摘要推测，研究路径大概率包括两部分。其一是带隙性质判定：通过实验光谱与理论能带分析识别低能间接跃迁和略高能直接跃迁的共存，并量化两者能量差处于数个kBT量级。可能用到吸收系数提取、温度依赖吸收边/PL、以及第一性原理计算。其二是复合动力学表征：通过时间分辨手段测量光生载流子复合速率，特别是双分子电子-空穴复合，并与典型直接带隙半导体进行对照，证明硫化铋中的复合被显著延缓。若论文讨论太阳能转换意义，还可能结合准费米能级分裂、发光效率或器件相关指标进行推断。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>从摘要看，最突出的亮点有三点。第一，研究对象具体且具有应用潜力：硫化铋是实际可用于光电的半导体，而非纯理论模型。第二，概念上提出了“伪直接带隙”作为连接高吸收与慢复合的机制，这比单纯报告长寿命或高吸收更有可迁移性，可能指导材料筛选。第三，工作把基础物理中的吸收-发射互易关系与太阳能转换极限联系起来，若证据充分，意义会超出单一材料，影响对光伏吸收层理想特征的理解。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的边界主要有：第一，摘要没有给出任何定量数据，例如吸收系数、复合常数、寿命提升倍数、能隙差值和器件性能增益，因此无法判断效应大小是否足以改变实际器件设计。第二，长寿命并不自动意味着优异光伏性能，若材料存在深缺陷、低迁移率或接触问题，延迟复合未必能转化为高电压或高效率。第三，所谓“规避互易”需要严格区分是材料内部带结构导致的有效辐射复合抑制，还是样品质量、缺陷态、相纯度等因素造成的表观现象。第四，摘要强调双分子复合，但未说明单分子陷阱复合和Auger过程的角色，也未说明在工作载流子密度范围内哪一机制主导。第五，若只在硫化铋中展示，机制的普适性仍需更多材料验证。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五项。第一，优先查正文或补充信息中硫化铋的具体相、样品形态和制备方法，确认研究对象是否为Bi2S3及其晶体结构。第二，记录伪直接带隙的两个关键能量：间接带隙、直接带隙，以及它们的差值是否确为数个kBT。第三，查找复合动力学图，提取双分子复合系数或寿命，并与摘要所称“经典直接半导体”对照。第四，核对作者是否通过缺陷分析、量子效率或温度依赖实验排除了缺陷诱导长寿命的替代解释。第五，若你的方向是光伏材料筛选，可据此建立一个候选标准：寻找“直接跃迁仅高于间接带边几十到百余meV、且直接跃迁振子强度高”的材料，并与现有数据库或DFT结果做初筛。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常明确，是半导体硫化铋（从摘要看应为Bi2S3或相关bismuth sulfide相，但具体晶相、薄膜/单晶形态、缺陷水平和制备路线在题录中未给出，需核对正文）。论文要解决的具体问题是：在半导体中，是否存在一种能带结构，使材料既像直接带隙材料那样强吸收，又不像典型直接带隙材料那样发生快速电子-空穴复合，从而缓解由吸收-发射互易关系带来的光伏效率约束。摘要给出的答案是“伪直接带隙”：材料具有更低能量的间接跃迁，同时在高出几个kBT处存在直接跃迁。这样一来，吸收过程可由接近直接跃迁的高振子强度通道支撑，而载流子在热化后可能主要占据更低能的间接带边态，导致辐射复合被显著抑制或延后。就证据线索而言，摘要至少暗示了两条主线：第一，作者“确定了”硫化铋的伪直接带隙性质，这通常需要结合吸收谱/椭偏、稳态与温变光致发光、可能的电致发光、以及第一性原理能带计算来区分直接与间接跃迁位置和能量差；第二，作者“揭示”这种特征显著延缓了双分子电子-空穴复合，相比经典直接半导体更慢，这通常需要时间分辨光谱、瞬态吸收、时间分辨微波电导、太赫兹电导或载流子寿命/复合动力学拟合来支持，并且需要与标准直接带隙材料做对照。摘要中还把结果上升到“克服普朗克定律相关限制”的层面，这里的准确含义需要谨慎理解：更可能是针对半导体器件中由广义普朗克定律和van Roosbroeck–Shockley方程导出的辐射复合/发光损失约束，而不是否定热辐射基本定律本身。对科研读者而言，这篇工作与高效光伏、低辐射损失吸收层、非常规带隙工程、以及“强吸收但弱发光”材料筛选直接相关，尤其适合关注薄膜太阳能电池、光电探测和载流子动力学的人。需要重点核对的信息包括：伪直接能隙的具体能量差是多少；“几个kBT”在室温下对应多少meV；比较对象是哪些“经典直接半导体”；延迟的是总复合还是主要是辐射/双分子复合；是否排除了缺陷俘获导致的假性长寿命；高吸收系数与长扩散长度是否在同一材料质量条件下同时成立；以及这种机制在器件开路电压、外量子效率或非辐射损失上是否真正转化为性能收益。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Abstract Kirchhoff demonstrated the reciprocity between absorptivity and emissivity for blackbody radiation in 1860 (ref. 1 ), thereby establishing the general principle that a good absorber must also be a good emitter. This principle underpins the generalized Planck’s law 2 and, when applied to semiconductors—in the form of the van Roosbroeck–Shockley equation 3 —results in substantial limitations to solar energy conversion. Here we demonstrate how this reciprocity can be circumvented in semiconductors, such as bismuth sulfide, showing a pseudo-direct bandgap character—that is, featuring a lower-energy indirect transition paired with a direct transition placed a few k B T above. After determining the pseudo-direct bandgap nature of bismuth sulfide, we reveal how this feature substantially retards bimolecular electron–hole recombination in this material with respect to classic direct semiconductors 4 . The resulting combination of a high absorption coefficient and delayed recombination offers the unprecedented possibility of overcoming limitations associated with Planck’s law, with far-reaching potential for solar energy conversion.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-10-28</span>
+        <span>Score 40.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11214-y">Subcycle videography of Landau–Zener–Majorana transitions in graphene</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Subcycle+videography+of+Landau%E2%80%93Zener%E2%80%93Majorana+transitions+in+graphene&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11214-y%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Subcycle+videography+of+Landau%E2%80%93Zener%E2%80%93Majorana+transitions+in+graphene%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Subcycle+videography+of+Landau%E2%80%93Zener%E2%80%93Majorana+transitions+in+graphene&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11214-y%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Subcycle+videography+of+Landau%E2%80%93Zener%E2%80%93Majorana+transitions+in+graphene%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Subcycle+videography+of+Landau%E2%80%93Zener%E2%80%93Majorana+transitions+in+graphene&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11214-y%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Subcycle+videography+of+Landau%E2%80%93Zener%E2%80%93Majorana+transitions+in+graphene%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">V. Eggers、G. Inzani、M. Meierhofer、L. Münster 等 17 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11214-y">10.1038/s41586-026-11214-y</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>Subcycle videography of Landau–Zener–Majorana transitions in graphene。摘要要点：Abstract Strong light fields have unlocked entirely new possibilities to tailor coherent electron trajectories, engineer band structures and shape emergent phases of matter all-optically 1–9 .</p></div>
+        <div class="note"><strong>贡献</strong><p>摘要中最具体的线索是：Abstract Strong light fields have unlocked entirely new possibilities to tailor coherent electron trajectories, engineer band structures and shape emergent phases of matter all-optically 1–9 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>40.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文围绕“Subcycle videography of Landau–Zener–Majorana transitions in graphene”展开；摘要线索显示问题可能与 Abstract Strong light fields have unlocked entirely new possibilities to tailor coherent electron trajectories, engineer band structures and shape emergent phases of matter all-optically 1–9 . 有关。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>它来自 Nature，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文围绕“Subcycle videography of Landau–Zener–Majorana transitions in graphene”展开；摘要线索显示问题可能与 Abstract Strong light fields have unlocked entirely new possibilities to tailor coherent electron trajectories, engineer band structures and shape emergent phases of matter all-optically 1–9 . 有关。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>它来自 Nature，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>来源为 Nature，关键词匹配：未命中显式关键词。题名指向“Subcycle videography of Landau–Zener–Majorana transitions in graphene”。摘要中可用的信息是：Abstract Strong light fields have unlocked entirely new possibilities to tailor coherent electron trajectories, engineer band structures and shape emergent phases of matter all-optically 1–9 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Abstract Strong light fields have unlocked entirely new possibilities to tailor coherent electron trajectories, engineer band structures and shape emergent phases of matter all-optically 1–9 . Unravelling the underlying quantum mechanisms requires a visualization of the lightwave-driven electron motion 10,11 directly in the band structure. Although photoelectron momentum microscopy has imaged photoexcited electrons averaged over many cycles of light 12–19 , subcycle band-structure videography has been limited to small electron momenta 8,20 . Yet, lightwave-driven elementary processes in quantum materials often occur throughout momentum space. Here we introduce attosecond-precision, subcycle band-structure videography covering the entire first Brillouin zone and visualize one of the most fundamental but elusive strong-field processes: non-adiabatic Landau–Zener–Majorana tunnelling. The interplay of strong-field-driven acceleration within the Dirac-like band structure of graphene and periodic Landau–Zener–Majorana interband tunnelling manifests in a coherent subcycle displacement and distortion of the carrier distribution at the Brillouin zone edge. The extremely non-thermal electron distributions also allow us to disentangle competing scattering processes and assess their impact on coherent electronic control. Our panoramic view of field-driven electron motion enables a new quality of microscopic understanding of strong-field control of quantum materials.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-10-28</span>
+        <span>Score 40.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11211-1">Clostridium perfringens Delta toxin targets CD9 to drive NEC and brain injury</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Clostridium+perfringens+Delta+toxin+targets+CD9+to+drive+NEC+and+brain+injury&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11211-1%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Clostridium+perfringens+Delta+toxin+targets+CD9+to+drive+NEC+and+brain+injury%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Clostridium+perfringens+Delta+toxin+targets+CD9+to+drive+NEC+and+brain+injury&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11211-1%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Clostridium+perfringens+Delta+toxin+targets+CD9+to+drive+NEC+and+brain+injury%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Clostridium+perfringens+Delta+toxin+targets+CD9+to+drive+NEC+and+brain+injury&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11211-1%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Clostridium+perfringens+Delta+toxin+targets+CD9+to+drive+NEC+and+brain+injury%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Shimeng Zhang、Xiaoqing Gong、Songhai Tian、Yang Yang 等 16 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11211-1">10.1038/s41586-026-11211-1</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦产气荚膜梭菌（Clostridium perfringens）的Delta toxin如何通过靶向宿主分子CD9，驱动坏死性小肠结肠炎（NEC）及脑损伤这一具体致病过程。由于提供信息中摘要为空，目前只能较高置信度地确认其研究对象是“细菌毒素-CD9-NEC/脑损伤”轴，无法仅凭题录判断其关键实验结果与效应大小。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名推测，论文的核心贡献可能是提出并验证了一个较具体的机制链条：产气荚膜梭菌Delta毒素识别或作用于CD9，进而促进NEC发生，并将肠道病变与脑损伤联系起来。如果这一机制被实验证实，则其意义在于把病原体毒力因子、宿主膜蛋白受体/共受体以及肠-脑损伤关联整合到同一框架中，并可能提示CD9或Delta toxin中和策略作为干预靶点。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>40.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名判断，是产气荚膜梭菌的Delta toxin是否通过靶向宿主CD9来驱动NEC发生，以及这一肠道致病机制是否还能解释或导致脑损伤。更细一点说，它可能在问：NEC中是否存在一个可定义的细菌毒素-宿主受体轴，而不是仅仅停留在菌群失衡或炎症相关层面。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：用细胞系、类器官或原代细胞测试Delta toxin对表达/不表达CD9细胞的毒性差异；通过结合实验、共定位、免疫沉淀、突变体或结构/生化分析验证Delta toxin与CD9的关系；在小鼠或新生动物NEC模型中比较野生型与CD9干预条件下的肠损伤程度；检测脑组织病理、炎症标志物、血脑屏障改变或神经细胞损伤；若有临床部分，可能分析NEC患儿样本中的产气荚膜梭菌丰度、毒素检出、CD9表达或疾病严重度关联。以上是题名支持下的可能实验框架，需以摘要和正文核实。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，机制对象非常具体：不是泛泛讨论梭菌与NEC相关，而是锁定Delta toxin和CD9。第二，疾病链条较完整：从肠道局部病变延伸到脑损伤，若证据充分，将增强对NEC全身并发症机制的理解。第三，转化潜力明确：若CD9或Delta toxin可被阻断，可能形成诊断分层、生物标志物或干预策略。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先获取摘要并核对是否包含人类样本、动物模型和受体验证三类证据；第二，读图时重点找“Delta toxin与CD9直接作用”的核心图、“CD9干预是否减轻NEC”的因果图，以及“脑损伤评估”的证据图；第三，记录三个问题：CD9定位于哪些关键细胞、毒素是否足以单独致病、脑损伤是直接毒性还是继发效应；第四，如你做相关方向，可立即检索既往Delta toxin与tetraspanin/CD9文献，建立该论文的新颖性基线。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名判断，是产气荚膜梭菌的Delta toxin是否通过靶向宿主CD9来驱动NEC发生，以及这一肠道致病机制是否还能解释或导致脑损伤。更细一点说，它可能在问：NEC中是否存在一个可定义的细菌毒素-宿主受体轴，而不是仅仅停留在菌群失衡或炎症相关层面。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：用细胞系、类器官或原代细胞测试Delta toxin对表达/不表达CD9细胞的毒性差异；通过结合实验、共定位、免疫沉淀、突变体或结构/生化分析验证Delta toxin与CD9的关系；在小鼠或新生动物NEC模型中比较野生型与CD9干预条件下的肠损伤程度；检测脑组织病理、炎症标志物、血脑屏障改变或神经细胞损伤；若有临床部分，可能分析NEC患儿样本中的产气荚膜梭菌丰度、毒素检出、CD9表达或疾病严重度关联。以上是题名支持下的可能实验框架，需以摘要和正文核实。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，机制对象非常具体：不是泛泛讨论梭菌与NEC相关，而是锁定Delta toxin和CD9。第二，疾病链条较完整：从肠道局部病变延伸到脑损伤，若证据充分，将增强对NEC全身并发症机制的理解。第三，转化潜力明确：若CD9或Delta toxin可被阻断，可能形成诊断分层、生物标志物或干预策略。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，无法确认研究设计、样本量、模型类型、统计强度和关键结论。仅凭题名还无法判断CD9是否为直接受体、脑损伤是否为因果链条中的直接结果、以及结论在人类NEC中的外推性。还需警惕题名中的“drive”可能基于动物模型或特定实验条件，未必等同于临床主要致病机制。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先获取摘要并核对是否包含人类样本、动物模型和受体验证三类证据；第二，读图时重点找“Delta toxin与CD9直接作用”的核心图、“CD9干预是否减轻NEC”的因果图，以及“脑损伤评估”的证据图；第三，记录三个问题：CD9定位于哪些关键细胞、毒素是否足以单独致病、脑损伤是直接毒性还是继发效应；第四，如你做相关方向，可立即检索既往Delta toxin与tetraspanin/CD9文献，建立该论文的新颖性基线。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名可提取的具体对象包括：病原体为产气荚膜梭菌，毒力因子为Delta toxin，宿主靶分子为CD9，疾病表型为NEC和brain injury。NEC通常与新生儿、尤其早产儿肠道屏障破坏、炎症失控和菌群异常相关，因此该工作很可能试图回答：某一特定细菌毒素是否通过结合宿主特定膜蛋白，直接造成肠上皮/内皮损伤，并进一步引发全身或中枢神经系统后果。题名中的“targets CD9”提示研究重点不是泛化的炎症相关性，而是较明确的分子靶向关系，可能涉及受体结合、细胞毒性、膜孔形成、信号转导或细胞易感性差异。作为证据线索，Nature级别文章通常会包含若干层次：体外细胞实验验证Delta toxin与CD9相关；遗传学或阻断实验显示CD9缺失、敲低、抗体阻断或竞争性抑制可减弱毒性；动物模型中证明该轴促进NEC严重度，并评估脑组织损伤、神经炎症或行为/组织学改变；若有临床样本，可能会检测NEC患儿中产气荚膜梭菌、Delta toxin或CD9相关标志物的关联。与科研读者的关系上，这篇论文若属实证机制研究，尤其值得肠道感染、宿主-病原互作、新生儿疾病、毒素生物学、肠脑轴和转化医学方向关注。当前最需要核对的信息包括：1）CD9是直接受体、辅助受体还是下游必需因子；2）Delta toxin作用的主要细胞类型是肠上皮、内皮、免疫细胞还是神经相关细胞；3）脑损伤是继发于全身炎症/屏障破坏，还是存在毒素直接作用证据；4）NEC模型是化学/缺氧冷刺激模型、感染模型，还是临床样本关联；5）是否有患者来源证据支持该机制的人类相关性。由于摘要缺失，以上均属于基于题名和领域常识的审慎推断，不能视为论文已明确报告的结果。</p></div>
+          </div>
+          
+        </div>
+      </details>
+    
+    </article>
+    </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="shell">
+      生成时间：2026-11-01 01:09。LLM paper analysis failed for doi:10.1038/s41586-026-11214-y: Extra data: line 1 column 3107 (char 3106)
+    </div>
+  </footer>
+</body>
+</html>
