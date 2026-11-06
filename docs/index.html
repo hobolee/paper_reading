@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-11-05</title>
+  <title>Paper Reading · 2026-11-06</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,12 +19,12 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-11-05 · 中文论文简报</div>
+        <div class="eyebrow">2026-11-06 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天的论文集合呈现出两个最值得优先跟进的主轴。第一主轴是“面向真实工作流的LLM/agent系统正在从会说转向会执行、会保状态、会被验证”。其中最值得优先读的是 ToolSpace 和 GeoFaham：前者把长程智能体训练/评测环境的构造逻辑改成从真实 MCP 服务执行轨迹反推工具依赖、环境边界与任务，再用可回放与断言检查筛样本，直接对准当前 agent benchmark 常见的“接口像真、执行不真”问题；后者则把灾害响应中的地理空间分析拆成多专家代理，并用 orchestration、dual-ledger 和工件持久化去控制跨步骤状态与空间/时间元数据丢失，这代表 agent 系统开始进入强约束、强状态、强工件依赖的专业场景。第二主轴是“LLM在科研与科学数据中的角色正在被重新界定，不再只看生成文本，而看其是否能作为中间推理器或综述助手被可靠评估”。文献综述评测那篇 102 篇 benchmark 的工作很值得优先读，因为它不是泛泛讨论‘AI能否写综述’，而是把检索、判别、综合、研究建议拆开测，并明确暴露出在完整 PDF 条件下模型仍会把‘顺带提及’误判为‘实质讨论’，以及综述中存在证据支撑不足和夸大共识的问题；这对任何想把 LLM 接入科研阅读流的人都很关键。TSFM Meets LLM 则代表另一条更务实的路线：不让 LLM 直接负责最终预测，而是把文本理解蒸馏成数值协变量，再交给时间序列基础模型完成预测，这种“语义推理前置、数值建模后置”的接口设计很可能比端到端文本预测更稳健。第三主轴是高影响力自然科学论文继续集中在“统一机制解释”和“新测量/新资源平台”两类贡献上。Great Unconformity 那篇试图用深部地幔对流—动态地形—大陆尺度抬升/沉降把形成与保存统一起来，属于典型的跨尺度机制整合；JWST 系外行星成像论文则是通过物理模型加 autodiff 优化去突破望远镜稳定性限制，方法学上很强；另外 Science 的三篇分别在植物 SI 遗传架构、成年脊椎动物全身单细胞图谱、以及生物多样性热点区鸟类遗传侵蚀上提供了高价值资源或框架。若按阅读优先级排序：对做 AI agent/ML systems 的读者，第一梯队是 ToolSpace、GeoFaham、102-article 文献综述评测、TSFM Meets LLM；对做方法迁移或科学应用的读者，可把 JWST 成像方法放入第二梯队；对做领域科学问题的读者，则 Great Unconformity、Papaver SI、Danionella 图谱和 avifauna genomic erosion 各自都值得按学科相关性选择性深入。整体上，今天最清晰的信号是：无论在 agent、科研辅助还是科学测量中，真正拉开差距的不是“模型更大”，而是是否把状态、证据、可执行性、物理约束和评估拆解得足够具体。</p>
+        <p class="summary">今天的论文可分成两条主线和一组外围高影响工作。第一条主线是“LLM agent 的推理时扩展与外层控制优化”。其中最值得优先读的是 arxiv:2611.06868v1 和 arxiv:2611.06254v1：前者把逐回合 best-of-N 明确成 generator-selector 框架，问题非常具体，直接对应当前 agent 在长时程任务中“每一步选错导致全局失败”的瓶颈；后者则把优化对象从 prompt 扩展到完整 harness，用 MCTS 在有限评测预算下搜索可执行控制逻辑，代表了 agent engineering 从手工调规则走向程序级自动改进。两篇合起来看，前者优化“单步动作选择”，后者优化“跨步控制结构”，共同指向一个重要趋势：agent 性能提升越来越依赖 inference-time orchestration，而不只是底模升级。第三篇相关工作 arxiv:2611.06858v1 则把这种能力放到一个更真实的端到端任务里检验：让 coding agent 在约束下自主完成 LLM 压缩并交付可运行代码。它的价值不只是 benchmark，而是提供了一个带有真实反馈闭环、可验证提交和多轮修订轨迹的 agent 评测场景，适合用来检验前两类方法是否真能迁移到高成本工程任务。第二条主线是“适应、搜索与评估目标之间的关系”。arxiv:2611.07048v1 虽然是理论论文，但和前述 agent 论文形成了很强的概念呼应：当系统能主动生成、评估并选择更多候选行为时，适应速度会提升，但若评估目标错设，也会更快收敛到错误方向。这对当前 agent 研究很关键，因为 best-of-N、MCTS harness search、基于 perplexity 的压缩搜索，本质上都在扩大搜索并强化选择器的作用，因此“评估信号是否可靠”成为共同风险点。外围高影响论文里，Science 的海底大地测量和古气候工作都属于“用更合适的观测代理重新校准过程时间尺度”的代表：前者重估东北巨震后主断层 relocking 的恢复状态，后者区分冰芯快速信号与 AMOC 真正恢复时间尺度，提醒我们不要把易观测的快速指标直接等同于底层过程本身。Nature 的胶质母细胞瘤论文则是另一类值得关注的工作：它试图把细胞状态轨迹、空间微环境和遗传亚克隆放到同一框架下解释异质性，方法上体现了单细胞、空间组学与深度学习原位映射的整合趋势。若按阅读优先级排序：对 AI/agent 方向，首读 arxiv:2611.06868v1，其次 arxiv:2611.06254v1，再读 arxiv:2611.06858v1，随后用 arxiv:2611.07048v1 补理论视角；对非 AI 高影响综合阅读，优先看 Tohoku relocking 和 DO/AMOC 时间尺度两篇 Science，其次是胶母空间轨迹这篇 Nature。其余两篇 Nature/Science 条目因当前摘要信息不足或更偏评论，可放在补充阅读位。</p>
         <div class="metrics">
-          <div class="metric"><strong>461</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>212</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>477</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>211</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -44,14 +44,14 @@
             
 
             <div class="bar-row">
-              <div class="bar-label">Nature</div>
+              <div class="bar-label">Science</div>
               <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
               <div class="bar-count">3</div>
             </div>
             
 
             <div class="bar-row">
-              <div class="bar-label">Science</div>
+              <div class="bar-label">Nature</div>
               <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
               <div class="bar-count">3</div>
             </div>
@@ -59,23 +59,21 @@
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">ai <strong>7</strong></span>
-<span class="chip">large language model <strong>4</strong></span>
-<span class="chip">large language models <strong>4</strong></span>
-<span class="chip">llm <strong>4</strong></span>
-<span class="chip">language model <strong>4</strong></span>
-<span class="chip">language models <strong>4</strong></span>
-<span class="chip">agent <strong>2</strong></span>
-<span class="chip">agents <strong>2</strong></span>
-<span class="chip">environment <strong>2</strong></span>
-<span class="chip">weather <strong>2</strong></span>
-<span class="chip">earth <strong>2</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">satellite <strong>1</strong></span>
-<span class="chip">foundation model <strong>1</strong></span>
-<span class="chip">foundation models <strong>1</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
+          <div class="chips"><span class="chip">ai <strong>8</strong></span>
+<span class="chip">environment <strong>5</strong></span>
+<span class="chip">agent <strong>4</strong></span>
+<span class="chip">agents <strong>4</strong></span>
+<span class="chip">llm <strong>3</strong></span>
+<span class="chip">large language model <strong>2</strong></span>
+<span class="chip">language model <strong>2</strong></span>
+<span class="chip">rag <strong>2</strong></span>
+<span class="chip">inference-time scaling <strong>1</strong></span>
+<span class="chip">ai agent <strong>1</strong></span>
+<span class="chip">ai agents <strong>1</strong></span>
+<span class="chip">artificial intelligence <strong>1</strong></span>
 <span class="chip">environmental <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span>
+<span class="chip">ocean <strong>1</strong></span>
 <span class="chip">carbon <strong>1</strong></span></div>
         </div>
       </div>
@@ -94,15 +92,15 @@
 
             <div class="bar-row">
               <div class="bar-label">science</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 32%"></div></div>
-              <div class="bar-count">96</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 39%"></div></div>
+              <div class="bar-count">116</div>
             </div>
             
 
             <div class="bar-row">
               <div class="bar-label">nature</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 22%"></div></div>
-              <div class="bar-count">65</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 20%"></div></div>
+              <div class="bar-count">61</div>
             </div>
             
       </div>
@@ -111,11 +109,12 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">从“文本能力”转向“可执行工作流能力”：ToolSpace 与 GeoFaham 都强调真实工具依赖、状态变化、工件持久化与失败回滚，说明 agent 研究正在把环境真实性和执行约束放到核心位置。</span>
-<span class="chip">科研辅助进入流程化评估阶段：102 篇文献综述 benchmark 把检索、相关性判别、综合与研究建议分开测，揭示 LLM 在‘证据筛选’而非‘表面总结’上仍是主要短板。</span>
-<span class="chip">LLM 更适合作为中间推理模块而非最终决策器：CoCo 框架把文本上下文转成数值协变量，再交给 TSFM 预测，体现出语言模型与专业模型的接口化协作思路。</span>
-<span class="chip">高影响科学方法强调显式约束与可解释建模：JWST 成像依赖物理前向模型和 autodiff，大不整合面研究依赖地球动力学机制链条，二者都不是黑箱拟合，而是把机制写进模型。</span>
-<span class="chip">高价值科学论文仍高度依赖‘新资源/新框架’：Danionella 全身单细胞图谱、Papaver 双 idiomorph SI 架构、62 种鸣禽历史-现代基因组比较，都属于能长期支撑后续研究的数据或概念平台。</span></div>
+        <div class="chips"><span class="chip">从“更强底模”转向“更强推理时编排”：逐回合候选生成-选择、MCTS 式 harness 搜索、受反馈驱动的多轮修订，正在成为 agent 提升的主要抓手。</span>
+<span class="chip">评估器正在成为瓶颈与风险源：无论是 selector 选动作、MCTS 选 harness，还是用 perplexity 排序压缩方案，性能增益都依赖评估信号是否足够稳定、是否真正对应最终目标。</span>
+<span class="chip">agent 研究开始从 prompt 优化走向可执行系统优化：优化对象不再只是文本提示，而是包含工具调用、错误处理、测试、回退机制和代码实现的完整外层控制逻辑。</span>
+<span class="chip">真实世界闭环任务比静态 benchmark 更能暴露 agent 能力边界：CompressionBench 这类带约束、可验证、可修订的工程任务，能更好检验搜索策略、反馈信号和执行鲁棒性。</span>
+<span class="chip">跨领域都在重新审视“观测代理”和“真实过程”的对应关系：冰芯快速信号不等于 AMOC 快速恢复，震后形变也需区分 relocking、余滑和黏弹性松弛；这与 AI 中“代理指标优化偏离真实目标”的问题形成方法论上的平行。</span>
+<span class="chip">多模态整合正在成为复杂系统解释的标准路径：从海底+陆地大地测量，到单细胞+空间组学+克隆信息，核心不是单一数据更大，而是多源证据联合约束同一过程。</span></div>
       </div>
     </section>
 
@@ -124,42 +123,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>做一个针对 agent 环境合成论文的最小复现对照：比较“从真实执行轨迹反推环境”与“先造数据库再派生任务”两种环境构造方式在任务可重放率和跨工具依赖真实性上的差异。</strong>
-              <p>ToolSpace 的核心主张正是环境构造顺序会决定 benchmark 的真实性；这个问题对 agent 评测设计非常基础，而且可以在较小规模上先验证。</p>
-              <p><span>第一步：</span>选一个可公开访问的工具集合或本地模拟 API，手工收集少量真实调用轨迹，按摘要中的依赖类型先做规则标注，再构造一个小型工具图，与人工设计环境做重放成功率和断言通过率对比。</p>
-              <p><span>风险：</span>论文细节尚未展开，真实 MCP 服务与公开可复现工具之间可能存在落差；小规模复现可能只能验证方向，难以完全复现论文结论。</p>
+              <strong>复现并拆解逐回合 best-of-N 的增益来源，区分“生成更多候选”与“选择器真的会选”各自贡献。</strong>
+              <p>arxiv:2611.06868v1 的核心主张是现成 open-weight LLM 可在每回合比较候选动作并提升长时程任务成功率，但真正的增益可能来自候选多样性、选择器偏好，或只是更保守的动作分布变化。把增益拆开有助于判断该方法是否可泛化。</p>
+              <p><span>第一步：</span>选一个公开终端/网页 agent benchmark，固定 generator，设置 N=1/2/4/8，并加入一个随机 selector、一个基于启发式规则的 selector、一个 LLM selector 做对照；先只统计单步动作被事后判为“更优”的比例，再看最终任务成功率。</p>
+              <p><span>风险：</span>需要可重复的 agent 环境和较高运行成本；单步“更优动作”的定义可能本身不稳定，容易受后续轨迹偶然性影响。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>建立一个小型中文或英文文献综述评测集，专门区分“实质讨论”与“顺带提及”，测试现有 LLM/RAG 系统在证据筛选阶段的误判模式。</strong>
-              <p>102-article benchmark 暴露的关键问题不是能不能写流畅综述，而是能否准确筛掉弱相关文献；这直接影响科研阅读助手的可信度。</p>
-              <p><span>第一步：</span>围绕一个自己熟悉的小主题收集 30-50 篇论文，人工标注两级相关性，再让 2-3 个模型在给定标题摘要或全文条件下分类，统计 precision/recall 并记录典型误判理由。</p>
-              <p><span>风险：</span>人工标注标准容易主观；小样本 benchmark 的外推性有限，且不同学科对‘实质讨论’的界定可能不一致。</p>
+              <strong>把 HarnessFlow 与 turn-level best-of-N 组合成分层搜索框架，测试“局部动作选择优化”和“全局 harness 优化”是否互补。</strong>
+              <p>两篇 agent 论文分别作用于不同层级：一个优化每一步动作，一个优化外层控制程序。若二者互补，说明 agent scaling 的关键不在单一技巧，而在多层决策结构共同改进。</p>
+              <p><span>第一步：</span>先不做完整新方法，只做小规模 ablation：在一个可编程 agent 任务上准备基础 harness 和改进 harness，各自再配普通解码与 turn-level best-of-N，形成 2x2 对照，比较成功率、平均步数、测试/调试行为和成本。</p>
+              <p><span>风险：</span>组合后成本迅速上升，且不同层级改动可能相互干扰，导致难以归因；如果 benchmark 太小，可能看不出互补性。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>验证“文本转协变量”是否优于“文本直接预测”：在一个公开时间序列数据集上，构造简单文本注释，比较 CoCo 式管线与直接让 LLM 输出预测值的稳定性。</strong>
-              <p>TSFM Meets LLM 提供了一个很有迁移价值的设计模式；即使不复现完整框架，也可以先验证接口层面的收益。</p>
-              <p><span>第一步：</span>选择一个带已知外生事件的公开时间序列任务，人工或半自动生成简短事件文本；实现两个基线：LLM 直接预测数值、LLM 先输出事件强度/方向/置信度等协变量再交给传统预测模型，比较误差和方差。</p>
-              <p><span>风险：</span>若文本注释质量不高，协变量方案优势可能不明显；没有原论文的训练细节时，结果容易受具体 prompt 和模型选择影响。</p>
+              <strong>系统检查 CompressionBench 类任务中 perplexity 作为搜索反馈的可靠性，量化“局部排序反转”何时会误导 agent。</strong>
+              <p>arxiv:2611.06858v1 已提示完整模型反馈会推翻部分局部排序，这说明代理指标并不总稳定。这个问题直接关系到 agent 是否会在错误反馈上越搜越偏，也与理论论文关于目标错设的警示相呼应。</p>
+              <p><span>第一步：</span>收集若干常见压缩方案或量化配置，在小模型上同时计算快速代理 perplexity、完整 perplexity 和下游任务准确率，做 rank correlation、top-k 命中率和排序反转分析；再检查哪些配置最容易出现反转。</p>
+              <p><span>风险：</span>需要较多算力和可控压缩流水线；即使发现排序反转，也未必能直接推出更好的反馈设计。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>把 GeoFaham 的“工件持久化+状态账本”思想迁移到非地理空间任务，测试它是否能减少多步分析中的上下文丢失。</strong>
-              <p>GeoFaham 的价值可能不只在地理空间，而在于它把中间工件而非纯文本作为协作对象；这对数据分析 agent、实验自动化 agent 都有启发。</p>
-              <p><span>第一步：</span>选一个多步数据分析任务，设计两种 agent 流程：一种只传文本摘要，一种显式保存中间表格/图/元数据并记录步骤账本，比较任务完成率和错误恢复能力。</p>
-              <p><span>风险：</span>地理空间任务的工件复杂度和元数据约束很特殊，迁移到一般任务后收益可能变小；需要自己定义可操作的错误指标。</p>
+              <strong>做一篇面向 agent 研究的短综述或实验笔记：把“搜索规模扩大带来能力提升，也放大目标错设风险”作为统一视角，串联 best-of-N、MCTS harness search 和压缩搜索。</strong>
+              <p>arxiv:2611.07048v1 提供了一个很好的理论母题，但当前 agent 社区常把这些方法分开讨论。把它们放在“搜索-评估-目标偏差”框架下，有助于形成更清晰的方法学判断标准。</p>
+              <p><span>第一步：</span>先做表格化整理：每篇方法的搜索对象、评估信号、预算约束、是否有独立最终验证、已报告的失败模式；再补 5-10 篇相关 inference-time scaling 或 agent search 论文，形成一个最小综述草稿。</p>
+              <p><span>风险：</span>如果只停留在概念类比，容易流于泛泛；需要补足足够多的实证论文才能支撑统一框架。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕‘显式物理/机制约束优于纯黑箱后处理’做一篇方法综述或短评，串联 JWST 成像、大不整合面建模与 agent 环境验证三类工作。</strong>
-              <p>今天的论文里一个很强的共性是：高质量结果来自把物理机制、执行约束或地球动力学过程写进模型，而不是只做表面拟合；这是一个值得提炼的方法论主题。</p>
-              <p><span>第一步：</span>先整理 8-12 篇近期论文，按“约束类型”分成物理前向模型、机制链条模型、执行/断言验证模型三类，做一个对照表，归纳它们分别解决了什么失效模式。</p>
-              <p><span>风险：</span>跨领域综述容易流于抽象，若没有足够具体案例支撑，结论可能过泛；需要控制范围，避免把完全不同的方法硬性并列。</p>
+              <strong>借鉴地学论文的思路，研究 agent 评测中“快速可观测指标”与“真实长期成功”之间的时间尺度错配。</strong>
+              <p>今天两篇 Science 都在提醒：容易观测的快速信号未必等于底层过程本身。对应到 agent，单步奖励、局部测试通过、短窗口 perplexity 改善，可能都不等于最终任务成功。这个类比可转化为很具体的评测研究。</p>
+              <p><span>第一步：</span>在一个长时程 agent benchmark 上，同时记录单步评分、局部子任务完成率、中间测试通过率和最终成功率，分析这些指标在不同阶段的相关性是否稳定，以及哪些早期信号最容易产生误判。</p>
+              <p><span>风险：</span>需要较细粒度日志和人工定义中间指标；不同 benchmark 的结论可能不一致，外推性有限。</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>围绕胶质母细胞瘤这篇 Nature，做一个“状态轨迹与克隆谱系是否可解耦”的阅读复核清单，作为后续组会或 journal club 的高价值材料。</strong>
+              <p>该文的潜在重要性不只在数据量，而在它可能主张细胞状态程序跨亚克隆共享、并受空间微环境塑形。这类结论很容易被过度简化，值得做结构化复核。</p>
+              <p><span>第一步：</span>先不追求全面复现，只建立阅读框架：逐项核对其状态定义依据、轨迹方向证据、空间映射方法、克隆推断证据、类器官或体内验证是否真正支持“状态与克隆非一一对应”。</p>
+              <p><span>风险：</span>当前只有摘要级信息，真正判断需要全文和图表；如果方法细节复杂，短时间内难以形成稳健结论。</p>
             </div>
             </div>
       </div>
@@ -172,29 +179,104 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-11-03T15:09:01Z</span>
-        <span>Score 78.0</span>
+        <span>2026-11-04T18:23:14Z</span>
+        <span>Score 71.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2611.05036v1">ToolSpace: Scaling Tool-Centric Environment Synthesis for Long-Horizon Agents</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+ToolSpace%3A+Scaling+Tool-Centric+Environment+Synthesis+for+Long-Horizon+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05036v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+ToolSpace%3A+Scaling+Tool-Centric+Environment+Synthesis+for+Long-Horizon+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+ToolSpace%3A+Scaling+Tool-Centric+Environment+Synthesis+for+Long-Horizon+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05036v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+ToolSpace%3A+Scaling+Tool-Centric+Environment+Synthesis+for+Long-Horizon+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+ToolSpace%3A+Scaling+Tool-Centric+Environment+Synthesis+for+Long-Horizon+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05036v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+ToolSpace%3A+Scaling+Tool-Centric+Environment+Synthesis+for+Long-Horizon+Agents%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2611.06868v1">On Turn-Level Best-of-N Sampling for Scaling LLM Agents</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+On+Turn-Level+Best-of-N+Sampling+for+Scaling+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06868v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+On+Turn-Level+Best-of-N+Sampling+for+Scaling+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%2C+inference-time+scaling%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+On+Turn-Level+Best-of-N+Sampling+for+Scaling+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06868v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+On+Turn-Level+Best-of-N+Sampling+for+Scaling+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%2C+inference-time+scaling%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+On+Turn-Level+Best-of-N+Sampling+for+Scaling+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06868v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+On+Turn-Level+Best-of-N+Sampling+for+Scaling+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+ai%2C+environment%2C+inference-time+scaling%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Guanting Dong、Zhichao Sun、Xinyu Yang、Rui Wang 等 25 人 · <a href="https://arxiv.org/pdf/2611.05036v1">PDF</a></div>
+      <div class="authors">Jalaj Bhandari、Dhawal Gupta、Hongli Zhan、Zhenting Wang 等 8 人 · <a href="https://arxiv.org/pdf/2611.06868v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span>
+<span class="chip">inference-time scaling <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文研究大语言模型智能体在复杂、长时程终端任务上的一种推理时扩展方法：逐回合 best-of-N 采样。具体做法是在每一轮由生成器模型提出 N 个候选动作，再由选择器模型从中选出一个执行，摘要称该方法可在终端任务上带来约 5%–10% 的准确率提升，并提升多次重复尝试的一致性。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献是把“逐回合动作选择”明确实现为一个由两个 LLM 组成的 generator-selector 框架，并检验现成的开源权重模型是否能直接比较候选动作、在长时程 agent 任务中实现有效的 inference-time scaling。摘要还表明作者不仅报告了任务表现提升，还分析了轨迹行为变化，如更少的求解尝试、更好的指令遵循、调试与测试行为。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>71.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在复杂、长时程的 LLM agent 任务中，如何用简单、可部署的推理时扩展方法提升每一步动作选择质量，从而提高最终任务成功率和跨多次运行的一致性。更细一点说，它在问：不额外训练专门 critic 的情况下，现成开源 LLM 能否在每个交互回合直接比较多个候选动作，并稳定选出更优动作。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，实验方法是在终端类长时程任务环境中部署一个两阶段 agent。每个 turn，generator 基于当前任务指令、历史轨迹和环境状态生成 N 个候选动作；selector 读取这些候选动作并选择其一执行。作者将该方法与相关的 inference-time guided search 工作进行对照，重点考察 off-the-shelf open-weight LLM 作为 selector 的可行性。评估指标至少包括任务准确率和 repeated attempts 的一致性，另外还对轨迹进行行为分析，观察尝试次数、指令遵循、debugging、testing 等现象。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，方法非常具体且工程上直接可实现：逐回合生成多个动作再选择，比训练新 critic 或复杂搜索框架门槛更低。第二，研究对象选在长时程终端任务，这类任务对局部决策失误高度敏感，因此如果 turn-level best-of-N 有效，其意义比短答案任务更强。第三，摘要不仅给出结果提升，还给出行为层面的轨迹变化线索，说明作者试图解释为什么方法有效，而不只是报告分数。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，拿到正文后先查实验表，记录具体任务基准、generator/selector 模型、N 值、成本和主结果；第二，重点看与 guided search/critic 方法及单模型采样基线的对照；第三，查看轨迹分析图表，确认“更少尝试、更多调试测试”是如何定义和统计的；第四，如果你做 agent 复现，可先在一个终端任务基准上实现最简单版本：同一开源模型生成 N 个动作，再用同模型或更强模型做选择，测成功率与 token 成本。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在复杂、长时程的 LLM agent 任务中，如何用简单、可部署的推理时扩展方法提升每一步动作选择质量，从而提高最终任务成功率和跨多次运行的一致性。更细一点说，它在问：不额外训练专门 critic 的情况下，现成开源 LLM 能否在每个交互回合直接比较多个候选动作，并稳定选出更优动作。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，实验方法是在终端类长时程任务环境中部署一个两阶段 agent。每个 turn，generator 基于当前任务指令、历史轨迹和环境状态生成 N 个候选动作；selector 读取这些候选动作并选择其一执行。作者将该方法与相关的 inference-time guided search 工作进行对照，重点考察 off-the-shelf open-weight LLM 作为 selector 的可行性。评估指标至少包括任务准确率和 repeated attempts 的一致性，另外还对轨迹进行行为分析，观察尝试次数、指令遵循、debugging、testing 等现象。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，方法非常具体且工程上直接可实现：逐回合生成多个动作再选择，比训练新 critic 或复杂搜索框架门槛更低。第二，研究对象选在长时程终端任务，这类任务对局部决策失误高度敏感，因此如果 turn-level best-of-N 有效，其意义比短答案任务更强。第三，摘要不仅给出结果提升，还给出行为层面的轨迹变化线索，说明作者试图解释为什么方法有效，而不只是报告分数。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>目前需要警惕的局限主要来自信息不足。摘要没有说明具体 benchmark、样本规模、模型名称、N 的设置、selector 提示词、成本开销和延迟，因此还不能判断方法的性价比和泛化性。其次，5%–10% 的提升幅度虽有吸引力，但尚不清楚是在哪些任务上、相对什么基线、是否在强基线下仍成立。再次，若 selector 与 generator 使用相近模型，可能存在偏好表面流畅性而非真实可执行性的风险；而轨迹行为改进也可能受评估规则影响，需要看分析方法。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，拿到正文后先查实验表，记录具体任务基准、generator/selector 模型、N 值、成本和主结果；第二，重点看与 guided search/critic 方法及单模型采样基线的对照；第三，查看轨迹分析图表，确认“更少尝试、更多调试测试”是如何定义和统计的；第四，如果你做 agent 复现，可先在一个终端任务基准上实现最简单版本：同一开源模型生成 N 个动作，再用同模型或更强模型做选择，测成功率与 token 成本。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文聚焦的是 LLM agent 在复杂、长时程环境中的决策质量问题，尤其是单次采样容易走偏、错误会在多轮交互中累积的场景。作者提出的对象非常具体：不是对整条轨迹做 rerank，而是在“每个 turn”上做 best-of-N，即每一步先生成多个候选动作，再由另一个模型选择一个动作执行到环境中。这说明研究重点是局部决策质量能否通过额外推理预算得到稳定提升。
+
+方法线索也比较明确：这是一个双模型 generator-selector 框架。generator 负责在当前上下文下产生 N 个候选动作，selector 负责直接比较这些候选动作并选出一个。摘要特别强调与相关工作不同之处在于：不是依赖专门训练的 critic 做 guided search，而是考察现成的、开源权重的 LLM 是否已经具备足够的候选动作比较能力。这一点对科研和工程都重要，因为它关系到该方法是否低门槛、可迁移、无需额外监督训练。
+
+实验对象从摘要可知是 long-horizon terminal tasks，说明环境很可能是终端/命令行交互类任务，具有多步规划、执行、调试、测试等特征。摘要给出的证据包括两类：一是结果层面的性能提升，声称准确率提升约 5%–10%，并且 repeated attempts 的一致性更好；二是过程层面的轨迹分析，观察到更理想的行为模式，例如减少解决任务所需尝试次数、改善任务指令遵循、增强 debugging 和 testing。后者很关键，因为它暗示该方法不只是“碰巧选中正确答案”，而是改变了 agent 的行动风格。
+
+如果你的研究方向与 LLM agent、test-time compute、search/reranking、tool use 或终端环境任务有关，这篇论文的价值在于它把一个相对简单的 inference-time scaling 策略落到了 agent 的逐步决策层面。相比只在最终答案上做 best-of-N，turn-level 方案更适合长时程任务，因为早期动作质量会影响后续可达状态。它也与“让模型在每一步多想几种做法再选”这一思路一致，可能适用于代码代理、网页代理、软件工程代理等序列决策任务。
+
+但基于当前仅有的题录和摘要，仍有若干关键信息必须核对。首先，需要确认使用了哪些具体开源模型分别充当 generator 和 selector，二者是否同构、参数规模如何、selector 是否只看文本候选还是也看环境反馈。其次，需要确认 N 的取值、推理成本增长、性能-成本曲线，以及与 self-consistency、pass@N、critic-guided search、tree search 等基线的比较是否充分。再次，摘要中的 5%–10% 提升需要核对是绝对提升还是相对提升、在哪些 benchmark 上成立、方差和显著性如何。最后，还要看轨迹分析是人工标注、规则统计还是模型评估，以判断“更好调试/测试行为”这一结论的可信度。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>In this work, we evaluate a simple inference-time scaling approach based on \textit{turn-level best-of-N sampling} (\method) for large language model (LLM) agents on complex, long-horizon tasks. We instantiate this using a \textit{generator-selector} framework with two LLMs; at each turn, a \emph{generator} model generates $N$ candidate actions and a \emph{selector} model selects one of them, which is then executed in the environment. This paper is closely related to the work of \cite{zainullina2025guided} who used critic models for guided search at inference time. Different from their work, we evaluate if off-the-shelf, open-weight LLMs can be effective at comparing different candidate actions directly. Experiments on long-horizon terminal tasks show that \method can lead to significant performance improvements, both in terms of accuracy (5--10\%) and consistency across repeated attempts. Analysis of agent trajectories reveal a shift in agent behaviour towards desirable patterns such as reduction in number of attempts to solve the task, improved task instruction following, debugging and testing.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-04T10:05:15Z</span>
+        <span>Score 71.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>2. <a href="http://arxiv.org/abs/2611.06254v1">HarnessFlow: MCTS-Guided Harness Optimization for LLM Agents</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+HarnessFlow%3A+MCTS-Guided+Harness+Optimization+for+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06254v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+HarnessFlow%3A+MCTS-Guided+Harness+Optimization+for+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+HarnessFlow%3A+MCTS-Guided+Harness+Optimization+for+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06254v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+HarnessFlow%3A+MCTS-Guided+Harness+Optimization+for+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+HarnessFlow%3A+MCTS-Guided+Harness+Optimization+for+LLM+Agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06254v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+HarnessFlow%3A+MCTS-Guided+Harness+Optimization+for+LLM+Agents%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Zhi Hong、Qianlong Wang、Hongchen Wei、Aidan Wu 等 8 人 · <a href="https://arxiv.org/pdf/2611.06254v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
 <span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出 ToolSpace，一个面向长程智能体的“以工具为中心”的环境合成框架，目标是为跨 MCP 服务的工具组合与长链任务自动构建可执行、可回放、可验证的训练/评测环境。根据摘要，它重点解决现有数据中心式环境构造中工具接口失真、组合不落地执行、任务很少跨环境的问题，并在 AutomationBench 与 tau3-Bench Banking 上进行应用。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献应在于把环境合成顺序从“先造数据库/场景，再派生工具与任务”反转为“先从真实 MCP 服务执行轨迹中恢复工具依赖与组合结构，再据此聚类成环境并生成任务”；同时使用确定性规则而非 LLM 判断来挖掘数据依赖、状态依赖和重试依赖，并通过状态感知随机游走、回滚机制、自然语言反编译和基于断言的检查，只保留能从初始状态成功重放的样本，从而提高长程、多工具、跨环境任务的真实性与可执行性。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 HarnessFlow，目标是在底层大语言模型和任务环境固定的前提下，自动优化控制 LLM agent 与工具、环境交互的“harness（执行框架/外层控制逻辑）”。从摘要看，作者把完整可执行 harness 的搜索组织为基于 MCTS 的 refinement tree，并在仅 15 次 refinement 尝试预算下，在 6 个涵盖 agentic tasks、编程和网页交互的基准上取得了优于初始 harness 和 Meta-Harness 的平均测试分数。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于：1）把以往主要依赖人工设计的 agent harness 优化问题，形式化为有限评估预算下的可执行程序搜索问题；2）提出一个结合 refinement tree 与 Monte Carlo Tree Search 的候选选择策略，用于在昂贵的端到端评测中平衡 exploitation 和 exploration；3）引入一个 coding agent，利用历史代码、执行反馈和可复用 harness 机制库对已有 harness 做程序级迭代；4）在 6 个不同类型 benchmark 上报告平均分数和成本优势，说明优化对象不仅是 prompt，而是完整 agent harness。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -206,32 +288,32 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-kicker">关键词命中 8</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>78.0</strong>
+              <strong>71.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何为长程智能体自动构建更真实、更可执行的工具使用环境与任务，使其能够反映真实 MCP 服务中的多工具组合、状态变化和跨环境工作流，而不是停留在由人工或数据库先验派生出的、接口和执行约束都较弱的合成环境。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法流程包括：收集真实 MCP 服务与开放 agent 语料中的执行轨迹；对相邻工具调用用确定性规则识别数据依赖、状态依赖、重试依赖；据此建立带权工具组合图；对图进行聚类得到若干环境；对会改变状态的环境合成数据库，对查询型/无状态工具直接回放历史返回；在环境内或跨环境进行带状态约束的随机游走，并在失败时回滚；把得到的工具调用链反编译成自然语言任务；为任务附加断言式检查；仅保留能从初始状态完整重放成功的样本。实验对象至少包括 AutomationBench 和 tau3-Bench Banking。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是问题定义很贴近真实 agent 部署场景，直接围绕 MCP 服务和可执行工作流。亮点二是把依赖类型细分为数据、状态、重试，说明作者关注的不只是工具共现，而是执行语义。亮点三是强调 deterministic rules，若实现得当，可能比依赖 LLM 打标签更稳定、可复现。亮点四是“只为状态变更环境合成数据库、其余工具回放返回”的设计较务实，兼顾真实性与成本。亮点五是通过状态感知随机游走、回滚和断言验证形成闭环，只保留可从初始状态成功回放的任务，这对 benchmark 可靠性很关键。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到全文后优先查看方法总览图和依赖抽取规则表，确认 data/state/retry dependency 的判定标准；第二，查实验表中在 AutomationBench 与 tau3-Bench Banking 上生成了多少环境、多少任务、跨环境任务占比及成功回放率；第三，找一个具体案例，沿着“真实轨迹→工具图→随机游走→自然语言任务→断言验证”完整记录；第四，对照现有 data-centric 环境构造方法，整理作者声称解决的三类问题是否有对应实证；第五，如果你做 agent benchmark，可尝试复现其中一个 state-mutating 环境，评估回放与断言机制是否足够稳定。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：当底层 LLM 和任务环境保持不变时，如何在一个开放式、程序级、评估昂贵的搜索空间中，自动改进 agent 的 harness，使其在工具使用、环境交互、错误处理和任务完成率上优于人工初始设计。更细一点说，它要回答的是：完整可执行 harness 能否在有限候选评估预算下被系统性优化，而不是依赖研究者手工调规则。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法流程大致是：先以一个或多个初始 harness 作为根节点；每个节点对应一个可执行 harness 版本及其历史评测结果；系统维护一个 refinement tree 来记录“由哪个 harness 改出了哪个新 harness”；在每轮预算内，用 MCTS 风格策略选择最值得继续扩展的节点，以平衡继续深挖高潜力候选和探索新分支；随后由 coding agent 读取被选中 harness 的代码、过往执行反馈、可能失败案例以及机制库，对 harness 进行程序级修改；再在固定 benchmark/环境上做端到端评估，把分数和成本回填到树中。实验上，作者比较了优化后 harness、初始 harness 和 Meta-Harness，在 6 个 benchmark 上报告平均测试分数，并强调每个 benchmark 只有 15 次 refinement attempts。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，优化对象选得很实：harness 是 agent 成败的重要决定因素，但常被当作工程细节，这篇工作把它提升为可系统研究的对象。第二，MCTS 用在 harness refinement tree 上很契合“评估昂贵、搜索空间开放、局部修改可累积”的问题结构，比纯随机搜索或贪心迭代更有方法论意义。第三，摘要给出了跨 6 个 benchmark 的结果，并且覆盖 agentic tasks、coding、web interaction，说明作者试图证明方法不是只对单一任务模板有效；同时还报告了相对 Meta-Harness 的提升和更低平均成本，这意味着它可能兼顾性能与推理/执行开销。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先打开 arXiv 页面核对 6 个 benchmark 的具体名称、任务类型和评价指标；2）重点查方法图，确认 refinement tree、MCTS 选择公式、回报定义和 coding agent 输入输出；3）查主表，记录 69.48%、+10.89、+3.95 对应的是哪种平均方式，以及是否有方差/显著性；4）查消融实验，看去掉 MCTS、去掉机制库、去掉执行反馈后性能如何；5）如果你做 agent 系统，可先把自己现有 harness 拆成“可复用机制模块”，评估是否能仿照该框架做有限预算的自动改写实验；6）阅读时特别记录一个问题：作者优化的是通用 harness 还是 benchmark-specific harness，这将直接决定其科研和工程价值。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何为长程智能体自动构建更真实、更可执行的工具使用环境与任务，使其能够反映真实 MCP 服务中的多工具组合、状态变化和跨环境工作流，而不是停留在由人工或数据库先验派生出的、接口和执行约束都较弱的合成环境。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法流程包括：收集真实 MCP 服务与开放 agent 语料中的执行轨迹；对相邻工具调用用确定性规则识别数据依赖、状态依赖、重试依赖；据此建立带权工具组合图；对图进行聚类得到若干环境；对会改变状态的环境合成数据库，对查询型/无状态工具直接回放历史返回；在环境内或跨环境进行带状态约束的随机游走，并在失败时回滚；把得到的工具调用链反编译成自然语言任务；为任务附加断言式检查；仅保留能从初始状态完整重放成功的样本。实验对象至少包括 AutomationBench 和 tau3-Bench Banking。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是问题定义很贴近真实 agent 部署场景，直接围绕 MCP 服务和可执行工作流。亮点二是把依赖类型细分为数据、状态、重试，说明作者关注的不只是工具共现，而是执行语义。亮点三是强调 deterministic rules，若实现得当，可能比依赖 LLM 打标签更稳定、可复现。亮点四是“只为状态变更环境合成数据库、其余工具回放返回”的设计较务实，兼顾真实性与成本。亮点五是通过状态感知随机游走、回滚和断言验证形成闭环，只保留可从初始状态成功回放的任务，这对 benchmark 可靠性很关键。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前信息主要来自截断摘要，因此最大局限是缺少定量结果，无法判断 ToolSpace 相比现有方法在任务难度、真实性、跨环境比例、agent 区分度或数据规模上的实际提升。其次，确定性规则虽然可复现，但可能对日志格式、服务规范化程度和参数命名强依赖，跨服务泛化能力需要核对。再次，回放 recorded returns 对查询/无状态工具虽方便，但可能削弱开放世界变化性，导致任务更像受控重演而非真实在线交互。还有，图聚类得到的“环境”是否符合人类直觉、是否会把弱相关工具错误聚合，也需要看案例。最后，摘要未说明如何处理权限、时间依赖、外部副作用和非确定性 API。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到全文后优先查看方法总览图和依赖抽取规则表，确认 data/state/retry dependency 的判定标准；第二，查实验表中在 AutomationBench 与 tau3-Bench Banking 上生成了多少环境、多少任务、跨环境任务占比及成功回放率；第三，找一个具体案例，沿着“真实轨迹→工具图→随机游走→自然语言任务→断言验证”完整记录；第四，对照现有 data-centric 环境构造方法，整理作者声称解决的三类问题是否有对应实证；第五，如果你做 agent benchmark，可尝试复现其中一个 state-mutating 环境，评估回放与断言机制是否足够稳定。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常具体：长程 agent 在 MCP 服务上调用真实工具形成工作流，而作者希望自动合成适合训练或评测这类 agent 的“环境”。现有方法被概括为 data-centric：先合成数据库和场景，再从中导出工具和任务；摘要明确指出这种路线会带来三个具体问题：一是工具接口可能与真实接口不匹配，二是工具组合没有经过真实执行约束，三是任务通常局限于单一环境。ToolSpace 的切入点是 tool-centric，即直接从“真实 MCP 服务 + 开放 agent 语料”的执行轨迹中，分析相邻调用之间的依赖关系，构建带权工具组合图，再把图聚类成环境。这里“依赖”被细分为 data、state、retry 三类，这是摘要里最值得关注的技术对象，因为它暗示作者不是只看 API 共现，而是试图区分参数/返回值传递、状态变更前后约束、失败重试模式等不同机制。方法上，作者强调使用 deterministic rules 而不是 LLM judgment，这说明他们把依赖抽取设计成规则驱动的程序分析/日志分析流程，目标可能是提高可重复性、降低幻觉和标注成本。环境构造阶段也很具体：只有 state-mutating environments 才需要合成数据库；query/stateless tools 则直接回放记录过的返回值。这种区分说明作者在控制环境构造成本，并尽量保持查询类工具的真实性。任务生成阶段，系统通过 state-aware random walks with rollback 在工具图上采样调用链，再把链“反编译”为自然语言任务，并附加 assertion-based checks；最后只保留那些能从初始状态 replay successfully 的样本。这个流程的证据链比较完整：真实轨迹 -&gt; 依赖图 -&gt; 环境聚类 -&gt; 状态化采样 -&gt; 任务文本化 -&gt; 断言验证 -&gt; 成功回放过滤。与长程 agent、工具学习、agent benchmark 构建方向的关系很直接：如果你的研究关注 tool-use planning、workflow execution、跨服务 agent evaluation、MCP/tool API grounding，这篇论文很可能提供一种比纯合成数据更接近真实工具生态的 benchmark/data pipeline。需要核对的信息主要有：1）AutomationBench 和 tau3-Bench Banking 上到底产出了什么规模的数据或环境；2）“produces ...[truncated]”后面缺失的结果是否包含显著优于现有环境构造方法的统计；3）工具组合图的聚类算法、边权定义、依赖规则细节；4）自然语言反编译是否模板化，任务多样性如何；5）断言检查覆盖的是最终状态、关键中间状态还是工具返回一致性；6）跨环境任务的定义与比例；7）回放机制对外部服务非确定性、时效性和权限问题如何处理。由于摘要被截断，实验结论和定量收益目前不能下判断。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：当底层 LLM 和任务环境保持不变时，如何在一个开放式、程序级、评估昂贵的搜索空间中，自动改进 agent 的 harness，使其在工具使用、环境交互、错误处理和任务完成率上优于人工初始设计。更细一点说，它要回答的是：完整可执行 harness 能否在有限候选评估预算下被系统性优化，而不是依赖研究者手工调规则。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法流程大致是：先以一个或多个初始 harness 作为根节点；每个节点对应一个可执行 harness 版本及其历史评测结果；系统维护一个 refinement tree 来记录“由哪个 harness 改出了哪个新 harness”；在每轮预算内，用 MCTS 风格策略选择最值得继续扩展的节点，以平衡继续深挖高潜力候选和探索新分支；随后由 coding agent 读取被选中 harness 的代码、过往执行反馈、可能失败案例以及机制库，对 harness 进行程序级修改；再在固定 benchmark/环境上做端到端评估，把分数和成本回填到树中。实验上，作者比较了优化后 harness、初始 harness 和 Meta-Harness，在 6 个 benchmark 上报告平均测试分数，并强调每个 benchmark 只有 15 次 refinement attempts。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，优化对象选得很实：harness 是 agent 成败的重要决定因素，但常被当作工程细节，这篇工作把它提升为可系统研究的对象。第二，MCTS 用在 harness refinement tree 上很契合“评估昂贵、搜索空间开放、局部修改可累积”的问题结构，比纯随机搜索或贪心迭代更有方法论意义。第三，摘要给出了跨 6 个 benchmark 的结果，并且覆盖 agentic tasks、coding、web interaction，说明作者试图证明方法不是只对单一任务模板有效；同时还报告了相对 Meta-Harness 的提升和更低平均成本，这意味着它可能兼顾性能与推理/执行开销。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅凭题录和摘要，需要警惕几个边界。第一，摘要没有说明 benchmark 具体名称、规模和难度，无法判断结果是否受少数任务驱动。第二，所谓 harness 优化可能包含大量 benchmark-specific 规则注入，如果没有严格的开发/测试隔离，存在过拟合风险。第三，MCTS 在这里的收益是否显著优于更简单的 bandit、evolutionary search 或 best-first search，摘要未给出消融。第四，coding agent 的底层模型能力可能强烈影响结果，如果使用了非常强的代码模型，则方法收益中有多少来自搜索策略、有多少来自改写模型本身，需要拆分。第五，15 次 refinement attempts 虽然体现预算受限，但也可能不足以稳定估计开放式程序搜索方法的方差。第六，摘要末尾成本描述被截断，无法确认“更低平均成本”是指训练/搜索成本、部署时成本，还是单次任务执行成本。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先打开 arXiv 页面核对 6 个 benchmark 的具体名称、任务类型和评价指标；2）重点查方法图，确认 refinement tree、MCTS 选择公式、回报定义和 coding agent 输入输出；3）查主表，记录 69.48%、+10.89、+3.95 对应的是哪种平均方式，以及是否有方差/显著性；4）查消融实验，看去掉 MCTS、去掉机制库、去掉执行反馈后性能如何；5）如果你做 agent 系统，可先把自己现有 harness 拆成“可复用机制模块”，评估是否能仿照该框架做有限预算的自动改写实验；6）阅读时特别记录一个问题：作者优化的是通用 harness 还是 benchmark-specific harness，这将直接决定其科研和工程价值。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>基于题名和摘要，这项工作的研究对象非常具体：不是训练新的 LLM，也不是单纯调 prompt，而是在模型与环境固定时，优化包裹在 agent 外层、负责工具调用、状态管理、错误恢复、规划/反思、终止条件等行为的 harness。作者强调 harness design 目前“largely manual”，说明他们关注的是 agent 系统工程中的一个高价值但自动化不足的层面。方法上，HarnessFlow 似乎把每个候选 harness 视为一个可执行代码对象，并把其修改历史与评估结果存入 refinement tree；随后用 MCTS 决定下一步从哪个节点继续改写，以减少在开放式程序搜索空间中的盲目试错。进一步地，真正执行改写的不是人工，而是一个 coding agent，它可访问归档代码、执行反馈以及“reusable harness mechanisms”库，这暗示系统可能支持从已有机制中组合诸如重试、工具选择、记忆、验证器、规划器等模块。证据线索主要来自摘要中的定量表述：在每个 benchmark 只有 15 次 refinement attempts 的预算下，优化后 harness 的平均得分为 69.48%，相对 initial harness 提升 10.89 个百分点，相对 Meta-Harness 提升 3.95 个百分点，同时平均成本更低。不过摘要尾部被截断，成本指标的具体定义、统计方式和显著性尚不清楚。与科研读者的关系在于，这篇工作可能对 LLM agents、自动化系统设计、程序搜索、AutoML for agents、tool-use orchestration 都有直接参考价值，尤其适合关注“固定模型条件下还能从系统层挖出多少性能”的研究者。当前最需要核对的信息包括：6 个 benchmark 的具体名称与任务分布；Meta-Harness 的定义和实现；15 次 refinement 是每任务、每 benchmark 还是每设置；MCTS 的状态、动作、回报如何定义；coding agent 使用的底层模型；机制库包含哪些可复用模块；成本是 token、时间还是 API 花费；以及是否存在 benchmark-specific overfitting。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Large language models are deployed as long-horizon agents that compose diverse tools across MCP services into executable workflows. Existing MCP environment-scaling methods are data-centric: they first synthesize a database and scenario, then derive tools and tasks from them. As a result, tool interfaces may not match real ones, tool compositions are not grounded in execution, and tasks rarely span more than one environment. We propose ToolSpace, a tool-centric framework that reverses this order. ToolSpace mines data, state, and retry dependencies from adjacent calls in execution traces of real MCP services and open agent corpora, using deterministic rules rather than LLM judgment, and clusters the resulting weighted tool-composition graph into environments. Databases are synthesized only for state-mutating environments, while query and stateless tools replay recorded returns. ToolSpace then performs state-aware random walks with rollback and decompiles each chain into a natural-language task with assertion-based checks, keeping only samples that replay successfully from the initial state. Applied to AutomationBench and tau3-Bench Banking, the pipeline produces harder Pro versions on which 7 frontier models drop by up to 38.2 points. Across seven long-horizon tool-use benchmarks, ToolSpace raises Qwen3.6-35B-A3B from 23.0 to 41.0 average score (43.2 with RL) and GLM-5.2 from 44.6 to 56.6, on par with Claude Opus 5. Ablations show that execution-witnessed edges clearly outperform LLM-judged ones, and performance keeps improving with data and environment scale.</p>
+          <p>The performance of large language model (LLM) agents depends on both the underlying model and the harness that governs interaction with tools and the environment. Yet harness design remains largely manual, and automating it requires navigating an open-ended search space through costly end-to-end evaluations. We introduce HarnessFlow, a framework for optimizing complete executable harnesses under a limited candidate-evaluation budget, with the model and task environment held fixed. HarnessFlow organizes candidates and their evaluation histories in a refinement tree, using a Monte Carlo Tree Search (MCTS)-based policy to balance exploitation and exploration. A coding agent refines selected harnesses using archived code, execution feedback, and a library of reusable harness mechanisms. With 15 refinement attempts per benchmark, HarnessFlow achieves the highest mean test scores among the compared methods on six benchmarks spanning agentic tasks, coding, and web interaction. The optimized harnesses achieve an average score of 69.48%, outperforming the initial harnesses and Meta-Harness by 10.89 and 3.95 percentage points, respectively, while incurring lower average per-task execution costs than hand-engineered baselines. These results suggest that structured harness search offers a promising route toward automating the design of capable and efficient LLM agents.</p>
         </details>
         
         </div>
@@ -243,248 +325,27 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-11-03T18:57:20Z</span>
-        <span>Score 75.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2611.05459v1">Can Large Language Models Review the Scientific Literature? A Test Against a 102-Article Benchmark</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Can+Large+Language+Models+Review+the+Scientific+Literature%3F+A+Test+Against+a+102&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05459v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Can+Large+Language+Models+Review+the+Scientific+Literature%3F+A+Test+Against+a+102-Article+Benchmark%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Can+Large+Language+Models+Review+the+Scientific+Literature%3F+A+Test+Against+a+102&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05459v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Can+Large+Language+Models+Review+the+Scientific+Literature%3F+A+Test+Against+a+102-Article+Benchmark%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Can+Large+Language+Models+Review+the+Scientific+Literature%3F+A+Test+Against+a+102&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05459v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Can+Large+Language+Models+Review+the+Scientific+Literature%3F+A+Test+Against+a+102-Article+Benchmark%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Abdullah Al Kalbani、David M. Schultz、Alexandra K. Anderson-Frey、Zhonghua Zheng 等 5 人 · <a href="https://arxiv.org/pdf/2611.05459v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">weather <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文以“Spanish plume”天气型的已发表综述及其102篇文献语料为基准，系统测试6种AI/大语言模型工具在文献综述全流程中的表现，包括检索相关文章、判断文章是否实质讨论该天气型、跨文献综合，以及提出未来研究方向。摘要显示，这些工具在拿到完整PDF语料后能较好找出18篇“实质讨论”文章，但在区分84篇仅顺带提及的文章时误判率很高，且生成的综述虽大体准确却存在证据支撑不足和夸大共识等问题。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把LLM辅助文献综述的评估从单一子任务扩展到完整流程，并且使用一个具体、可核验的102篇文章基准来量化不同工具在检索、解读、综合和研究建议四个阶段的能力与失误模式。更具体地说，论文可能提供了：1）不同AI工具在初始检索中的召回对比；2）机构图书馆访问权限对文献发现能力的显著影响；3）在给定完整PDF语料时，对“实质讨论”与“顺带提及”分类能力的误差画像；4）由领域专家盲评的综述质量证据，揭示LLM在科学综述中常见的 unsupported claims、引文/引语错误和共识夸大问题。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 7</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>75.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答的具体问题是：现有大语言模型/AI工具能否真正支持科研文献综述的完整流程，而不仅是完成某个局部任务？在一个具体的气象学案例中，它们能否高召回地找到相关文献、准确区分“实质讨论”与“顺带提及”、基于整套文献生成可靠综合，并提出有价值的后续研究问题？</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法上应是构建一个任务链式基准。数据基础是关于Spanish plume天气型的一篇已发表综述及其102篇参考文献语料，且至少在后续阶段向模型提供了完整PDF。实验大致分四步：1）让多个AI工具进行初始文献搜索，比较找到的相关文章数量；2）测试有无机构图书馆访问权限时的检索差异；3）在给定102篇PDF后，让3个工具判断哪些文章对Spanish plume有“实质讨论”，并与人工基准比较；4）让工具撰写跨文献综合和未来研究方向，由两位领域专家进行盲评。这里隐含的分析路径是把综述拆成检索、判读、综合、展望四类任务，并同时报告定量指标与专家定性评价。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，基准非常具体且可审计：不是开放域模糊问答，而是围绕一个明确天气现象和102篇固定文献展开，便于逐篇核对。第二，评估覆盖真实综述流程，能暴露工具在任务衔接中的短板，例如检索不足会直接限制后续综合质量。第三，摘要给出了有解释力的误差模式：模型在“找到真正核心文献”上可能不差，但在判断讨论深度、避免过度概括和保持引文准确性上问题突出；同时，图书馆访问权限显著提升检索结果，提示很多所谓“模型能力”评估其实混杂了信息可达性因素。对科研应用而言，这种发现比单纯报告一个准确率更有价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先获取论文全文，优先查看基准构建部分和表格，确认6个工具名称、访问权限设置、18/84的标注规则；2）重点查初始检索结果表与有无图书馆访问的对照表，判断性能差异主要来自模型还是资源接入；3）查看专家盲评标准和具体错误案例，尤其是 unsupported claims、quotation errors、exaggerated consensus 的原文示例；4）如果你做LLM文献综述系统，可把这篇论文记录为“流程级评测”代表作，并尝试用自己的工具链在一个小型专题上复现其四阶段框架；5）阅读时特别补全摘要被截断的“future research directions”结论，避免对最后一项任务的表现做错误推断。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答的具体问题是：现有大语言模型/AI工具能否真正支持科研文献综述的完整流程，而不仅是完成某个局部任务？在一个具体的气象学案例中，它们能否高召回地找到相关文献、准确区分“实质讨论”与“顺带提及”、基于整套文献生成可靠综合，并提出有价值的后续研究问题？</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法上应是构建一个任务链式基准。数据基础是关于Spanish plume天气型的一篇已发表综述及其102篇参考文献语料，且至少在后续阶段向模型提供了完整PDF。实验大致分四步：1）让多个AI工具进行初始文献搜索，比较找到的相关文章数量；2）测试有无机构图书馆访问权限时的检索差异；3）在给定102篇PDF后，让3个工具判断哪些文章对Spanish plume有“实质讨论”，并与人工基准比较；4）让工具撰写跨文献综合和未来研究方向，由两位领域专家进行盲评。这里隐含的分析路径是把综述拆成检索、判读、综合、展望四类任务，并同时报告定量指标与专家定性评价。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，基准非常具体且可审计：不是开放域模糊问答，而是围绕一个明确天气现象和102篇固定文献展开，便于逐篇核对。第二，评估覆盖真实综述流程，能暴露工具在任务衔接中的短板，例如检索不足会直接限制后续综合质量。第三，摘要给出了有解释力的误差模式：模型在“找到真正核心文献”上可能不差，但在判断讨论深度、避免过度概括和保持引文准确性上问题突出；同时，图书馆访问权限显著提升检索结果，提示很多所谓“模型能力”评估其实混杂了信息可达性因素。对科研应用而言，这种发现比单纯报告一个准确率更有价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于目前只有题录和摘要，需警惕几类边界。第一，这是单一主题、单一学科案例，外推到其他学科尤其是生物医学、社会科学或数学未必成立。第二，摘要没有说明6种工具的版本、提示词、检索接口、是否允许联网、是否使用RAG或代理式工作流，这些都会显著影响结果。第三，“实质讨论”与“passing mention”的标注标准可能带有领域判断色彩，需要看人工标注协议和一致性。第四，专家盲评虽重要，但只有两位专家，主观性和评分稳定性需要核对。第五，摘要提到未来研究方向“all three tools proposed research directions b ...[truncated]”，结论被截断，当前无法判断这些建议究竟是有启发、过于泛泛，还是重复已有文献。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先获取论文全文，优先查看基准构建部分和表格，确认6个工具名称、访问权限设置、18/84的标注规则；2）重点查初始检索结果表与有无图书馆访问的对照表，判断性能差异主要来自模型还是资源接入；3）查看专家盲评标准和具体错误案例，尤其是 unsupported claims、quotation errors、exaggerated consensus 的原文示例；4）如果你做LLM文献综述系统，可把这篇论文记录为“流程级评测”代表作，并尝试用自己的工具链在一个小型专题上复现其四阶段框架；5）阅读时特别补全摘要被截断的“future research directions”结论，避免对最后一项任务的表现做错误推断。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象不是泛泛的“科学文献”，而是一个非常具体的气象学主题——Spanish plume weather pattern，以及围绕它的102篇文献语料和一篇已发表综述。作者将其作为基准测试平台，考察6种AI工具是否能完成科研人员做综述时的四个连续任务：先找到相关论文，再正确理解论文是否真正讨论该现象，然后跨论文综合已有认识，最后提出未来研究方向。摘要给出的数字线索比较关键：在初始搜索阶段，5个工具合计只找到57篇，最佳单个工具找到42篇；接入机构图书馆后，Codex从42篇提升到82篇，Claude Code从15篇提升到79篇，说明访问权限而非纯推理能力可能是文献检索表现的重要瓶颈。进一步，在直接提供完整102篇PDF后，3个工具都能识别出全部18篇“实质讨论 Spanish plume”的文章，但会把84篇仅 passing mention 的文章中40%到79%误判为“实质讨论”，说明它们对相关性强弱、讨论深度和证据层级的判别仍不稳健。综合写作部分由两位领域专家盲评，结论是“总体大体准确但洞见有限”，并伴随无支撑断言、引语错误、夸大共识等问题，这对任何想把LLM用于正式综述写作的科研人员都很直接：模型可能能快速搭框架，却不应被视为可靠的证据综合者。与用户方向的关系上，如果你关注LLM for science、RAG、文献挖掘、自动综述、科学事实核验或气象领域AI应用，这篇论文都值得看，因为它提供了一个接近真实工作流的评测范式，而不是只测摘要分类或问答。需要核对的信息包括：6种工具和3种进入深度评测的工具具体是谁；“已发表综述”作为金标准的构建方式；18篇与84篇的标注标准和一致性；专家盲评的评分维度；未来研究方向任务的具体评价方法；以及摘要末尾被截断部分对研究建议质量的完整结论。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Large language models (LLMs) are increasingly used to support scientific literature reviews, yet evaluations often examine individual tasks rather than the review process as a whole. We assess six AI tools across four stages: finding relevant articles, interpreting them, synthesizing across them, and proposing future research. The benchmark is a published review of the Spanish plume weather pattern and its 102-article corpus. In the initial searches, five tools collectively identified 57 articles, with the best individual tool finding 42. Institutional library access increased discovery from 42 to 82 articles for Codex and from 15 to 79 for Claude Code. Given the complete corpus of 102 PDFs, three tools correctly identified all 18 articles discussing the Spanish plume substantially, but incorrectly classified 40% to 79% of the 84 passing mentions as substantial. The same three tools produced syntheses evaluated blindly by two domain experts. Although largely accurate, the syntheses provided limited insight and sometimes contained unsupported claims, quotation errors, and exaggerated statements of consensus. Finally, all three tools proposed research directions broader than the Spanish plume literature, although two approached questions identified in the benchmark review. No single tool performed best across all tasks. We provide eight recommendations for researchers using AI tools in literature reviews. Our findings suggest that LLMs can assist with discovering and interpreting scientific literature, particularly when institutional access is available, but cannot replace expert judgment in evaluating evidence or synthesizing research.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-03T14:32:03Z</span>
-        <span>Score 70.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2611.04977v1">GeoFaham: Domain-Specialized Multi-Agent Geospatial Analytics for Disaster Response</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+GeoFaham%3A+Domain-Specialized+Multi-Agent+Geospatial+Analytics+for+Disaster+Respo&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.04977v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+GeoFaham%3A+Domain-Specialized+Multi-Agent+Geospatial+Analytics+for+Disaster+Response%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+satellite%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+GeoFaham%3A+Domain-Specialized+Multi-Agent+Geospatial+Analytics+for+Disaster+Respo&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.04977v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+GeoFaham%3A+Domain-Specialized+Multi-Agent+Geospatial+Analytics+for+Disaster+Response%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+satellite%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+GeoFaham%3A+Domain-Specialized+Multi-Agent+Geospatial+Analytics+for+Disaster+Respo&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.04977v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+GeoFaham%3A+Domain-Specialized+Multi-Agent+Geospatial+Analytics+for+Disaster+Response%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+ai%2C+satellite%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Muhammad Sohail Danish、Gilles Q. Hacheme、Akram Zaytar、Satej S. Soman 等 8 人 · <a href="https://arxiv.org/pdf/2611.04977v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">satellite <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出 GeoFaham，一个面向灾害响应地理空间分析的领域专用多智能体系统，目标是处理需要联合空间数据库、地图要素、卫星影像、栅格产品和中间地理工件的多源工作流。其核心任务不是单步问答，而是让大语言模型在保留空间范围、时间上下文和执行状态的前提下，完成更可靠的地理空间决策支持。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能有三点：一是提出面向灾害响应的专用多智能体架构，将向量操作、地图特征检索、影像发现和栅格分析拆分给不同专家代理；二是设计由 Orchestrator 驱动的 dual-ledger 控制循环，用于依赖感知规划、进度跟踪、验证与重规划，以减少地理空间任务中的错误传播；三是引入 Response Store 持久化完整地理空间工件，支持跨代理协作与状态保持，针对大工件处理、证据源选择错误、空间/时间元数据丢失和无效几何操作等地理空间特有失效模式。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 9</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>70.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：当灾害响应问题需要跨越矢量数据、地图特征、卫星影像、栅格产品和中间分析工件的多步地理空间工作流时，如何让基于大语言模型的智能体系统在整个流程中保持空间范围、时间上下文和执行状态的一致性，并减少选错数据源、丢失元数据、错误几何操作等地理空间特有失效模式。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径是构建一个领域专用多智能体系统。系统将任务分解给不同专家代理：负责矢量操作的代理、负责地图特征检索的代理、负责影像发现的代理、负责栅格分析的代理；由一个 Orchestrator 统一规划和调度。Orchestrator 使用 dual-ledger 控制循环来管理任务依赖、记录进度、执行验证并在失败时重规划。系统还通过 Response Store 持久化完整地理空间工件，而非只保留文本响应，从而支持跨步骤复用和状态传递。若论文有实验，可能会围绕灾害响应问答或分析任务，对比单代理、普通代码代理或无状态工作流。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是它把地理空间分析中的“工件、元数据和状态”当作一等公民，而不是把问题简化成文本问答或代码生成。多专家代理的拆分与地理空间数据类型高度对应，具有较强任务贴合性；dual-ledger 说明作者重视可验证的流程控制，而非一次性生成；Response Store 则直接回应了大工件和中间结果复用这一真实痛点。若实现扎实，这种设计对灾害响应场景具有较高应用价值，因为实际决策往往依赖多源证据链而非单一模型输出。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查论文中的系统架构图，确认 Orchestrator、dual-ledger 和 Response Store 的具体关系；第二，查实验部分是否有与单代理/通用 coding agent 的直接对照，以及评测任务是否覆盖矢量、影像、栅格三类操作；第三，记录论文使用的具体数据源、GIS/遥感工具和工件格式；第四，若你做相关研究，可挑一个典型灾害问题，如洪水范围评估或受灾道路可达性分析，手工映射到其四类专家代理流程，判断该架构是否适合你的任务。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：当灾害响应问题需要跨越矢量数据、地图特征、卫星影像、栅格产品和中间分析工件的多步地理空间工作流时，如何让基于大语言模型的智能体系统在整个流程中保持空间范围、时间上下文和执行状态的一致性，并减少选错数据源、丢失元数据、错误几何操作等地理空间特有失效模式。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径是构建一个领域专用多智能体系统。系统将任务分解给不同专家代理：负责矢量操作的代理、负责地图特征检索的代理、负责影像发现的代理、负责栅格分析的代理；由一个 Orchestrator 统一规划和调度。Orchestrator 使用 dual-ledger 控制循环来管理任务依赖、记录进度、执行验证并在失败时重规划。系统还通过 Response Store 持久化完整地理空间工件，而非只保留文本响应，从而支持跨步骤复用和状态传递。若论文有实验，可能会围绕灾害响应问答或分析任务，对比单代理、普通代码代理或无状态工作流。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是它把地理空间分析中的“工件、元数据和状态”当作一等公民，而不是把问题简化成文本问答或代码生成。多专家代理的拆分与地理空间数据类型高度对应，具有较强任务贴合性；dual-ledger 说明作者重视可验证的流程控制，而非一次性生成；Response Store 则直接回应了大工件和中间结果复用这一真实痛点。若实现扎实，这种设计对灾害响应场景具有较高应用价值，因为实际决策往往依赖多源证据链而非单一模型输出。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，主要局限是缺乏可核实的实验细节与结果：不知道评测任务规模、灾种覆盖、数据源范围、基线系统、错误分析和定量收益。摘要也未说明系统是否依赖大量人工规则或工具封装，因此其可迁移性和维护成本未知。另一个需要警惕的边界是，领域专用设计虽然能提升可靠性，但可能牺牲开放域泛化能力；而多代理+状态存储+验证循环也可能带来更高延迟和系统复杂度。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查论文中的系统架构图，确认 Orchestrator、dual-ledger 和 Response Store 的具体关系；第二，查实验部分是否有与单代理/通用 coding agent 的直接对照，以及评测任务是否覆盖矢量、影像、栅格三类操作；第三，记录论文使用的具体数据源、GIS/遥感工具和工件格式；第四，若你做相关研究，可挑一个典型灾害问题，如洪水范围评估或受灾道路可达性分析，手工映射到其四类专家代理流程，判断该架构是否适合你的任务。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>基于题名和摘要，这项工作聚焦“灾害响应中的地理空间决策支持”这一非常具体的应用场景。论文明确指出，真实世界问题往往不是一次检索或一次代码生成就能解决，而是需要串联多个数据源和分析步骤，例如从空间数据库取行政区或道路等矢量数据，从地图服务获取派生特征，发现并筛选合适时相的卫星影像，结合栅格产品做分析，并在过程中复用中间生成的地理空间工件。作者认为，通用 LLM 或 coding agent 在这里会出现一类领域特有错误：处理大体量地理工件能力不足、选错证据源、丢失空间范围或时间上下文、执行不合法的几何运算。GeoFaham 的设计显然是围绕这些失败模式做“结构化约束”而不是仅靠更强模型本身。
-
-从方法线索看，系统由多个专门代理组成，至少包括 vector operations、map feature retrieval、imagery discovery、raster analysis 四类，这意味着作者把地理空间分析流程按数据类型和操作范式拆开，而不是让单一代理同时负责检索、规划、GIS 运算和结果解释。上层的 Orchestrator 通过 dual-ledger control loop 协调这些代理。虽然摘要未解释 dual-ledger 的具体数据结构，但从“dependency-aware planning, progress tracking, validation, and replanning”判断，它可能分别记录任务计划/依赖关系与执行产物/状态，或者记录“应做什么”和“已经验证了什么”两套账本，以便在多步流程中进行检查点式控制。Response Store 则是另一个关键部件，它不是简单缓存文本回复，而是持久化完整地理空间工件，这对灾害分析尤其重要，因为中间结果可能是矢量图层、裁剪后的影像、栅格统计结果、空间查询结果或带坐标参考系的几何对象，若只保留文本摘要，后续代理很容易失去可执行上下文。
-
-证据线索主要来自摘要中对问题和系统模块的直接描述，因此可以较有把握地判断这是一篇“系统型/架构型”论文，重点在多代理协作与地理空间工作流可靠性，而不只是提出一个新模型。关键词中包含 large language model、agent、satellite，也支持其与 LLM agent 和遥感/地理空间 AI 的交叉定位。对相关研究者而言，这篇论文可能特别适合以下方向：地理空间智能体、灾害遥感分析、GIS+LLM 工具链、面向真实任务的 agent orchestration、以及需要处理多模态地理工件的决策支持系统。
-
-但需要明确核对的信息也很多。首先，摘要没有给出实验设置、基线、评测任务、数据集名称、灾种类型，也没有说明是否包含真实用户问题或标准 benchmark。其次，不清楚 GeoFaham 是主要依赖外部 GIS/遥感工具调用，还是在代理内部集成了专门模型。再次，Response Store 的实现方式、工件格式、元数据模式、以及 dual-ledger 的具体机制都需要看正文或图示确认。最后，论文是否真正证明了比单代理或通用 coding agent 更可靠，目前只能从摘要推测，不能据此断言实验效果。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Real-world geospatial decision support requires more than single-step retrieval or code generation. Disaster-response questions often involve multi-source workflows that combine spatial databases, map-derived features, satellite imagery, raster products, and reusable geospatial artifacts, where correctness depends on preserving spatial scope, temporal context, and intermediate execution state. While large language models and coding agents offer a promising interface for such workflows, they struggle with geospatial-specific failure modes, including handling large artifacts, selecting the wrong evidence source, losing spatial or temporal metadata, and applying invalid geometric operations. We introduce GeoFaham, a domain-specialized multi-agent system for geospatial disaster analytics. GeoFaham decomposes workflows into specialist agents for vector operations, map feature retrieval, imagery discovery, and raster analysis, coordinated by an Orchestrator with a dual-ledger control loop for dependency-aware planning, progress tracking, validation, and replanning. To support artifact-centric collaboration, GeoFaham uses a Response Store that persists full geospatial outputs and typed metadata outside the LLM context window while agents exchange compact identifiers and summaries. We also introduce GeoFaham-Bench, a 40-task benchmark grounded in 17 real-world disaster records, designed to evaluate multi-step geospatial reasoning, cross-source integration, raster-vector computation, artifact generation, and recovery under non-rigid ground truth. We evaluate GeoFaham on GeoFaham-Bench against strong general-purpose coding-agent baselines, including Codex, Claude Code, and OpenCode. GeoFaham achieves the best overall performance, scoring 0.940 versus the next-best 0.879, while using 7.5 times fewer tokens. Our code and benchmark are publicly available at https://github.com/microsoft/GeoFaham.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-03T19:13:19Z</span>
-        <span>Score 70.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2611.05515v1">TSFM Meets LLM: Context as Covariates</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+TSFM+Meets+LLM%3A+Context+as+Covariates&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05515v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+TSFM+Meets+LLM%3A+Context+as+Covariates%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+foundation+model%2C+foundation+models%2C+multimodal%2C+ai%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+TSFM+Meets+LLM%3A+Context+as+Covariates&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05515v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+TSFM+Meets+LLM%3A+Context+as+Covariates%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+foundation+model%2C+foundation+models%2C+multimodal%2C+ai%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+TSFM+Meets+LLM%3A+Context+as+Covariates&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.05515v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+TSFM+Meets+LLM%3A+Context+as+Covariates%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+foundation+model%2C+foundation+models%2C+multimodal%2C+ai%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Hemanth Ram、Sai Shankar Narasimhan、Shubhankar Agarwal、Sandeep Chinchali · <a href="https://arxiv.org/pdf/2611.05515v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">foundation model <strong>1</strong></span>
-<span class="chip">foundation models <strong>1</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">weather <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦“带文本上下文的时间序列预测”任务，提出将新闻、报告、注释等文本信息转化为可供时间序列基础模型使用的数值协变量，以提升仅靠历史数值难以完成的预测。具体上，作者提出 CoCo（Context as Covariates）框架，让 LLM 先把文本推理蒸馏成预测值与置信度等协变量，再由 TSFM 完成最终预测。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能有三点：一是提出一种可扩展的多模态数据构造方案，用 LLM 为真实世界时间序列自动生成文本注释，从而缓解大规模配对时序-文本数据稀缺的问题；二是提出 CoCo 框架，把文本理解问题转写为“数值协变量生成”，以连接 LLM 的语义推理能力与 TSFM 的数值建模能力；三是设计分阶段对齐流程，先用与预测性能提升挂钩的 GRPO 奖励微调 LLM，再用对齐后的 LLM 生成的协变量微调 TSFM，实现两类模型的协同。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 10</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>70.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在时间序列预测中，如何有效利用新闻、报告、注释等文本上下文，使模型捕捉那些无法从纯数值历史中推断出的外生影响；同时在缺乏大规模配对时序-文本训练数据的条件下，如何构建可扩展的训练方案，把 LLM 的文本推理能力与 TSFM 的数值预测能力结合起来。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包含两部分。第一部分是数据构造：基于真实世界时间序列，利用 LLM 生成或补充与序列相关的文本注释，形成可扩展的多模态训练数据。第二部分是 CoCo 框架：LLM 读取文本上下文后，不直接输出最终预测，而是输出数值化的 forecast covariates 和 confidence covariates；这些协变量作为额外输入送入 TSFM 主干。训练上采用分阶段对齐：先用 GRPO 微调 LLM，奖励由“协变量带来的预测性能提升”定义；再固定或使用已对齐的 LLM 生成协变量，微调 TSFM 以学习利用这些协变量。可能的实验路径是与纯 TSFM、纯 LLM、文本 embedding 融合、无置信度协变量等方法做对照。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，接口设计具体：不是泛泛地做多模态融合，而是把文本信息压缩成数值协变量，这种形式更贴近时序建模实践，也更容易解释每类文本信号的作用。第二，训练目标贴近最终任务：用 forecasting improvement 作为 LLM 对齐奖励，比只优化语言质量或人工偏好更直接。第三，数据扩展思路有现实价值：如果确实能用 LLM 为真实时序批量生成高质量注释，就可能缓解多模态时序数据稀缺这一长期瓶颈，并促进跨领域应用。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到全文后先看方法图和训练流程图，确认 CoCo 的输入输出接口到底是什么，尤其是协变量的具体形式。第二，优先查实验表，记录使用了哪些数据集、TSFM 主干、基线和指标，并核对是否有信息泄漏防护。第三，重点看消融：只用 forecast covariates、只用 confidence covariates、直接文本融合、无 GRPO 对齐时的效果。第四，如果你做相关研究，可先在自己的任务上设计一个简化复现：用现成 LLM 把事件文本转成少量数值特征，再拼接到现有时序模型输入，快速验证“文本转协变量”这一路线是否有效。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在时间序列预测中，如何有效利用新闻、报告、注释等文本上下文，使模型捕捉那些无法从纯数值历史中推断出的外生影响；同时在缺乏大规模配对时序-文本训练数据的条件下，如何构建可扩展的训练方案，把 LLM 的文本推理能力与 TSFM 的数值预测能力结合起来。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包含两部分。第一部分是数据构造：基于真实世界时间序列，利用 LLM 生成或补充与序列相关的文本注释，形成可扩展的多模态训练数据。第二部分是 CoCo 框架：LLM 读取文本上下文后，不直接输出最终预测，而是输出数值化的 forecast covariates 和 confidence covariates；这些协变量作为额外输入送入 TSFM 主干。训练上采用分阶段对齐：先用 GRPO 微调 LLM，奖励由“协变量带来的预测性能提升”定义；再固定或使用已对齐的 LLM 生成协变量，微调 TSFM 以学习利用这些协变量。可能的实验路径是与纯 TSFM、纯 LLM、文本 embedding 融合、无置信度协变量等方法做对照。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，接口设计具体：不是泛泛地做多模态融合，而是把文本信息压缩成数值协变量，这种形式更贴近时序建模实践，也更容易解释每类文本信号的作用。第二，训练目标贴近最终任务：用 forecasting improvement 作为 LLM 对齐奖励，比只优化语言质量或人工偏好更直接。第三，数据扩展思路有现实价值：如果确实能用 LLM 为真实时序批量生成高质量注释，就可能缓解多模态时序数据稀缺这一长期瓶颈，并促进跨领域应用。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，需要警惕几类局限。其一，自动注释数据的真实性与因果有效性不明，LLM 可能生成看似合理但并不对应真实外生机制的文本，从而让模型学到伪相关。其二，若注释生成过程使用了未来信息或全序列信息，可能产生信息泄漏。其三，协变量设计虽然可解释，但也可能过于受人工接口限制，无法保留文本中的细粒度时序语义。其四，GRPO 训练成本和稳定性未知，尤其当 reward 依赖下游预测性能时，信用分配可能较难。其五，摘要未给出具体数据集、领域覆盖和提升幅度，因此泛化性与实际收益仍需核实。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到全文后先看方法图和训练流程图，确认 CoCo 的输入输出接口到底是什么，尤其是协变量的具体形式。第二，优先查实验表，记录使用了哪些数据集、TSFM 主干、基线和指标，并核对是否有信息泄漏防护。第三，重点看消融：只用 forecast covariates、只用 confidence covariates、直接文本融合、无 GRPO 对齐时的效果。第四，如果你做相关研究，可先在自己的任务上设计一个简化复现：用现成 LLM 把事件文本转成少量数值特征，再拼接到现有时序模型输入，快速验证“文本转协变量”这一路线是否有效。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作研究的是现实时间序列场景中常见但难处理的一类输入：与数值序列同时出现的文本上下文，例如新闻、事件报告、人工注释或领域说明。作者的出发点很明确：LLM 擅长解释文本、归纳事件影响，但对精确数值预测不稳定；TSFM 擅长从历史数值中提取模式并做定量预测，但通常无法直接理解文本对未来轨迹的影响。因此论文试图把“文本影响预测”转化为“生成可被 TSFM 消化的协变量”这一中间任务。
-
-方法线索上，CoCo 的关键对象不是让 LLM 直接输出最终时间序列，而是让它输出“numerically grounded forecast and confidence covariates”。这意味着协变量很可能包括：基于文本推断的未来趋势方向、冲击强度、事件持续时间、预测区间、置信度、风险等级，或与未来窗口相关的辅助数值特征。TSFM 则把这些协变量与原始历史序列共同输入，完成最终预测。这样的设计比“直接拼接文本 embedding”更强调可解释的数值接口，也更符合现有时序模型的输入习惯。
-
-摘要还给出一个较具体的训练路径。第一阶段，作者用 GRPO 微调 LLM，奖励信号不是语言质量本身，而是“LLM 生成的协变量是否真的让下游预测更好”。这说明优化目标是任务导向的：文本推理只有在改善预测误差时才被强化。第二阶段，再用这个已对齐的 LLM 生成协变量，去微调 TSFM，使 TSFM 学会稳定利用这些文本导出的数值提示。这个两阶段流程的意义在于避免同时端到端训练带来的不稳定，也降低了 LLM 与 TSFM 表征空间不一致的问题。
-
-数据方面，摘要强调“通过 LLM 给真实世界时间序列加注释”来生成 realistic multimodal datasets。这里需要特别核对：这些注释是从外部真实文本中抽取、重写和结构化，还是在缺少文本时由 LLM 基于序列模式合成解释性文本；“realistic”是通过人工评估、统计分布匹配，还是通过下游预测收益来证明。因为这直接关系到数据是否会引入信息泄漏、幻觉解释或伪因果关联。
-
-从关键词和摘要末尾可见，这篇工作与 weather 等场景可能相关，但仅凭当前信息不能确认实验是否主要在天气、金融、交通或通用 benchmark 上。若你的研究方向涉及多模态时序预测、事件驱动预测、时序基础模型适配、或 LLM-for-time-series，这篇论文值得重点关注，因为它不是简单把 LLM 当预测器，而是把 LLM 变成“文本到数值协变量的转换器”，这在工程上更容易接入现有 TSFM 管线，也更便于做消融和解释。
-
-需要核对的信息包括：1）协变量的具体定义、维度和时间粒度；2）LLM 输入的是原始文本、摘要文本还是模板化事件描述；3）GRPO 的 reward 如何计算，是否直接基于验证集 forecasting metric；4）TSFM 主干具体是哪一类模型；5）与直接文本编码、早期融合、后期融合、prompting-only 等基线相比提升是否稳定；6）自动生成的多模态数据是否公开，以及是否覆盖多个领域。由于摘要被截断，关于实验结果、数据集名称、指标和误差改善幅度目前都不能确定。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Textual information is ubiquitous in real-world time series datasets, appearing as news, reports, and annotations that hold key predictive signals not deducible from numerical history alone. Large Language Models (LLMs) interpret text but lack numerical precision, while Time Series Foundation Models (TSFMs) are quantitatively accurate but cannot reason about the effects of text. Moreover, the lack of large-scale paired multimodal datasets limits progress in bridging this gap. In this work, we address this challenge by providing a scalable approach for generating realistic multimodal datasets by annotating real-world time series with LLMs. Building on this, we propose Context as Covariates (CoCo), a forecasting framework in which an LLM distills its textual reasoning into numerically grounded forecast and confidence covariates that guide a TSFM backbone, thereby exploiting the strengths of both LLMs and TSFMs. We align the two models in stages, first fine-tuning the LLM via Group Relative Policy Optimization (GRPO) with a reward tied to covariate-induced improvement in forecasting performance, and then fine-tuning the TSFM on covariates generated by the aligned LLM. Our experiments show that models trained on our synthetic multimodal corpus generalize to real benchmarks spanning finance, economics, weather, traffic, and security. Notably, CoCo with Qwen3-4B-Instruct-2507 as the LLM and Chronos2 as the TSFM achieves up to 12% MAE improvement over state-of-the-art TSFMs and LLM forecasters, such as GPT-4o. Code, checkpoints, and the evaluation datasets are publicly available.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-11-04</span>
+        <span>2026-11-04T19:08:46Z</span>
         <span>Score 67.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1038/s41586-026-11156-5">The deep Earth origin of the Great Unconformity</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+The+deep+Earth+origin+of+the+Great+Unconformity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11156-5%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+The+deep+Earth+origin+of+the+Great+Unconformity%0Akeywords%3A+ai%2C+earth%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+The+deep+Earth+origin+of+the+Great+Unconformity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11156-5%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+The+deep+Earth+origin+of+the+Great+Unconformity%0Akeywords%3A+ai%2C+earth%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+The+deep+Earth+origin+of+the+Great+Unconformity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11156-5%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+The+deep+Earth+origin+of+the+Great+Unconformity%0Akeywords%3A+ai%2C+earth%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>3. <a href="http://arxiv.org/abs/2611.07048v1">Adapting the Process of Adaptation: Darwinian, Lamarckian, and Agent-Directed Evolution in AI</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Adapting+the+Process+of+Adaptation%3A+Darwinian%2C+Lamarckian%2C+and+Agent-Directed+Ev&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.07048v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Adapting+the+Process+of+Adaptation%3A+Darwinian%2C+Lamarckian%2C+and+Agent-Directed+Evolution+in+AI%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+artificial+intelligence%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Adapting+the+Process+of+Adaptation%3A+Darwinian%2C+Lamarckian%2C+and+Agent-Directed+Ev&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.07048v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Adapting+the+Process+of+Adaptation%3A+Darwinian%2C+Lamarckian%2C+and+Agent-Directed+Evolution+in+AI%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+artificial+intelligence%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Adapting+the+Process+of+Adaptation%3A+Darwinian%2C+Lamarckian%2C+and+Agent-Directed+Ev&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.07048v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Adapting+the+Process+of+Adaptation%3A+Darwinian%2C+Lamarckian%2C+and+Agent-Directed+Evolution+in+AI%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+artificial+intelligence%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Santosh Dhungana、Nicolas Flament · DOI: <a href="https://doi.org/10.1038/s41586-026-11156-5">10.1038/s41586-026-11156-5</a></div>
-      <div class="chips"><span class="chip">ai <strong>1</strong></span>
-<span class="chip">earth <strong>1</strong></span>
+      <div class="authors">Andrew W. Lo、Chaoyi Zhao · <a href="https://arxiv.org/pdf/2611.07048v1">PDF</a></div>
+      <div class="chips"><span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">ai agent <strong>1</strong></span>
+<span class="chip">ai agents <strong>1</strong></span>
+<span class="chip">artificial intelligence <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
 <span class="chip">environmental <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该论文围绕地质学中的“大不整合面”成因问题，提出其在Laurentia、Baltica和华北等大陆上的形成与保存，主要受地幔对流引起的长波长动态地形控制的大陆尺度抬升与后续长期沉降驱动。摘要显示作者用模型检验了多种既有解释中的“深部地球动力学”机制，并将新元古代抬升、冰川侵蚀与显生宙沉降串联为一个统一情景。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把“大不整合面”从单一表层过程解释，推进为“深部地幔对流—动态地形—大陆尺度垂向运动—侵蚀与保存”这一可检验的机制链条。具体而言，作者声称其模型预测了Laurentia、Baltica和华北在新元古代经历持续抬升、在显生宙经历长期沉降，这一时空组合既有利于Cryogenian时期的广泛侵蚀，也有利于后期不整合面的保存，从而将大不整合面视为深部地球过程的一阶表面响应。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“环境变化后，AI/智能体如何通过不同进化机制加速适应”这一具体问题，比较了达尔文式、拉马克式和agent-directed evolution三类适应过程，并特别讨论当智能体能够自行生成、评估并选择行为变体时，改进速度与安全性如何同时变化。摘要显示其核心任务不是构建某个具体模型基准，而是建立一个理论框架，分析学习能力、搜索变体数量、实验成本和目标错设对适应速度与错误收敛的影响。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献有三点：第一，提出一个统一的理论比较框架，把达尔文式自然选择、可继承学习的拉马克式适应，以及由智能体主动控制搜索强度和候选行为评估的agent-directed evolution放在同一环境变化情境下分析；第二，给出若干机制性结论，例如学习越有效，三类机制的适应速度呈递进加快，生成更多行为变体通常会加速适应，而最优搜索努力取决于学习能力、问题难度与试错成本；第三，强调安全层面的反直觉风险：如果评估目标被错设，智能体更强的自我改进与更大搜索规模会更快收敛到错误行为，即能力提升不等于对齐提升。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -493,11 +354,11 @@
           <div class="detail-signal">
             <div>
               <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
+              <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 4</div>
-              <div class="signal-meter"><span style="width: 72%"></span></div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
@@ -505,31 +366,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：全球广泛分布的Great Unconformity究竟主要由哪类过程形成并得以保存？更具体地说，作者在检验一个地球动力学命题：地幔对流产生的长波长动态地形，是否能够在新元古代驱动Laurentia、Baltica和华北等大陆发生持续抬升并遭受强烈侵蚀，再在显生宙转入长期沉降，从而同时解释大不整合面的形成与保存。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要判断，核心方法应是数值模型驱动的地球动力学分析。作者很可能基于板块重建约束下的地幔对流模型，计算长波长动态地形及其导致的大陆尺度垂向运动历史；再把这些预测与地质记录进行对照，包括Cryogenian时期可能的广泛冰川侵蚀、前寒武纪至显生宙的地层缺失、以及大不整合面在Laurentia、Baltica和华北的分布与保存情况。分析路径可能是：提出候选机制→建立/调用动力学模型→预测时空抬升沉降格局→与关键大陆的地质现象匹配→论证动态地形是统一解释框架。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是它把一个经典地层学问题具体化为可计算、可检验的深部动力学问题，而不是停留在现象归因层面。摘要显示其优势包括：一，明确给出大陆对象和时间窗口，而非泛泛讨论；二，将形成与保存两个通常分开的过程放在同一垂向运动历史中解释；三，不是简单排斥冰川侵蚀，而是把冰川作用嵌入动态地形造成的长期抬升背景中，形成更完整的机制链；四，如果模型确实能同时解释Laurentia、Baltica和华北，则说明该机制具有跨大陆适用性。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作有五项：第一，优先查看正文或补充材料中的主图，确认模型预测的动态地形/垂向运动时间序列是否真的覆盖Laurentia、Baltica和华北；第二，记录作者用于验证模型的地质约束类型，例如不整合面年龄、侵蚀量、沉积覆盖时间、热年代学或古地理数据；第三，专门查找作者如何排除或吸收裂谷、地幔柱、海平面变化和冰川侵蚀等替代解释；第四，比较Cryogenian抬升与Phanerozoic沉降的持续时间、幅度和空间范围，判断是否足以解释“形成+保存”两阶段；第五，若要复现或延伸，可先整理Laurentia、Baltica、华北的大不整合面时空数据表，与模型预测做最基础的区域对照。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题是：当环境发生变化后，不同“适应机制”会让智能体多快恢复或提升行为适配性？更具体地说，若AI agent不仅能学习，还能主动生成和评估自己的行为变体，并决定搜索多少候选方案，那么这种agent-directed adaptation相较于传统自然选择或可继承学习会带来多大速度优势；同时，在评估目标存在错设时，这种更强的自我改进能力是否会放大错误优化并带来安全风险。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要判断，方法应是理论建模与比较分析，而非依赖大规模数据集。可能步骤包括：先设定环境突变或任务分布变化；再分别定义三种机制下行为变体的产生、筛选与继承规则；引入学习能力参数、问题难度参数、试验/搜索成本参数，以及每轮可生成的候选变体数量；随后推导适应速度、最优搜索强度或长期收敛方向。对于安全部分，作者可能额外引入“评估目标”和“真实目标”的偏差，分析在目标错设下，搜索规模增加为何会更快逼近错误行为。若文中有图表，可能是参数扫描、相图、速度比较曲线或错设程度与搜索强度的关系图。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点在于它把“进化”“学习”“agent自主搜索”三层机制放进同一分析框架，这有助于把AI自我改进问题从泛泛讨论落到可比较的对象上。第二个亮点是把速度与安全放在一起：不是只问能否更快适应，而是问更快适应是否可能更快偏离真实目标，这对agentic AI和对齐研究很关键。第三个亮点是摘要已经给出可操作的机制变量——学习能力、候选变体数量、问题难度、实验成本、目标错设——这些变量都能直接映射到现实AI系统中的训练预算、探索深度、评估器质量和代理奖励设计。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看论文中对三种机制的正式定义和变量表，确认每个机制的状态转移、继承规则和搜索成本如何写出；第二，定位所有命题/定理，记录适应速度排序成立的前提条件，尤其是“learning sufficiently effective”的阈值；第三，查找关于misspecified evaluation target的图或例子，确认错误收敛是局部现象还是一般性结论；第四，如果你做agent或对齐研究，可把自己的系统映射到文中的四个关键变量：学习能力、搜索规模、实验成本、评估偏差，写一页对照笔记，判断该框架是否能解释你的系统风险。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：全球广泛分布的Great Unconformity究竟主要由哪类过程形成并得以保存？更具体地说，作者在检验一个地球动力学命题：地幔对流产生的长波长动态地形，是否能够在新元古代驱动Laurentia、Baltica和华北等大陆发生持续抬升并遭受强烈侵蚀，再在显生宙转入长期沉降，从而同时解释大不整合面的形成与保存。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要判断，核心方法应是数值模型驱动的地球动力学分析。作者很可能基于板块重建约束下的地幔对流模型，计算长波长动态地形及其导致的大陆尺度垂向运动历史；再把这些预测与地质记录进行对照，包括Cryogenian时期可能的广泛冰川侵蚀、前寒武纪至显生宙的地层缺失、以及大不整合面在Laurentia、Baltica和华北的分布与保存情况。分析路径可能是：提出候选机制→建立/调用动力学模型→预测时空抬升沉降格局→与关键大陆的地质现象匹配→论证动态地形是统一解释框架。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是它把一个经典地层学问题具体化为可计算、可检验的深部动力学问题，而不是停留在现象归因层面。摘要显示其优势包括：一，明确给出大陆对象和时间窗口，而非泛泛讨论；二，将形成与保存两个通常分开的过程放在同一垂向运动历史中解释；三，不是简单排斥冰川侵蚀，而是把冰川作用嵌入动态地形造成的长期抬升背景中，形成更完整的机制链；四，如果模型确实能同时解释Laurentia、Baltica和华北，则说明该机制具有跨大陆适用性。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，主要局限在于证据细节尚不透明。首先，摘要没有说明模型输入、边界条件和不确定性范围，因而无法判断动态地形预测是否稳健。其次，大不整合面的成因具有多机制叠加特征，摘要虽列出裂谷、地幔柱、海平面下降、冰川侵蚀等解释，但未展示如何定量区分这些机制的相对贡献。再次，区域重点集中在Laurentia、Baltica和华北，是否足以支撑“全球广泛”层面的结论需要谨慎。最后，摘要中的表述较强，例如将大不整合面视为深部地球过程的一阶表面表达，这需要查看正文中的数据对照、敏感性分析和反例讨论。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作有五项：第一，优先查看正文或补充材料中的主图，确认模型预测的动态地形/垂向运动时间序列是否真的覆盖Laurentia、Baltica和华北；第二，记录作者用于验证模型的地质约束类型，例如不整合面年龄、侵蚀量、沉积覆盖时间、热年代学或古地理数据；第三，专门查找作者如何排除或吸收裂谷、地幔柱、海平面变化和冰川侵蚀等替代解释；第四，比较Cryogenian抬升与Phanerozoic沉降的持续时间、幅度和空间范围，判断是否足以解释“形成+保存”两阶段；第五，若要复现或延伸，可先整理Laurentia、Baltica、华北的大不整合面时空数据表，与模型预测做最基础的区域对照。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和期刊信息看，这是一篇面向地球动力学与地表过程耦合问题的研究，研究对象非常具体，即全球广泛分布的Great Unconformity及其在若干关键克拉通/大陆上的形成与保存机制。摘要明确列出了既有候选机制：雪球地球期冰川侵蚀、裂谷与地幔柱活动、海平面下降、以及地幔驱动的动态地形；作者强调“这些过程的动力学此前未被检验”，因此本文的主要任务不是简单综述，而是用模型去测试哪类垂向运动历史最能解释该地质界面。
-
-可能的方法路径较清楚：作者应使用了地幔对流或板块-地幔演化模型，计算长波长动态地形随时间变化，并将其投影到Laurentia、Baltica、华北等大陆块体上，得到新元古代到显生宙的抬升-沉降历史。摘要中的“our models predict”说明核心证据来自数值预测而非单一野外剖面。随后作者把模型输出与地质现象对应：持续的Cryogenian大陆尺度抬升会增强暴露与侵蚀，尤其在冰川作用下形成显著剥蚀；而后续长期沉降则有利于不整合面被沉积覆盖并保存下来。这里的证据链条是“深部动力学预测的垂向运动历史”与“已知大不整合面分布、侵蚀规模、保存条件”之间的匹配。
-
-摘要还透露出几个具体对象和现象值得关注。第一，区域对象不是泛泛的“全球大陆”，而是Laurentia、Baltica和North China，这意味着作者可能选择了具有较好前寒武纪—显生宙记录、且大不整合面研究基础较强的大陆作为重点验证对象。第二，时间窗口集中在Neoproterozoic尤其Cryogenian，以及后续Phanerozoic，这种“先抬升侵蚀、后沉降保存”的两阶段框架是论文主线。第三，作者似乎并未否定冰川作用，而是把冰川侵蚀放在动态地形造成的长期抬升背景下，等于把“雪球地球侵蚀说”纳入更上游的深部驱动框架中。
-
-与用户可能关注的方向关系上，如果读者来自地球系统、环境演化或深时地表过程研究，这篇论文的价值在于提供了一个跨圈层解释：深部地幔过程如何通过动态地形改变大陆暴露、侵蚀、沉积与保存，从而影响重大地层界面及其与寒武纪前环境转折的联系。如果读者更偏数值模拟，则重点应放在模型如何重建新元古代地幔流动、板块边界条件、动态地形振幅与持续时间，以及这些预测是否能独立解释不同大陆的同步性与差异性。
-
-但基于当前仅有摘要，仍有多项关键信息必须核对，不能直接当作已证实事实。需要核对的包括：模型类型是纯地幔对流、板块重建耦合，还是数据同化式地球动力学模型；动态地形的空间分辨率和时间分辨率；对Laurentia、Baltica、华北的约束数据是什么，是否使用热年代学、沉积缺失量、地层接触关系、古地理重建或海平面曲线；如何区分动态地形与裂谷热沉降、造山后均衡调整、冰后均衡回弹等其他垂向运动来源；“全球广泛”结论是否真正有全球数据支持，还是主要建立在少数大陆案例上；以及模型不确定性是否足以支持“大不整合面是一阶深部地球过程表面表达”这一较强表述。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题是：当环境发生变化后，不同“适应机制”会让智能体多快恢复或提升行为适配性？更具体地说，若AI agent不仅能学习，还能主动生成和评估自己的行为变体，并决定搜索多少候选方案，那么这种agent-directed adaptation相较于传统自然选择或可继承学习会带来多大速度优势；同时，在评估目标存在错设时，这种更强的自我改进能力是否会放大错误优化并带来安全风险。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要判断，方法应是理论建模与比较分析，而非依赖大规模数据集。可能步骤包括：先设定环境突变或任务分布变化；再分别定义三种机制下行为变体的产生、筛选与继承规则；引入学习能力参数、问题难度参数、试验/搜索成本参数，以及每轮可生成的候选变体数量；随后推导适应速度、最优搜索强度或长期收敛方向。对于安全部分，作者可能额外引入“评估目标”和“真实目标”的偏差，分析在目标错设下，搜索规模增加为何会更快逼近错误行为。若文中有图表，可能是参数扫描、相图、速度比较曲线或错设程度与搜索强度的关系图。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点在于它把“进化”“学习”“agent自主搜索”三层机制放进同一分析框架，这有助于把AI自我改进问题从泛泛讨论落到可比较的对象上。第二个亮点是把速度与安全放在一起：不是只问能否更快适应，而是问更快适应是否可能更快偏离真实目标，这对agentic AI和对齐研究很关键。第三个亮点是摘要已经给出可操作的机制变量——学习能力、候选变体数量、问题难度、实验成本、目标错设——这些变量都能直接映射到现实AI系统中的训练预算、探索深度、评估器质量和代理奖励设计。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于现有信息，主要局限是缺少全文细节，尚不清楚模型假设是否过强，例如是否把行为空间、评估误差、继承机制和环境变化都做了高度简化。第二，摘要没有说明是否有经验验证，因此结论可能主要是规范性或机制性，而非对现有大模型agent系统的定量预测。第三，‘Lamarckian’和‘agent-directed evolution’在AI语境中可能是抽象类比，读者需要警惕其与真实训练流程之间的映射是否严谨。第四，安全结论虽然重要，但若目标错设的建模方式过于单一，外推到复杂多目标系统时可能有限。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看论文中对三种机制的正式定义和变量表，确认每个机制的状态转移、继承规则和搜索成本如何写出；第二，定位所有命题/定理，记录适应速度排序成立的前提条件，尤其是“learning sufficiently effective”的阈值；第三，查找关于misspecified evaluation target的图或例子，确认错误收敛是局部现象还是一般性结论；第四，如果你做agent或对齐研究，可把自己的系统映射到文中的四个关键变量：学习能力、搜索规模、实验成本、评估偏差，写一页对照笔记，判断该框架是否能解释你的系统风险。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>基于题名、摘要和关键词，这篇工作研究的对象是“在环境发生变化后，具备一定学习与自我修改能力的AI agent如何适应”，并把这种适应过程抽象为进化机制比较问题。论文并非看起来像经验型benchmark论文，而更像理论/概念建模工作：作者可能构造了一个环境变化后的适应模型，定义群体或个体在每一轮中如何产生行为变体、如何评估变体、哪些特征可被继承，以及搜索成本如何进入目标函数。达尔文式机制应对应仅靠选择保留更适应个体；拉马克式机制则允许个体学习到的改进被继承；agent-directed evolution进一步允许智能体主动决定要生成多少候选行为、如何评估这些候选、以及是否扩大搜索。摘要中的“optimal search effort depends on learning ability, problem difficulty, and experimentation costs”说明文中大概率存在显式优化问题或比较静态分析，而不是纯口头讨论。证据线索还包括：作者强调“when learning is sufficiently effective, these mechanisms exhibit progressively faster adaptation”，这意味着他们可能证明了某种排序关系、阈值条件或收敛速度比较；又强调“misspecified evaluation target”会导致“additional search accelerates convergence toward the wrong behavior”，这很像把目标错设/代理目标偏差纳入理论模型，分析搜索强度与错向优化之间的关系。与AI agent、安全、对齐、元学习或自我改进方向的读者关系很直接：它提供的不是某个工程系统，而是一个解释框架，帮助判断何时应鼓励agent自主探索，何时必须优先约束评估目标与实验预算。需要核对的信息包括：1）模型是离散代际、连续时间还是动态规划框架；2）“learning sufficiently effective”具体如何形式化；3）搜索变体数量与适应速度之间是单调关系还是存在边际递减；4）目标错设是通过奖励偏差、观测噪声还是代理指标偏离来建模；5）是否有数值模拟、案例图或仅有命题证明；6）结论适用于单智能体自我改进、群体进化，还是两者兼有。由于目前只有摘要，不能断言其具体定理、实验设置或图表结果。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Abstract The Great Unconformity marks a globally extensive erosive surface linked to climatic shifts 1 and environmental transitions 2 that preceded the Cambrian explosion of life. The processes proposed to explain the formation of the Great Unconformity include glacial erosion during the Snowball Earth 1,3,4 , rifting and plume activity 5–7 , sea-level fall 8 and mantle-driven dynamic topography 6,9–11 . However, the dynamics of these processes have not been tested. Here we show that continental-scale uplift and subsidence associated with long-wavelength dynamic topography 12 due to mantle convection drove the formation and preservation of the Great Unconformity. Our models predict prolonged continental-scale Neoproterozoic uplift and long-term Phanerozoic subsidence for Laurentia, Baltica and North China. This vertical motion scenario is ideal for the formation and preservation of the Great Unconformity, which is a first-order surface expression of deep Earth processes. The predicted prolonged continental uplift throughout Cryogenian times would have resulted in marked erosion due to the action of glaciers 13 . The large area of Laurentia and limited deformation at its margins explain why the Great Unconformity is best preserved and documented there. Our models predict cycles of dynamic topography that are broadly reflected in preserved sediment volume across continents 1,14 , and open new avenues for understanding the environments of Cambrian animal diversification.</p>
+          <p>Evolution has shaped intelligence for billions of years. Artificial intelligence (AI) now raises a striking possibility: intelligence may begin to direct its own evolution. As AI agents become capable of modifying and evaluating their own behavior, how quickly could they improve, and how can that improvement remain safe? We develop a theoretical framework comparing Darwinian, Lamarckian, and agent-directed evolution following environmental change. Darwinian evolution relies on natural selection, Lamarckian evolution adds inherited learning, and agent-directed evolution allows agents to generate and evaluate behavioral variants and choose how extensively to search. When learning is sufficiently effective, these mechanisms exhibit progressively faster adaptation. Generating more variants accelerates adaptation, while optimal search effort depends on learning ability, problem difficulty, and experimentation costs. However, an agent&#x27;s ability to direct its improvement does not ensure that improvements are evaluated against the intended objective. When the evaluation target is misspecified, additional search accelerates convergence toward the wrong behavior, even as measured performance improves. In recursive self-improvement, such errors may persist across generations, posing challenges for AI safety. Independent evaluation and oversight must keep pace with autonomous AI development. The central challenge is not simply to accelerate the evolution of intelligence, but to preserve humanity&#x27;s ability to guide its direction, limit its speed, and intervene when necessary.</p>
         </details>
         
         </div>
@@ -540,22 +393,97 @@
 
     <article class="paper-card">
       <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-11-04</span>
-        <span>Score 56.0</span>
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-04T18:14:50Z</span>
+        <span>Score 64.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1038/s41586-026-11213-z">Imaging exoplanets below the telescope stability limit</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Imaging+exoplanets+below+the+telescope+stability+limit&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11213-z%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Imaging+exoplanets+below+the+telescope+stability+limit%0Akeywords%3A+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Imaging+exoplanets+below+the+telescope+stability+limit&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11213-z%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Imaging+exoplanets+below+the+telescope+stability+limit%0Akeywords%3A+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Imaging+exoplanets+below+the+telescope+stability+limit&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11213-z%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Imaging+exoplanets+below+the+telescope+stability+limit%0Akeywords%3A+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>4. <a href="http://arxiv.org/abs/2611.06858v1">CompressionBench: How can your coding agents compress LLMs?</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+CompressionBench%3A+How+can+your+coding+agents+compress+LLMs%3F&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06858v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+CompressionBench%3A+How+can+your+coding+agents+compress+LLMs%3F%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+CompressionBench%3A+How+can+your+coding+agents+compress+LLMs%3F&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06858v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+CompressionBench%3A+How+can+your+coding+agents+compress+LLMs%3F%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+CompressionBench%3A+How+can+your+coding+agents+compress+LLMs%3F&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.06858v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+CompressionBench%3A+How+can+your+coding+agents+compress+LLMs%3F%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Rodrigo Ferrer-Chavez、Jason J. Wang、Katherine L. Bouman、William T. Freeman 等 7 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11213-z">10.1038/s41586-026-11213-z</a></div>
+      <div class="authors">Xinrui Zhong、Zhifeng Li、Zhiming Wang、Yongqi Liu 等 9 人 · <a href="https://arxiv.org/pdf/2611.06858v1">PDF</a></div>
+      <div class="chips"><span class="chip">llm <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了 CompressionBench，用来评测编码智能体是否能在给定源模型检查点、存储上限、推理环境和时间预算的条件下，自主完成大语言模型压缩并交付可执行推理代码。按摘要描述，作者在 6 类智能体和 6 个模型-尺寸设定上测试后发现，多数提交可通过独立验证；若每个任务选最低困惑度方案，压缩后模型相对 BF16 平均困惑度仅上升 3.4%，下游准确率为 77.33%，接近 BF16 的 79.56%。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于把“LLM 压缩”明确表述为一个面向智能体的终端任务基准，而不是单纯比较压缩算法本身：智能体需要自行决定压缩算法、实验流程和代码实现，并通过困惑度反馈进行搜索，最终由独立验证程序检查压缩权重与推理代码是否满足约束。摘要还给出了一组较具体的过程性发现，例如在几乎固定存储预算下，智能体在 24 次修订中有 21 次能继续降低困惑度；完整模型反馈会推翻 79 次既有局部排序中的 17 次；这说明作者不仅比较最终分数，也记录了智能体搜索轨迹与失败模式。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 6</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>64.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：编码智能体能否在几乎端到端、受约束的真实任务中，自主把一个预训练大语言模型压缩到指定存储预算内，同时保留原模型行为，并交付可运行、可验证的推理实现？进一步说，作者想测的不是单一压缩算法优劣，而是智能体在“提出方案—做实验—根据困惑度反馈修订—最终提交可执行结果”这一闭环中的能力上限与失效点。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>按摘要，方法应是构建 CompressionBench 这一基准：给智能体提供源模型 checkpoint、存储限制、推理环境和时间预算；允许其自主决定压缩算法与实验流程；用 perplexity 作为搜索反馈；最后通过独立验证程序检查压缩权重和推理代码。实验规模至少覆盖 6 个智能体和 6 个模型-尺寸设定，共 36 次提交，并比较通过验证率、相对 BF16 的 perplexity 变化、以及下游准确率。作者还记录了修订过程与排序反转现象，说明他们不仅看最终结果，也分析搜索轨迹和评估信号的可靠性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，任务定义具体且可执行，输入输出和约束都很明确，避免了只看聊天式“会不会压缩”的主观评估。其二，独立验证机制很重要，它把 benchmark 从“生成一个看起来合理的方案”提升为“必须交付真实可运行结果”。其三，摘要给出了过程性证据而非只报最终分数，例如 21/24 的修订改进和 17/79 的局部排序反转，这些现象对理解 agent search、代理指标失真和实验设计都很有价值。若结果稳健，这个 benchmark 可能成为评测 agentic systems 在模型优化与部署任务上的代表性平台。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查正文中的 benchmark 定义表，确认 6 个模型-尺寸设定、存储预算口径和验证规则；第二，查主结果表，记录每个智能体的通过率、PPL、下游准确率及是否有运行时指标；第三，查失败案例分析，区分是代码执行失败、预算超标还是压缩后性能崩溃；第四，重点看摘要提到的“完整模型反馈推翻局部排序”对应图表，判断局部评估为何失真；第五，如果你做 agent 或模型压缩，可尝试把自己的压缩 pipeline 映射到该 benchmark 的输入输出接口，评估是否能在相同约束下自动化运行。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：编码智能体能否在几乎端到端、受约束的真实任务中，自主把一个预训练大语言模型压缩到指定存储预算内，同时保留原模型行为，并交付可运行、可验证的推理实现？进一步说，作者想测的不是单一压缩算法优劣，而是智能体在“提出方案—做实验—根据困惑度反馈修订—最终提交可执行结果”这一闭环中的能力上限与失效点。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>按摘要，方法应是构建 CompressionBench 这一基准：给智能体提供源模型 checkpoint、存储限制、推理环境和时间预算；允许其自主决定压缩算法与实验流程；用 perplexity 作为搜索反馈；最后通过独立验证程序检查压缩权重和推理代码。实验规模至少覆盖 6 个智能体和 6 个模型-尺寸设定，共 36 次提交，并比较通过验证率、相对 BF16 的 perplexity 变化、以及下游准确率。作者还记录了修订过程与排序反转现象，说明他们不仅看最终结果，也分析搜索轨迹和评估信号的可靠性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，任务定义具体且可执行，输入输出和约束都很明确，避免了只看聊天式“会不会压缩”的主观评估。其二，独立验证机制很重要，它把 benchmark 从“生成一个看起来合理的方案”提升为“必须交付真实可运行结果”。其三，摘要给出了过程性证据而非只报最终分数，例如 21/24 的修订改进和 17/79 的局部排序反转，这些现象对理解 agent search、代理指标失真和实验设计都很有价值。若结果稳健，这个 benchmark 可能成为评测 agentic systems 在模型优化与部署任务上的代表性平台。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，需要警惕几类边界。第一，摘要没有说明具体压缩技术、模型规模、数据集和下游任务组成，因此暂时无法判断 benchmark 是否偏向某类方法或某类模型。第二，perplexity 与下游准确率虽有报告，但尚不清楚是否覆盖推理速度、内存占用、稳定性等部署关键指标。第三，36 个提交和 29 个通过验证说明任务有一定难度，但样本量对不同智能体之间的统计比较是否充分，需要看正文。第四，若 benchmark 允许大量试验，结果可能较依赖时间预算、算力预算和评测反馈频率；这些资源因素若控制不严，会影响“智能体能力”与“外部资源”之间的归因。第五，摘要开头把工作放在 recursive self-improvement 语境下，这一叙事较宏大，但从摘要可直接支持的证据主要仍是压缩 benchmark 本身。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查正文中的 benchmark 定义表，确认 6 个模型-尺寸设定、存储预算口径和验证规则；第二，查主结果表，记录每个智能体的通过率、PPL、下游准确率及是否有运行时指标；第三，查失败案例分析，区分是代码执行失败、预算超标还是压缩后性能崩溃；第四，重点看摘要提到的“完整模型反馈推翻局部排序”对应图表，判断局部评估为何失真；第五，如果你做 agent 或模型压缩，可尝试把自己的压缩 pipeline 映射到该 benchmark 的输入输出接口，评估是否能在相同约束下自动化运行。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象不是传统“人工设计一个更好的压缩方法”，而是“编码智能体能否自主完成 LLM 压缩任务”。任务输入至少包括四个具体约束：源 checkpoint、目标存储限制、可运行的推理环境、以及时间预算；任务输出则包括两部分：压缩后的模型权重和可执行的推理代码。这种定义很像把模型压缩包装成一个可验证的软件工程+模型优化联合任务，因此它与 agentic coding、自动化 ML 系统、模型部署优化都直接相关。
+
+可能的方法路径是：作者构建一个统一 benchmark，让不同编码智能体在多个模型与压缩比例设定上独立尝试；智能体可以自由选择量化、剪枝、蒸馏、低秩分解、权重打包、内核替换或混合策略，但摘要没有明确列出具体压缩技术，因此这些方法细节需要读正文核对。搜索过程中，系统向智能体提供 perplexity 反馈，帮助其比较候选方案；最终结果再由独立验证环节检查是否真正满足存储预算、是否能在指定环境中推理、以及性能是否按规则计算。这里“独立验证”是一个很关键的 benchmark 设计点，因为它能防止智能体通过不规范代码、缓存、外部依赖或评测泄漏来“投机”。
+
+摘要给出的证据线索比较具体。第一，36 个提交中有 29 个通过验证，说明在该设置下，编码智能体已经能较稳定地完成压缩交付，但仍存在相当比例的失败案例。第二，若按任务选择最低 perplexity 的智能体设计，平均 perplexity 相比 BF16 增加 3.4%，下游准确率 77.33%，而 BF16 为 79.56%；这表明压缩后性能损失存在但不算巨大。第三，作者记录了实验过程中的动态现象：在几乎不增加存储的情况下，智能体多数修订仍能降低 PPL，说明 agent search 并非随机试错；而“完整模型反馈推翻局部排序”则暗示局部评估或代理指标可能误导搜索，完整评测对压缩方案选择很重要。第四，摘要末尾提到 generation 和 inference 相关内容但被截断，推测作者还分析了代码生成质量、推理实现正确性或运行时瓶颈，这部分需要重点查正文。
+
+与用户可能关心的方向关系上，这篇工作对以下主题尤其相关：1）如果你关注 LLM agent 的真实工程能力，它提供了一个比代码竞赛更贴近系统优化的任务；2）如果你关注模型压缩，它把“谁来设计压缩流程”从人工专家转向智能体；3）如果你关注自我改进或递归改进，摘要开头明确把压缩视为后续系统改进基础设施的一步，因此它可能被定位为“AI 改进 AI 运行成本”的可测子问题。
+
+需要核对的信息包括：六类智能体具体是谁，是否包含闭源/开源 coding agent；六个模型-尺寸设定分别是什么模型和压缩目标；验证指标除 perplexity 和 downstream accuracy 外是否还包含延迟、吞吐、峰值显存或能耗；“storage budget”是磁盘大小、参数位宽总量，还是包含代码与元数据；下游任务的基准集合是什么；以及失败提交主要死在算法选择、代码错误、环境不兼容，还是预算违规。由于当前只有摘要，不能断言作者使用了哪种压缩算法组合，也不能补充未在摘要中出现的具体数值。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Recursive self-improvement requires AI systems to improve the models and infrastructure used by subsequent systems. LLM compression offers a concrete efficiency objective: retain a pretrained model&#x27;s behavior within a smaller model storage budget. We study whether coding agents can carry out this step autonomously. We formulate compression as a terminal task in which an agent receives a source checkpoint, storage limit, inference environment, and time budget, then constructs compressed weights and executable inference code. The agent controls its algorithm and experiments; perplexity feedback guides search, and independent verification checks the final model. Across six agents and six model--size settings, 29 of 36 submissions pass verification. Selecting the lowest-perplexity agent design per task yields an average 3.4% perplexity increase over BF16 and 77.33% downstream accuracy, compared with 79.56% for BF16. Recorded experiments reveal how agents achieve these outcomes and where improvement breaks down. Agents lower PPL in 21 of 24 revisions at nearly fixed storage; complete-model feedback reverses 17 of 79 prior local rankings; and generation and inference tests expose failures that likelihood alone misses. The results identify representation design, experimental judgment, and capability validation as central to agent-driven model compression, a measurable component of efficiency-oriented self-improvement.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-11-05</span>
+        <span>Score 62.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>5. <a href="https://doi.org/10.1126/science.aeg7301">Seafloor geodesy delineates fast megathrust relocking after the giant 2011 Tohoku earthquake</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Seafloor+geodesy+delineates+fast+megathrust+relocking+after+the+giant+2011+Tohok&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg7301%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Seafloor+geodesy+delineates+fast+megathrust+relocking+after+the+giant+2011+Tohoku+earthquake%0Akeywords%3A+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Seafloor+geodesy+delineates+fast+megathrust+relocking+after+the+giant+2011+Tohok&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg7301%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Seafloor+geodesy+delineates+fast+megathrust+relocking+after+the+giant+2011+Tohoku+earthquake%0Akeywords%3A+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Seafloor+geodesy+delineates+fast+megathrust+relocking+after+the+giant+2011+Tohok&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg7301%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Seafloor+geodesy+delineates+fast+megathrust+relocking+after+the+giant+2011+Tohoku+earthquake%0Akeywords%3A+ai%2C+earth%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Fumiaki Tomita、Tianhaozhe Sun、Motoyuki Kido、Takeshi Iinuma 等 9 人 · DOI: <a href="https://doi.org/10.1126/science.aeg7301">10.1126/science.aeg7301</a></div>
       <div class="chips"><span class="chip">ai <strong>1</strong></span>
 <span class="chip">earth <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文聚焦于系外行星直接成像中的恒星眩光抑制问题，具体任务是在望远镜稳定性不足、参考图像与科学观测不匹配的情况下，从JWST/NIRCam观测中更准确地分离出行星信号。摘要显示作者提出了一种基于物理模型并结合自动微分优化的大规模恒星光减除方法，目标是突破传统参考差分算法受仪器不稳定性限制的瓶颈。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献应是提出了一套新的物理驱动恒星光建模与减除框架：通过多步优化和可变形的仪器/光学模型，对参考观测与科学观测之间由望远镜或仪器不稳定性引起的差异进行显式补偿，并借助autodiff优化数百万参数。若摘要表述成立，这一方法的直接贡献是提升JWST/NIRCam协同日冕观测中的高对比度成像能力，从而扩大可直接成像的系外行星样本，并为未来类地行星成像任务提供方法学铺垫。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文聚焦2011年日本东北Mw 9级地震后俯冲带巨型逆冲断层的“重新锁定”过程，利用14年海底大地测量并结合陆上大地测量、重复地震分析和数值建模，刻画了断层从震后滑移向再次锁定恢复的时空过程。摘要给出的核心结论是：尽管上地幔黏弹性应力松弛仍在持续，东北俯冲带主断层目前已恢复到与震前相近的锁定状态。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把“巨震后何时、如何重新锁定”这一地震循环关键问题，具体落实到2011年东北地震后的海底观测约束上，并给出一个较强的判定：重新锁定已在今天基本恢复到震前水平。可能的重要贡献还包括：区分了重新锁定、断层余滑和上地幔黏弹性松弛三类过程的相互作用，并展示海底大地测量在近海俯冲带耦合状态恢复监测中的独特价值。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -564,7 +492,7 @@
           <div class="detail-signal">
             <div>
               <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
+              <div class="signal-source">Science</div>
             </div>
             <div>
               <div class="signal-kicker">关键词命中 2</div>
@@ -572,27 +500,90 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>56.0</strong>
+              <strong>62.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在系外行星直接成像中，如何在参考观测与科学观测之间存在不可避免的望远镜/仪器不稳定性时，仍然准确建模并减去恒星眩光与散斑，从而恢复被残差淹没的行星信号。题名中的“below the telescope stability limit”暗示作者试图突破传统方法受稳定性阈值限制的探测边界。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法应是一个基于物理的恒星光前向模型，配合多步优化流程。数据上使用JWST的NIRCam日冕观测；模型上可能显式表示光学传播、波前误差、指向漂移、仪器状态变化及探测器响应；优化上利用automatic differentiation对数百万参数求梯度并迭代拟合。多步优化可能意味着先拟合全局/低维仪器状态，再细化到高维残差结构，或先锁定恒星模型再评估行星信号，以降低局部极值和信号泄漏风险。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题抓得很准：高对比度成像的核心瓶颈之一正是参考PSF失配，而不是单纯后处理算法不够复杂。第二，方法路线具有可解释性：相比纯经验降噪，物理模型更有机会把“为什么参考不匹配”转化为可估计的仪器状态差异。第三，真实JWST/NIRCam数据验证的含金量很高；如果论文展示了对已知行星系统的更高信噪比恢复、更多候选体检出或更小分离角探测，那将直接证明其天文应用价值，并对未来exo-Earth成像任务有方法学启发。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查论文主图和方法图，确认作者使用的具体JWST目标、观测模式和对照算法。第二，记录所有定量指标：对比度曲线、检出显著性、内工作角、光度/天体测量偏差、计算时间。第三，重点阅读方法部分中物理模型参数化和正则化设计，特别是如何防止行星自减。第四，如果你的方向涉及可微物理或天文成像，可尝试把该工作与KLIP/PCA、forward modeling、wavefront sensing/control文献并列，整理其创新点究竟在“可微优化框架”还是“新的仪器物理模型”。第五，若考虑复现，先确认作者是否公开代码、JWST数据集编号和初始化策略。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：2011年东北巨震之后，日本海沟俯冲带板块界面主逆冲断层的锁定状态如何随时间恢复，恢复过程在空间上如何分布，余滑与上地幔黏弹性松弛分别如何影响对“重新锁定”的判定，以及在震后约14年的今天该断层是否已回到接近震前的耦合/锁定状态。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径是多源观测与模型联合分析。第一，使用14年震后海底大地测量数据获取海沟附近长期位移或速度场，这是识别近海板块界面耦合恢复的核心数据。第二，结合陆上大地测量观测更大尺度的震后形变，以提高对深部滑移和地幔松弛的分辨能力。第三，分析重复地震活动，利用其对板块界面局部滑移速率变化敏感的特点，辅助识别余滑持续区或重新锁定区。第四，建立数值模型，至少包含断层余滑与上地幔黏弹性松弛两类机制，通过拟合观测来分离不同过程贡献，并据此重建锁定恢复过程。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是研究对象和观测手段高度匹配：要回答海沟附近巨型逆冲断层是否重新锁定，海底大地测量比单纯陆上观测更直接。第二个亮点是时间跨度长，14年足以覆盖快速震后阶段到较长期恢复阶段，有机会识别非单调恢复。第三个亮点是证据链多元，不仅有海底和陆上形变，还有重复地震与数值建模，理论上更有能力区分余滑、锁定恢复和黏弹性松弛。第四个亮点是结论具有广泛外推意义：如果东北俯冲带在巨震后十余年已显著重新锁定，这将直接影响其他俯冲带对震后危险性恢复时间尺度的认识。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作可以是：第一，优先查看论文图1和主要结果图，确认海底测站分布、研究区域和锁定恢复的空间格局。第二，记录作者如何定义“locking state similar to before the earthquake”，是耦合率、反滑移亏损率还是其他指标。第三，查找余滑与重新锁定在时间序列上的分界点，看看是否存在明显阶段转换。第四，核对重复地震证据与大地测量反演是否在同一区域相互支持。第五，关注数值模型是否显式包含上地幔黏弹性层及其参数敏感性分析。第六，如果你的方向与地震循环或海底形变监测相关，可把这篇论文作为“海底+陆上+重复地震+流变模型”综合框架的案例，整理其可迁移的数据融合思路。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在系外行星直接成像中，如何在参考观测与科学观测之间存在不可避免的望远镜/仪器不稳定性时，仍然准确建模并减去恒星眩光与散斑，从而恢复被残差淹没的行星信号。题名中的“below the telescope stability limit”暗示作者试图突破传统方法受稳定性阈值限制的探测边界。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法应是一个基于物理的恒星光前向模型，配合多步优化流程。数据上使用JWST的NIRCam日冕观测；模型上可能显式表示光学传播、波前误差、指向漂移、仪器状态变化及探测器响应；优化上利用automatic differentiation对数百万参数求梯度并迭代拟合。多步优化可能意味着先拟合全局/低维仪器状态，再细化到高维残差结构，或先锁定恒星模型再评估行星信号，以降低局部极值和信号泄漏风险。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题抓得很准：高对比度成像的核心瓶颈之一正是参考PSF失配，而不是单纯后处理算法不够复杂。第二，方法路线具有可解释性：相比纯经验降噪，物理模型更有机会把“为什么参考不匹配”转化为可估计的仪器状态差异。第三，真实JWST/NIRCam数据验证的含金量很高；如果论文展示了对已知行星系统的更高信噪比恢复、更多候选体检出或更小分离角探测，那将直接证明其天文应用价值，并对未来exo-Earth成像任务有方法学启发。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，需要警惕几类边界。第一，尚不清楚性能提升是否来自更强模型容量而非真正可泛化的物理补偿；若参数过多，可能存在过拟合或把天体信号吸收进恒星模型的风险。第二，摘要未给出与主流基线方法的定量对比指标，无法判断提升幅度和适用范围。第三，计算代价可能很高；数百万参数的autodiff优化在常规数据处理流水线中的可用性需要核实。第四，JWST上的成功不必然直接迁移到其他望远镜、波段或更复杂系统。第五，题名强调“below the telescope stability limit”，但这一“limit”的定义、测量方式和突破程度需要看正文与图表，不能仅凭标题做强结论。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查论文主图和方法图，确认作者使用的具体JWST目标、观测模式和对照算法。第二，记录所有定量指标：对比度曲线、检出显著性、内工作角、光度/天体测量偏差、计算时间。第三，重点阅读方法部分中物理模型参数化和正则化设计，特别是如何防止行星自减。第四，如果你的方向涉及可微物理或天文成像，可尝试把该工作与KLIP/PCA、forward modeling、wavefront sensing/control文献并列，整理其创新点究竟在“可微优化框架”还是“新的仪器物理模型”。第五，若考虑复现，先确认作者是否公开代码、JWST数据集编号和初始化策略。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Imaging exoplanets below the telescope stability limit”以及摘要可见，研究对象非常明确：不是一般性的图像增强，而是高对比度系外行星直接成像中最关键的恒星点扩散函数/散斑残差建模问题。标准做法依赖参考图像来拟合并减去恒星光，但当望远镜热漂移、波前误差、指向变化或仪器状态在参考观测与科学观测之间发生变化时，参考库就会失配，导致残余散斑掩盖行星。本文的核心思路似乎是用“灵活的物理模型”替代纯经验参考匹配：把仪器不稳定性参数化进恒星光模型，再通过多阶段优化逐步拟合观测数据。摘要特别强调automatic differentiation和“millions of model parameters”，这说明作者很可能构建了一个可微的前向成像/光学传播模型，参数可能覆盖波前、像差、位置偏移、亮度标定、时间变化项、探测器效应或日冕器件响应等。证据线索方面，摘要明确说在JWST NIRCam coronagraphic observations上做了演示，这意味着论文至少包含真实天文数据验证，而非仅模拟。由于摘要被截断，无法确认具体目标系统、行星个数、对比度提升倍数、内工作角改善、检出显著性变化或与KLIP/PCA/LOCI等基线方法的定量比较，因此这些都需要后续核对。与“ai”关键词的关系主要体现在方法实现层面：这里的autodiff更像现代可微优化/可微物理建模工具，而不一定是典型数据驱动深度学习；真正的新意更可能来自物理先验与大规模优化的结合。与“earth”关键词的关系则是远期应用意义：摘要明确把该工作定位为迈向未来观测台成像exo-Earths的一步，但不能据此推断本文已经达到类地行星成像能力。科研上值得重点关注的是，这类方法如果能在真实JWST数据上稳定工作，可能改变高对比度成像中“参考星必须足够稳定匹配”的传统约束，把问题从经验降噪转向可解释的仪器状态反演。需要核对的信息包括：1）物理模型具体包含哪些自由度；2）多步优化的初始化与正则化策略；3）如何避免把真实行星信号吸收到恒星模型中；4）与现有PSF subtraction方法相比的定量收益；5）计算成本、可扩展性与对未来Roman/Habitable Worlds Observatory等任务的可迁移性。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：2011年东北巨震之后，日本海沟俯冲带板块界面主逆冲断层的锁定状态如何随时间恢复，恢复过程在空间上如何分布，余滑与上地幔黏弹性松弛分别如何影响对“重新锁定”的判定，以及在震后约14年的今天该断层是否已回到接近震前的耦合/锁定状态。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径是多源观测与模型联合分析。第一，使用14年震后海底大地测量数据获取海沟附近长期位移或速度场，这是识别近海板块界面耦合恢复的核心数据。第二，结合陆上大地测量观测更大尺度的震后形变，以提高对深部滑移和地幔松弛的分辨能力。第三，分析重复地震活动，利用其对板块界面局部滑移速率变化敏感的特点，辅助识别余滑持续区或重新锁定区。第四，建立数值模型，至少包含断层余滑与上地幔黏弹性松弛两类机制，通过拟合观测来分离不同过程贡献，并据此重建锁定恢复过程。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是研究对象和观测手段高度匹配：要回答海沟附近巨型逆冲断层是否重新锁定，海底大地测量比单纯陆上观测更直接。第二个亮点是时间跨度长，14年足以覆盖快速震后阶段到较长期恢复阶段，有机会识别非单调恢复。第三个亮点是证据链多元，不仅有海底和陆上形变，还有重复地震与数值建模，理论上更有能力区分余滑、锁定恢复和黏弹性松弛。第四个亮点是结论具有广泛外推意义：如果东北俯冲带在巨震后十余年已显著重新锁定，这将直接影响其他俯冲带对震后危险性恢复时间尺度的认识。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，仍需警惕几个边界。首先，摘要没有给出重新锁定的空间分辨率，可能存在局部仍未恢复而整体上看似接近震前的情况。其次，“similar to that before the earthquake”表述较强，但未说明比较指标，可能是模型依赖的。第三，海底大地测量虽然关键，但其站点分布、观测频率和误差模型会显著影响反演稳定性，摘要无法判断。第四，重复地震与锁定状态之间的对应关系并非总是唯一，解释可能依赖经验假设。第五，数值模型中的流变参数、板块界面几何和边界条件若不充分约束，余滑与黏弹性松弛之间可能存在权衡。第六，摘要没有直接说明这一结论是否意味着未来大震危险性已显著恢复，因此不能从摘要直接外推出定量风险判断。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作可以是：第一，优先查看论文图1和主要结果图，确认海底测站分布、研究区域和锁定恢复的空间格局。第二，记录作者如何定义“locking state similar to before the earthquake”，是耦合率、反滑移亏损率还是其他指标。第三，查找余滑与重新锁定在时间序列上的分界点，看看是否存在明显阶段转换。第四，核对重复地震证据与大地测量反演是否在同一区域相互支持。第五，关注数值模型是否显式包含上地幔黏弹性层及其参数敏感性分析。第六，如果你的方向与地震循环或海底形变监测相关，可把这篇论文作为“海底+陆上+重复地震+流变模型”综合框架的案例，整理其可迁移的数据融合思路。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：日本海沟俯冲带中2011年东北巨震破裂后的板块界面主逆冲断层。论文要解决的不是一般性的震后形变描述，而是更具体的科学问题：巨震之后，俯冲带界面锁定状态何时恢复、恢复过程如何被余滑打断、以及这种恢复如何与上地幔黏弹性松弛并存。摘要强调“14年震后海底大地测量”，这说明作者依赖长期、近场、海底观测来约束海沟附近板块界面的运动学状态；这是关键，因为仅靠陆上GNSS往往难以充分分辨近海浅部耦合与深部或地幔过程。方法线索上，论文应是多证据联合反演或综合解释：海底大地测量提供近海位移场，陆上大地测量补充更广域形变，重复地震分析可能用于追踪板块界面局部准重复滑移或耦合变化，数值建模则用于分离余滑与黏弹性松弛对观测形变的贡献，并据此推断“重新锁定”的时空分布。摘要中的“interrupted by afterslip”提示恢复过程并非单调，而是某些区域或时段被持续余滑延缓；“accompanied by stress relaxation in the viscoelastic upper mantle”则表明作者并未把所有震后信号都归因于断层面过程，而是显式考虑了地幔流变效应。最值得关注的证据链是：在持续应力松弛背景下，作者仍然认为主断层“今天”已达到与震前相似的锁定状态，这意味着他们可能建立了能够同时解释长期位移、局部重复地震活动和模型应力演化的一致框架。对从事地震学、构造地球物理、地球动力学或灾害评估的读者，这篇论文的价值在于它直接关系到巨震后危险性恢复时间尺度、俯冲带地震循环参数化以及海底大地测量网络设计。需要核对的信息包括：重新锁定是全断层平均意义上的，还是特定深度/走向分段上的；“similar to before the earthquake”是指耦合率、锁定面积还是应力状态；14年海底数据的空间覆盖、时间采样和误差水平如何；重复地震在判定锁定恢复中扮演的是独立证据还是辅助约束；数值模型采用何种流变结构与边界条件；以及结论对未来大震概率或中期危险性的含义是否被作者谨慎限定。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Abstract Exoplanet imaging is the main method for detailed characterization of planets orbiting beyond 1 au (ref. 1 ) but it requires suppressing the bright glare of the star to see the faint planet light. As well as sophisticated instrumentation 2,3 , effective image processing is necessary for starlight suppression, which continues to be a substantial limitation 4 . Standard algorithms use reference images for starlight modelling and thus they are limited by inevitable telescope instabilities that change from reference to science observation 5,6 . Addressing this challenge will increase the number of planets amenable to direct imaging and will be a notable step towards imaging exo-Earths with future observatories 7 . Here we present a new physics-based method for starlight subtraction. Our method combines a multistep optimization with a flexible physical model to produce a starlight model, allowing modelling and compensation of instrument instabilities. We use automatic differentiation (autodiff) 8 to optimize millions of model parameters. We demonstrate our method on observations from the James Webb Space Telescope (JWST) Near-InfraRed Camera (NIRCam) 9–11 coronagraph instrument. We achieve sensitivity 2–15 times superior to standard techniques, including the first detection of 51 Eridani b (ref. 12 ) at 4.3 μm. This is the first time, to our knowledge, that such an approach has demonstrated substantially improved sensitivity on real, on-sky coronagraphic imaging. Our framework can be extended to other current and future ground-based and space-based observatories, including the Nancy Grace Roman Space Telescope and the Habitable Worlds Observatory (HWO), potentially relaxing the unprecedented stability requirements needed to make these a success.</p>
+          <p>How and when the subduction megathrust recovers its locking state after a great earthquake is important to understanding earthquake-cycle physics and future hazards. Here we report the delineation of the relocking process after the 2011 magnitude 9 Tohoku earthquake with 14 years of postseismic seafloor geodetic observations. These data, combined with onshore geodetic observations, analyses of repeating earthquakes, and numerical modeling, reveal how the recovery of locking is interrupted by afterslip on the megathrust and accompanied by stress relaxation in the viscoelastic upper mantle. The results indicate that the megathrust has already arrived at a locking state today similar to that before the earthquake despite the ongoing stress relaxation. The acquired knowledge aids understanding of megathrust earthquake cycles at other subduction zones.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-11-05</span>
+        <span>Score 57.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>6. <a href="https://doi.org/10.1126/science.aed4270">Glacial abrupt transitions in ocean circulation were much slower than ice-core records imply</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Glacial+abrupt+transitions+in+ocean+circulation+were+much+slower+than+ice-core+r&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed4270%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Glacial+abrupt+transitions+in+ocean+circulation+were+much+slower+than+ice-core+records+imply%0Akeywords%3A+ai%2C+ocean%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Glacial+abrupt+transitions+in+ocean+circulation+were+much+slower+than+ice-core+r&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed4270%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Glacial+abrupt+transitions+in+ocean+circulation+were+much+slower+than+ice-core+records+imply%0Akeywords%3A+ai%2C+ocean%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Glacial+abrupt+transitions+in+ocean+circulation+were+much+slower+than+ice-core+r&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed4270%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Glacial+abrupt+transitions+in+ocean+circulation+were+much+slower+than+ice-core+records+imply%0Akeywords%3A+ai%2C+ocean%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Xiyu Dong、Xu Zhang、Yuchen Sun、Gayatri Kathayat 等 25 人 · DOI: <a href="https://doi.org/10.1126/science.aed4270">10.1126/science.aed4270</a></div>
+      <div class="chips"><span class="chip">ai <strong>1</strong></span>
+<span class="chip">ocean <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦末次冰期Dansgaard-Oeschger（DO）暖事件中大西洋经向翻转环流（AMOC）转变的真实时间尺度，利用亚洲季风区高精度定年的石笋氧同位素记录，指出相关暖转变持续时间可能超过一个世纪，而不是格陵兰冰芯所暗示的十年至数十年。论文的核心任务是区分冰芯中快速信号所代表的大气重组，与海洋环流恢复及半球热调整本身的较慢演化。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于重新界定DO事件“突变性”的物理含义：格陵兰冰芯中的快速氧同位素跃迁可能主要记录东北大西洋海冰初始退缩触发的大气快速重组，而非AMOC整体恢复的完整时间尺度；相对地，基于亚洲季风石笋记录与同位素建模，作者主张自然状态下的AMOC转变更慢，可能需百年以上。这一结论若成立，将直接影响古气候突变事件的机制解释、冰芯代用指标的物理含义，以及对现代AMOC突变风险时间尺度的类比方式。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Science</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 2</div>
+              <div class="signal-meter"><span style="width: 36%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>57.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：DO暖事件期间，AMOC及相关气候系统转变究竟有多“突然”？格陵兰冰芯中十年级的快速升温信号，是否真的等同于海洋环流本身在十年内恢复，还是只是记录了由海冰变化触发的大气快速响应？</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：1）采集或整合亚洲季风区高精度U-Th定年的石笋氧同位素记录；2）将这些记录与格陵兰冰芯DO事件进行事件级对比，估计暖转变持续时间；3）使用同位素建模解释不同代用记录为何呈现不同时间尺度，区分快速大气重组与较慢AMOC恢复/半球热调整；4）围绕东北北大西洋海冰退缩这一触发过程，构建机制链条。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，证据对象具体且互补：冰芯与石笋分别代表高纬快速响应和低纬季风系统响应，有助于拆分气候系统不同组成部分的时间尺度。其二，摘要强调“精确定年”，说明作者可能在事件同步和持续时间估计上投入了较强年代学约束，这是讨论“十年”还是“百年”差异的关键。其三，论文没有停留在代用记录对比，而是加入同位素建模来解释记录差异的物理来源，这使结论从经验相关上升到机制推断。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议：1）先查看论文主图，确认作者比较了哪些具体DO事件、每个事件的转变宽度如何定义；2）重点查方法部分的年代模型和石笋样品信息，记录时间分辨率、U-Th误差和事件对齐方式；3）查同位素模型部分，弄清模型类型、边界条件和海冰/AMOC敏感性实验设置；4）把文中“格陵兰快速信号”“海冰退缩”“AMOC恢复”“半球热调整”四个过程分别记成时间轴，避免混淆不同物理量的突变性；5）若你的研究涉及AMOC风险评估，可进一步对照作者是否讨论古气候自然转变与现代人为强迫情景之间的可比性。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：DO暖事件期间，AMOC及相关气候系统转变究竟有多“突然”？格陵兰冰芯中十年级的快速升温信号，是否真的等同于海洋环流本身在十年内恢复，还是只是记录了由海冰变化触发的大气快速响应？</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：1）采集或整合亚洲季风区高精度U-Th定年的石笋氧同位素记录；2）将这些记录与格陵兰冰芯DO事件进行事件级对比，估计暖转变持续时间；3）使用同位素建模解释不同代用记录为何呈现不同时间尺度，区分快速大气重组与较慢AMOC恢复/半球热调整；4）围绕东北北大西洋海冰退缩这一触发过程，构建机制链条。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，证据对象具体且互补：冰芯与石笋分别代表高纬快速响应和低纬季风系统响应，有助于拆分气候系统不同组成部分的时间尺度。其二，摘要强调“精确定年”，说明作者可能在事件同步和持续时间估计上投入了较强年代学约束，这是讨论“十年”还是“百年”差异的关键。其三，论文没有停留在代用记录对比，而是加入同位素建模来解释记录差异的物理来源，这使结论从经验相关上升到机制推断。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的边界包括：1）石笋δ18O并不是AMOC的直接观测量，其与季风、水汽路径、降水季节性和源区条件耦合，机制解释依赖模型与区域气候假设；2）“超过一个世纪”的结论是否对所有DO事件都成立尚不清楚，可能存在事件间异质性；3）不同气候档案的时间分辨率、生长速率、后期平滑和年龄模型误差，都会影响转变宽度估计；4）摘要强调格陵兰记录“主要捕捉”大气重组，但这一归因的稳健性需要看模型实验设计与替代解释排除情况；5）论文发表于2026-11-05，这里只能依据提供元数据和摘要分析，不能替代全文核读。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议：1）先查看论文主图，确认作者比较了哪些具体DO事件、每个事件的转变宽度如何定义；2）重点查方法部分的年代模型和石笋样品信息，记录时间分辨率、U-Th误差和事件对齐方式；3）查同位素模型部分，弄清模型类型、边界条件和海冰/AMOC敏感性实验设置；4）把文中“格陵兰快速信号”“海冰退缩”“AMOC恢复”“半球热调整”四个过程分别记成时间轴，避免混淆不同物理量的突变性；5）若你的研究涉及AMOC风险评估，可进一步对照作者是否讨论古气候自然转变与现代人为强迫情景之间的可比性。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：末次冰期DO暖事件、AMOC恢复过程、格陵兰冰芯氧同位素记录、亚洲季风区石笋氧同位素记录，以及海冰—大气—海洋耦合过程。论文的主要证据链似乎是：第一，作者使用“精确定年”的亚洲季风石笋δ18O序列，与格陵兰冰芯中对应DO事件进行时间对比；第二，他们发现石笋记录中的暖转变展开时间超过一个世纪，明显慢于格陵兰冰芯所示的十年到数十年级别；第三，通过同位素建模，将两类记录的差异解释为不同气候子系统的响应速度不同，即格陵兰记录更敏感于东北北大西洋海冰退缩后引发的大气环流快速重组，而AMOC恢复和跨半球热再平衡则更慢。就方法推测，论文很可能结合了高分辨率石笋年代学与氧同位素测量、冰芯时间轴对齐、事件尺度的转变持续时间估计，以及同位素示踪或气候模型实验来分离海冰、大气和AMOC信号。与“ocean”关键词的关系非常直接，因为论文实质上是在重新估计海洋环流突变的时间尺度；若用户关注气候系统可预报性、AMOC稳定性、古气候代用指标解释或海洋—大气耦合，这篇论文都具有高相关性。需要特别核对的信息包括：石笋记录覆盖了哪些具体DO事件；“超过一个世纪”的定义是起止阈值、转折中点还是全跃迁宽度；同位素模型是离线诊断、地球系统模型还是理想化敏感性实验；石笋δ18O究竟主要代表季风强度、降水源区变化还是大尺度环流；以及作者如何处理不同档案之间的年代不确定性与平滑效应。由于目前只有摘要，不能确认其图表、统计检验、事件间一致性和模型配置细节。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Dansgaard-Oeschger (DO) events during the last ice age are thought to reflect rapid shifts in the Atlantic Meridional Overturning Circulation (AMOC). Greenland ice cores suggest warming transitions within only a few decades—or even just over 10 years. Using precisely dated speleothem oxygen-isotope records from the Asian monsoon region, we have shown that the same DO warmings unfolded over more than a century. Isotope modeling revealed that Greenland records primarily capture a rapid atmospheric reorganization triggered by the initial sea-ice retreat in the northeastern North Atlantic, whereas the parallel AMOC recovery and hemispheric thermal adjustment proceeded much more slowly. These findings reveal that natural AMOC transitions evolved more slowly than the rapid North Greenland oxygen-isotope shifts would imply, thereby refining our understanding of “abruptness” during DO events.</p>
         </details>
         
         </div>
@@ -605,20 +596,20 @@
       <div class="paper-meta">
         <span class="source-pill">Nature</span>
         <span>2026-11-04</span>
-        <span>Score 55.0</span>
+        <span>Score 51.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1038/s41586-026-11368-9">Carbon radical generation by irreversible metal-to-ligand charge transfer</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Carbon+radical+generation+by+irreversible+metal-to-ligand+charge+transfer&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11368-9%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Carbon+radical+generation+by+irreversible+metal-to-ligand+charge+transfer%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Carbon+radical+generation+by+irreversible+metal-to-ligand+charge+transfer&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11368-9%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Carbon+radical+generation+by+irreversible+metal-to-ligand+charge+transfer%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Carbon+radical+generation+by+irreversible+metal-to-ligand+charge+transfer&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11368-9%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Carbon+radical+generation+by+irreversible+metal-to-ligand+charge+transfer%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1038/s41586-026-11234-8">A spatiotemporal cancer cell trajectory underlies glioblastoma heterogeneity</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+spatiotemporal+cancer+cell+trajectory+underlies+glioblastoma+heterogeneity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11234-8%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+A+spatiotemporal+cancer+cell+trajectory+underlies+glioblastoma+heterogeneity%0Akeywords%3A+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+spatiotemporal+cancer+cell+trajectory+underlies+glioblastoma+heterogeneity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11234-8%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+A+spatiotemporal+cancer+cell+trajectory+underlies+glioblastoma+heterogeneity%0Akeywords%3A+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+spatiotemporal+cancer+cell+trajectory+underlies+glioblastoma+heterogeneity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11234-8%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+A+spatiotemporal+cancer+cell+trajectory+underlies+glioblastoma+heterogeneity%0Akeywords%3A+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Zhiqiang Wei、Xiang Li、Lin Xiao、Yu He 等 9 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11368-9">10.1038/s41586-026-11368-9</a></div>
+      <div class="authors">Grant de Jong、Fani Memi、Tannia Gracia、Olga Lazareva 等 63 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11234-8">10.1038/s41586-026-11234-8</a></div>
       <div class="chips"><span class="chip">ai <strong>1</strong></span>
-<span class="chip">carbon <strong>1</strong></span></div>
+<span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦于通过“不可逆金属到配体电荷转移（irreversible metal-to-ligand charge transfer, MLCT）”来生成碳自由基，核心任务应是提出一种新的碳自由基形成机制或反应平台。由于提供的摘要为空，目前只能确认研究对象是碳自由基生成与金属-配体电子转移过程，无法据此判断其具体底物范围、金属体系和实验结果。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名推测，论文的核心贡献可能是在有机/有机氟化学或自由基化学中，建立了一个以不可逆MLCT为驱动力的碳自由基生成策略，从而区别于传统的热、光氧化还原、电化学或单电子转移裂解路径。若属实，其价值可能在于把配位化学中的激发态/电荷转移概念直接转化为可控的成键前体活化手段。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文围绕人类胶质母细胞瘤（glioblastoma）的肿瘤内异质性形成机制，试图用单细胞与空间多组学数据重建癌细胞从“发育样状态”向“胶质损伤反应/缺氧状态”转变的时空轨迹，并解释这种轨迹如何在不同肿瘤区域和不同遗传亚克隆中出现。摘要还显示作者开发了一个用于原位联合映射癌细胞状态与克隆的深度学习框架，以分析肿瘤亚克隆在组织微环境中的空间混合。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献可能有三点：第一，构建了覆盖12例人类胶质母细胞瘤、多区域采样的深度单细胞+空间多组学图谱，将转录组、表观组和基因组信息配对分析；第二，提出并支持一个具有空间模式的癌细胞状态转变轨迹，即从developmental-like状态走向glial injury response与hypoxia相关状态，并将其与肿瘤组织微环境分区联系起来；第三，借助新的深度学习原位映射框架和体内体细胞突变层级、患者来源类器官模型，对“分子上保守但遗传上可跨亚克隆共享的细胞状态轨迹”进行验证，强调状态程序与克隆谱系并非简单一一对应。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -635,30 +626,102 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>55.0</strong>
+              <strong>51.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，按题名推测，是如何利用金属到配体电荷转移这一配位化学事件，定向且高效地产生碳自由基，并使该过程走向不可逆，从而避免常见自由基生成路径中存在的高能垒、回电子转移、选择性差或前体受限等问题。更细一点说，作者可能在问：能否把某类底物设计成配体，在与金属形成复合物后，通过MLCT直接触发C中心自由基释放。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：先构建金属-底物或金属-配体复合物；再通过光照、热或电化学方式诱导MLCT；随后借助自由基捕获实验、自由基钟、EPR、自旋捕获、瞬态吸收光谱、紫外-可见吸收、电化学测试和DFT/多参考计算来证明电子从金属转移到配体后发生不可逆键裂解，生成碳自由基。若论文偏合成方法学，还会给出一系列底物范围、官能团兼容性和代表性产物；若偏机理，则会重点展示激发态性质、势能面和竞争路径分析。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点：一是把MLCT从传统光物理/配位化学概念转化为有机合成中的自由基发生器；二是“不可逆”这一限定词意味着作者可能抓住了抑制回电子转移、提高自由基释放效率的关键设计；三是如果作者团队确实结合实验与计算，这类工作往往能同时给出反应可用性和机理可信度。若涉及含氟碳自由基或难生成的碳片段，自由基来源的创新性会更高。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要和图文摘要，确认金属、底物和触发方式；2）优先查看正文首图和机理图，判断“不可逆MLCT”是实验结论还是理论解释；3）查底物范围表，记录碳自由基前体类别与代表产物；4）查关键证据图，如EPR、瞬态光谱、循环伏安和计算能量图；5）做一个对照笔记：把该工作与常见SET、LMCT、光氧化还原自由基生成路径逐项比较，特别记录其不可逆性的证据。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体科学问题是：胶质母细胞瘤中高度异质且可塑的恶性细胞状态究竟如何产生，是否存在跨肿瘤可重复的细胞状态演进轨迹；这种轨迹与肿瘤局部微环境、空间区域化和遗传亚克隆之间是什么关系；以及能否在组织原位同时解析“细胞状态”和“克隆谱系”这两个维度。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，作者使用了12例人类胶质母细胞瘤的多区域深度采样，联合单细胞转录组、表观组和基因组数据建立癌细胞状态图谱，并结合空间多组学或原位测量将这些状态映射回组织。分析路径可能包括：恶性细胞识别与状态注释；跨样本整合；轨迹/伪时序或状态转变建模；空间区域与微环境关联分析；基于体细胞突变或CNV的克隆推断；开发深度学习模型在原位联合预测细胞状态与克隆；最后用体内突变层级和患者来源类器官模型验证轨迹方向或可重现性。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点首先在于数据层次深：单细胞、空间、转录、表观、基因组多层配对，且是多区域采样，适合回答GBM异质性的时空问题。其次，论文试图把通常分离研究的三个维度——细胞状态、空间微环境、遗传克隆——放到同一框架中解释，这是概念上很强的整合。再次，若原位深度学习框架可靠，它能直接支持“不同克隆在同一微环境中细粒度混合、但共享相似状态程序”的结论，对理解肿瘤生态和治疗靶点选择都很重要。最后，摘要提到体内突变层级和类器官验证，说明作者并未停留在纯计算关联。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查论文主图和扩展数据，确认12例样本的技术组成、每种组学的细胞/spot数量及空间平台；2）重点看作者如何定义developmental-like、glial injury response、hypoxia三类状态，以及对应标记基因和空间位置；3）查看深度学习框架的输入、输出、训练标签、基线比较和外部验证；4）核对克隆推断依据是SNV还是CNV，以及“空间精细混合”是定性图像还是有定量指标；5）把该文结论与既有GBM状态模型逐条对照，记录其真正新增的是“状态类型”、还是“状态轨迹”、还是“状态-克隆-空间关系”。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，按题名推测，是如何利用金属到配体电荷转移这一配位化学事件，定向且高效地产生碳自由基，并使该过程走向不可逆，从而避免常见自由基生成路径中存在的高能垒、回电子转移、选择性差或前体受限等问题。更细一点说，作者可能在问：能否把某类底物设计成配体，在与金属形成复合物后，通过MLCT直接触发C中心自由基释放。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：先构建金属-底物或金属-配体复合物；再通过光照、热或电化学方式诱导MLCT；随后借助自由基捕获实验、自由基钟、EPR、自旋捕获、瞬态吸收光谱、紫外-可见吸收、电化学测试和DFT/多参考计算来证明电子从金属转移到配体后发生不可逆键裂解，生成碳自由基。若论文偏合成方法学，还会给出一系列底物范围、官能团兼容性和代表性产物；若偏机理，则会重点展示激发态性质、势能面和竞争路径分析。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点：一是把MLCT从传统光物理/配位化学概念转化为有机合成中的自由基发生器；二是“不可逆”这一限定词意味着作者可能抓住了抑制回电子转移、提高自由基释放效率的关键设计；三是如果作者团队确实结合实验与计算，这类工作往往能同时给出反应可用性和机理可信度。若涉及含氟碳自由基或难生成的碳片段，自由基来源的创新性会更高。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认研究对象、金属种类、触发条件、底物范围和证据强度。基于题名还需警惕几个边界：所谓“carbon radical generation”可能只是特定底物类别而非普适平台；“irreversible MLCT”可能是作者提出的主导机理，但是否有直接光谱证据需要核对；若体系依赖特定金属配位环境或化学计量试剂，其方法学普适性和实用性可能受限。另一个需要警惕的是，题名强调机理新意，不代表一定有大规模合成应用。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要和图文摘要，确认金属、底物和触发方式；2）优先查看正文首图和机理图，判断“不可逆MLCT”是实验结论还是理论解释；3）查底物范围表，记录碳自由基前体类别与代表产物；4）查关键证据图，如EPR、瞬态光谱、循环伏安和计算能量图；5）做一个对照笔记：把该工作与常见SET、LMCT、光氧化还原自由基生成路径逐项比较，特别记录其不可逆性的证据。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从元数据看，论文发表于Nature，作者团队包含Jinbo Hu、Chuanfa Ni、Xiao-Song Xue等，结合这些作者以往在含氟有机化学、反应机理与自由基反应方面的研究背景，这项工作很可能位于“有机自由基生成机制创新”与“金属介导/光化学反应设计”的交叉处。题名中的关键信息不是一般性的MLCT，而是“irreversible”，这暗示作者可能发现：某类金属-底物或金属-配体复合物在发生金属到配体电荷转移后，不是经历可逆激发态弛豫，而是沿着键断裂、配体碎裂、脱羧、脱卤、C–X均裂或重排等不可逆通道，直接释放碳自由基。若这一判断成立，论文的科学问题就不仅是“能否生成自由基”，而是“能否把配位电子转移事件设计成高效、方向明确且不可逆的自由基源”。
+            <div class="detail-section"><strong>研究问题</strong><p>具体科学问题是：胶质母细胞瘤中高度异质且可塑的恶性细胞状态究竟如何产生，是否存在跨肿瘤可重复的细胞状态演进轨迹；这种轨迹与肿瘤局部微环境、空间区域化和遗传亚克隆之间是什么关系；以及能否在组织原位同时解析“细胞状态”和“克隆谱系”这两个维度。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，作者使用了12例人类胶质母细胞瘤的多区域深度采样，联合单细胞转录组、表观组和基因组数据建立癌细胞状态图谱，并结合空间多组学或原位测量将这些状态映射回组织。分析路径可能包括：恶性细胞识别与状态注释；跨样本整合；轨迹/伪时序或状态转变建模；空间区域与微环境关联分析；基于体细胞突变或CNV的克隆推断；开发深度学习模型在原位联合预测细胞状态与克隆；最后用体内突变层级和患者来源类器官模型验证轨迹方向或可重现性。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点首先在于数据层次深：单细胞、空间、转录、表观、基因组多层配对，且是多区域采样，适合回答GBM异质性的时空问题。其次，论文试图把通常分离研究的三个维度——细胞状态、空间微环境、遗传克隆——放到同一框架中解释，这是概念上很强的整合。再次，若原位深度学习框架可靠，它能直接支持“不同克隆在同一微环境中细粒度混合、但共享相似状态程序”的结论，对理解肿瘤生态和治疗靶点选择都很重要。最后，摘要提到体内突变层级和类器官验证，说明作者并未停留在纯计算关联。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，仍需警惕几个边界。第一，12例样本对GBM这种高度异质疾病是否足以支撑“保守轨迹”结论，需要看患者构成、分子亚型和统计稳健性。第二，摘要中的“trajectory”可能部分依赖横截面推断，真正的时间因果方向需要看突变层级和实验验证是否充分。第三，深度学习框架的可解释性、训练监督来源、外部验证和代码可用性未知。第四，空间混合的结论可能受空间分辨率、克隆识别灵敏度和组织取样偏差影响。第五，类器官模型能否真实重现缺氧和损伤反应相关微环境仍需谨慎。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查论文主图和扩展数据，确认12例样本的技术组成、每种组学的细胞/spot数量及空间平台；2）重点看作者如何定义developmental-like、glial injury response、hypoxia三类状态，以及对应标记基因和空间位置；3）查看深度学习框架的输入、输出、训练标签、基线比较和外部验证；4）核对克隆推断依据是SNV还是CNV，以及“空间精细混合”是定性图像还是有定量指标；5）把该文结论与既有GBM状态模型逐条对照，记录其真正新增的是“状态类型”、还是“状态轨迹”、还是“状态-克隆-空间关系”。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>就提供的信息，这项研究的对象非常具体：人类胶质母细胞瘤癌细胞状态、其空间分布、以及这些状态与遗传亚克隆和局部微环境之间的关系。摘要明确说作者对12个肿瘤进行了“across many regions”的多区域深度采样，并且把单细胞、空间、转录、表观和基因组层面的信息配对起来，这意味着研究设计很可能不是只做scRNA-seq，而是至少包含单细胞转录组、单细胞或单核ATAC/表观组、以及可用于推断CNV/突变/克隆结构的基因组信息，再结合空间转录组或原位成像数据来定位细胞状态。研究任务不是简单做分类，而是回答两个更难的问题：这些恶性状态如何产生；它们是否沿着跨肿瘤可重复的细胞轨迹演化。
 
-但由于摘要为空，当前不能确认几个最关键的具体点：第一，碳自由基来自何种前体，例如羧酸衍生物、卤代物、红氧活性酯、含氟烷基前体、亚胺/羰基衍生物，还是直接由配体骨架产生；第二，金属中心是什么，是常见的Cu、Ni、Fe、Co，还是更偏光物理的Ru、Ir，抑或主族/稀土体系；第三，MLCT是热诱导、光诱导还是电化学触发；第四，“不可逆”的证据来自何处，是瞬态光谱、电化学、EPR、自旋捕获、量化计算、量子产率、动力学同位素效应，还是产物分布与自由基钟实验；第五，论文最终展示的是机理发现为主，还是已经发展成普适合成方法。
+摘要给出的主要现象线索是：胶质母细胞瘤异质性由“空间上有图案的癌细胞转变”驱动，方向是从developmental-like states走向glial injury response和hypoxia定义的状态。这里至少包含三个值得科研读者重点核对的对象：一是developmental-like具体指哪些程序，可能接近神经发育、祖细胞样、OPC-like、NPC-like或其他已知GBM状态；二是glial injury response是否对应反应性星形胶质样、炎症/损伤应答、mesenchymal-like或特定应激程序；三是hypoxia状态是否与坏死周边、血管异常、代谢重编程或免疫浸润区域耦合。作者进一步声称该轨迹会把肿瘤“regionalize”成不同组织微环境，说明他们不仅在细胞层面做了伪时序/轨迹推断，还把轨迹位置与空间组织学区域、局部生态位或病理结构联系起来。
 
-就与用户方向的关系而言，元数据关键词里有“carbon”与“ai”，但从题录本身看，这篇论文与AI的直接关系并不明显；它更可能与碳中心自由基、反应机理建模、电子转移控制和新型合成方法学相关。如果读者关注反应设计、自由基前体开发、含氟碳片段转移、光化学或计算化学，这篇文章值得重点看其机理图、能量剖面和底物适用范围。若读者关注AI，则更适合作为“可用于机理知识抽取或反应规则归纳”的案例，而不是AI方法论文。
+方法上，摘要最值得注意的是“a new deep-learning framework to map cancer cell states jointly with clones in situ”。这表明作者并非只在解离后的单细胞数据中推断状态和克隆，而是试图在组织原位同时定位两者。若这一点成立，其技术价值很高，因为GBM中状态与克隆常常在不同技术层面被分开研究。该框架可能输入空间转录组、原位杂交/成像、突变信号、CNV模式或多模态嵌入，输出每个空间位置的状态概率和克隆归属，进而分析不同亚克隆是否占据不同生态位。摘要给出的结论恰恰是“tumour subclones are finely spatially intermixed through glioblastoma tissue microenvironments”，即遗传亚克隆在空间上细粒度混合，而不是各自严格占据独立区域；这支持“细胞状态程序在不同克隆间共享”而非“每个克隆锁定一种状态”的观点。
 
-需要核对的信息包括：1）具体金属和配体结构；2）自由基前体的化学类别；3）是否需要光照及其波长；4）是否存在催化循环还是化学计量金属试剂；5）不可逆MLCT的直接实验表征；6）碳自由基后续参与的反应类型，如加成、偶联、官能团迁移或氢原子转移；7）与传统SET/LMCT/PCET路径相比的优势数据，如收率、选择性、官能团兼容性或能垒降低。总之，基于现有信息可以较有把握地判断这是一篇围绕“用不可逆MLCT驱动碳自由基生成”的机制/方法学论文，但任何关于反应效果、普适性和定量结论的说法都必须等待摘要或全文验证。</p></div>
+证据链方面，摘要提到三层支持：第一，多组学图谱本身揭示跨肿瘤保守的分子轨迹；第二，原位深度学习映射显示克隆在微环境中精细混合；第三，利用体内somatic mutation-based hierarchies和患者来源类器官模型进行验证。前者意味着作者可能通过突变树或克隆进化层级来判断某些状态是否沿谱系逐步出现，从而给“trajectory”提供时间方向上的支持，而不是仅凭横截面伪时序。后者说明他们可能在类器官中重现从发育样到损伤/缺氧样状态的转变，或者操纵环境条件来诱导该轨迹，从实验上增强因果解释。
+
+如果你的方向与AI或肿瘤微环境相关，这篇论文的相关性较高。AI方面，关键词里有ai，且摘要明确包含新深度学习框架；但仅凭摘要无法判断模型创新是在架构、监督策略、跨模态对齐、空间反卷积，还是克隆-状态联合推断。environment方面则更直接：论文把癌细胞状态轨迹与空间微环境区域化联系起来，可能对理解缺氧、损伤反应、局部生态位塑造和治疗耐受有启发。
+
+需要特别核对的信息包括：12例样本对GBM分子亚型和患者间差异的覆盖是否足够；developmental-like、injury response、hypoxia这些状态的操作性定义和标记基因；深度学习框架的训练标签来源、泛化能力和是否可复现；克隆推断是基于SNV、CNV还是联合证据；“conserved across tumours as well as genetically distinct tumour subclones”是统计意义上的保守，还是每例都可见；类器官验证是观察性重现还是干预性验证；以及该轨迹与既有GBM四状态模型或mesenchymal transition文献相比的新意到底在哪里。总之，基于摘要，这篇工作更像是在提出一个“跨克隆共享、受空间微环境组织的癌细胞状态轨迹”框架，而不是单纯报告新的细胞亚群。</p></div>
           </div>
           
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Abstract Cancer cells show highly heterogeneous and plastic states in glioblastoma, an incurable brain tumour 1–5 . However, how these malignant states arise and whether they follow defined cellular trajectories across tumours is poorly understood. Here we generated a deep single-cell and spatial multi-omic atlas of human glioblastoma that pairs transcriptomic, epigenomic and genomic profiling of 12 tumours across many regions. We identify that glioblastoma heterogeneity is driven by spatially patterned transitions of cancer cells from developmental-like states towards those defined by a glial injury response and hypoxia. This cellular trajectory regionalizes tumours into distinct tissue microenvironments and manifests in a molecularly conserved manner across tumours as well as genetically distinct tumour subclones. Consistently, using a new deep-learning framework to map cancer cell states jointly with clones in situ, we show that tumour subclones are finely spatially intermixed through glioblastoma tissue microenvironments. We validate this cellular trajectory by using somatic mutation-based hierarchies in vivo and an experimental patient-derived organoid model ex vivo. Finally, we show that this cancer cell trajectory is intimately linked to myeloid heterogeneity and unfolds across regionalized myeloid signalling environments. Our findings define a stereotyped trajectory of cancer cells in glioblastoma and unify glioblastoma tumour heterogeneity into a tractable cellular and tissue framework.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-11-04</span>
+        <span>Score 51.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11238-4">Towards observing interstitial hydrogen in solution in metal lattices</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Towards+observing+interstitial+hydrogen+in+solution+in+metal+lattices&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11238-4%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Towards+observing+interstitial+hydrogen+in+solution+in+metal+lattices%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Towards+observing+interstitial+hydrogen+in+solution+in+metal+lattices&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11238-4%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Towards+observing+interstitial+hydrogen+in+solution+in+metal+lattices%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Towards+observing+interstitial+hydrogen+in+solution+in+metal+lattices&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11238-4%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Towards+observing+interstitial+hydrogen+in+solution+in+metal+lattices%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Chao Huang、Saiyu Liu、Wenting Lv、Chun Chen 等 20 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11238-4">10.1038/s41586-026-11238-4</a></div>
+      <div class="chips"><span class="chip">ai <strong>1</strong></span>
+<span class="chip">carbon <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>Towards observing interstitial hydrogen in solution in metal lattices。摘要要点：Abstract Hydrogen-bearing materials are central to low-carbon energy technologies 1 , but hydrogen itself is difficult to detect and localize at the nanoscale 2–6 .</p></div>
+        <div class="note"><strong>贡献</strong><p>摘要中最具体的线索是：Abstract Hydrogen-bearing materials are central to low-carbon energy technologies 1 , but hydrogen itself is difficult to detect and localize at the nanoscale 2–6 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 2</div>
+              <div class="signal-meter"><span style="width: 36%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>51.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文围绕“Towards observing interstitial hydrogen in solution in metal lattices”展开；摘要线索显示问题可能与 Abstract Hydrogen-bearing materials are central to low-carbon energy technologies 1 , but hydrogen itself is difficult to detect and localize at the nanoscale 2–6 . 有关。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>它来自 Nature，且与 ai、carbon 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文围绕“Towards observing interstitial hydrogen in solution in metal lattices”展开；摘要线索显示问题可能与 Abstract Hydrogen-bearing materials are central to low-carbon energy technologies 1 , but hydrogen itself is difficult to detect and localize at the nanoscale 2–6 . 有关。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>它来自 Nature，且与 ai、carbon 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>来源为 Nature，关键词匹配：ai、carbon。题名指向“Towards observing interstitial hydrogen in solution in metal lattices”。摘要中可用的信息是：Abstract Hydrogen-bearing materials are central to low-carbon energy technologies 1 , but hydrogen itself is difficult to detect and localize at the nanoscale 2–6 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Abstract Hydrogen-bearing materials are central to low-carbon energy technologies 1 , but hydrogen itself is difficult to detect and localize at the nanoscale 2–6 . This hinders the development of advanced materials with better efficiency. Atom probe tomography (APT) can map hydrogen in three dimensions and at high resolution, yet characterization of dilute, mobile, interstitial hydrogen in metals has remained challenging because of low solubility, the ambiguity owing to hydrogen trapping by structural defects, as well as the artefacts introduced during hydrogen introduction 4–6 . Here we address whether interstitial hydrogen in solution in materials can be distinguished from defect-trapped hydrogen in APT. Using deuterium as a proxy for hydrogen, together with face-centred cubic (FCC) multi-principal-element alloys (MPEAs) containing coherent FCC precipitates, we show that deuterium atoms reproducibly concentrate in hydrogen-affinitive phases in a manner consistent with theoretical predictions. We further resolve differences in deuterium content between phases with distinct local chemistries and crystal structures, consistent with their different calculated hydrogen solution energies. These findings demonstrate that APT can move beyond identifying hydrides and solute-decorated defects to examine hydrogen in solid solution, providing new insights into hydrogen partitioning in structural alloys and informing materials design for hydrogen-related applications.</p>
+        </details>
+        
         </div>
       </details>
     
@@ -668,20 +731,20 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">Science</span>
-        <span>2026-10-29</span>
-        <span>Score 42.0</span>
+        <span>2026-11-05</span>
+        <span>Score 47.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1126/science.aeg6988">Papaver self-incompatibility is controlled by two multiallelic idiomorphs</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Papaver+self-incompatibility+is+controlled+by+two+multiallelic+idiomorphs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg6988%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Papaver+self-incompatibility+is+controlled+by+two+multiallelic+idiomorphs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Papaver+self-incompatibility+is+controlled+by+two+multiallelic+idiomorphs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg6988%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Papaver+self-incompatibility+is+controlled+by+two+multiallelic+idiomorphs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Papaver+self-incompatibility+is+controlled+by+two+multiallelic+idiomorphs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg6988%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Papaver+self-incompatibility+is+controlled+by+two+multiallelic+idiomorphs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1126/science.aei1490">GLP-1 therapies and cancer risk</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+GLP-1+therapies+and+cancer+risk&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aei1490%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+GLP-1+therapies+and+cancer+risk%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+GLP-1+therapies+and+cancer+risk&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aei1490%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+GLP-1+therapies+and+cancer+risk%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+GLP-1+therapies+and+cancer+risk&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aei1490%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+GLP-1+therapies+and+cancer+risk%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Ke Jin、Zezhen Du、Tao Xiong、Fuyu Leng 等 25 人 · DOI: <a href="https://doi.org/10.1126/science.aeg6988">10.1126/science.aeg6988</a></div>
+      <div class="authors">Blánaid Hicks、Anton Pottegård · DOI: <a href="https://doi.org/10.1126/science.aei1490">10.1126/science.aei1490</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦罂粟属Papaver rhoeas自交不亲和性（SI）S位点的分子基础，指出经典决定子PrpS-PrsS并不覆盖所有S单倍型，并鉴定出在其缺失时分离于S位点的另一对多态S基因SOPT和SGRP。摘要声称SOPT与SGRP具备S决定子的关键特征，且在拟南芥异源表达时可赋予SI表型，从而提出Papaver SI由两套多等位“idiomorph”而非同源等位变体控制。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把Papaver的S位点遗传架构从“单一一对同源多等位S决定子”改写为“两个彼此无明显共同祖先、各自多等位的idiomorph系统”：一套是已知PrpS-PrsS，另一套是新提出的SOPT-SGRP。这一结论如果成立，不仅解释了为何部分S单倍型缺失经典PrpS-PrsS，还对植物自交不亲和性、多态识别位点的演化以及allorecognition机制的起源提出了新的框架。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science文章聚焦“GLP-1治疗与癌症风险”的证据解读问题，核心任务不是报告某一项新实验结果，而是围绕快速发展的GLP-1相关临床与流行病学证据，讨论如何正确判断其与癌症风险之间的关联。根据题名、摘要和期刊定位，它更像一篇面向医学研究与临床决策的评论/观点性文章，强调在证据快速累积时避免误读风险信号。</p></div>
+        <div class="note"><strong>贡献</strong><p>可能的核心贡献是：针对GLP-1受体激动剂或相关GLP-1治疗在肿瘤风险评估中的争议，提出更严谨的证据解释框架，帮助研究者和临床人员区分药物真实致癌/保护效应与观察性偏倚、时间窗不足、适应症混杂、检测偏倚等因素造成的表观关联。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -698,35 +761,33 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>47.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：Papaver rhoeas中经典S决定子PrpS和PrsS为何在许多S单倍型中缺失，而这些单倍型的自交不亲和性又由什么分子机制控制；进一步地，Papaver的S位点究竟是由一套同源多等位基因控制，还是由不同基因内容构成的替代性识别模块控制。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，研究可能结合了多S单倍型的S位点测序/组装与比较分析、候选基因筛选、遗传共分离或连锁证据、组织或生殖阶段表达分析、多态性与进化特征分析，以及在拟南芥中的异源表达功能验证。关键分析路径应是：先证明PrpS-PrsS在部分单倍型中缺失，再在这些单倍型的S位点中找到与S表型一致分离的新基因对SOPT-SGRP，最后用功能实验证明其足以介导SI。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，问题切中经典模型的空白：不是在已知PrpS-PrsS框架内做细化，而是解释其无法覆盖全部S单倍型的根本矛盾。其二，证据链看起来跨越了基因发现与功能验证两个层面，尤其是异源表达赋予拟南芥SI这一点，若设计严谨，说明力很强。其三，提出“双多等位idiomorph”这一概念性框架，可能显著推进对植物S位点多态性、重组抑制和识别系统演化的理解。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先查正文或补充材料中的三类图表：1）S位点结构比较图，确认PrpS-PrsS与SOPT-SGRP在不同单倍型中的互斥/共存关系；2）功能验证图，确认拟南芥异源表达实验的构建方式、配对组合和SI判定指标；3）系统发育或序列多态性图，核对‘idiomorph’与‘无明显共同祖先’的证据强度。同时建议记录一个问题清单：SOPT/SGRP分别对应哪一侧决定子、样本量多少、是否存在过渡型单倍型、是否测试了等位特异性。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体研究问题应是：在GLP-1相关治疗迅速普及的背景下，现有关于其与癌症风险关联的证据应如何被正确解释？更细一点，文章可能在问：面对不同来源、不同质量、不同随访长度的研究结果，研究者如何判断某个癌症风险信号是否可信、是否具有因果意义、是否足以影响临床用药。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于题名、摘要和期刊属性，最可能的方法不是原始实验，而是证据综述与方法学评论。可能会综合随机试验安全性终点、观察性数据库研究、药物警戒报告和既往综述，比较不同证据来源的优缺点；并通过因果推断或药物流行病学框架讨论混杂、偏倚、暴露时间窗、癌症潜伏期、结局误分类和选择偏倚等问题。若文中引用具体案例，可能会用某些癌种或某类研究结果来说明“错误解读证据”的典型路径。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能在于其问题切中当前临床与公共卫生热点：GLP-1药物使用规模大、适应症扩张快、长期安全性尤其是肿瘤风险备受关注。若文章确实由药物流行病学视角展开，其价值可能不在于给出简单的‘增风险/不增风险’结论，而在于提供一套更可靠的证据解释框架，这对设计后续队列研究、审稿评价和临床沟通都很有用。发表在Science也提示其面向更广泛科研群体，可能具有较强的概念澄清和跨领域传播价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先确认文章类型和栏目，判断它是评论还是综述还是政策性短文；第二，下载全文后优先查找文中是否列出具体癌种、关键引用研究和方法学警示点；第三，记录作者是否提出了明确的研究设计建议，例如新使用者-主动对照设计、滞后分析、按适应症分层、按随访时长分层；第四，把文中提到的关键证据按‘随机试验/观察性研究/药物警戒’分类整理，避免把不同证据层级混为一谈；第五，如果你的研究涉及GLP-1安全性，可据此建立一个待核对清单：暴露定义、比较组、癌症潜伏期、筛查行为、体重变化和基础代谢疾病混杂。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：Papaver rhoeas中经典S决定子PrpS和PrsS为何在许多S单倍型中缺失，而这些单倍型的自交不亲和性又由什么分子机制控制；进一步地，Papaver的S位点究竟是由一套同源多等位基因控制，还是由不同基因内容构成的替代性识别模块控制。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，研究可能结合了多S单倍型的S位点测序/组装与比较分析、候选基因筛选、遗传共分离或连锁证据、组织或生殖阶段表达分析、多态性与进化特征分析，以及在拟南芥中的异源表达功能验证。关键分析路径应是：先证明PrpS-PrsS在部分单倍型中缺失，再在这些单倍型的S位点中找到与S表型一致分离的新基因对SOPT-SGRP，最后用功能实验证明其足以介导SI。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，问题切中经典模型的空白：不是在已知PrpS-PrsS框架内做细化，而是解释其无法覆盖全部S单倍型的根本矛盾。其二，证据链看起来跨越了基因发现与功能验证两个层面，尤其是异源表达赋予拟南芥SI这一点，若设计严谨，说明力很强。其三，提出“双多等位idiomorph”这一概念性框架，可能显著推进对植物S位点多态性、重组抑制和识别系统演化的理解。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要需要警惕几类边界。第一，异源表达产生的SI是否完全等位特异、是否重现Papaver原生系统的细胞学过程，摘要未说明。第二，SOPT和SGRP虽被称为S决定子，但“hallmark features”具体是什么、是否足以排除紧密连锁但非决定性基因，仍需看正文。第三，‘无明显共同祖先’可能只是当前序列层面无法检出同源性，不等于绝对独立起源。第四，摘要未给出样本规模、单倍型数量、系统发育范围和统计支持，因而暂不能判断该模型在Papaver属内的普适性。第五，若两套系统并存，如何维持群体中的兼容性规则和等位命名体系，也需要正文解释。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先查正文或补充材料中的三类图表：1）S位点结构比较图，确认PrpS-PrsS与SOPT-SGRP在不同单倍型中的互斥/共存关系；2）功能验证图，确认拟南芥异源表达实验的构建方式、配对组合和SI判定指标；3）系统发育或序列多态性图，核对‘idiomorph’与‘无明显共同祖先’的证据强度。同时建议记录一个问题清单：SOPT/SGRP分别对应哪一侧决定子、样本量多少、是否存在过渡型单倍型、是否测试了等位特异性。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从摘要可提炼的研究对象非常明确：对象是Papaver rhoeas的自交不亲和性S位点，任务是解释为何先前定义的雄性/雌性S决定子PrpS和PrsS在许多S单倍型中缺失，以及这些单倍型如何仍然实现SI识别。作者报告在PrpS-PrsS缺失的背景下，发现另一对位于S位点、具有多态性的候选基因：S locus oligopeptide transporter（SOPT）和S locus glycine-rich protein（SGRP）。从命名和摘要表述推测，SOPT可能对应膜转运相关蛋白，SGRP可能对应富甘氨酸分泌或细胞壁/胞外相关蛋白；二者被视为替代性的雄/雌配对识别因子，但具体哪一个对应花粉侧、哪一个对应柱头/雌蕊侧，摘要未直接说明，需要核对正文或图示。
+            <div class="detail-section"><strong>研究问题</strong><p>具体研究问题应是：在GLP-1相关治疗迅速普及的背景下，现有关于其与癌症风险关联的证据应如何被正确解释？更细一点，文章可能在问：面对不同来源、不同质量、不同随访长度的研究结果，研究者如何判断某个癌症风险信号是否可信、是否具有因果意义、是否足以影响临床用药。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>基于题名、摘要和期刊属性，最可能的方法不是原始实验，而是证据综述与方法学评论。可能会综合随机试验安全性终点、观察性数据库研究、药物警戒报告和既往综述，比较不同证据来源的优缺点；并通过因果推断或药物流行病学框架讨论混杂、偏倚、暴露时间窗、癌症潜伏期、结局误分类和选择偏倚等问题。若文中引用具体案例，可能会用某些癌种或某类研究结果来说明“错误解读证据”的典型路径。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能在于其问题切中当前临床与公共卫生热点：GLP-1药物使用规模大、适应症扩张快、长期安全性尤其是肿瘤风险备受关注。若文章确实由药物流行病学视角展开，其价值可能不在于给出简单的‘增风险/不增风险’结论，而在于提供一套更可靠的证据解释框架，这对设计后续队列研究、审稿评价和临床沟通都很有用。发表在Science也提示其面向更广泛科研群体，可能具有较强的概念澄清和跨领域传播价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，最大局限是信息量极少：摘要没有提供任何具体数据、癌种、研究设计、样本量、效应值或结论方向，因此无法判断文章究竟支持风险增加、风险降低还是仅强调不确定性。其次，若这是评论/观点类文章，其证据强度依赖于所引用文献而非作者新生成数据，不能把它当作直接的因果证据。再次，题名中的‘cancer risk’范围很广，不同癌种的生物学机制、潜伏期和检测路径差异很大，若文章未充分分层，读者需警惕过度概括。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先确认文章类型和栏目，判断它是评论还是综述还是政策性短文；第二，下载全文后优先查找文中是否列出具体癌种、关键引用研究和方法学警示点；第三，记录作者是否提出了明确的研究设计建议，例如新使用者-主动对照设计、滞后分析、按适应症分层、按随访时长分层；第四，把文中提到的关键证据按‘随机试验/观察性研究/药物警戒’分类整理，避免把不同证据层级混为一谈；第五，如果你的研究涉及GLP-1安全性，可据此建立一个待核对清单：暴露定义、比较组、癌症潜伏期、筛查行为、体重变化和基础代谢疾病混杂。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从现有元数据看，研究对象非常具体，即GLP-1 therapies（通常可理解为GLP-1相关降糖/减重治疗）与cancer risk（癌症风险）之间的关系。摘要只有一句“Correct interpretation of evidence is essential in a rapidly evolving medical landscape”，说明文章重点很可能不是提供新的患者队列、随机试验或机制实验，而是讨论在GLP-1药物迅速扩展到糖尿病、肥胖及心代谢领域后，如何解读不断出现的癌症安全性信号。题名中的“therapies”是复数，提示讨论对象可能覆盖多个GLP-1相关药物或治疗场景，而不局限于单一分子。作者Anton Pottegård具有药物流行病学背景这一线索，也使得文章很可能强调真实世界数据、药物安全性监测和因果推断中的方法学问题，但这部分仍需全文核对，不能当作已证实事实。
 
-可能的方法路径包括：对多个S单倍型进行S位点比较基因组学或单倍型组装，发现部分单倍型完全缺失PrpS-PrsS；随后在这些单倍型中通过连锁分离、表达特异性、组织定位、多态性模式和重组抑制特征筛选新的S决定子候选；再通过异源表达功能验证，在Arabidopsis thaliana中重建或诱导SI反应。摘要中的“display hallmark S determinant features”是重要证据线索，通常可能包括：与S表型共分离、位于S位点、在相关生殖组织中特异表达、具有高度等位多态性、跨单倍型序列分化显著、可能受平衡选择维持，以及成对决定子在功能上能触发自/非自识别。另一个关键证据是“confer SI when heterologously expressed in Arabidopsis thaliana”，这意味着作者不仅做了关联分析，还进行了跨物种功能测试；但需要注意，摘要没有说明是完整重建双组分系统、还是分别表达后配对测试，也没有说明SI表型的强度、特异性和等位特异识别范围。
+可能的方法路径包括：梳理随机对照试验、上市后药物警戒、电子病历/注册数据库队列研究、病例对照研究以及既往荟萃分析中关于癌症结局的证据；比较不同研究设计对风险估计的影响；指出癌症结局研究中特别关键的时间相关偏倚，例如不死时间偏倚、潜伏期不足、暴露定义不一致、既往肥胖和糖尿病本身对癌症风险的混杂作用，以及减重导致筛查行为变化后引入的检测偏倚。若文章是评论性质，其“证据”更可能体现为对现有研究的再解释，而不是新数据。
 
-这项工作的概念新意在于“idiomorph”而非“allelemorph”。也就是说，Papaver的不同S单倍型之间，控制同一生物学功能的遗传模块可能不是同源基因的不同等位版本，而是两套彼此无明显共同祖先、但占据同一遗传位点并承担相同识别功能的替代性基因组合。这与某些真菌交配型位点的idiomorph概念相呼应，但在植物SI系统中若被严格证实，将意味着S位点多态性的来源不只是序列分化和长期平衡选择，还可能包含深层次的基因内容替换、结构重塑和功能收敛。对研究识别系统演化、超基因、重组抑制区和受体-配体共演化的科研人员，这篇论文的价值很高。
+与科研读者的关系在于：如果你的方向涉及药物流行病学、内分泌代谢、肿瘤流行病学、真实世界证据或临床安全性评价，这篇文章的价值可能主要体现在研究设计和证据分级层面，而非具体生物机制。它可能帮助你重新审视一个常见但容易被过度传播的问题：当GLP-1药物使用人群快速扩大、媒体和市场高度关注时，任何癌症相关信号都可能被放大，但真正需要判断的是该信号来自药物本身、基础疾病谱、体重变化、随访时长不足，还是统计偶然性。
 
-与潜在用户方向的关系方面：如果你关注植物生殖生物学，这篇论文直接影响Papaver SI分子模型；如果你做比较基因组学，它提供了“同一功能位点由不同基因内容占据”的案例；如果你研究allorecognition或免疫样识别，它提示高多态识别系统可通过双idiomorph架构维持；如果你做合成生物学或作物育种，异源表达赋予SI的结果暗示未来可能存在工程化引入或重构SI模块的可能性。
-
-但基于仅有摘要，仍有若干必须核对的信息：第一，SOPT和SGRP分别对应雄性还是雌性决定子，是否与PrpS/PrsS在功能方向上平行；第二，所谓“many S haplotypes”具体是多少个单倍型、覆盖多大群体和地理范围；第三，PrpS-PrsS与SOPT-SGRP是完全互斥，还是存在共存/过渡型单倍型；第四，Arabidopsis异源表达实验是否实现严格的等位特异性SI，而非一般性生殖抑制；第五，“sharing no obvious common ancestry”是基于序列同源性缺失、结构域完全不同，还是系统发育分析支持；第六，作者是否讨论了两套idiomorph的起源顺序、替代机制及其在Papaver属内的系统发育分布。以上问题决定这篇论文是“发现新候选因子”还是“真正重写Papaver SI遗传范式”。</p></div>
+目前最需要核对的信息包括：1）文章类型究竟是Policy Forum、Editorial、Perspective还是Review；2）是否点名具体癌种，例如甲状腺癌、胰腺癌、结直肠癌、乳腺癌等；3）是否区分糖尿病适应症与肥胖适应症人群；4）是否讨论GLP-1受体激动剂与其他肠促胰素类药物；5）是否给出明确的方法学建议，如新使用者设计、主动对照、滞后期设定、负对照结局等。由于摘要极短，任何关于具体数据规模、效应方向、统计结果或机制结论的判断都不能从当前信息中可靠推出。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Self-incompatibility (SI) prevents self-fertilization through highly polymorphic genetic recognition at the S locus with multiple alleles. In Papaver rhoeas , the S determinants were previously identified as PrpS and PrsS . However, we found that PrpS-PrsS was absent in many S haplotypes. In this work, we report the identification of an alternative pair of polymorphic S genes, S locus oligopeptide transporter ( SOPT ) and S locus glycine-rich protein ( SGRP ), segregating at the S locus when PrpS-PrsS is absent. SOPT and SGRP display hallmark S determinant features and confer SI when heterologously expressed in Arabidopsis thaliana . Therefore, instead of having allelomorphs with homologous variants, the Papaver SI system is determined by two multiallelic idiomorphs sharing no obvious common ancestry. This discovery of a dual-idiomorph system reveals a distinct genetic basis for polymorphism, with implications for the evolution of allorecognition mechanisms.</p>
+          <p>Correct interpretation of evidence is essential in a rapidly evolving medical landscape</p>
         </details>
         
         </div>
@@ -737,21 +798,21 @@
 
     <article class="paper-card">
       <div class="paper-meta">
-        <span class="source-pill">Science</span>
-        <span>2026-10-29</span>
-        <span>Score 42.0</span>
+        <span class="source-pill">Nature</span>
+        <span>2026-11-05</span>
+        <span>Score 45.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1126/science.aeg1125">Whole-body single-cell atlas of an adult vertebrate, Danionella cerebrum</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Whole-body+single-cell+atlas+of+an+adult+vertebrate%2C+Danionella+cerebrum&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg1125%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Whole-body+single-cell+atlas+of+an+adult+vertebrate%2C+Danionella+cerebrum%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Whole-body+single-cell+atlas+of+an+adult+vertebrate%2C+Danionella+cerebrum&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg1125%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Whole-body+single-cell+atlas+of+an+adult+vertebrate%2C+Danionella+cerebrum%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Whole-body+single-cell+atlas+of+an+adult+vertebrate%2C+Danionella+cerebrum&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg1125%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Whole-body+single-cell+atlas+of+an+adult+vertebrate%2C+Danionella+cerebrum%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11336-3">Opportunistically Detecting Signs of Hypertension on a Consumer Smartwatch</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Opportunistically+Detecting+Signs+of+Hypertension+on+a+Consumer+Smartwatch&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11336-3%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Opportunistically+Detecting+Signs+of+Hypertension+on+a+Consumer+Smartwatch%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Opportunistically+Detecting+Signs+of+Hypertension+on+a+Consumer+Smartwatch&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11336-3%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Opportunistically+Detecting+Signs+of+Hypertension+on+a+Consumer+Smartwatch%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Opportunistically+Detecting+Signs+of+Hypertension+on+a+Consumer+Smartwatch&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11336-3%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Opportunistically+Detecting+Signs+of+Hypertension+on+a+Consumer+Smartwatch%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Kutay Deniz Atabay、Patrick Aoude、Chanyoung Park、Mykola Kadobianskyi 等 7 人 · DOI: <a href="https://doi.org/10.1126/science.aeg1125">10.1126/science.aeg1125</a></div>
+      <div class="authors">Paolo Di Achille、Lawrence Cai、Jiang Wu、Mingwu Gao 等 16 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11336-3">10.1038/s41586-026-11336-3</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文以成年脊椎动物Danionella cerebrum为对象，构建了全身尺度的单细胞转录组图谱，并结合空间转录组在单细胞分辨率上定位细胞类型与基因表达。论文的具体任务包括解析全身细胞类型组成、神经细胞的区域特异性分子特征、成体位置记忆与再生过程中的表达动态。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献很可能是提供了首个接近“整只成年脊椎动物”尺度的单细胞图谱资源：一方面通过分区取样的scRNA-seq覆盖Danionella cerebrum全身组织，另一方面用空间转录组把细胞类型映射回体内位置；在此基础上，作者进一步提出了成体分子位置记忆、幼态持续特征（paedomorphy）、成体结缔组织中的体区/附肢规格化程序，以及端脑再生中的转录动态等生物学发现，并进行了跨物种或跨系统的保守性比较。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦于在消费级智能手表上“机会式”检测高血压相关信号，即不依赖专门临床测量流程，而利用日常佩戴设备识别高血压迹象。由于当前未提供摘要与关键词，能够确认的具体任务主要是面向智能手表传感数据的高血压筛查/风险提示，而非正式诊断。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名和期刊定位，论文的核心贡献很可能是提出并验证一种利用消费级智能手表进行高血压迹象检测的方法或系统，强调“opportunistically”这一真实世界使用场景：在用户自然佩戴过程中被动采集信号并进行风险识别。如果属实，其价值在于把高血压筛查从袖带式、门诊式测量扩展到连续、低负担、可规模化的可穿戴监测。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -760,7 +821,7 @@
           <div class="detail-signal">
             <div>
               <div class="signal-kicker">来源</div>
-              <div class="signal-source">Science</div>
+              <div class="signal-source">Nature</div>
             </div>
             <div>
               <div class="signal-kicker">关键词命中 0</div>
@@ -768,97 +829,24 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>45.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：是否能够在一只成年脊椎动物尺度上建立全身单细胞转录组图谱，并把细胞类型放回其空间位置；在此基础上，成体不同身体区域的细胞，尤其是神经细胞和结缔组织细胞，是否保留区域身份、位置记忆和发育/附肢规格化程序；这些细胞类型在进化上是否保守，以及在端脑再生时如何发生转录变化。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推断，核心实验路径是按身体区域分层采样，对成年Danionella cerebrum进行单细胞RNA测序，随后整合各区域数据进行聚类、注释和全身细胞图谱构建。空间层面，作者使用空间转录组将细胞类型和基因表达映射到组织位置，尤其用于解析神经细胞的区域特异性。分析层面可能包括：跨区域差异表达与基因签名提取、神经细胞亚型细分、结缔组织中体区/附肢相关基因程序识别、跨物种细胞类型映射或同源比较，以及端脑再生样本的时间序列或条件对照分析。由于摘要提到single-cell resolution的空间映射，可能还涉及将scRNA-seq参考投射到空间数据的计算整合。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是研究尺度：对象不是单一器官而是成年脊椎动物全身，这使细胞类型组成、身体区域化和跨系统比较可以在同一框架下完成。第二个亮点是模型生物选择得当，Danionella cerebrum的小型、透明和可再生特性直接服务于“全身图谱+空间定位+再生分析”的实验设计。第三个亮点是多层证据整合：分区scRNA-seq提供细胞类型分辨率，空间转录组提供解剖定位，再生数据提供动态维度，比较分析提供进化维度。第四个亮点是问题设置具体，不止停留在“做图谱”，而是把图谱用于回答成体位置记忆、幼态持续、结缔组织规格化和神经细胞保守性等明确生物学问题。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是先查论文主图和补充信息中的四类内容：1）全身采样分区示意图与各区细胞数，确认覆盖范围；2）主要UMAP/注释图，记录神经、结缔组织和再生相关细胞群名称；3）空间转录组图，核对作者如何证明区域化神经细胞类型；4）端脑再生时间点与差异基因图，判断动态分析是时间序列还是损伤/对照比较。若你做相关研究，可进一步整理摘要中出现的四个关键词作为检索锚点：adult molecular positional memory、paedomorphic features、appendage-specification programs、telencephalon regeneration。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题，推测是：能否利用消费级智能手表在用户日常佩戴过程中被动获取的信号，机会式地识别高血压相关迹象，从而实现低负担、广覆盖的高血压筛查或风险提示。更细一点，可能是在不增加专门测量硬件和复杂操作的前提下，从可穿戴信号中提取与血压状态相关的数字表型。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：1）采集商用智能手表的PPG、心率、活动、睡眠等多模态时间序列；2）定义可分析窗口，如静息、夜间、低运动伪影时段；3）以袖带血压测量、临床诊断记录或高血压病史作为标签；4）训练分类模型识别高血压迹象，或训练回归模型估计血压相关指标后再映射到风险；5）在独立测试集或真实世界队列中评估AUC、灵敏度、特异度、校准度及亚组公平性。若论文强调“opportunistically”，还可能包含信号质量评估、自动触发策略和缺失数据处理。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，研究对象是消费级智能手表，若无需专用硬件，转化潜力和规模化部署价值很高。第二，机会式检测契合高血压长期无症状、低筛查依从性的临床痛点，可能提高早筛覆盖率。第三，如果论文确实发表在Nature并提供严格验证，那么其证据链可能不仅限于算法可行性，还包括真实世界适用性、泛化能力或临床工作流整合，这对数字健康研究者很有参考价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要，确认任务定义到底是筛查、监测还是诊断辅助；2）优先查看图1和方法部分，记录输入信号类型、标签来源、样本量和是否需要校准；3）查看主要结果表，摘录AUC/灵敏度/特异度及外部验证情况；4）检查亚组分析是否覆盖年龄、性别、肤色、BMI、药物使用和设备型号；5）如果你做可穿戴AI，可据此建立一个问题清单：标签定义、机会式窗口选择、混杂控制、泛化验证、临床落地路径。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：是否能够在一只成年脊椎动物尺度上建立全身单细胞转录组图谱，并把细胞类型放回其空间位置；在此基础上，成体不同身体区域的细胞，尤其是神经细胞和结缔组织细胞，是否保留区域身份、位置记忆和发育/附肢规格化程序；这些细胞类型在进化上是否保守，以及在端脑再生时如何发生转录变化。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推断，核心实验路径是按身体区域分层采样，对成年Danionella cerebrum进行单细胞RNA测序，随后整合各区域数据进行聚类、注释和全身细胞图谱构建。空间层面，作者使用空间转录组将细胞类型和基因表达映射到组织位置，尤其用于解析神经细胞的区域特异性。分析层面可能包括：跨区域差异表达与基因签名提取、神经细胞亚型细分、结缔组织中体区/附肢相关基因程序识别、跨物种细胞类型映射或同源比较，以及端脑再生样本的时间序列或条件对照分析。由于摘要提到single-cell resolution的空间映射，可能还涉及将scRNA-seq参考投射到空间数据的计算整合。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是研究尺度：对象不是单一器官而是成年脊椎动物全身，这使细胞类型组成、身体区域化和跨系统比较可以在同一框架下完成。第二个亮点是模型生物选择得当，Danionella cerebrum的小型、透明和可再生特性直接服务于“全身图谱+空间定位+再生分析”的实验设计。第三个亮点是多层证据整合：分区scRNA-seq提供细胞类型分辨率，空间转录组提供解剖定位，再生数据提供动态维度，比较分析提供进化维度。第四个亮点是问题设置具体，不止停留在“做图谱”，而是把图谱用于回答成体位置记忆、幼态持续、结缔组织规格化和神经细胞保守性等明确生物学问题。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要，首先需要警惕“全身 atlas”是否真正达到均匀覆盖：不同组织解离效率、细胞大小和脆弱性差异可能导致某些细胞群低估。第二，空间转录组虽被表述为single-cell resolution，但具体平台、分辨率和细胞边界判定方式需要核实，否则空间定位精度可能因技术而异。第三，神经细胞的“区域特异性”与“细胞类型差异”之间如何区分，需要看作者是否把状态、位置和谱系充分解耦。第四，关于“adult molecular positional memory”“paedomorphic features”“conserved specification programs”等结论，摘要只给出概念性表述，尚不清楚证据是强因果还是基于相关性基因模块。第五，再生部分只提到端脑，因而其动态结论未必可外推到全身再生。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是先查论文主图和补充信息中的四类内容：1）全身采样分区示意图与各区细胞数，确认覆盖范围；2）主要UMAP/注释图，记录神经、结缔组织和再生相关细胞群名称；3）空间转录组图，核对作者如何证明区域化神经细胞类型；4）端脑再生时间点与差异基因图，判断动态分析是时间序列还是损伤/对照比较。若你做相关研究，可进一步整理摘要中出现的四个关键词作为检索锚点：adult molecular positional memory、paedomorphic features、appendage-specification programs、telencephalon regeneration。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：Danionella cerebrum是一种体型微小、透明且具有再生能力的硬骨鱼，这些特性使“成年脊椎动物全身单细胞测绘”在实验上变得可行。论文的主线不是单一器官，而是全身范围的细胞类型普查与空间组织解析。方法线索包括“region-stratified single-cell RNA sequencing”，说明作者不是简单把整鱼混匀，而是按身体区域分层取样做单细胞RNA测序，以提高稀有或局部细胞类型的覆盖；随后又“mapped cell types and gene expression at single-cell resolution using spatial transcriptomics”，说明他们至少结合了一类空间转录组技术，把转录定义的细胞类型重新锚定到解剖位置。摘要还特别强调“spatially distinct neural cell types on the basis of their regional gene expression signatures”，提示神经系统分析可能不只是经典聚类，而是把同类神经细胞按脑区或身体区域的基因表达差异进一步细分。证据线索上，摘要列出了几类具体发现：其一，body-wide atlas识别出携带“adult molecular positional memory”的细胞类型，意味着某些成体细胞保留了与身体坐标相关的分子身份；其二，发现paedomorphic features，说明该物种成体可能保留幼体样细胞或发育程序；其三，在成体结缔组织中观察到保守的body-region和appendage-specification programs，提示Hox样或附肢模式化相关程序在成体组织中仍可检测；其四，comparative analyses revealed conserved neural cell types，说明作者做了跨物种神经细胞类型比较；其五，regeneration datasets uncovered expression dynamics during telencephalon regeneration，说明除稳态图谱外，还加入了端脑再生过程数据。对科研读者而言，这篇工作与多个方向直接相关：如果你做单细胞图谱学，它提供了“全身+空间+比较+再生”的整合范式；如果你做神经科学，它提供了区域化神经细胞类型定义与跨物种保守性线索；如果你做再生、生物体轴模式化或结缔组织生物学，它提供了成体位置记忆和再生转录动态的候选细胞群与基因程序。需要核对的信息主要包括：全身图谱的细胞总数、覆盖的身体分区数量、空间转录组平台与分辨率、细胞类型注释标准、比较分析所选参照物种、端脑再生的时间点设计，以及“位置记忆”“幼态特征”“保守规格化程序”分别是基于哪些基因模块和哪些细胞群得出的。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题，推测是：能否利用消费级智能手表在用户日常佩戴过程中被动获取的信号，机会式地识别高血压相关迹象，从而实现低负担、广覆盖的高血压筛查或风险提示。更细一点，可能是在不增加专门测量硬件和复杂操作的前提下，从可穿戴信号中提取与血压状态相关的数字表型。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：1）采集商用智能手表的PPG、心率、活动、睡眠等多模态时间序列；2）定义可分析窗口，如静息、夜间、低运动伪影时段；3）以袖带血压测量、临床诊断记录或高血压病史作为标签；4）训练分类模型识别高血压迹象，或训练回归模型估计血压相关指标后再映射到风险；5）在独立测试集或真实世界队列中评估AUC、灵敏度、特异度、校准度及亚组公平性。若论文强调“opportunistically”，还可能包含信号质量评估、自动触发策略和缺失数据处理。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，研究对象是消费级智能手表，若无需专用硬件，转化潜力和规模化部署价值很高。第二，机会式检测契合高血压长期无症状、低筛查依从性的临床痛点，可能提高早筛覆盖率。第三，如果论文确实发表在Nature并提供严格验证，那么其证据链可能不仅限于算法可行性，还包括真实世界适用性、泛化能力或临床工作流整合，这对数字健康研究者很有参考价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前仅有题录信息，主要局限是信息缺失严重。首先，不清楚论文检测的是“高血压诊断状态”“短时血压升高”还是“风险征象”，三者不能混用。其次，不清楚是否依赖个体基线校准；若需要校准，则实际部署价值会下降。再次，消费级手表信号易受运动伪影、肤色、灌注状态、佩戴方式影响，若无充分亚组分析，结果可能存在偏差。还需警惕混杂因素：年龄、肥胖、睡眠障碍、用药和心血管共病都可能让模型学到与高血压相关但非因果的替代特征。最后，在没有摘要和结果的情况下，不能推断其性能是否达到临床可用水平。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要，确认任务定义到底是筛查、监测还是诊断辅助；2）优先查看图1和方法部分，记录输入信号类型、标签来源、样本量和是否需要校准；3）查看主要结果表，摘录AUC/灵敏度/特异度及外部验证情况；4）检查亚组分析是否覆盖年龄、性别、肤色、BMI、药物使用和设备型号；5）如果你做可穿戴AI，可据此建立一个问题清单：标签定义、机会式窗口选择、混杂控制、泛化验证、临床落地路径。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、期刊、作者和DOI元数据分析，论文研究对象应是消费级智能手表及其可获得的生理/行为信号，目标任务是检测“signs of hypertension”，即高血压相关迹象或风险标志，而不一定是直接输出临床金标准血压值。题名中的“consumer smartwatch”提示研究可能使用现成商用硬件而非实验室原型设备；“opportunistically detecting”提示方法可能依赖日常生活中自然产生的可用片段，例如静息时段、睡眠、步行后恢复期、夜间窗口，或在信号质量足够时自动触发分析，而不是要求用户执行严格校准动作。就可能方法而言，智能手表常见可用信号包括PPG、心率、心率变异性、活动/加速度、睡眠、节律特征，若设备支持也可能涉及ECG；论文可能通过机器学习或统计建模，将这些信号与袖带血压、临床高血压标签或电子病历诊断进行关联。若是Nature正刊，通常会包含较强的验证设计，例如大样本真实世界数据、前瞻性验证、外部队列、亚组分析，或与标准筛查流程比较，但这些都需要正文核对，当前不能假定。与科研读者的关系在于：这项工作可能属于数字生物标志物、可穿戴医疗AI、机会式筛查和真实世界数字健康交叉领域，值得关注其标签定义究竟是“既往高血压状态识别”“当前血压升高检测”还是“未来高血压风险预测”，因为三者方法学和临床意义差异很大。还需要重点核对：是否需要个体校准；是否输出连续血压估计还是二分类风险；训练与测试样本量及人群构成；金标准标签来源；是否控制年龄、BMI、药物、活动水平等混杂因素；在不同肤色、佩戴松紧、运动状态下的鲁棒性；以及其临床终点是筛查、监测还是诊断辅助。由于摘要为空，现阶段信息明显不足，不能判断其具体模型、性能指标、实验结果和临床可用性。</p></div>
           </div>
           
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>A complete cell type transcriptome atlas of a vertebrate could promote understanding of animal cell type composition, organization, and evolution. The miniaturized, transparent, and regenerative teleost Danionella cerebrum brings whole-vertebrate single-cell profiling experiments within reach. We performed region-stratified single-cell RNA sequencing across the adult Danionella body and mapped cell types and gene expression at single-cell resolution using spatial transcriptomics. We delineated spatially distinct neural cell types on the basis of their regional gene expression signatures. The body-wide atlas elucidated cell types harboring adult molecular positional memory, uncovered paedomorphic features, and revealed conserved body-region and appendage-specification programs in adult connective tissue. Comparative analyses revealed conserved neural cell types, and regeneration datasets uncovered expression dynamics during telencephalon regeneration. This whole-vertebrate transcriptome atlas yields a comprehensive resource for myriad questions in biology and neuroscience.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Science</span>
-        <span>2026-10-29</span>
-        <span>Score 42.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1126/science.aef3063">Genomic erosion across avifauna in a biodiversity hotspot sounds a conservation alarm</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Genomic+erosion+across+avifauna+in+a+biodiversity+hotspot+sounds+a+conservation+&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef3063%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Genomic+erosion+across+avifauna+in+a+biodiversity+hotspot+sounds+a+conservation+alarm%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Genomic+erosion+across+avifauna+in+a+biodiversity+hotspot+sounds+a+conservation+&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef3063%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Genomic+erosion+across+avifauna+in+a+biodiversity+hotspot+sounds+a+conservation+alarm%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Genomic+erosion+across+avifauna+in+a+biodiversity+hotspot+sounds+a+conservation+&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef3063%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Genomic+erosion+across+avifauna+in+a+biodiversity+hotspot+sounds+a+conservation+alarm%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Ri Liu、Yadan Liu、Fei Wu、Dao Yan 等 5 人 · DOI: <a href="https://doi.org/10.1126/science.aef3063">10.1126/science.aef3063</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦中国西南高黎贡山生物多样性热点区的62种鸣禽，比较历史与现代基因组以量化遗传多样性变化，指出多个物种发生了平均43%到49%的基因组层面遗传流失。摘要特别强调一个反直觉现象：受影响更重的并不只是稀有种，常见种也出现了显著遗传侵蚀，提示现有以物种存续状态为主的保护评估可能遗漏风险。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把“表面上物种仍常见”与“基因组层面已显著退化”这两者明确区分开来，并用跨62个鸣禽物种的历史-现代基因组比较给出定量证据。论文可能的重要贡献包括：第一，在一个具体生物多样性热点区建立跨物种遗传侵蚀的幅度估计；第二，提出栖息地破碎化是主要驱动因素、扩散能力具有缓冲作用；第三，指出IUCN“Least Concern”物种中也可能存在严重遗传流失，从而为将基因组指标纳入全球保护框架提供依据。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Science</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>42.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在一个物种丰富但受人类活动影响的山地生物多样性热点区，鸟类物种即使在表面上仍然存在、甚至仍属常见，其遗传多样性是否已经发生了大幅下降；如果发生，这种下降的幅度有多大、哪些物种更严重、主要生态驱动是什么，以及现有保护评估体系是否因此低估了灭绝风险。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要推测，研究路径是跨物种历史-现代比较的保护基因组学设计：收集62种鸣禽的历史样本与现代样本，进行基因组测序或重测序，计算可比较的遗传多样性指标，并估计时间上的变化幅度。随后，作者可能将各物种的遗传流失程度与栖息地破碎化程度、物种扩散能力及可能的丰度/常见度进行统计关联，检验哪些因素解释遗传侵蚀。若要严谨成立，方法上应包含历史DNA质量控制、跨时期测序偏差校正、物种间比较模型，以及对系统发育非独立性的处理。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是研究对象和设计都很具体且有说服力：不是单物种，而是同一热点区62种鸣禽的跨时期基因组比较，因此更容易支持“普遍性风险”而非个案。第二个亮点是发现常见种也显著受损，这对保护优先级排序具有直接冲击。第三个亮点是把遗传变化与栖息地破碎化、扩散能力联系起来，提供了可操作的生态解释，而不只是报告下降现象。第四个亮点是与IUCN现行分类直接对照，明确指出政策盲点，增强了研究的应用价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作有五个：第一，优先查正文或补充材料中“genomic loss”的精确定义和计算公式；第二，记录62个物种的样本量、历史与现代采样年份、测序策略和覆盖度；第三，查看主图是否分别展示常见种与稀有种的遗传流失分布，以及破碎化/扩散能力的回归结果；第四，核对作者如何处理历史DNA偏差和系统发育相关性；第五，把文中被判定遗传流失显著但仍属IUCN“无危”的物种名单单独摘出，作为后续保护评估或对照研究的切入点。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在一个物种丰富但受人类活动影响的山地生物多样性热点区，鸟类物种即使在表面上仍然存在、甚至仍属常见，其遗传多样性是否已经发生了大幅下降；如果发生，这种下降的幅度有多大、哪些物种更严重、主要生态驱动是什么，以及现有保护评估体系是否因此低估了灭绝风险。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要推测，研究路径是跨物种历史-现代比较的保护基因组学设计：收集62种鸣禽的历史样本与现代样本，进行基因组测序或重测序，计算可比较的遗传多样性指标，并估计时间上的变化幅度。随后，作者可能将各物种的遗传流失程度与栖息地破碎化程度、物种扩散能力及可能的丰度/常见度进行统计关联，检验哪些因素解释遗传侵蚀。若要严谨成立，方法上应包含历史DNA质量控制、跨时期测序偏差校正、物种间比较模型，以及对系统发育非独立性的处理。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是研究对象和设计都很具体且有说服力：不是单物种，而是同一热点区62种鸣禽的跨时期基因组比较，因此更容易支持“普遍性风险”而非个案。第二个亮点是发现常见种也显著受损，这对保护优先级排序具有直接冲击。第三个亮点是把遗传变化与栖息地破碎化、扩散能力联系起来，提供了可操作的生态解释，而不只是报告下降现象。第四个亮点是与IUCN现行分类直接对照，明确指出政策盲点，增强了研究的应用价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前最大的局限是信息不完整。我们不知道每个物种的样本量、时间跨度、地理覆盖、测序深度和分析指标，因此无法判断43%到49%的稳健性。历史样本研究常见的DNA降解、低覆盖度和等位基因缺失偏差是否充分校正，也无法从摘要确认。摘要把栖息地破碎化表述为主要驱动，但若分析本质上是相关性模型，则因果强度需要谨慎解读。另一个边界是研究区域集中于高黎贡山，结论对其他类群、其他热点区的可推广性需要额外验证。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作有五个：第一，优先查正文或补充材料中“genomic loss”的精确定义和计算公式；第二，记录62个物种的样本量、历史与现代采样年份、测序策略和覆盖度；第三，查看主图是否分别展示常见种与稀有种的遗传流失分布，以及破碎化/扩散能力的回归结果；第四，核对作者如何处理历史DNA偏差和系统发育相关性；第五，把文中被判定遗传流失显著但仍属IUCN“无危”的物种名单单独摘出，作为后续保护评估或对照研究的切入点。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和元数据看，这是一项典型的保护基因组学研究，研究对象非常具体：高黎贡山地区62种鸣禽，比较材料是“历史基因组”和“现代基因组”。这里的“历史”很可能对应博物馆标本、旧采样组织或其他可回溯样本，“现代”则是当代野外样本；但样本年代跨度、每种样本量、测序深度、基因组覆盖度等关键信息在摘要中未给出，阅读正文时必须核对。论文的核心任务不是描述单个物种的系统发育，而是跨物种量化遗传多样性下降，并解释其生态驱动因素。
-
-摘要给出的主要证据线索有三条。第一，作者报告平均43%到49%的“genomic loss”，这大概率指向遗传多样性指标的下降，如杂合度、核苷酸多样性、有效群体大小代理指标、ROH增加或等位基因丢失等，但具体是哪一种或几种指标构成“genomic loss”，需要查正文定义。第二，常见种受到不成比例影响，这是一个重要发现，因为传统保护往往更关注稀有种、濒危种，而该结果意味着种群数量表面稳定或分布仍广的物种，也可能在遗传层面快速退化。第三，作者将主要驱动归因于栖息地破碎化，并指出扩散能力可缓解损失，这说明他们很可能把基因组变化与景观破碎化指标、物种生态性状或迁移/扩散能力做了关联分析，可能使用比较方法、回归模型或系统发育控制分析。
-
-如果你的方向与保护生物学、景观遗传学、群体基因组学或生物多样性监测有关，这篇论文的价值主要在于：它把“遗传侵蚀”从单物种案例提升到热点地区多物种尺度，并直接挑战现有红色名录评估对遗传维度关注不足的问题。尤其值得注意的是，摘要称这些已发生遗传流失的物种仍被列为IUCN“无危”，这意味着论文不仅是学术发现，也带有政策指向：保护框架需要纳入基因组指标，而不能只看种群数量、分布范围或近期灭绝风险。
-
-基于仅有摘要，仍有若干必须核对的信息。首先，“43%到49%”的计算口径是什么，是不同指标区间、不同模型估计，还是不同数据过滤策略下的结果。其次，62种鸣禽是否覆盖多个科、是否存在采样偏差、是否控制了历史样本DNA降解带来的假性多样性下降。再次，栖息地破碎化的证据是相关性还是更强的因果推断；扩散能力如何量化，是翅形指数、迁徙性、活动范围还是文献汇编性状。最后，论文题名中的“genomic erosion”可能不只指多样性下降，也可能包括近交增加、遗传负荷变化或适应性变异丢失，但摘要没有展开，不能替作者补充。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Loss of biodiversity can have a hidden dimension—the cryptic erosion of genetic diversity even in the face of apparent species resilience. We quantified changes in genetic diversity by comparing historical and modern genomes of 62 songbird species from the Gaoligong Mountains, a biodiversity hotspot in southwestern China. We identified genomic loss averaging between 43 and 49%; and, unexpectedly, common species were disproportionately affected. We argue that this loss was driven primarily by habitat fragmentation (and mitigated by dispersal ability) and show that it exceeds prior estimates and conservation policy thresholds. Species identified as having lost diversity continue to be listed as “Least Concern” on the International Union for Conservation of Nature’s Red List of Threatened Species, exposing a blind spot in extinction risk monitoring. We call for genomic metrics to be rapidly integrated into global conservation frameworks.</p>
-        </details>
-        
         </div>
       </details>
     
@@ -869,7 +857,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-11-05 02:26。
+      生成时间：2026-11-06 02:27。LLM paper analysis failed for doi:10.1038/s41586-026-11238-4: Extra data: line 1 column 2910 (char 2909)
     </div>
   </footer>
 </body>
