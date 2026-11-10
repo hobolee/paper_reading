@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-11-09</title>
+  <title>Paper Reading · 2026-11-10</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,12 +19,12 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-11-09 · 中文论文简报</div>
+        <div class="eyebrow">2026-11-10 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天这组论文可以分成两类优先级。第一优先级是方法与基准都较完整、且与当前AI/ML研究直接相关的4篇：CST-Bench、RM-VLM、多值治疗下的双重稳健因果推断、ReproBridge。它们共同指向一个很清晰的趋势：研究重点正从“模型在静态任务上是否会做题”转向“模型或方法在动态环境、历史依赖、干预变化和可复现执行中的可靠性”。其中，CST-Bench最值得优先读，因为它把多模态空间理解推进到“干预后的因果状态转移”，不仅有新基准，还有配套训练策略CT-OPSD，适合关注多模态推理、世界模型和因果表征的人。RM-VLM紧随其后，价值在于把自然语言任务说明、奖励机和视觉grounding连成一条链，适合做具时序结构的智能体与强化学习。多值治疗LTMLE/RNN论文则更偏统计学习与医疗因果推断，亮点是把双重稳健估计扩展到多值动态治疗；如果你关心“预测模型”与“因果效应估计”之间的边界，这篇值得看。ReproBridge则是科研基础设施方向的重要工作，它不直接提升模型能力，却可能显著改变ML复现流程与评测方式。第二优先级是自然科学与生物医学方向的高影响论文。铁在地核条件下的熔化与电阻率测量属于典型“关键物性约束地球深部模型”的工作，实验路径新、数据重复性强，适合做跨学科浏览。胶质母细胞瘤可塑性论文则代表单细胞多组学与调控网络推断的前沿，重点不在单个marker，而在“可塑性是否由结构化调控程序支配”。其余几篇中，FIND/nanoswitch screening方法学上很新，适合关注分子发现平台的人；而两篇仅有题名或极少摘要信息的Science/Nature论文，目前更适合作为待核实条目，不宜过度解读。整体上，今天最值得把握的主线不是单纯“AI论文很多”，而是三个更具体的转向：一，AI评测从静态识别走向干预后状态更新；二，任务规范从手工奖励/隐式流程走向语言化、结构化、可执行表示；三，研究产出本身开始被当作可优化对象，复现工件、审计证据和标准化流程正在成为方法贡献的一部分。若按阅读顺序建议：先读CST-Bench与RM-VLM，再读ReproBridge与多值治疗因果推断；生物医学方向优先看胶母可塑性，其次看FIND；地球科学论文适合作为高质量跨领域补充。</p>
+        <p class="summary">今天这组论文里，最值得优先读的是两篇“通用模型进入可验证专业环境”的工作：一篇把多模态模型放到外科场景理解中，先用统一基准测能力边界，再用受限知识检索与视觉定位工具测试推理时补偿；另一篇则把开放权重多模态模型放进 Blender 的确定性执行环境，用可执行 bpy 代码、结构化状态和环境奖励训练反应式 3D 编辑代理。这两篇共同代表了一个很清晰的方向：研究重点正从“模型会不会答题”转向“模型能否在有状态、可验证、可调用工具的环境里完成专业任务”，而且都强调不只看最终分数，还要看失败类型、工具使用方式和闭环反馈。对做 AI agent、MLLM、工具学习、评测设计的人来说，这两篇应列为第一优先级。第三优先级可给土耳其语数学推理那篇：它不是环境型 agent，但把低资源语言数学能力提升拆成数据质量、权重合并、测试时搜索三个可操作杠杆，适合做方法复现与横向比较。Rescene-ESM 则属于“AI 作为科学模型部件”的另一条重要路线：不是把模型当黑箱预测器，而是把冻结 AI 天气模型嵌入物理耦合地球系统，逐步分析哪些海气陆过程能恢复 ENSO 年际变率且不破坏平均气候。这对做 AI for Science、混合物理-机器学习系统的人很有启发，阅读优先级可与数学推理文并列，但更偏领域研究。其余几篇顶刊论文虽然不属于 LLM/agent 主线，但各自都很强：三味 Hubbard 量子气体显微镜是实验平台突破；膳食纤维-肠菌-雄激素转化是机制链条明确的转化医学；2800 年前精神活性大麻使用提供考古化学直接证据；双季种植花期模块、果蝇求偶的生态-社交协同、以及 TomoSAXS 解析层级纤维力学，则分别代表遗传调控、行为神经科学和多尺度成像的高质量问题驱动研究。若按“方法可迁移性+近期可复现性”排序，建议先读外科 agent、BlenderFORGE、土耳其语数学推理、Rescene-ESM；若按“学科前沿发现”排序，再补读 Science/Nature 几篇。</p>
         <div class="metrics">
-          <div class="metric"><strong>455</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>201</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>456</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>194</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -59,26 +59,26 @@
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">ai <strong>3</strong></span>
-<span class="chip">ml <strong>3</strong></span>
-<span class="chip">large language model <strong>2</strong></span>
-<span class="chip">llm <strong>2</strong></span>
-<span class="chip">language model <strong>2</strong></span>
+          <div class="chips"><span class="chip">ai <strong>4</strong></span>
+<span class="chip">large language model <strong>3</strong></span>
+<span class="chip">large language models <strong>3</strong></span>
+<span class="chip">llm <strong>3</strong></span>
+<span class="chip">language model <strong>3</strong></span>
+<span class="chip">language models <strong>3</strong></span>
 <span class="chip">agent <strong>2</strong></span>
+<span class="chip">agents <strong>2</strong></span>
+<span class="chip">multimodal <strong>2</strong></span>
+<span class="chip">mllm <strong>2</strong></span>
+<span class="chip">ml <strong>2</strong></span>
 <span class="chip">environment <strong>2</strong></span>
-<span class="chip">rag <strong>2</strong></span>
-<span class="chip">machine learning <strong>2</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">multimodal <strong>1</strong></span>
-<span class="chip">mllm <strong>1</strong></span>
-<span class="chip">causal reasoning <strong>1</strong></span>
-<span class="chip">vision-language <strong>1</strong></span>
-<span class="chip">vlm <strong>1</strong></span>
-<span class="chip">neural network <strong>1</strong></span>
-<span class="chip">neural networks <strong>1</strong></span>
-<span class="chip">causal inference <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span></div>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span>
+<span class="chip">earth system <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">weather <strong>1</strong></span>
+<span class="chip">ocean <strong>1</strong></span>
+<span class="chip">carbon <strong>1</strong></span>
+<span class="chip">mathematical reasoning <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -97,14 +97,14 @@
             <div class="bar-row">
               <div class="bar-label">science</div>
               <div class="bar-track"><div class="bar-fill" style="width: 32%"></div></div>
-              <div class="bar-count">95</div>
+              <div class="bar-count">97</div>
             </div>
             
 
             <div class="bar-row">
               <div class="bar-label">nature</div>
               <div class="bar-track"><div class="bar-fill" style="width: 20%"></div></div>
-              <div class="bar-count">60</div>
+              <div class="bar-count">59</div>
             </div>
             
       </div>
@@ -113,11 +113,11 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">从静态理解到干预后状态转移：CST-Bench把空间推理问题重写为反事实、因果化的状态更新任务，提示现有MLLM评测可能系统性低估动态推理难度。</span>
-<span class="chip">从自然语言任务描述到可执行任务结构：RM-VLM显示LLM/VLM正在被用于把文本任务说明编译成奖励机与视觉命题判断，核心不是生成文本，而是生成可驱动策略学习的形式化任务表示。</span>
-<span class="chip">从预测器到稳健因果估计器：多值治疗RNN-LTMLE工作强调，在动态决策场景中，序列模型的价值不只在预测，还在于嵌入双重稳健估计框架以支持因果效应识别。</span>
-<span class="chip">从论文与代码到标准化复现工件：ReproBridge说明复现不再只是附属劳动，而是可被基准化、代理化、审计化的研究对象，且对成功率和成本都有直接影响。</span>
-<span class="chip">从高通量观测到机制图谱：无论是胶母细胞状态可塑性的单细胞调控网络，还是CAR-T双敲协同图谱、FIND筛选分子调节剂，今天多篇论文都在把“大规模测量”推进为“可操作的机制地图”。</span></div>
+        <div class="chips"><span class="chip">从静态基准到可验证环境：外科理解与 Blender 编辑都把模型评测推进到“有工具、有状态、有执行反馈”的闭环环境，强调能力边界、失败归因与推理时补偿，而不只是一次性问答得分。</span>
+<span class="chip">受限工具使用正在成为提升专业任务表现的核心变量：外科工作中是 bounded knowledge retrieval 与视觉 grounding，3D 编辑中是 bpy 代码执行与环境奖励，数学推理中则体现为测试时搜索；共同问题是工具何时真正带来可验证增益。</span>
+<span class="chip">开放权重模型的专业化路径更细化了：不是只靠继续预训练，而是组合数据配方、SFT 冷启动、权重合并、测试时搜索、环境强化学习等多种轻量杠杆，探索在特定任务上逼近闭源系统。</span>
+<span class="chip">AI for Science 正在从替代预测走向嵌入式耦合：Rescene-ESM 把冻结 AI 天气模型作为大气模块接入海洋、陆面、河流、碳和能量系统，关注的是哪些物理耦合最小集能恢复关键气候变率。</span>
+<span class="chip">高水平实验科学论文普遍在强化“直接证据链”：无论是三味 Hubbard 的 flavor-resolved 量子显微镜、PMOS 中肠菌介导的雄激素转化、还是古代毛发中的大麻化学证据，核心都在于把过去间接推断的问题变成可直接观测或可机制验证的问题。</span></div>
       </div>
     </section>
 
@@ -126,50 +126,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>用现有开源MLLM在CST-Bench式任务上做一个“小型反事实空间转移复现评测”，比较其在静态空间问答与干预后问答上的性能落差。</strong>
-              <p>这能直接检验一个常见但未必成立的假设：静态空间理解强的模型，未必能正确更新干预后的场景状态。即使不复现全文基准，也能快速得到对模型能力边界的实证认识。</p>
-              <p><span>第一步：</span>先通读CST-Bench摘要与公开页面，确认6类干预和问题格式；若数据未公开，可手工构造20到50个最小样例，覆盖移动、交换、保持不变关系三类核心现象，对2到3个开源模型做零样本测试。</p>
-              <p><span>风险：</span>若基准尚未开放，手工样例规模太小，结论只能作为探索性观察；同时不同模型的视觉输入接口和提示格式可能带来额外方差。</p>
+              <strong>做一个“专业环境中的通用模型”对照综述，横向比较 SurgAgentGym 与 BlenderFORGE 的任务结构、工具接口、奖励/评测设计和失败模式分类。</strong>
+              <p>这两篇虽然领域差异很大，但方法论高度同构：都在问通用模型进入专业环境后，哪些能力来自预训练，哪些必须靠工具或环境反馈补足。做成对照框架有助于提炼可迁移的 agent 设计原则。</p>
+              <p><span>第一步：</span>先各自整理成统一表格：任务输入、动作空间、外部工具、状态可观测性、奖励来源、是否多轮、主要失败类型、是否需要领域训练。</p>
+              <p><span>风险：</span>目前信息主要来自摘要级笔记，细节可能不足；若正文中的环境接口定义差异过大，横向比较可能停留在较抽象层面。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>把RM-VLM的思路缩小到一个可控环境，测试“自然语言任务描述→奖励机→视觉/符号命题判断”链条中哪一环最脆弱。</strong>
-              <p>这类系统往往整体看起来成立，但真正限制性能的可能不是RL本身，而是奖励机生成错误、命题grounding不稳，或稠密奖励设计失真。拆链条分析比直接追总分更有研究价值。</p>
-              <p><span>第一步：</span>选一个最简单的网格世界或MiniGrid任务，手工写3到5个自然语言任务描述，同时准备人工真值奖励机；分别比较LLM生成奖励机与人工奖励机、VLM/规则命题判断与真值判断对最终策略学习的影响。</p>
-              <p><span>风险：</span>如果环境过于简单，语言到奖励机的优势不明显；如果环境过于复杂，又难以定位误差来源。</p>
+              <strong>复现一个最小版 Blender 代码执行评测环境，只覆盖物体放置这一单任务，测试现有开源 MLLM 生成 bpy 代码的可执行率与状态达成率。</strong>
+              <p>相比完整训练框架，单任务最小环境更容易落地，而且“代码可执行率”“目标状态匹配率”是非常清晰的可验证指标，适合作为 agent-in-environment 研究的起点。</p>
+              <p><span>第一步：</span>手工构造 20-50 个简单场景编辑指令，定义目标对象位置/朝向的结构化检查脚本，再让现有模型生成 bpy 代码并统计执行结果。</p>
+              <p><span>风险：</span>如果没有合适的多模态输入接口，实验可能退化为纯文本代码生成；另外 Blender 环境隔离、安全限制和状态解析实现成本可能高于预期。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>对多值治疗RNN-LTMLE论文做一个“方法边界检查”式阅读与小规模模拟，重点看多值处理下治疗模型错设时双重稳健性是否仍稳定。</strong>
-              <p>很多序列医疗论文容易被误读成“RNN预测更强”，但这篇真正重要的是因果估计框架。做一个小模拟能帮助区分：性能提升来自RNN表征能力，还是来自targeting与双重稳健结构。</p>
-              <p><span>第一步：</span>先整理论文摘要中涉及的比较对象：RNN、ensemble machine learning、sequential g-computation；然后自己构造一个3值治疗、2到3时间步的模拟数据，分别故意错设治疗模型或结局模型，观察估计偏差变化。</p>
-              <p><span>风险：</span>仅凭摘要难以准确复现其具体估计流程；若实现细节不完整，模拟结果只能用于理解方法直觉，不能作为严格复现。</p>
+              <strong>围绕外科场景理解，设计一个“工具是否真的帮助了推理”误差分析模板，区分知识缺失、视觉定位失败、关系推理失败和工作流判断失败。</strong>
+              <p>外科那篇的价值不只在总分，而在于它可能揭示通用 MLLM 在专业视觉任务中的具体短板。若能把错误类型标准化，后续可迁移到病理、放射、工业质检等其他专业视觉场景。</p>
+              <p><span>第一步：</span>从论文公开任务描述中抽取 10-20 个代表性样例，先人工定义错误分类准则，再比较“裸模型回答”和“带工具回答”的错误迁移情况。</p>
+              <p><span>风险：</span>若数据或交互日志未公开，就难以做严格复现；错误分类也可能受主观判断影响，需要较明确的标注协议。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>基于ReproBridge的工件框架，选一篇自己熟悉的ML论文，手工制作一个“精炼可复现工件”，评估其对新成员复现实验的帮助。</strong>
-              <p>这是一项投入小、回报高的元研究实践。即使不做完整基准，也能验证标准化环境配置、实验启动器和复现指南是否显著减少沟通成本与试错次数。</p>
-              <p><span>第一步：</span>选择一个已有代码但复现步骤分散的项目，按ReproBridge摘要中的四类对象整理：精炼代码库、环境配置、实验启动器、复现指南；再让一位未参与原项目的人独立执行一次。</p>
-              <p><span>风险：</span>单项目案例的外推性有限；人工整理工件本身需要熟悉原项目，否则容易把个人经验误当作标准流程。</p>
+              <strong>在低资源语言数学推理上做一个小规模复核：比较“更高质量少量翻译数据”与“更大规模噪声翻译数据”对同一基座模型 LoRA 微调的影响。</strong>
+              <p>这篇论文给出的一个重要判断是数据质量优于规模，这对低资源语言非常关键，而且实验门槛相对低，容易形成可发表的复核或扩展结果。</p>
+              <p><span>第一步：</span>选一个公开数学数据集子集，分别构造人工抽检后的高质量土耳其语版本和自动翻译的大规模版本，在同一训练预算下比较解题准确率与推理质量。</p>
+              <p><span>风险：</span>若没有稳定的土耳其语评测集，结论可能依赖少量 benchmark；此外 LLM-judge 评分本身也可能引入偏差。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕胶质母细胞瘤可塑性论文做一份“从单细胞多组学到状态转移调控网络”的综述式笔记，重点比较scDORI这类框架与现有GRN推断方法的差异。</strong>
-              <p>这篇工作代表了单细胞领域一个重要方向：不是只做聚类和marker解释，而是试图推断可塑性背后的增强子驱动调控程序。做方法比较有助于判断其真正新意在哪里。</p>
-              <p><span>第一步：</span>先不急于追实验细节，先列一个对照表，比较scDORI与常见单细胞GRN/trajectory方法在输入模态、是否建模增强子、是否支持状态转移推断、是否有扰动验证四个维度上的差异。</p>
-              <p><span>风险：</span>如果没有全文，容易高估方法创新点；不同方法的适用数据类型不完全一致，横向比较时需避免不公平。</p>
+              <strong>把 Rescene-ESM 作为案例，整理“冻结 AI 模块嵌入物理系统”的设计模式综述，重点比较耦合接口、守恒约束、随机强迫和机制归因实验。</strong>
+              <p>AI for Science 里最难复用的往往不是模型本身，而是如何把模型安全地嵌入物理系统并做可解释归因。该方向目前案例还不算太多，早做综述有价值。</p>
+              <p><span>第一步：</span>先围绕这篇论文列出四个维度的阅读提纲：AI 模块输入输出、与物理模块的耦合变量、为恢复关键气候模态加入了哪些最小过程、如何验证平均态与变率不冲突。</p>
+              <p><span>风险：</span>如果只基于单篇论文，综述容易过窄；需要再补充若干相关 AI-weather/AI-climate coupling 工作才能形成稳定框架。</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>把FIND/nanoswitch screening与当前分子胶、PPI稳定剂发现方法做一个方法学对照，寻找其最适合切入的靶标类型。</strong>
-              <p>这篇工作的潜在价值不只是“又一个筛选平台”，而是可能改变哪些相互作用适合被高通量直接筛选。明确其适用边界，比单纯记录案例更有用。</p>
-              <p><span>第一步：</span>整理一个小表格，对比FIND与传统结合筛选、DEL、功能筛选在筛选对象、是否直接读出PPI增强、文库类型兼容性、后续验证需求上的差异，并把ACE2-RBD与PPARγ两个案例分别归类。</p>
-              <p><span>风险：</span>摘要信息有限，很多关键实验参数和假阳性控制尚不清楚；若没有正文支持，适用边界判断只能停留在初步推测。</p>
+              <strong>对今天几篇非 AI 顶刊论文做一次“直接证据链”方法学笔记，比较它们如何把间接推断转成直接观测：量子显微镜、代谢物追踪、古代毛发化学分析、TomoSAXS。</strong>
+              <p>这几篇虽然学科分散，但共同方法论是通过新测量手段缩短‘现象—机制’之间的证据距离。把这种证据链结构抽象出来，对跨学科选题和论文写作都很有帮助。</p>
+              <p><span>第一步：</span>为每篇论文各写三行：原先只能间接回答的问题、这次新增的直接观测手段、仍未闭合的证据缺口，然后做横向对照。</p>
+              <p><span>风险：</span>不同学科的证据标准差异很大，抽象过度可能失去具体性；而且其中部分论文目前只有题名或简摘要，细节不足。</p>
             </div>
             </div>
       </div>
@@ -182,29 +182,32 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-11-05T06:49:51Z</span>
-        <span>Score 64.0</span>
+        <span>2026-11-08T15:00:44Z</span>
+        <span>Score 88.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2611.07541v1">CST-Bench: Benchmarking Counterfactual Spatial Transition Reasoning with Causal Transition On-Policy Self-Distillation</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+CST-Bench%3A+Benchmarking+Counterfactual+Spatial+Transition+Reasoning+with+Causal+&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.07541v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+CST-Bench%3A+Benchmarking+Counterfactual+Spatial+Transition+Reasoning+with+Causal+Transition+On-Policy+Self-Distillation%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+causal+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+CST-Bench%3A+Benchmarking+Counterfactual+Spatial+Transition+Reasoning+with+Causal+&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.07541v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+CST-Bench%3A+Benchmarking+Counterfactual+Spatial+Transition+Reasoning+with+Causal+Transition+On-Policy+Self-Distillation%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+causal+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+CST-Bench%3A+Benchmarking+Counterfactual+Spatial+Transition+Reasoning+with+Causal+&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.07541v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+CST-Bench%3A+Benchmarking+Counterfactual+Spatial+Transition+Reasoning+with+Causal+Transition+On-Policy+Self-Distillation%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+causal+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2611.11437v1">How to &quot;train&quot; a surgeon? Benchmarking generalist agents in surgical scene understanding</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+How+to+%22train%22+a+surgeon%3F+Benchmarking+generalist+agents+in+surgical+scene+under&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.11437v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+How+to+%22train%22+a+surgeon%3F+Benchmarking+generalist+agents+in+surgical+scene+understanding%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+How+to+%22train%22+a+surgeon%3F+Benchmarking+generalist+agents+in+surgical+scene+under&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.11437v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+How+to+%22train%22+a+surgeon%3F+Benchmarking+generalist+agents+in+surgical+scene+understanding%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+How+to+%22train%22+a+surgeon%3F+Benchmarking+generalist+agents+in+surgical+scene+under&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.11437v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+How+to+%22train%22+a+surgeon%3F+Benchmarking+generalist+agents+in+surgical+scene+understanding%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Ying Li、Yongle Cheng、Jing Li、Xingquan Cai 等 5 人 · <a href="https://arxiv.org/pdf/2611.07541v1">PDF</a></div>
+      <div class="authors">Gengyuan Zhang、Xiao Han、Shijie Zhou、Abdullah Koukash 等 10 人 · <a href="https://arxiv.org/pdf/2611.11437v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
 <span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
 <span class="chip">language models <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
 <span class="chip">multimodal <strong>1</strong></span>
 <span class="chip">mllm <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
 <span class="chip">ml <strong>1</strong></span>
-<span class="chip">causal reasoning <strong>1</strong></span></div>
+<span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕多模态大语言模型在“物体被移动、交换等干预后”的反事实空间推理能力，提出了一个名为 CST-Bench 的基准，并进一步提出 CT-OPSD 训练策略来建模因果状态转移。其核心任务不是静态场景理解，而是根据具体干预推断场景中空间关系如何变化、哪些关系保持不变以及度量属性如何改变。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献至少包括三点：第一，构建了面向反事实空间推理的基准 CST-Bench，包含 7,082 个样例、6 类干预、12 种变换算子，并带有较密集的因果标注；第二，系统评测通用 MLLM 在该任务上的表现，并比较后训练策略在 CST-Bench 与标准空间基准上的差异，揭示“普通空间推理有效”不代表“反事实干预下也有效”；第三，将该问题形式化为因果状态转移建模，并提出 CT-OPSD，通过利用基准中的因果注释引导教师模型学习反事实状态转移与因果推理链，再蒸馏到学生模型。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕“外科场景理解”这一具体任务，评测通用多模态大模型在手术图像/视频相关认知上的能力边界，并进一步提出一个可调用外部知识与视觉定位工具的代理环境，考察模型能否在不追加外科训练的前提下通过推理时工具使用提升表现。论文的两个核心对象是诊断性基准 SurgKnowBench 和代理式评测环境 SurgAgentGym，任务涉及关系理解、流程/步骤判断、工作流评估等手术理解子问题。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献可能有三点：第一，构建了 SurgKnowBench，将公开手术数据集按“跨术式、跨任务”的方式统一到一个诊断性评测框架中，用于系统刻画通用 MLLM 的“预训练外科能力边界”；第二，基于第一阶段暴露出的失败类型，提出 SurgAgentGym，让通用代理在推理时使用受限知识检索（SurgWiki）和通用视觉 grounding 工具，以测试无需额外外科微调时的能力补偿；第三，给出一个关于“预训练视觉先验仍有保留，但关系、程序性理解和工作流判断较弱；代理式证据使用可缩小部分差距”的经验性结论框架。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -216,42 +219,32 @@
               <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 10</div>
+              <div class="signal-kicker">关键词命中 13</div>
               <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>64.0</strong>
+              <strong>88.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：现有多模态大语言模型在静态空间理解任务上可能表现尚可，但当场景中对象发生移动、交换或其他干预时，模型是否能够进行反事实空间推理，即根据给定干预正确更新场景状态，并判断哪些空间关系改变、哪些保持不变、以及相关度量如何变化。更抽象地说，它要解决的是“空间关系理解”向“因果状态转移建模”的升级问题。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法分为两层。第一层是数据与评测：构建 CST-Bench，包含 7,082 个样例、6 类干预、12 种变换算子，并为每个样例提供干预源、受影响关系、预期效应、不变关系和度量变化等因果注释，用于评测模型在反事实空间转移任务上的能力。第二层是训练方法：提出 CT-OPSD，将反事实空间推理形式化为 causal state-transition modeling，利用这些因果注释引导教师模型学习状态转移和因果推理链，再通过 on-policy self-distillation 将链式知识蒸馏到学生模型。实验上应当包含：通用 MLLM 的零样本或少样本评测、不同后训练策略对比、以及在标准空间基准上的迁移或兼容性测试。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四个。其一，任务定义具体且有现实意义：不是泛泛谈“因果推理”，而是聚焦对象移动/交换后的空间状态更新。其二，基准标注粒度高，除了答案还包含受影响关系、不变关系和度量变化，这使其适合做过程监督、错误分析和可解释训练。其三，论文强调普通空间推理与反事实空间推理之间的能力断裂，这个发现如果实验扎实，会对现有空间 benchmark 的充分性提出挑战。其四，CT-OPSD 试图把因果链学习和蒸馏结合起来，若有效，可能为 MLLM 的结构化后训练提供一个可迁移范式。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议如下：第一，优先查看论文中对 6 类干预和 12 个变换算子的定义表，以及一个完整样例，确认任务输入输出形式。第二，查 benchmark 构建流程图，判断图像/场景来源、标注生成方式和是否存在模板化偏差。第三，查看主结果表，重点比较通用 MLLM 在静态空间基准与 CST-Bench 上的落差，以及 CT-OPSD 相对其他后训练方法的增益。第四，检查误差分析图，确认模型究竟是错在关系更新、对象绑定、方向判断还是距离度量。第五，如果你做复现，可先尝试实现一个简化版状态转移规则器或文本链监督基线，用来验证该任务是否确实需要显式因果转移建模。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决两个紧密相关的具体问题：一是当前通用多模态大模型在手术场景理解上到底会什么、不会什么，尤其是在跨术式、跨任务条件下其能力边界如何；二是在不进行额外外科领域训练的前提下，是否可以通过代理式推理、受限知识检索和视觉证据定位，让通用模型在外科理解任务上获得推理时提升。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法分两阶段。第一阶段构建 SurgKnowBench：将多个公开手术数据集进行协议统一，可能把不同数据源映射到若干标准化任务类型，如器械/解剖结构识别、动作或关系判断、步骤/阶段识别、工作流评估、问答等，然后对 proprietary 与 open-source MLLMs 做横向评测，以分析预训练模型在外科领域的能力分布。第二阶段构建 SurgAgentGym：把模型放入一个可调用工具的环境中，工具至少包括对 SurgWiki 的 bounded knowledge search，以及通用视觉 grounding；代理可能需要自主决定何时检索、检索什么术语、如何将文本知识与图像证据结合，再输出答案。整体分析路径应是：先用基准找失败前沿，再设计代理环境验证这些失败是否能通过推理时证据使用得到缓解。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点主要体现在三个层面。其一，问题设定具体且有现实意义：外科场景理解比一般医学图文任务更强调关系、程序性和时序工作流，能更真实地暴露通用 MLLM 的短板。其二，评测设计有层次：不是只做静态 benchmark，而是先诊断再干预，形成“能力边界—失败模式—工具补偿”的闭环。其三，方法路线具有可迁移性：如果代理式推理确实有效，那么这不仅适用于外科，也可能推广到其他高专业门槛、数据稀缺的医学子领域。摘要中“partial visual priors but weak relational/procedural/workflow understanding”的发现也很有价值，因为它提示通用模型可能已经学到一些视觉表征，但缺少结构化、过程化知识整合能力。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到全文后优先查看 SurgKnowBench 的任务清单、数据来源表和评价指标，确认它到底覆盖图像、视频还是工作流级别任务。第二，查找结果表中开源/闭源模型名单，记录哪些模型在关系理解、程序理解、工作流评估上掉点最明显。第三，重点看 SurgAgentGym 的工具接口设计图，弄清楚 SurgWiki 与 visual grounding 分别在什么步骤介入，以及是否有消融实验。第四，检查作者是否报告了代理推理的成本、检索次数限制和失败案例。第五，如果你的研究方向是医疗代理或医学 RAG，可尝试把“诊断 benchmark + inference-time tools”这一范式迁移到你自己的医学子任务，并设计一个对照：纯模型回答 vs 检索增强 vs 检索+grounding 代理。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：现有多模态大语言模型在静态空间理解任务上可能表现尚可，但当场景中对象发生移动、交换或其他干预时，模型是否能够进行反事实空间推理，即根据给定干预正确更新场景状态，并判断哪些空间关系改变、哪些保持不变、以及相关度量如何变化。更抽象地说，它要解决的是“空间关系理解”向“因果状态转移建模”的升级问题。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法分为两层。第一层是数据与评测：构建 CST-Bench，包含 7,082 个样例、6 类干预、12 种变换算子，并为每个样例提供干预源、受影响关系、预期效应、不变关系和度量变化等因果注释，用于评测模型在反事实空间转移任务上的能力。第二层是训练方法：提出 CT-OPSD，将反事实空间推理形式化为 causal state-transition modeling，利用这些因果注释引导教师模型学习状态转移和因果推理链，再通过 on-policy self-distillation 将链式知识蒸馏到学生模型。实验上应当包含：通用 MLLM 的零样本或少样本评测、不同后训练策略对比、以及在标准空间基准上的迁移或兼容性测试。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四个。其一，任务定义具体且有现实意义：不是泛泛谈“因果推理”，而是聚焦对象移动/交换后的空间状态更新。其二，基准标注粒度高，除了答案还包含受影响关系、不变关系和度量变化，这使其适合做过程监督、错误分析和可解释训练。其三，论文强调普通空间推理与反事实空间推理之间的能力断裂，这个发现如果实验扎实，会对现有空间 benchmark 的充分性提出挑战。其四，CT-OPSD 试图把因果链学习和蒸馏结合起来，若有效，可能为 MLLM 的结构化后训练提供一个可迁移范式。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，需要警惕几类局限。第一，数据真实性与泛化性未知：如果 CST-Bench 主要由规则或合成场景生成，模型提升可能局限于特定算子分布。第二，摘要没有给出具体实验结果，因此目前不能判断性能提升幅度、统计显著性或是否只在少数干预类型上有效。第三，CT-OPSD 的实现细节不明，“on-policy self-distillation”可能带来训练复杂度、稳定性或教师偏差传播问题。第四，dense causal annotations 的构建成本和可靠性未知，若高度依赖程序规则，可能弱化其对真实复杂视觉场景的代表性。第五，尚不清楚该任务是否真正需要视觉理解，还是可以被文本化规则部分解决，这关系到其对 MLLM 视觉能力评测的纯度。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议如下：第一，优先查看论文中对 6 类干预和 12 个变换算子的定义表，以及一个完整样例，确认任务输入输出形式。第二，查 benchmark 构建流程图，判断图像/场景来源、标注生成方式和是否存在模板化偏差。第三，查看主结果表，重点比较通用 MLLM 在静态空间基准与 CST-Bench 上的落差，以及 CT-OPSD 相对其他后训练方法的增益。第四，检查误差分析图，确认模型究竟是错在关系更新、对象绑定、方向判断还是距离度量。第五，如果你做复现，可先尝试实现一个简化版状态转移规则器或文本链监督基线，用来验证该任务是否确实需要显式因果转移建模。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要可见，论文研究对象非常具体：多模态大语言模型在空间场景发生干预后的推理能力，尤其是“counterfactual spatial transition reasoning”。这比常见的空间问答更进一步，因为模型不仅要识别当前图像中的左右、上下、远近等关系，还要在给定“把 A 移到 B 左边”“交换两个物体位置”等操作后，推断新的场景状态。摘要明确指出，现有基准主要关注静态场景理解，因此该工作试图补上“干预导致状态变化”的评测空白。
-
-数据方面，CST-Bench 是论文最明确的实体贡献。摘要给出其规模为 7,082 个样例，覆盖 6 种 intervention types 和 12 个 transformation operators。更关键的是，它不是只有问答对，而是带有 dense causal annotations，包括 intervention sources、affected relations、expected effects、invariant relations、metric changes。这说明该基准可能不仅能用于最终答案评测，还能支持过程监督、误差归因和链式推理训练。例如，若一个物体被平移，哪些相对关系会改变、哪些不会改变、距离是否变化，这些都被显式标注。对于做因果推理、可解释训练或过程监督的研究者，这类标注价值很高。
-
-方法方面，论文提出 CT-OPSD。根据题名中的“Causal Transition On-Policy Self-Distillation”和摘要描述，它大概率是一种后训练/蒸馏框架：先利用 CST-Bench 的因果注释，让教师模型学习“从干预前状态到干预后状态”的转移过程，以及对应的 causal reasoning chains；再把这些链条蒸馏给学生模型。这里“on-policy”值得注意，通常意味着训练时使用模型自身生成的轨迹或决策分布，而不是完全依赖静态离线标注，因此作者可能试图缓解 teacher forcing 或分布偏移问题。不过仅凭摘要无法确认其具体实现，例如是基于采样轨迹筛选、强化学习式更新，还是自训练式迭代蒸馏，这部分需要读正文核对。
-
-实验线索也比较清楚。作者不仅在 CST-Bench 上评测通用 MLLM，还把不同 post-training strategies 放到 CST-Bench 和 standard spatial benchmarks 上比较。摘要给出的主要现象是：对普通空间推理有效的方法，在反事实干预场景下仍可能失败。这一结论很重要，因为它暗示静态空间能力与动态/反事实空间能力并不等价，现有模型可能依赖表面模式或静态视觉-语言对齐，而缺乏显式的状态更新机制。如果你的研究方向涉及 MLLM、世界模型、具身推理、视觉因果推理或过程监督，这篇论文很值得关注，因为它把“空间推理”从识别关系推进到了“建模干预后的关系转移”。
-
-与相关方向的关系上，这项工作可能连接了三个研究脉络：一是空间推理 benchmark，从静态关系识别扩展到动态反事实；二是因果推理/结构化监督，把 intervention、effect、invariant 等因果元素显式化；三是蒸馏与后训练，通过教师生成的因果链提升学生模型的状态转移推理能力。若你关心如何让 MLLM 从“会看图回答”走向“会模拟场景变化”，这篇论文提供了一个较具体的任务化入口。
-
-但需要谨慎的是，当前信息只来自摘要和元数据，仍有若干关键点必须核对：CST-Bench 的图像来源是合成场景、真实图像还是程序生成；6 类干预和 12 个算子的具体定义是什么；任务形式是多选、生成式问答还是结构化预测；评测指标如何定义，是否区分最终答案正确率与过程链质量；CT-OPSD 相比哪些基线提升，提升主要出现在哪些干预类型；所谓“standard spatial benchmarks”具体是哪些；以及 dense causal annotations 是人工标注、规则生成还是半自动构建。这些都会直接影响你对其科学价值、泛化性和复现成本的判断。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决两个紧密相关的具体问题：一是当前通用多模态大模型在手术场景理解上到底会什么、不会什么，尤其是在跨术式、跨任务条件下其能力边界如何；二是在不进行额外外科领域训练的前提下，是否可以通过代理式推理、受限知识检索和视觉证据定位，让通用模型在外科理解任务上获得推理时提升。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法分两阶段。第一阶段构建 SurgKnowBench：将多个公开手术数据集进行协议统一，可能把不同数据源映射到若干标准化任务类型，如器械/解剖结构识别、动作或关系判断、步骤/阶段识别、工作流评估、问答等，然后对 proprietary 与 open-source MLLMs 做横向评测，以分析预训练模型在外科领域的能力分布。第二阶段构建 SurgAgentGym：把模型放入一个可调用工具的环境中，工具至少包括对 SurgWiki 的 bounded knowledge search，以及通用视觉 grounding；代理可能需要自主决定何时检索、检索什么术语、如何将文本知识与图像证据结合，再输出答案。整体分析路径应是：先用基准找失败前沿，再设计代理环境验证这些失败是否能通过推理时证据使用得到缓解。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点主要体现在三个层面。其一，问题设定具体且有现实意义：外科场景理解比一般医学图文任务更强调关系、程序性和时序工作流，能更真实地暴露通用 MLLM 的短板。其二，评测设计有层次：不是只做静态 benchmark，而是先诊断再干预，形成“能力边界—失败模式—工具补偿”的闭环。其三，方法路线具有可迁移性：如果代理式推理确实有效，那么这不仅适用于外科，也可能推广到其他高专业门槛、数据稀缺的医学子领域。摘要中“partial visual priors but weak relational/procedural/workflow understanding”的发现也很有价值，因为它提示通用模型可能已经学到一些视觉表征，但缺少结构化、过程化知识整合能力。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，需要警惕几类边界。第一，摘要没有给出具体数据规模、任务数、术式覆盖范围和评价指标，因而尚不能判断基准是否足够全面，还是主要集中在少数常见腹腔镜场景。第二，代理环境中的提升可能依赖外部知识库质量与检索策略，若 SurgWiki 覆盖不足或 grounding 工具误检，性能上限会受限。第三，若任务中存在较强的文本先验或数据集偏差，代理式检索可能带来“会查资料”而非“真正理解手术”的表面增益。第四，摘要未说明成本、时延、稳定性和错误传播问题，而这些对临床相关应用尤其关键。第五，论文标题中的“train a surgeon”带有类比意味，但从摘要看更像是评测与推理增强框架，而非真正的外科技能学习或临床可部署系统。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到全文后优先查看 SurgKnowBench 的任务清单、数据来源表和评价指标，确认它到底覆盖图像、视频还是工作流级别任务。第二，查找结果表中开源/闭源模型名单，记录哪些模型在关系理解、程序理解、工作流评估上掉点最明显。第三，重点看 SurgAgentGym 的工具接口设计图，弄清楚 SurgWiki 与 visual grounding 分别在什么步骤介入，以及是否有消融实验。第四，检查作者是否报告了代理推理的成本、检索次数限制和失败案例。第五，如果你的研究方向是医疗代理或医学 RAG，可尝试把“诊断 benchmark + inference-time tools”这一范式迁移到你自己的医学子任务，并设计一个对照：纯模型回答 vs 检索增强 vs 检索+grounding 代理。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作聚焦于“如何评估并提升通用多模态大模型在手术场景中的理解能力”。研究对象不是传统的专用手术模型训练，而是“generalist agents / general-purpose MLLMs”在外科领域的零样本或少样本迁移能力，以及它们能否通过推理时调用工具来弥补专业知识不足。摘要明确给出两阶段设计：Stage I 的 SurgKnowBench 更像一个诊断基准，目标是把分散的公开手术数据集统一起来，覆盖不同手术类型和不同任务，从而比较闭源与开源 MLLM 的能力边界。这里的“边界”不是泛泛准确率，而是具体到哪些能力还保留、哪些能力明显不足。摘要点名的薄弱项包括 relational understanding、procedural understanding、workflow assessment，说明评测很可能不只看物体识别或器械分类，而会涉及器械-组织-动作关系、手术步骤/阶段、时序流程判断等更高层语义任务。Stage II 的 SurgAgentGym 则是一个代理式环境，强调 agentic inference：模型在推理时可以进行受限知识搜索，知识源是 SurgWiki；同时还能使用 general-purpose visual grounding。由此可推测，该环境可能把任务拆成“观察图像/视频帧—提出中间问题—检索术语/流程知识—定位视觉证据—综合作答”的链式过程，用来模拟外科训练中的脚手架式学习。摘要还特别强调“without additional surgical training”，这意味着作者想论证：即使不做领域微调，仅靠工具增强和证据使用，也能让通用模型在手术理解上获得可观改进。对科研读者而言，这篇论文的价值在于它把“医疗/外科多模态评测”从单一数据集 leaderboard 推向了更细粒度的能力诊断与代理式补偿框架。如果你的方向是医疗视觉语言模型、医学代理、RAG、工具增强推理或高风险场景评测，这篇论文很值得关注，因为它同时涉及基准构建、失败模式分析和 inference-time augmentation。需要核对的信息包括：SurgKnowBench 具体整合了哪些公开手术数据集、覆盖哪些术式和任务；评测单位是图像、视频片段还是完整手术流程；“关系理解”和“流程评估”如何标注与计分；SurgWiki 的来源、规模和受限检索机制；visual grounding 工具是现成通用模型还是专门适配；代理提升是否在所有任务上成立，还是主要体现在知识密集型问题上；以及闭源/开源模型的具体名单和比较设置。由于摘要被截断，最终结果幅度、统计显著性、错误案例和成本开销目前都不能确认。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Spatial reasoning is a fundamental capability of multimodal large language models (MLLMs), yet existing benchmarks mainly focus on static scene understanding. When objects are moved or swapped, models must infer not only spatial relations but also how interventions change the scene state. To address this problem, we introduce CST-Bench, a benchmark for counterfactual spatial reasoning. CST-Bench contains 7,082 examples covering 6 intervention types and 12 transformation operators, with dense causal annotations including intervention sources, affected relations, expected effects, invariant relations, and metric changes. We benchmark general-purpose MLLMs on CST-Bench and further compare post-training strategies on CST-Bench and standard spatial benchmarks. Results show that methods effective for ordinary spatial reasoning can still fail under counterfactual interventions. We further formulate counterfactual spatial reasoning as causal state-transition modeling and propose CT-OPSD, which uses CST-Bench annotations to guide a teacher model in learning counterfactual state transitions and causal reasoning chains. These chains are then distilled into a student model that reasons only from real observations. Overall, experiment results establish CST-Bench as a challenging benchmark and reusable supervision resource for counterfactual spatial reasoning. CT-OPSD further provides an initial demonstration of how its annotations can support model improvement.</p>
+          <p>Evaluating general-purpose multimodal large language models (MLLMs) for surgical scene understanding remains limited due to scarce surgical data and fragmented evaluation protocols. We address these challenges through a two-stage evaluation framework for surgical scene understanding. In Stage I, we introduce SurgKnowBench, a diagnostic benchmark that harmonizes public surgical datasets across procedures and tasks and evaluates proprietary and open-source MLLMs to map the boundary of pretrained surgical competence. SurgKnowBench reveals that current models retain partial visual priors but remain weak on relational and procedural understanding and workflow assessment. Building on this failure frontier and motivated by the scaffolded nature of surgical training, we introduce SurgAgentGym, an agentic environment where general-purpose MLLM agents can use bounded knowledge search over SurgWiki and general-purpose visual grounding for surgical tasks. SurgAgentGym evaluates whether generalist agents can improve surgical understanding at inference time through tool-mediated evidence use, without additional surgical training. Our results show that agentic inference narrows the gap mainly for perception-heavy tasks, while fine-grained localization and expert-style assessment remain persistent bottlenecks. This opens a path toward future studies of agentic surgical understanding.</p>
         </details>
         
         </div>
@@ -263,162 +256,109 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-11-05T17:10:10Z</span>
-        <span>Score 61.0</span>
+        <span>2026-11-07T14:56:41Z</span>
+        <span>Score 85.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2611.08308v1">RM-VLM: From Natural-Language Task Descriptions to Vision-Grounded Reward Machines</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+RM-VLM%3A+From+Natural-Language+Task+Descriptions+to+Vision-Grounded+Reward+Machin&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08308v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+RM-VLM%3A+From+Natural-Language+Task+Descriptions+to+Vision-Grounded+Reward+Machines%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+vision-language%2C+vlm%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+RM-VLM%3A+From+Natural-Language+Task+Descriptions+to+Vision-Grounded+Reward+Machin&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08308v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+RM-VLM%3A+From+Natural-Language+Task+Descriptions+to+Vision-Grounded+Reward+Machines%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+vision-language%2C+vlm%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+RM-VLM%3A+From+Natural-Language+Task+Descriptions+to+Vision-Grounded+Reward+Machin&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08308v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+RM-VLM%3A+From+Natural-Language+Task+Descriptions+to+Vision-Grounded+Reward+Machines%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+vision-language%2C+vlm%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>2. <a href="http://arxiv.org/abs/2611.10768v1">BlenderFORGE: Framework for Optimizing Reactive 3D-Graphics Editing Ability of MLLMs</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+BlenderFORGE%3A+Framework+for+Optimizing+Reactive+3D-Graphics+Editing+Ability+of+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.10768v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+BlenderFORGE%3A+Framework+for+Optimizing+Reactive+3D-Graphics+Editing+Ability+of+MLLMs%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+BlenderFORGE%3A+Framework+for+Optimizing+Reactive+3D-Graphics+Editing+Ability+of+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.10768v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+BlenderFORGE%3A+Framework+for+Optimizing+Reactive+3D-Graphics+Editing+Ability+of+MLLMs%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+BlenderFORGE%3A+Framework+for+Optimizing+Reactive+3D-Graphics+Editing+Ability+of+M&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.10768v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+BlenderFORGE%3A+Framework+for+Optimizing+Reactive+3D-Graphics+Editing+Ability+of+MLLMs%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+multimodal%2C+mllm%2C+ai%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Roko Parac、Christos Ziakas、Leo Ardon、Alessandra Russo · <a href="https://arxiv.org/pdf/2611.08308v1">PDF</a></div>
+      <div class="authors">Zilin Guo、Tianrui Zhang、Yi Rong、Yichen Liu 等 9 人 · <a href="https://arxiv.org/pdf/2611.10768v1">PDF</a></div>
       <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
 <span class="chip">llm <strong>1</strong></span>
 <span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
 <span class="chip">agent <strong>1</strong></span>
-<span class="chip">vision-language <strong>1</strong></span>
-<span class="chip">vlm <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文提出RM-VLM，目标是把自然语言任务描述自动转成奖励机，并在图像观测环境中用视觉-语言模型完成命题落地，从而支持非马尔可夫任务的强化学习。摘要显示其评测覆盖网格世界导航、机器人操作和3D物体收集三类任务，重点解决奖励机依赖人工设计标注函数的问题。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献应在于把奖励机的两个关键环节同时语言化与视觉化：一是用大语言模型从自然语言任务描述生成奖励机结构，二是用视觉-语言模型充当标注函数，在图像观测上判断奖励机命题是否成立；此外还引入基于VLM的价值函数估计器，为奖励机转移提供稠密奖励信号，以改善RM引导策略学习。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 8</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>61.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：奖励机虽然适合表达带时序结构和历史依赖的RL任务，但其落地依赖人工设计的命题标注函数，导致难以扩展到新环境，尤其是图像观测环境。作者因此想回答，能否直接从自然语言任务描述自动生成奖励机，并用视觉-语言模型在视觉观测上完成命题grounding，从而在无需手工标注函数的情况下进行RM引导的策略学习。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>依据摘要，可能的方法流程是：先输入自然语言任务描述，由LLM生成奖励机的状态、转移条件和奖励结构；再在训练过程中，把环境图像观测输入VLM，由其判断奖励机相关命题是否满足，作为labelling function驱动奖励机状态更新；同时使用一个基于VLM的价值函数估计器，评估当前观测相对某个奖励机转移目标的接近程度，并把这种进展转成稠密奖励，辅助RL优化。实验数据/任务应包括三类环境：非马尔可夫网格世界导航、机器人操作、3D物体收集。可能的对照对象包括手工奖励、传统奖励机、无dense reward版本、无VLM grounding版本或其他语言条件RL方法，但具体仍需查原文。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是把奖励机中最难泛化的人工命题标注环节替换为VLM，从而把原本依赖环境工程的形式化奖励表示推广到图像观测任务。第二个亮点是LLM生成奖励机，使任务规范可以直接来自自然语言，而不是人工编写自动机。第三个亮点是引入VLM-based value estimator提供稠密奖励，这对长时序、稀疏反馈的非马尔可夫任务尤其关键。若实验确实在导航、操作和3D收集三类差异较大的域中都稳定有效，则说明方法具有一定跨环境适用性。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：1）先查原文图1/方法总览，确认LLM生成奖励机、VLM命题判断、VLM价值估计三者的接口；2）记录三类实验环境各自的任务描述示例与命题集合，判断是否真的无需人工规则；3）重点看消融表，比较手工labelling function、去掉dense reward、去掉LLM生成RM后的性能变化；4）核对所用LLM/VLM名称、是否微调、提示模板和推理成本；5）如果你做相关研究，可先尝试在一个小型图像网格世界上复现“自然语言→RM→VLM grounding”的最简版本，验证命题识别误差对策略学习的影响。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：奖励机虽然适合表达带时序结构和历史依赖的RL任务，但其落地依赖人工设计的命题标注函数，导致难以扩展到新环境，尤其是图像观测环境。作者因此想回答，能否直接从自然语言任务描述自动生成奖励机，并用视觉-语言模型在视觉观测上完成命题grounding，从而在无需手工标注函数的情况下进行RM引导的策略学习。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>依据摘要，可能的方法流程是：先输入自然语言任务描述，由LLM生成奖励机的状态、转移条件和奖励结构；再在训练过程中，把环境图像观测输入VLM，由其判断奖励机相关命题是否满足，作为labelling function驱动奖励机状态更新；同时使用一个基于VLM的价值函数估计器，评估当前观测相对某个奖励机转移目标的接近程度，并把这种进展转成稠密奖励，辅助RL优化。实验数据/任务应包括三类环境：非马尔可夫网格世界导航、机器人操作、3D物体收集。可能的对照对象包括手工奖励、传统奖励机、无dense reward版本、无VLM grounding版本或其他语言条件RL方法，但具体仍需查原文。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是把奖励机中最难泛化的人工命题标注环节替换为VLM，从而把原本依赖环境工程的形式化奖励表示推广到图像观测任务。第二个亮点是LLM生成奖励机，使任务规范可以直接来自自然语言，而不是人工编写自动机。第三个亮点是引入VLM-based value estimator提供稠密奖励，这对长时序、稀疏反馈的非马尔可夫任务尤其关键。若实验确实在导航、操作和3D收集三类差异较大的域中都稳定有效，则说明方法具有一定跨环境适用性。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，需要警惕几个边界。第一，LLM生成的奖励机是否始终语法正确、语义一致、可执行，摘要未说明，可能需要人工约束或验证器。第二，VLM作为命题标注函数的可靠性可能受视角、遮挡、细粒度动作结果和提示词设计影响，错误grounding会直接污染奖励机状态。第三，VLM-based dense reward虽然能缓解稀疏性，但也可能带来奖励偏差、过度平滑或与真实任务完成条件不一致的问题。第四，摘要只说优于基线，但未给出具体指标、提升幅度、样本效率、计算成本和消融结果。第五，若依赖大型闭源LLM/VLM，复现性、延迟和部署成本可能较高。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：1）先查原文图1/方法总览，确认LLM生成奖励机、VLM命题判断、VLM价值估计三者的接口；2）记录三类实验环境各自的任务描述示例与命题集合，判断是否真的无需人工规则；3）重点看消融表，比较手工labelling function、去掉dense reward、去掉LLM生成RM后的性能变化；4）核对所用LLM/VLM名称、是否微调、提示模板和推理成本；5）如果你做相关研究，可先尝试在一个小型图像网格世界上复现“自然语言→RM→VLM grounding”的最简版本，验证命题识别误差对策略学习的影响。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常具体：面向具有历史依赖、奖励非马尔可夫的RL任务，构建一个从“自然语言任务说明→奖励机→视觉观测上的命题判断→策略学习”的完整链路。传统奖励机方法的瓶颈在于需要人工编写labelling function，即把环境观测映射到命题真值的预言机；这在不同环境中代价高且难迁移。RM-VLM试图用VLM替代这一人工模块，使奖励机可以直接作用于图像观测环境。方法线索上，系统至少包含三个部件：LLM负责把任务描述解析成自动机式的奖励机；VLM负责在每一步图像观测上判断与奖励机状态转移相关的命题；另一个VLM-based value function estimator用于评估智能体距离某个奖励机转移目标的进展，并据此构造dense reward，而不只是依赖稀疏的转移触发奖励。摘要给出的证据线索是三类环境：非马尔可夫网格导航、机器人操作、3D物体收集，且声称RM-VLM持续优于若干基线，但当前提供的信息被截断，无法确认具体基线名称、提升幅度、统计显著性、是否有消融实验，以及LLM/VLM分别使用了哪些模型。与相关研究方向的关系上，这项工作连接了语言驱动任务规范、视觉语义 grounding、自动机奖励建模和RL credit assignment，尤其适合关注“从自然语言到可执行任务规范”“多模态RL”“长时序任务奖励设计”的读者。需要重点核对的信息包括：奖励机生成是否需要人工模板或后处理约束；VLM命题判断是零样本、少样本还是经过域内微调；dense reward如何从VLM价值估计器中计算，是否会引入偏差或奖励投机；三类环境中图像输入形式、任务复杂度和泛化设置如何定义；以及系统整体成本、推理延迟和对闭源模型的依赖程度。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Reward machines (RMs) have been proposed as a reward formulation in reinforcement learning (RL) to capture non-Markovian tasks where credit assignment depends on history. By representing reward functions as automata, RMs expose the task&#x27;s temporal structure and allow such rewards to be handled within a Markovian framework. However, they assume a labelling function, a proposition-grounding oracle for observations, which must be manually engineered for each environment, limiting their wider applicability. In this work, we address this limitation by proposing RM-VLM, a novel approach in which a large language model (LLM) generates an RM from a natural-language task description, and a vision-language model (VLM) acts as the labelling function, grounding the RM&#x27;s propositions over image-based observations during RM-guided policy learning. A VLM-based value function estimator is used to assess the agent&#x27;s progress towards each RM transition and derive a dense reward signal. We evaluate RM-VLM on three domains covering non-Markovian grid-world navigation, robotic manipulation, and 3D object collection. Our experimental results show that RM-VLM consistently achieves higher task success rates than existing VLM-based reward methods across all tested domains.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-05T14:27:13Z</span>
-        <span>Score 58.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2611.08077v1">Doubly-robust causal inference for multi-valued treatment regimes with recurrent neural networks</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Doubly-robust+causal+inference+for+multi-valued+treatment+regimes+with+recurrent&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08077v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Doubly-robust+causal+inference+for+multi-valued+treatment+regimes+with+recurrent+neural+networks%0Akeywords%3A+rag%2C+machine+learning%2C+ml%2C+neural+network%2C+neural+networks%2C+causal+inference%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Doubly-robust+causal+inference+for+multi-valued+treatment+regimes+with+recurrent&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08077v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Doubly-robust+causal+inference+for+multi-valued+treatment+regimes+with+recurrent+neural+networks%0Akeywords%3A+rag%2C+machine+learning%2C+ml%2C+neural+network%2C+neural+networks%2C+causal+inference%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Doubly-robust+causal+inference+for+multi-valued+treatment+regimes+with+recurrent&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08077v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Doubly-robust+causal+inference+for+multi-valued+treatment+regimes+with+recurrent+neural+networks%0Akeywords%3A+rag%2C+machine+learning%2C+ml%2C+neural+network%2C+neural+networks%2C+causal+inference%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Jason Poulos · <a href="https://arxiv.org/pdf/2611.08077v1">PDF</a></div>
-      <div class="chips"><span class="chip">rag <strong>1</strong></span>
-<span class="chip">machine learning <strong>1</strong></span>
-<span class="chip">ml <strong>1</strong></span>
-<span class="chip">neural network <strong>1</strong></span>
-<span class="chip">neural networks <strong>1</strong></span>
-<span class="chip">causal inference <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文针对具有多个离散治疗选项的个体化动态治疗方案，提出一种结合多项式治疗模型与循环神经网络的双重稳健因果估计方法，用于估计患者结局上的因果效应。摘要显示作者将 LTMLE 从二值/连续处理扩展到多值处理，并在模拟中比较了 RNN、集成机器学习与 sequential g-computation 在动态规则下的表现。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是把纵向 targeted minimum loss-based estimator（LTMLE）推广到多值治疗情形，并将 RNN 同时作为结局、治疗和删失模型的学习器嵌入双重稳健估计框架；同时给出与集成机器学习及 sequential g-computation 的比较，强调在动态治疗规则下偏差、覆盖率和治疗模型稳定性方面的差异。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 6</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>58.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在纵向患者历史驱动的个体化治疗决策中，当治疗不是二选一而是多个离散选项时，如何对某个动态治疗方案的因果效应进行稳健估计，并避免因结局模型或治疗模型错设而产生严重偏差。更细一点说，它关注的是多值 treatment regime 下的因果效应估计，而不是仅仅做治疗分类预测。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法路径应是：基于纵向观测数据，在每个时间点记录患者历史、当前治疗、删失状态和后续结局；用多项式模型估计多值治疗分配机制，替代传统二值 propensity 建模；在 LTMLE 框架中分别拟合结局回归、治疗机制和删失机制，并通过 targeting 更新得到双重稳健估计；学习器层面比较两类实现，一类是 ensemble machine learning，另一类是 RNN，以处理患者历史序列。实验上主要是模拟研究，并与 sequential g-computation 做对照，还比较“单个多项式治疗模型”与“多个二项回归串联”的差异。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题设定贴近真实临床决策，因为很多治疗选择天然是多臂离散而非二值。第二，方法上把双重稳健的 LTMLE 与时序深度学习模型 RNN 结合，兼顾统计稳健性与序列表示能力，这比单纯用黑箱预测模型更有因果解释价值。第三，摘要给出了较具体的比较结论：在动态规则下，LTMLE 明显优于 sequential g-computation 的偏差表现；而在 RNN 治疗模型中，多项式建模比拆成多个二项模型推断更稳定，这对实际建模选择有直接指导意义。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作可以是：1）优先查看论文中模拟设计表和结果图，确认 dynamic rule 的定义、治疗类别数、时间点数以及偏差/覆盖率的具体数值；2）重点查方法部分中多值 LTMLE 的 targeting 更新公式，弄清多项式治疗机制如何进入 clever covariate；3）记录 RNN 在结局、治疗、删失三个子模型中的输入输出形式，判断是否可复现；4）把它与自己熟悉的二值 LTMLE 或 MSM/IPW 框架逐项对照，特别关注多项式模型与多个 binomial 模型的差异；5）如果做复现，先从摘要描述的模拟比较开始，验证 sequential g-computation 在动态规则下的偏差现象是否能重现。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在纵向患者历史驱动的个体化治疗决策中，当治疗不是二选一而是多个离散选项时，如何对某个动态治疗方案的因果效应进行稳健估计，并避免因结局模型或治疗模型错设而产生严重偏差。更细一点说，它关注的是多值 treatment regime 下的因果效应估计，而不是仅仅做治疗分类预测。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法路径应是：基于纵向观测数据，在每个时间点记录患者历史、当前治疗、删失状态和后续结局；用多项式模型估计多值治疗分配机制，替代传统二值 propensity 建模；在 LTMLE 框架中分别拟合结局回归、治疗机制和删失机制，并通过 targeting 更新得到双重稳健估计；学习器层面比较两类实现，一类是 ensemble machine learning，另一类是 RNN，以处理患者历史序列。实验上主要是模拟研究，并与 sequential g-computation 做对照，还比较“单个多项式治疗模型”与“多个二项回归串联”的差异。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题设定贴近真实临床决策，因为很多治疗选择天然是多臂离散而非二值。第二，方法上把双重稳健的 LTMLE 与时序深度学习模型 RNN 结合，兼顾统计稳健性与序列表示能力，这比单纯用黑箱预测模型更有因果解释价值。第三，摘要给出了较具体的比较结论：在动态规则下，LTMLE 明显优于 sequential g-computation 的偏差表现；而在 RNN 治疗模型中，多项式建模比拆成多个二项模型推断更稳定，这对实际建模选择有直接指导意义。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，需要警惕几个边界。第一，证据似乎主要来自模拟，尚不清楚是否有真实患者数据应用，因此外部有效性和工程可用性还需核对。第二，摘要没有说明多值处理的类别数、时间长度、样本量和 positivity 条件，无法判断方法在高维稀疏治疗空间中的稳定性。第三，RNN 虽然适合序列，但在因果估计中可能带来训练不稳定、可解释性弱和超参数敏感等问题，摘要未说明如何控制。第四，所谓“近似无偏”和“接近名义覆盖率”缺少具体数值、场景和失败案例；此外，双重稳健性质在使用复杂神经网络时的有限样本表现与理论条件也需要进一步核实。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作可以是：1）优先查看论文中模拟设计表和结果图，确认 dynamic rule 的定义、治疗类别数、时间点数以及偏差/覆盖率的具体数值；2）重点查方法部分中多值 LTMLE 的 targeting 更新公式，弄清多项式治疗机制如何进入 clever covariate；3）记录 RNN 在结局、治疗、删失三个子模型中的输入输出形式，判断是否可复现；4）把它与自己熟悉的二值 LTMLE 或 MSM/IPW 框架逐项对照，特别关注多项式模型与多个 binomial 模型的差异；5）如果做复现，先从摘要描述的模拟比较开始，验证 sequential g-computation 在动态规则下的偏差现象是否能重现。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象是医疗场景中的纵向患者数据：每个时间点患者会根据既往病史在多个竞争性治疗选项中接受一种治疗，目标是评估某个多值动态治疗方案对最终患者结局的因果效应。论文要解决的关键难点有两个：第一，现有最优治疗方案/动态治疗方案方法常集中在二值处理或连续处理，而多值离散处理更贴近真实临床决策；第二，纵向因果推断中需要同时建模时间变化的结局、治疗分配和删失过程，模型错设会导致偏差，因此作者采用双重稳健框架。方法上，摘要明确说作者将 LTMLE 扩展为适配多值治疗，通过多项式模型来刻画治疗分配概率；同时把 RNN 纳入 LTMLE，作为结局模型、治疗模型和删失模型的学习器，以利用患者历史序列信息。对照方法包括使用集成机器学习的 LTMLE，以及使用集成机器学习的 sequential g-computation。证据线索主要来自模拟研究：LTMLE 配合集成学习或 RNN 都“近似无偏”且覆盖率接近名义水平；而 sequential g-computation 在动态规则下“偏差显著”；此外，多项式治疗模型与一系列二项回归在集成学习下表现相近，但当治疗模型换成 RNN 时，多项式模型推断更稳定。对用户方向的关系上，这篇工作与因果推断、医疗时序建模、神经网络在统计估计中的作用高度相关，尤其适合关注动态治疗方案、离散多臂干预、双重稳健估计和机器学习辅助因果推断的研究者。需要核对的信息包括：模拟数据生成机制是否包含时间变化混杂、删失和 positivity 挑战；RNN 的具体结构与训练策略；LTMLE 的 targeting 步骤在多值处理下如何实现；“稳定 inference”具体体现为方差、置信区间长度、收敛失败率还是极端权重缓解；以及是否有真实临床数据验证，因为摘要目前只明确提到模拟研究。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>We propose a doubly-robust method to estimate the causal effects of multi-valued treatment regimes on patient outcomes. A multi-valued treatment regime assigns personalized treatments from a set of competing options based on a patient&#x27;s history. Existing methods for optimal treatment regimes are largely limited to binary or continuous treatments. We extend the longitudinal targeted minimum loss-based estimator (LTMLE) to accommodate multi-valued treatments by modeling treatment assignments with a multinomial model. We further integrate recurrent neural networks (RNNs) into the LTMLE framework as learners for the outcome, treatment, and censoring models, and compare this approach to ensemble machine learning. Simulation studies show that LTMLE with either ensemble machine learning or RNNs is approximately unbiased, with close to nominal coverage, whereas sequential g-computation with ensemble machine learning is substantially biased under a dynamic rule. A multinomial treatment model performs similarly to a series of binomial regressions with ensemble machine learning, but yields more stable inference when the treatment model is an RNN.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-05T18:45:36Z</span>
-        <span>Score 56.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2611.08452v1">ReproBridge: Building Reproducibility into ML Research Artifacts</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+ReproBridge%3A+Building+Reproducibility+into+ML+Research+Artifacts&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08452v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+ReproBridge%3A+Building+Reproducibility+into+ML+Research+Artifacts%0Akeywords%3A+agent%2C+agents%2C+rag%2C+ai%2C+machine+learning%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+ReproBridge%3A+Building+Reproducibility+into+ML+Research+Artifacts&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08452v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+ReproBridge%3A+Building+Reproducibility+into+ML+Research+Artifacts%0Akeywords%3A+agent%2C+agents%2C+rag%2C+ai%2C+machine+learning%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+ReproBridge%3A+Building+Reproducibility+into+ML+Research+Artifacts&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.08452v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+ReproBridge%3A+Building+Reproducibility+into+ML+Research+Artifacts%0Akeywords%3A+agent%2C+agents%2C+rag%2C+ai%2C+machine+learning%2C+ml%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Yubo Wang、Rui Meng、Jaehyun Nam、Tomas Pfister 等 5 人 · <a href="https://arxiv.org/pdf/2611.08452v1">PDF</a></div>
-      <div class="chips"><span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
+<span class="chip">multimodal <strong>1</strong></span>
+<span class="chip">mllm <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">machine learning <strong>1</strong></span>
 <span class="chip">ml <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕机器学习实验复现这一具体任务，提出了一个名为 ReproBridge 的代理工作流，用于把分散在论文、原始代码和辅助材料中的复现信息整理成标准化“精炼可复现工件”。基于 ReproBridge-Bench（含 36 篇论文、387 个实验、1,029 个任务），作者报告精炼工件可将多模型平均复现成功率从 76.4% 提升到 92.6%，并降低后续 API 成本。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献看起来有三层：第一，提出一种标准化复现工件设计，明确包含精炼代码库、环境配置、实验启动器和复现指南；第二，提出 ReproBridge 这一由代理执行的工件构建流程，目标是把“恢复出的过程与决策”显式保存下来，供后续独立复现使用；第三，构建并评测 ReproBridge-Bench，覆盖 36 篇论文中的 387 个实验和 1,029 个任务，并用独立 Auditor 检查执行证据，量化原始工件与精炼工件对不同模型复现表现和成本的影响。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 BlenderFORGE，一个面向开放权重多模态大模型代理的训练框架，目标是让模型通过生成 Blender Python（bpy）代码来完成可验证的 3D 图形编辑任务。摘要显示其聚焦四类具体任务：物体放置、shape-key 形变编辑、灯光调整和材质修改，并结合数据生成、确定性执行环境和强化学习优化多轮交互式编辑能力。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献在于把“3D 图形编辑代理训练”拆成可训练、可执行、可验证的完整闭环：一是构建基于 Blender 显式场景与扰动策略的数据生成流水线；二是提供隔离式 Blender Sandbox，用于确定性执行 bpy 代码、导出结构化场景状态并计算闭环奖励；三是设计两阶段训练流程，先用教师轨迹做冷启动 SFT，再用基于环境奖励的多轮工具型 AgentLoop-RL 优化反应式编辑能力。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 12</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>85.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何在不依赖闭源 API 的前提下，训练开放权重 MLLM 成为能够对 Blender 显式 3D 场景进行精确、程序化、多轮反应式编辑的代理；以及如何为这类任务提供确定性执行、状态可验证和可计算奖励的训练环境。更细地说，它针对四类基础但关键的 3D 编辑任务，探索把自然语言/多模态指令转成 bpy 代码并通过环境反馈持续优化的可行路径。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法由三部分组成。1）数据：基于精选 3D 资产和大规模场景库，自动施加扰动生成训练样本，覆盖物体放置、shape-key、灯光、材质四类编辑；可能同时生成目标状态和教师代码轨迹。2）环境：构建隔离式 Blender Sandbox，执行模型输出的 bpy 代码，导出结构化场景状态，并将执行结果与目标状态比较以计算奖励；这一步也可能负责安全限制、异常捕获和多轮状态更新。3）训练：先用离线教师轨迹做 SFT 冷启动，让模型学会基本编辑语法和工具使用；再用 AgentLoop-RL 在多轮交互中根据 sandbox reward 优化策略，提升连续编辑、纠错和任务完成率。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，任务定义具体且可验证，避免了仅靠渲染图像或主观偏好评估 3D 编辑的模糊性。第二，Blender 作为工业和研究中广泛使用的显式 3D 环境，使方法具有较强现实落地性，bpy 代码也是天然可执行、可审计的动作表示。第三，数据、环境、优化三位一体，说明作者不是只做 benchmark 或只做模型，而是试图建立一个可持续训练 agent 的基础设施。若实验充分，这类框架对 3D 内容制作自动化、交互式设计助手和可验证 agent 研究都有较高应用价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五步。1）先查看 arXiv 原文中的任务定义和图示，确认四类任务各自的状态表示、输入模态和成功判定。2）重点找实验表，记录 SFT 与 AgentLoop-RL 的差异、基线模型、指标和提升幅度。3）检查 Blender Sandbox 的状态导出字段与 reward 公式，判断是否可复用于你的任务。4）核对数据来源与规模，包括资产库、场景库、扰动策略和教师轨迹生成方式。5）如果你做相关研究，可先尝试复现其中一个最简单任务，如 object placement，用 Blender + bpy + 状态比对搭一个最小闭环原型，验证环境设计是否稳定。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何在不依赖闭源 API 的前提下，训练开放权重 MLLM 成为能够对 Blender 显式 3D 场景进行精确、程序化、多轮反应式编辑的代理；以及如何为这类任务提供确定性执行、状态可验证和可计算奖励的训练环境。更细地说，它针对四类基础但关键的 3D 编辑任务，探索把自然语言/多模态指令转成 bpy 代码并通过环境反馈持续优化的可行路径。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法由三部分组成。1）数据：基于精选 3D 资产和大规模场景库，自动施加扰动生成训练样本，覆盖物体放置、shape-key、灯光、材质四类编辑；可能同时生成目标状态和教师代码轨迹。2）环境：构建隔离式 Blender Sandbox，执行模型输出的 bpy 代码，导出结构化场景状态，并将执行结果与目标状态比较以计算奖励；这一步也可能负责安全限制、异常捕获和多轮状态更新。3）训练：先用离线教师轨迹做 SFT 冷启动，让模型学会基本编辑语法和工具使用；再用 AgentLoop-RL 在多轮交互中根据 sandbox reward 优化策略，提升连续编辑、纠错和任务完成率。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，任务定义具体且可验证，避免了仅靠渲染图像或主观偏好评估 3D 编辑的模糊性。第二，Blender 作为工业和研究中广泛使用的显式 3D 环境，使方法具有较强现实落地性，bpy 代码也是天然可执行、可审计的动作表示。第三，数据、环境、优化三位一体，说明作者不是只做 benchmark 或只做模型，而是试图建立一个可持续训练 agent 的基础设施。若实验充分，这类框架对 3D 内容制作自动化、交互式设计助手和可验证 agent 研究都有较高应用价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前仅凭摘要需要警惕几类边界。第一，实验结果被截断，无法确认性能提升是否显著、是否覆盖跨场景泛化和复杂组合编辑。第二，四类任务虽然重要，但仍偏基础属性编辑，距离复杂建模、拓扑修改、约束驱动设计或跨对象关系编辑可能还有距离。第三，环境可验证不等于用户感知质量最优，例如材质和灯光的“参数正确”未必等于视觉效果最佳。第四，若教师轨迹和扰动生成规则较强，模型可能主要学习模板化编辑而非真正的 3D 推理。第五，强化学习在代码环境中常受 reward hacking、执行失败和探索成本影响，摘要未说明如何缓解。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五步。1）先查看 arXiv 原文中的任务定义和图示，确认四类任务各自的状态表示、输入模态和成功判定。2）重点找实验表，记录 SFT 与 AgentLoop-RL 的差异、基线模型、指标和提升幅度。3）检查 Blender Sandbox 的状态导出字段与 reward 公式，判断是否可复用于你的任务。4）核对数据来源与规模，包括资产库、场景库、扰动策略和教师轨迹生成方式。5）如果你做相关研究，可先尝试复现其中一个最简单任务，如 object placement，用 Blender + bpy + 状态比对搭一个最小闭环原型，验证环境设计是否稳定。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>研究对象非常具体，不是泛化的视觉问答或图像编辑，而是“MLLM 作为交互式代理，对 Blender 显式 3D 场景进行程序化编辑”。摘要强调现有系统难训练的原因主要有两个：依赖闭源模型 API，以及缺少可确定执行、可状态验证的环境，因此作者把 Blender 作为底层执行器，把 bpy 代码生成作为动作空间，把场景状态导出作为监督/奖励依据。这意味着论文的关键不只是模型本身，而是把 3D 编辑任务转化为一个适合 agent 训练的环境化问题。
+
+方法线索较清楚。数据侧，作者使用“curated assets + large-scale 3D scene repositories”构建可扩展的扰动式数据生成流程，推测是先从已有 3D 资产和场景出发，再自动施加位置、形变、光照、材质等编辑扰动，形成指令—初始场景—目标状态或教师轨迹。环境侧，Blender Sandbox 应该负责隔离执行模型生成的 bpy 代码，避免非确定性和副作用，并把执行后的对象属性、shape key 参数、灯光参数、材质节点或关键字段导出成结构化状态，再与目标状态比较得到 reward。训练侧，两阶段流程很像先模仿、后强化：先用离线教师轨迹做 SFT，让模型学会基本工具调用/代码生成格式；再在多轮交互中用 sandbox reward 做 AgentLoop-RL，优化连续编辑、纠错和反应式决策能力。
+
+从任务设计看，四类任务都具有“状态可验证”特征。物体放置可比较坐标、旋转、缩放或层级关系；shape-key 编辑可比较特定 shape key 的权重或目标网格形变参数；灯光调整可比较光源类型、强度、颜色、位置方向；材质修改可比较材质槽、节点参数、纹理绑定或表面属性。这种任务选择很重要，因为它们比纯渲染图像相似度更适合做精确奖励，也更适合训练代码代理。
+
+与相关方向的关系上，这项工作可能同时连接了 MLLM agent、代码生成、具身/环境交互训练和 3D 内容创作自动化几个方向。对做 agent training 的研究者，它提供了一个比网页操作或 API 调用更“结构化且可验证”的环境；对做 3D AIGC 或 CAD/图形编辑的人，它展示了如何绕过端到端像素生成，直接在显式场景层面训练模型；对做 RLHF/agentic RL 的人，它提供了一个 reward 可由环境精确计算的案例，可能比主观偏好奖励更稳定。
+
+但基于当前题录和摘要，仍有多项关键信息需要核对。第一，实验“across the four task families sho ...[truncated]”被截断，无法知道具体提升幅度、对比基线、评测指标和泛化设置。第二，不清楚输入模态是否包含场景截图、结构化状态、文本指令，还是多模态联合输入；虽然称为 MLLM，但核心能力可能更接近“视觉+代码 agent”。第三，不清楚 reward 的具体定义是稠密还是稀疏、是否支持部分完成、是否惩罚非法代码。第四，不清楚教师轨迹如何获得：人工编写、规则生成、还是更强模型蒸馏。第五，不清楚大规模 3D scene repositories 的来源、许可和资产多样性。第六，不清楚所谓 reactive editing ability 的评估是否包含多轮用户反馈、错误恢复和长程依赖。
+
+如果你的研究方向涉及可验证环境中的 agent 训练、工具使用型 MLLM、程序化图形编辑或 3D 场景理解，这篇论文值得优先关注，因为它把“训练数据—执行环境—奖励优化”三者打通了。最需要进一步确认的是：其环境接口是否可复用、任务定义是否足够标准化、以及 RL 阶段是否真的带来超越 SFT 的多轮编辑收益。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Multimodal Large Language Models (MLLMs) have shown promise as interactive agents, yet precise, programmatic 3D graphics editing remains difficult to train because existing systems largely rely on closed-source model APIs and lack deterministic, state-verifiable execution environments. We present BlenderFORGE, a trainable data-environment-optimization framework for open-weight MLLM agents that edit explicit Blender scenes through Blender Python (bpy) code generation. BlenderFORGE targets four fundamental state-verifiable editing task families: object placement, shape-key editing, lighting adjustment, and material modification. It integrates three components: (1) a scalable perturbation-based data generation pipeline built from curated assets and large-scale 3D scene repositories; (2) an isolated Blender Sandbox for deterministic code execution, structured state export, and closed-loop reward computation; and (3) a two-stage training pipeline that uses offline teacher trajectories for cold-start Supervised Fine-Tuning (SFT) and sandbox-computed rewards for multi-turn tool-agentic Reinforcement Learning (AgentLoop-RL). Experiments across the four task families show that the resulting open-weight Qwen3-VL-8B and Qwen3.5-9B BlenderFORGE agents substantially improve over their base models and achieve competitive performance with several zero-shot proprietary MLLM baselines on selected metrics. Additional cross-benchmark evaluations and camera-reframing experiments provide evidence of transfer beyond the original training setting.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-08T01:50:25Z</span>
+        <span>Score 75.5</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2611.11066v1">Rescene-ESM: an Earth system model built around a frozen AI weather model</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Rescene-ESM%3A+an+Earth+system+model+built+around+a+frozen+AI+weather+model&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.11066v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Rescene-ESM%3A+an+Earth+system+model+built+around+a+frozen+AI+weather+model%0Akeywords%3A+ai%2C+earth%2C+earth+system%2C+climate%2C+weather%2C+ocean%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Rescene-ESM%3A+an+Earth+system+model+built+around+a+frozen+AI+weather+model&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.11066v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Rescene-ESM%3A+an+Earth+system+model+built+around+a+frozen+AI+weather+model%0Akeywords%3A+ai%2C+earth%2C+earth+system%2C+climate%2C+weather%2C+ocean%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Rescene-ESM%3A+an+Earth+system+model+built+around+a+frozen+AI+weather+model&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.11066v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Rescene-ESM%3A+an+Earth+system+model+built+around+a+frozen+AI+weather+model%0Akeywords%3A+ai%2C+earth%2C+earth+system%2C+climate%2C+weather%2C+ocean%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Minjong Cheon、Kaoru Kakinuma · <a href="https://arxiv.org/pdf/2611.11066v1">PDF</a></div>
+      <div class="chips"><span class="chip">ai <strong>1</strong></span>
+<span class="chip">earth <strong>1</strong></span>
+<span class="chip">earth system <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">weather <strong>1</strong></span>
+<span class="chip">ocean <strong>1</strong></span>
+<span class="chip">carbon <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文提出 Rescene-ESM：一个以冻结的 2080 万参数 AI 天气模型为大气核心、并与海洋、海冰、陆面、河流、碳和能量组分耦合的地球系统模型，目标是在显著降低计算成本的同时，改进 ENSO（尤其是厄尔尼诺）年际变率及其遥相关的模拟。摘要显示作者通过逐步加入混合层海洋、赤道波海洋、SST 方程残差随机强迫和陆地水分通量，分析各耦合机制对年际变率和平均气候的具体贡献。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把“冻结的 AI 天气模型”作为大气模块嵌入一个物理约束的地球系统框架，而不是单独做天气预报或直接从气候模式输出中学习气候统计；并通过名为 YAHO 的耦合器，将其与物理表述的海洋、海冰、陆面、河流、碳和能量模块连接。摘要中最具体的贡献线索有三点：第一，作者声称在仅有气候态海洋时，AI 大气在海洋上的年际变率只有观测的约三分之一，而逐步加入交互海洋与陆面过程后可显著抬升这一变率；第二，模型能够带出厄尔尼诺及其遥相关，同时“几乎不改变平均气候”，说明其设计重点是增强低频/年际耦合而不破坏气候态；第三，论文强调河流、碳和能量组分，意味着它试图把 AI 天气模型扩展到更完整的 Earth system / impacts 链条，而不止停留在大气—海洋耦合。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -435,35 +375,27 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>56.0</strong>
+              <strong>75.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在机器学习论文复现中，关键信息分散且不完整，导致后续研究者或 coding agent 需要反复推断缺失步骤；那么，若把首次复现过程中恢复出的环境、流程、命令和决策系统化保存为标准化工件，是否能显著提升后续独立复现的成功率、稳定性和成本效率？</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包括两部分。其一是工件设计：把原始发布材料重构为精炼代码库、环境配置、实验启动器和复现指南四类标准对象。其二是评测流程：在 ReproBridge-Bench 上，让多个模型代理在全新会话中分别基于原始工件或精炼工件执行 1,029 个复现任务；每个任务参考 5 个经人工核验的分数作为目标区间或对照；再由独立 Auditor 检查执行证据，统计成功率、模型间差异和 API 成本变化。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点主要有四点。第一，问题定义很落地，直接针对 ML 复现中最常见的痛点：信息散落、环境脆弱、入口不清、隐性决策未记录。第二，提出的工件结构具体，不是抽象地说“改进文档”，而是明确到代码库、环境、启动器和指南。第三，benchmark 规模在摘要中看起来较有说服力，覆盖 36 篇论文、387 个实验、1,029 个任务，并引入人工核验参考分数和独立审计。第四，结果不仅报告成功率提升，还报告 API 成本下降和跨模型差距缩小，这说明方法可能同时改善效果、公平性和可迁移性。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先补看 arXiv 摘要全文末尾，确认被截断的结论；第二，重点查论文中的 benchmark 定义表，弄清 1,029 个任务、387 个实验和 36 篇论文之间的映射关系；第三，查方法图或附录，确认 refined artifacts 的具体目录结构与生成流程；第四，查成功判定标准、五个参考分数的来源与容忍区间；第五，若你做 agent 或实验平台，可尝试把自己组内一个公开项目按“代码库+环境+启动器+指南”四件套重构，作为对 ReproBridge 思路的低成本验证。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何把一个原本用于天气预报的冻结 AI 大气模型，扩展成可用于气候与地球系统研究的低成本耦合模型，同时避免现有 ML-海洋耦合系统中常见的 ENSO 变率偏弱、依赖气候模式教师信号、以及无法把气候影响传递到河流/碳等下游系统的问题。更细一点说，它在问：哪些最小但关键的物理耦合过程，能够在不显著破坏平均气候的前提下，恢复接近观测的年际海气变率和厄尔尼诺遥相关？</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法应包括以下几层。第一层是模型架构：以一个冻结的 2080 万参数 AI 天气模型作为大气模块。第二层是耦合框架：通过 YAHO 耦合器连接物理表述的海洋、海冰、陆面、河流、碳和能量组分，并强调这些组分受观测约束。第三层是机制归因实验：从 climatological ocean 起步，逐步加入 interactive mixed layer、equatorial wave ocean、SST 方程观测残差构成的随机强迫、以及陆地水分通量，比较每一步对海洋上年际变率、ENSO 及其遥相关、平均气候的影响。第四层可能是评估：将模拟的年际方差、ENSO 振幅/频谱、遥相关空间型、平均态偏差与观测对照，并可能与传统物理 ESM 或已有 ML 耦合模型比较。摘要没有给出具体数据集，但“observed SST equation residual”暗示至少使用了观测或再分析驱动来估计 SST 倾向方程未解释项。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四个。其一，路线新：不是训练一个全新的 AI 气候模型，而是把成熟的 AI 天气模型冻结后嵌入物理地球系统，这有望显著降低训练成本并提高模块可替换性。其二，问题抓得准：摘要直接针对 ML 耦合系统在 ENSO 上的薄弱点，而 ENSO 正是检验热带海气耦合是否可信的关键现象。其三，证据链设计较强：逐步加入耦合机制的消融实验，能帮助判断混合层、赤道波动力学、随机强迫和陆面水分反馈各自的作用，而不是只给一个黑箱最终结果。其四，应用外延大：如果河流、碳和能量模块确实是在线耦合，那么该框架可能支持更便宜的大样本情景、集合和影响路径分析，这正对应摘要开头提出的传统 ESM 成本瓶颈。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五步。第一，先找论文中的模型总览图和 YAHO 耦合示意，确认各组分之间交换的变量、时间步长和是否守恒。第二，重点查逐步加耦合实验的图表，记录每一步对海洋上年际方差、Niño 指数振幅/频谱、遥相关空间型的变化，尤其核对“约为观测三分之一”这一基线。第三，查看 equatorial wave ocean 和 stochastic forcing 的具体方程或参数化，判断 ENSO 改善主要来自动力学、噪声激发还是陆面反馈。第四，查平均气候评估图，确认“几乎不变”是指 SST、降水、风场、能量收支中的哪些量。第五，如果你的方向是 AI+气候建模，可把它与现有两类方法做对照笔记：一类是端到端 AI 气候/地球系统模型，另一类是传统 ESM 中替换单个参数化的混合模型，比较训练成本、可解释性、长期稳定性和情景外推能力。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在机器学习论文复现中，关键信息分散且不完整，导致后续研究者或 coding agent 需要反复推断缺失步骤；那么，若把首次复现过程中恢复出的环境、流程、命令和决策系统化保存为标准化工件，是否能显著提升后续独立复现的成功率、稳定性和成本效率？</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包括两部分。其一是工件设计：把原始发布材料重构为精炼代码库、环境配置、实验启动器和复现指南四类标准对象。其二是评测流程：在 ReproBridge-Bench 上，让多个模型代理在全新会话中分别基于原始工件或精炼工件执行 1,029 个复现任务；每个任务参考 5 个经人工核验的分数作为目标区间或对照；再由独立 Auditor 检查执行证据，统计成功率、模型间差异和 API 成本变化。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点主要有四点。第一，问题定义很落地，直接针对 ML 复现中最常见的痛点：信息散落、环境脆弱、入口不清、隐性决策未记录。第二，提出的工件结构具体，不是抽象地说“改进文档”，而是明确到代码库、环境、启动器和指南。第三，benchmark 规模在摘要中看起来较有说服力，覆盖 36 篇论文、387 个实验、1,029 个任务，并引入人工核验参考分数和独立审计。第四，结果不仅报告成功率提升，还报告 API 成本下降和跨模型差距缩小，这说明方法可能同时改善效果、公平性和可迁移性。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>需要警惕的边界包括：1）目前只看到摘要，尚不清楚精炼工件的构建是否需要较多人工干预，若人工成本高，则可扩展性会受限；2）36 篇论文的领域分布、代码质量和任务类型未知，可能影响外推性；3）成功率提升可能部分来自任务定义或阈值设置，需要查看严格程度；4）Auditor 如何验证“真正复现”而非“接近分数”尚不明确；5）API 成本下降 19.7% 很有吸引力，但需要结合总 token、失败重试次数和模型价格结构理解；6）摘要截断，部分结论和限制条件缺失。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先补看 arXiv 摘要全文末尾，确认被截断的结论；第二，重点查论文中的 benchmark 定义表，弄清 1,029 个任务、387 个实验和 36 篇论文之间的映射关系；第三，查方法图或附录，确认 refined artifacts 的具体目录结构与生成流程；第四，查成功判定标准、五个参考分数的来源与容忍区间；第五，若你做 agent 或实验平台，可尝试把自己组内一个公开项目按“代码库+环境+启动器+指南”四件套重构，作为对 ReproBridge 思路的低成本验证。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从摘要看，论文研究对象不是单一模型性能，而是“机器学习研究工件如何被整理成更利于代理和研究者复现的形式”。作者指出，现实中的复现信息通常散落在论文正文、开源代码、脚本、配置、README 以及其他支持材料中，因此无论是人还是 coding agent，在复现实验时都需要补全缺失步骤、推断默认参数、修复环境依赖和理解实验入口。论文的核心假设是：如果第一次复现过程中恢复出的程序步骤、环境决策和运行经验被系统保存下来，那么后续在全新会话中的独立复现会更稳定、更便宜，也更不依赖模型自身的“猜测能力”。
-
-方法线索比较具体。作者定义了一套标准化工件结构，至少包括四类对象：1）refined codebase，即经过整理、补齐和规范化后的代码库；2）environment setup，即可执行的环境配置；3）experiment launchers，即面向具体任务的启动脚本或命令入口；4）reproduction guide，即把关键步骤、假设和注意事项写成可操作说明。ReproBridge 很可能是一个代理式流水线：先读取论文与原始仓库，再识别缺失信息和运行障碍，随后通过修改代码、补写脚本、固定依赖、记录决策，产出上述精炼工件。之后，其他代理在“新会话”中只拿到原始工件或精炼工件之一，尝试完成同一复现任务，以比较两种输入条件下的成功率与成本差异。
-
-证据线索也较强。摘要给出了一个相对完整的 benchmark 设计：ReproBridge-Bench 含 1,029 个任务，来自 36 篇论文、387 个实验；每个任务有 5 个经人工核验的参考分数，说明评测目标可能是判断是否成功复现到某个性能区间，而不是简单检查程序是否跑通。另有一个独立 Auditor 检查执行证据，意味着评测并非完全依赖代理自报结果，而是尝试验证日志、输出文件、指标或运行痕迹。结果上，四个模型在使用精炼工件后，平均复现成功率从 76.4% 提升到 92.6%，下游 API 花费平均下降 19.7%，且模型间成功率差距从 21.6 个百分点缩小到 3.9 个百分点。这说明精炼工件可能在“降低对模型能力差异的敏感性”方面尤其有价值：好的工件把隐性知识外显化后，弱一些的代理也更容易完成任务。
-
-与科研实践的关系很直接。如果你的方向涉及 ML 系统、AI agents、自动化科研、实验管理、MLOps 或 benchmark 设计，这篇论文值得关注，因为它把“复现能力”从单纯的 agent 推理问题，转化为“工件设计 + 过程沉淀 + 审计评测”的系统问题。对实验室而言，这种思路也可迁移到内部项目：不是只发布代码，而是发布可执行环境、统一入口、任务级说明和决策记录，从而减少后续成员接手成本。
-
-但基于当前仅有题录和摘要，仍有若干关键信息必须核对。首先，需要确认 1,029 个任务的定义粒度：是数据集-指标-配置级任务，还是论文中的独立实验项。其次，要看“成功复现”的判定阈值如何设定，五个参考分数如何聚合，是否允许随机波动。第三，需要核对 refined artifacts 的构建成本：人工参与多少、代理迭代多少轮、是否需要访问外部文档或额外算力。第四，要看四个被评测模型分别是谁，以及它们在原始工件条件下失败的主要原因是环境、脚本入口、参数缺失还是结果判定。第五，需确认 Auditor 的自动化程度和误判风险。最后，摘要末尾被截断，可能还有关于“all four models achieving ...”的关键结论未显示，正式阅读时应补齐。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何把一个原本用于天气预报的冻结 AI 大气模型，扩展成可用于气候与地球系统研究的低成本耦合模型，同时避免现有 ML-海洋耦合系统中常见的 ENSO 变率偏弱、依赖气候模式教师信号、以及无法把气候影响传递到河流/碳等下游系统的问题。更细一点说，它在问：哪些最小但关键的物理耦合过程，能够在不显著破坏平均气候的前提下，恢复接近观测的年际海气变率和厄尔尼诺遥相关？</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法应包括以下几层。第一层是模型架构：以一个冻结的 2080 万参数 AI 天气模型作为大气模块。第二层是耦合框架：通过 YAHO 耦合器连接物理表述的海洋、海冰、陆面、河流、碳和能量组分，并强调这些组分受观测约束。第三层是机制归因实验：从 climatological ocean 起步，逐步加入 interactive mixed layer、equatorial wave ocean、SST 方程观测残差构成的随机强迫、以及陆地水分通量，比较每一步对海洋上年际变率、ENSO 及其遥相关、平均气候的影响。第四层可能是评估：将模拟的年际方差、ENSO 振幅/频谱、遥相关空间型、平均态偏差与观测对照，并可能与传统物理 ESM 或已有 ML 耦合模型比较。摘要没有给出具体数据集，但“observed SST equation residual”暗示至少使用了观测或再分析驱动来估计 SST 倾向方程未解释项。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四个。其一，路线新：不是训练一个全新的 AI 气候模型，而是把成熟的 AI 天气模型冻结后嵌入物理地球系统，这有望显著降低训练成本并提高模块可替换性。其二，问题抓得准：摘要直接针对 ML 耦合系统在 ENSO 上的薄弱点，而 ENSO 正是检验热带海气耦合是否可信的关键现象。其三，证据链设计较强：逐步加入耦合机制的消融实验，能帮助判断混合层、赤道波动力学、随机强迫和陆面水分反馈各自的作用，而不是只给一个黑箱最终结果。其四，应用外延大：如果河流、碳和能量模块确实是在线耦合，那么该框架可能支持更便宜的大样本情景、集合和影响路径分析，这正对应摘要开头提出的传统 ESM 成本瓶颈。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，需要警惕几类边界。第一，摘要被截断，完整模型的最终结果、模拟时长、稳定性和与基线模型的定量对比不完整。第二，“frozen AI weather model”虽然工程上高效，但也可能限制长期气候反馈的一致性；如果大气模块未针对气候守恒或慢变量反馈设计，长期积分中的漂移、能量/水分闭合问题需要重点核查。第三，ENSO 的改善是否依赖特定的随机强迫构造、观测残差估计方式或参数调节，目前无法判断；若依赖较强，泛化到变暖情景的可信度要谨慎。第四，摘要说“mean climate almost unchanged”，这既可能是优点，也可能意味着模型主要修正了变率而非系统性平均态偏差；需要看平均态本身是否已经足够好。第五，河流、碳和能量组分虽被列出，但摘要没有说明这些组分的双向反馈强度和评估结果，不能默认其 Earth system 完整性已经充分验证。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五步。第一，先找论文中的模型总览图和 YAHO 耦合示意，确认各组分之间交换的变量、时间步长和是否守恒。第二，重点查逐步加耦合实验的图表，记录每一步对海洋上年际方差、Niño 指数振幅/频谱、遥相关空间型的变化，尤其核对“约为观测三分之一”这一基线。第三，查看 equatorial wave ocean 和 stochastic forcing 的具体方程或参数化，判断 ENSO 改善主要来自动力学、噪声激发还是陆面反馈。第四，查平均气候评估图，确认“几乎不变”是指 SST、降水、风场、能量收支中的哪些量。第五，如果你的方向是 AI+气候建模，可把它与现有两类方法做对照笔记：一类是端到端 AI 气候/地球系统模型，另一类是传统 ESM 中替换单个参数化的混合模型，比较训练成本、可解释性、长期稳定性和情景外推能力。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：作者不是在训练一个新的端到端气候模型，而是在构建一个围绕“冻结 AI 天气模型”的 Earth system model。这里“冻结”意味着大气 AI 模型参数不再更新，重点转向如何通过耦合器 YAHO 和外部物理组分，把原本擅长短期天气预报的模型扩展到气候时间尺度与地球系统问题。摘要给出的科学问题也很具体：现有机器学习天气模型虽然便宜且预报技巧高，但一旦与海洋耦合，往往出现 ENSO 变率偏弱，或者只是从气候模式输出中学到了 ENSO，而不是在观测约束的物理耦合系统中自然产生；同时，现有方案也缺少把气候信号传递到河流和人类暴露风险相关变量的完整链条。方法线索上，作者使用一个 2080 万参数的 AI 天气模型作为大气核心，并通过 YAHO 耦合到“physically formulated”且“constrained by observations”的海洋、海冰、陆面、河流、碳和能量模块。摘要最值得注意的是它采用了逐步加耦合的消融/归因设计：先在 climatological ocean 上看 AI 大气自身能产生多少年际变率；然后依次加入 interactive mixed layer、equatorial wave ocean、observed SST equation residual as stochastic forcing、以及 land moisture flux，观察年际变率和 ENSO 遥相关如何逐步增强。这种设计的证据链比单纯报告最终性能更有解释性，因为它试图回答“到底是哪类耦合机制把 AI 天气模型推向可用的气候系统模型”。从摘要可提炼出的定量线索是：在气候态海洋背景下，AI 大气在海洋上的年际变率约为观测的三分之一；加入上述耦合后，厄尔尼诺及其遥相关得以出现，而平均气候几乎不变。这说明作者可能在平衡两个常见矛盾：一方面要增强低频内部变率，另一方面要避免耦合后气候态漂移。与科研用户的关系上，如果你关注 AI for climate、混合物理-机器学习建模、可负担的大样本情景/集合模拟，本文很值得看，因为它把“冻结预训练天气模型 + 物理地球系统外壳”作为一条不同于重新训练大模型的路线；如果你关注 ENSO、热带海气耦合、随机强迫在气候变率中的作用，摘要中的 equatorial wave ocean 和 SST 方程残差随机强迫也很关键。需要核对的信息包括：AI 天气模型的输入输出变量、时间步长和空间分辨率；YAHO 的耦合频率与守恒处理；“观测约束”的具体数据源和同化/校准方式；ENSO 技能的评价指标、遥相关区域和统计显著性；河流、碳和能量模块到底是在线双向耦合还是诊断式传递；以及“full model simulates abou...”后面被截断的结果究竟是什么。由于摘要被截断，关于完整模型最终性能、模拟时长、集合规模和与传统 ESM 的直接对比，目前都不能下结论。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Reproducing machine learning experiments requires reconstructing procedures from information scattered across papers, released code, and supporting artifacts. For coding agents, reproduction success can therefore depend on their ability to fill in missing details, rather than on the released artifacts alone. We ask whether preserving recovered procedures and decisions improves subsequent independent reproduction. We define a standardized artifact design comprising a refined codebase, environment setup, experiment launchers, and a reproduction guide, and introduce ReproBridge, an agent workflow for constructing these refined reproducible artifacts. ReproBridge-Bench provides 1,029 tasks from 387 experiments across 36 papers, anchored by five human-verified reference scores per task. Agents attempt tasks in fresh sessions with raw code or refined artifacts; a separate Auditor checks execution evidence. Across four evaluated models, refined artifacts raise mean reproduction success from 76.4% to 92.6% and reduce downstream API spending by 19.7% on average. The cross-model success-rate spread narrows from 21.6 to 3.9 percentage points, with all four models achieving mean success rates above 90%. Removing any component reduces success in the ablation study, with the largest losses from code and environment removal. These results suggest that preserving execution knowledge helps even models with lower raw-code success reproduce experiments more reliably and at lower API cost.</p>
+          <p>Earth system models underpin climate projections, but their cost limits how many scenarios, ensemble members and impact pathways can be explored. Machine-learning weather models forecast as skillfully as physics-based models at a fraction of the cost, yet coupled to an ocean they have produced weak El Nino variability or have learned it from climate-model output, and none carries the climate through rivers to the people exposed to it. Here we present Rescene-ESM, an Earth system model whose coupler, YAHO, yokes a frozen 20.8-million-parameter AI weather model to physically formulated ocean, sea-ice, land, river, carbon and energy components constrained by observations. Adding the couplings one at a time shows what each contributes: over a climatological ocean the AI atmosphere varies from year to year by a third of the observed amount over the oceans, and an interactive mixed layer, an equatorial wave ocean, the residual of the observed sea surface temperature (SST) equation as stochastic forcing and the land&#x27;s moisture flux raise this step by step and bring El Nino and its teleconnections, leaving the mean climate almost unchanged. The full model simulates about 1,000 years per day on one graphics processing unit, holds the observed climate for a thousand years without drift, reproduces the observed 1979-2022 global warming, carries forced change with a physically based structure around the frozen network (transient climate response 1.60 K), routes runoff to 212 river gauges with a median seasonal-cycle correlation of 0.79 and, driven by emissions, separates the heatwave exposure of an SSP1 and an SSP3 world by a factor of 4.7 in 2081-2100, three-quarters of it through the warmer climate.</p>
         </details>
         
         </div>
@@ -474,21 +406,27 @@
 
     <article class="paper-card">
       <div class="paper-meta">
-        <span class="source-pill">Science</span>
-        <span>2026-11-08</span>
-        <span>Score 47.0</span>
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-07T15:27:36Z</span>
+        <span>Score 75.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1126/science.aeh5267">Melting and resistivity of iron at Earth core conditions using pulsed Joule heating</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Melting+and+resistivity+of+iron+at+Earth+core+conditions+using+pulsed+Joule+heat&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh5267%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Melting+and+resistivity+of+iron+at+Earth+core+conditions+using+pulsed+Joule+heating%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Melting+and+resistivity+of+iron+at+Earth+core+conditions+using+pulsed+Joule+heat&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh5267%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Melting+and+resistivity+of+iron+at+Earth+core+conditions+using+pulsed+Joule+heating%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Melting+and+resistivity+of+iron+at+Earth+core+conditions+using+pulsed+Joule+heat&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeh5267%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Melting+and+resistivity+of+iron+at+Earth+core+conditions+using+pulsed+Joule+heating%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>4. <a href="http://arxiv.org/abs/2611.10800v1">Enhancing Mathematical Reasoning in Turkish Large Language Models with Search-Based Inference and Model Merging</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Enhancing+Mathematical+Reasoning+in+Turkish+Large+Language+Models+with+Search-Ba&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.10800v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Enhancing+Mathematical+Reasoning+in+Turkish+Large+Language+Models+with+Search-Based+Inference+and+Model+Merging%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Enhancing+Mathematical+Reasoning+in+Turkish+Large+Language+Models+with+Search-Ba&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.10800v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Enhancing+Mathematical+Reasoning+in+Turkish+Large+Language+Models+with+Search-Based+Inference+and+Model+Merging%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Enhancing+Mathematical+Reasoning+in+Turkish+Large+Language+Models+with+Search-Ba&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.10800v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Enhancing+Mathematical+Reasoning+in+Turkish+Large+Language+Models+with+Search-Based+Inference+and+Model+Merging%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+mathematical+reasoning%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Zachary M. Geballe、Jing Yang、Vasilije V. Dobrosavljevic、Francesca Miozzi 等 14 人 · DOI: <a href="https://doi.org/10.1126/science.aeh5267">10.1126/science.aeh5267</a></div>
-      
+      <div class="authors">Ahmed Zeer、Osama Shbib、Muzaffer Kaan Yuce、Himmet Toprak Kesgin 等 5 人 · <a href="https://arxiv.org/pdf/2611.10800v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">large language models <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">mathematical reasoning <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕地核条件下铁的熔化温度与电阻率测量，使用金刚石对顶砧中的微秒级脉冲焦耳加热方法，报告了超过300次可重复熔化测量，并据此推断地幔-地核边界温度与外核热流。摘要给出的核心结果是：铁在200 GPa时熔点约为4160 ± 80 K、熔化曲线斜率较浅，液态铁电阻率约为76 μΩ·cm，进而支持相对较冷的核幔边界和较低绝热外核热流。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于提出并应用一种新的高压实验路径——金刚石对顶砧中的微秒脉冲焦耳加热——同时识别铁的熔化并测量固液态电阻率；在数据层面，论文声称给出大样本、可重复的高压熔化测量，并将实验结果外推到地核组成与压力条件，用于约束核幔边界温度、外核热流和地磁发电机的热演化。</p></div>
+        <div class="note"><strong>一句话</strong><p>该工作聚焦于提升土耳其语大语言模型的数学推理能力，具体围绕 Turkish-Llama 8B-DPO 结合 LoRA 微调、权重空间模型合并以及基于搜索的推理，在土耳其语数学数据上比较数据质量、模型合并策略与搜索推理对表现的影响。摘要显示其主要任务包括数学题求解与推理质量评估，并报告了在线性合并和搜索式推理上的正向结果。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能有三点：一是面向土耳其语数学推理构建并比较了多种翻译得到的数据配方，指出数据质量优于单纯扩大数据规模；二是系统比较了多种权重空间模型合并方法，发现线性合并优于 Ties、Breadcrumbs 和 Slerp；三是将 MCTS 与 Tree of Thoughts 用于推理阶段搜索，显示其可提升基于 LLM-judge 的推理质量评分。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -497,35 +435,35 @@
           <div class="detail-signal">
             <div>
               <div class="signal-kicker">来源</div>
-              <div class="signal-source">Science</div>
+              <div class="signal-source">arXiv</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
+              <div class="signal-kicker">关键词命中 7</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>47.0</strong>
+              <strong>75.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决两个彼此耦合的具体问题：一是在接近地核的高压高温条件下，纯铁何时熔化；二是固态和液态铁在这些条件下的电阻率是多少。更深层的科学目标是用这两个物性量约束地核温度、外核热流以及地磁发电机的驱动机制。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，作者使用金刚石对顶砧提供高压环境，并采用微秒级脉冲焦耳加热作为新的升温手段。实验上应是对铁样品施加短时大电流脉冲，在快速升温过程中通过某种原位信号识别熔化，同时从电学响应中提取电阻率，分别覆盖固态和液态区间。证据路径大致是：大量重复实验建立熔化点数据集，拟合熔化曲线；测得液态铁电阻率；再将这些实验结果向更高压力和地核合金体系外推，并结合地核绝热线或热传输模型推算核幔边界温度与外核热流。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，方法创新性强：脉冲焦耳加热在高压DAC中如果实现稳定控制，可能为熔化与输运性质测量提供不同于激光加热的技术路线。第二，数据量大且强调可重复性，超过300次熔化测量这一点在高压高温实验中很有分量，意味着作者可能系统评估了实验散布。第三，结果直接连接地球物理问题，不仅给出实验物性，还进一步约束核幔边界温度、外核热流和地磁发电机历史，因此对跨学科读者有较高应用价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，优先查正文或补充材料中熔化判据、温压标定和电阻率反演公式；第二，把摘要中的关键数值单独记录成表，包括200 GPa下4160 ± 80 K、熔化斜率6 K/GPa、液态铁76 μΩ·cm、核幔边界3430 K、外核热流9.8 TW；第三，找一到两篇传统激光加热DAC或第一性原理关于铁熔化曲线和电阻率的代表工作做并排对照；第四，特别检查“超过300次可重复测量”对应的是独立样品、独立压力点还是重复脉冲，以判断证据强度。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何在土耳其语这一相对低资源语言中，提升大语言模型的数学推理能力；更细化地说，它在问三个子问题：什么样的土耳其语数学训练数据更有效，哪些模型合并方法最能提升数学解题表现，以及测试时搜索能否进一步改善推理过程质量。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推断，实验流程可能是先将 MetaMath、NuminaMath、TigerLab 等数学数据翻译为土耳其语，再基于 Turkish-Llama 8B-DPO 做 LoRA 微调，形成若干专门化模型；随后对这些模型进行权重空间合并，比较线性合并、Ties、Breadcrumbs、Slerp 等方法；最后在推理时引入 MCTS 和 Tree of Thoughts，对数学题生成多步解答路径并进行搜索选择。评测上至少包含 GSM8K 一类数学基准，以及一个由 LLM 作为裁判、按 0-100 打分的推理质量评估。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题设定具体且有现实意义：土耳其语数学推理属于多语言与低资源推理交叉点，现有公开研究相对少。第二，论文不是只做单一改进，而是把数据配方、参数高效微调、模型合并和测试时搜索放在同一框架下比较，便于观察不同增强手段的相对贡献。第三，摘要给出了较明确的经验结论：数据质量优于规模、线性合并效果最好、搜索提升推理质量评分，这些结论对后续构建土耳其语或其他低资源语言数学模型具有直接参考价值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作可以是：第一，优先查论文中的数据表，确认 Mix-30k 的具体组成、翻译流程和筛选标准，并与大规模 MetaMath 配置做对照；第二，查模型合并实验表，记录线性合并、Ties、Breadcrumbs、Slerp 的具体超参数、参与合并的模型来源及在 GSM8K 上的绝对分数；第三，查搜索实验部分，确认 MCTS 与 Tree of Thoughts 的搜索预算、采样温度、回报函数和 LLM-judge 提示词；第四，如果要复现，可先用 Turkish-Llama 8B-DPO 加一个小规模土耳其语数学混合集做 LoRA，再测试“单模型 vs 线性合并 vs 搜索推理”的三组对照。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决两个彼此耦合的具体问题：一是在接近地核的高压高温条件下，纯铁何时熔化；二是固态和液态铁在这些条件下的电阻率是多少。更深层的科学目标是用这两个物性量约束地核温度、外核热流以及地磁发电机的驱动机制。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，作者使用金刚石对顶砧提供高压环境，并采用微秒级脉冲焦耳加热作为新的升温手段。实验上应是对铁样品施加短时大电流脉冲，在快速升温过程中通过某种原位信号识别熔化，同时从电学响应中提取电阻率，分别覆盖固态和液态区间。证据路径大致是：大量重复实验建立熔化点数据集，拟合熔化曲线；测得液态铁电阻率；再将这些实验结果向更高压力和地核合金体系外推，并结合地核绝热线或热传输模型推算核幔边界温度与外核热流。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，方法创新性强：脉冲焦耳加热在高压DAC中如果实现稳定控制，可能为熔化与输运性质测量提供不同于激光加热的技术路线。第二，数据量大且强调可重复性，超过300次熔化测量这一点在高压高温实验中很有分量，意味着作者可能系统评估了实验散布。第三，结果直接连接地球物理问题，不仅给出实验物性，还进一步约束核幔边界温度、外核热流和地磁发电机历史，因此对跨学科读者有较高应用价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的边界主要有：其一，熔化判据未在题录中说明，若依赖电信号突变、纹理变化或X射线特征，不同判据可能导致系统差异。其二，200 GPa仍低于地核边界和内核边界压力，摘要中的地核结论依赖压力外推与成分外推，这一步可能引入比实验本身更大的模型不确定性。其三，电阻率数值是否区分纯铁与实际地核轻元素合金、是否考虑温度梯度和样品几何变化，摘要无法判断。其四，关于“热对流足以驱动早期地磁发电机”和“低ermost mantle fully solid”的结论属于二级推论，可能强依赖特定热演化模型与边界条件。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，优先查正文或补充材料中熔化判据、温压标定和电阻率反演公式；第二，把摘要中的关键数值单独记录成表，包括200 GPa下4160 ± 80 K、熔化斜率6 K/GPa、液态铁76 μΩ·cm、核幔边界3430 K、外核热流9.8 TW；第三，找一到两篇传统激光加热DAC或第一性原理关于铁熔化曲线和电阻率的代表工作做并排对照；第四，特别检查“超过300次可重复测量”对应的是独立样品、独立压力点还是重复脉冲，以判断证据强度。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：地核条件下的铁，关注两个关键物性量——熔化温度和电阻率。这两个量直接关系到地球深部热状态、外核导电性、热对流能力以及地磁场维持机制。论文的方法线索也比较具体：作者在金刚石对顶砧中实施微秒量级的脉冲焦耳加热，通过瞬态加热过程识别熔化事件，并同步或关联测量电阻率。与传统激光加热DAC或冲击压缩相比，这种方法可能试图在高压下实现更直接的电学激发与更快时间尺度控制，从而减少化学扩散、样品失稳或长时间高温带来的不确定性。摘要中特别强调“超过300次可重复熔化测量”，这说明作者把可重复性作为证据链的重要部分，意在增强熔化判据的可信度。结果上，最具体的数据包括：200 GPa时铁的熔点为4160 ± 80 K，熔化曲线斜率达到6 K/GPa，液态铁电阻率为76 μΩ·cm。基于这些实验量，作者进一步进行了两步推理：第一，对更高压力和铁合金成分进行外推；第二，将熔化曲线和电阻率结果带入地核热结构与能量学框架，得到约3430 K的核幔边界温度和9.8 TW的绝热外核热流。由此他们提出两个地球物理含义：内核形成之前，单靠热对流就可能足以驱动地磁发电机；而今天的最下部地幔可能是完全固态。对科研读者而言，这篇工作与高压矿物物理、地核热演化、地磁场能量学、深部电输运性质建模都直接相关。需要重点核对的信息包括：熔化判据究竟是什么；电阻率是在何种几何与时间分辨率下反演得到；压力和温度标定方式；“外推到铁合金成分”的具体模型假设；以及从实验物性到核幔边界温度和热流的地球物理模型是否依赖额外先验。由于目前只有题录和摘要，不能判断其与既有激光加热DAC、shock、ab initio结果之间的系统偏差来源，也不能确认误差传播是否足以支撑摘要中的地球动力学结论。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何在土耳其语这一相对低资源语言中，提升大语言模型的数学推理能力；更细化地说，它在问三个子问题：什么样的土耳其语数学训练数据更有效，哪些模型合并方法最能提升数学解题表现，以及测试时搜索能否进一步改善推理过程质量。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推断，实验流程可能是先将 MetaMath、NuminaMath、TigerLab 等数学数据翻译为土耳其语，再基于 Turkish-Llama 8B-DPO 做 LoRA 微调，形成若干专门化模型；随后对这些模型进行权重空间合并，比较线性合并、Ties、Breadcrumbs、Slerp 等方法；最后在推理时引入 MCTS 和 Tree of Thoughts，对数学题生成多步解答路径并进行搜索选择。评测上至少包含 GSM8K 一类数学基准，以及一个由 LLM 作为裁判、按 0-100 打分的推理质量评估。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题设定具体且有现实意义：土耳其语数学推理属于多语言与低资源推理交叉点，现有公开研究相对少。第二，论文不是只做单一改进，而是把数据配方、参数高效微调、模型合并和测试时搜索放在同一框架下比较，便于观察不同增强手段的相对贡献。第三，摘要给出了较明确的经验结论：数据质量优于规模、线性合并效果最好、搜索提升推理质量评分，这些结论对后续构建土耳其语或其他低资源语言数学模型具有直接参考价值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要可见的局限也比较明确。首先，训练数据依赖机器翻译，可能带来术语误译、题意漂移和解答格式不自然等问题，从而影响结论的外部效度。其次，摘要承认实验规模有限，因此很难判断结论是否会在更大模型、更大数据或更强基线上保持。再次，搜索方法具有随机性，说明结果稳定性和复现实验方差需要重点核查。另一个需要警惕的点是，推理质量提升主要通过 LLM-judge 评分体现，而这类指标可能受裁判模型、提示词和语言偏好影响；如果最终答案准确率提升有限，则“过程更好看”不一定等于“解题更正确”。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作可以是：第一，优先查论文中的数据表，确认 Mix-30k 的具体组成、翻译流程和筛选标准，并与大规模 MetaMath 配置做对照；第二，查模型合并实验表，记录线性合并、Ties、Breadcrumbs、Slerp 的具体超参数、参与合并的模型来源及在 GSM8K 上的绝对分数；第三，查搜索实验部分，确认 MCTS 与 Tree of Thoughts 的搜索预算、采样温度、回报函数和 LLM-judge 提示词；第四，如果要复现，可先用 Turkish-Llama 8B-DPO 加一个小规模土耳其语数学混合集做 LoRA，再测试“单模型 vs 线性合并 vs 搜索推理”的三组对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>基于题名与摘要，这篇论文研究的是低资源语言场景下的大模型数学推理增强，目标对象非常具体：土耳其语 LLM，底座模型是 Turkish-Llama 8B-DPO，任务是数学题求解与推理质量提升。方法路线由三部分组成：首先使用 LoRA 对模型进行参数高效微调；其次在权重空间做模型合并，比较至少线性合并、Ties、Breadcrumbs、Slerp 等策略；最后在推理阶段引入搜索式方法，包括 MCTS 和 Tree of Thoughts，以改善生成过程中的解题路径选择。数据方面，摘要明确提到使用了 MetaMath、NuminaMath 和 TigerLab 的土耳其语翻译版本，并给出一个重要现象：Mix-30k 是最佳微调数据配置，而更大规模的 MetaMath 反而表现较差，这说明在该设定下翻译质量、样本筛选或数据混合策略可能比原始规模更关键。证据线索上，摘要给出 GSM8K 最高可到 0.63，且该提升来自线性合并；同时搜索方法提升的是“基于 LLM 裁判、0-100 分制的推理质量均值”，这意味着论文可能同时区分了最终答案正确率与过程质量评分两类指标。对相关研究者而言，这篇工作与多语言数学推理、低资源语言适配、模型合并、测试时搜索增强推理都直接相关，尤其适合关注“训练阶段增强”和“推理阶段增强”如何叠加的读者。不过仍有若干关键信息需要核对：GSM8K 是否为翻译版或原版、0.63 是准确率还是其他指标、各合并方法的具体配方与被合并模型来源、搜索带来的收益是否稳定且是否伴随显著计算开销、LLM-judge 的提示词与评测一致性如何、以及机器翻译数据是否引入系统性偏差。由于当前仅依据摘要，不能判断实验是否覆盖更强基线，也不能确认结论在其他土耳其语数学基准上的泛化程度。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The melting temperature and electrical resistivity of iron at high pressure are essential for understanding Earth’s core. Here we use a new high-pressure method – microsecond pulsed Joule heating in diamond anvil cells – to identify melting and measure resistivity of solid and liquid iron. More than 300 reproducible melting measurements indicate a surprisingly shallow melting curve, reaching 6 K/GPa and 4160 ± 80 K at 200 GPa. Extrapolating in pressure and iron alloy composition, and combining with our 76 μ Ω cm measurement of liquid iron’s resistivity, we infer a relatively cold core-mantle boundary (3430 K) with a low adiabatic outer core heat flow (9.8 TW). This suggests thermal convection alone could have powered the geodynamo prior to inner core formation and that today’s lowermost mantle is fully solid.</p>
+          <p>We improve Turkish mathematical reasoning in Large Language Models by combining LoRA fine-tuning, weight-space model merging, and search-based inference. Using Turkish-Llama 8B-DPO with Turkish translations of MetaMath, NuminaMath, and TigerLab, we find data quality beats scale (Mix-30k best among fine-tuned; large MetaMath underperforms). Linear merging delivers the largest gains (GSM8K up to 0.63), while Ties is modest and Breadcrumbs/Slerp degrade. Search with MCTS and Tree of Thoughts improves mean LLM-judge scores for reasoning quality on a 0-100 scale. Limitations include machine translation, limited scale, and search stochasticity.</p>
         </details>
         
         </div>
@@ -541,16 +479,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.ael2415">The science of the individual</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+The+science+of+the+individual&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael2415%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+The+science+of+the+individual%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+The+science+of+the+individual&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael2415%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+The+science+of+the+individual%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+The+science+of+the+individual&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ael2415%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+The+science+of+the+individual%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>5. <a href="https://doi.org/10.1126/science.adv1247">Quantum gas microscopy of three-flavor Hubbard systems</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Quantum+gas+microscopy+of+three-flavor+Hubbard+systems&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adv1247%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Quantum+gas+microscopy+of+three-flavor+Hubbard+systems%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Quantum+gas+microscopy+of+three-flavor+Hubbard+systems&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adv1247%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Quantum+gas+microscopy+of+three-flavor+Hubbard+systems%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Quantum+gas+microscopy+of+three-flavor+Hubbard+systems&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adv1247%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Quantum+gas+microscopy+of+three-flavor+Hubbard+systems%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Peter Soyster · DOI: <a href="https://doi.org/10.1126/science.ael2415">10.1126/science.ael2415</a></div>
+      <div class="authors">Jirayu Mongkolkiattichai、Liyu Liu、Sohail Dasgupta、Kaden R. A. Hazzard 等 5 人 · DOI: <a href="https://doi.org/10.1126/science.adv1247">10.1126/science.adv1247</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇题为《The science of the individual》的Science论文，从摘要看聚焦“行为改变”这一具体任务，并声称测试了一种“新范式”。仅凭题名与一句摘要可推断，研究对象更可能是个体层面的行为干预或个体化行为科学框架，而不是传统群体平均效应研究。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于现有元数据，这篇论文的核心贡献很可能是提出并实证检验一种面向“个体”的行为改变研究范式，即把分析与干预单位从群体均值转向个体差异、个体动态或个体化决策。若这一判断成立，其价值在于为行为科学、数字健康、个体化干预或N-of-1研究提供方法论上的转向证据。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕三组分（three-flavor）费米-Hubbard晶格气体，报告了将量子气体显微镜扩展到可进行格点分辨且“味道”分辨探测的实验，并据此研究三味 Hubbard 模型的相图。摘要显示作者在接近隧穿能标的温度下观察到与味道选择性局域化和选择性配对相关的信号，并将测量结果与数值链簇展开（NLCE）计算进行了比较。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于：把原本常见于两组分体系的量子气体显微探测推进到三组分费米晶格气体，并实现站点分辨、组分分辨读出；在此基础上，对三味 Hubbard 模型的相图给出实验约束，尤其是与 flavor-selective localization 和 selective pairing 相关的观测线索；同时用 NLCE 作为理论对照，为后续寻找半填充下的 pair Mott phase、color superfluidity 等更复杂 SU(3)/多组分关联相提供实验平台。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -571,23 +509,23 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题，可能是：在行为改变研究中，如何超越基于群体平均效应的传统范式，建立能够刻画和检验“个体层面”行为变化规律的科学框架；或者更直接地说，如何针对单个个体而非平均受试者来理解、预测和改变行为。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要中的“is tested”推测，论文不只是观点评论，而可能包含某种实证测试。可能的方法路径包括：使用个体纵向行为数据追踪同一人的变化；比较群体模型与个体化模型在预测或干预效果上的差异；采用N-of-1、微随机试验、数字行为干预、可穿戴/手机数据采集，或个体内因果分析框架。由于摘要未提供任何数据与方法细节，这些都只是基于题名和领域语境的谨慎推断，必须以正文核实。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点在于其问题设定本身：把“个体”作为行为科学的核心分析对象。如果论文确实给出了可操作的测试框架，那么它可能同时具有理论和方法价值：理论上重新界定行为改变证据应如何建立；方法上推动高频、个体化、动态数据的使用；应用上可能服务于精准健康、个体化数字干预和临床决策。发表在Science也提示其潜在影响力较高，可能代表一个跨学科方法论信号。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，打开DOI页面确认论文类型、完整作者列表和摘要全文；第二，优先查看标题页、摘要、引言最后一段，定位“新范式”的明确定义；第三，查图1和方法概览，记录研究对象、行为任务、数据来源、样本量和主要比较基线；第四，若你关注个体化干预或N-of-1设计，专门检查论文是否报告个体内效应估计、时间分辨率和异质性分析；第五，建立一个核对清单：行为对象是什么、干预是什么、证据来自何种实验、结论适用于哪些场景、与传统群体模型相比改进在哪里。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何在实验上实现并直接探测三组分费米 Hubbard 晶格体系，从而研究相较于传统两组分 SU(2) Hubbard 模型更丰富的多组分关联相；以及在可达到的低温下，是否能在三味体系中看到味道选择性局域化、选择性配对等相图特征。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法是超冷原子量子模拟实验：制备处于 Hubbard 区域的三组分费米晶格气体，利用量子气体显微镜进行单格点成像，并进一步实现 flavor-resolved 探测；通过改变实验控制参数来测量相图相关观测量；再将实验结果与数值链簇展开（numerical linked-cluster expansion, NLCE）计算比较，以解释热力学与局域关联信号。可预期的数据类型包括不同 flavor 的站点占据分布、局域关联、可能的双占据/三占据统计以及随温度或填充变化的空间纹理。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是实验能力的推进：三组分费米 Hubbard 体系的站点分辨且组分分辨探测，本身就是重要平台性成果。第二个亮点是研究对象具体而前沿，不是泛泛讨论多组分模型，而是直接针对三味 Hubbard 相图中的 flavor-selective localization 和 selective pairing。第三个亮点是实验与 NLCE 对照，这意味着结果并非孤立现象展示，而是试图嵌入可计算的强关联模型框架。第四个亮点是明确指向 pair Mott phase 和 color superfluidity，使该工作与更广泛的 SU(3) 强关联和类 QCD 量子模拟问题相连接。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先查论文主图和补充材料，确认三种 flavor 的具体实现方式、成像方案和可观测量定义；2）重点核对 flavor-selective localization 与 selective pairing 分别对应哪张图、哪种统计量、在哪些参数区间出现；3）记录实验与 NLCE 比较时使用的横纵轴变量、温度范围和拟合假设；4）若你的研究涉及多组分 Hubbard、SU(3) 模型或冷原子显微成像，可直接整理一张“实验可测量量—理论相指标”对照表，判断哪些量可用于你自己的模型或数据分析；5）特别核实作者是否已经接近半填充 pair Mott phase 的前驱区，还是仅提出未来路线。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题，可能是：在行为改变研究中，如何超越基于群体平均效应的传统范式，建立能够刻画和检验“个体层面”行为变化规律的科学框架；或者更直接地说，如何针对单个个体而非平均受试者来理解、预测和改变行为。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要中的“is tested”推测，论文不只是观点评论，而可能包含某种实证测试。可能的方法路径包括：使用个体纵向行为数据追踪同一人的变化；比较群体模型与个体化模型在预测或干预效果上的差异；采用N-of-1、微随机试验、数字行为干预、可穿戴/手机数据采集，或个体内因果分析框架。由于摘要未提供任何数据与方法细节，这些都只是基于题名和领域语境的谨慎推断，必须以正文核实。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点在于其问题设定本身：把“个体”作为行为科学的核心分析对象。如果论文确实给出了可操作的测试框架，那么它可能同时具有理论和方法价值：理论上重新界定行为改变证据应如何建立；方法上推动高频、个体化、动态数据的使用；应用上可能服务于精准健康、个体化数字干预和临床决策。发表在Science也提示其潜在影响力较高，可能代表一个跨学科方法论信号。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前信息不足是最大局限。摘要过短，无法确认论文类型（研究论文、政策论坛、观点文章或综述式评论）、具体行为任务、样本与数据、实验设计、统计证据和主要发现。题名中的“science of the individual”也可能带有概念性或倡议性色彩，而不一定意味着严格的新实验方法已成熟。另需警惕作者与元数据可能不完整，正式解读前应核对原文作者列表、栏目类型和补充材料。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，打开DOI页面确认论文类型、完整作者列表和摘要全文；第二，优先查看标题页、摘要、引言最后一段，定位“新范式”的明确定义；第三，查图1和方法概览，记录研究对象、行为任务、数据来源、样本量和主要比较基线；第四，若你关注个体化干预或N-of-1设计，专门检查论文是否报告个体内效应估计、时间分辨率和异质性分析；第五，建立一个核对清单：行为对象是什么、干预是什么、证据来自何种实验、结论适用于哪些场景、与传统群体模型相比改进在哪里。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>可用信息非常有限：题名强调“individual”，摘要仅说“测试了一种行为改变的新范式”，没有给出具体行为类型、受试对象、实验场景、样本量、数据来源、统计方法或主要结果。因此不能判断它研究的是健康行为、消费行为、学习行为，还是临床/公共卫生中的依从性问题。尽管如此，题名与摘要共同提供了一个较明确线索：论文可能在挑战以群体平均效应为中心的经典行为科学做法，转而关注个体内部变化、个体异质性、时间序列行为数据，或基于个体特征进行自适应干预。若面向科研人员阅读，这篇文章最值得核对的是：1）“新范式”具体指什么，是理论框架、实验设计、统计建模，还是数字化干预平台；2）“tested”意味着有实证检验，但需确认是随机对照试验、N-of-1试验、纵向观察，还是方法学验证；3）行为改变的具体对象是什么，例如运动、饮食、戒烟、药物依从性、情绪调节或其他可测行为；4）证据是来自高频个体数据、可穿戴设备、手机传感器、问卷追踪，还是实验室任务；5）结论是否真正支持“个体科学”优于群体平均模型，还是仅展示其可行性。与可能从事行为科学、数字医学、个体化干预、因果推断或时间序列建模的读者相关，这篇论文潜在意义在于：它可能为如何在个体层面定义效应、设计干预和评估行为变化提供新的研究框架。但在没有全文和图表前，任何关于实验结果、效应大小、适用边界的判断都必须保留。另一个需要警惕的点是元数据中的作者仅列出“Peter Soyster”，这在Science论文中可能是不完整作者信息，正式引用前应核对原始页面。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何在实验上实现并直接探测三组分费米 Hubbard 晶格体系，从而研究相较于传统两组分 SU(2) Hubbard 模型更丰富的多组分关联相；以及在可达到的低温下，是否能在三味体系中看到味道选择性局域化、选择性配对等相图特征。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法是超冷原子量子模拟实验：制备处于 Hubbard 区域的三组分费米晶格气体，利用量子气体显微镜进行单格点成像，并进一步实现 flavor-resolved 探测；通过改变实验控制参数来测量相图相关观测量；再将实验结果与数值链簇展开（numerical linked-cluster expansion, NLCE）计算比较，以解释热力学与局域关联信号。可预期的数据类型包括不同 flavor 的站点占据分布、局域关联、可能的双占据/三占据统计以及随温度或填充变化的空间纹理。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是实验能力的推进：三组分费米 Hubbard 体系的站点分辨且组分分辨探测，本身就是重要平台性成果。第二个亮点是研究对象具体而前沿，不是泛泛讨论多组分模型，而是直接针对三味 Hubbard 相图中的 flavor-selective localization 和 selective pairing。第三个亮点是实验与 NLCE 对照，这意味着结果并非孤立现象展示，而是试图嵌入可计算的强关联模型框架。第四个亮点是明确指向 pair Mott phase 和 color superfluidity，使该工作与更广泛的 SU(3) 强关联和类 QCD 量子模拟问题相连接。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的局限有：第一，摘要只说观察到“signatures”，说明证据可能仍是间接的，未必足以无歧义确认某个相。第二，缺少关键实验细节，如原子种类、晶格维度、相互作用参数、温度定标、系统尺寸和误差分析，因此目前无法判断结果的普适性和定量精度。第三，摘要提到 pair Mott phase 是“进一步提高相空间密度后可能实现”，这表明该目标在本文中大概率尚未真正观测到。第四，若体系存在陷阱非均匀性、组分损失或 SU(3) 对称性破缺，可能会影响对“选择性局域化/配对”的解释，但这些信息在题录中都不可见。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先查论文主图和补充材料，确认三种 flavor 的具体实现方式、成像方案和可观测量定义；2）重点核对 flavor-selective localization 与 selective pairing 分别对应哪张图、哪种统计量、在哪些参数区间出现；3）记录实验与 NLCE 比较时使用的横纵轴变量、温度范围和拟合假设；4）若你的研究涉及多组分 Hubbard、SU(3) 模型或冷原子显微成像，可直接整理一张“实验可测量量—理论相指标”对照表，判断哪些量可用于你自己的模型或数据分析；5）特别核实作者是否已经接近半填充 pair Mott phase 的前驱区，还是仅提出未来路线。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作研究的具体对象是处于 Hubbard 区域的三组分费米晶格原子气体，而不是一般性的多体模型综述。其方法线索很明确：作者依赖量子气体显微镜，并且强调“site- and flavor-resolved detection”，说明实验上不仅能看到单个晶格位点占据，还能区分三种内部组分/“味道”的空间分布与关联。这一点对三味 Hubbard 模型尤其关键，因为许多预期相并不只是总密度变化，而是体现在不同 flavor 的不对称局域化、配对或占据统计上。摘要中提到“studied the phase diagram”，意味着实验变量大概率包括填充、相互作用强度、温度或化学势分布；但题录未给出具体扫描维度、晶格维度、原子种类、相互作用符号与大小，因此这些都需要后续核对。证据线索方面，摘要使用“found signatures of flavor-selective localization and selective pairing”，措辞是“信号/迹象”而非直接确认某一长程序，因此更可能是通过局域占据、双占据/多占据、组分相关函数、压缩率或空间分布重构得到的间接证据，而不是已经完整建立相边界。与 NLCE 比较说明作者试图把实验数据放到可计算的热平衡 Hubbard 框架中解释，这通常有助于温度标定、局域可观测量拟合和相图区域判别。对科研读者而言，这篇论文的价值主要在三个层面：第一，实验技术上证明三组分费米 Hubbard 体系已能做显微级别的 flavor-resolved 测量；第二，物理上给出多组分强关联体系中“选择性”现象的实验线索，超出传统 SU(2) Hubbard 图景；第三，应用前景上把冷原子平台进一步推向与量子色动力学启发问题相关的 color superfluidity、pair Mott phase 等方向。需要特别核对的信息包括：三种 flavor 是否近似 SU(3) 对称、是否存在显著组分不平衡；“selective pairing”具体指哪两种 flavor 之间的配对及其观测量；“temperatures down to the tunneling energy scale”对应的无量纲温度 T/t 或 T/U 数值；NLCE 比较的是哪些实验可观测量；以及摘要最后提到的 pair Mott phase 目前是理论展望还是已有前驱信号。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>A new paradigm for behavior change is tested</p>
+          <p>Hubbard systems are paradigmatic realizations of strongly correlated many-body systems. Introducing additional species breaks the SU(2) symmetry of the Hubbard model and leads to a wide variety of new exotic quantum phases. Here, we extended quantum gas microscopy to three-flavor Fermi lattice gases in the Hubbard regime. Relying on site- and flavor-resolved detection, we studied the phase diagram of the three-flavor Hubbard model and found signatures of flavor-selective localization and selective pairing at temperatures down to the tunneling energy scale. Our measurements were then compared with numerical linked-cluster expansion calculations. Further increase of phase space density may enable the observation of a distinct pair Mott phase at half filling and shows a path toward the study of color superfluidity and other aspects of quantum chromodynamics.</p>
         </details>
         
         </div>
@@ -603,16 +541,16 @@
         <span>Score 42.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.adt7185">Discovering molecular modulators with nanoswitch screening</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Discovering+molecular+modulators+with+nanoswitch+screening&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt7185%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Discovering+molecular+modulators+with+nanoswitch+screening%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Discovering+molecular+modulators+with+nanoswitch+screening&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt7185%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Discovering+molecular+modulators+with+nanoswitch+screening%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Discovering+molecular+modulators+with+nanoswitch+screening&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adt7185%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Discovering+molecular+modulators+with+nanoswitch+screening%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1126/science.aed8952">Targeting hormone conversion through dietary fiber improves polyendocrine metabolic ovarian syndrome</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Targeting+hormone+conversion+through+dietary+fiber+improves+polyendocrine+metabo&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed8952%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Targeting+hormone+conversion+through+dietary+fiber+improves+polyendocrine+metabolic+ovarian+syndrome%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Targeting+hormone+conversion+through+dietary+fiber+improves+polyendocrine+metabo&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed8952%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Targeting+hormone+conversion+through+dietary+fiber+improves+polyendocrine+metabolic+ovarian+syndrome%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Targeting+hormone+conversion+through+dietary+fiber+improves+polyendocrine+metabo&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aed8952%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Targeting+hormone+conversion+through+dietary+fiber+improves+polyendocrine+metabolic+ovarian+syndrome%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Clinton H. Hansen、Mark Lipstein、Sarah C. Erlandson、Tobias Schwalbe 等 8 人 · DOI: <a href="https://doi.org/10.1126/science.adt7185">10.1126/science.adt7185</a></div>
+      <div class="authors">Xinyu Qi、Hong Chen、Qixing Nie、Hongyu Niu 等 21 人 · DOI: <a href="https://doi.org/10.1126/science.aed8952">10.1126/science.aed8952</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该论文提出FIND（Functional Interaction–based Nanoswitch Discovery）方法，将DNA nanoswitch筛选、核苷酸编码文库与二代测序结合，用于超高通量发现能够诱导或增强蛋白-蛋白相互作用的分子调节剂。摘要给出的两个具体任务是：发现可稳定ACE2与SARS-CoV-2 RBD相互作用的纳米抗体，以及从DNA条形码小分子文库中发现PPARγ激动剂。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是提出一种可直接面向多体相互作用/三元复合体形成进行筛选的平台，而不是仅测单靶点结合；这对发现PPI稳定剂、诱导剂、分子胶样调节剂或依赖构象/伴侣蛋白的功能分子具有方法学价值。就摘要信息看，作者还展示了该平台同时适用于蛋白类分子（nanobody）和小分子文库，说明其在分子类型上的一定通用性。</p></div>
+        <div class="note"><strong>一句话</strong><p>该研究围绕多内分泌代谢性卵巢综合征（PMOS）中高雄激素这一核心表型，考察由菊粉、抗性淀粉和β-葡聚糖组成的膳食纤维组合是否能通过肠道菌群改变雄激素转化与稳态。摘要显示，作者在临床试验中观察到患者血浆雄激素下降，并提出Bacteroides xylanisolvens可将雄烯二酮转化为新命名的非雄激素性代谢物coproandrosterone，且该通路在小鼠中得到验证。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把“膳食纤维缓解PMOS”从一般代谢改善，推进到一个更具体的“肠菌介导的激素转化机制”框架：特定纤维组合提升Bacteroides xylanisolvens丰度，进而把雄烯二酮导向非雄激素性次级激素代谢物及其后续产物dihydro-coproandrosterone，从而为PMOS的益生元/益生菌干预提供了可操作的机制靶点。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -633,23 +571,85 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何以超高通量方式直接筛选“能诱导或增强蛋白-蛋白相互作用”的分子，而不是只筛单蛋白结合物；尤其是当目标机制涉及三元复合体或多体相互作用时，现有标准筛选方法在通量和直接性上都不足。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>按摘要推测，方法路径是把候选分子放入可由核苷酸序列标识的文库中，通过DNA nanoswitch把“目标蛋白之间是否因候选分子而形成/增强相互作用”转成可选择的分子状态，再经过富集和二代测序读出命中序列。作者分别在两类体系上验证：1）针对ACE2与SARS-CoV-2 RBD相互作用，筛选可稳定该复合体的nanobody；2）针对PPARγ，从DNA条形码小分子文库中筛选激动剂。这里隐含的关键实验应包括文库构建、nanoswitch状态判别、选择轮次、NGS富集分析，以及后续正交验证。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是把“功能性相互作用形成”而非“单点结合”作为筛选核心读出，这对PPI稳定剂、分子胶和别构调节剂发现尤其重要。第二个亮点是平台兼容不同分子类别：摘要同时给出nanobody和小分子两个案例。第三个亮点是测序驱动的超高通量潜力，如果文库规模和富集性能足够好，可能显著扩展传统低通量生化/生物物理筛选难以覆盖的化学或蛋白空间。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）优先查看论文图1和方法示意，弄清DNA nanoswitch如何把PPI增强转成可选择信号；2）记录两个验证案例的具体读出指标，如富集倍数、命中数、EC50/Kd或转录激活数据；3）查是否设置了无配体、非相关蛋白、失活突变体等负对照；4）对比该平台与DEL、噬菌体展示、mRNA display或传统HTS在文库规模、筛选对象和读出层面的差异；5）如果你的方向是PPI或分子胶，列出一个你关心的二元/三元复合体，评估其是否能被改写成类似的nanoswitch筛选体系。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：膳食纤维为何能够改善PMOS，尤其是它是否能直接降低患者体内过高的雄激素水平；如果能，这种作用是否源于肠道菌群对雄激素前体雄烯二酮的特异性生物转化，而非仅仅来自体重、胰岛素抵抗或炎症等间接改善。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要推测，研究路径至少包括三部分。第一，临床试验：对PMOS患者实施含菊粉、抗性淀粉和β-葡聚糖的膳食纤维组合干预，并检测血浆雄激素变化。第二，菌群与代谢机制分析：通过肠道微生物组成分析锁定Bacteroides xylanisolvens丰度升高，并结合甾体代谢检测追踪雄烯二酮向coproandrosterone及dihydro-coproandrosterone的转化。第三，动物验证：在小鼠模型中验证该激素代谢通路存在，可能涉及补充纤维、菌群操纵、代谢物检测或表型观察。由于只有摘要，尚不能确认是否使用了宏基因组、分离培养、体外酶促实验、稳定同位素示踪或无菌/抗生素模型。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点有三点。其一，研究把临床干预与机制验证连接起来，不停留在“纤维改善症状”的经验层面，而是落到具体激素底物、具体菌种和具体代谢产物。其二，提出并命名了一个非雄激素性次级激素代谢物coproandrosterone，说明作者可能进行了较深入的代谢物发现与鉴定工作。其三，机制链条具有转化潜力：既可从饮食配方角度开发益生元方案，也可从菌株角度探索Bacteroides xylanisolvens相关的活菌制剂或酶学靶点，用于调节PMOS中的雄激素稳态。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：1）先核对正文图表中临床试验设计、样本量、干预周期和主要终点；2）重点查找雄激素检测面板及统计结果，确认下降的是哪些具体激素；3）查看Bacteroides xylanisolvens证据来自相关性、分离培养还是定植因果实验；4）查代谢物鉴定图谱，确认coproandrosterone和dihydro-coproandrosterone的结构证据；5）若你做相关研究，可据此整理一个“纤维组合—菌种丰度—雄烯二酮转化—PMOS表型”的因果链清单，标出每一环目前证据等级与待复现节点。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何以超高通量方式直接筛选“能诱导或增强蛋白-蛋白相互作用”的分子，而不是只筛单蛋白结合物；尤其是当目标机制涉及三元复合体或多体相互作用时，现有标准筛选方法在通量和直接性上都不足。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>按摘要推测，方法路径是把候选分子放入可由核苷酸序列标识的文库中，通过DNA nanoswitch把“目标蛋白之间是否因候选分子而形成/增强相互作用”转成可选择的分子状态，再经过富集和二代测序读出命中序列。作者分别在两类体系上验证：1）针对ACE2与SARS-CoV-2 RBD相互作用，筛选可稳定该复合体的nanobody；2）针对PPARγ，从DNA条形码小分子文库中筛选激动剂。这里隐含的关键实验应包括文库构建、nanoswitch状态判别、选择轮次、NGS富集分析，以及后续正交验证。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是把“功能性相互作用形成”而非“单点结合”作为筛选核心读出，这对PPI稳定剂、分子胶和别构调节剂发现尤其重要。第二个亮点是平台兼容不同分子类别：摘要同时给出nanobody和小分子两个案例。第三个亮点是测序驱动的超高通量潜力，如果文库规模和富集性能足够好，可能显著扩展传统低通量生化/生物物理筛选难以覆盖的化学或蛋白空间。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要，仍需警惕几个边界。第一，尚不清楚FIND对非特异性桥连、DNA标签效应或构象偏置有多敏感。第二，ACE2-RBD稳定化是一个很具体的模型体系，其可推广到更弱、更动态或膜环境依赖的PPI仍待核对。第三，PPARγ激动剂案例虽然说明可筛小分子，但摘要没有说明命中是否新颖、效力如何、与现有筛选相比提升多少。第四，摘要未提供假阳性/假阴性控制、重复性、定量性能和与其他技术的基准比较，因此目前只能确认方法概念与示范，不能判断其普适成熟度。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）优先查看论文图1和方法示意，弄清DNA nanoswitch如何把PPI增强转成可选择信号；2）记录两个验证案例的具体读出指标，如富集倍数、命中数、EC50/Kd或转录激活数据；3）查是否设置了无配体、非相关蛋白、失活突变体等负对照；4）对比该平台与DEL、噬菌体展示、mRNA display或传统HTS在文库规模、筛选对象和读出层面的差异；5）如果你的方向是PPI或分子胶，列出一个你关心的二元/三元复合体，评估其是否能被改写成类似的nanoswitch筛选体系。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象不是某一个单独靶点，而是“能够调节蛋白-蛋白相互作用的分子发现流程”本身，尤其强调通过三元或多体复合体形成实现功能调节的分子。作者指出传统筛选的痛点在于：要么通量不足，要么不能直接读出多体相互作用，因此他们把DNA nanoswitch作为功能选择读出装置，把候选分子做成核苷酸可编码的文库，再用NGS进行富集后解码，构成FIND平台。摘要中的证据线索有两个：一是发现稳定ACE2-RBD相互作用的nanobody，说明平台可用于蛋白性结合体/抗体类分子的功能筛选；二是从DNA-barcoded small-molecule library中发现PPARγ agonist，说明平台也可用于小分子，并且筛选终点不只是“结合”，而是与受体活化相关的相互作用增强或诱导。对做化学生物学、PPI药物、分子胶、受体药理或高通量筛选的读者，这篇文章最值得关注的是：它是否把“功能性复合体形成”转化成了可扩展、可测序的选择问题，以及其假阳性控制、富集倍数、动态范围、文库规模和命中验证链条是否足够扎实。需要核对的信息包括：nanoswitch的物理构型与读出机制；候选分子如何与DNA编码关联；筛选是正选择、负选择还是多轮迭代；对照条件如何排除非特异桥连；ACE2-RBD案例中命中nanobody的稳定化幅度与生物学意义；PPARγ案例中激动剂是已知骨架再发现还是新化学型；以及该方法对弱相互作用、膜蛋白体系、复杂细胞环境的适用边界。由于目前只有摘要，不能判断命中数量、命中率、结构新颖性、定量活性和与现有DEL/展示技术相比的真实性能提升幅度。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：膳食纤维为何能够改善PMOS，尤其是它是否能直接降低患者体内过高的雄激素水平；如果能，这种作用是否源于肠道菌群对雄激素前体雄烯二酮的特异性生物转化，而非仅仅来自体重、胰岛素抵抗或炎症等间接改善。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要推测，研究路径至少包括三部分。第一，临床试验：对PMOS患者实施含菊粉、抗性淀粉和β-葡聚糖的膳食纤维组合干预，并检测血浆雄激素变化。第二，菌群与代谢机制分析：通过肠道微生物组成分析锁定Bacteroides xylanisolvens丰度升高，并结合甾体代谢检测追踪雄烯二酮向coproandrosterone及dihydro-coproandrosterone的转化。第三，动物验证：在小鼠模型中验证该激素代谢通路存在，可能涉及补充纤维、菌群操纵、代谢物检测或表型观察。由于只有摘要，尚不能确认是否使用了宏基因组、分离培养、体外酶促实验、稳定同位素示踪或无菌/抗生素模型。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点有三点。其一，研究把临床干预与机制验证连接起来，不停留在“纤维改善症状”的经验层面，而是落到具体激素底物、具体菌种和具体代谢产物。其二，提出并命名了一个非雄激素性次级激素代谢物coproandrosterone，说明作者可能进行了较深入的代谢物发现与鉴定工作。其三，机制链条具有转化潜力：既可从饮食配方角度开发益生元方案，也可从菌株角度探索Bacteroides xylanisolvens相关的活菌制剂或酶学靶点，用于调节PMOS中的雄激素稳态。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：第一，PMOS并非常见标准疾病命名，需核对其定义、诊断标准及与PCOS或其他代谢-生殖综合征的关系。第二，临床试验设计细节缺失，尚不清楚是否为随机、双盲、安慰剂对照，也不清楚样本量和效应量，因而无法判断临床证据强度。第三，摘要强调雄激素下降，但未说明是否伴随排卵、月经、卵巢形态、胰岛素敏感性或体重等关键临床终点改善。第四，Bacteroides xylanisolvens与激素转化之间是否为充分必要关系尚待核对，尤其要看是否有分离菌株直接转化实验和因果干预。第五，新代谢物命名虽有吸引力，但其化学结构、受体活性、体内丰度和安全性都需要从正文与补充材料确认。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：1）先核对正文图表中临床试验设计、样本量、干预周期和主要终点；2）重点查找雄激素检测面板及统计结果，确认下降的是哪些具体激素；3）查看Bacteroides xylanisolvens证据来自相关性、分离培养还是定植因果实验；4）查代谢物鉴定图谱，确认coproandrosterone和dihydro-coproandrosterone的结构证据；5）若你做相关研究，可据此整理一个“纤维组合—菌种丰度—雄烯二酮转化—PMOS表型”的因果链清单，标出每一环目前证据等级与待复现节点。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可见，研究对象是PMOS患者及对应小鼠模型，核心任务不是单纯证明膳食纤维“有益”，而是解释其是否能降低循环雄激素，以及这种作用是否由特定肠道微生物和激素代谢反应介导。临床部分的直接证据线索是：给予由菊粉、抗性淀粉、β-葡聚糖构成的膳食纤维组合后，患者血浆雄激素浓度下降。机制部分的证据链条是：膳食纤维提高Bacteroides xylanisolvens丰度；该菌可将雄烯二酮转化为作者命名的coproandrosterone；该产物进一步被肠道菌群代谢为dihydro-coproandrosterone；这一代谢路径在小鼠模型中得到验证。就科研价值而言，这项工作把PMOS/高雄激素表型、饮食干预、肠道菌群组成变化和甾体激素生物转化连接成一条较完整的因果候选链，尤其适合关注肠菌-内分泌互作、女性生殖代谢疾病、甾体代谢组学和微生物治疗开发的读者。需要重点核对的信息包括：临床试验样本量、是否随机对照、干预时长、患者基线特征、雄激素检测指标具体为何（如睾酮、雄烯二酮、游离雄激素指数等）、Bacteroides xylanisolvens丰度变化的统计强度、coproandrosterone与dihydro-coproandrosterone的结构鉴定方法、菌株水平而非属种相关性的证据、以及小鼠实验是否通过定植/去菌/补菌等方式支持因果性。若你的研究方向涉及微生物代谢工程、内分泌代谢疾病或功能性膳食干预，这篇论文最值得关注的是其提出了一个可测量、可干预、可转化的激素去活化通路，而不仅是相关性描述。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Molecules that modulate protein-protein interactions, including through ternary complex formation, have been established as key therapeutics. Yet they can be challenging to discover, as standard screening approaches often lack throughput or fail to directly assay multibody interactions. We addressed this by combining DNA nanoswitch–based selection of nucleotide-encoded libraries with next-generation sequencing to create FIND (Functional Interaction–based Nanoswitch Discovery), which enables ultrahigh-throughput discovery of compounds that induce or increase protein-protein interactions. We demonstrate FIND by discovering nanobodies that stabilize the interaction between angiotensin-converting enzyme 2 and the receptor-binding domain of severe acute respiratory syndrome coronavirus 2 and by discovering agonists of peroxisome proliferator–activated receptor gamma from a DNA-barcoded small-molecule library. By enabling rapid discovery of molecular modulators, FIND could lead to new therapeutics across many conditions.</p>
+          <p>Excessive androgens serve as a primary driver for many phenotypic features of polyendocrine metabolic ovarian syndrome (PMOS). Although dietary fiber has been shown to alleviate PMOS, its effects on androgen concentrations and the underlying mechanisms remain unclear. In a clinical trial, we demonstrated that a dietary fiber combination consisting of inulin, resistant starch, and β-glucan reduces androgen concentrations in patients’ plasma. Mechanistically, dietary fiber increased the abundance of Bacteroides xylanisolven s, which converts androstenedione into a nonandrogenic secondary hormone metabolite we named coproandrosterone, which is further metabolized by gut microbiota into dihydro-coproandrosterone. This metabolic pathway was validated in a mouse model. These findings highlight the potential of dietary fiber to alleviate PMOS by modulating androgen homeostasis through gut microbiota, offering insights for prebiotic and probiotic therapies.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Science</span>
+        <span>2026-11-05</span>
+        <span>Score 42.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>7. <a href="https://doi.org/10.1126/science.aeg3800">Direct evidence for psychoactive cannabis use 2800 years ago</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Direct+evidence+for+psychoactive+cannabis+use+2800+years+ago&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg3800%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Direct+evidence+for+psychoactive+cannabis+use+2800+years+ago%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Direct+evidence+for+psychoactive+cannabis+use+2800+years+ago&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg3800%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Direct+evidence+for+psychoactive+cannabis+use+2800+years+ago%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Direct+evidence+for+psychoactive+cannabis+use+2800+years+ago&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aeg3800%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Direct+evidence+for+psychoactive+cannabis+use+2800+years+ago%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Gino Caspari、Timur Sadykov、Daria Fomicheva、Jegor Blochin 等 9 人 · DOI: <a href="https://doi.org/10.1126/science.aeg3800">10.1126/science.aeg3800</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Science论文围绕“2800年前是否已存在以精神活性为目的的大麻使用”这一具体考古问题展开，研究对象是西伯利亚一处大型墓葬中出土的人类毛发及植物供品。根据摘要，作者声称通过植物遗存与毛发中的化学成分提供了迄今最早的直接证据，指向史前人群对大麻精神活性特性的利用。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把关于古代大麻使用的讨论，从间接推测推进到“墓葬场景中的植物材料+人体毛发化学证据”的直接证据链；若摘要表述成立，其重要性在于同时锚定了时间（约2800年前）、地点（西伯利亚/欧亚草原相关区域）和用途（精神活性消费而非单纯纤维或仪式象征）。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Science</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>42.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：能否在约2800年前的考古个体身上，找到足以证明其使用精神活性大麻的直接证据，而不是仅凭器物、种子、纤维、焚烧痕迹或文献进行间接推断；进一步地，这种使用是否能被放入欧亚范围内的大麻传播与活性利用历史中解释。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，研究路径应包括：1）对西伯利亚纪念性墓葬进行考古学情境分析，确认样本来源与年代；2）对墓葬中的植物部分进行鉴定，判断其是否为大麻相关供品；3）从古代人类毛发中提取并检测化学成分，寻找与大麻使用相关的分子证据；4）将植物遗存与人体化学证据结合，建立“场景中的植物存在”与“个体实际暴露/消费”之间的联系；5）在区域尺度上讨论欧亚野生大麻种群活性成分差异及其文化利用。具体技术上大概率涉及显微/形态学鉴定、放射性碳测年、以及GC-MS或LC-MS等分析，但摘要未明示。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是证据类型的组合：不是单一植物遗存，也不是单一化学信号，而是墓葬供品与人体毛发化学分析的并置，这使“精神活性使用”的论证潜力明显强于传统间接证据。第二个亮点是研究对象具有明确时间锚点和考古背景，若年代与样本关联可靠，可显著推进古代大麻使用史的时间下限。第三个亮点是其跨学科意义较强，连接考古学、分析化学、植物利用史和当代大麻相关政策/医学讨论。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文或补充材料中毛发检测到的具体化合物及分析平台；2）记录样本数量、个体身份、墓葬分层与年代测定方法；3）核对作者如何排除现代污染和埋藏污染；4）查其引用的“最早直接证据”比较对象，建立一张时间线；5）若你的研究涉及古代药物/致幻物证据标准，可把本文的证据链拆成“植物鉴定—人体样本—化学标志物—考古情境”四个环节，逐项评估可复用性。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：能否在约2800年前的考古个体身上，找到足以证明其使用精神活性大麻的直接证据，而不是仅凭器物、种子、纤维、焚烧痕迹或文献进行间接推断；进一步地，这种使用是否能被放入欧亚范围内的大麻传播与活性利用历史中解释。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，研究路径应包括：1）对西伯利亚纪念性墓葬进行考古学情境分析，确认样本来源与年代；2）对墓葬中的植物部分进行鉴定，判断其是否为大麻相关供品；3）从古代人类毛发中提取并检测化学成分，寻找与大麻使用相关的分子证据；4）将植物遗存与人体化学证据结合，建立“场景中的植物存在”与“个体实际暴露/消费”之间的联系；5）在区域尺度上讨论欧亚野生大麻种群活性成分差异及其文化利用。具体技术上大概率涉及显微/形态学鉴定、放射性碳测年、以及GC-MS或LC-MS等分析，但摘要未明示。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是证据类型的组合：不是单一植物遗存，也不是单一化学信号，而是墓葬供品与人体毛发化学分析的并置，这使“精神活性使用”的论证潜力明显强于传统间接证据。第二个亮点是研究对象具有明确时间锚点和考古背景，若年代与样本关联可靠，可显著推进古代大麻使用史的时间下限。第三个亮点是其跨学科意义较强，连接考古学、分析化学、植物利用史和当代大麻相关政策/医学讨论。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前最大局限是关键信息缺失：未说明样本量、个体数量、化合物名称、检测方法、污染控制、阴性/阳性对照、统计稳健性和年代测定细节。其次，“最早直接证据”的说法需要与既有关于帕米尔高原焚烧残留、墓葬植物遗存、古代吸食装置等研究逐一比较，摘要本身不足以判断其优先性是否无争议。再次，毛发中的化学信号如何区分主动摄入、被动暴露、烟熏环境沉积或埋藏后污染，是解释上的关键风险。最后，关于“某些野生种群天然更高活性成分”的论断，在摘要中更像推测性延伸，是否有直接数据支持需要谨慎核对。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文或补充材料中毛发检测到的具体化合物及分析平台；2）记录样本数量、个体身份、墓葬分层与年代测定方法；3）核对作者如何排除现代污染和埋藏污染；4）查其引用的“最早直接证据”比较对象，建立一张时间线；5）若你的研究涉及古代药物/致幻物证据标准，可把本文的证据链拆成“植物鉴定—人体样本—化学标志物—考古情境”四个环节，逐项评估可复用性。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅依据题名、期刊来源、摘要和元数据，这项研究的中心对象非常明确：西伯利亚一座纪念性墓葬中的古代人类毛发，以及与之相关的植物供品。作者试图回答的不是“大麻是否在古代存在”，而是更具体的“古人是否实际摄入/使用了具有精神活性的 cannabis，并且能否用直接生物化学证据证明”。摘要给出的证据线索有两条：第一，墓葬中的植物部分被识别为大麻相关供品；第二，古代人类毛发中检测到化学化合物，且这些化合物被解释为与大麻使用有关。若这一逻辑成立，毛发分析应是关键，因为它比单纯发现植物种子、纤维或燃烧残留更接近“个体层面的实际暴露/摄入”。从方法上推测，研究很可能结合了考古发掘背景记录、植物考古/形态学鉴定，以及针对毛发和植物残留的化学分析，后者可能涉及色谱-质谱类技术以识别大麻素或其相关标志物。但摘要没有给出具体化合物名称、检测限、污染控制、样本量、对照样本、年代测定方式，也没有说明是检测到THC、其降解产物，还是其他较稳定的相关分子，因此这些都必须在阅读全文时重点核对。摘要还提出一个更大的解释框架：欧亚地区某些野生种群可能天然具有更高的活性成分水平。这意味着论文可能不仅报告单点发现，还试图介入大麻驯化、传播与化学型演化的讨论。不过仅凭摘要，尚不能判断作者是否真正提供了群体遗传、植物化学地理或系统比较数据，还是仅作推论。对科研读者而言，这篇文章的价值主要在三个方向：一是考古学/生物考古中“直接消费证据”的建立方式；二是古代药物、致幻物或仪式性植物研究中的证据标准；三是现代关于医药、公共卫生、法律和产业讨论中，历史深度如何被科学证据而非文化想象所支撑。需要特别核对的信息包括：墓葬的精确年代依据；毛发样本是否为原位、是否存在后期渗入污染；植物供品与毛发是否来自同一埋藏事件；检测到的具体化合物及其解释是否足以区分摄入、接触、熏蒸或环境污染；“最早直接证据”的比较基线是哪些既有研究。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Cannabis is the world’s most-used illicit psychoactive plant, yet direct prehistoric evidence for its consumption is rare. In this study, we present the earliest direct evidence of cannabis use: offerings of plant parts and chemical compounds in ancient human hair recovered from a monumental tomb in Siberia. The findings suggest that the plant was used for its psychoactive qualities across Eurasia, where specific wild populations might have had naturally higher active compound levels. We show that the practice of cannabis consumption dates back at least 2800 years, anchoring debates around contemporary usage and informing discussions on cannabis in medicine, public health, law, and industry.</p>
         </details>
         
         </div>
@@ -665,16 +665,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11177-0">Decoding the regulatory programs governing glioblastoma plasticity</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Decoding+the+regulatory+programs+governing+glioblastoma+plasticity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11177-0%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Decoding+the+regulatory+programs+governing+glioblastoma+plasticity%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Decoding+the+regulatory+programs+governing+glioblastoma+plasticity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11177-0%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Decoding+the+regulatory+programs+governing+glioblastoma+plasticity%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Decoding+the+regulatory+programs+governing+glioblastoma+plasticity&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11177-0%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Decoding+the+regulatory+programs+governing+glioblastoma+plasticity%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11187-y">A conserved flowering-time module underlies double-season cropping</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+conserved+flowering-time+module+underlies+double-season+cropping&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11187-y%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+A+conserved+flowering-time+module+underlies+double-season+cropping%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+conserved+flowering-time+module+underlies+double-season+cropping&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11187-y%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+A+conserved+flowering-time+module+underlies+double-season+cropping%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+conserved+flowering-time+module+underlies+double-season+cropping&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11187-y%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+A+conserved+flowering-time+module+underlies+double-season+cropping%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Manu Saraswat、Laura Rueda-Gensini、Elisa Heinzelmann、Tannia Gracia 等 25 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11177-0">10.1038/s41586-026-11177-0</a></div>
+      <div class="authors">Guangqi Gao、Congcong Jiang、Wenxue Wu、Jinhong Kan 等 23 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11187-y">10.1038/s41586-026-11187-y</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该研究聚焦胶质母细胞瘤（glioblastoma）中的非遗传性细胞可塑性，试图解析其是否由可预测的基因调控程序而非随机状态切换所驱动。作者提出单细胞深度多组学调控推断框架 scDORI，并将其用于超过一百万个原发胶质母细胞瘤细胞的单核 multiome 数据，以重建增强子驱动的单细胞基因调控网络和状态转变图谱。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能有三点：第一，提出了一个名为 scDORI 的深度学习框架，用于在单细胞分辨率下从多组学数据中推断增强子驱动的基因调控网络；第二，在大规模原发胶质母细胞瘤单核 multiome 数据上，结合患者来源模型中的系统扰动筛选，提出胶质母细胞瘤可塑性受“激活因子与抑制因子非对称互作”的结构化调控程序支配；第三，给出一个层级化且可预测、但又允许异常跨谱系轨迹的状态转变景观，并指出某些低可塑性状态（如 neuronal-like state）并非被动终末分化，而是主动维持的细胞配置。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦“开花时间调控模块”与“双季种植”之间的关系，研究对象很可能是作物的保守遗传调控网络及其在一年两熟/双季栽培中的作用。由于当前未提供摘要和关键词，能确认的核心任务仅限于：识别一个跨物种或跨作物保守的花期模块，并说明其如何支撑双季种植制度。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是提出并验证了一个“保守的开花时间模块”，将基础生物学中的花期调控与农业生产中的双季种植适应性直接联系起来；如果证据充分，这类工作可能为作物熟期设计、区域适应性育种和多熟制栽培优化提供统一的遗传学框架。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -695,31 +695,90 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：胶质母细胞瘤在治疗抵抗和进展过程中表现出的细胞状态可塑性，究竟是随机状态切换，还是由可识别、可预测的增强子驱动基因调控网络所支配；以及这种调控程序如何组织不同肿瘤细胞状态之间的层级关系、跨谱系转变和低可塑性状态的维持。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，研究路径包括：1）采集原发胶质母细胞瘤的大规模单核 multiome 数据，细胞数超过一百万；2）开发深度学习框架 scDORI，在单细胞层面整合多组学信号，推断增强子驱动的基因调控网络；3）基于推断网络构建细胞状态转变景观，分析激活因子与抑制因子的作用结构；4）在患者来源模型中开展系统扰动筛选，对关键调控因子、状态维持机制或转变方向进行实验验证。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点包括：一是数据规模极大，若样本覆盖充分，可能显著提升对稀有状态和转变路径的解析能力；二是把增强子层面的调控信息纳入单细胞网络推断，而非仅基于表达相关性；三是计算推断与患者来源模型扰动筛选结合，具备从相关到因果验证的潜力；四是结果不止停留在状态分类，而是试图给出层级化、可预测的转变景观，并解释异常跨谱系可塑性，这对肿瘤演化和耐药研究都很有价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查论文图1和方法部分，确认 scDORI 的输入模态、网络输出对象以及与哪些现有方法比较；2）记录样本设计：患者数、原发/复发、治疗状态、是否含空间或临床分层；3）重点看扰动筛选图，列出被验证的关键激活因子和抑制因子；4）核对“hierarchical and predictable”是否有定量评估指标；5）特别查看 neuronal-like state 的实验支持，判断其是转录状态、染色质状态还是功能状态上的“主动维持”。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，按题名推断，是：双季种植这一农业生产制度背后的关键遗传基础是什么？更具体地说，作者可能在问：是否存在一个保守的开花时间调控模块，能够决定作物是否能在有限生长季内完成两季生产，或者决定不同品种对双季栽培窗口的适应能力。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括：1）比较不同熟期、不同生态型或单双季适应材料的花期与生育期表型；2）利用群体基因组学、QTL定位、GWAS或单倍型分析寻找与双季适应相关的花期位点；3）通过转录组、时序表达或调控网络分析定义“flowering-time module”；4）使用基因编辑、近等基因系、转基因互补或突变体进行功能验证；5）在田间或多环境试验中检验该模块对双季种植可行性、成熟期压缩或季节适配的影响。由于摘要缺失，这些都属于高概率但未证实的推断。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，把基础发育调控模块与明确的农业制度“双季种植”连接起来，问题导向非常具体。第二，题名中的“conserved”意味着结果可能具有跨材料甚至跨物种外推价值，不局限于单一品种现象。第三，如果论文确实建立了从等位变异到田间制度适应的证据链，那么它对育种应用会很强，尤其适用于熟期设计、区域化品种配置和多熟制优化。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要，确认研究作物、核心基因/模块名称和主要证据类型；2）优先查看题图、图1和结果小标题，判断论文是单作物机制研究还是跨物种比较；3）记录所有与flowering time、photoperiod、maturity、double-season adaptation相关的具体术语；4）如果你做育种或基因组学，重点查是否有可直接利用的等位变异、分子标记或编辑靶点；5）在阅读前先列出三个核对问题：研究对象是谁、模块由什么组成、双季种植效应如何被定量证明。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：胶质母细胞瘤在治疗抵抗和进展过程中表现出的细胞状态可塑性，究竟是随机状态切换，还是由可识别、可预测的增强子驱动基因调控网络所支配；以及这种调控程序如何组织不同肿瘤细胞状态之间的层级关系、跨谱系转变和低可塑性状态的维持。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，研究路径包括：1）采集原发胶质母细胞瘤的大规模单核 multiome 数据，细胞数超过一百万；2）开发深度学习框架 scDORI，在单细胞层面整合多组学信号，推断增强子驱动的基因调控网络；3）基于推断网络构建细胞状态转变景观，分析激活因子与抑制因子的作用结构；4）在患者来源模型中开展系统扰动筛选，对关键调控因子、状态维持机制或转变方向进行实验验证。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点包括：一是数据规模极大，若样本覆盖充分，可能显著提升对稀有状态和转变路径的解析能力；二是把增强子层面的调控信息纳入单细胞网络推断，而非仅基于表达相关性；三是计算推断与患者来源模型扰动筛选结合，具备从相关到因果验证的潜力；四是结果不止停留在状态分类，而是试图给出层级化、可预测的转变景观，并解释异常跨谱系可塑性，这对肿瘤演化和耐药研究都很有价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要需要警惕的局限有：1）scDORI 的具体建模假设、可解释性和泛化能力尚不清楚，深度学习推断的调控边是否稳健需要看基准比较；2）“超过一百万细胞”不等于患者数充足，若患者层面覆盖不足，可能混淆个体差异与普遍规律；3）患者来源模型虽有验证价值，但与原位肿瘤微环境仍有差距，跨谱系轨迹是否在体内同样成立需要核对；4）摘要未说明治疗前后、空间位置、复发样本等设计，因而对“进展”和“耐药”的直接支撑程度尚不明确；5）关于 neuronal-like state 为“主动维持配置”的结论，需要查看具体扰动证据和稳定性定义。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查论文图1和方法部分，确认 scDORI 的输入模态、网络输出对象以及与哪些现有方法比较；2）记录样本设计：患者数、原发/复发、治疗状态、是否含空间或临床分层；3）重点看扰动筛选图，列出被验证的关键激活因子和抑制因子；4）核对“hierarchical and predictable”是否有定量评估指标；5）特别查看 neuronal-like state 的实验支持，判断其是转录状态、染色质状态还是功能状态上的“主动维持”。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、Nature 来源、摘要和元数据，这篇论文的研究对象非常明确：原发胶质母细胞瘤中的细胞状态可塑性及其调控机制。其科学背景是，胶质母细胞瘤在治疗过程中表现出顽固耐药和进展，但基因组在治疗下相对稳定，因此作者将重点放在非遗传层面的状态转换与调控网络上。摘要提出的核心科学问题不是简单描述肿瘤异质性，而是进一步区分：这些状态变化究竟是随机漂移，还是由可推断、可预测的调控程序所组织。
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，按题名推断，是：双季种植这一农业生产制度背后的关键遗传基础是什么？更具体地说，作者可能在问：是否存在一个保守的开花时间调控模块，能够决定作物是否能在有限生长季内完成两季生产，或者决定不同品种对双季栽培窗口的适应能力。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括：1）比较不同熟期、不同生态型或单双季适应材料的花期与生育期表型；2）利用群体基因组学、QTL定位、GWAS或单倍型分析寻找与双季适应相关的花期位点；3）通过转录组、时序表达或调控网络分析定义“flowering-time module”；4）使用基因编辑、近等基因系、转基因互补或突变体进行功能验证；5）在田间或多环境试验中检验该模块对双季种植可行性、成熟期压缩或季节适配的影响。由于摘要缺失，这些都属于高概率但未证实的推断。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，把基础发育调控模块与明确的农业制度“双季种植”连接起来，问题导向非常具体。第二，题名中的“conserved”意味着结果可能具有跨材料甚至跨物种外推价值，不局限于单一品种现象。第三，如果论文确实建立了从等位变异到田间制度适应的证据链，那么它对育种应用会很强，尤其适用于熟期设计、区域化品种配置和多熟制优化。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是信息严重不足：摘要为空，关键词为空，无法确认研究对象、实验设计、样本规模、核心基因、证据强度和结论边界。因此需要警惕两类风险：一是把题名中的“module”过度理解为完整机制闭环，实际可能只是统计关联网络；二是把“double-season cropping”过度泛化为所有多熟制场景，实际可能只针对某一作物、某一地区或某一生态条件。另一个需要注意的边界是，花期调控与双季种植之间可能存在产量、抗逆性或资源利用效率上的权衡，题名本身并未说明是否已系统评估。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要，确认研究作物、核心基因/模块名称和主要证据类型；2）优先查看题图、图1和结果小标题，判断论文是单作物机制研究还是跨物种比较；3）记录所有与flowering time、photoperiod、maturity、double-season adaptation相关的具体术语；4）如果你做育种或基因组学，重点查是否有可直接利用的等位变异、分子标记或编辑靶点；5）在阅读前先列出三个核对问题：研究对象是谁、模块由什么组成、双季种植效应如何被定量证明。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名“A conserved flowering-time module underlies double-season cropping”看，论文关注的不是一般性的开花调控，而是一个能够解释“双季种植”这一明确农业制度的核心模块。这里的具体对象大概率包括：作物花期相关基因、调控通路、不同熟期材料或栽培型，以及与一年两熟适应性相关的表型数据。题名中的“conserved”提示作者可能比较了多个品种、亚群体，甚至多个物种，以证明该模块在进化或育种层面具有保守性；“underlies”则暗示作者不仅做相关性分析，还可能尝试建立因果链条，例如通过遗传定位、功能验证、表达调控分析或等位变异比较，说明该模块如何决定生育期压缩、季节转换适应或双季轮作可行性。
 
-方法上，摘要给出的信息较具体。作者开发了 scDORI（single-cell deep multi-omic regulatory inference），从命名和摘要表述看，它应是一个面向单细胞/单核多组学数据的深度学习推断框架，重点是把增强子信息与基因表达联系起来，构建增强子驱动的基因调控网络。这里的“single-nucleus multiome profiles”大概率指联合测量染色质可及性与转录组的单核多组学数据，且样本规模超过一百万细胞，这意味着模型既要处理超大规模数据，也要在单细胞层面建立调控边。摘要还提到“Integrating computational inference with systematic perturbation screens across patient-derived models”，说明作者并非只做计算推断，而是把网络推断结果拿到患者来源模型中做系统扰动验证，这一点对因果解释很关键。
+但由于摘要为空，当前无法确认以下关键信息：第一，研究对象究竟是哪一种作物，还是跨作物比较；第二，“module”是指少数关键基因组成的调控单元、一个更大的转录网络，还是遗传位点组合；第三，双季种植的定义是狭义的一年两熟，还是更广义的多熟制适应；第四，证据主要来自自然群体、育种材料、田间试验，还是分子机制实验。作者名单中包含多位研究者，且期刊为Nature，通常意味着工作可能整合了群体遗传学、基因组学、分子生物学和农艺表型，但这只能作为弱线索，不能替代摘要或正文证据。
 
-从结果线索看，论文主张胶质母细胞瘤可塑性并非无规则波动，而是由一个“structured regulatory program”控制，其中激活因子和抑制因子之间存在“asymmetric interplay”。这提示作者可能不仅识别了驱动状态转换的转录因子/增强子模块，还强调了抑制性调控在限制或定向状态转移中的作用。进一步地，作者提出一个“hierarchical and predictable”转变景观，意味着肿瘤细胞状态之间可能存在有序层级，而不是完全平坦的互转网络；但同时又允许“cross-lineage trajectories that are absent from normal neurodevelopment”，这说明肿瘤中的可塑性轨迹偏离正常神经发育程序，可能出现异常跨谱系重编程。摘要最后特别点名 neuronal-like state，指出这类低可塑性状态不是自然终点，而是主动维持的配置，这对理解“看似分化”的肿瘤细胞是否真正稳定具有直接意义。
+如果你的研究方向与作物遗传育种、花期调控、作物制度适应或农业基因组学相关，这篇论文值得重点关注的原因在于：它可能把“花期”这一经典性状从单纯的发育时间控制，提升到“支撑双季种植制度形成与改良”的层面。也就是说，论文潜在价值不只是找到一个花期基因，而是提出一个可迁移到育种实践中的模块化框架，例如通过调控关键等位变异组合来匹配不同生态区的双季生产窗口。不过，在没有摘要的情况下，任何关于具体基因名称、实验体系、样本规模、统计显著性和产量效应的判断都必须保留。
 
-如果你的方向与肿瘤单细胞组学、调控网络推断、肿瘤可塑性、耐药机制或患者来源模型相关，这篇论文值得重点关注。它可能提供一个从多组学数据中推断增强子-基因-转录因子关系的通用框架，也可能为胶质母细胞瘤中的状态干预提供候选靶点，尤其是那些维持低可塑性或驱动跨谱系转换的调控因子。
+建议后续核对的信息包括：研究作物名称；涉及的核心基因/通路；是否有跨物种保守性证据；是否包含自然变异与人工编辑/转基因验证；双季种植相关表型如何量化；是否讨论了产量、成熟期、光周期敏感性和区域适应性之间的权衡。</p></div>
+          </div>
+          
+        </div>
+      </details>
+    
+    </article>
+    
 
-但需要明确的是，当前信息仅来自摘要，仍有多项关键内容必须核对：scDORI 的输入输出形式、与现有 GRN/peak-gene linking/trajectory 方法相比的性能基线、超过一百万细胞的数据来自多少患者和哪些临床条件、扰动筛选采用 CRISPR 还是其他方式、验证的是单个因子还是组合调控、所谓“predictable”是定性描述还是有定量预测指标、以及 neuronal-like state 的“主动维持”是通过何种实验读出支持的。这些都需要查正文和图表确认，不能仅凭摘要下结论。</p></div>
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-11-04</span>
+        <span>Score 40.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11209-9">Ecological and social cues orchestrate concerted courtship in Drosophila</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Ecological+and+social+cues+orchestrate+concerted+courtship+in+Drosophila&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11209-9%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Ecological+and+social+cues+orchestrate+concerted+courtship+in+Drosophila%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Ecological+and+social+cues+orchestrate+concerted+courtship+in+Drosophila&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11209-9%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Ecological+and+social+cues+orchestrate+concerted+courtship+in+Drosophila%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Ecological+and+social+cues+orchestrate+concerted+courtship+in+Drosophila&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11209-9%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Ecological+and+social+cues+orchestrate+concerted+courtship+in+Drosophila%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Philipp Brand、Katharine Keller、Rory T. Coleman、Noelle B. Eghbali 等 7 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11209-9">10.1038/s41586-026-11209-9</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文聚焦于Drosophila erecta求偶行为的环境依赖性，提出其交配并非仅由雌雄个体间信号决定，而是严格受食物斑块上的生态线索与群体社交线索共同调控。摘要显示作者进一步比较了D. erecta与D. melanogaster，试图用比较神经环路分析解释不同物种性唤起阈值及其对食物气味依赖程度的差异。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把果蝇求偶从“个体间配偶信号”框架扩展到“生态环境+群体动态+神经环路阈值”共同决定的框架：食物挥发物直接提升雄蝇性唤起，雄蝇在群体中的视觉运动又进一步放大这种唤起，形成跨个体协调的多感觉正反馈回路；同时，作者通过与D. melanogaster的比较，提出物种特异性的求偶依赖性可能源于嗅觉输入调制性唤起电路的方式不同。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>40.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在果蝇求偶中，决定交配发生的关键因素是否不仅是潜在配偶之间的感觉信号，还包括食物斑块上的生态线索和群体聚集产生的社会/视觉动态；以及不同果蝇物种为何对这些环境线索表现出不同程度的依赖，背后的神经环路阈值差异是什么。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的研究路径包括：在D. erecta中系统操纵食物挥发物、群体密度和视觉环境，测量雄蝇的性唤起、采样、追逐、求偶和交配结果；利用群体行为追踪量化个体间动态互动如何改变视觉场并反馈到行为；在D. melanogaster等近缘种中做平行行为测试，比较食物气味对求偶的必要性与促进性；再结合比较神经环路分析，测试嗅觉输入如何调制性唤起相关回路，从而改变物种特异性的行为阈值。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是把生态线索、社会线索和神经机制串成因果链，而不是只描述相关性。亮点二是研究对象具体且有进化比较维度：D. erecta与D. melanogaster的对照有助于把“严格依赖”与“可有可无的促进作用”区分开。亮点三是摘要提出了一个很强的机制框架：食物气味先启动雄蝇采样/追逐，群体运动再通过视觉反馈放大唤起，形成多感觉正反馈，这对理解群体中协调化求偶很有启发。亮点四是如果比较环路分析做得扎实，这项工作可能把行为生态差异直接连接到可定位的神经计算阈值。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查看正文或图1，确认D. erecta在无食物气味、低密度或视觉线索受限条件下的交配/求偶量化结果。第二，查找比较实验图，记录D. erecta与D. melanogaster在相同范式下的效应大小和统计显著性。第三，定位神经环路图或补充材料，确认被比较的神经元类型、操控方式和因果证据。第四，做一页阅读记录，按“食物气味→雄蝇采样/追逐→群体视觉运动→性唤起放大→协调求偶”的链条整理每一步对应的实验支持与未解问题。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在果蝇求偶中，决定交配发生的关键因素是否不仅是潜在配偶之间的感觉信号，还包括食物斑块上的生态线索和群体聚集产生的社会/视觉动态；以及不同果蝇物种为何对这些环境线索表现出不同程度的依赖，背后的神经环路阈值差异是什么。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的研究路径包括：在D. erecta中系统操纵食物挥发物、群体密度和视觉环境，测量雄蝇的性唤起、采样、追逐、求偶和交配结果；利用群体行为追踪量化个体间动态互动如何改变视觉场并反馈到行为；在D. melanogaster等近缘种中做平行行为测试，比较食物气味对求偶的必要性与促进性；再结合比较神经环路分析，测试嗅觉输入如何调制性唤起相关回路，从而改变物种特异性的行为阈值。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是把生态线索、社会线索和神经机制串成因果链，而不是只描述相关性。亮点二是研究对象具体且有进化比较维度：D. erecta与D. melanogaster的对照有助于把“严格依赖”与“可有可无的促进作用”区分开。亮点三是摘要提出了一个很强的机制框架：食物气味先启动雄蝇采样/追逐，群体运动再通过视觉反馈放大唤起，形成多感觉正反馈，这对理解群体中协调化求偶很有启发。亮点四是如果比较环路分析做得扎实，这项工作可能把行为生态差异直接连接到可定位的神经计算阈值。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与截断摘要，仍需警惕几类边界。第一，尚不清楚“严格依赖”是否在多实验条件下都成立，还是特定实验设置中的强表型。第二，摘要未给出样本量、效应大小、统计设计和关键对照，因此无法判断结论稳健性。第三，所谓视觉运动放大效应可能混杂一般唤醒、拥挤应激或活动性增加，而不一定特异于性唤起。第四，跨物种比较容易受生态背景、实验室适应、感觉灵敏度和基础运动差异影响，需看作者如何控制。第五，摘要最后部分被截断，关于“嗅觉输入调制何种回路”的具体对象目前信息不足。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查看正文或图1，确认D. erecta在无食物气味、低密度或视觉线索受限条件下的交配/求偶量化结果。第二，查找比较实验图，记录D. erecta与D. melanogaster在相同范式下的效应大小和统计显著性。第三，定位神经环路图或补充材料，确认被比较的神经元类型、操控方式和因果证据。第四，做一页阅读记录，按“食物气味→雄蝇采样/追逐→群体视觉运动→性唤起放大→协调求偶”的链条整理每一步对应的实验支持与未解问题。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从摘要可提取的具体研究对象是Drosophila erecta在高密度聚集于食物斑块时发生的求偶/交配行为，核心现象是：若缺少特定生态与社会环境，交配不会顺利发生；而在食物挥发物存在、且群体中个体频繁运动互动时，雄蝇的性唤起被逐步增强并协调化。证据线索上，摘要明确给出三层链条：第一，食物挥发物直接促进雄蝇性唤起，使其开始采样并追逐潜在配偶；第二，这种个体层面的追逐在群体中产生动态视觉运动，改变每只雄蝇的视觉场；第三，视觉运动进一步放大性唤起，构成多感觉反馈环，最终在群体尺度上协同促进求偶。比较部分则指出，这种对环境线索的严格依赖在近缘种中可能是“潜伏存在”的：例如D. melanogaster中食物气味也能促进唤起，但并非强烈求偶所必需，因此作者很可能通过跨物种行为测定与神经环路比较，定位“性唤起阈值”差异及其嗅觉调制机制。
+
+可能方法方面，虽然不能声称读过全文，但从Nature摘要措辞看，研究大概率结合了：受控行为实验（操纵食物气味、有无食物斑块、群体密度、视觉环境）、群体行为定量追踪（记录雄蝇采样、追逐、求偶启动与交配发生率）、感觉线索剥离或重建（单独提供嗅觉/视觉线索，或改变群体运动视觉输入）、以及比较神经环路分析（可能涉及神经元活动记录、遗传操控、跨物种回路比较）。摘要最后一句虽被截断，但已足以表明作者把物种差异归因于“嗅觉输入如何调制性唤起回路”的变异，而不是简单归因于外周感觉能力差异。
+
+对科研读者而言，这篇工作的重要性在于：它把求偶决策从经典的二体互动问题，推进为嵌入生态位与群体动力学中的状态调控问题。如果你的方向涉及动物行为、感觉整合、社会行为神经科学、群体行为建模或进化神经生物学，这篇论文值得重点关注，因为它可能提供了一个可实验拆解的“环境门控性唤起阈值”范式。需要核对的信息包括：1）D. erecta“strictly contingent”具体指交配完全不发生，还是显著下降；2）食物挥发物的具体化学成分与剂量；3）视觉运动放大效应是由同种个体运动、雌蝇运动还是任意运动刺激触发；4）比较环路分析具体落在何类神经元、脑区或递质系统；5）跨物种比较是否控制了生态位、实验室驯化程度和基础活动性差异。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Abstract Glioblastoma is incurable and resistant to therapy despite genomic stability under treatment 1–8 , suggesting that non-genetic cellular plasticity is a central driver of progression. Whether such plasticity reflects stochastic state switching or is governed by predictable gene regulation has remained unclear 9–13 . Here we introduce scDORI (single-cell deep multi-omic regulatory inference)—a deep-learning framework that infers enhancer-driven gene-regulatory networks at single-cell resolution—and apply it to single-nucleus multiome profiles of more than one million cells from primary glioblastomas. Integrating computational inference with systematic perturbation screens across patient-derived models, we show that a structured regulatory program with an asymmetric interplay of activators and repressors governs cellular plasticity in glioblastoma. The resulting transition landscape is hierarchical and predictable, but permits cross-lineage trajectories that are absent from normal neurodevelopment. Within this landscape, low-plasticity states such as the neuronal-like state are not stable differentiation end points but actively maintained configurations, stabilized by a network of safeguard repressors that silence alternative fates. We identify MYT1L as the dominant member of this network, and show that it binds to and represses master regulators of every alternative state to consolidate neuronal-like identity. MYT1L restricted plasticity even under standard-of-care therapy and suppressed tumour growth and invasion in vivo. Conversely, loss of MYT1L reactivated plasticity and accelerated malignant features, indicating that low-plasticity identity requires continuous repression. These findings reframe malignant cell state stability as a balance between activation and continuous repression, and nominate safeguard repressors as candidate therapeutic targets that are distinct from differentiation-inducing activators, with potential relevance across cancers in which phenotypic switching drives therapy resistance.</p>
+          <p>Abstract Mating decisions are often attributed to the sensory signalling between prospective sexual partners. Yet these interactions are also shaped by the broader environmental context in which they unfold, to appropriately align sexual arousal with reproductive opportunities 1–6 . Here we show that in Drosophila erecta mating is strictly contingent on the ecological and social environment generated as flies densely aggregate in groups on a food patch. We find that food volatiles directly promote male sexual arousal, triggering individuals to sample and pursue potential mates, giving rise to dynamic interactions across the group. The ensuing visual motion transforms each male’s visual field, which in turn further amplifies his arousal, generating a multisensory feedback loop that coordinately promotes courtship across individuals. D. erecta ’s strict dependence on environmental cues appears latent in related species, such as Drosophila melanogaster , where food odour can promote arousal 7 but is dispensable for vigorous courtship. Comparative circuit analyses show that species-specific thresholds for sexual arousal reflect variation in how olfactory input modulates conserved nodes controlling courtship drive, rendering food volatiles a strict sensory gate only in D. erecta . Together, our findings highlight how environmental cues not directly tied to sexual signalling can profoundly influence reproductive behaviour and reorganize the social landscape to ensure mating occurs in contexts where reproductive opportunities are abundant.</p>
         </details>
         
         </div>
@@ -735,16 +794,16 @@
         <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11133-y">Accelerating commercialization and deployment of indoor photovoltaics</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Accelerating+commercialization+and+deployment+of+indoor+photovoltaics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11133-y%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Accelerating+commercialization+and+deployment+of+indoor+photovoltaics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Accelerating+commercialization+and+deployment+of+indoor+photovoltaics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11133-y%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Accelerating+commercialization+and+deployment+of+indoor+photovoltaics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Accelerating+commercialization+and+deployment+of+indoor+photovoltaics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11133-y%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Accelerating+commercialization+and+deployment+of+indoor+photovoltaics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11148-5">Multimodal X-ray imaging reveals hierarchical fibre mechanics</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Multimodal+X-ray+imaging+reveals+hierarchical+fibre+mechanics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11148-5%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Multimodal+X-ray+imaging+reveals+hierarchical+fibre+mechanics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Multimodal+X-ray+imaging+reveals+hierarchical+fibre+mechanics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11148-5%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Multimodal+X-ray+imaging+reveals+hierarchical+fibre+mechanics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Multimodal+X-ray+imaging+reveals+hierarchical+fibre+mechanics&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11148-5%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Multimodal+X-ray+imaging+reveals+hierarchical+fibre+mechanics%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Tae Hyuk Kim、Yong Cui、Jianhui Hou、Yi Hou 等 18 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11133-y">10.1038/s41586-026-11133-y</a></div>
+      <div class="authors">Elis Newham、Alissa L. Parmenter、Jishizhan Chen、Catherine M. Disney 等 15 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11148-5">10.1038/s41586-026-11148-5</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦“室内光伏（indoor photovoltaics, IPV）的商业化与部署加速”这一具体任务，研究对象应是面向室内弱光供能场景的光伏器件及其产业落地路径。由于提供的摘要为空，目前只能依据题名与期刊信息判断：论文可能不只讨论器件效率，还会涉及稳定性、制造、标准化、应用场景与规模部署障碍。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是系统梳理或提出一套加速室内光伏从实验室走向商业应用的关键框架，具体可能涵盖材料/器件选择、室内光谱与照度条件下的性能评价、可靠性与寿命、与物联网终端的匹配，以及产业化部署中的成本和标准问题。但在摘要缺失的情况下，任何关于具体实验结果、效率数值、器件体系或验证场景的判断都需要后续核对。</p></div>
+        <div class="note"><strong>一句话</strong><p>该论文针对脊柱椎间盘中纤维环这一层级化胶原纤维组织，研究完整组织在受载时如何把纳米级胶原原纤维力学与微米级纤维组织变形耦合起来。摘要显示作者提出了一种名为TomoSAXS的三维小角X射线散射断层成像方法，用于在完整组织内绘制从原纤维到纤维尺度的力学分布，并定位局部力学调控区域。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于提出并应用TomoSAXS这一全场3D SAXS断层技术，在完整椎间盘组织中同时观察胶原原纤维分子预应变、原纤维应变与纤维尺度应变/组织构型之间的空间关联。摘要给出的主要科学发现包括：原纤维内部分子预应变（D-period stagger）呈现层板纹理化分布，并与微尺度纤维应变紧密相关；预应变与原纤维应变及其变异性呈反相关，提示可能存在通过分子解旋实现的载荷分担机制；纤维环-髓核界面的径向应变桥和高曲率区域可能是局部力学调控的关键结构。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -765,83 +824,25 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，应该是：为什么室内光伏虽然在弱光供能和物联网自供电方面具有明确应用前景，却仍难以快速实现商业化和大规模部署？更细化地说，论文可能在追问哪些技术指标、测试条件、器件架构、制造流程和系统集成因素，才真正决定IPV能否从实验室效率展示转向真实产品落地。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>在摘要缺失情况下，可能的方法路径包括：1）汇总或比较不同室内光源和照度条件下的器件性能数据；2）分析多类光伏技术在室内光谱匹配、弱光损失机制和稳定性方面的差异；3）结合具体应用负载，如传感器或IoT节点，建立系统级能量需求与光伏输出的匹配框架；4）讨论制造、封装、面积放大、可靠性测试和标准化评价；5）若为原创研究，也可能包含在真实室内环境中的部署验证或原型演示。需要特别核对是否有定量数据、对照实验和场景测试。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>题名显示其亮点可能在于把“室内光伏”从单点器件性能问题提升到“商业化与部署”层面，这对领域发展很关键。若文章确实覆盖真实室内光环境、应用负载匹配、标准测试、寿命与成本等内容，那么它的价值会体现在：研究目标更贴近终端需求；评价指标更接近产业可用性；能够帮助研究者避免只追求实验室高效率而忽视系统落地瓶颈。发表在Nature也意味着其论题具有较强领域整合性或方向引导性。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先确认论文类型（Article/Review/Perspective/Comment）；2）获取摘要并记录其明确研究对象与结论；3）优先查找文中是否给出室内光源类型、照度范围、器件体系、效率/功率密度/稳定性等关键表格或图；4）若你做器件研究，重点核对其是否提出新的测试标准或商业化判据；5）若你做系统或IoT应用，重点查找是否有真实负载与部署案例；6）建立一个核对清单：光谱条件、lux与辐照度换算、封装寿命、面积放大、成本、功率管理电路耦合、应用场景。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体科学问题是：在保持椎间盘完整组织结构的条件下，胶原原纤维层面的分子预应变与受载后的原纤维应变，如何与纤维环层板结构、纤维取向和局部组织应变场发生空间耦合；以及纤维环-髓核界面哪些几何或结构特征主导局部力学调控。方法学问题则是：如何用一种三维、全场、非破坏性的X射线方法，在完整纤维组织中同时解析纳米到微米尺度的力学信息。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>依据摘要，可能的方法路径是：对完整椎间盘或其功能单元在受载状态下进行全场3D小角X射线散射断层扫描；利用SAXS信号提取胶原原纤维D周期、取向、散射峰位变化等指标，以估计分子预应变和原纤维应变；将这些纳米尺度指标与断层重建得到的层板纹理、纤维组织几何以及微尺度应变场进行空间配准和相关分析；重点比较不同层板、不同界面区域以及高曲率区域的力学异质性。若摘要中的“tightly correlated with microscale fibre strain”来自联合测量，则还可能结合数字体相关、相衬/吸收断层或其他形变追踪手段。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最突出的亮点是把完整组织中的多尺度力学耦合做成了三维空间映射，而不是离体切片、单点SAXS或纯力学平均量。第二个亮点是观测对象具体且有生物学意义：胶原D-period预应变、原纤维应变、层板纹理、界面高曲率区和径向应变桥，这些都能直接连接到椎间盘承载机制。第三个亮点是提出了可检验的机制线索：预应变与原纤维应变及其波动的反相关，被解释为分子解旋参与载荷分担，这为理解胶原组织韧性和失效提供了新框架。第四个亮点是潜在外延性强，既可用于结缔组织，也可能推广到工程纤维复合材料。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先查论文图1和方法部分，确认TomoSAXS的实验装置、样本类型、加载模式和输出变量分别是什么。第二，记录摘要中三个关键量的定义与关系：D-period预应变、原纤维应变、微尺度纤维应变，并核对它们是如何定量得到的。第三，重点查看纤维环-髓核界面的图表，确认“径向应变桥”和“高曲率区”是个例展示还是跨样本统计结果。第四，若你的方向是生物力学或成像方法，可把这篇文章与传统SAXS、WAXS、micro-CT/DVC或二次谐波成像做一页对照，比较分辨率、样本完整性和可测力学量。第五，阅读时特别标记所有机制性表述与其对应证据，区分直接观测、相关推断和作者解释。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，应该是：为什么室内光伏虽然在弱光供能和物联网自供电方面具有明确应用前景，却仍难以快速实现商业化和大规模部署？更细化地说，论文可能在追问哪些技术指标、测试条件、器件架构、制造流程和系统集成因素，才真正决定IPV能否从实验室效率展示转向真实产品落地。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>在摘要缺失情况下，可能的方法路径包括：1）汇总或比较不同室内光源和照度条件下的器件性能数据；2）分析多类光伏技术在室内光谱匹配、弱光损失机制和稳定性方面的差异；3）结合具体应用负载，如传感器或IoT节点，建立系统级能量需求与光伏输出的匹配框架；4）讨论制造、封装、面积放大、可靠性测试和标准化评价；5）若为原创研究，也可能包含在真实室内环境中的部署验证或原型演示。需要特别核对是否有定量数据、对照实验和场景测试。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>题名显示其亮点可能在于把“室内光伏”从单点器件性能问题提升到“商业化与部署”层面，这对领域发展很关键。若文章确实覆盖真实室内光环境、应用负载匹配、标准测试、寿命与成本等内容，那么它的价值会体现在：研究目标更贴近终端需求；评价指标更接近产业可用性；能够帮助研究者避免只追求实验室高效率而忽视系统落地瓶颈。发表在Nature也意味着其论题具有较强领域整合性或方向引导性。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，导致无法确认论文类型、研究边界和证据强度。仅凭题名不能判断其是否包含新实验结果，也不能确定讨论对象是有机光伏、钙钛矿还是多技术比较。题名中的“commercialization and deployment”可能意味着文章偏观点、综述或路线图，这类文章的启发性强，但对具体复现实验或定量结论的直接支持可能有限。还需警惕作者背景可能带来的技术路线侧重，需核对是否对不同IPV体系进行了平衡比较。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先确认论文类型（Article/Review/Perspective/Comment）；2）获取摘要并记录其明确研究对象与结论；3）优先查找文中是否给出室内光源类型、照度范围、器件体系、效率/功率密度/稳定性等关键表格或图；4）若你做器件研究，重点核对其是否提出新的测试标准或商业化判据；5）若你做系统或IoT应用，重点查找是否有真实负载与部署案例；6）建立一个核对清单：光谱条件、lux与辐照度换算、封装寿命、面积放大、成本、功率管理电路耦合、应用场景。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名“Accelerating commercialization and deployment of indoor photovoltaics”判断，本文的研究对象不是泛化的太阳能电池，而是专门针对室内照明环境工作的光伏技术。室内光伏通常服务于低功耗电子、传感器、无线节点和物联网设备，因此论文的任务导向很明确：如何让IPV更快跨越从高性能原型到可部署产品的鸿沟。作者名单中包含有机/聚合物光伏领域较活跃的研究者，这提示论文可能与有机光伏、非富勒烯受体体系、宽带隙材料、柔性器件或低照度优化设计有关，但这仍只是基于作者背景的弱线索，不能替代摘要或正文证据。
-
-如果按Nature论文常见写法推测，文章可能会围绕以下证据链展开。第一，界定室内光环境的真实边界条件，例如LED、荧光灯等不同光源的光谱分布、照度范围、工作时长和入射角条件，因为IPV性能与标准AM1.5G太阳光条件并不等价。第二，比较不同光伏技术在室内条件下的适配性，例如有机、钙钛矿、染料敏化、非晶硅或III-V等体系在弱光下的开路电压、填充因子、光谱匹配、漏电损失和制造成本。第三，讨论商业化瓶颈，可能包括长期稳定性、封装、批量制造一致性、器件面积放大、环境与安全约束、与储能/功率管理电路的耦合，以及缺乏统一测试标准。第四，给出部署层面的建议，例如针对电子货架标签、遥控器、环境监测节点、楼宇自动化传感器等具体应用，如何定义功耗预算、占空比、储能策略和回收周期。
-
-与科研人员的关系在于，这篇论文若是综述、观点或路线图性质，其价值可能不在单一最高效率纪录，而在于重新定义“什么样的数据才足以支持商业化”。例如，研究者需要关注的不仅是lux条件下的功率转换效率，还包括在特定光源谱线下的输出功率、连续运行稳定性、间歇照明下的能量收支、封装后衰减、批次波动、以及与实际负载联调后的系统级表现。如果你的方向与有机光伏、室内能量采集、低功耗物联网、柔性电子或器件标准化相关，这篇文章大概率值得优先阅读。
-
-但目前信息不足之处非常明显。摘要为空，无法确认论文究竟是原创研究、综述、评论还是技术路线文章；也无法确认是否提出了新材料、新器件结构、新测试协议，还是主要讨论产业生态。题名中的“accelerating commercialization and deployment”暗示其重点可能偏转化与应用，而非单纯材料创新。因此，最需要核对的信息包括：论文类型；具体讨论的光伏体系；是否给出定量基准或标准测试建议；是否包含真实场景部署案例；是否讨论成本、寿命和法规；以及作者是否提出了可操作的产业化路线图。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>具体科学问题是：在保持椎间盘完整组织结构的条件下，胶原原纤维层面的分子预应变与受载后的原纤维应变，如何与纤维环层板结构、纤维取向和局部组织应变场发生空间耦合；以及纤维环-髓核界面哪些几何或结构特征主导局部力学调控。方法学问题则是：如何用一种三维、全场、非破坏性的X射线方法，在完整纤维组织中同时解析纳米到微米尺度的力学信息。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>依据摘要，可能的方法路径是：对完整椎间盘或其功能单元在受载状态下进行全场3D小角X射线散射断层扫描；利用SAXS信号提取胶原原纤维D周期、取向、散射峰位变化等指标，以估计分子预应变和原纤维应变；将这些纳米尺度指标与断层重建得到的层板纹理、纤维组织几何以及微尺度应变场进行空间配准和相关分析；重点比较不同层板、不同界面区域以及高曲率区域的力学异质性。若摘要中的“tightly correlated with microscale fibre strain”来自联合测量，则还可能结合数字体相关、相衬/吸收断层或其他形变追踪手段。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最突出的亮点是把完整组织中的多尺度力学耦合做成了三维空间映射，而不是离体切片、单点SAXS或纯力学平均量。第二个亮点是观测对象具体且有生物学意义：胶原D-period预应变、原纤维应变、层板纹理、界面高曲率区和径向应变桥，这些都能直接连接到椎间盘承载机制。第三个亮点是提出了可检验的机制线索：预应变与原纤维应变及其波动的反相关，被解释为分子解旋参与载荷分担，这为理解胶原组织韧性和失效提供了新框架。第四个亮点是潜在外延性强，既可用于结缔组织，也可能推广到工程纤维复合材料。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>仅凭题录和摘要，仍需警惕若干边界。第一，机制解释目前只能视为摘要层面的推断，尚不清楚“分子解旋”是否有直接独立证据。第二，TomoSAXS的空间分辨率、采集时间、辐射剂量和重建稳定性未见说明，这些都会影响其在动态加载或活体相关场景中的适用性。第三，样本规模、个体差异、病理状态和统计显著性未知，尤其是界面应变桥和高曲率区是否普遍存在需要核对。第四，摘要强调完整组织，但不清楚加载边界条件与生理工况的接近程度，因而外推到真实脊柱力学时需谨慎。第五，若只有相关性分析而缺少干预实验，则从空间相关到因果调控仍有距离。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先查论文图1和方法部分，确认TomoSAXS的实验装置、样本类型、加载模式和输出变量分别是什么。第二，记录摘要中三个关键量的定义与关系：D-period预应变、原纤维应变、微尺度纤维应变，并核对它们是如何定量得到的。第三，重点查看纤维环-髓核界面的图表，确认“径向应变桥”和“高曲率区”是个例展示还是跨样本统计结果。第四，若你的方向是生物力学或成像方法，可把这篇文章与传统SAXS、WAXS、micro-CT/DVC或二次谐波成像做一页对照，比较分辨率、样本完整性和可测力学量。第五，阅读时特别标记所有机制性表述与其对应证据，区分直接观测、相关推断和作者解释。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：脊柱椎间盘中的纤维环/髓核复合组织，重点是纤维环内胶原层板、胶原纤维、纳米级原纤维以及更底层的三股螺旋分子排列。作者试图回答的不是一般性的“组织如何承载”，而是“在完整、受载的椎间盘中，纳米尺度原纤维力学量如何与微尺度纤维组织结构和局部应变场耦合”。方法上，TomoSAXS应当结合了小角X射线散射对胶原D周期和取向敏感的优势，与断层/全场三维重建相结合，从而在体积内恢复与原纤维结构和应变相关的空间图谱；摘要中的“maps fibril-to-fibre mechanics across an intact tissue”说明其输出不是单点测量，而是完整组织范围内的三维分布。证据线索主要来自几个明确的可观测量：分子预应变由D-period stagger表征；微尺度纤维应变可能来自组织形变场或纤维取向变化；原纤维应变及其空间变异性与预应变的反相关关系被用来支持“分子解旋参与载荷分担”的解释。另一个重要现象是纤维环-髓核界面出现“径向应变桥”和“高曲率区”，这提示组织几何与界面结构并非被动背景，而是决定局部力学传递的关键。对科研读者而言，这篇工作与多尺度生物力学、胶原组织成像、原位/在体载荷表征、层级复合材料设计都直接相关。尤其值得关注的是，它可能把传统SAXS的局部平均信息推进到三维空间解析层面，使得“结构-力学耦合”从推断变成可映射对象。需要核对的信息包括：样本物种与数量、加载方式是压缩/弯曲/扭转中的哪一种、空间分辨率与时间分辨率、TomoSAXS重建算法细节、D-period与应变的定量换算方式、是否与常规显微/力学测试交叉验证、界面应变桥的统计稳健性，以及“molecular unwinding”是直接证据还是机制解释。</p></div>
           </div>
           
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-11-04</span>
-        <span>Score 40.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-10956-z">In vivo CAR-T double knockout screen maps synergistic antitumour gene pairs</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+In+vivo+CAR-T+double+knockout+screen+maps+synergistic+antitumour+gene+pairs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-10956-z%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+In+vivo+CAR-T+double+knockout+screen+maps+synergistic+antitumour+gene+pairs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+In+vivo+CAR-T+double+knockout+screen+maps+synergistic+antitumour+gene+pairs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-10956-z%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+In+vivo+CAR-T+double+knockout+screen+maps+synergistic+antitumour+gene+pairs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+In+vivo+CAR-T+double+knockout+screen+maps+synergistic+antitumour+gene+pairs&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-10956-z%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+In+vivo+CAR-T+double+knockout+screen+maps+synergistic+antitumour+gene+pairs%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Liqun Zhou、Paul A. Renauer、Kaiyuan Tang、Shanshan Li 等 23 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-10956-z">10.1038/s41586-026-10956-z</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名看，聚焦于CAR-T细胞在体内抗肿瘤场景中的“双基因敲除筛选”，目标是绘制能够产生协同抗肿瘤效应的基因对图谱。由于当前未提供摘要和关键词，能确认的核心对象是in vivo CAR-T、double knockout screen和synergistic antitumour gene pairs，具体肿瘤模型、筛选规模和命中基因仍需核对原文。</p></div>
-        <div class="note"><strong>贡献</strong><p>基于题名推断，其核心贡献很可能是把单基因功能筛选推进到CAR-T体内双敲层面，用系统性组合遗传筛选寻找可协同增强CAR-T抗肿瘤活性的基因对，而不是仅报告单个候选靶点。这类工作若成立，价值在于为下一代CAR-T工程化改造提供“组合编辑”靶点地图，并可能揭示影响CAR-T持久性、耗竭、增殖、浸润或肿瘤微环境适应性的遗传互作关系。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>40.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>具体科学问题应是：在CAR-T细胞用于肿瘤治疗时，哪些基因的“双敲除”能够产生超出单基因敲除的协同抗肿瘤效应？进一步说，作者想解决的不是“哪个单基因是好靶点”，而是“哪些遗传互作组合最能提升CAR-T在体内的治疗性能”，以及这些组合是否能系统性地被绘制成可用于工程设计的图谱。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从题名推断，最可能的方法路径是：先构建表达CAR的T细胞，再引入双sgRNA或其他组合编辑系统，对预设基因集合进行成对敲除；随后将编辑后的CAR-T输入体内肿瘤模型，在治疗前后通过测序比较不同基因对的富集/耗竭，识别与抗肿瘤活性相关的协同组合。后续应会对代表性命中基因对做单独构建和功能验证，可能包括肿瘤控制、T细胞扩增、细胞毒性、细胞因子分泌、耗竭标志物、转录组/表观组或流式表型分析。若题名中的“maps”名副其实，还可能包含遗传互作网络分析，用于区分加和效应与真正协同效应。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是“in vivo + double knockout + CAR-T”这一组合。相较于体外单基因筛选，体内双敲更接近CAR-T真实治疗环境，也更有机会发现只有在肿瘤微环境压力下才显现的遗传协同。第二个亮点是其潜在输出形式不是单个靶点，而是基因对图谱，这对下一代多位点基因编辑CAR-T设计更有直接指导意义。第三，如果作者做了充分验证，这类研究可能把功能筛选结果直接转化为可工程化的组合改造策略。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先获取摘要并核对筛选对象、肿瘤模型、CAR靶点和命中基因对数量；第二，读原文图1和方法部分，确认双敲文库设计、协同评分方式和体内筛选流程；第三，记录作者重点验证的前3到5个基因对，并与已知CAR-T优化靶点如耗竭、检查点、代谢或表观调控通路做对照；第四，若你做相关研究，可先评估这些基因对是否出现在你现有单细胞、CRISPR筛选或功能验证候选名单中，再决定是否设计小规模复现。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>具体科学问题应是：在CAR-T细胞用于肿瘤治疗时，哪些基因的“双敲除”能够产生超出单基因敲除的协同抗肿瘤效应？进一步说，作者想解决的不是“哪个单基因是好靶点”，而是“哪些遗传互作组合最能提升CAR-T在体内的治疗性能”，以及这些组合是否能系统性地被绘制成可用于工程设计的图谱。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从题名推断，最可能的方法路径是：先构建表达CAR的T细胞，再引入双sgRNA或其他组合编辑系统，对预设基因集合进行成对敲除；随后将编辑后的CAR-T输入体内肿瘤模型，在治疗前后通过测序比较不同基因对的富集/耗竭，识别与抗肿瘤活性相关的协同组合。后续应会对代表性命中基因对做单独构建和功能验证，可能包括肿瘤控制、T细胞扩增、细胞毒性、细胞因子分泌、耗竭标志物、转录组/表观组或流式表型分析。若题名中的“maps”名副其实，还可能包含遗传互作网络分析，用于区分加和效应与真正协同效应。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是“in vivo + double knockout + CAR-T”这一组合。相较于体外单基因筛选，体内双敲更接近CAR-T真实治疗环境，也更有机会发现只有在肿瘤微环境压力下才显现的遗传协同。第二个亮点是其潜在输出形式不是单个靶点，而是基因对图谱，这对下一代多位点基因编辑CAR-T设计更有直接指导意义。第三，如果作者做了充分验证，这类研究可能把功能筛选结果直接转化为可工程化的组合改造策略。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>当前最大局限是摘要缺失，导致无法判断研究的实际证据强度。需要警惕的边界包括：筛选库规模是否足够大而又可控；双敲编辑效率和配对均一性是否可靠；协同效应是否受单个强效基因主导；体内模型是否能代表临床CAR-T场景；命中基因对是否具有普适性还是仅限某一CAR构型、某一肿瘤抗原或某一肿瘤模型；以及双基因敲除是否带来制造复杂度、毒性或长期安全性问题。若只在单一模型中成立，其外推价值会受限。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先获取摘要并核对筛选对象、肿瘤模型、CAR靶点和命中基因对数量；第二，读原文图1和方法部分，确认双敲文库设计、协同评分方式和体内筛选流程；第三，记录作者重点验证的前3到5个基因对，并与已知CAR-T优化靶点如耗竭、检查点、代谢或表观调控通路做对照；第四，若你做相关研究，可先评估这些基因对是否出现在你现有单细胞、CRISPR筛选或功能验证候选名单中，再决定是否设计小规模复现。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名与期刊元数据，这项研究的研究对象应是经工程化改造的CAR-T细胞，具体任务是在体内肿瘤模型中进行双基因敲除筛选，以识别比单基因操作更强的协同抗肿瘤基因组合。题名中的“maps”提示作者可能不只是验证少数候选，而是构建了某种系统性互作图谱；“in vivo”提示筛选读出不是单纯体外杀伤或增殖，而更可能整合了体内扩增、存活、肿瘤清除、浸润、抗耗竭和微环境压力适应等复合表型。方法上，大概率涉及CRISPR双sgRNA文库或等价的组合基因编辑策略，将其导入CAR-T细胞后，在小鼠肿瘤模型中比较处理前后文库丰度变化，或结合肿瘤负荷、生存、T细胞表型等读出评估协同效应。若论文确实发表于Nature，通常意味着作者可能不仅做了筛选，还会对若干命中基因对进行机制验证，例如分析其是否共同作用于T细胞受体信号、共刺激、代谢、染色质调控、细胞因子响应或免疫检查点通路。对从事细胞治疗、功能基因组学、CRISPR筛选或肿瘤免疫的读者，这篇论文最相关的价值在于：它可能提供比“单靶点优化CAR-T”更接近真实工程设计空间的组合靶点框架。需要特别说明的是，当前摘要为空，因此无法确认筛选覆盖的基因集合是全基因组、聚焦免疫调控因子，还是预先定义的候选库；也无法确认肿瘤类型是血液瘤还是实体瘤、CAR靶抗原是什么、是否使用人源细胞/小鼠细胞、命中基因对数量、统计判据、协同定义方式以及是否做了临床相关验证。这些都是阅读原文时必须优先核对的信息。</p></div>
-          </div>
-          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Abstract Fibrous materials, ranging from connective tissues 1–4 to engineered composites 5–8 , are vital to many biological and man-made systems, optimized to withstand complex in operando or in vivo loading. The load-bearing capacity of intervertebral discs (IVDs) of the spine depends on a hierarchical extracellular matrix, where plywood-like lamellae of collagen fibres in the annulus fibrosus contain nanometre-scale fibrils built from staggered triple-helical monomers 4,9,10 . How intact IVDs couple fibril-scale mechanics to fibre-scale organization under load remains unresolved. Here we introduce TomoSAXS, a full-field 3D small-angle X-ray scattering tomography that maps fibril-to-fibre mechanics across an intact tissue. We show that intrafibrillar molecular pre-strain (D-period stagger) is lamellar textured and tightly correlated with microscale fibre strain. Pre-strain is inversely related to fibril strain and its variability, consistent with load-sharing through molecular unwinding. Radial strain bridges and high-curvature zones at the annulus fibrosus–nucleus pulposus interfaces emerge as critical regulators of local mechanics. These findings reveal concerted fibril–fibre interactions that sustain mechanical equilibrium in the IVD, preserving elasticity and shape. More broadly, TomoSAXS establishes a platform to visualize nanoscale-to-microscale matrix mechanics across biological and synthetic fibrous materials, with applications in ageing and disease, therapeutic evaluation and the design of bio-based and bio-inspired materials.</p>
+        </details>
+        
         </div>
       </details>
     
@@ -852,7 +853,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-11-09 01:46。
+      生成时间：2026-11-10 04:09。
     </div>
   </footer>
 </body>
