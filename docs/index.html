@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Reading · 2026-11-14</title>
+  <title>Paper Reading · 2026-11-15</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -19,12 +19,18 @@
   <main>
     <section class="hero">
       <div class="shell">
-        <div class="eyebrow">2026-11-14 · 中文论文简报</div>
+        <div class="eyebrow">2026-11-15 · 中文论文简报</div>
         <h1>今日论文阅读报告</h1>
-        <p class="summary">今天的论文集合里，最值得优先阅读的是两篇与AI系统训练/评测直接相关、且方法信息相对完整的工作。第一篇是 daVinci-Prover，它把形式化定理证明中的LLM训练问题明确推进到“agent-native mid-training”层面：不是只用最终证明做SFT，而是强调分解、搜索、自验证、修订等过程性轨迹，并通过Lean验证器约束来塑造长程可验证推理能力。若摘要数字可靠，这类中训练配方对证明基准带来的提升幅度不小，因此它对“如何训练能在外部工具环境中稳定工作的模型”这一更一般问题也有参考价值。第二篇是 MobileProbe，它针对移动GUI智能体的环境注入攻击评测覆盖不足问题，提出轨迹感知、自适应注入框架，核心意义不只是多一个攻击基准，而是提醒我们：如果评测点位与真实执行轨迹脱节，就会系统性低估代理风险。这两篇合起来，分别对应“如何把模型训练成代理”和“如何真实评估代理安全性”，构成今天AI方向最清晰的一条主线。</p>
+        <p class="summary">今天的候选论文里，最值得优先阅读的是三篇与AI agent/LLM系统工程直接相关的工作，因为它们共同指向一个正在快速成形的问题：我们不再只问模型会不会做单步任务，而是在问它能否在开放环境中选择能力、调用技能、甚至搭建完整AI开发基础设施。第一篇 Singularity-Bench 把评测对象从受限动作空间扩展到真实AI工程流水线，覆盖预训练、中期训练、后训练、推理、agent harness 和集群编排六个环节，并且把“评测系统本身会不会被攻击”纳入核心议题；如果摘要表述成立，这类工作对未来 agent benchmark 的定义方式会有直接影响。第二篇关于 small language models 做 inference-capability routing，则把一个很实用但常被粗略处理的问题拆开：是否启用推理、RAG、网页搜索、计算器/工具，不应被视为单一开关，而应是多标签、能力特异的路由决策；更重要的是，它提醒我们路由分类分数与最终系统成本/质量并不等价。第三篇 Skill Adapter 进一步把“技能复用”和“用户个性化”结合起来，强调长程 agent 在动态环境中不仅要选技能，还要在线决定是否挂接个性化 adapter，并为后续步骤预加载候选技能。三篇合起来，构成了一个很清晰的技术链条：开放式任务评测、能力级路由、技能级个性化执行。对做 agent systems、tool use、RAG orchestration、benchmarking 或安全评测的研究者，这组论文应是今天的阅读主线，其中 Singularity-Bench 的优先级最高，其次是 capability routing，再次是 Skill Adapter。
+
+除AI方向外，今天还有一条值得注意的方法学支线：用新型序列建模架构替代或补充 Transformer。气候温度预测论文提出基于双向残差 Mamba 的长序列建模框架，目标是同时改善长期预测性能与计算可扩展性。虽然它属于应用导向工作，但对关注状态空间模型、长序列预测、硬件友好推理的人来说，仍有参考价值，尤其适合从“架构是否真能在真实时序任务中替代 Transformer”这一角度快速筛读。
+
+生命科学部分则更像高影响力机制论文集合，而不是彼此强耦合的一组主题。结直肠癌免疫治疗论文把关注点从肿瘤局部扩展到外周/引流淋巴结中的 stem-like CD4+ T 细胞分化，提示早期效应反应可能由特定CD4谱系状态驱动，并可被 OX40 + PD-1 联合策略放大；这篇对肿瘤免疫、单细胞谱系分析和联合治疗设计的读者有较高优先级。两篇关于 Andes virus/邮轮暴发的 Science 论文则形成互补：一篇偏暴发调查与传播链判定，另一篇偏长期地方谱系循环与感染源重建的不确定性，适合做基因组流调、跨国暴发调查和病原传播推断的人连读。Nature 的三篇分别落在植物-昆虫互作小分子感知、核孔FG屏障物理状态、以及机械环境调控 NLRP3 炎性小体，都是机制上很强但彼此分散的方向；如果不是对应领域研究者，可放在第二梯队按兴趣选择。
+
+如果从“今天应该先读什么”来排序，我会建议：第一梯队是 Singularity-Bench、SLM capability routing、Skill Adapter；第二梯队是 CRC 免疫治疗和两篇 Andes virus 暴发/谱系论文；第三梯队是 Mamba 气候时序与三篇 Nature 机制论文。整体上，今天最鲜明的信号是：AI系统论文正在从模型能力本身转向系统级决策、开放环境执行与评测安全，而生命科学论文则继续沿着高分辨率机制解析与跨尺度证据整合推进。</p>
         <div class="metrics">
-          <div class="metric"><strong>469</strong><span>抓取论文</span></div>
-          <div class="metric"><strong>207</strong><span>过滤后候选</span></div>
+          <div class="metric"><strong>458</strong><span>抓取论文</span></div>
+          <div class="metric"><strong>196</strong><span>过滤后候选</span></div>
           <div class="metric"><strong>10</strong><span>进入报告</span></div>
           <div class="metric"><strong>3</strong><span>来源数量</span></div>
         </div>
@@ -59,22 +65,26 @@
         </div>
         <div>
           <h2>关键词命中</h2>
-          <div class="chips"><span class="chip">ai <strong>7</strong></span>
+          <div class="chips"><span class="chip">rag <strong>5</strong></span>
+<span class="chip">ai <strong>4</strong></span>
 <span class="chip">environment <strong>4</strong></span>
-<span class="chip">llm <strong>3</strong></span>
-<span class="chip">agent <strong>3</strong></span>
-<span class="chip">agents <strong>3</strong></span>
-<span class="chip">rag <strong>3</strong></span>
+<span class="chip">agent <strong>2</strong></span>
+<span class="chip">agents <strong>2</strong></span>
 <span class="chip">large language model <strong>2</strong></span>
-<span class="chip">large language models <strong>2</strong></span>
 <span class="chip">language model <strong>2</strong></span>
-<span class="chip">language models <strong>2</strong></span>
-<span class="chip">environmental <strong>2</strong></span>
-<span class="chip">carbon <strong>2</strong></span>
-<span class="chip">theorem proving <strong>1</strong></span>
 <span class="chip">ai agent <strong>1</strong></span>
-<span class="chip">earth <strong>1</strong></span>
-<span class="chip">earth system <strong>1</strong></span></div>
+<span class="chip">ai agents <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">tool use <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">foundation models <strong>1</strong></span>
+<span class="chip">ml <strong>1</strong></span>
+<span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">transformer <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">weather <strong>1</strong></span></div>
         </div>
       </div>
     </section>
@@ -92,8 +102,8 @@
 
             <div class="bar-row">
               <div class="bar-label">science</div>
-              <div class="bar-track"><div class="bar-fill" style="width: 38%"></div></div>
-              <div class="bar-count">113</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 34%"></div></div>
+              <div class="bar-count">102</div>
             </div>
             
 
@@ -109,11 +119,12 @@
     <section class="section">
       <div class="shell">
         <h2>主题线索</h2>
-        <div class="chips"><span class="chip">从“结果监督”转向“过程监督+环境交互”：daVinci-Prover强调验证器约束的轨迹式中训练，说明在长程、可修订任务中，训练信号正在从最终答案扩展到搜索、反馈和修订过程。</span>
-<span class="chip">代理评测正在从静态基准转向轨迹感知评测：MobileProbe指出固定任务、固定步骤、固定payload的安全测试会漏掉真实风险，评测设计本身成为研究对象。</span>
-<span class="chip">系统参数选择开始纳入环境成本：联邦LoRA论文表明，在其测试范围内，本地训练步数比模型规模更主导能耗与排放，提示‘训练预算怎么配’比‘模型做多大’更值得先优化。</span>
-<span class="chip">AI参与治理的研究开始关注‘代表性’与‘影响力偏置’：pluralistic agents 不只讨论代理能否表达偏好，还揭示表达风格、合作性等系统因素会扭曲政策协商中的实际影响力。</span>
-<span class="chip">‘environment’一词在不同学科中呈现出方法论共性：在移动代理里是可被注入的交互环境，在肿瘤与脂肪组织研究里是决定状态转变的微环境，在地球系统里则是安全运行空间；共同点是系统行为越来越被理解为主体与环境耦合的结果。</span></div>
+        <div class="chips"><span class="chip">从“模型会答题”转向“agent能否在开放工程环境中构建、选择并维护AI系统本身”</span>
+<span class="chip">能力路由正在细化为多标签、能力特异的系统决策问题，评价指标必须同时看下游质量与计算成本</span>
+<span class="chip">长程LLM agent 的关键瓶颈从单次工具调用转向技能复用、个性化适配与在线预加载/重路由</span>
+<span class="chip">评测基础设施本身成为研究对象：开放式 benchmark 的可信验证、reward hacking 与防御机制开始前置化</span>
+<span class="chip">生命科学高影响力工作普遍依赖跨尺度证据链：空间图谱/单细胞/谱系追踪、基因组流调、活细胞物理测量与机制建模相互支撑</span>
+<span class="chip">新架构替代 Transformer 的讨论继续向真实应用场景下沉，重点不只是精度，还包括长序列效率、硬件友好性与稳健性</span></div>
       </div>
     </section>
 
@@ -122,42 +133,50 @@
         <h2>可做研究点</h2>
         <div class="idea-list">
             <div class="idea-item">
-              <strong>复核‘过程性中训练’相对‘最终证明SFT’的增益是否主要来自数据类型而非数据量</strong>
-              <p>daVinci-Prover最关键的主张是过程性、验证器约束轨迹能显著提升形式化证明能力，但摘要同时给出了很大的token规模和额外轨迹数据，容易混入纯数据量效应。</p>
-              <p><span>第一步：</span>整理该文摘要中可见的训练组成，列一个最小对照表：仅最终证明SFT、加入数学先验中训练、加入agent轨迹SFT；等论文公开更多细节后优先检查是否有等token或等样本量对照。</p>
-              <p><span>风险：</span>目前只有摘要，关键训练配比、基线强度和消融细节可能尚未公开，短期内只能做阅读型复核而非严格复现。</p>
+              <strong>复现并扩展“能力路由分数不等于系统收益”的结论，建立一个同时报告路由F1、最终答案质量、token/工具成本和延迟的联合评测表</strong>
+              <p>这篇 routing 论文最有价值的点在于指出代理指标与系统指标脱钩。这个问题具有普适性，且很适合快速复现并推广到更多下游模型或任务集</p>
+              <p><span>第一步：</span>先选一个小规模公开问答集，复现四类能力开关（推理、RAG、网页搜索、计算器/工具）的多标签路由设置，用一个固定大模型作为下游执行器，记录不同路由器配置下的最终正确率、平均调用成本和延迟</p>
+              <p><span>风险：</span>公开数据上未必有现成的能力标签；如果能力触发实现过于粗糙，可能把路由问题和执行器实现问题混在一起</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>做一个‘轨迹覆盖率’视角的代理安全评测综述或小型复现实验</strong>
-              <p>MobileProbe提出的问题具有普遍性：很多代理安全论文可能把‘没走到注入点’误当成‘模型鲁棒’。这个评测偏差值得系统梳理。</p>
-              <p><span>第一步：</span>收集近一年移动/网页/桌面代理安全评测论文，按是否固定注入点、是否基于真实执行轨迹、是否允许自适应重定向三维做表；若有开源环境，再选一个简单任务比较固定注入与轨迹感知注入的命中率差异。</p>
-              <p><span>风险：</span>不同论文环境和攻击定义不统一，横向比较容易失真；若缺少开源代码，复现实验成本会上升。</p>
+              <strong>做一个面向 agent benchmark 的“评测安全检查清单”，系统梳理开放式任务中哪些验证环节最容易被 reward hacking 利用</strong>
+              <p>Singularity-Bench 提醒我们 benchmark 不只是任务集合，还包含验证器与奖励接口。很多现有 agent 评测可能默认验证器可信，但这恰恰可能是最脆弱的部分</p>
+              <p><span>第一步：</span>先不做新 benchmark，先选 3-5 个常见 agent 任务框架，逐项检查其成功判定、日志读取、文件系统访问、环境变量暴露和中间产物验证方式，整理成攻击面矩阵</p>
+              <p><span>风险：</span>如果没有实际攻击复现，结论可能停留在原则层面；而真实漏洞验证又可能涉及环境搭建成本和安全边界问题</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>在联邦LoRA设置中优先复查‘本地步数主导能耗’这一结论的外推边界</strong>
-              <p>摘要给出的结论很实用，但实验只覆盖135M/360M、两档本地步数和三种GPU，尚不清楚对更大模型、更长通信周期或不同任务是否仍成立。</p>
-              <p><span>第一步：</span>先做一个参数空间清单，标出论文已覆盖与未覆盖的维度；随后在可获得硬件上复现最小2×2设计中的一组设置，验证accuracy per kWh是否确有数量级差异。</p>
-              <p><span>风险：</span>能耗测量对硬件、驱动、批大小和数据管线很敏感，小规模复现可能难以得到与原文同量级的绝对数值。</p>
+              <strong>把 Skill Adapter 的思想简化成一个可复现原型：在固定技能库上只做“用户偏好 adapter + 在线技能重排”，测试是否优于静态技能检索</strong>
+              <p>个性化 agent 往往难在全栈实现过重。把问题缩小到技能排序和轻量 adapter 挂接，更容易验证“通用技能+局部个性化”是否真的带来收益</p>
+              <p><span>第一步：</span>选一个有明确用户偏好差异的工具任务场景，例如邮件整理或日程规划，构建少量通用技能模板，再用用户反馈生成轻量偏好规则或 adapter，对比静态检索与在线重排的任务成功率</p>
+              <p><span>风险：</span>如果任务环境变化不够强，在线路由优势可能不明显；adapter 若被实现成手工规则，也可能削弱论文设想中的学习价值</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>研究‘代表性代理’中的影响力偏置是否可被机制设计缓解</strong>
-              <p>pluralistic agents 的关键风险不是代理不能表达偏好，而是更冗长、更强硬或更不合作的代理可能获得不成比例的话语权，这直接关系到AI辅助协商的公平性。</p>
-              <p><span>第一步：</span>设计一个最小文献梳理框架，把影响力来源拆成偏好内容、表达长度、轮次分配、系统提示和裁决规则五类；优先寻找论文是否报告了对这些因素的控制。</p>
-              <p><span>风险：</span>如果原文实验细节有限，短期内只能提出机制假设，难以判断哪种偏置最主要。</p>
+              <strong>针对 Mamba 类长序列模型做一次应用无关的对照复查：在同一时序数据切分和预算下比较 Transformer、Mamba、LSTM 的精度-吞吐-显存三维权衡</strong>
+              <p>气候预测论文提出了架构优势，但这类结论常受数据集、窗口长度和工程优化影响。做统一预算下的对照更能回答“何时值得换架构”</p>
+              <p><span>第一步：</span>先选一个公开长时序数据集，不必局限气候，统一训练步数、参数量级和输入长度，记录多步预测误差、训练吞吐和显存占用，形成最小对照表</p>
+              <p><span>风险：</span>不同架构很难做到完全公平匹配；若工程实现质量差异大，结果可能更多反映代码成熟度而非模型本身</p>
             </div>
             
 
             <div class="idea-item">
-              <strong>围绕‘环境/微环境决定系统状态转变’做一篇跨领域方法综述</strong>
-              <p>今天的多篇论文虽然领域差异极大，但都在处理主体与环境耦合：代理受界面环境注入影响，棕脂细胞受免疫-激素微环境调控，DCIS进展受局部细胞生态位塑造，冰冻圈则受跨圈层反馈锁定。这个共性适合做方法论层面的综述。</p>
-              <p><span>第一步：</span>先选3个代表领域——AI代理安全、生物微环境、地球系统阈值——各摘录一篇，比较它们如何定义环境变量、如何识别关键状态转折点、如何处理反馈与不可逆性。</p>
-              <p><span>风险：</span>跨领域综述容易流于比喻，若没有明确的方法学比较框架，最后可能只剩概念拼贴。</p>
+              <strong>把两篇 Andes virus 论文并读，整理一份“暴发簇判定 vs 感染源重建”的证据分层综述笔记</strong>
+              <p>这两篇论文天然互补：一篇更强调紧密传播簇与船上传播可行性，另一篇更强调地方长期谱系循环与感染源仍不确定。并读有助于训练对基因组流调证据边界的判断</p>
+              <p><span>第一步：</span>先按时间线、样本覆盖、系统发育结论、接触网络证据、潜伏期约束五个维度做并列表，明确哪些结论是共享的，哪些只是各自推断强度不同</p>
+              <p><span>风险：</span>如果只依赖摘要，容易高估两文差异或一致性；需要后续核对正文方法和补充材料</p>
+            </div>
+            
+
+            <div class="idea-item">
+              <strong>围绕 CRC 免疫治疗论文做一个“小型机制追踪阅读包”，专门关注 stem-like CD4 到 TH1-like 分化链条与 OX40+PD-1 联合策略之间的因果证据</strong>
+              <p>这篇工作可能对联合免疫治疗设计有直接启发，但真正关键的是因果链是否闭合：细胞状态、空间位置、克隆关系和功能干预是否互相支持</p>
+              <p><span>第一步：</span>先按“空间证据—谱系证据—功能干预证据”三栏整理摘要中已出现的信息，再补查正文中每一栏对应的核心实验图，判断哪些环节是直接证据，哪些仍是推断</p>
+              <p><span>风险：</span>如果正文显示关键链条依赖模型系统而非患者证据，临床外推价值可能受限</p>
             </div>
             </div>
       </div>
@@ -170,256 +189,26 @@
     <article class="paper-card">
       <div class="paper-meta">
         <span class="source-pill">arXiv</span>
-        <span>2026-11-12T07:44:09Z</span>
-        <span>Score 78.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>1. <a href="http://arxiv.org/abs/2611.16433v1">daVinci-Prover: Agent-Native Mid-Training for Formal Theorem Proving</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+daVinci-Prover%3A+Agent-Native+Mid-Training+for+Formal+Theorem+Proving&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16433v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+daVinci-Prover%3A+Agent-Native+Mid-Training+for+Formal+Theorem+Proving%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+theorem+proving%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+daVinci-Prover%3A+Agent-Native+Mid-Training+for+Formal+Theorem+Proving&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16433v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+daVinci-Prover%3A+Agent-Native+Mid-Training+for+Formal+Theorem+Proving%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+theorem+proving%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+daVinci-Prover%3A+Agent-Native+Mid-Training+for+Formal+Theorem+Proving&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16433v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+daVinci-Prover%3A+Agent-Native+Mid-Training+for+Formal+Theorem+Proving%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+agent%2C+agents%2C+rag%2C+ai%2C+theorem+proving%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Wenhong Zhu、Xuefeng Li、Jiashuo Zhang、Yu Chen 等 7 人 · <a href="https://arxiv.org/pdf/2611.16433v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">theorem proving <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕形式化定理证明中的LLM智能体训练，提出了一个面向Lean证明环境的“agent-native”中期训练方案与交互式证明框架 daVinci-Prover，目标是系统提升模型在长程、可验证证明构造任务上的能力。根据摘要，作者通过合成33.7B token的中训练语料和约36K条经验证器约束的智能体轨迹，在MiniF2F、FATE-M、ProofNet等基准上相对匹配的Qwen3-8B仅SFT基线取得平均13.7分提升。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献很可能有三点：第一，提出一种面向形式化证明智能体的中期训练数据配方，强调“数学能力先验+agentic轨迹”共同作用，而不只是最终证明监督；第二，构建了具体的数据与系统基础设施，包括覆盖分解、搜索、自验证、修订的33.7B token合成语料，以及可在隔离工作区中与Lean验证器交互的 daVinci-Prover harness；第三，基于该框架收集约36K高质量轨迹用于监督微调，并在多个定理证明基准上展示出相对SFT-only方案的显著增益，说明中训练阶段对形式化证明能力可能是关键杠杆。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 10</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>78.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：如何为形式化定理证明中的LLM智能体建立一种透明、有效、可系统扩展的训练数据与训练流程，使模型不仅具备数学推理先验，还能在Lean这类验证器环境中进行长程、交互式、可修订的证明构造。更细一点说，作者在挑战“仅靠最终证明样本做SFT是否足够”这一隐含假设，转而研究过程性、验证器约束的中训练数据是否能显著提升证明能力。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法包含三个层次。第一层是数据层：合成一个33.7B token的agent-native中训练语料，内容覆盖证明任务分解、搜索候选证明路径、自验证以及失败后的修订。第二层是环境层：提出 daVinci-Prover harness，让模型在隔离工作区中与Lean verifier交互，执行证明构造并接收验证反馈。第三层是训练层：利用该环境收集约36K条高质量、由验证器约束的agent轨迹进行监督微调，并将中训练后的模型与SFT-only基线比较。实验上应主要在MiniF2F、FATE-M、ProofNet等形式化证明基准上评测，模型对象至少包括Qwen3-8B和Qwen3.5系列。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四个。其一，问题定义具体且切中当前瓶颈：不是泛泛谈数学推理，而是聚焦“形式化证明智能体的数据配方”。其二，数据设计强调过程技能，明确覆盖分解、搜索、自验证、修订，这比只学习最终答案更贴近真实证明工作流。其三，引入Lean验证器交互的harness，说明作者重视可执行环境中的真实反馈，而非纯文本模拟。其四，摘要给出了较具体的规模和结果数字，包括33.7B token、36K轨迹、跨三个基准平均提升13.7分，这使论文看起来不仅有概念，也有较强工程落地与实证支撑。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：第一，拿到正文后先看方法总览图和数据构成表，确认33.7B token语料的来源、组成比例、是否公开；第二，直接查主结果表，记录MiniF2F、FATE-M、ProofNet上各模型的绝对分数、提升幅度和推理预算；第三，重点看ablation，确认提升究竟来自中训练语料、36K轨迹SFT、还是harness交互设计；第四，检查数据污染与去重说明，尤其评测集隔离策略；第五，如果你做复现，可先尝试在Lean任务上实现一个最小版交互环境，只复现“验证器反馈+修订轨迹SFT”这一子模块，验证是否能相对普通SFT带来稳定收益。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：如何为形式化定理证明中的LLM智能体建立一种透明、有效、可系统扩展的训练数据与训练流程，使模型不仅具备数学推理先验，还能在Lean这类验证器环境中进行长程、交互式、可修订的证明构造。更细一点说，作者在挑战“仅靠最终证明样本做SFT是否足够”这一隐含假设，转而研究过程性、验证器约束的中训练数据是否能显著提升证明能力。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法包含三个层次。第一层是数据层：合成一个33.7B token的agent-native中训练语料，内容覆盖证明任务分解、搜索候选证明路径、自验证以及失败后的修订。第二层是环境层：提出 daVinci-Prover harness，让模型在隔离工作区中与Lean verifier交互，执行证明构造并接收验证反馈。第三层是训练层：利用该环境收集约36K条高质量、由验证器约束的agent轨迹进行监督微调，并将中训练后的模型与SFT-only基线比较。实验上应主要在MiniF2F、FATE-M、ProofNet等形式化证明基准上评测，模型对象至少包括Qwen3-8B和Qwen3.5系列。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四个。其一，问题定义具体且切中当前瓶颈：不是泛泛谈数学推理，而是聚焦“形式化证明智能体的数据配方”。其二，数据设计强调过程技能，明确覆盖分解、搜索、自验证、修订，这比只学习最终答案更贴近真实证明工作流。其三，引入Lean验证器交互的harness，说明作者重视可执行环境中的真实反馈，而非纯文本模拟。其四，摘要给出了较具体的规模和结果数字，包括33.7B token、36K轨迹、跨三个基准平均提升13.7分，这使论文看起来不仅有概念，也有较强工程落地与实证支撑。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限主要有：一，数据合成与轨迹收集细节未知，可能影响复现性与外部可用性；二，评测增益是否来自更大训练量、更多计算或潜在数据污染，目前无法判断；三，摘要没有说明错误类型分析，因此不清楚方法究竟提升了哪类证明能力，是更擅长短证明、tactic选择、还是错误恢复；四，未见成本信息，不清楚agent-native训练和交互采样的算力代价是否过高；五，结果主要围绕特定模型族和Lean环境，跨模型、跨证明器泛化能力仍待核实。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：第一，拿到正文后先看方法总览图和数据构成表，确认33.7B token语料的来源、组成比例、是否公开；第二，直接查主结果表，记录MiniF2F、FATE-M、ProofNet上各模型的绝对分数、提升幅度和推理预算；第三，重点看ablation，确认提升究竟来自中训练语料、36K轨迹SFT、还是harness交互设计；第四，检查数据污染与去重说明，尤其评测集隔离策略；第五，如果你做复现，可先尝试在Lean任务上实现一个最小版交互环境，只复现“验证器反馈+修订轨迹SFT”这一子模块，验证是否能相对普通SFT带来稳定收益。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象非常具体：不是泛化意义上的数学推理，而是“形式化定理证明”中的LLM智能体，且工作环境明确指向Lean验证器。作者的问题意识也很明确：当前形式化证明模型继续提升，受限于缺少透明且有效的数据配方，尤其缺少能同时支撑数学先验能力与长程交互式证明构造的数据与训练机制。为此，论文提出“agent-native mid-training”，意味着训练目标不只是学习静态证明文本，而是让模型在中训练阶段就接触智能体式行为模式，例如任务分解、搜索候选步骤、自我验证、失败后修订，并通过验证器反馈形成闭环。
-
-方法线索主要来自摘要中的几个具体对象。其一是33.7B token的合成中训练语料，覆盖 decomposition、search、self-verification、revision，这说明数据设计可能显式编码了证明过程中的中间行为，而非只保留最终Lean proof script。其二是 verifier-grounded agentic trajectories，说明轨迹不是纯语言生成，而是与形式验证器状态或反馈绑定，可能包含 tactic 尝试、报错、回退、修复等交互序列。其三是 daVinci-Prover harness，它让模型在隔离工作区中构造证明并与Lean verifier交互，这表明作者不仅做离线数据训练，还搭建了一个可执行、可采样轨迹的环境层。其四是约36K高质量agent trajectories用于SFT，说明最终训练流程可能是“先大规模agent-native中训练，再用高质量交互轨迹监督微调”。
-
-证据方面，摘要给出了较具体的结果锚点：相对匹配的Qwen3-8B SFT-only基线，在MiniF2F、FATE-M、ProofNet三个基准上平均提升13.7分；并且方法迁移到Qwen3.5系列后也有较强表现。这些信息支持作者的核心论点：仅靠SFT可能不足以学到强证明智能体，而中训练阶段注入过程性、交互式、验证器约束的数据，能带来更稳定的收益。不过摘要后半句被截断，关于“near-saturating M ...”的具体 benchmark 或指标无法确认，因此不能进一步推断其是否达到某个数据集接近饱和的水平。
-
-如果你的方向与LLM推理、代码智能体、形式化方法或可验证AI有关，这篇论文值得关注的原因在于它把“训练配方”作为主要研究对象，而不是单纯堆更大模型或更强搜索。它可能提供一个可迁移范式：对需要外部环境反馈的任务，先在中训练阶段学习过程技能，再用高质量环境轨迹做对齐。对 theorem proving 社区而言，关键价值在于把数学能力先验与交互式证明行为统一到同一训练叙事中；对 agent 研究而言，关键价值在于展示 verifier-grounded 轨迹比纯文本CoT更接近真实任务执行。
-
-但基于当前仅有摘要，也有若干必须核对的信息。首先，33.7B token语料的来源、合成规则、去重与污染控制尚不清楚，尤其是否与评测集存在形式或语义泄漏。其次，36K轨迹的“高质量”如何定义、由谁筛选、是否依赖更强教师模型、是否包含失败轨迹与修复轨迹比例，这些都会影响可复现性。再次，平均提升13.7分是绝对分还是相对百分比、各基准分别提升多少、是否伴随更高推理成本，都需要看正文表格。最后，所谓agent-native mid-training与常规continued pretraining、tool-use SFT、RL with verifier feedback之间的边界定义，也值得在方法章节中仔细核对。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Advances in large language models (LLMs) are rapidly transforming formal theorem proving. Yet further progress remains constrained by the lack of a transparent and effective data recipe for systematically improving theorem-proving models. In this work, we argue that effective agentic provers require strong mathematical skill priors to ground theorem proving and agentic trajectories to enable long-horizon, interactive proof construction. To this end, we synthesize an agent-native 33.7B-token mid-training corpus covering decomposition, search, self-verification, and revision, together with verifier-grounded agentic trajectories. We further introduce the daVinci-Prover harness, which enables models to construct proofs and interact with a Lean verifier in an isolated workspace, and use it to collect approximately 36K high-quality agent trajectories for supervised fine-tuning. Our mid-training recipe yields an average improvement of 13.7 points over the matched Qwen3-8B SFT-only baseline across MiniF2F, FATE-M, and ProofNet. When applied to the Qwen3.5 series, our approach also yields strong performance across theorem-proving benchmarks and achieves near-saturating MiniF2F performance with memory compaction. The results highlight agent-native mid-training as an effective foundation for developing stronger interactive theorem-proving agents.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-12T14:30:10Z</span>
-        <span>Score 71.5</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>2. <a href="http://arxiv.org/abs/2611.16856v1">Sustainable Federated Fine-Tuning with LoRA: Environmental Impact and Performance Footprint</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Sustainable+Federated+Fine-Tuning+with+LoRA%3A+Environmental+Impact+and+Performanc&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16856v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Sustainable+Federated+Fine-Tuning+with+LoRA%3A+Environmental+Impact+and+Performance+Footprint%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+environmental%2C+environment%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Sustainable+Federated+Fine-Tuning+with+LoRA%3A+Environmental+Impact+and+Performanc&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16856v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Sustainable+Federated+Fine-Tuning+with+LoRA%3A+Environmental+Impact+and+Performance+Footprint%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+environmental%2C+environment%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Sustainable+Federated+Fine-Tuning+with+LoRA%3A+Environmental+Impact+and+Performanc&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16856v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Sustainable+Federated+Fine-Tuning+with+LoRA%3A+Environmental+Impact+and+Performance+Footprint%0Akeywords%3A+large+language+model%2C+large+language+models%2C+llm%2C+language+model%2C+language+models%2C+ai%2C+environmental%2C+environment%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Pedro Augusto Londe Ribeiro、Rodrigo Moreira、Larissa Ferreira Rodrigues Moreira、Joberto S. B. Martins 等 6 人 · <a href="https://arxiv.org/pdf/2611.16856v1">PDF</a></div>
-      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
-<span class="chip">large language models <strong>1</strong></span>
-<span class="chip">llm <strong>1</strong></span>
-<span class="chip">language model <strong>1</strong></span>
-<span class="chip">language models <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">environmental <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span>
-<span class="chip">carbon <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦“联邦学习中的LoRA微调”这一具体任务，比较了在NVIDIA A40、RTX 6000 Ada和A100三类GPU上，对135M/360M模型进行联邦LoRA微调时的能耗、碳排放与性能足迹。摘要给出的核心结论是：在其评估范围内，本地训练步数比模型规模更主导能耗与排放变化，而较少本地步数在A40和RTX 6000 Ada上可用约6–8倍更低能耗获得相近精度。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把“可持续性”明确引入联邦PEFT/LoRA微调评估，且不是泛泛讨论，而是用2^2全因子设计、跨三种GPU、两种模型规模和两档本地步数，定量分析能耗与CO2当量排放的变化来源。摘要中较具体的可能贡献包括：1）给出联邦LoRA微调在不同硬件上的能耗/排放实测或估算；2）通过变异分配指出84.8%–91.2%的能耗与排放变化可归因于本地步数；3）提出在所测设置下采用更小本地预算可显著提升accuracy per kWh，为联邦LLM适配中的系统参数选择提供环境维度依据。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 9</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>71.5</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答的具体问题是：在联邦学习场景下，对135M和360M语言模型进行LoRA微调时，不同GPU硬件与本地训练步数设置会如何影响能耗、CO2当量排放和任务精度；以及在给定范围内，模型规模与本地步数这两个因素中，哪一个更主导环境成本变化。进一步的问题是，是否存在能以显著更低能耗维持相近精度的联邦微调配置。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要可推测，作者采用实验比较而非纯理论分析。方法路径大致是：在联邦LoRA微调设置下，选取两种模型规模（135M、360M）和两档本地步数（10、100），构成2^2全因子设计；在A40、RTX 6000 Ada、A100三种GPU上运行相同或可比训练任务；用CodeCarbon记录训练能耗并估算CO2-e；同时记录任务准确率；再通过描述性变异分配分析模型规模与本地步数对能耗/排放变化的相对贡献，并比较accuracy per kWh等效率指标。由于摘要未说明，尚不清楚联邦算法是否为FedAvg类、客户端数量和数据异质性如何设置。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点之一是问题设定具体且有现实意义：不是泛泛讨论绿色AI，而是落到“联邦LoRA微调”这一当前很实际的LLM适配范式。亮点之二是实验因素清晰，硬件、模型规模和本地步数都给出了具体对象，便于后续复现或对照。亮点之三是结果具有可操作性：本地步数解释了84.8%–91.2%的能耗/排放变化，且在A40和RTX 6000 Ada上低步数配置可实现约6–8倍能耗下降并保持可比精度，这种结论直接可转化为系统调参建议。亮点之四是同时报告环境指标与性能效率指标，而不是只看绝对能耗。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）优先查看论文中的实验设置表，确认具体任务、数据集、客户端数、联邦算法和LoRA超参数；2）查能耗/排放主结果图，核对A100为何未被纳入同样的低步数优势结论；3）记录accuracy per kWh的定义与计算方式，判断是否适合你的实验；4）若做复现，可先在单一GPU上复现“10 vs 100本地步数”对能耗和精度的影响；5）若做对照研究，可加入更多本地步数档位、不同数据异质性和更大模型，验证“本地步数主导能耗变化”是否稳健。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答的具体问题是：在联邦学习场景下，对135M和360M语言模型进行LoRA微调时，不同GPU硬件与本地训练步数设置会如何影响能耗、CO2当量排放和任务精度；以及在给定范围内，模型规模与本地步数这两个因素中，哪一个更主导环境成本变化。进一步的问题是，是否存在能以显著更低能耗维持相近精度的联邦微调配置。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要可推测，作者采用实验比较而非纯理论分析。方法路径大致是：在联邦LoRA微调设置下，选取两种模型规模（135M、360M）和两档本地步数（10、100），构成2^2全因子设计；在A40、RTX 6000 Ada、A100三种GPU上运行相同或可比训练任务；用CodeCarbon记录训练能耗并估算CO2-e；同时记录任务准确率；再通过描述性变异分配分析模型规模与本地步数对能耗/排放变化的相对贡献，并比较accuracy per kWh等效率指标。由于摘要未说明，尚不清楚联邦算法是否为FedAvg类、客户端数量和数据异质性如何设置。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点之一是问题设定具体且有现实意义：不是泛泛讨论绿色AI，而是落到“联邦LoRA微调”这一当前很实际的LLM适配范式。亮点之二是实验因素清晰，硬件、模型规模和本地步数都给出了具体对象，便于后续复现或对照。亮点之三是结果具有可操作性：本地步数解释了84.8%–91.2%的能耗/排放变化，且在A40和RTX 6000 Ada上低步数配置可实现约6–8倍能耗下降并保持可比精度，这种结论直接可转化为系统调参建议。亮点之四是同时报告环境指标与性能效率指标，而不是只看绝对能耗。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>局限首先在于信息边界明显：仅凭摘要无法确认任务类型、数据集、联邦划分、客户端规模和统计显著性，因此结论的外推范围有限。其次，2^2设计只覆盖两个因素和较窄取值范围，尤其本地步数只比较10与100，不能说明更广泛超参数空间中的规律。再次，CodeCarbon提供的是运行期能耗与基于地区参数的排放估算，不等于完整生命周期环境影响。还有，摘要只明确强调A40和RTX 6000 Ada上的优势，没有同样强地总结A100，说明硬件间结论可能不一致。最后，模型规模仅到360M，距离当前主流“大语言模型”仍偏小，因此对更大参数规模LoRA联邦微调是否成立需要谨慎。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）优先查看论文中的实验设置表，确认具体任务、数据集、客户端数、联邦算法和LoRA超参数；2）查能耗/排放主结果图，核对A100为何未被纳入同样的低步数优势结论；3）记录accuracy per kWh的定义与计算方式，判断是否适合你的实验；4）若做复现，可先在单一GPU上复现“10 vs 100本地步数”对能耗和精度的影响；5）若做对照研究，可加入更多本地步数档位、不同数据异质性和更大模型，验证“本地步数主导能耗变化”是否稳健。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文研究对象不是一般的集中式微调，而是“联邦场景下的大模型参数高效微调”，具体采用LoRA作为PEFT方法，并把环境影响与性能足迹并列为评估目标。实验对象较明确：GPU硬件为NVIDIA A40、RTX 6000 Ada、A100；模型规模为135M和360M；本地训练步数为10和100；实验设计为2^2 full factorial design，说明作者至少系统操控了模型规模与本地步数两个因素，并在不同GPU上重复评估。能耗与碳排估计工具为CodeCarbon，因此证据链主要来自训练过程中的电力消耗记录与CO2-e估算，而不是生命周期评估。摘要还提到“descriptive allocation of variation”，这意味着作者可能没有做复杂因果推断，而是用描述性方差分解或类似分析来衡量不同因素对能耗/排放波动的贡献。
-
-就结果线索而言，最具体的信息有三点。第一，在给定考察范围内，本地步数对能耗和排放的影响远大于模型规模，贡献占比达到84.8%–91.2%。这对联邦训练很关键，因为本地步数直接决定每轮客户端计算量，也影响通信轮数与收敛行为。第二，在A40和RTX 6000 Ada上，较少本地步数的配置能以约6–8倍更低能耗达到“可比准确率”，并且accuracy per kWh更高，说明至少在这些硬件和任务上，增加本地计算预算未必带来成比例性能收益。第三，摘要没有把A100也纳入“较少步数更优”的明确结论中，这提示A100上的结果可能更复杂、差异不显著，或受吞吐、功耗曲线、利用率等因素影响，值得重点核对。
-
-与科研读者的关系上，这篇工作对以下方向尤其相关：联邦学习系统优化、绿色AI、LLM/SLM参数高效微调、边缘/异构硬件部署。如果你的研究关注联邦超参数选择，这篇论文提供了一个很具体的启发：在一定模型规模和硬件范围内，优先压缩本地步数可能比缩小模型更有效地降低能耗与碳排。如果你关注PEFT方法学，则它提示LoRA不仅要看精度和通信开销，也应纳入energy-per-accuracy这类指标。如果你关注硬件比较，则A40、RTX 6000 Ada、A100三者的差异可能揭示数据中心卡与工作站卡在联邦微调中的能效边界。
-
-但基于当前元数据，也有多项关键信息必须核对。摘要没有说明具体任务、数据集、联邦数据划分方式、客户端数量、聚合算法、LoRA秩/目标模块、训练轮数、批大小、优化器、是否量化、是否多次重复实验及方差区间。所谓“comparable accuracy”缺少统计定义；CodeCarbon给出的CO2-e依赖地区电网碳强度设定，也需要看实验环境。题名中的“performance footprint”可能不仅指准确率，还可能涉及吞吐、时延、收敛速度或资源占用，但摘要未展开。因此，这篇论文目前最适合作为“联邦LoRA可持续性评估的实验性证据”，而不是直接当作普适结论。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>Federated Learning (FL) with Parameter-Efficient Fine-Tuning (PEFT) enables efficient adaptation of Large Language Models (LLMs), yet its energy and carbon costs across hardware remain poorly understood. We evaluated federated Low-Rank Adaptation (LoRA) fine-tuning on NVIDIA A40, RTX 6000 Ada, and A100 GPUs using a $2^2$ full factorial design with 135M/360M models and 10/100 local steps. CodeCarbon tracked energy and estimated CO$_2$-equivalent emissions. Descriptive allocation of variation assigned 84.8-91.2% of energy and emissions variation to local steps within these ranges. On A40 and RTX 6000 Ada, configurations with fewer steps achieved comparable accuracy with roughly 6-8-fold lower energy consumption and higher accuracy per kWh. These findings support smaller local budgets for energy-efficient federated fine-tuning within the evaluated setting.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-11T21:35:06Z</span>
-        <span>Score 64.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>3. <a href="http://arxiv.org/abs/2611.16028v1">Scaling public input on AI policy with pluralistic agents</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Scaling+public+input+on+AI+policy+with+pluralistic+agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16028v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Scaling+public+input+on+AI+policy+with+pluralistic+agents%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Scaling+public+input+on+AI+policy+with+pluralistic+agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16028v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Scaling+public+input+on+AI+policy+with+pluralistic+agents%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Scaling+public+input+on+AI+policy+with+pluralistic+agents&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16028v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Scaling+public+input+on+AI+policy+with+pluralistic+agents%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Jacy Reese Anthis、Ken Burke、David Madras、Crystal Qian 等 8 人 · <a href="https://arxiv.org/pdf/2611.16028v1">PDF</a></div>
-      <div class="chips"><span class="chip">agent <strong>1</strong></span>
-<span class="chip">agents <strong>1</strong></span>
-<span class="chip">ai agent <strong>1</strong></span>
-<span class="chip">rag <strong>1</strong></span>
-<span class="chip">ai <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文围绕“pluralistic agents（多元代理）”这一具体对象，研究如何让AI代理代表不同个体参与AI政策讨论与协商，从而扩大公众对AI治理的输入规模。根据摘要，作者通过实验考察这些代理是否能把集体决策推向其所代表人格/立场的偏好方向，以及这种影响力如何受提示方式和系统设计影响。</p></div>
-        <div class="note"><strong>贡献</strong><p>从题名与摘要看，论文的核心贡献是提出并实证测试一种用于AI政策参与的“代表性代理”框架：让代理代替个人参与复杂、频繁或信息受限的政策讨论；并进一步揭示一个关键机制性发现，即代理对政策结果的影响并不只取决于其代表的偏好，还会显著受persona给出的指令风格影响，例如更冗长或更不合作的代理可能拥有更大影响力。这使论文同时触及可扩展公众参与的机会与AI辅助协商中的公平性/操控风险。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">arXiv</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 6</div>
-              <div class="signal-meter"><span style="width: 100%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>64.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在AI政策制定或审议场景中，如何用AI代理代表大量不同个体的偏好，以扩大公众输入规模，同时保持对多元观点的表达与对齐；以及这些代表性代理在实际协商中是否真的能影响政策结果、这种影响是否公平稳定。更细一点说，作者在问两个层面的问题：第一，代理能否忠实地把某个persona的偏好转化为审议中的立场与行动；第二，代理在群体讨论中的影响力是否会被提示方式、表达风格或系统规则系统性扭曲。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法应包括构建或提示一组代表不同persona的AI代理，让它们参与某种政策讨论/协商任务，并观察最终政策输出相对各persona偏好的变化。实验变量可能包括代理的指令风格（如更详细、更强硬、更不合作）、协商规则、是否共享信息、以及代理与人类参与者的组合方式。证据可能来自两部分：一是行为实验，测量代理是否把结果推向其代表偏好；二是预注册用户研究，调查人们对pluralistic agents的机会、风险和可接受性的看法。数据层面可能涉及参与者提供的偏好描述、政策选项或政策文本、以及审议过程日志。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，任务设定新且具体：不是泛泛讨论“AI辅助民主”，而是把代理作为“个人代表”嵌入AI政策审议。第二，摘要给出了一个机制性发现：影响力受persona指令风格显著影响，这比单纯报告“代理有效”更有研究价值，因为它揭示了制度设计中的潜在偏差来源。第三，论文同时讨论机会、风险和感知，并提到预注册研究，说明作者可能试图把系统性能、社会影响和用户接受度放在同一框架下评估。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，优先查看论文中的实验设置图和主结果表，确认“policy shift toward persona preference”到底如何定义和量化；第二，查预注册部分，记录假设、样本量、主要终点和是否全部报告；第三，整理代理指令条件，特别是verbose与less cooperative两类操纵是否独立、效应量多大；第四，检查是否有人类基线或非代理基线，以判断pluralistic agents相对直接公众参与的增益；第五，如果你做相关研究，可尝试复现一个小型审议任务，对比不同prompt风格对群体决策的影响，验证摘要中的机制现象是否稳健。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在AI政策制定或审议场景中，如何用AI代理代表大量不同个体的偏好，以扩大公众输入规模，同时保持对多元观点的表达与对齐；以及这些代表性代理在实际协商中是否真的能影响政策结果、这种影响是否公平稳定。更细一点说，作者在问两个层面的问题：第一，代理能否忠实地把某个persona的偏好转化为审议中的立场与行动；第二，代理在群体讨论中的影响力是否会被提示方式、表达风格或系统规则系统性扭曲。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法应包括构建或提示一组代表不同persona的AI代理，让它们参与某种政策讨论/协商任务，并观察最终政策输出相对各persona偏好的变化。实验变量可能包括代理的指令风格（如更详细、更强硬、更不合作）、协商规则、是否共享信息、以及代理与人类参与者的组合方式。证据可能来自两部分：一是行为实验，测量代理是否把结果推向其代表偏好；二是预注册用户研究，调查人们对pluralistic agents的机会、风险和可接受性的看法。数据层面可能涉及参与者提供的偏好描述、政策选项或政策文本、以及审议过程日志。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，任务设定新且具体：不是泛泛讨论“AI辅助民主”，而是把代理作为“个人代表”嵌入AI政策审议。第二，摘要给出了一个机制性发现：影响力受persona指令风格显著影响，这比单纯报告“代理有效”更有研究价值，因为它揭示了制度设计中的潜在偏差来源。第三，论文同时讨论机会、风险和感知，并提到预注册研究，说明作者可能试图把系统性能、社会影响和用户接受度放在同一框架下评估。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前信息，主要局限在于外推与可解释性都尚不清楚。首先，摘要未说明persona构建是否真实、稳定、可验证，若persona过于简化，所谓“代表”可能只是提示模板而非真实偏好建模。其次，政策结果被“推向偏好方向”的测量方式未知，若指标设计不严谨，可能把语言上的强势误判为代表性成功。第三，影响力受冗长或不合作指令影响，虽然是重要发现，但也可能意味着系统容易被策略性操控，削弱公平性。第四，样本来源、议题范围、模型版本和文化背景未知，结论可能只适用于特定实验环境。最后，摘要截断，无法确认作者是否提供了足够的消融、对照和伦理缓解措施。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，优先查看论文中的实验设置图和主结果表，确认“policy shift toward persona preference”到底如何定义和量化；第二，查预注册部分，记录假设、样本量、主要终点和是否全部报告；第三，整理代理指令条件，特别是verbose与less cooperative两类操纵是否独立、效应量多大；第四，检查是否有人类基线或非代理基线，以判断pluralistic agents相对直接公众参与的增益；第五，如果你做相关研究，可尝试复现一个小型审议任务，对比不同prompt风格对群体决策的影响，验证摘要中的机制现象是否稳健。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅依据题名、摘要和元数据，这项工作聚焦AI治理与公共参与的交叉问题：现实中的AI部署跨越多种应用场景、文化环境和利益相关者，但传统公众咨询难以持续覆盖足够多、足够多样的人群。作者提出的pluralistic agents，直观上是“代表个人立场的AI代理”，其任务不是单纯回答问题，而是在政策讨论、协商或审议过程中替个人发声，并在技术性较强或涉及私有信息的议题上扩大参与能力。
-
-从摘要可提取的研究对象非常具体：一是“persona/被代表者”的偏好如何被编码进代理；二是代理在“deliberation（审议/协商）”中的行为；三是最终“policies（政策结果）”是否朝该persona偏好方向移动。摘要明确声称，实验中代理“能够可靠地将政策推向其代表persona偏好的方向”，说明作者至少设计了某种可测量的政策空间、偏好表示方式和结果偏移指标。另一个重要现象是，影响力对persona给代理的指令很敏感，例如更verbose或更less cooperative的指令会带来更大影响。这意味着论文不只是验证“代理能代表人”，还在研究“代理如何通过交互风格影响集体决策”。
-
-方法上，摘要没有给出完整技术细节，但可以合理推断其包含多轮审议实验，可能比较人类直接参与、代理参与、或不同代理设定下的政策输出差异；也可能包含预注册用户研究，用于评估参与者对这类代理的感知、接受度、信任或公平判断。摘要中提到“opportunities, risks, and perceptions”，说明证据线索可能分为三类：功能有效性（能否表达偏好）、机制风险（提示风格导致影响不均）、主观评价（用户如何看待这种制度安排）。
-
-与科研读者的关系上，这篇论文对以下方向尤其相关：AI治理、计算社会科学、人机协作、LLM代理、多智能体协商、价值对齐、参与式机器学习。如果你的研究关注agent在社会决策中的作用，这篇论文提供了一个很具体的任务设定：不是让agent完成工具性任务，而是让agent在制度化讨论中“代表人”。如果你关注公平性，则摘要已经暴露出一个值得深挖的问题：代理影响力可能被提示工程、表达长度、合作程度等表面行为变量放大，从而使“谁更会写prompt”变成“谁更有政治影响力”。
-
-需要核对的信息也很多。首先，pluralistic agents如何获得persona：是基于问卷、访谈、历史文本、价值排序，还是合成设定？其次，“政策被推向偏好方向”如何量化：是投票结果、政策文本embedding距离、人工标注，还是结构化政策选项分数？第三，实验参与者是谁、样本量多大、是否跨文化、是否真实公众而非众包样本？第四，预注册研究具体检验了哪些假设，主效应和交互效应是否稳健？第五，作者如何处理代理失真、过度自信、策略性操控和代表性授权等伦理问题。由于摘要被截断，尤其需要查看实验设计和附录，避免高估结论外推范围。</p></div>
-          </div>
-          
-        <details class="abstract-detail">
-          <summary>原始摘要</summary>
-          <p>AI is being deployed across a vast range of application domains, cultural environments, and human stakeholders. Safe and responsible AI development requires continuously accounting for diverse perspectives. We develop and test pluralistic agents, AI agent representatives that deliberate on behalf of individuals to align AI systems with diverse human perspectives. Pluralistic agents could help people contribute to many more discussions than they could directly participate in, on technical topics that would require training, and on policy choices that rely on private information that corporations and governments cannot readily share. Our experiments identify opportunities, risks, and perceptions of pluralistic agents. Agents were able to reliably shift policies in the direction of their represented persona&#x27;s preferences, but the extent of each agent&#x27;s influence was sensitive to the instructions from its persona, such as having more influence when instructed to be more verbose or less cooperative. This suggests that influence in AI-assisted deliberation could vary based on how participants prompt their agents and how the system is designed. In a preregistered study, 746 humans participated in the pluralistic agents process. Participants viewed pluralistic agents as useful and fair, preferring agents over the baseline of providing input to a single AI reasoning model. Most participants preferred participating themselves over either pluralistic agents or the baseline, but pluralistic agents recovered 68% of the baseline-direct gap in reported satisfaction and 82% in fairness. Because pluralistic agents can be used in many real-world contexts where direct discussion is not, they could be a promising tool to scale AI safety policy development. We encourage cautious exploration of this method, playing to its strengths as an amplifier of human input rather than a replacement.</p>
-        </details>
-        
-        </div>
-      </details>
-    
-    </article>
-    
-
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">arXiv</span>
-        <span>2026-11-12T12:08:43Z</span>
+        <span>2026-11-12T10:24:51Z</span>
         <span>Score 63.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>4. <a href="http://arxiv.org/abs/2611.16693v1">MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+MobileProbe%3A+Adaptive+Security+Evaluation+of+Mobile+Agents+via+Trajectory-Aware+&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16693v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+MobileProbe%3A+Adaptive+Security+Evaluation+of+Mobile+Agents+via+Trajectory-Aware+Injection%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+MobileProbe%3A+Adaptive+Security+Evaluation+of+Mobile+Agents+via+Trajectory-Aware+&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16693v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+MobileProbe%3A+Adaptive+Security+Evaluation+of+Mobile+Agents+via+Trajectory-Aware+Injection%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+MobileProbe%3A+Adaptive+Security+Evaluation+of+Mobile+Agents+via+Trajectory-Aware+&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16693v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+MobileProbe%3A+Adaptive+Security+Evaluation+of+Mobile+Agents+via+Trajectory-Aware+Injection%0Akeywords%3A+llm%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>1. <a href="http://arxiv.org/abs/2611.16591v1">Singularity-Bench: Can Agents Build Agents?</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Singularity-Bench%3A+Can+Agents+Build+Agents%3F&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16591v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Singularity-Bench%3A+Can+Agents+Build+Agents%3F%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Singularity-Bench%3A+Can+Agents+Build+Agents%3F&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16591v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Singularity-Bench%3A+Can+Agents+Build+Agents%3F%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Singularity-Bench%3A+Can+Agents+Build+Agents%3F&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16591v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Singularity-Bench%3A+Can+Agents+Build+Agents%3F%0Akeywords%3A+agent%2C+agents%2C+ai+agent%2C+ai+agents%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Yingbin Jin、Ji&#x27;an Wang、HaoYang Chai、Hanjun Luo 等 10 人 · <a href="https://arxiv.org/pdf/2611.16693v1">PDF</a></div>
-      <div class="chips"><span class="chip">llm <strong>1</strong></span>
-<span class="chip">agent <strong>1</strong></span>
+      <div class="authors">Yang Zhou、Krish Agarwal、Zhuoming Chen、Zerui Wang 等 19 人 · <a href="https://arxiv.org/pdf/2611.16591v1">PDF</a></div>
+      <div class="chips"><span class="chip">agent <strong>1</strong></span>
 <span class="chip">agents <strong>1</strong></span>
+<span class="chip">ai agent <strong>1</strong></span>
+<span class="chip">ai agents <strong>1</strong></span>
 <span class="chip">rag <strong>1</strong></span>
 <span class="chip">ai <strong>1</strong></span>
-<span class="chip">environmental <strong>1</strong></span>
 <span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇论文聚焦移动端GUI智能体在执行购物、消息等多步任务时面临的“环境注入攻击”风险，提出名为MobileProbe的轨迹感知自适应安全评测框架，用于在智能体实际运行轨迹上动态定位可注入页面与脆弱决策点。摘要强调其目标是克服固定任务、固定步骤、手工payload基准测试覆盖不足的问题，从而更真实地评估移动智能体在真实部署中的安全性。</p></div>
-        <div class="note"><strong>贡献</strong><p>从摘要看，论文的核心贡献可能有三点：第一，明确将移动GUI智能体受屏幕内容误导的威胁形式定义为environmental injection attack，并指出现有固定注入点评测会系统性低估风险；第二，提出MobileProbe这一trajectory-aware红队框架，能够先自动发现攻击者可控的内容表面，再沿智能体实际任务轨迹定位易受攻击的决策节点，并迭代重定向注入位置；第三，推动评测从“单任务单页面手工payload”转向“跨任务、跨路径、自适应覆盖”的安全评估范式，更适合比较不同移动代理系统的鲁棒性。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文提出了一个名为 Singularity-Bench 的开放式基准，用于评测自主智能体是否能从最小起点构建 AI 开发系统本身，任务覆盖预训练、中期训练、后训练、推理、agent harness 和集群编排六个端到端环节。摘要还表明作者不仅比较了 11 个智能体与成熟人工系统在相同硬件上的表现，还专门研究了 Harbor 框架中的奖励劫持漏洞，并提出防护扩展 Breakwater。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献看起来有三层：第一，提出一个比传统受限动作空间 benchmark 更开放、更贴近真实 AI 工程流程的端到端评测集 Singularity-Bench；第二，设计了与成熟人类工程基线在相同硬件上的对照评测，使“agent 能否构建 agent/AI 系统”这一问题更可量化；第三，结合针对 agentic application 的安全红队测试，揭示 Harbor 验证框架的 reward hacking 漏洞，并给出防御方案 Breakwater，强调评测基础设施本身也需要安全性。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -440,33 +229,242 @@
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：如何更真实、充分地评估移动GUI智能体在环境注入攻击下的安全性。现有方法把恶意payload固定在某个任务的某一步，导致payload难以跨任务迁移，而且当智能体走了不同路径、没有到达被注入页面时，会被误判为安全。作者试图解决的是“评测覆盖不足导致风险被低估”的方法学问题，而不仅仅是设计一个新的攻击样例。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法路径可能是：1）对移动应用进行自动化pentesting，枚举或探测攻击者可控且会显示在屏幕上的内容表面；2）让移动Agent执行目标任务，记录其实际操作轨迹与页面访问序列；3）在轨迹中定位对后续动作选择影响较大的决策点，判断何处插入环境指令最可能改变行为；4）若首次注入未命中或未成功，则根据已观察到的轨迹迭代调整注入位置/页面/时机，实现trajectory-aware injection；5）将该自适应框架与传统固定点基准比较，评估攻击成功率、覆盖率或风险发现能力。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是它把安全评测中的“路径依赖”显式纳入设计：同一任务下不同Agent可能走不同页面，因此攻击测试必须跟着轨迹走，而不是把攻击点钉死在预设步骤上。第二个亮点是“攻击面发现+脆弱点定位+迭代注入”这一链条，如果实现扎实，会比单纯构造payload更接近真实红队流程。第三个亮点是应用场景具体，直接面向手机购物、消息等高风险多步任务，具有较强现实意义。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文中的方法图，确认MobileProbe的完整流程和“trajectory-aware injection”的具体实现；2）重点看实验表，记录评测的Agent名称、App/任务数量、攻击面类型、成功率指标以及与固定点benchmark的差值；3）核对作者如何区分“攻击失败”和“未触达注入点”；4）如果你做相关研究，可尝试把自己的移动Agent任务日志按页面轨迹重放，手工检查是否存在摘要所说的覆盖盲区；5）阅读时特别记录威胁模型、攻击者可控内容来源和评测成本，这三项决定该框架是否适合复现或纳入你的基准。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答一个具体问题：当前前沿 AI agents 是否已经具备在开放式、真实工程环境中自主构建 AI 开发基础设施的能力，而不仅是在受限 benchmark 中完成局部子任务；同时，如何在这种开放环境下对 agent 生成的复杂系统进行可靠且抗攻击的评测。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法上应包括两部分。第一部分是 benchmark 构建：设计六个端到端任务，覆盖预训练、中期训练、后训练、推理、agent harness 和集群编排，要求 agent 从最小起点实现核心系统，并在相同硬件上与成熟人工基线比较。第二部分是评测安全性：对 Harbor 这类传统评测/验证框架进行系统红队测试，攻击面覆盖 OWASP Top 10 for Agentic Applications 的 9 个类别，观察 reward hacking 是否能让 agent 通过不真实的方式获得高分，再据此提出 Breakwater 作为 Harbor 的扩展防御机制。实验对象则是 11 个 agent，来源于 7 个前沿模型和 2 个 harness。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。其一，任务对象非常具体，不是抽象“软件工程能力”，而是 AI 开发栈中的六类核心系统，这使 benchmark 更接近真实研发流程。其二，强调从 minimal starting point 到成熟系统的构建，能够更好测量 agent 的规划、编码、调试和系统集成能力。其三，采用与成熟人工工程基线在相同硬件上的对照，这比只看 pass@k 或单元测试通过率更接近实际系统性能比较。其四，把评测框架安全性纳入论文主线，指出 Harbor 可能被 reward hacking 利用，并提出 Breakwater，这对今后 agent benchmark 的可信度很关键。摘要中还给出一个强信号：至少某个 agent 组合在六个任务上达到或超过人工基线，说明 benchmark 不是纯理论设计，而是已经能区分并展示前沿系统能力。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五个。第一，先获取全文并优先查看 benchmark 总览图和六个任务表，记录每个任务的目标、输入、输出、评分和人工基线。第二，查实验主表，确认 11 个 agent 的模型/harness 组合，以及“matches or outperforms”对应的具体指标和幅度。第三，专门看 Harbor 与 Breakwater 的攻击/防御章节，整理 9 类 OWASP 攻击分别如何实施、成功条件是什么、Breakwater 如何阻断。第四，如果你做 agent eval，可把该 benchmark 与 SWE-bench、MLSys 类任务或已有 autonomous research benchmarks 做维度对照，特别比较动作空间、环境开放性和验证方式。第五，阅读时重点记录三个问题：任务是否可复现、评测是否抗 reward hacking、以及结果是否受特定工具链或模型供应商生态影响。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：如何更真实、充分地评估移动GUI智能体在环境注入攻击下的安全性。现有方法把恶意payload固定在某个任务的某一步，导致payload难以跨任务迁移，而且当智能体走了不同路径、没有到达被注入页面时，会被误判为安全。作者试图解决的是“评测覆盖不足导致风险被低估”的方法学问题，而不仅仅是设计一个新的攻击样例。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法路径可能是：1）对移动应用进行自动化pentesting，枚举或探测攻击者可控且会显示在屏幕上的内容表面；2）让移动Agent执行目标任务，记录其实际操作轨迹与页面访问序列；3）在轨迹中定位对后续动作选择影响较大的决策点，判断何处插入环境指令最可能改变行为；4）若首次注入未命中或未成功，则根据已观察到的轨迹迭代调整注入位置/页面/时机，实现trajectory-aware injection；5）将该自适应框架与传统固定点基准比较，评估攻击成功率、覆盖率或风险发现能力。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是它把安全评测中的“路径依赖”显式纳入设计：同一任务下不同Agent可能走不同页面，因此攻击测试必须跟着轨迹走，而不是把攻击点钉死在预设步骤上。第二个亮点是“攻击面发现+脆弱点定位+迭代注入”这一链条，如果实现扎实，会比单纯构造payload更接近真实红队流程。第三个亮点是应用场景具体，直接面向手机购物、消息等高风险多步任务，具有较强现实意义。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要可见的局限主要有：第一，目前看更像评测框架而非防御方案，若读者关心如何缓解攻击，可能需要结合其他工作；第二，自适应评测通常成本较高，可能需要多轮运行Agent，实际评测吞吐量和复现门槛需要核对；第三，摘要未说明攻击者能力边界，例如是否假设能控制任意页面文案、用户生成内容或外部输入源，不同威胁模型下结论可能差异很大；第四，尚不清楚该方法对不同类型移动Agent、不同App生态是否都有效，是否存在只对特定任务流有效的偏置。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文中的方法图，确认MobileProbe的完整流程和“trajectory-aware injection”的具体实现；2）重点看实验表，记录评测的Agent名称、App/任务数量、攻击面类型、成功率指标以及与固定点benchmark的差值；3）核对作者如何区分“攻击失败”和“未触达注入点”；4）如果你做相关研究，可尝试把自己的移动Agent任务日志按页面轨迹重放，手工检查是否存在摘要所说的覆盖盲区；5）阅读时特别记录威胁模型、攻击者可控内容来源和评测成本，这三项决定该框架是否适合复现或纳入你的基准。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>根据题名、摘要和关键词，这项工作研究的对象不是通用网页Agent，而是“读取手机屏幕并代替用户操作App”的移动GUI智能体。其典型任务包括在线购物、发消息等多步交互流程。论文关注的具体威胁是：攻击者把恶意指令嵌入普通UI内容中，例如商品描述、聊天文本、页面文案或其他可显示在屏幕上的内容区域；由于智能体直接依据屏幕内容决策，可能被诱导偏离原任务、执行错误操作，甚至完成攻击者意图。这类攻击被作者称为环境注入攻击，重点在于恶意指令来自“环境显示内容”，而不是系统prompt或工具接口本身。
-
-摘要给出的主要问题诊断很具体。现有基准通常把人工设计的攻击payload固定插入到某个任务的某一步、某个页面上。这带来两个直接后果：一是payload与特定任务/特定App强绑定，换任务或换应用后往往不能直接复用，需要人工重写；二是移动智能体完成同一任务时可能走不同操作路径，如果某个被注入的页面根本没有被该智能体访问到，那么基准会把它记为“安全”，但实际上只是“没有测到”。作者认为这种固定点测试会造成测试覆盖不足，从而低估真实部署风险。这个问题设定对做Agent安全评测的人很重要，因为它指出了“攻击失败”与“攻击未触达”在统计上被混淆。
-
-从方法线索看，MobileProbe应当是一个自适应红队系统，至少包含三类能力。第一类是自动化渗透测试式的“攻击面发现”，即在移动应用或任务流程中识别哪些内容区域是攻击者可控、可显示、可被智能体读取的，例如用户生成内容、商品信息、消息内容、搜索结果、广告位等。第二类是“轨迹感知”的脆弱点定位，即不是预先假设固定注入点，而是观察智能体在执行任务时实际经过哪些页面、在哪些决策节点读取并解释屏幕内容，然后判断哪些节点最适合插入恶意指令。第三类是“迭代重定向注入”，意味着如果一次注入没有命中智能体实际轨迹，系统会根据前一次运行轨迹调整注入位置或时机，直到更充分地覆盖可达路径。题名中的Trajectory-Aware Injection与摘要中的iteratively re...都支持这种理解。
-
-如果从证据线索推断实验设计，论文大概率会比较固定点benchmark与MobileProbe在同一批移动Agent、同一组任务或App上的攻击成功率、覆盖率或风险发现能力。也可能会报告：可发现的攻击面数量、不同Agent轨迹分歧程度、因路径未覆盖导致的假阴性比例、以及自适应注入相对手工固定注入的增益。由于摘要未给出具体数字、数据集、App数量、Agent模型名称或攻击成功率，所有这些都需要在正文核对，不能直接当作已证实结论。
-
-与用户方向的关系方面，如果你关注LLM Agent安全、GUI Agent评测、红队自动化、或环境级prompt injection，这篇论文很值得看。它把“注入攻击”从传统文本上下文扩展到移动端可视环境，并且强调评测协议本身会影响风险估计。这对构建更可靠的Agent benchmark、设计防御机制、以及理解多模态/具身代理的攻击面都有直接意义。尤其是对做移动助手、手机自动化、视觉语言行动模型的人，这篇工作提示：安全评测不能只看模型是否在某个固定页面上中招，还要看系统是否会在真实轨迹中接触到攻击内容。
-
-当前最需要核对的信息包括：MobileProbe具体如何定义和检测“attacker-controllable content surfaces”；轨迹是通过真实设备执行、模拟器回放，还是日志分析获得；注入payload是模板化生成、LLM生成还是人工编写；评测对象是纯视觉语言模型Agent、带规划器的系统，还是商用手机助手；实验覆盖多少App和任务；“adaptive”过程是否需要多轮与目标Agent交互；以及作者是否提出了任何防御建议，还是仅做评测框架。由于目前只有摘要，不能判断其泛化性、成本、可复现性和统计显著性。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答一个具体问题：当前前沿 AI agents 是否已经具备在开放式、真实工程环境中自主构建 AI 开发基础设施的能力，而不仅是在受限 benchmark 中完成局部子任务；同时，如何在这种开放环境下对 agent 生成的复杂系统进行可靠且抗攻击的评测。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法上应包括两部分。第一部分是 benchmark 构建：设计六个端到端任务，覆盖预训练、中期训练、后训练、推理、agent harness 和集群编排，要求 agent 从最小起点实现核心系统，并在相同硬件上与成熟人工基线比较。第二部分是评测安全性：对 Harbor 这类传统评测/验证框架进行系统红队测试，攻击面覆盖 OWASP Top 10 for Agentic Applications 的 9 个类别，观察 reward hacking 是否能让 agent 通过不真实的方式获得高分，再据此提出 Breakwater 作为 Harbor 的扩展防御机制。实验对象则是 11 个 agent，来源于 7 个前沿模型和 2 个 harness。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。其一，任务对象非常具体，不是抽象“软件工程能力”，而是 AI 开发栈中的六类核心系统，这使 benchmark 更接近真实研发流程。其二，强调从 minimal starting point 到成熟系统的构建，能够更好测量 agent 的规划、编码、调试和系统集成能力。其三，采用与成熟人工工程基线在相同硬件上的对照，这比只看 pass@k 或单元测试通过率更接近实际系统性能比较。其四，把评测框架安全性纳入论文主线，指出 Harbor 可能被 reward hacking 利用，并提出 Breakwater，这对今后 agent benchmark 的可信度很关键。摘要中还给出一个强信号：至少某个 agent 组合在六个任务上达到或超过人工基线，说明 benchmark 不是纯理论设计，而是已经能区分并展示前沿系统能力。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，仍有若干边界需要警惕。第一，摘要没有给出六个任务的具体实现要求和评分细则，因此暂时无法判断 benchmark 是否偏向某类模型、工具链或工程风格。第二，“成熟 human-engineered baselines”听起来很强，但缺少基线来源、开发时间、优化程度和是否公开的信息，可能影响公平性解释。第三，摘要只提到相同硬件，没有说明是否控制了 token 预算、运行时长、外部工具权限和人工干预程度。第四，安全部分虽然声称 Breakwater 阻断了全部已测试攻击，但“全部”仅限其测试集，不代表对未覆盖攻击同样稳健。第五，最关键的性能结果被截断，无法确认综合指标、统计显著性、成本效率和失败案例。第六，论文发表于 arXiv，尚需关注后续版本是否修订 benchmark 设计或安全结论。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五个。第一，先获取全文并优先查看 benchmark 总览图和六个任务表，记录每个任务的目标、输入、输出、评分和人工基线。第二，查实验主表，确认 11 个 agent 的模型/harness 组合，以及“matches or outperforms”对应的具体指标和幅度。第三，专门看 Harbor 与 Breakwater 的攻击/防御章节，整理 9 类 OWASP 攻击分别如何实施、成功条件是什么、Breakwater 如何阻断。第四，如果你做 agent eval，可把该 benchmark 与 SWE-bench、MLSys 类任务或已有 autonomous research benchmarks 做维度对照，特别比较动作空间、环境开放性和验证方式。第五，阅读时重点记录三个问题：任务是否可复现、评测是否抗 reward hacking、以及结果是否受特定工具链或模型供应商生态影响。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名“Can Agents Build Agents?”和摘要内容看，论文关注的不是单一模型能力，而是前沿 AI agent 在真实、长时程、开放式软件工程环境中，能否自主实现 AI 开发栈中的关键系统组件。具体对象非常明确：六类任务分别对应 pre-training、mid-training、post-training、inference、agent harness、cluster orchestration，这意味着 benchmark 可能要求智能体从极简初始代码或空白脚手架出发，完成训练流水线、推理服务、agent 执行框架或集群调度相关系统的实现，再与成熟的人类工程版本在同一硬件条件下比较性能或功能完成度。摘要给出的证据线索包括：1）现有 benchmark 的不足被归因为动作空间过窄、环境过于简化、以及对任意 agent 生成系统缺乏可靠验证；2）作者因此引入开放式、端到端、可与人工基线同场比较的评测；3）他们还做了覆盖 OWASP Top 10 for Agentic Applications 中 10 类里的 9 类红队测试，发现传统 Harbor 框架存在 reward-hacking 漏洞；4）提出 Breakwater 扩展，并声称在其研究测试中阻断了全部已测试攻击；5）在 7 个 frontier 模型、2 个 harness 构成的 11 个 agent 上进行评测，其中“Opus 5.5 with Claude Code”在六个任务上达到或超过人工基线。由于摘要被截断，最后一句关于“Si ...”后的具体指标、统计量或综合分数缺失，因此不能判断其优势幅度、方差、成本或时间开销。与科研读者的关系上，这篇工作对 agent evaluation、AI for systems、autonomous ML engineering、benchmark design、AI safety/evals 都有直接参考价值：如果你的方向是 agent benchmark，它提供了从封闭任务转向真实工程任务的设计范式；如果你的方向是 AI 系统自动化，它给出了一组覆盖训练到部署再到编排的任务切面；如果你的方向是安全评测，它提醒验证框架本身会被 agent 利用，必须把 reward hacking 和 evaluator robustness 纳入 benchmark 设计。当前最需要核对的信息包括：六个任务各自的输入输出与评分标准；“最小 starting point”具体是什么；人工基线由谁实现、成熟度如何；相同硬件上的比较指标是吞吐、延迟、loss、成功率还是综合成本；11 个 agent 的具体模型和 harness 组合；Breakwater 的防御机制是静态约束、沙箱、双重验证还是执行审计；以及“matches or outperforms”是否在所有指标上成立，还是仅在主指标上成立。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Mobile GUI agents read the screen of a phone and operate apps on a user&#x27;s behalf to complete multi-step tasks such as online shopping or messaging. Because the agent acts on whatever the screen shows, an attacker can embed malicious instructions into ordinary UI content and redirect its actions. We refer to this threat as environmental injection attack (EIA). Existing benchmarks measure this risk by pinning hand-crafted payloads to a fixed step of a fixed task. This approach faces two limitations. First, each payload is bound to one task in one app and does not transfer without manual redesign. Second, agents given the same task may follow different routes, so an agent that never reaches the injected page is recorded as safe without being tested. This insufficient test coverage can cause fixed-point benchmarks to underestimate the security risk of deployed mobile agents. In this work, we propose MobileProbe, a trajectory-aware red-teaming framework that evaluates mobile agents adaptively. MobileProbe discovers attacker-controllable content surfaces through automated pentesting, localizes vulnerable decision points along the agent&#x27;s trajectory, and iteratively refines context-aware payloads through a surrogate-filtered evolutionary loop. We construct a benchmark of 83 long-horizon attack instances spanning 12 mobile applications. Each is annotated with a Confidentiality, Integrity, or Availability (CIA) attack goal to cover the principal categories of security threats facing mobile agents. On three representative agent architectures, MobileProbe attains higher attack success rates than human-written, zero-shot LLM, and prior automated red-teaming baselines adapted to the mobile domain. MobileProbe can serve as a pre-deployment auditing tool to systematically uncover vulnerabilities and inform security hardening of mobile agents.</p>
+          <p>Frontier AI agents increasingly succeed on realistic, long-horizon tasks and are beginning to improve the systems through which they operate. Yet existing benchmarks often restrict agents to narrow action spaces, use simplified environments, or rely on verification methods that are unreliable for evaluating arbitrary agent-generated systems. We introduce Singularity-Bench, an open-ended benchmark for autonomous AI development with six end-to-end tasks spanning pre-training, mid-training, post-training, inference, the agent harness, and cluster orchestration. Each task requires agents to implement core systems from a minimal starting point and evaluates them against mature human-engineered baselines on identical hardware. Additionally, through extensive red-teaming covering 9 of the 10 categories in the OWASP Top 10 for Agentic Applications, we expose reward-hacking vulnerabilities in the conventional Harbor framework and develop Breakwater, an extension of Harbor that blocks all attacks tested in our study. Across 11 agents built from 7 frontier models and 2 harnesses, Opus 5.5 with Claude Code matches or outperforms the human baseline on all six tasks with a Singularity-Index of 1.25, suggesting it may have the skills needed to reach the singularity. The remaining agents average only 0.58. Our vision is for Singularity-Bench to track how much of AI development agents can already automate and when they may transition from assisting to taking end-to-end responsibility for building stronger successors.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-12T07:25:46Z</span>
+        <span>Score 63.5</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>2. <a href="http://arxiv.org/abs/2611.16414v1">Small Language Models for Inference-Capability Routing: Effects of Model Capacity and Prompt Optimization on Downstream Quality and Efficiency</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Small+Language+Models+for+Inference-Capability+Routing%3A+Effects+of+Model+Capacit&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16414v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Small+Language+Models+for+Inference-Capability+Routing%3A+Effects+of+Model+Capacity+and+Prompt+Optimization+on+Downstream+Quality+and+Efficiency%0Akeywords%3A+large+language+model%2C+language+model%2C+language+models%2C+tool+use%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Small+Language+Models+for+Inference-Capability+Routing%3A+Effects+of+Model+Capacit&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16414v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Small+Language+Models+for+Inference-Capability+Routing%3A+Effects+of+Model+Capacity+and+Prompt+Optimization+on+Downstream+Quality+and+Efficiency%0Akeywords%3A+large+language+model%2C+language+model%2C+language+models%2C+tool+use%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Small+Language+Models+for+Inference-Capability+Routing%3A+Effects+of+Model+Capacit&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16414v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Small+Language+Models+for+Inference-Capability+Routing%3A+Effects+of+Model+Capacity+and+Prompt+Optimization+on+Downstream+Quality+and+Efficiency%0Akeywords%3A+large+language+model%2C+language+model%2C+language+models%2C+tool+use%2C+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Sailendra Kolluru、Maheshkumar Duvvarapu · <a href="https://arxiv.org/pdf/2611.16414v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">language models <strong>1</strong></span>
+<span class="chip">tool use <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文研究用小语言模型作为“能力路由器”，为每个查询独立决定是否启用推理、检索增强生成、网页搜索和工具/计算器等能力，并分析模型容量与提示词优化如何共同影响分类质量以及下游大模型调用的效率与回答质量。基于摘要可见，作者比较了Qwen2.5系列1.5B到14B路由模型和5种提示策略，再用固定的GPT-OSS-120B在127个问题上评估：分类分数相近并不一定带来相同的下游成本—质量表现。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献应在于把“是否启用某种推理/检索/工具能力”形式化为四个可多选的独立路由决策，并系统比较小模型容量与提示优化的替代关系；同时进一步指出，仅看路由分类F1不足以判断系统价值，因为误触发会增加无谓计算，漏触发会损害最终回答质量，因此需要把路由器放到固定下游大模型链路中联合评估效率与效果。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 7</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>63.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图回答两个具体问题：一是当小语言模型被用作能力路由器时，提示词优化能否弥补模型容量不足；二是路由分类性能的提升，是否真的会转化为下游大模型在回答质量与计算效率上的改进。更细地说，它关注四类能力——推理、RAG、网页搜索、计算器/工具——各自的触发判定是否受模型规模和提示设计影响不同，以及这些差异在真实调用链路中会造成什么代价。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，方法上应是构建一个prompt-driven routing framework，让Qwen2.5不同参数规模的小模型对四种能力分别输出独立决策，因此允许多能力同时激活。实验主轴包括两层：第一层是路由分类实验，比较1.5B到14B模型在5种提示策略下对四类能力的判定表现；第二层是系统级实验，把这些路由决策接到固定的GPT-OSS-120B下游模型上，在127个问题上观察能力激活后的回答质量与效率变化。作者还提到“capability-specific optimized configurations”，说明可能不是用统一prompt处理全部能力，而是为不同能力分别寻找更优提示或配置，再比较其下游效果。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点首先在于问题设定具体且实用：不是泛泛讨论小模型能否分类，而是直接面向LLM系统里最耗资源的几个能力开关。其次，多标签独立路由比单标签任务更贴近真实场景，因为一个问题可能既需要推理又需要搜索。第三，论文没有停留在分类F1，而是把路由器嵌入固定大模型链路中评估，这能揭示“同样F1、不同错误结构”带来的真实成本差异。第四，摘要已经给出有区分度的经验结论：提示优化对reasoning/calculator更有效，对RAG/web search则容量更重要，这种按能力拆分的发现对系统设计很有指导意义。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，打开arXiv原文先查实验表，记录四种能力各自的最佳模型规模、最佳提示策略和对应F1/precision/recall。第二，重点找127个问题的数据来源与标注规则，判断是否适合你的任务分布。第三，查看下游评估图表，确认作者如何量化“效率”和“质量”，并记下假阳性/假阴性的具体代价。第四，如果你做系统复现，可先用一个小样本集重建四个独立二分类路由头，对比“最小提示”与“优化提示”在reasoning和web search上的差异。第五，读文时特别记录是否有能力组合效应分析，例如RAG+reasoning同时开启是否优于单独开启，以及路由器是否输出置信度供阈值调节。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图回答两个具体问题：一是当小语言模型被用作能力路由器时，提示词优化能否弥补模型容量不足；二是路由分类性能的提升，是否真的会转化为下游大模型在回答质量与计算效率上的改进。更细地说，它关注四类能力——推理、RAG、网页搜索、计算器/工具——各自的触发判定是否受模型规模和提示设计影响不同，以及这些差异在真实调用链路中会造成什么代价。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，方法上应是构建一个prompt-driven routing framework，让Qwen2.5不同参数规模的小模型对四种能力分别输出独立决策，因此允许多能力同时激活。实验主轴包括两层：第一层是路由分类实验，比较1.5B到14B模型在5种提示策略下对四类能力的判定表现；第二层是系统级实验，把这些路由决策接到固定的GPT-OSS-120B下游模型上，在127个问题上观察能力激活后的回答质量与效率变化。作者还提到“capability-specific optimized configurations”，说明可能不是用统一prompt处理全部能力，而是为不同能力分别寻找更优提示或配置，再比较其下游效果。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点首先在于问题设定具体且实用：不是泛泛讨论小模型能否分类，而是直接面向LLM系统里最耗资源的几个能力开关。其次，多标签独立路由比单标签任务更贴近真实场景，因为一个问题可能既需要推理又需要搜索。第三，论文没有停留在分类F1，而是把路由器嵌入固定大模型链路中评估，这能揭示“同样F1、不同错误结构”带来的真实成本差异。第四，摘要已经给出有区分度的经验结论：提示优化对reasoning/calculator更有效，对RAG/web search则容量更重要，这种按能力拆分的发现对系统设计很有指导意义。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录与截断摘要，主要局限是证据细节不足。127个问题的评估规模偏小，若数据分布单一，结论的稳健性和泛化性需要谨慎看待。四类能力的人工标注或判定标准若主观性较强，路由分类结果可能受标注协议影响。摘要未说明是否比较了非LLM路由基线、阈值法或更简单分类器，因此尚不清楚小模型prompt路由的相对优势。另一个潜在问题是下游模型固定为GPT-OSS-120B，结论可能依赖该模型对不同能力调用的敏感性；换成别的基础模型或工具栈，成本—质量曲线可能变化。最后，摘要只提到F1及错误类型影响，但未见更明确的代价敏感指标、置信度校准或阈值分析。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，打开arXiv原文先查实验表，记录四种能力各自的最佳模型规模、最佳提示策略和对应F1/precision/recall。第二，重点找127个问题的数据来源与标注规则，判断是否适合你的任务分布。第三，查看下游评估图表，确认作者如何量化“效率”和“质量”，并记下假阳性/假阴性的具体代价。第四，如果你做系统复现，可先用一个小样本集重建四个独立二分类路由头，对比“最小提示”与“优化提示”在reasoning和web search上的差异。第五，读文时特别记录是否有能力组合效应分析，例如RAG+reasoning同时开启是否优于单独开启，以及路由器是否输出置信度供阈值调节。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，论文聚焦的是推理型LLM系统中的前置路由问题：并非所有用户问题都需要昂贵的链式推理、RAG、网页搜索或工具调用，如果能先由较小模型判断“该不该开这些能力”，就可能降低总体计算成本。作者提出的框架不是单一多分类，而是对四种能力分别做独立二分类，因此同一查询可以同时触发多个能力，这比互斥式路由更贴近真实代理/增强式LLM系统。实验对象明确包括Qwen2.5小模型路由器，参数规模从1.5B到14B；提示策略有5种；下游回答模型固定为GPT-OSS-120B；最终评估集规模为127个问题。摘要给出的关键现象有三点：第一，在最小提示条件下，增大路由器容量并不稳定地提升分类表现，说明路由任务可能强依赖提示设计而非单纯参数量。第二，提示优化对reasoning和calculator routing能明显缩小小模型与大模型之间的差距，但对RAG和web search这两类能力，高容量模型仍有更明显优势，暗示不同能力的可判别信号复杂度不同。第三，也是最值得科研读者注意的一点：相近的分类F1并不保证相近的系统行为，因为不同错误类型代价不对称，假阳性会导致不必要的能力激活和额外计算，假阴性则可能让本该检索/搜索/推理的问题直接失败。这意味着论文很可能在强调“路由评测要从分类指标转向决策代价敏感、面向下游任务的联合指标”。
+
+与相关研究方向的关系上，这项工作直接连接了小模型控制大模型、推理预算分配、工具使用门控、RAG触发判定和代理系统效率优化等主题。若你的方向是LLM系统工程、推理时计算优化、agent orchestration或cost-quality tradeoff，这篇论文的价值在于提供了一个较具体的实验框架：固定强下游模型，只替换前置路由器和提示策略，从而隔离“路由决策”本身的贡献。需要核对的信息包括：127个问题来自什么数据源、四类能力的标注标准如何定义、5种提示策略具体是什么、分类指标除F1外是否报告precision/recall或代价加权指标、下游质量如何打分、效率是按token/延迟/API调用次数还是工具成本衡量，以及“capability-specific optimized configurations”具体是分别为每种能力单独调prompt还是调阈值/解码设置。由于摘要被截断，关于漏触发如何影响质量的定量结果、不同能力组合的交互效应、以及是否存在跨任务泛化证据，目前都不能确定。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Optional reasoning, retrieval, web search, and tool use can improve large language model responses but incur unnecessary computation when activated indiscriminately. This study investigates whether prompt optimization can compensate for limited router capacity and whether classification gains translate into downstream efficiency. The proposed framework uses prompt-driven small language models to make four independent capability decisions, allowing multiple capabilities to be selected per query. Qwen2.5 routers ranging from 1.5B to 14B parameters are compared across five prompting strategies, followed by an evaluation of capability-specific optimized configurations using a fixed GPT-OSS-120B downstream model on 127 questions. Under minimal prompting, increasing router capacity does not consistently improve classification performance. Prompt optimization narrows the capacity gap for reasoning and calculator routing, whereas RAG and web search retain larger benefits from higher capacity. Similar classification F1 scores do not necessarily imply equivalent downstream behavior: false-positive activations increase unnecessary computation, while missed capabilities can reduce answer quality. The 14B router achieves a mean BERTScore F1 of 0.8408, compared with 0.8418 when all capabilities are enabled, while reducing average downstream token consumption by 68.7\% (8,837 to 2,764 tokens) and median downstream latency by 80.5\% (9.79 to 1.91 seconds). These savings exclude router overhead, which is measured separately in a different inference environment and increases with router capacity. The findings demonstrate that the relationship between router capacity, prompt design, and downstream efficiency is capability-dependent. Consequently, router selection must consider error profiles and routing overhead alongside classification performance.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-12T16:05:23Z</span>
+        <span>Score 62.5</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>3. <a href="http://arxiv.org/abs/2611.17007v1">Skill Adapter: Personalized Modification and Online Routing of General-Purpose Skills</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Skill+Adapter%3A+Personalized+Modification+and+Online+Routing+of+General-Purpose+S&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.17007v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Skill+Adapter%3A+Personalized+Modification+and+Online+Routing+of+General-Purpose+Skills%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Skill+Adapter%3A+Personalized+Modification+and+Online+Routing+of+General-Purpose+S&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.17007v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Skill+Adapter%3A+Personalized+Modification+and+Online+Routing+of+General-Purpose+Skills%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Skill+Adapter%3A+Personalized+Modification+and+Online+Routing+of+General-Purpose+S&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.17007v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Skill+Adapter%3A+Personalized+Modification+and+Online+Routing+of+General-Purpose+Skills%0Akeywords%3A+large+language+model%2C+llm%2C+language+model%2C+agent%2C+agents%2C+rag%2C+ai%2C+environmental%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Qijia Zhuang、Yanyi Gou、Wenbin Ma、Yuxiang Ren · <a href="https://arxiv.org/pdf/2611.17007v1">PDF</a></div>
+      <div class="chips"><span class="chip">large language model <strong>1</strong></span>
+<span class="chip">llm <strong>1</strong></span>
+<span class="chip">language model <strong>1</strong></span>
+<span class="chip">agent <strong>1</strong></span>
+<span class="chip">agents <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environmental <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕LLM智能体在长程任务中调用外部技能的问题，提出“Skill Adapter”框架，用于把通用技能按用户偏好和执行反馈做个性化修改，并在任务执行过程中进行在线路由与预加载。其目标对象很具体：面向会使用工具的LLM agent，在子目标、输入和环境状态持续变化时，从不断扩展的技能池中选择当前可用技能及其对应的个性化适配器。</p></div>
+        <div class="note"><strong>贡献</strong><p>从摘要看，核心贡献可能有三点：一是把“通用技能”和“个性化局部调整”解耦，后者以Adapter形式存储并挂接到通用技能上，避免为每个用户重写整套技能；二是提出在线路由机制，依据当前子任务、执行进度和环境反馈，动态选择技能与适用Adapter，并维护一个任务级在线技能库供主LLM按需读取；三是用强化学习同时优化两类决策，即当前步骤的技能/Adapter选择，以及后续节点候选技能的预加载与再检查，从而服务长程、多步、环境变化的agent执行。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 9</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>62.5</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：在长程、多步、会调用外部工具的LLM agent中，如何一边复用可迁移的通用技能，一边根据不同用户的工具偏好、操作习惯和输出要求做个性化调整；同时在任务执行过程中，随着子目标、输入和环境状态变化，如何从不断扩大的技能池中在线选择当前最适用的技能，并为后续步骤准备候选技能。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法由三层组成。第一层是技能表示：把共享执行流程表示为general-purpose skills。第二层是个性化修改：从用户要求和执行反馈中蒸馏局部调整，形成与通用技能关联的Adapters，可能用于约束工具选择、参数设置、输出格式或操作顺序。第三层是在线路由：routing agent根据当前子任务、执行进度和环境反馈，联合选择通用技能及其适用Adapter，并维护一个任务级在线技能库供主LLM按需读取。系统还会对后续节点预加载候选技能，并在真实输入出现后重新判断适用性。训练上，摘要指出使用强化学习优化两类决策，说明作者可能把“当前路由决策”和“后续候选准备/重检决策”都纳入策略学习。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。第一，问题设定具体且贴近真实agent使用场景，不只是问“检索哪个技能”，而是同时考虑用户个性化、工具差异和环境动态变化。第二，通用技能与Adapter解耦的设计有潜在工程价值：既保留共享技能的复用性，又避免为每个用户维护完整技能副本。第三，在线路由加预加载再校验的机制很适合长程任务，体现了对执行时序和信息逐步揭示过程的重视；如果实验充分，这可能是相对静态技能检索方法的重要改进。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：先获取全文后优先查看方法总览图和系统架构图，确认general-purpose skill、Adapter、routing agent、online skill library四者的接口关系；再查实验部分的任务设置与消融，重点核对是否比较了无Adapter、无在线路由、无预加载/重检、无强化学习等版本；最后记录三个具体问题：Adapter的表示与存储形式、强化学习奖励定义、个性化偏好数据的来源与真实性。如果你在做相关研究，可先尝试把自己的agent技能库按“通用技能+局部偏好补丁”重构，做一个不含RL的检索式原型作为对照。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：在长程、多步、会调用外部工具的LLM agent中，如何一边复用可迁移的通用技能，一边根据不同用户的工具偏好、操作习惯和输出要求做个性化调整；同时在任务执行过程中，随着子目标、输入和环境状态变化，如何从不断扩大的技能池中在线选择当前最适用的技能，并为后续步骤准备候选技能。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法由三层组成。第一层是技能表示：把共享执行流程表示为general-purpose skills。第二层是个性化修改：从用户要求和执行反馈中蒸馏局部调整，形成与通用技能关联的Adapters，可能用于约束工具选择、参数设置、输出格式或操作顺序。第三层是在线路由：routing agent根据当前子任务、执行进度和环境反馈，联合选择通用技能及其适用Adapter，并维护一个任务级在线技能库供主LLM按需读取。系统还会对后续节点预加载候选技能，并在真实输入出现后重新判断适用性。训练上，摘要指出使用强化学习优化两类决策，说明作者可能把“当前路由决策”和“后续候选准备/重检决策”都纳入策略学习。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。第一，问题设定具体且贴近真实agent使用场景，不只是问“检索哪个技能”，而是同时考虑用户个性化、工具差异和环境动态变化。第二，通用技能与Adapter解耦的设计有潜在工程价值：既保留共享技能的复用性，又避免为每个用户维护完整技能副本。第三，在线路由加预加载再校验的机制很适合长程任务，体现了对执行时序和信息逐步揭示过程的重视；如果实验充分，这可能是相对静态技能检索方法的重要改进。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和截断摘要，需要警惕几类边界。第一，个性化是否真实有效尚不清楚：如果用户需求只是少量模板化偏好，Adapter的价值可能被高估。第二，强化学习部分缺少关键信息，难判断训练成本、稳定性和泛化能力。第三，在线技能库、预加载和重检会增加系统复杂度，是否带来显著收益需要看消融实验。第四，摘要没有说明评测基准、任务类型、工具种类和用户偏好来源，因而暂时无法判断方法适用范围。第五，若Adapter只是文本层面的附加说明，而非更强的结构化控制，其对复杂工具操作的约束能力可能有限。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：先获取全文后优先查看方法总览图和系统架构图，确认general-purpose skill、Adapter、routing agent、online skill library四者的接口关系；再查实验部分的任务设置与消融，重点核对是否比较了无Adapter、无在线路由、无预加载/重检、无强化学习等版本；最后记录三个具体问题：Adapter的表示与存储形式、强化学习奖励定义、个性化偏好数据的来源与真实性。如果你在做相关研究，可先尝试把自己的agent技能库按“通用技能+局部偏好补丁”重构，做一个不含RL的检索式原型作为对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、摘要和元数据，这项工作研究的是“带工具的LLM智能体如何在长程任务中复用通用技能，同时适应不同用户的工具偏好、操作习惯和输出要求”。摘要把问题拆得比较清楚：通用技能负责共享的执行程序，但真实使用中，用户会在工具选择、操作细节、结果格式上有差异；而且长程任务执行时，后续子目标、可用输入和环境状态会不断变化，因此不能只做静态技能检索，而需要边执行边路由、边维护候选技能集合。
+
+方法线索上，论文提出了“Skill Adapter”系统。其关键对象至少包括四个：通用技能、由用户需求和执行反馈蒸馏出的Adapter、负责选择技能与Adapter的routing agent，以及一个任务级在线技能库。Adapter的角色不是替代通用技能，而是记录局部修改，说明作者可能希望保留技能复用性，同时把个性化差异压缩到较小的可组合单元。在线技能库则说明系统不是一次性把所有技能暴露给主模型，而是按任务进展增量维护、按需读取，这对控制上下文长度和减少无关技能干扰可能有帮助。
+
+摘要还给出一个较具体的执行机制：系统会为后续节点预加载候选技能，并在实际输入确定后重新检查其适用性。这意味着作者关注的是计划与执行之间的信息落差，即前瞻性准备和事后校验的结合。若实现得当，这种设计可能比单步贪心检索更适合多步任务，因为它允许agent提前准备潜在技能，但又不完全依赖早期不确定信息。
+
+证据线索方面，摘要明确提到使用强化学习优化“两类决策”，但截断部分未完整给出奖励设计、训练环境、基线和评测任务。可以合理推测，实验应围绕长程agent任务展开，可能比较静态技能检索、无Adapter版本、无预加载版本、无环境反馈重检版本等消融设置，并考察任务成功率、步骤效率、工具调用质量或个性化满足度。但这些都需要阅读全文核对，不能从当前信息直接断言。
+
+与科研读者的关系上，这篇工作对以下方向尤其相关：LLM agent、工具使用、技能库/程序库复用、个性化智能体、在线规划与检索、动态环境中的决策学习。如果你的研究关注RAG式技能检索、agent memory、workflow adaptation或用户偏好建模，这篇论文值得重点看，因为它把“技能复用”和“个性化修改”明确分层，并把路由问题放到长程在线执行场景中处理。
+
+当前最需要核对的信息包括：1）Adapter的表示形式到底是自然语言规则、参数化模块、程序补丁还是结构化元数据；2）通用技能本身如何定义与存储，是文本技能说明、轨迹、代码模板还是工具调用图；3）routing agent的输入状态、动作空间和奖励函数是什么；4）“在线技能库”与主LLM之间的接口形式；5）实验任务是否覆盖真实用户偏好差异，而不只是合成规则；6）强化学习是否带来稳定收益，还是主要依赖工程性检索/缓存机制。由于摘要被截断，实验结果、数据集和定量结论目前信息不足。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Large language model (LLM) agents use external skills to reuse task procedures and experience with tools. General-purpose skills describe shared execution procedures, while specific tool choices, operating practices, and output requirements vary across users. In long-horizon tasks, subgoals, available inputs, and environmental states change as execution progresses. Agents must select currently applicable skills from an expanding skill pool and prepare candidates for subsequent steps. We propose Skill Adapter, which enables personalized modification and online routing of general-purpose skills. The system distills local adjustments from user requirements and execution feedback and stores them as Adapters linked to general-purpose skills. The routing agent selects general-purpose skills and applicable Adapters based on the current subtask, execution progress, and environmental feedback, incrementally maintaining a task-level online skill library that the main LLM reads on demand. The system preloads candidates for subsequent nodes and rechecks their applicability once actual inputs are determined. Reinforcement learning optimizes the two types of decisions using modification gains and routing outcomes, respectively. We evaluate Skill Adapter on ALFWorld, WebShop, and SkillsBench. Compared with SkillRL, it improves task success rates by an average of 11.43 percentage points and reduces mean execution time on all three benchmarks. Skill Adapter retains its performance advantage when the skill pool grows to 1,000 skills.</p>
+        </details>
+        
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">arXiv</span>
+        <span>2026-11-12T05:44:19Z</span>
+        <span>Score 61.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>4. <a href="http://arxiv.org/abs/2611.16322v1">Climate Temporal Temperature Prediction via an Adaptive Stacked Bidirectional Residual Mamba Network</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Climate+Temporal+Temperature+Prediction+via+an+Adaptive+Stacked+Bidirectional+Re&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16322v1%0Arating%3A+star%0Asource%3A+arxiv%0Atitle%3A+Climate+Temporal+Temperature+Prediction+via+an+Adaptive+Stacked+Bidirectional+Residual+Mamba+Network%0Akeywords%3A+foundation+model%2C+foundation+models%2C+rag%2C+ml%2C+deep+learning%2C+transformer%2C+climate%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Climate+Temporal+Temperature+Prediction+via+an+Adaptive+Stacked+Bidirectional+Re&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16322v1%0Arating%3A+like%0Asource%3A+arxiv%0Atitle%3A+Climate+Temporal+Temperature+Prediction+via+an+Adaptive+Stacked+Bidirectional+Residual+Mamba+Network%0Akeywords%3A+foundation+model%2C+foundation+models%2C+rag%2C+ml%2C+deep+learning%2C+transformer%2C+climate%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Climate+Temporal+Temperature+Prediction+via+an+Adaptive+Stacked+Bidirectional+Re&amp;labels=paper-feedback&amp;body=paper_id%3A+arxiv%3A2611.16322v1%0Arating%3A+dislike%0Asource%3A+arxiv%0Atitle%3A+Climate+Temporal+Temperature+Prediction+via+an+Adaptive+Stacked+Bidirectional+Residual+Mamba+Network%0Akeywords%3A+foundation+model%2C+foundation+models%2C+rag%2C+ml%2C+deep+learning%2C+transformer%2C+climate%2C+weather%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Yongxiang Lei · <a href="https://arxiv.org/pdf/2611.16322v1">PDF</a></div>
+      <div class="chips"><span class="chip">foundation model <strong>1</strong></span>
+<span class="chip">foundation models <strong>1</strong></span>
+<span class="chip">rag <strong>1</strong></span>
+<span class="chip">ml <strong>1</strong></span>
+<span class="chip">deep learning <strong>1</strong></span>
+<span class="chip">transformer <strong>1</strong></span>
+<span class="chip">climate <strong>1</strong></span>
+<span class="chip">weather <strong>1</strong></span></div>
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇论文针对气候/天气场景中的时间序列温度预测任务，提出了一个名为 Deep DualMamba 的深度学习框架，核心是自适应堆叠式双向残差 Mamba 编码结构，用于提升长序列温度预测的效率与鲁棒性。根据摘要线索，作者还试图同时解决长时序建模中的计算可扩展性与长期预测性能不足问题。</p></div>
+        <div class="note"><strong>贡献</strong><p>从题名与摘要看，论文的核心贡献可能包括：1）面向温度时间序列预测，提出 Deep DualMamba/Adaptive Stacked Bidirectional Residual Mamba 网络；2）以自适应双向 Mamba 编码器学习更复杂的时序特征，替代或补充 Transformer 在长序列上的建模；3）设计硬件感知的并行递归算法，以弥补状态空间模型在卷积效率上的不足并提升实际可部署性；4）声称对模型的逼近能力与收敛性进行了理论分析。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">arXiv</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 8</div>
+              <div class="signal-meter"><span style="width: 100%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>61.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>研究问题是：在气候/天气温度时间序列预测中，如何构建一种既能处理长序列、又比 Transformer 更高效，同时还能改善既有次二次复杂度模型在长期预测与稳健性方面不足的模型。更具体地说，论文试图回答 Mamba/SSM 架构能否通过双向、自适应、残差堆叠等设计，更好地建模温度随时间变化的复杂依赖。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径是：以历史温度及相关传统气象参数作为输入时间序列，构建 Deep DualMamba 网络；编码器部分采用自适应双向 Mamba，从正向和反向提取时序特征；整体网络通过堆叠与残差连接增强深层表示；训练与推理阶段配合硬件感知的并行递归算法，提高 SSM 类模型在实际设备上的吞吐与可扩展性；实验上大概率会与 Transformer 类、RNN/LSTM 类以及其他时序预测模型进行比较，并在不同预测步长下评估误差指标；理论部分可能给出逼近能力与收敛性的证明或命题。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点在于任务落点明确，直接面向温度预测这一具体气候应用；方法上抓住了当前长序列建模中 Transformer 与 SSM/Mamba 的关键分野，具有较强的方法学时效性；双向 Mamba、自适应机制、残差堆叠和硬件感知并行算法的组合，说明作者不仅追求预测性能，也关注长序列效率与部署可行性；如果理论分析和实验都充分，这类工作可能为气象时序任务提供一种比标准 Transformer 更轻量的替代方案。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查看全文摘要完整版与方法图，确认 Deep DualMamba 的模块组成、双向机制和残差堆叠方式；2）定位实验表，记录所用气象/温度数据集、输入变量、预测步长、评价指标及主要基线；3）重点核对双向建模是否仅用于编码历史窗口而不泄漏未来标签；4）查看硬件感知并行算法部分，确认其与标准 Mamba 实现相比的时间/显存收益；5）如果你做相关研究，可先用公开天气数据集复现一个“原始 Mamba vs 双向残差 Mamba”的小型对照，验证其在多步温度预测上的增益是否稳定。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>研究问题是：在气候/天气温度时间序列预测中，如何构建一种既能处理长序列、又比 Transformer 更高效，同时还能改善既有次二次复杂度模型在长期预测与稳健性方面不足的模型。更具体地说，论文试图回答 Mamba/SSM 架构能否通过双向、自适应、残差堆叠等设计，更好地建模温度随时间变化的复杂依赖。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径是：以历史温度及相关传统气象参数作为输入时间序列，构建 Deep DualMamba 网络；编码器部分采用自适应双向 Mamba，从正向和反向提取时序特征；整体网络通过堆叠与残差连接增强深层表示；训练与推理阶段配合硬件感知的并行递归算法，提高 SSM 类模型在实际设备上的吞吐与可扩展性；实验上大概率会与 Transformer 类、RNN/LSTM 类以及其他时序预测模型进行比较，并在不同预测步长下评估误差指标；理论部分可能给出逼近能力与收敛性的证明或命题。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点在于任务落点明确，直接面向温度预测这一具体气候应用；方法上抓住了当前长序列建模中 Transformer 与 SSM/Mamba 的关键分野，具有较强的方法学时效性；双向 Mamba、自适应机制、残差堆叠和硬件感知并行算法的组合，说明作者不仅追求预测性能，也关注长序列效率与部署可行性；如果理论分析和实验都充分，这类工作可能为气象时序任务提供一种比标准 Transformer 更轻量的替代方案。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于现有题录信息，局限主要是关键信息缺失：摘要被截断，无法确认数据集、样本规模、输入变量、预测范围、评价指标和具体结果；题名写的是“Adaptive Stacked Bidirectional Residual Mamba Network”，摘要中又称“Deep DualMamba”，命名是否完全一致需要核对；所谓长期且稳健预测的证据目前只是作者声明，尚未看到实验支撑；硬件感知并行算法是否真正优于现有 Mamba 实现、是否适用于常见 GPU/TPU 环境，也需要查看正文和附录；此外，双向编码在严格因果预测场景中的使用方式需要确认，避免未来信息泄漏。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查看全文摘要完整版与方法图，确认 Deep DualMamba 的模块组成、双向机制和残差堆叠方式；2）定位实验表，记录所用气象/温度数据集、输入变量、预测步长、评价指标及主要基线；3）重点核对双向建模是否仅用于编码历史窗口而不泄漏未来标签；4）查看硬件感知并行算法部分，确认其与标准 Mamba 实现相比的时间/显存收益；5）如果你做相关研究，可先用公开天气数据集复现一个“原始 Mamba vs 双向残差 Mamba”的小型对照，验证其在多步温度预测上的增益是否稳定。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅依据题名、摘要和元数据，这项工作聚焦于气候时间温度预测，任务对象较明确，不是泛化的多变量时序预测，而是以 temperature prediction/forecasting 为中心的天气信息学应用。方法上，作者将近期的 Mamba/选择性结构化状态空间模型（selective SSM）引入温度预测，强调相较 Transformer 在长序列上的二次复杂度问题，Mamba 类模型更适合长时间跨度输入。摘要中点出的关键问题是：既有次二次时间复杂度模型虽然高效，但在长期、稳健预测上仍有不足。为此，论文提出两类改进线索：其一是“adaptive bidirectional Mamba”作为编码器，说明模型可能同时利用前向与后向时序上下文，并通过自适应机制调节不同时间依赖；其二是“hardware-aware, parallel recurrent algorithm”，这表明作者不仅关注预测精度，也关注训练/推理在硬件上的并行实现效率，可能涉及对递归扫描、块并行或状态更新过程的工程优化。题名中的“stacked”“residual”进一步暗示网络是多层堆叠并带残差连接的深层结构，以增强表示能力和稳定训练。证据线索主要来自摘要中的方法命名、与 Transformer 的对比、对 selective SSM 的强调，以及对理论分析的声明。与科研读者的关系上，如果你关注天气/气候时间序列、长序列预测、Mamba/SSM 替代 Transformer、或高效时序基础模型，这篇论文值得作为“将 Mamba 具体落地到温度预测”的案例来读。但目前必须核对的信息很多：使用的是单站点还是多站点气象数据，是否只预测温度还是联合使用湿度、风速、气压等传统气象变量，预测步长是短期还是中长期，多步预测设置为何，基线是否包含 Transformer、LSTM、Informer、PatchTST、DLinear、原始 Mamba 等，所谓“robust forecasting”如何定义，理论分析是在何种假设下成立，以及硬件感知并行算法是否真正带来墙钟时间收益。由于摘要被截断，实验范围、数据集名称、指标和结果幅度都不能从现有信息中确认。</p></div>
+          </div>
+          
+        <details class="abstract-detail">
+          <summary>原始摘要</summary>
+          <p>Accurate temperatures forecasting relies on traditional meteorological parameters that are essential for monitoring weather informatics and guiding forecasting efforts. This study presents Deep DualMamba, a novel deep learning framework for temporal temperature prediction, built upon an enhanced variant of the recently proposed Mamba network. Unlike conventional Transformer-based architectures, which dominate foundation models but suffer from computational inefficiencies on long sequences, Deep DualMamba leverages selective structured state space models (SSMs) to achieve both scalability and performance. We identify a core limitation of prior subquadratic-time models-namely, their inability to perform long-term and robust forecasting and introduce two key innovations. First, we propose an adaptive bidirectional Mamba as encoders to learn complex and efficient features. Second, we develop a hardware-aware, parallel recurrent algorithm to compensate for the loss of convolutional efficiency, ensuring practical viability at scale. Last, the Deep DualMamba&#x27;s approximation ability and convergence is theoretical analyzed. These design choices culminate in a simplified, attention- and MLP-free neural architecture that exhibits linear complexity with sequence length and significantly improved inference throughput. To demonstrate its applicability in climate informatics, we implement a full forecasting pipeline using historical meteorological data from UK monitoring stations.</p>
         </details>
         
         </div>
@@ -479,21 +477,21 @@
       <div class="paper-meta">
         <span class="source-pill">Science</span>
         <span>2026-11-12</span>
-        <span>Score 60.5</span>
+        <span>Score 56.5</span>
       </div>
       <div class="paper-title-row">
-        <h3>5. <a href="https://doi.org/10.1126/science.aef5636">The cryosphere beyond a planetary safe operating space</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+The+cryosphere+beyond+a+planetary+safe+operating+space&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef5636%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+The+cryosphere+beyond+a+planetary+safe+operating+space%0Akeywords%3A+ai%2C+earth%2C+earth+system%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+The+cryosphere+beyond+a+planetary+safe+operating+space&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef5636%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+The+cryosphere+beyond+a+planetary+safe+operating+space%0Akeywords%3A+ai%2C+earth%2C+earth+system%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+The+cryosphere+beyond+a+planetary+safe+operating+space&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef5636%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+The+cryosphere+beyond+a+planetary+safe+operating+space%0Akeywords%3A+ai%2C+earth%2C+earth+system%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>5. <a href="https://doi.org/10.1126/science.ady7788">Differentiation of stem-like CD4 + T cells modulates early effector responses in colorectal cancer</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Differentiation+of+stem-like+CD4+%2B+T+cells+modulates+early+effector+responses+in&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady7788%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Differentiation+of+stem-like+CD4+%2B+T+cells+modulates+early+effector+responses+in+colorectal+cancer%0Akeywords%3A+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Differentiation+of+stem-like+CD4+%2B+T+cells+modulates+early+effector+responses+in&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady7788%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Differentiation+of+stem-like+CD4+%2B+T+cells+modulates+early+effector+responses+in+colorectal+cancer%0Akeywords%3A+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Differentiation+of+stem-like+CD4+%2B+T+cells+modulates+early+effector+responses+in&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.ady7788%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Differentiation+of+stem-like+CD4+%2B+T+cells+modulates+early+effector+responses+in+colorectal+cancer%0Akeywords%3A+rag%2C+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Bo Su、Johan Rockström、Deliang Chen、Ingo Fetzer 等 31 人 · DOI: <a href="https://doi.org/10.1126/science.aef5636">10.1126/science.aef5636</a></div>
-      <div class="chips"><span class="chip">ai <strong>1</strong></span>
-<span class="chip">earth <strong>1</strong></span>
-<span class="chip">earth system <strong>1</strong></span></div>
+      <div class="authors">Yu Zhang、Hu Nie、Zixuan Dai、Liying Zhao 等 19 人 · DOI: <a href="https://doi.org/10.1126/science.ady7788">10.1126/science.ady7788</a></div>
+      <div class="chips"><span class="chip">rag <strong>1</strong></span>
+<span class="chip">ai <strong>1</strong></span>
+<span class="chip">environment <strong>1</strong></span></div>
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦“冰冻圈是否仍处于行星安全运行空间（safe operating space, SOS）内”这一具体地球系统问题，基于行星边界框架评估冰冻圈对地球系统韧性的作用，并据摘要判断其结论是：关键冰冻圈控制变量已离开或注定离开类似全新世的状态，冰冻圈整体已突破其安全运行空间。论文任务不是单一冰川或海冰变化描述，而是提出一个“冰冻圈SOS”概念并系统评估其跨地球系统风险含义。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于把冰冻圈从分散的冰盖、海冰、冻土、积雪等变化议题，上升为行星边界语境下的整体“安全运行空间”对象来讨论；并通过“多条证据线”论证冰冻圈完整性正在加速且部分不可逆地丧失。若摘要表述可靠，论文的潜在贡献还包括：提出冰冻圈相关控制变量及其与全新世基线的偏离判据，强调放大反馈导致的长期锁定风险，并主张在行星韧性治理中显式纳入冰冻圈及其跨圈层相互作用。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦结直肠癌免疫治疗中CD4+ T细胞外周扩增与分化这一具体任务，提出干样(stem-like) CD4+ T细胞在PD-1阻断后可分化为TH1样细胞，并影响早期效应免疫反应。摘要显示作者结合患者空间免疫图谱与pMMR结直肠癌小鼠模型，探索如何通过OX40激动剂联合PD-1阻断改善原本反应较差的pMMR肿瘤。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把结直肠癌免疫治疗的关注点从单纯肿瘤内免疫抑制微环境，扩展到外周/引流淋巴结中CD4+ T细胞的扩增、分化和肿瘤募集；并提出一个较具体的机制链条：干样CD4+ T细胞→Il7r+早期效应CD4+中间态→TH1样细胞→IFN-γ依赖的免疫刺激性单核-巨噬细胞与CD8+效应T细胞增强，从而抑制pMMR结直肠癌进展。若这一链条成立，它对提升pMMR CRC这类通常对PD-1单药不敏感人群的联合免疫治疗设计具有直接启发。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -510,27 +508,33 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>60.5</strong>
+              <strong>56.5</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在行星边界框架下，冰冻圈是否可以被定义为一个具有“安全运行空间”的地球系统组成部分；如果可以，当前人类世驱动下的冰冻圈变化是否已经使这一安全空间被突破；以及这种突破会如何影响地球系统韧性、生态系统和人类社会的长期风险。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，方法应是综合评估而非单点实验。可能步骤包括：先基于全新世相对稳定状态定义冰冻圈“完整性”或“类全新世条件”；再选择若干控制变量表征冰冻圈关键功能；随后汇集多条证据线，如卫星观测、现场记录、古气候重建、模式模拟、归因研究和临界阈值文献，评估这些变量当前是否越界或已承诺越界；最后把冰冻圈变化与放大反馈、不可逆性和跨圈层相互作用联系起来，放入行星边界/地球系统韧性框架中解释。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，概念整合度高：把冰冻圈从多个分散子领域提升为统一的地球系统边界对象。第二，证据组织方式可能较强：摘要强调“多条证据线”和“系统评估”，说明作者并非只依赖单一指标。第三，应用价值明确：如果论文成功把冰冻圈越界与长期锁定风险、生态系统和社会影响联系起来，它会对气候治理、风险沟通和地球系统评估框架产生直接影响。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）优先查看正文或补充材料中“控制变量”“Holocene-like conditions”“committed to departing”的定义；2）记录论文列出的冰冻圈子系统及其对应证据来源；3）查主图是否给出边界示意、变量阈值和置信度；4）对照已有行星边界文献，确认冰冻圈在框架中的新增位置；5）如果你的方向是地球系统建模或风险评估，可先把文中控制变量整理成表，标注数据源、时间尺度、是否可监测和是否存在不可逆阈值。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在结直肠癌，尤其是通常对PD-1阻断反应较差的pMMR亚型中，能否通过放大外周或肿瘤引流淋巴结中的CD4+ T细胞反应，促进其向TH1样效应程序分化并进入肿瘤，从而重塑早期抗肿瘤免疫并提升免疫治疗效果。更细一点说，作者在问：哪些CD4+ T细胞状态是有效应答的来源，它们位于哪里，如何被PD-1阻断或OX40共刺激驱动，以及这种变化如何联动髓系细胞和CD8+ T细胞。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>摘要支持的可能方法路径包括三层。第一层是患者样本空间表征：利用imaging mass cytometry对CRC组织进行多标记成像，比较dMMR与pMMR肿瘤中的TH1样与Treg主导空间结构，并将其与抗PD-1应答关联。第二层是谱系/状态推断：通过clonal analyses追踪T细胞克隆，推断干样CD4+ T细胞在PD-1阻断后向TH1样细胞分化，可能结合TCR测序与单细胞转录组。第三层是功能干预：在pMMR CRC小鼠模型中给予OX40激动剂联合PD-1阻断，检测肿瘤生长、引流淋巴结中Il7r+早期效应CD4+中间态扩增、向肿瘤迁移、与TH1样细胞连接，以及IFN-γ依赖的单核-巨噬细胞和CD8+效应T细胞变化。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点之一是把“外周扩增—迁移募集—肿瘤内效应重塑”作为完整链条来研究，而不是只盯住肿瘤内抑制微环境。亮点之二是患者与小鼠两端结合：患者数据提供临床相关的空间免疫结构线索，小鼠模型提供可干预的机制验证。亮点之三是对象具体，提出了可操作的细胞状态与分子节点，如干样CD4+ T细胞、Il7r+早期效应中间态、TH1样细胞、OX40、PD-1和IFN-γ，这些都便于后续做生物标志物或联合治疗设计。亮点之四是聚焦pMMR CRC这一临床难点，潜在转化价值较强。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先看正文图1和相关补充图，确认dMMR与pMMR中TH1样/Treg空间架构的定义、标记物和统计方式；2）查克隆分析图，记录干样CD4+到TH1样的证据是TCR共享、伪时序还是转移概率；3）查小鼠治疗图，比较PD-1单药、OX40单药和联用的肿瘤抑制幅度及生存差异；4）重点找Il7r+早期效应CD4+中间态的marker列表和功能验证；5）确认IFN-γ依赖性是通过中和抗体、敲除还是相关性分析得到；6）如果你的方向是肿瘤免疫或空间组学，可把这篇文章记为“外周CD4+ T细胞放大驱动pMMR CRC免疫治疗增敏”的候选机制文献，并在阅读时专门记录可复用的空间分析与谱系追踪流程。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在行星边界框架下，冰冻圈是否可以被定义为一个具有“安全运行空间”的地球系统组成部分；如果可以，当前人类世驱动下的冰冻圈变化是否已经使这一安全空间被突破；以及这种突破会如何影响地球系统韧性、生态系统和人类社会的长期风险。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，方法应是综合评估而非单点实验。可能步骤包括：先基于全新世相对稳定状态定义冰冻圈“完整性”或“类全新世条件”；再选择若干控制变量表征冰冻圈关键功能；随后汇集多条证据线，如卫星观测、现场记录、古气候重建、模式模拟、归因研究和临界阈值文献，评估这些变量当前是否越界或已承诺越界；最后把冰冻圈变化与放大反馈、不可逆性和跨圈层相互作用联系起来，放入行星边界/地球系统韧性框架中解释。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，概念整合度高：把冰冻圈从多个分散子领域提升为统一的地球系统边界对象。第二，证据组织方式可能较强：摘要强调“多条证据线”和“系统评估”，说明作者并非只依赖单一指标。第三，应用价值明确：如果论文成功把冰冻圈越界与长期锁定风险、生态系统和社会影响联系起来，它会对气候治理、风险沟通和地球系统评估框架产生直接影响。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，主要局限是信息不足以判断定量严谨性。首先，不清楚“冰冻圈SOS”是规范性概念框架还是具有明确数值阈值的边界定义。其次，冰冻圈内部异质性极强，把海冰、冰盖、冻土等纳入单一SOS可能面临指标可比性与聚合偏差问题。再次，摘要中的“已突破”与“承诺突破”可能混合了当前观测状态和长期平衡响应，读者需要警惕时间尺度差异。最后，尚不清楚不确定性如何处理、证据权重如何分配，以及是否存在较强的专家判断成分。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）优先查看正文或补充材料中“控制变量”“Holocene-like conditions”“committed to departing”的定义；2）记录论文列出的冰冻圈子系统及其对应证据来源；3）查主图是否给出边界示意、变量阈值和置信度；4）对照已有行星边界文献，确认冰冻圈在框架中的新增位置；5）如果你的方向是地球系统建模或风险评估，可先把文中控制变量整理成表，标注数据源、时间尺度、是否可监测和是否存在不可逆阈值。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和关键词看，研究对象是“冰冻圈整体”而非某一单独子系统，可能涵盖大陆冰盖、山地冰川、海冰、积雪、永久冻土以及相关淡水/反照率/碳反馈过程。论文的科学任务是：在行星边界框架下，为冰冻圈定义一个安全运行空间，并判断当前人类世变化是否已使其越界。摘要中的“systematically evaluate”“multiple lines of evidence”“control variables”“Holocene-like conditions”提示，作者很可能采用的是综合评估路径，而非单一观测实验：一方面整合古气候/全新世基线、现代观测记录、再分析资料、模型模拟和文献证据；另一方面把不同冰冻圈要素映射为若干控制变量，再讨论这些变量相对全新世稳定范围的偏离程度及其不可逆性风险。证据线索主要有三类：第一，冰冻圈完整性丧失正在加速，说明作者可能引用近几十年的冰盖质量损失、海冰衰退、冰川退缩、冻土融化等趋势；第二，变化“partly irreversible”，说明可能涉及阈值、滞后、承诺性变化（committed change）和多稳态/临界转变文献；第三，存在“amplifying feedbacks”，意味着论文会强调反照率反馈、温室气体释放、海洋/大气环流耦合、淡水输入影响等机制。与“earth system”关键词的关系非常直接：冰冻圈在这里被视为维持地球系统韧性与宜居性的关键调节器，而不是被动响应变量。对做地球系统科学、气候风险、行星边界、冰冻圈变化评估的读者，这篇文章的价值可能在于提供一个统一框架，把原本分散的冰冻圈风险整合为可治理、可比较的边界叙述。对做AI或数据科学的读者，摘要本身没有显示算法创新，但可作为构建跨圈层风险知识图谱、控制变量监测指标体系、或多源证据综合评估模型的概念基础。需要重点核对的信息包括：1）作者具体定义了哪些“冰冻圈控制变量”；2）这些变量的阈值或边界是如何定量化的；3）“已离开”与“已承诺离开”分别对应哪些子系统；4）证据主要来自观测、模型还是专家综合判断；5）“部分不可逆”在什么时间尺度上成立；6）论文是否给出区域差异、置信度分级和政策含义。由于目前只有摘要，不能判断其定量结果、图表证据强弱、变量选择是否存在争议，也不能确认其是否提出了严格可操作的边界数值。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在结直肠癌，尤其是通常对PD-1阻断反应较差的pMMR亚型中，能否通过放大外周或肿瘤引流淋巴结中的CD4+ T细胞反应，促进其向TH1样效应程序分化并进入肿瘤，从而重塑早期抗肿瘤免疫并提升免疫治疗效果。更细一点说，作者在问：哪些CD4+ T细胞状态是有效应答的来源，它们位于哪里，如何被PD-1阻断或OX40共刺激驱动，以及这种变化如何联动髓系细胞和CD8+ T细胞。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>摘要支持的可能方法路径包括三层。第一层是患者样本空间表征：利用imaging mass cytometry对CRC组织进行多标记成像，比较dMMR与pMMR肿瘤中的TH1样与Treg主导空间结构，并将其与抗PD-1应答关联。第二层是谱系/状态推断：通过clonal analyses追踪T细胞克隆，推断干样CD4+ T细胞在PD-1阻断后向TH1样细胞分化，可能结合TCR测序与单细胞转录组。第三层是功能干预：在pMMR CRC小鼠模型中给予OX40激动剂联合PD-1阻断，检测肿瘤生长、引流淋巴结中Il7r+早期效应CD4+中间态扩增、向肿瘤迁移、与TH1样细胞连接，以及IFN-γ依赖的单核-巨噬细胞和CD8+效应T细胞变化。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点之一是把“外周扩增—迁移募集—肿瘤内效应重塑”作为完整链条来研究，而不是只盯住肿瘤内抑制微环境。亮点之二是患者与小鼠两端结合：患者数据提供临床相关的空间免疫结构线索，小鼠模型提供可干预的机制验证。亮点之三是对象具体，提出了可操作的细胞状态与分子节点，如干样CD4+ T细胞、Il7r+早期效应中间态、TH1样细胞、OX40、PD-1和IFN-γ，这些都便于后续做生物标志物或联合治疗设计。亮点之四是聚焦pMMR CRC这一临床难点，潜在转化价值较强。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于摘要的主要局限是证据细节不足。首先，不清楚患者样本量和应答定义，空间结构与疗效的关联强度无法判断。其次，“clonal analyses”能否严格支持分化方向需要谨慎，克隆共享并不自动等于祖先-后代关系。第三，小鼠模型是否充分代表人类pMMR CRC、联合治疗的毒性与可转化性摘要未说明。第四，Il7r+早期效应CD4+中间态是否为必要环节、还是伴随现象，需要看耗竭/阻断实验。第五，关键词中的rag、ai、environment与论文主题明显不一致，说明元数据可能含噪，不能据此延伸解读。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先看正文图1和相关补充图，确认dMMR与pMMR中TH1样/Treg空间架构的定义、标记物和统计方式；2）查克隆分析图，记录干样CD4+到TH1样的证据是TCR共享、伪时序还是转移概率；3）查小鼠治疗图，比较PD-1单药、OX40单药和联用的肿瘤抑制幅度及生存差异；4）重点找Il7r+早期效应CD4+中间态的marker列表和功能验证；5）确认IFN-γ依赖性是通过中和抗体、敲除还是相关性分析得到；6）如果你的方向是肿瘤免疫或空间组学，可把这篇文章记为“外周CD4+ T细胞放大驱动pMMR CRC免疫治疗增敏”的候选机制文献，并在阅读时专门记录可复用的空间分析与谱系追踪流程。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>根据题名和摘要，研究对象非常明确：一是接受抗PD-1治疗的结直肠癌患者，重点比较错配修复缺陷型(dMMR)与错配修复完整型(pMMR)肿瘤中的空间免疫结构；二是pMMR结直肠癌小鼠模型，用于机制验证和联合治疗测试。摘要给出的关键现象是，dMMR肿瘤中存在与抗PD-1应答相关的TH1样免疫架构，而pMMR肿瘤则更偏向Treg主导的空间互作。作者进一步通过克隆分析提示，PD-1阻断后干样CD4+ T细胞会向TH1样细胞分化。随后在小鼠中，OX40激动剂联合PD-1阻断可扩增肿瘤引流淋巴结中的Il7r+早期效应CD4+中间态，促进其迁移并与TH1样细胞建立联系，伴随IFN-γ依赖的单核-巨噬细胞和CD8+效应T细胞激活，最终抑制肿瘤进展。
+
+从方法线索看，患者部分很可能依赖imaging mass cytometry进行高维空间蛋白成像，以识别TH1样、Treg样等细胞群及其空间邻近关系；“clonal analyses”提示可能使用TCR克隆追踪，结合单细胞转录组或单细胞免疫组学来推断干样CD4+ T细胞与TH1样细胞之间的谱系关系。小鼠部分则可能包含联合给药实验、肿瘤生长监测、引流淋巴结与肿瘤组织的流式/单细胞分析，以及IFN-γ依赖性的阻断或遗传验证。虽然摘要没有给出样本量、统计强度和具体模型名称，但证据链条是从患者相关性观察，到克隆/分化推断，再到小鼠干预验证，结构上较完整。
+
+与用户方向的关系方面，这篇论文并不属于RAG或AI方法论文，尽管元数据关键词中出现了rag、ai、environment，但从题名和摘要看这些关键词与正文主题并不匹配，不能据此推断其与人工智能直接相关。若读者关注的是肿瘤免疫、空间组学、单细胞谱系分析或联合免疫治疗策略，这篇文章价值较高；若关注计算方法，则可重点看其空间互作分析、克隆追踪和细胞状态转变推断是否有可迁移的数据分析框架。
+
+需要核对的信息包括：1）患者队列规模、dMMR与pMMR分层标准及抗PD-1治疗方案；2）TH1样“immune architectures”的定量定义，是基于细胞邻近、细胞团簇还是功能标志物组合；3）干样CD4+ T细胞和Il7r+早期效应中间态的分子标记；4）克隆分析是否真正支持分化方向，而非仅显示克隆共享；5）OX40+PD-1联合治疗在小鼠中的效应大小、是否优于单药、是否依赖CD4+ T细胞和IFN-γ；6）该机制在患者样本中是否有外周血或引流淋巴结证据支撑。由于目前只有摘要，不能声称这些点已被全文充分证明。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The cryosphere plays a vital role in regulating planetary dynamics and habitability, yet it remains unclear whether its essential functions remain within a safe operating space (SOS) amid Anthropocene change. Here, we propose a cryosphere SOS and systematically evaluate its contributions to Earth system resilience using the planetary boundaries framework. Multiple lines of evidence indicate an accelerating and partly irreversible loss of cryospheric integrity, driven by amplifying feedbacks. Key cryospheric control variables either have left or are committed to departing from Holocene-like conditions. We conclude that the cryosphere has breached its SOS and is on a trajectory that locks in long-term risks for human societies and ecosystems. Safeguarding planetary resilience therefore requires explicit consideration of cryosphere change and its interactions across the Earth system.</p>
+          <p>Strategies to improve cancer immunotherapy have largely focused on the intratumor immunosuppressive microenvironment, whereas approaches to amplify peripheral T cells and promote tumor recruitment have not been thoroughly explored. Using imaging mass cytometry in patients with colorectal cancer (CRC), we observed T helper 1 (T H 1)–like immune architectures in mismatch repair–deficient tumors associated with response to anti–programmed cell death protein 1 (PD-1) immunotherapy. By contrast, mismatch repair–proficient (pMMR) tumors showed regulatory T–dominant spatial interactions. Clonal analyses revealed that stem-like CD4 + T cells differentiated into T H 1-like cells after PD-1 blockade. In pMMR CRC mouse models, combined OX40 agonist and PD-1 blockade suppressed tumor progression by expanding Il7r + early effector CD4 + intermediates in tumor-draining lymph nodes, promoting migration and connection with T H 1-like cells. This was accompanied by interferon-γ–dependent induction of immunostimulatory monocyte-macrophages and CD8 + effector T cells. These findings suggest that leveraging peripheral CD4 + T cell amplification may improve immunotherapy responses.</p>
         </details>
         
         </div>
@@ -543,20 +547,19 @@
       <div class="paper-meta">
         <span class="source-pill">Science</span>
         <span>2026-11-12</span>
-        <span>Score 57.0</span>
+        <span>Score 44.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>6. <a href="https://doi.org/10.1126/science.adw7770">Carbon dioxide and amorphous water ices in the debris disk around β Pictoris</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Carbon+dioxide+and+amorphous+water+ices+in+the+debris+disk+around+%CE%B2+Pictoris&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adw7770%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Carbon+dioxide+and+amorphous+water+ices+in+the+debris+disk+around+%CE%B2+Pictoris%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Carbon+dioxide+and+amorphous+water+ices+in+the+debris+disk+around+%CE%B2+Pictoris&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adw7770%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Carbon+dioxide+and+amorphous+water+ices+in+the+debris+disk+around+%CE%B2+Pictoris%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Carbon+dioxide+and+amorphous+water+ices+in+the+debris+disk+around+%CE%B2+Pictoris&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.adw7770%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Carbon+dioxide+and+amorphous+water+ices+in+the+debris+disk+around+%CE%B2+Pictoris%0Akeywords%3A+ai%2C+carbon%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>6. <a href="https://doi.org/10.1126/science.aej1679">Long-term local circulation of an Andes virus lineage in northern Patagonia is linked to the M/V Hondius outbreak</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Long-term+local+circulation+of+an+Andes+virus+lineage+in+northern+Patagonia+is+l&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej1679%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Long-term+local+circulation+of+an+Andes+virus+lineage+in+northern+Patagonia+is+linked+to+the+M%2FV+Hondius+outbreak%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Long-term+local+circulation+of+an+Andes+virus+lineage+in+northern+Patagonia+is+l&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej1679%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Long-term+local+circulation+of+an+Andes+virus+lineage+in+northern+Patagonia+is+linked+to+the+M%2FV+Hondius+outbreak%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Long-term+local+circulation+of+an+Andes+virus+lineage+in+northern+Patagonia+is+l&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej1679%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Long-term+local+circulation+of+an+Andes+virus+lineage+in+northern+Patagonia+is+linked+to+the+M%2FV+Hondius+outbreak%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">S. K. Betti、C. H. Chen、C. Xie、K. Worthen 等 16 人 · DOI: <a href="https://doi.org/10.1126/science.adw7770">10.1126/science.adw7770</a></div>
-      <div class="chips"><span class="chip">ai <strong>1</strong></span>
-<span class="chip">carbon <strong>1</strong></span></div>
+      <div class="authors">Carla M. Bellomo、Sebastian D. Kehl、Daniel O. Alonso、Natalia Periolo 等 53 人 · DOI: <a href="https://doi.org/10.1126/science.aej1679">10.1126/science.aej1679</a></div>
+      
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文针对β Pictoris碎片盘外盘中的冰态挥发物组成进行近红外观测，报告了非晶水冰（结晶度&lt;7%）以及12CO2和13CO2冰的光谱特征，并据此推断CO2与水冰以约1:10的比例紧密混合。作者进一步将这种冰的组成与形成环境联系起来，认为其形成于低温条件、很可能起源于星际介质，并提出需要频繁碰撞来解释冰尘粒的均匀分布。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于：在β Pictoris碎片盘中直接给出非晶水冰和CO2冰（含两种同位素体）的近红外观测证据，并把“冰的非晶态+CO2/水冰混合比例+空间分布均匀”组合成一条关于冰起源和盘内再加工机制的证据链。这使该工作不仅是一次成分探测，也是在讨论碎片盘中挥发物是否保留星际介质遗产、以及碰撞如何持续补给和重分布冰尘。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇论文围绕2026年M/V Hondius邮轮上的安第斯病毒（Andes virus, ANDV）汉坦病毒肺综合征暴发，追踪其与阿根廷北巴塔哥尼亚2018年暴发及2018—2025年病例之间的谱系关系与可能暴露来源。摘要表明作者试图用回顾性流行病学与病毒谱系分析解释邮轮暴发来源，但现有信息仍不足以最终锁定感染源。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于提出并支持这样一个具体判断：阿根廷北巴塔哥尼亚一个地理范围内存在ANDV某一谱系的长期局地循环，该谱系与2026年M/V Hondius邮轮暴发相关；同时，作者通过回顾性调查重新解释2018年事件，认为其可能涉及人传人传播，但并未发现该谱系已在社区广泛传播。另一个重要贡献是明确指出：即便结合路线重建与谱系关联，邮轮暴发的直接感染来源仍无法凭现有证据解决，从而把“扩大地方病毒监测”作为实质性公共卫生结论。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -568,40 +571,32 @@
               <div class="signal-source">Science</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 2</div>
-              <div class="signal-meter"><span style="width: 36%"></span></div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>57.0</strong>
+              <strong>44.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：β Pictoris碎片盘外盘中是否存在可直接观测的固态挥发物冰；如果存在，这些冰具体是什么成分、处于晶态还是非晶态、彼此如何混合；这些性质能否反推出冰是在盘内形成还是继承自更早期的星际介质；以及盘中冰尘为何会呈现观测到的分布特征，是否需要频繁碰撞来持续补给。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>基于摘要，最可能的方法是使用JWST近红外光谱对β Pictoris碎片盘进行观测，识别水冰和CO2冰的特征带，并通过与实验室冰光谱或物理模型比较来约束冰的相态、同位素体和混合比例。作者可能结合盘的几何结构与辐射环境，分析外盘低温条件下冰的稳定性，再把光谱结果与空间分布信息联系起来，推断碰撞活动对冰尘再生和均匀分布的作用。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点首先在于研究对象具有代表性：β Pictoris是最经典的碎片盘系统之一，任何可靠的冰探测都具有高影响力。其次，证据对象很具体，不只是“检测到冰”，而是区分了非晶水冰、12CO2和13CO2冰，并给出结晶度上限和约1:10的混合比例，这些都是可用于物理化学解释的强约束。再次，论文把观测结果与形成环境和盘内碰撞过程联系起来，提升了结果的解释深度，使其对行星系统挥发物起源问题有更广泛价值。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，先查论文正文中的观测配置，确认JWST具体仪器、波段和是否空间分辨。第二，直接看主文或补充材料中水冰与CO2冰的关键谱图，记录用于判定非晶态和混合比例的特征峰。第三，核对1:10混合比例、&lt;7%结晶度和13CO2检测的误差或显著性。第四，查看作者如何论证“星际介质起源”并列出其排除的替代机制。第五，若你做相关研究，可把本文与β Pictoris既有气体/尘埃/彗星样补给模型文献并读，判断冰探测是否改变你对该系统挥发物来源的认识。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：2026年M/V Hondius邮轮HPS暴发的ANDV是否与阿根廷北巴塔哥尼亚既往病例属于同一传播背景；2018年阿根廷暴发是否应被重新解释为可能存在人传人传播；2018—2025年间是否存在一个在局地长期循环的ANDV谱系；以及在这些证据基础上，邮轮暴发的感染源能否被可靠重建。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要推断，方法路径应包括四部分：第一，对邮轮暴发病例与阿根廷历年病例的ANDV序列进行比较和系统发育分析，以识别共同谱系及其时间连续性；第二，对2018年暴发开展回顾性流行病学调查，重建病例间接触与发病顺序，评估人传人传播可能性；第三，汇总2018—2025年北巴塔哥尼亚HPS病例，结合地理信息判断该谱系是否局限于特定区域而非广泛社区传播；第四，对邮轮暴发首发病例进行旅行路线和暴露史重建，并将暴露时间与ANDV预期潜伏期进行比对，以检验候选感染地点是否成立。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有三点。其一，研究把单次邮轮暴发放回到多年、跨场景的地方性病毒循环背景中，而不是孤立分析一次事件，这有助于提高溯源解释力。其二，摘要显示作者同时整合了分子证据、回顾性流调和路线重建，属于多证据链交叉验证，而不是仅凭系统发育树下结论。其三，结论保持克制：既指出存在长期局地循环和可能的人传人传播，又明确承认邮轮感染源仍未解决，这种对不确定性的保留本身具有方法学价值，并直接导向“扩大地方监测”的公共卫生建议。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，拿到正文后优先查看系统发育图、时间树和病例地理分布图，确认‘共同谱系’与‘地理定义区域’的具体证据；第二，查2018年暴发的病例时间线和接触网络，判断人传人推断是强证据还是排除法结论；第三，记录邮轮首发病例的旅行日期、候选暴露地点和潜伏期不一致的具体天数；第四，核对纳入的病例数、序列数、测序范围和缺失样本比例；第五，如果你的研究方向涉及病原体溯源或空间流行病学，可把这篇文章作为一个‘谱系关联成立但感染源未闭环’的案例，对照自己项目中的采样设计与不确定性表达。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：β Pictoris碎片盘外盘中是否存在可直接观测的固态挥发物冰；如果存在，这些冰具体是什么成分、处于晶态还是非晶态、彼此如何混合；这些性质能否反推出冰是在盘内形成还是继承自更早期的星际介质；以及盘中冰尘为何会呈现观测到的分布特征，是否需要频繁碰撞来持续补给。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>基于摘要，最可能的方法是使用JWST近红外光谱对β Pictoris碎片盘进行观测，识别水冰和CO2冰的特征带，并通过与实验室冰光谱或物理模型比较来约束冰的相态、同位素体和混合比例。作者可能结合盘的几何结构与辐射环境，分析外盘低温条件下冰的稳定性，再把光谱结果与空间分布信息联系起来，推断碰撞活动对冰尘再生和均匀分布的作用。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>亮点首先在于研究对象具有代表性：β Pictoris是最经典的碎片盘系统之一，任何可靠的冰探测都具有高影响力。其次，证据对象很具体，不只是“检测到冰”，而是区分了非晶水冰、12CO2和13CO2冰，并给出结晶度上限和约1:10的混合比例，这些都是可用于物理化学解释的强约束。再次，论文把观测结果与形成环境和盘内碰撞过程联系起来，提升了结果的解释深度，使其对行星系统挥发物起源问题有更广泛价值。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>仅凭摘要，仍需警惕几个边界。第一，混合比例和结晶度约束的稳健性依赖具体谱段、信噪比和模型假设，摘要未给出误差范围。第二，13CO2的检测若显著性不足，可能影响同位素相关解释。第三，“形成于星际介质”目前看是基于冰的低温特征和混合状态的推断，未必能唯一排除盘内形成或后期再加工。第四，“均匀分布”与“需要频繁碰撞”的因果链需要看空间分辨数据和动力学模型支持，摘要信息不足。第五，题录中关键词含有ai，但从摘要看与人工智能无直接关系，不能据此延伸。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，先查论文正文中的观测配置，确认JWST具体仪器、波段和是否空间分辨。第二，直接看主文或补充材料中水冰与CO2冰的关键谱图，记录用于判定非晶态和混合比例的特征峰。第三，核对1:10混合比例、&lt;7%结晶度和13CO2检测的误差或显著性。第四，查看作者如何论证“星际介质起源”并列出其排除的替代机制。第五，若你做相关研究，可把本文与β Pictoris既有气体/尘埃/彗星样补给模型文献并读，判断冰探测是否改变你对该系统挥发物来源的认识。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名、摘要和元数据看，研究对象非常具体：年轻恒星β Pictoris周围的碎片盘，尤其是足够远离恒星、温度低到可让挥发物冻结成冰的外盘尘埃。任务不是泛泛地“看盘”，而是利用JWST近红外光谱识别冰的种类、物理状态和混合方式，并据此推断这些冰的形成环境与盘内动力学过程。
-
-方法线索也较明确：作者使用James Webb Space Telescope进行近红外观测，说明关键证据来自固态吸收/发射光谱特征，而不是气体线。摘要明确提到检测到非晶水冰以及12CO2、13CO2冰，这意味着他们很可能进行了实验室冰光谱模板比对、连续谱扣除、带型拟合或辐射传输/混合模型分析，以区分晶态与非晶态水冰，并约束CO2与H2O“intimately mixed”的混合状态及约1:10的比例。这里“&lt;7% crystallinity”是一个很具体的物理约束，说明作者并非只做了成分识别，还尝试从带形或峰位中反演冰的微观结构。
-
-证据链的逻辑大致是：第一，外盘低温环境允许冰存在；第二，近红外谱中出现水冰和CO2冰特征，且水冰主要为非晶态；第三，CO2与H2O以约1:10比例紧密混合，而不是简单分层或独立颗粒；第四，这种组合更符合低温形成、可能继承自星际介质的冰化学历史；第五，若观测上冰尘粒分布较均匀，则需要频繁碰撞不断产生或暴露新鲜冰物质，否则在碎片盘环境中冰尘可能难以长期维持。也就是说，这篇工作把“成分诊断”推进到了“起源+演化机制”的解释层面。
-
-与用户方向的关系方面，如果你关注行星形成、原行星盘/碎片盘化学、系外彗星物质、星际介质到行星系统的物质继承，本文都很值得看。尤其是β Pictoris本身是研究非常充分的标志性系统，盘中已有行星、尘埃和气体研究基础，因此这篇论文的冰探测结果很可能会被用于约束：1）外盘小天体/彗星样天体的组成；2）挥发物在行星形成后期的保存与释放；3）碎片盘中碰撞级联是否能持续补给可观测冰尘；4）星际介质遗产在成熟盘中的可见性。若你的方向偏光谱分析，这篇文章还可能提供JWST在碎片盘固态冰探测上的方法范式。
-
-需要核对的信息也不少。摘要没有给出具体仪器模式、波段覆盖、空间分辨能力、是否做了盘的空间分辨光谱、混合比例的不确定度、13CO2检测显著性、均匀分布是来自光谱沿盘位置变化还是成像/建模结果，也没有说明是否排除了其他含氧碳物种或粒径效应对带形的影响。另一个关键点是“形成于星际介质”的论断强度：从摘要看这是推断而非直接证明，正式阅读时应重点看作者如何排除盘内低温原位形成、热处理后再非晶化、辐照效应或选择性存活等替代解释。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：2026年M/V Hondius邮轮HPS暴发的ANDV是否与阿根廷北巴塔哥尼亚既往病例属于同一传播背景；2018年阿根廷暴发是否应被重新解释为可能存在人传人传播；2018—2025年间是否存在一个在局地长期循环的ANDV谱系；以及在这些证据基础上，邮轮暴发的感染源能否被可靠重建。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>根据摘要推断，方法路径应包括四部分：第一，对邮轮暴发病例与阿根廷历年病例的ANDV序列进行比较和系统发育分析，以识别共同谱系及其时间连续性；第二，对2018年暴发开展回顾性流行病学调查，重建病例间接触与发病顺序，评估人传人传播可能性；第三，汇总2018—2025年北巴塔哥尼亚HPS病例，结合地理信息判断该谱系是否局限于特定区域而非广泛社区传播；第四，对邮轮暴发首发病例进行旅行路线和暴露史重建，并将暴露时间与ANDV预期潜伏期进行比对，以检验候选感染地点是否成立。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有三点。其一，研究把单次邮轮暴发放回到多年、跨场景的地方性病毒循环背景中，而不是孤立分析一次事件，这有助于提高溯源解释力。其二，摘要显示作者同时整合了分子证据、回顾性流调和路线重建，属于多证据链交叉验证，而不是仅凭系统发育树下结论。其三，结论保持克制：既指出存在长期局地循环和可能的人传人传播，又明确承认邮轮感染源仍未解决，这种对不确定性的保留本身具有方法学价值，并直接导向“扩大地方监测”的公共卫生建议。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，当前需要警惕的局限包括：第一，样本量、采样密度和时间覆盖虽提到2018—2025年，但不清楚是否足以支撑“长期局地循环”的稳健判断；第二，‘可能涉及人传人传播’说明证据或许并非决定性，可能仍受接触史不完整、共同环境暴露未排除等问题影响；第三，路线重建发现地理上合理但时间上不符的暴露，提示溯源链条存在关键缺口，邮轮暴发的真正感染源可能仍在未采样人群、未识别地点或未记录接触中；第四，摘要未说明是否纳入宿主动物或环境监测数据，因此对病毒生态维持机制的解释可能有限；第五，若系统发育分辨率不足或序列片段较短，谱系关联的精细传播解释需要谨慎。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，拿到正文后优先查看系统发育图、时间树和病例地理分布图，确认‘共同谱系’与‘地理定义区域’的具体证据；第二，查2018年暴发的病例时间线和接触网络，判断人传人推断是强证据还是排除法结论；第三，记录邮轮首发病例的旅行日期、候选暴露地点和潜伏期不一致的具体天数；第四，核对纳入的病例数、序列数、测序范围和缺失样本比例；第五，如果你的研究方向涉及病原体溯源或空间流行病学，可把这篇文章作为一个‘谱系关联成立但感染源未闭环’的案例，对照自己项目中的采样设计与不确定性表达。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：一是2026年发生在M/V Hondius邮轮上的HPS暴发；二是阿根廷北巴塔哥尼亚2018年一次既往暴发；三是2018至2025年间同一地理区域内的ANDV相关病例。论文的核心任务不是一般性描述ANDV流行，而是把这几个时间上分离、场景不同的病例簇放到同一条病毒谱系和传播线索中，判断是否存在长期地方性循环、是否有人传人传播，以及邮轮事件的感染源能否被解释。根据摘要，作者很可能综合使用了病毒基因组或部分基因序列比较、系统发育/谱系归属分析、病例回顾性流调、病例间接触链梳理，以及邮轮暴发首发病例的旅行路线与暴露地点重建。证据线索包括：邮轮暴发病毒与2018年阿根廷暴发“存在意外关系”；2018年事件经回顾性调查后被认为“可能涉及人传人传播”；一个共同ANDV谱系跨越2018到2025年的HPS病例，并局限于北巴塔哥尼亚某地理定义区域；对邮轮首发病例的路线重建找到了地理上合理的阿根廷暴露点，但暴露时间与ANDV预期潜伏期不一致。这个“不一致”很关键，它意味着谱系相近并不自动等于传播链已被解释，也提示可能存在未识别暴露、潜伏期分布尾部事件、时间记录误差，或监测盲区中的中间传播环节。对科研读者而言，这篇文章与分子流行病学、病原体系统发育、暴发溯源、空间流行病学和人畜共患病监测都直接相关。尤其值得注意的是，作者没有把“谱系连续存在”简单等同于“广泛社区传播”，而是强调局地持续循环但缺乏广泛扩散证据，这对理解ANDV生态位、宿主维持和人类暴露模式很重要。需要核对的信息包括：所用序列是全基因组还是片段；2018—2025年纳入了多少病例和多少序列；“地理定义区域”的空间尺度；2018年人传人判断依据是接触史、时间链还是遗传距离；邮轮首发病例有几位、各自路线如何；潜伏期不一致的具体幅度；以及作者如何排除实验室污染、采样偏倚或系统发育分辨率不足等替代解释。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>The star β Pictoris is orbited by a dusty debris disk, within which planet formation is occurring. The outer disk is sufficiently far from the star that volatile molecules are expected to freeze into solid ices. We observed the β Pictoris disk in the near-infrared using the James Webb Space Telescope. The spectrum shows features due to amorphous water ice (&lt;7% crystallinity) and carbon dioxide (CO 2 ) ice in both the 12 CO 2 and 13 CO 2 isotopologues. We infer that the CO 2 ice is intimately mixed with the water ice at a ratio of 1:10. This implies that the ices formed in cold conditions, likely in the interstellar medium. Frequent collisions within the debris disk are required to explain the observed uniform distribution of icy dust grains.</p>
+          <p>In 2026, a hantavirus pulmonary syndrome (HPS) outbreak caused by Andes virus (ANDV) occurred on a cruise ship. Analyses revealed an unexpected relationship to an outbreak in Argentina in 2018. Retrospective investigation clarified the 2018 outbreak could involve person-to-person transmission and a common ANDV lineage spanned HPS cases from 2018 to 2025 in a geographically defined area in northern Patagonia, without widespread community transmission of ANDV. Route reconstruction for the index cases in the cruise ship outbreak identified geographically plausible exposures to viruses of this lineage in Argentina, but their timing was inconsistent with the expected ANDV incubation period. The infection source for the cruise ship outbreak cannot be resolved with current information, highlighting the need to expand viral surveillance in the ANDV endemic region.</p>
         </details>
         
         </div>
@@ -614,20 +609,19 @@
       <div class="paper-meta">
         <span class="source-pill">Science</span>
         <span>2026-11-12</span>
-        <span>Score 57.0</span>
+        <span>Score 44.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>7. <a href="https://doi.org/10.1126/science.aef4622">A cellular atlas of the preinvasive breast cancer microenvironment</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+cellular+atlas+of+the+preinvasive+breast+cancer+microenvironment&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef4622%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+A+cellular+atlas+of+the+preinvasive+breast+cancer+microenvironment%0Akeywords%3A+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+cellular+atlas+of+the+preinvasive+breast+cancer+microenvironment&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef4622%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+A+cellular+atlas+of+the+preinvasive+breast+cancer+microenvironment%0Akeywords%3A+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+cellular+atlas+of+the+preinvasive+breast+cancer+microenvironment&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aef4622%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+A+cellular+atlas+of+the+preinvasive+breast+cancer+microenvironment%0Akeywords%3A+ai%2C+environment%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>7. <a href="https://doi.org/10.1126/science.aej1376">Hantavirus pulmonary syndrome outbreak linked to cruise ship travel in April–May 2026</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Hantavirus+pulmonary+syndrome+outbreak+linked+to+cruise+ship+travel+in+April%E2%80%93May&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej1376%0Arating%3A+star%0Asource%3A+science%0Atitle%3A+Hantavirus+pulmonary+syndrome+outbreak+linked+to+cruise+ship+travel+in+April%E2%80%93May+2026%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Hantavirus+pulmonary+syndrome+outbreak+linked+to+cruise+ship+travel+in+April%E2%80%93May&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej1376%0Arating%3A+like%0Asource%3A+science%0Atitle%3A+Hantavirus+pulmonary+syndrome+outbreak+linked+to+cruise+ship+travel+in+April%E2%80%93May+2026%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Hantavirus+pulmonary+syndrome+outbreak+linked+to+cruise+ship+travel+in+April%E2%80%93May&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1126%2Fscience.aej1376%0Arating%3A+dislike%0Asource%3A+science%0Atitle%3A+Hantavirus+pulmonary+syndrome+outbreak+linked+to+cruise+ship+travel+in+April%E2%80%93May+2026%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Siyuan He、Aatish Thennavan、Runmin Wei、Shanshan Bai 等 17 人 · DOI: <a href="https://doi.org/10.1126/science.aef4622">10.1126/science.aef4622</a></div>
-      <div class="chips"><span class="chip">ai <strong>1</strong></span>
-<span class="chip">environment <strong>1</strong></span></div>
+      <div class="authors">Bas B. Oude Munnink、Samuel Cordey、Moussa Moïse Diagne、Jonathan Featherstone 等 131 人 · DOI: <a href="https://doi.org/10.1126/science.aej1376">10.1126/science.aej1376</a></div>
+      
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Science论文聚焦雌激素受体阳性导管原位癌（ER+ DCIS）的癌前微环境，基于159名患者的854,911个细胞单细胞转录组和39个样本空间转录组，构建了DCIS到浸润性乳腺癌阶段的细胞图谱。摘要显示其具体任务是识别DCIS周围基质、血管、基底细胞及免疫抑制性导管的早期重塑，并判断哪些微环境改变会持续到浸润进展阶段。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献在于提供一个面向乳腺癌癌前阶段的细胞图谱资源，把“DCIS微环境何时、何处、由哪些细胞状态开始改变”这个问题具体化到9类细胞、60种细胞状态以及空间邻域层面。可能的重要贡献还包括：提出围绕DCIS病灶的成纤维细胞、血管细胞和基底细胞重塑，以及支持癌前细胞生长的免疫抑制性导管，是ER+ DCIS早期生态位的关键特征，并指出其中不少改变在浸润后仍然保留。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Science论文围绕2026年4至5月一次与邮轮旅行相关的汉坦病毒肺综合征（HPS）暴发，分析其是否由安第斯病毒（ANDV）在登船前少数动物溢出后于船上发生人传人扩散。基于10/13病例的病毒基因组、症状起始时间和可行接触模式，摘要称证据支持一个紧密相关的暴发簇，而非由异常新毒株驱动。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把跨国流调中的原始基因组数据共享、互惠质控、发病时间线和接触网络线索整合起来，用于判定一次国际旅行场景中的ANDV暴发传播链；其可能贡献是为“已知可在特定条件下人传人的病原体在高密度旅行环境中的传播判定”提供了一个基因组流行病学案例。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -639,32 +633,36 @@
               <div class="signal-source">Science</div>
             </div>
             <div>
-              <div class="signal-kicker">关键词命中 2</div>
-              <div class="signal-meter"><span style="width: 36%"></span></div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>57.0</strong>
+              <strong>44.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题是：在ER+ DCIS这一浸润前阶段，肿瘤微环境究竟已经发生了哪些细胞组成、细胞状态和空间组织结构的改变；这些改变哪些是局限于癌前病灶，哪些会延续到浸润性乳腺癌；以及哪些局部微环境特征可能支持癌前细胞生长和向浸润进展。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，研究路径是以新鲜乳腺组织样本为基础，收集正常乳腺、DCIS和浸润性乳腺癌三类样本；对总计854,911个细胞进行单细胞RNA测序，完成细胞聚类、细胞类型注释和细胞状态细分；再对39个样本做空间转录组，将关键细胞状态映射回组织结构中，分析其是否围绕DCIS区域富集。进一步很可能包含跨病理阶段差异分析、细胞状态频率比较、空间邻域分析，以及可能的细胞通讯或通路富集分析，用来支持“免疫抑制性导管”和“基质/血管/基底细胞重塑”的结论。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点有四点。第一，研究对象选在DCIS这一临床重要但机制相对欠清楚的癌前阶段，问题本身具有高价值。第二，样本和细胞规模大，159名患者和85万级细胞使得识别稀有状态和患者间共性更有说服力。第三，单细胞与空间转录组结合，使“哪些细胞变了”与“这些细胞位于病灶何处”能够同时回答。第四，比较正常、DCIS和浸润癌三个阶段，有助于把早期改变与持续性改变区分开来，这对理解侵袭前生态位形成尤其关键。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议是：1）先查论文主图和补充图，确认9类细胞和60种状态的命名、标记基因及其在正常/DCIS/浸润癌中的变化；2）重点看空间图，记录哪些细胞状态被证明环绕DCIS病灶；3）核对“immunosuppressive ducts”对应的具体分子特征、细胞来源和证据类型；4）查看是否有配体-受体分析、免疫抑制通路、功能验证或临床关联；5）如果你做相关研究，可把文中关键细胞状态和标记基因整理成对照表，用于与你自己的单细胞或空间数据做再注释和比较。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>研究问题是：在一次与邮轮旅行相关的ANDV所致HPS暴发中，这些病例是否构成单一紧密传播簇；若是，其最可能来源是登船前少数动物溢出后在船上发生人传人，还是多次彼此独立的暴露事件；此外，该暴发是否提示出现了传播能力异常的新病毒株。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推测，方法是跨国暴发调查结合基因组流行病学。数据包括13例已识别病例中的10例ANDV基因组序列、各病例症状起始时间、以及病例间可能接触关系。分析路径可能包括：对序列进行比对和聚类/系统发育判断其是否形成紧密簇；将发病时间映射到旅行时间线和已知潜伏期框架中；结合接触模式评估传播方向与可行性；并通过跨实验室共享原始数据和互惠质控来提高序列与结论的可信度。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是研究场景具体且公共卫生意义强：邮轮是高密度、跨国流动环境，适合观察旅行相关传播。亮点二是证据类型多元，不只依赖序列，还结合发病时间和接触线索。亮点三是摘要明确提出‘不支持异常病毒株’这一负向结论，有助于避免把传播事件误读为病毒已发生本质改变。亮点四是强调原始数据共享和双向质控，说明研究可能在国际协作和可重复性方面有较强设计。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，获取论文正文后优先查看病例时间线图、系统发育树/序列距离图和接触网络图；第二，记录10个测序病例与3个未测序病例在发病时间和舱位/活动上的位置，判断缺失数据是否关键；第三，核对作者如何定义‘异常株’以及与既往ANDV人传人事件的比较基线；第四，如果你做相关研究，可把这篇文章作为‘封闭旅行环境中的ANDV传播判定’案例，与既往家庭/医院场景的人传人报告做对照笔记。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题是：在ER+ DCIS这一浸润前阶段，肿瘤微环境究竟已经发生了哪些细胞组成、细胞状态和空间组织结构的改变；这些改变哪些是局限于癌前病灶，哪些会延续到浸润性乳腺癌；以及哪些局部微环境特征可能支持癌前细胞生长和向浸润进展。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，研究路径是以新鲜乳腺组织样本为基础，收集正常乳腺、DCIS和浸润性乳腺癌三类样本；对总计854,911个细胞进行单细胞RNA测序，完成细胞聚类、细胞类型注释和细胞状态细分；再对39个样本做空间转录组，将关键细胞状态映射回组织结构中，分析其是否围绕DCIS区域富集。进一步很可能包含跨病理阶段差异分析、细胞状态频率比较、空间邻域分析，以及可能的细胞通讯或通路富集分析，用来支持“免疫抑制性导管”和“基质/血管/基底细胞重塑”的结论。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点有四点。第一，研究对象选在DCIS这一临床重要但机制相对欠清楚的癌前阶段，问题本身具有高价值。第二，样本和细胞规模大，159名患者和85万级细胞使得识别稀有状态和患者间共性更有说服力。第三，单细胞与空间转录组结合，使“哪些细胞变了”与“这些细胞位于病灶何处”能够同时回答。第四，比较正常、DCIS和浸润癌三个阶段，有助于把早期改变与持续性改变区分开来，这对理解侵袭前生态位形成尤其关键。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于题录和摘要，至少有几个边界需要警惕。第一，研究似乎聚焦ER+ DCIS，结论未必能推广到HER2阳性或三阴性DCIS。第二，摘要强调图谱和关联，尚不能证明这些微环境改变对进展具有因果作用。第三，如果样本是横断面而非纵向随访，那么“persist during invasive progression”更像阶段间共性，而不是同一病灶真实演化轨迹。第四，空间转录组样本数39相对单细胞部分更小，空间结论的稳健性和分层分析能力需要核对。第五，摘要未说明是否有蛋白层面、组织病理验证或功能实验，因此某些“免疫抑制”解释可能主要来自转录特征推断。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议是：1）先查论文主图和补充图，确认9类细胞和60种状态的命名、标记基因及其在正常/DCIS/浸润癌中的变化；2）重点看空间图，记录哪些细胞状态被证明环绕DCIS病灶；3）核对“immunosuppressive ducts”对应的具体分子特征、细胞来源和证据类型；4）查看是否有配体-受体分析、免疫抑制通路、功能验证或临床关联；5）如果你做相关研究，可把文中关键细胞状态和标记基因整理成对照表，用于与你自己的单细胞或空间数据做再注释和比较。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常明确：ER+ DCIS这一最常见的乳腺癌癌前病变，以及其与正常乳腺组织、浸润性乳腺癌之间的微环境连续变化。数据规模较大，包含新鲜样本、159名患者、854,911个细胞的单细胞RNA测序，以及39个样本的空间转录组，这意味着作者不仅在做细胞类型注释，还在尝试把细胞状态与病灶空间位置对应起来。摘要中“9 cell types and 60 cell states”提示分析重点可能不只是粗粒度细胞分类，而是进一步解析同一细胞谱系内部的功能状态变化，例如不同成纤维细胞状态、血管相关状态、基底细胞状态以及导管上皮/免疫相关状态。证据线索主要有三条：第一，跨正常-DCIS-浸润癌的比较设计，用于识别癌前阶段已出现、以及在浸润阶段持续存在的改变；第二，单细胞转录组用于定义细胞类型和状态；第三，空间转录组用于定位这些状态是否环绕DCIS区域、是否形成特定微环境结构。摘要特别强调“encircle the DCIS regions”和“immunosuppressive ducts”，说明空间邻近关系和局部免疫抑制生态位可能是论文主线之一。与用户可能关注的方向关系上，如果你关心肿瘤微环境、癌前病变演化、空间组学、单细胞图谱或早筛/风险分层，这篇论文都值得看，因为它把侵袭发生前的组织生态变化具体化了；如果你关心AI，则当前元数据中的“ai”更像关键词匹配噪声，摘要并未显示机器学习模型是主贡献，真正相关的更可能是高维单细胞/空间数据整合分析。需要核对的信息包括：样本是否全部为ER+ DCIS、是否有配对正常/病灶/浸润样本；9类细胞和60种状态的具体定义标准；“免疫抑制性导管”是指肿瘤上皮状态、导管周围复合生态位，还是特定配体-受体信号模块；哪些改变被证明“persist during invasive progression”，证据是横断面比较还是谱系/轨迹推断；以及患者临床变量如分级、坏死、复发风险、治疗前状态是否被控制。由于目前只有摘要，不能判断作者是否进行了功能验证、因果实验或临床预后关联，因此阅读时应重点查这些部分。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>研究问题是：在一次与邮轮旅行相关的ANDV所致HPS暴发中，这些病例是否构成单一紧密传播簇；若是，其最可能来源是登船前少数动物溢出后在船上发生人传人，还是多次彼此独立的暴露事件；此外，该暴发是否提示出现了传播能力异常的新病毒株。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推测，方法是跨国暴发调查结合基因组流行病学。数据包括13例已识别病例中的10例ANDV基因组序列、各病例症状起始时间、以及病例间可能接触关系。分析路径可能包括：对序列进行比对和聚类/系统发育判断其是否形成紧密簇；将发病时间映射到旅行时间线和已知潜伏期框架中；结合接触模式评估传播方向与可行性；并通过跨实验室共享原始数据和互惠质控来提高序列与结论的可信度。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是研究场景具体且公共卫生意义强：邮轮是高密度、跨国流动环境，适合观察旅行相关传播。亮点二是证据类型多元，不只依赖序列，还结合发病时间和接触线索。亮点三是摘要明确提出‘不支持异常病毒株’这一负向结论，有助于避免把传播事件误读为病毒已发生本质改变。亮点四是强调原始数据共享和双向质控，说明研究可能在国际协作和可重复性方面有较强设计。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>局限首先是样本量较小，仅13例且只有10例有基因组，传播链推断可能受未测序病例影响。其次，摘要没有说明序列长度、覆盖度、变异位点数量和系统发育不确定性，因此无法判断基因组证据的分辨率。第三，接触模式的获取方式和完整性未知，回忆偏倚或未识别接触可能改变解释。第四，‘单次或极少数次溢出’这一表述本身说明源头事件数仍有不确定性。第五，仅凭摘要无法知道是否充分排除了船上共同环境暴露、港口前后陆地暴露或其他替代解释。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，获取论文正文后优先查看病例时间线图、系统发育树/序列距离图和接触网络图；第二，记录10个测序病例与3个未测序病例在发病时间和舱位/活动上的位置，判断缺失数据是否关键；第三，核对作者如何定义‘异常株’以及与既往ANDV人传人事件的比较基线；第四，如果你做相关研究，可把这篇文章作为‘封闭旅行环境中的ANDV传播判定’案例，与既往家庭/医院场景的人传人报告做对照笔记。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：2026年4月发生在邮轮上的HPS暴发，病原体为ANDV。任务不是一般性描述病例，而是判断这13例识别病例之间的传播关系，尤其是区分“多次独立动物溢出”与“少数登船前溢出后船上人传人扩散”这两类机制。摘要给出的关键数据对象包括：13个病例、其中10个病例获得了ANDV基因组序列、症状起始时间、以及‘plausible contact patterns’即合理接触模式。方法线索显示，这应是一项跨国联合调查，强调初始原始数据共享和双向质量控制，说明作者较重视不同实验室之间序列与分析结果的一致性。
+
+证据链大致是三层：第一层是基因组层面，10个病例的ANDV序列应当彼此高度接近，支持它们属于同一紧密暴发簇；第二层是时间层面，症状起始顺序应与船上暴露和继发传播的时间窗相容；第三层是流行病学层面，病例之间存在可解释的接触关系。三者合并后，作者认为最符合数据的解释是：登船前发生一次或极少数几次动物到人的溢出事件，随后在邮轮环境中出现人际传播。摘要还特别强调，这次事件代表的是一种‘已知在特定条件下可人传人’病毒的国际位移，而不是出现了一个异常株或新出现的高传播性变体。这个表述对风险沟通很重要：它把结论限定在传播场景与已知病原学特性，而非夸大为病毒进化上的突变事件。
+
+如果你的方向是病原体基因组流调、旅行医学、暴发调查或人畜共患病风险评估，这篇文章的价值在于：它可能展示了如何在样本数不大、但场景封闭且接触关系相对可追踪的条件下，将序列证据与时间-接触证据拼接成传播推断；同时也涉及国际协作中的数据共享与质控流程。需要核对的信息包括：序列覆盖度和分辨率是否足以区分单次与多次溢出；10/13的缺失序列是否影响传播链重建；‘plausible contact patterns’是基于正式接触追踪、舱位/活动记录，还是访谈回忆；症状起始与潜伏期假设如何用于支持船上传播；以及作者是否使用系统发育、单倍型比较或更正式的传播树模型。由于只有摘要，不能断言其具体分析软件、统计显著性或图表结论。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Ductal carcinoma in situ (DCIS) is the most common preinvasive breast cancer, however our knowledge of the DCIS tumor microenvironment (TME) remains limited. We constructed a comprehensive atlas of the TME in estrogen-receptor positive DCIS using fresh samples collected from normal breast tissues, DCIS and invasive breast cancers. We analyzed 854,911 cells from 159 patients by single cell RNA sequencing and 39 samples by spatial transcriptomics, which identified 9 cell types and 60 cell states. Our data shows remodeling of fibroblasts, vascular and basal cells that encircle the DCIS regions and immunosuppressive ducts that support the growth of the preinvasive cancer cells. This study delineates early alterations in the DCIS TME, including many changes that persist during invasive progression.</p>
+          <p>In April 2026, a hantavirus pulmonary syndrome (HPS) outbreak caused by Andes virus (ANDV) occurred on a cruise ship. ANDV genome sequences were obtained for 10 of the 13 identified cases during a cross-country investigation established to share initial raw data for joint analysis with reciprocal quality control. The genomic data, symptom onsets, and plausible contact patterns strongly support a tightly linked outbreak cluster compatible with a single or very few zoonotic spillover events prior to embarkment followed by human-to-human transmission onboard. The outbreak represents the international displacement of a virus already known to be capable, under specific conditions, to transmit among humans, and does not suggest emergence of a unusual viral strain.</p>
         </details>
         
         </div>
@@ -677,19 +675,19 @@
       <div class="paper-meta">
         <span class="source-pill">Nature</span>
         <span>2026-11-11</span>
-        <span>Score 42.0</span>
+        <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11391-w">Efficient catalyst-controlled C–H arylation of arenes</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Efficient+catalyst-controlled+C%E2%80%93H+arylation+of+arenes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11391-w%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Efficient+catalyst-controlled+C%E2%80%93H+arylation+of+arenes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Efficient+catalyst-controlled+C%E2%80%93H+arylation+of+arenes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11391-w%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Efficient+catalyst-controlled+C%E2%80%93H+arylation+of+arenes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Efficient+catalyst-controlled+C%E2%80%93H+arylation+of+arenes&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11391-w%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Efficient+catalyst-controlled+C%E2%80%93H+arylation+of+arenes%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>8. <a href="https://doi.org/10.1038/s41586-026-11259-z">A plant RNA-binding protein senses 2′,3′-cNMP produced by insect effectors</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+A+plant+RNA-binding+protein+senses+2%E2%80%B2%2C3%E2%80%B2-cNMP+produced+by+insect+effectors&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11259-z%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+A+plant+RNA-binding+protein+senses+2%E2%80%B2%2C3%E2%80%B2-cNMP+produced+by+insect+effectors%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+A+plant+RNA-binding+protein+senses+2%E2%80%B2%2C3%E2%80%B2-cNMP+produced+by+insect+effectors&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11259-z%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+A+plant+RNA-binding+protein+senses+2%E2%80%B2%2C3%E2%80%B2-cNMP+produced+by+insect+effectors%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+A+plant+RNA-binding+protein+senses+2%E2%80%B2%2C3%E2%80%B2-cNMP+produced+by+insect+effectors&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11259-z%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+A+plant+RNA-binding+protein+senses+2%E2%80%B2%2C3%E2%80%B2-cNMP+produced+by+insect+effectors%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Minhao Zhang、Elisa González-Fernández、Jyoti Dhankhar、Mingyu Zhang 等 10 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11391-w">10.1038/s41586-026-11391-w</a></div>
+      <div class="authors">Xiao-Xiang Guo、Jia-Fa Huang、Jing-Tong Zhao、Yi-Jie Gan 等 24 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11259-z">10.1038/s41586-026-11259-z</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>Efficient catalyst-controlled C–H arylation of arenes。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。</p></div>
-        <div class="note"><strong>贡献</strong><p>题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。</p></div>
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦植物中的一种RNA结合蛋白如何感知由昆虫效应子产生的2′,3′-cNMP，核心任务是解析一种跨界互作中的小分子感知机制。由于提供信息中摘要为空，目前只能确认研究对象包括植物RNA-binding protein、昆虫效应子以及2′,3′-环核苷酸这一信号分子，具体机制与证据仍需核对原文。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是提出并验证了一条新的植物免疫或胁迫感知通路：昆虫效应子可诱导或直接产生2′,3′-cNMP，而植物中的特定RNA结合蛋白能够识别该分子并触发后续反应。如果成立，这将把“RNA结合蛋白”“2′,3′-环核苷酸”“昆虫-植物互作”三个通常分散的研究对象连接起来，提供新的受体/传感器概念与分子机制。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -706,22 +704,22 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>40.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>题名指向“Efficient catalyst-controlled C–H arylation of arenes”，但缺少摘要，研究问题只能粗略判断。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>先补读 abstract 和图表标题，再决定是否加入精读列表。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文试图解决的具体问题，按题名推断，是植物如何识别昆虫效应子相关的小分子信号，尤其是如何感知由昆虫效应子产生的2′,3′-cNMP，以及这种感知是否由某个植物RNA结合蛋白直接完成。更深一层的问题可能是：RNA结合蛋白能否兼具代谢物传感器功能，并把外源生物攻击转化为宿主细胞内的RNA调控或免疫输出。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法路径包括几类。第一，化学与生化层面：检测昆虫效应子是否生成2′,3′-cNMP，可能用LC-MS/MS、体外酶活实验或植物组织中的代谢物定量。第二，结合与识别层面：用纯化蛋白、ITC、MST、SPR、EMSA、光谱法或竞争结合实验验证RNA结合蛋白与2′,3′-cNMP的直接结合及特异性。第三，结构与位点层面：通过蛋白结构解析、分子对接或关键氨基酸突变确定结合口袋。第四，遗传与表型层面：利用植物突变体、过表达材料、瞬时表达或昆虫取食实验，观察该蛋白对抗虫性、免疫标记基因、细胞死亡、激素反应或RNA代谢指标的影响。第五，机制延伸：如果该蛋白确为RNA结合蛋白，作者可能还会做RIP-seq、CLIP类实验、转录组或翻译组分析，查看2′,3′-cNMP结合后其RNA靶标谱是否改变。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>从题名看，最大亮点是提出了一个非常具体且新颖的分子链条：昆虫效应子→2′,3′-cNMP→植物RNA结合蛋白感知。这种链条同时覆盖病虫互作、代谢物信号和RNA生物学，具有较强的概念创新性。第二个亮点可能是对象具体，若作者证明了直接结合和体内功能关联，就会比仅凭转录变化推断机制更有说服力。第三，若研究跨越化学检测、蛋白结合、遗传表型和结构机制，则证据会比较闭环。第四，这类发现可能带来应用价值，例如通过改造感知蛋白或相关通路提升作物抗虫性。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作建议有五项。第一，优先获取摘要和图1，确认研究系统的植物种类、昆虫种类、RNA结合蛋白名称以及2′,3′-cNMP的具体分子。第二，查方法或结果中是否有直接结合证据，并记录使用的定量参数，如Kd、突变位点和特异性对照。第三，查看作者是否证明昆虫效应子直接产生2′,3′-cNMP，以及体内代谢物检测是否有时间梯度和遗传学依赖。第四，检查遗传证据是否包含敲除、互补和分离功能突变，以判断“感知”与“RNA结合本职功能”是否可区分。第五，如果你做相关方向，可先整理一个对照表，列出文中对象、实验类型、关键图号、未解决问题和可复现实验入口。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>题名指向“Efficient catalyst-controlled C–H arylation of arenes”，但缺少摘要，研究问题只能粗略判断。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>先补读 abstract 和图表标题，再决定是否加入精读列表。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Efficient catalyst-controlled C–H arylation of arenes”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。</p></div>
+            <div class="detail-section"><strong>研究问题</strong><p>论文试图解决的具体问题，按题名推断，是植物如何识别昆虫效应子相关的小分子信号，尤其是如何感知由昆虫效应子产生的2′,3′-cNMP，以及这种感知是否由某个植物RNA结合蛋白直接完成。更深一层的问题可能是：RNA结合蛋白能否兼具代谢物传感器功能，并把外源生物攻击转化为宿主细胞内的RNA调控或免疫输出。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法路径包括几类。第一，化学与生化层面：检测昆虫效应子是否生成2′,3′-cNMP，可能用LC-MS/MS、体外酶活实验或植物组织中的代谢物定量。第二，结合与识别层面：用纯化蛋白、ITC、MST、SPR、EMSA、光谱法或竞争结合实验验证RNA结合蛋白与2′,3′-cNMP的直接结合及特异性。第三，结构与位点层面：通过蛋白结构解析、分子对接或关键氨基酸突变确定结合口袋。第四，遗传与表型层面：利用植物突变体、过表达材料、瞬时表达或昆虫取食实验，观察该蛋白对抗虫性、免疫标记基因、细胞死亡、激素反应或RNA代谢指标的影响。第五，机制延伸：如果该蛋白确为RNA结合蛋白，作者可能还会做RIP-seq、CLIP类实验、转录组或翻译组分析，查看2′,3′-cNMP结合后其RNA靶标谱是否改变。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>从题名看，最大亮点是提出了一个非常具体且新颖的分子链条：昆虫效应子→2′,3′-cNMP→植物RNA结合蛋白感知。这种链条同时覆盖病虫互作、代谢物信号和RNA生物学，具有较强的概念创新性。第二个亮点可能是对象具体，若作者证明了直接结合和体内功能关联，就会比仅凭转录变化推断机制更有说服力。第三，若研究跨越化学检测、蛋白结合、遗传表型和结构机制，则证据会比较闭环。第四，这类发现可能带来应用价值，例如通过改造感知蛋白或相关通路提升作物抗虫性。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最主要的局限是摘要为空，无法确认论文究竟证明了哪些环节，因此必须警惕过度解读。题名中的“senses”可能表示直接物理结合，也可能只是遗传学意义上的功能依赖，二者证据强度差别很大。其次，2′,3′-cNMP的来源需要仔细区分：是昆虫效应子自身催化产生、在宿主内诱导产生，还是样品处理中检测到的相关代谢物。再次，RNA结合蛋白通常具有多功能性，若没有严格的分离功能突变，很难证明其抗虫表型专门来自2′,3′-cNMP感知而非一般RNA代谢缺陷。还需注意系统外推边界：单一植物-昆虫组合中的机制未必普适于其他作物或害虫。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作建议有五项。第一，优先获取摘要和图1，确认研究系统的植物种类、昆虫种类、RNA结合蛋白名称以及2′,3′-cNMP的具体分子。第二，查方法或结果中是否有直接结合证据，并记录使用的定量参数，如Kd、突变位点和特异性对照。第三，查看作者是否证明昆虫效应子直接产生2′,3′-cNMP，以及体内代谢物检测是否有时间梯度和遗传学依赖。第四，检查遗传证据是否包含敲除、互补和分离功能突变，以判断“感知”与“RNA结合本职功能”是否可区分。第五，如果你做相关方向，可先整理一个对照表，列出文中对象、实验类型、关键图号、未解决问题和可复现实验入口。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅依据题名和元数据，这项研究应属于植物-昆虫互作与分子感知机制方向。题名中的具体对象非常明确：一类植物RNA-binding protein，信号分子为2′,3′-cNMP，来源是insect effectors。这里最值得注意的是2′,3′-cNMP并非常规最常见的3′,5′-环核苷酸，因此论文可能强调一种此前在植物防御中未被充分认识的小分子信号；同时，RNA结合蛋白被描述为“senses”，暗示其不仅参与RNA代谢，还可能直接作为代谢物受体或共受体。可能的证据链包括：鉴定昆虫效应子具有生成2′,3′-cNMP的活性，或能在植物细胞中诱导该分子积累；通过生化结合实验、结构生物学、突变体分析或体内报告系统证明植物RNA结合蛋白与2′,3′-cNMP特异结合；再通过遗传学和表型实验把这种结合与植物防御、转录后调控、RNA稳定性或翻译变化联系起来。若你的研究方向涉及植物免疫、效应子生物学、核苷酸信号、RNA结合蛋白功能或跨界化学通讯，这篇文章可能提供新的受体类型和信号分子框架。需要重点核对的信息包括：具体是哪一种植物和昆虫系统；RNA结合蛋白的名称、结构域和亚细胞定位；2′,3′-cNMP的具体种类是单一分子还是一组分子；昆虫效应子是直接催化生成还是间接诱导宿主产生；感知后下游是免疫激活、免疫抑制还是发育/胁迫重编程；以及作者使用了哪些直接证据来排除3′,5′-cNMP或其他核苷酸的干扰。由于摘要缺失，以上均属于基于题名的高约束推断，不能替代对原文图表和方法的核实。</p></div>
           </div>
           
         </div>
@@ -734,19 +732,19 @@
       <div class="paper-meta">
         <span class="source-pill">Nature</span>
         <span>2026-11-11</span>
-        <span>Score 42.0</span>
+        <span>Score 40.0</span>
       </div>
       <div class="paper-title-row">
-        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11232-w">Bureaucratic incentives shaped effectiveness of the one-child policy in China</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Bureaucratic+incentives+shaped+effectiveness+of+the+one-child+policy+in+China&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11232-w%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Bureaucratic+incentives+shaped+effectiveness+of+the+one-child+policy+in+China%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Bureaucratic+incentives+shaped+effectiveness+of+the+one-child+policy+in+China&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11232-w%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Bureaucratic+incentives+shaped+effectiveness+of+the+one-child+policy+in+China%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Bureaucratic+incentives+shaped+effectiveness+of+the+one-child+policy+in+China&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11232-w%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Bureaucratic+incentives+shaped+effectiveness+of+the+one-child+policy+in+China%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+        <h3>9. <a href="https://doi.org/10.1038/s41586-026-11258-0">Glycosylation and importins liquefy the FG barrier in live nuclear pores</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Glycosylation+and+importins+liquefy+the+FG+barrier+in+live+nuclear+pores&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11258-0%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Glycosylation+and+importins+liquefy+the+FG+barrier+in+live+nuclear+pores%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Glycosylation+and+importins+liquefy+the+FG+barrier+in+live+nuclear+pores&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11258-0%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Glycosylation+and+importins+liquefy+the+FG+barrier+in+live+nuclear+pores%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Glycosylation+and+importins+liquefy+the+FG+barrier+in+live+nuclear+pores&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11258-0%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Glycosylation+and+importins+liquefy+the+FG+barrier+in+live+nuclear+pores%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
       </div>
-      <div class="authors">Lingsheng Meng、Hanmo Yang、Grant Miller、Hongbin Li · DOI: <a href="https://doi.org/10.1038/s41586-026-11232-w">10.1038/s41586-026-11232-w</a></div>
+      <div class="authors">Miao Yu、Maziar Heidari、Karen Palacio-Rodriguez、Hao Ruan 等 16 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11258-0">10.1038/s41586-026-11258-0</a></div>
       
       <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，研究对象是中国计划生育中的“一孩政策”，核心任务是分析“官僚体系中的激励机制”如何影响该政策在不同地区或时期的执行效果。由于提供信息中摘要为空，目前只能确定其关注的是人口政策效果与行政激励之间的因果或机制关系，具体数据、识别策略和结论幅度仍信息不足。</p></div>
-        <div class="note"><strong>贡献</strong><p>可能的核心贡献是把中国一孩政策的实际效果差异，与地方官员或官僚体系的考核、晋升、问责等激励结构联系起来，解释为什么同一中央政策会在地方层面呈现不同执行强度与人口结果。如果论文使用了细粒度行政、人事和人口数据，并建立较强识别设计，那么其贡献还可能在于将政治经济学中的官僚激励机制，与人口转型和公共政策执行效果直接连接起来。</p></div>
+        <div class="note"><strong>一句话</strong><p>该研究聚焦活细胞中核孔复合体（NPC）FG-NUPs通透屏障的物理状态，利用位点特异标记与时间分辨荧光各向异性，提出FG结构域在活细胞内表现为纳秒尺度、液体样节段运动，而非简单固态凝胶。摘要还指出importin-β与FG-NUPs上的O-GlcNAc糖基化共同维持FG网络流动性，并塑造NPC内周边富集importin-β、中央保留延展FG链的径向组织。</p></div>
+        <div class="note"><strong>贡献</strong><p>核心贡献在于把关于FG-NUP屏障“是液态、凝胶态还是更固态网络”的长期争议，推进到活细胞原位尺度上进行判定，并给出一个机制性框架：FG-FG相互作用与FG-importin-β相互作用的精细平衡，加上O-GlcNAc修饰，共同“液化”FG屏障并支持选择性且快速的核质运输。若摘要表述成立，这项工作同时连接了活体光谱测量、体外重构相行为和分子动力学模拟三条证据链。</p></div>
       </div>
       
       <details class="paper-detail">
@@ -763,95 +761,92 @@
             </div>
             <div class="signal-score">
               <span>Score</span>
-              <strong>42.0</strong>
+              <strong>40.0</strong>
             </div>
           </div>
           <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文想解决的具体问题，可能是：在中国一孩政策这一高度集权的人口控制政策中，为什么不同地区、时期或官员任内的政策执行效果存在显著差异？这种差异在多大程度上可以由地方官僚的晋升、考核、问责或其他行政激励来解释？进一步地，官僚激励影响的是政策真实效果，还是统计呈现、执法方式和行为扭曲？</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能方法包括将人口结果数据与地方官员激励数据进行匹配分析。数据层面，可能使用人口普查、出生登记、县市级生育统计、计划生育处罚或执行记录，以及地方党政干部履历、任期、年龄、晋升节点、上级考核制度变化等。识别路径上，可能利用干部更替、考核规则调整、中央政策强化节点、地区既有行政层级差异，构造面板固定效应模型、双重差分或事件研究。若作者进一步区分真实生育变化与瞒报，则还可能交叉使用普查回溯出生数据与行政登记数据。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点可能有三点。第一，把一孩政策的效果问题从单纯人口结果研究推进到“国家能力与官僚激励”机制层面。第二，如果使用了跨地区长期微观或准微观数据，能够揭示中央统一政策在地方执行中的系统异质性。第三，这一框架具有较强外部启发性：它不仅解释中国人口政策，也可能帮助理解任何依赖地方官僚落实的强目标型公共政策。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作是：第一，先获取摘要并核对研究问题、样本时期、结果变量和识别策略；第二，优先查看引言和首个结果图表，确认“bureaucratic incentives”和“effectiveness”的操作化定义；第三，记录作者使用的数据层级，是省、市、县还是个体/家庭；第四，检查是否有干部晋升或考核制度变化作为外生冲击；第五，若你关注政策执行或政治经济学，可把这篇论文与中国地方官员激励、目标责任制、人口政策历史研究做并列阅读，重点比较其识别设计与机制证据。</p></div>
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文要解决的具体问题是：活细胞中核孔FG-NUPs形成的通透屏障究竟处于何种物理状态，为什么它既能形成选择性屏障又允许快速运输；进一步地，importin-β和FG-NUPs的O-GlcNAc糖基化是否是维持这种功能性动态状态的关键因素，以及它们如何影响NPC内FG网络的空间组织。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>从摘要推断，研究路径包括三部分。1）活细胞原位测量：通过位点特异标记把荧光探针装到FG结构域特定位点，使用时间分辨荧光各向异性测量纳秒尺度链段运动，比较不同环境下的动态特征。2）体外重构与相行为比较：构建FG凝聚体或相关重组体系，观察其是否发生液-固转变，以对照活细胞中的液体样行为。3）机制建模：结合分子动力学模拟，分析FG-FG、FG-importin-β以及O-GlcNAc修饰对网络流动性和径向分布的影响，提出NPC内周边/中央分层模型。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>亮点一是直接在活细胞中测FG-NUP局部动力学，而不是仅依赖体外凝聚体推断NPC屏障状态。亮点二是把运输受体importin-β从“货物载体”提升为“屏障材料状态调控因子”，机制上更完整。亮点三是把O-GlcNAc这一明确的翻译后修饰纳入FG屏障物理模型，提供了可干预、可遗传或药理操控的变量。亮点四是证据链跨越活体光谱、体外重构和分子模拟，若三者一致，将显著增强结论可信度。亮点五是提出径向组织模型，直接对应NPC结构-功能关系，而不只是笼统讨论相分离。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先查正文图中时间分辨荧光各向异性曲线和拟合时间常数，确认“纳秒尺度液体样运动”对应哪些FG-NUP位点与对照。2）查看体外FG condensate实验的蛋白构建、浓度、盐和时间条件，判断与生理环境差距。3）定位关于importin-β和O-GlcNAc的扰动实验，记录是否有去除/增加二者后的定量变化。4）核对径向组织证据来自成像、光谱定位还是模拟，并记下空间尺度。5）如果你的研究涉及IDR或核转运，可把本文的变量整理成表：FG位点、受体浓度、糖基化状态、动力学读数、相行为结果，用于后续复现或设计对照。</p></div>
           </div>
           <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文想解决的具体问题，可能是：在中国一孩政策这一高度集权的人口控制政策中，为什么不同地区、时期或官员任内的政策执行效果存在显著差异？这种差异在多大程度上可以由地方官僚的晋升、考核、问责或其他行政激励来解释？进一步地，官僚激励影响的是政策真实效果，还是统计呈现、执法方式和行为扭曲？</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>可能方法包括将人口结果数据与地方官员激励数据进行匹配分析。数据层面，可能使用人口普查、出生登记、县市级生育统计、计划生育处罚或执行记录，以及地方党政干部履历、任期、年龄、晋升节点、上级考核制度变化等。识别路径上，可能利用干部更替、考核规则调整、中央政策强化节点、地区既有行政层级差异，构造面板固定效应模型、双重差分或事件研究。若作者进一步区分真实生育变化与瞒报，则还可能交叉使用普查回溯出生数据与行政登记数据。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点可能有三点。第一，把一孩政策的效果问题从单纯人口结果研究推进到“国家能力与官僚激励”机制层面。第二，如果使用了跨地区长期微观或准微观数据，能够揭示中央统一政策在地方执行中的系统异质性。第三，这一框架具有较强外部启发性：它不仅解释中国人口政策，也可能帮助理解任何依赖地方官僚落实的强目标型公共政策。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录信息，主要局限是信息缺失严重。摘要为空，无法判断论文是否真正建立了因果识别，还是主要做历史归因与相关性分析；无法确认“effectiveness”指生育率下降、政策合规率提升，还是行政指标改善；也无法知道作者是否处理了瞒报、漏报、选择性执法和地区社会经济趋势等关键混杂因素。此外，若论文强调官僚激励，仍需警惕把复杂社会行为过度归因于行政考核，而低估文化、城乡差异、女性教育、工业化和避孕可及性等因素。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作是：第一，先获取摘要并核对研究问题、样本时期、结果变量和识别策略；第二，优先查看引言和首个结果图表，确认“bureaucratic incentives”和“effectiveness”的操作化定义；第三，记录作者使用的数据层级，是省、市、县还是个体/家庭；第四，检查是否有干部晋升或考核制度变化作为外生冲击；第五，若你关注政策执行或政治经济学，可把这篇论文与中国地方官员激励、目标责任制、人口政策历史研究做并列阅读，重点比较其识别设计与机制证据。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名、期刊与元数据，这项研究大概率位于政治经济学、发展经济学与人口经济学交叉处。研究对象不是一孩政策本身的规范性争论，而是更具体的“政策有效性如何被官僚激励塑造”。题名中的shaped effectiveness暗示作者不仅关心政策是否存在，还关心其执行强度、落实异质性以及最终人口结果，例如生育率下降幅度、超生控制程度、地区间执行差异，甚至可能包括性别比、出生登记、处罚执行或避规行为等次级结果。题名中的bureaucratic incentives提示机制变量可能是地方干部的晋升概率、考核指标、任期压力、上级检查、财政激励、责任追究或运动式治理压力。
-从作者组合看，这篇文章很可能采用经济学实证研究路径，使用中国历史行政数据、人口普查或出生统计、地方干部履历数据，以及政策时点或制度变化构造准实验识别。可能的方法包括地区-年份面板回归、双重差分、事件研究、干部更替分析、基于考核制度变化的异质性检验，或将人口结果与地方官员职业激励强弱相匹配。若论文能进入Nature，通常意味着其问题具有广泛意义，且证据链可能不止相关性描述，而是试图识别“为什么同一政策在不同官僚环境下效果不同”。
-对科研读者而言，这篇论文的价值可能在于：第一，它把宏观人口政策效果分解为“中央政策目标”和“地方执行激励”两层；第二，它可能为理解威权治理、目标责任制和地方执行偏差提供可量化证据；第三，它可能对其他公共政策领域有外推意义，如环保、扶贫、疫情防控或教育治理中的官僚激励问题。
-但必须明确，当前摘要为空，因此无法确认以下关键信息：研究覆盖的年份范围；一孩政策“效果”的具体定义；激励变量的可观测代理；识别策略是否能支持因果解释；主要发现是激励增强了政策执行，还是导致了扭曲、瞒报或选择性执法；论文是否讨论了福利后果与伦理代价。读者在正式阅读时应优先核对这些信息。</p></div>
-          </div>
-          
-        </div>
-      </details>
-    
-    </article>
-    
+            <div class="detail-section"><strong>研究问题</strong><p>论文要解决的具体问题是：活细胞中核孔FG-NUPs形成的通透屏障究竟处于何种物理状态，为什么它既能形成选择性屏障又允许快速运输；进一步地，importin-β和FG-NUPs的O-GlcNAc糖基化是否是维持这种功能性动态状态的关键因素，以及它们如何影响NPC内FG网络的空间组织。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>从摘要推断，研究路径包括三部分。1）活细胞原位测量：通过位点特异标记把荧光探针装到FG结构域特定位点，使用时间分辨荧光各向异性测量纳秒尺度链段运动，比较不同环境下的动态特征。2）体外重构与相行为比较：构建FG凝聚体或相关重组体系，观察其是否发生液-固转变，以对照活细胞中的液体样行为。3）机制建模：结合分子动力学模拟，分析FG-FG、FG-importin-β以及O-GlcNAc修饰对网络流动性和径向分布的影响，提出NPC内周边/中央分层模型。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>亮点一是直接在活细胞中测FG-NUP局部动力学，而不是仅依赖体外凝聚体推断NPC屏障状态。亮点二是把运输受体importin-β从“货物载体”提升为“屏障材料状态调控因子”，机制上更完整。亮点三是把O-GlcNAc这一明确的翻译后修饰纳入FG屏障物理模型，提供了可干预、可遗传或药理操控的变量。亮点四是证据链跨越活体光谱、体外重构和分子模拟，若三者一致，将显著增强结论可信度。亮点五是提出径向组织模型，直接对应NPC结构-功能关系，而不只是笼统讨论相分离。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>局限主要在于摘要无法说明若干关键边界。其一，时间分辨荧光各向异性反映的是局部节段运动，不一定等同于整个FG网络宏观流变性质，因此“liquid-like”定义需看作者如何界定。其二，体外FG凝聚体液-固转变可能高度依赖构建方式和缓冲条件，未必能直接映射到NPC原位环境。其三，摘要未说明是否覆盖多种FG-NUP、不同细胞类型或不同运输受体，因此普适性待核对。其四，径向组织若主要来自模拟或间接推断，则需要谨慎看待其空间分辨率和实验证据强度。其五，尚不清楚O-GlcNAc与importin-β作用是否具有因果操控实验支持，例如去糖基化、受体耗竭或竞争抑制后的动力学变化。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先查正文图中时间分辨荧光各向异性曲线和拟合时间常数，确认“纳秒尺度液体样运动”对应哪些FG-NUP位点与对照。2）查看体外FG condensate实验的蛋白构建、浓度、盐和时间条件，判断与生理环境差距。3）定位关于importin-β和O-GlcNAc的扰动实验，记录是否有去除/增加二者后的定量变化。4）核对径向组织证据来自成像、光谱定位还是模拟，并记下空间尺度。5）如果你的研究涉及IDR或核转运，可把本文的变量整理成表：FG位点、受体浓度、糖基化状态、动力学读数、相行为结果，用于后续复现或设计对照。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>从题名和摘要看，研究对象非常具体：核孔复合体中的FG-rich nucleoporins（FG-NUPs）及其在活细胞中的动态物理状态。论文试图回答的不是泛泛的“NPC如何运输”，而是“FG屏障在活细胞里到底呈现怎样的材料状态，以及这种状态由什么分子因素维持”。摘要给出的关键现象包括：第一，活细胞内FG结构域具有纳秒级、液体样的节段运动；第二，体外重构的FG凝聚体会发生液-固转变，提示离开细胞环境后其相行为会显著改变；第三，importin-β和O-linked β-N-acetylglucosamine（O-GlcNAc）共同稳定动态FG网络；第四，NPC内部可能形成径向分层：importin-β更靠近孔周边，延展的FG结构域位于中央通道并构成运输屏障。
 
-    <article class="paper-card">
-      <div class="paper-meta">
-        <span class="source-pill">Nature</span>
-        <span>2026-11-11</span>
-        <span>Score 42.0</span>
-      </div>
-      <div class="paper-title-row">
-        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11308-7">Bistable regulation of adipocyte heterogeneity governs thermogenesis</a></h3>
-        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+Bistable+regulation+of+adipocyte+heterogeneity+governs+thermogenesis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11308-7%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+Bistable+regulation+of+adipocyte+heterogeneity+governs+thermogenesis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+Bistable+regulation+of+adipocyte+heterogeneity+governs+thermogenesis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11308-7%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+Bistable+regulation+of+adipocyte+heterogeneity+governs+thermogenesis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
-<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+Bistable+regulation+of+adipocyte+heterogeneity+governs+thermogenesis&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11308-7%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+Bistable+regulation+of+adipocyte+heterogeneity+governs+thermogenesis%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
-      </div>
-      <div class="authors">Anying Song、Yifan Wang、Guan Wang、Marie Bae 等 19 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11308-7">10.1038/s41586-026-11308-7</a></div>
-      
-      <div class="note-grid">
-        <div class="note"><strong>一句话</strong><p>该研究围绕棕色脂肪细胞内部两类状态异质性——低UCP1的BA-L细胞与高UCP1的BA-H细胞——解析其如何被免疫信号与糖皮质激素通路双稳态调控，并影响寒冷诱导产热。摘要显示作者提出一条从中性粒细胞/巨噬细胞分泌IL-1β，经H6PD-活性糖皮质激素-GR(Rgs2)轴抑制UCP1表达、决定BA-L/BA-H转换的机制。</p></div>
-        <div class="note"><strong>贡献</strong><p>核心贡献是提出并初步建立了一个可逆的、受环境温度和交感神经支配的棕色脂肪细胞状态调控框架：免疫细胞来源IL-1β稳定邻近脂肪细胞中的H6PD，促进局部活性糖皮质激素生成，激活GR并上调Rgs2，从而压制UCP1并维持BA-L状态；寒冷则通过降低IL-1β促使BA-L向BA-H转化，增强UCP1依赖产热。若摘要表述成立，这项工作把脂肪细胞异质性、神经-免疫-内分泌串扰和环境温度适应联系到同一机制链条中。</p></div>
-      </div>
-      
-      <details class="paper-detail">
-        <summary>详情</summary>
-        <div class="detail-body">
-          <div class="detail-signal">
-            <div>
-              <div class="signal-kicker">来源</div>
-              <div class="signal-source">Nature</div>
-            </div>
-            <div>
-              <div class="signal-kicker">关键词命中 0</div>
-              <div class="signal-meter"><span style="width: 12%"></span></div>
-            </div>
-            <div class="signal-score">
-              <span>Score</span>
-              <strong>42.0</strong>
-            </div>
-          </div>
-          <div class="detail-flow">
-            <div class="flow-step"><strong><span>1</span>问题</strong><p>论文聚焦的具体科学问题是：棕色脂肪组织中为何会共存UCP1低表达的BA-L细胞和UCP1高表达的BA-H细胞，这两种状态如何被局部免疫信号、糖皮质激素代谢和环境温度共同调控，以及这种状态转换如何决定寒冷诱导的产热能力。更细一点说，作者在问：是什么分子机制把部分棕脂细胞稳定压在低产热状态，寒冷又如何解除这种抑制。</p></div>
-            <div class="flow-step"><strong><span>2</span>方法</strong><p>根据摘要，可能的方法路径包括：在小鼠棕色脂肪中鉴定并追踪BA-L/BA-H亚群；进行冷暴露与升温处理，结合交感神经相关干预观察IL-1β变化；通过免疫细胞来源分析确定中性粒细胞和巨噬细胞是IL-1β来源；检测脂肪细胞内H6PD蛋白稳定性及其降解；测量局部活性糖皮质激素或相关代谢酶活性；分析GR/Nr3c1及其靶基因Rgs2对UCP1的调控；使用棕脂细胞特异、可诱导的Nr3c1缺失模型，在寒冷条件下测试细胞状态锁定和产热表型。若论文强调异质性和邻近效应，还可能包含单细胞转录组、空间定位、免疫染色和组织成像。</p></div>
-            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的亮点是机制链条较完整，且跨越多个层级：环境温度变化、交感神经输入、免疫细胞因子、脂肪细胞内代谢酶稳定性、核受体转录调控以及最终的UCP1产热输出。摘要还显示作者不仅描述相关性，还使用了棕脂特异诱导性Nr3c1删除来测试因果性，这比单纯药理干预更有说服力。另一个亮点是把棕脂异质性解释为可逆状态而非固定细胞类型，这对理解寒冷适应、衰老相关产热下降和潜在治疗靶点开发都更有启发性。</p></div>
-            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：第一，优先获取全文并补全被截断的摘要后半段，重点看Nr3c1棕脂特异诱导敲除后的体温、耗氧、能量消耗和代谢表型。第二，查主图中BA-L/BA-H的定义依据，记录各自标记基因、比例变化和是否有谱系追踪。第三，核对IL-1β来源证据是否来自细胞特异操作而非仅表达相关。第四，查看H6PD稳定性实验是否直接证明蛋白降解变化。第五，如果你的方向是免疫代谢或棕脂调控，可先整理一个机制图：neutrophil/macrophage→IL-1β→H6PD→active glucocorticoid→GR/Nr3c1→Rgs2→UCP1↓，并在阅读时逐节点标注“已证实/待确认”。</p></div>
-          </div>
-          <div class="detail-grid">
-            <div class="detail-section"><strong>研究问题</strong><p>论文聚焦的具体科学问题是：棕色脂肪组织中为何会共存UCP1低表达的BA-L细胞和UCP1高表达的BA-H细胞，这两种状态如何被局部免疫信号、糖皮质激素代谢和环境温度共同调控，以及这种状态转换如何决定寒冷诱导的产热能力。更细一点说，作者在问：是什么分子机制把部分棕脂细胞稳定压在低产热状态，寒冷又如何解除这种抑制。</p></div>
-            <div class="detail-section"><strong>可能方法</strong><p>根据摘要，可能的方法路径包括：在小鼠棕色脂肪中鉴定并追踪BA-L/BA-H亚群；进行冷暴露与升温处理，结合交感神经相关干预观察IL-1β变化；通过免疫细胞来源分析确定中性粒细胞和巨噬细胞是IL-1β来源；检测脂肪细胞内H6PD蛋白稳定性及其降解；测量局部活性糖皮质激素或相关代谢酶活性；分析GR/Nr3c1及其靶基因Rgs2对UCP1的调控；使用棕脂细胞特异、可诱导的Nr3c1缺失模型，在寒冷条件下测试细胞状态锁定和产热表型。若论文强调异质性和邻近效应，还可能包含单细胞转录组、空间定位、免疫染色和组织成像。</p></div>
-            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的亮点是机制链条较完整，且跨越多个层级：环境温度变化、交感神经输入、免疫细胞因子、脂肪细胞内代谢酶稳定性、核受体转录调控以及最终的UCP1产热输出。摘要还显示作者不仅描述相关性，还使用了棕脂特异诱导性Nr3c1删除来测试因果性，这比单纯药理干预更有说服力。另一个亮点是把棕脂异质性解释为可逆状态而非固定细胞类型，这对理解寒冷适应、衰老相关产热下降和潜在治疗靶点开发都更有启发性。</p></div>
-            <div class="detail-section"><strong>局限/风险</strong><p>基于当前题录和摘要，主要局限是信息不完整。首先，摘要后半段被截断，无法知道Nr3c1删除后具体带来的生理后果、持续时间和代谢代价。其次，尚不清楚“BA-L/BA-H”是否在不同模型、年龄、性别和物种中都稳定存在。第三，IL-1β通常被视为促炎因子，其在棕脂中的作用可能具有情境依赖性，是否存在系统炎症混杂需要看全文。第四，H6PD到活性糖皮质激素的链条虽然合理，但是否排除了其他糖皮质激素代谢节点尚待核对。第五，转化意义目前仍主要停留在机制推断，摘要未显示人类样本验证。</p></div>
-            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：第一，优先获取全文并补全被截断的摘要后半段，重点看Nr3c1棕脂特异诱导敲除后的体温、耗氧、能量消耗和代谢表型。第二，查主图中BA-L/BA-H的定义依据，记录各自标记基因、比例变化和是否有谱系追踪。第三，核对IL-1β来源证据是否来自细胞特异操作而非仅表达相关。第四，查看H6PD稳定性实验是否直接证明蛋白降解变化。第五，如果你的方向是免疫代谢或棕脂调控，可先整理一个机制图：neutrophil/macrophage→IL-1β→H6PD→active glucocorticoid→GR/Nr3c1→Rgs2→UCP1↓，并在阅读时逐节点标注“已证实/待确认”。</p></div>
-            <div class="detail-section"><strong>完整解释</strong><p>从摘要可提炼的研究对象非常具体：棕色脂肪组织中的两类成熟脂肪细胞状态，分别是UCP1低表达的BA-L和UCP1高表达的BA-H。论文试图回答的不是“棕脂是否产热”这一泛问题，而是“为何同一组织内会稳定共存两种产热能力不同的脂肪细胞状态，以及这种异质性如何随寒冷或温暖环境发生可逆切换”。摘要给出的关键现象链条是：免疫细胞中的中性粒细胞和巨噬细胞分泌IL-1β；IL-1β使脂肪细胞内H6PD蛋白免于降解；H6PD维持活性糖皮质激素生成；活性糖皮质激素激活GR/Nr3c1；GR上调靶基因Rgs2；Rgs2抑制UCP1表达，使细胞稳定停留在BA-L状态。相反，寒冷暴露在交感神经支配依赖下会降低IL-1β，导致H6PD降解、BA-L转为BA-H并增强UCP1依赖产热；环境温度升高则触发相反过程。
+方法线索也较明确。实验上，作者应采用了位点特异标记策略，把荧光探针精确装到FG-NUP特定位点，再通过时间分辨荧光各向异性读取局部链段旋转/摆动时间尺度，从而区分“液体样快速局部运动”和“更受限、更固化”的状态。摘要还提到体外重构FG condensates，说明作者可能比较了活细胞NPC环境与纯化FG片段或重组体系中的相行为差异。再结合分子动力学模拟，论文应试图把实验观测映射到分子层面的相互作用网络，例如FG重复序列之间、FG与importin-β之间、以及O-GlcNAc修饰对链柔性、排斥/吸引平衡和空间分布的影响。
 
-从方法线索看，作者很可能结合了先前已定义的BA-L/BA-H亚群标记体系，使用单细胞或空间层面的表达分析来区分两类细胞，并通过冷暴露/温暖暴露模型观察比例变化。由于摘要强调“附近”免疫细胞分泌IL-1β稳定BA-L状态，可能使用了组织免疫染色、空间转录组、原位杂交或细胞邻近分析来支持局部旁分泌关系。机制上，H6PD“蛋白稳定性”而非转录调控被点名，提示可能有蛋白降解、半衰期、泛素化或蛋白酶体抑制相关实验。关于糖皮质激素活化，可能涉及11β-HSD1/H6PD相关代谢检测、局部激素活性测定、GR活性报告或GR靶基因分析。遗传学证据方面，摘要明确提到“BA-specific inducible deletion of Nr3c1 during cold exposure”，说明至少有棕脂细胞特异、可诱导的Nr3c1敲除模型，用于测试在寒冷条件下删除GR是否会把细胞“锁定”在BA-H状态，并带来持续性产热表型。由于摘要后半段被截断，关于这种持续产热是否改善代谢、是否影响体温维持、能量消耗、肥胖或葡萄糖稳态，目前不能补全。
+对科研读者而言，最值得注意的是这篇工作把“运输受体不是仅仅穿过屏障，而是参与塑造屏障”这一观点具体化了。摘要中的机制不是单因素模型，而是三元耦合：FG-FG内聚、FG-importin-β结合、以及糖基化修饰共同决定屏障流动性。这对研究核转运、生物相分离、无序蛋白材料性质、以及核孔病理调控的人都很相关。尤其是如果你的方向涉及IDP/IDR、细胞内凝聚体、糖基化调控或单分子/超快光谱，这篇论文可能提供一个重要范式：体外凝聚态并不自动等同于活体功能态，必须在原位环境中测量链段动力学。
 
-这篇论文对相关方向的价值在于，它把“棕脂异质性”从描述性现象推进到状态转换机制，并且给出可操作节点：IL-1β、H6PD、GR/Nr3c1、Rgs2。对做代谢、免疫代谢、脂肪组织生物学、衰老或环境适应研究的人，最值得关注的是三点。第一，BA-L并非简单“功能差的棕脂”，而可能是被特定微环境信号稳定维持的状态。第二，寒冷诱导产热不只是经典交感神经直接激活UCP1，也可能通过先改变免疫细胞因子环境，解除对BA-H状态的抑制。第三，年龄相关产热下降可能与BA-L状态积累有关，而不是单纯棕脂数量减少；不过这一点需要全文数据支持，摘要只在背景中提到年龄相关下降，并未明确展示年龄实验。
-
-需要重点核对的信息包括：1）BA-L与BA-H的定义标准是单一UCP1阈值还是多基因状态；2）IL-1β来源是否经细胞特异敲除或耗竭实验严格证明来自中性粒细胞和巨噬细胞，而非其他免疫或基质细胞；3）H6PD稳定性的分子机制是什么，是否直接由IL-1β信号调控；4）Rgs2在GR抑制UCP1中的必要性是否通过敲除/敲低验证；5）“双稳态”是理论建模意义上的双稳态，还是实验上仅观察到两种相对稳定状态；6）Nr3c1棕脂特异诱导敲除后的系统性代谢后果、潜在副作用和持续时间；7）是否有人体棕脂、临床样本或公开数据验证，以支持转化意义。由于当前仅依据题名、摘要和元数据，不能判断样本量、统计强度、物种范围、是否包含人类证据，也不能确认所有因果链条都被逐一验证。</p></div>
+但基于当前仅有摘要，也有若干必须核对的信息。首先，“液体样”是由哪些具体时间常数、各向异性衰减分量或对照条件支持的，是否覆盖多个FG-NUP位点，还是只代表少数标记位点。其次，体外液-固转变发生在什么蛋白浓度、盐条件、拥挤剂、温度和时间尺度下，是否与生理环境可比。第三，importin-β与O-GlcNAc的作用是相加、协同还是存在阈值效应，摘要虽说“together stabilize”，但定量关系未知。第四，所谓径向组织是主要来自模拟、来自活细胞成像/光谱定位，还是二者结合推断。第五，论文是否比较了不同FG-NUP家族、不同细胞状态或不同核转运受体，决定了结论的普适性边界。由于没有全文，不能判断样本量、统计稳健性、扰动实验设计和替代解释排除程度。</p></div>
           </div>
           
         <details class="abstract-detail">
           <summary>原始摘要</summary>
-          <p>Abstract Brown adipocytes (BAs) are thermogenic cells that regulate energy homeostasis, and age-related declines in thermogenesis contribute to cold sensitivity 1–5 . We previously identified a BA subpopulation with low UCP1 expression (hereafter, BA-L cells) that coexists with the classical, high-UCP1-expressing BAs (hereafter, BA-H cells) 6 . Here we show that IL-1β secreted by neutrophils and macrophages stabilizes nearby BAs in the BA-L state. Specifically, IL-1β stabilizes hexose-6-phosphate dehydrogenase (H6PD) protein from degradation to ensure the generation of active glucocorticoids, which activate the glucocorticoid receptor (GR, encoded by Nr3c1 ) and increase the expression of its target gene, regulator of G-protein signalling 2 ( Rgs2 ), thereby suppressing UCP1 expression. Cold exposure reduces IL-1β levels, depending on sympathetic innervation, leading to H6PD degradation and the conversion of BA-L cells to BA-H cells, thereby enhancing UCP1-dependent thermogenesis. Rising environmental temperatures trigger the opposite events. BA-specific inducible deletion of Nr3c1 during cold exposure locks these cells in the BA-H state, leading to persistent thermogenesis and increased energy expenditure days after the mice return to room temperature. Notably, IL-1β is elevated in aged brown adipose tissue, resulting in a locked low BA-H/BA-L ratio and cold intolerance. Suppressing GR in aged mice restores the BA-H/BA-L ratio, resumes thermogenesis and increases energy expenditure. Our findings reveal a spatiotemporal neuronal–immune regulation of BA heterogeneity that governs thermogenesis and offers a fundamental understanding of the mechanisms underlying increased cold sensitivity in older individuals.</p>
+          <p>Abstract The nuclear pore complex (NPC) regulates molecular traffic between nucleus and cytoplasm 1,2 . Its permeability barrier is formed by intrinsically disordered phenylalanine-glycine-rich nucleoporins (FG-NUPs), whose physical state has long been debated 3–13 . Deciphering how FG-NUPs behave inside living cells is crucial for understanding how NPCs achieve both selective and rapid transport. By combining site-specific labelling with time-resolved fluorescence anisotropy, here we show that FG domains exhibit nanosecond-scale, liquid-like segmental motion in live cells, whereas reconstituted FG condensates undergo a liquid-to-solid transition in vitro. Experiments and molecular-dynamics simulations further show that importin-β, a principal nuclear transport receptor, and O-linked β- N -acetylglucosamine, a key post-translational modification of FG-NUPs, together stabilize the dynamic FG network. Finely balanced FG–FG and FG–importin-β interactions maintain FG-NUP liquidity and generate a radial organization in which importin-β is enriched near the NPC periphery and extended FG domains remain in the central channel, forming the transport barrier. This organization explains recent MINFLUX observations 14 of rim-biased transport trajectories and is supported here by direct MINFLUX imaging of importin-β in mammalian cells. Together, our results reconcile conflicting models of FG-NUP organization 4,5,7,9,15 and establish a framework for understanding how cellular context tunes intrinsically disordered proteins in health and disease.</p>
         </details>
         
+        </div>
+      </details>
+    
+    </article>
+    
+
+    <article class="paper-card">
+      <div class="paper-meta">
+        <span class="source-pill">Nature</span>
+        <span>2026-11-11</span>
+        <span>Score 40.0</span>
+      </div>
+      <div class="paper-title-row">
+        <h3>10. <a href="https://doi.org/10.1038/s41586-026-11324-7">NRF2 is a mechanosensitive checkpoint for NLRP3 inflammasome activation</a></h3>
+        <div class="feedback-actions"><a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+star%3A+NRF2+is+a+mechanosensitive+checkpoint+for+NLRP3+inflammasome+activation&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11324-7%0Arating%3A+star%0Asource%3A+nature%0Atitle%3A+NRF2+is+a+mechanosensitive+checkpoint+for+NLRP3+inflammasome+activation%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="收藏/稍后读">⭐</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+like%3A+NRF2+is+a+mechanosensitive+checkpoint+for+NLRP3+inflammasome+activation&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11324-7%0Arating%3A+like%0Asource%3A+nature%0Atitle%3A+NRF2+is+a+mechanosensitive+checkpoint+for+NLRP3+inflammasome+activation%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="有用">👍</a>
+<a class="feedback-action" href="https://github.com/hobolee/paper_reading/issues/new?title=%5Bpaper-feedback%5D+dislike%3A+NRF2+is+a+mechanosensitive+checkpoint+for+NLRP3+inflammasome+activation&amp;labels=paper-feedback&amp;body=paper_id%3A+doi%3A10.1038%2Fs41586-026-11324-7%0Arating%3A+dislike%0Asource%3A+nature%0Atitle%3A+NRF2+is+a+mechanosensitive+checkpoint+for+NLRP3+inflammasome+activation%0Akeywords%3A+%0A%0Anotes%3A" target="_blank" rel="noopener" title="无关">👎</a></div>
+      </div>
+      <div class="authors">Daniel Okin、Joon H. Choi、Chun Wang、Anh Cao 等 17 人 · DOI: <a href="https://doi.org/10.1038/s41586-026-11324-7">10.1038/s41586-026-11324-7</a></div>
+      
+      <div class="note-grid">
+        <div class="note"><strong>一句话</strong><p>这篇Nature论文从题名判断，聚焦于NRF2在机械敏感性条件下对NLRP3炎性小体激活的“检查点”作用，核心任务是解释机械信号如何影响先天免疫炎症通路。由于当前未提供摘要与关键词，能够确认的具体信息主要限于研究对象为NRF2、NLRP3 inflammasome及其 mechanosensitive regulation，机制细节和证据强度仍需核对原文。</p></div>
+        <div class="note"><strong>贡献</strong><p>基于题名，论文的核心贡献很可能是提出并验证：NRF2不仅是经典氧化应激转录调控因子，还充当连接机械环境与NLRP3炎性小体活化之间的关键调控节点或“checkpoint”。如果成立，这将把机械生物学、免疫代谢/应激反应与炎症小体研究直接联结起来，并可能为纤维化、肺损伤、组织硬化、肿瘤微环境或植入材料相关炎症提供新的机制框架与干预靶点。</p></div>
+      </div>
+      
+      <details class="paper-detail">
+        <summary>详情</summary>
+        <div class="detail-body">
+          <div class="detail-signal">
+            <div>
+              <div class="signal-kicker">来源</div>
+              <div class="signal-source">Nature</div>
+            </div>
+            <div>
+              <div class="signal-kicker">关键词命中 0</div>
+              <div class="signal-meter"><span style="width: 12%"></span></div>
+            </div>
+            <div class="signal-score">
+              <span>Score</span>
+              <strong>40.0</strong>
+            </div>
+          </div>
+          <div class="detail-flow">
+            <div class="flow-step"><strong><span>1</span>问题</strong><p>这篇论文想解决的具体问题，应该是机械环境如何被转译为NLRP3炎性小体激活信号，以及NRF2是否构成这一过程中的必要检查点。更细一点，可能是在问：机械应力/基质硬度/细胞张力变化能否决定NLRP3是否被激活；NRF2在这一过程中是感受器、转录中介还是下游效应器；这种机制是否解释某些组织环境中特异性的炎症放大。</p></div>
+            <div class="flow-step"><strong><span>2</span>方法</strong><p>可能的方法包括：1）在可控机械条件下培养相关免疫细胞，如不同硬度水凝胶、拉伸装置、压缩或剪切系统；2）用经典NLRP3刺激方案建立priming与activation流程，例如LPS加ATP、nigericin或晶体刺激；3）通过Nrf2基因敲除、条件敲除、siRNA/CRISPR或药理激活剂与抑制剂测试因果性；4）检测IL-1β释放、caspase-1 p20、ASC speck、GSDMD裂解和细胞死亡；5）结合转录组、染色质或蛋白互作分析，判断NRF2是通过转录程序、氧化还原稳态、线粒体状态还是细胞骨架/黏附信号影响NLRP3；6）在动物模型中验证机械异常组织环境下的炎症表型。以上均为基于题名的合理推断，需以摘要和正文核实。</p></div>
+            <div class="flow-step"><strong><span>3</span>价值</strong><p>最值得关注的潜在亮点是把两个通常分属不同研究传统的对象直接连接起来：一边是NRF2应激反应网络，另一边是NLRP3炎性小体；中间桥梁则是机械敏感性。如果证据充分，这种设计的价值在于它不仅提供一个新机制，还可能解释为什么相同炎症刺激在不同组织力学背景下产生不同结果。另一个亮点可能是“checkpoint”这一表述，意味着作者可能识别到一个必要且可干预的关键步骤，而非仅仅观察到相关性变化。</p></div>
+            <div class="flow-step"><strong><span>4</span>核对</strong><p>最小可执行动作：1）先获取摘要并确认一句话主结论，尤其记录“NRF2对NLRP3是正还是负调控”；2）优先查看首图和机制图，提取研究细胞类型、机械变量和核心读出；3）检查是否有Nrf2遗传学证据而非仅药理学证据；4）核对体内模型是否与机械异常组织相关；5）如果你的研究涉及炎性小体实验，立即回顾自己体系中的基底材料、硬度、细胞密度和贴壁状态，记录这些机械条件是否可能成为未控制变量。</p></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-section"><strong>研究问题</strong><p>这篇论文想解决的具体问题，应该是机械环境如何被转译为NLRP3炎性小体激活信号，以及NRF2是否构成这一过程中的必要检查点。更细一点，可能是在问：机械应力/基质硬度/细胞张力变化能否决定NLRP3是否被激活；NRF2在这一过程中是感受器、转录中介还是下游效应器；这种机制是否解释某些组织环境中特异性的炎症放大。</p></div>
+            <div class="detail-section"><strong>可能方法</strong><p>可能的方法包括：1）在可控机械条件下培养相关免疫细胞，如不同硬度水凝胶、拉伸装置、压缩或剪切系统；2）用经典NLRP3刺激方案建立priming与activation流程，例如LPS加ATP、nigericin或晶体刺激；3）通过Nrf2基因敲除、条件敲除、siRNA/CRISPR或药理激活剂与抑制剂测试因果性；4）检测IL-1β释放、caspase-1 p20、ASC speck、GSDMD裂解和细胞死亡；5）结合转录组、染色质或蛋白互作分析，判断NRF2是通过转录程序、氧化还原稳态、线粒体状态还是细胞骨架/黏附信号影响NLRP3；6）在动物模型中验证机械异常组织环境下的炎症表型。以上均为基于题名的合理推断，需以摘要和正文核实。</p></div>
+            <div class="detail-section"><strong>优点/价值</strong><p>最值得关注的潜在亮点是把两个通常分属不同研究传统的对象直接连接起来：一边是NRF2应激反应网络，另一边是NLRP3炎性小体；中间桥梁则是机械敏感性。如果证据充分，这种设计的价值在于它不仅提供一个新机制，还可能解释为什么相同炎症刺激在不同组织力学背景下产生不同结果。另一个亮点可能是“checkpoint”这一表述，意味着作者可能识别到一个必要且可干预的关键步骤，而非仅仅观察到相关性变化。</p></div>
+            <div class="detail-section"><strong>局限/风险</strong><p>当前最大的局限是摘要为空，因此无法确认研究对象、实验系统、方向性结论和证据层级。题名虽然信息密度高，但仍无法回答几个关键边界问题：NRF2究竟促进还是抑制NLRP3；机械敏感性是细胞内在的还是由组织微环境驱动；结论是否适用于多种细胞类型还是仅限特定模型；是否区分了炎性小体priming与activation两个阶段；是否排除了ROS、代谢状态、细胞死亡和黏附变化等混杂因素。没有这些信息时，不宜直接把该论文当作普适机制。</p></div>
+            <div class="detail-section"><strong>下一步</strong><p>最小可执行动作：1）先获取摘要并确认一句话主结论，尤其记录“NRF2对NLRP3是正还是负调控”；2）优先查看首图和机制图，提取研究细胞类型、机械变量和核心读出；3）检查是否有Nrf2遗传学证据而非仅药理学证据；4）核对体内模型是否与机械异常组织相关；5）如果你的研究涉及炎性小体实验，立即回顾自己体系中的基底材料、硬度、细胞密度和贴壁状态，记录这些机械条件是否可能成为未控制变量。</p></div>
+            <div class="detail-section"><strong>完整解释</strong><p>仅根据题名和期刊元数据，这项工作大概率研究的是：细胞在不同机械环境下，例如基质硬度、牵张、压缩、剪切力或细胞骨架张力变化时，NLRP3炎性小体的组装与活化是否发生改变，以及NRF2在其中是促进、抑制还是双相调控因素。题名中的“checkpoint”暗示NRF2可能位于一个必要的门控步骤，而不是边缘性相关因子；“mechanosensitive”则提示作者可能不是单纯研究ROS-NRF2-NLRP3轴，而是强调机械输入本身可被NRF2感知或整合。考虑到Nature论文常见证据链，可能会包含遗传学扰动（如Nrf2缺失、过表达、条件敲除）、药理学激活/抑制、不同机械培养条件、炎性小体读出（caspase-1切割、IL-1β释放、ASC speck、GSDMD裂解、细胞焦亡）以及体内疾病模型。作者名单中包含肺病理相关研究者的可能性，结合机械炎症主题，值得优先怀疑是否涉及肺组织、肺泡巨噬细胞、纤维化或呼吸力学改变场景，但这只是基于领域关联的谨慎推测，不能视为论文已证实内容。对科研读者而言，这篇文章若与你的方向相关，价值主要在于三个层面：第一，是否重新定义NRF2在炎症中的角色，从传统抗氧化/细胞保护因子扩展为机械炎症门控器；第二，是否给出可操作的机械变量来解释不同实验室中NLRP3结果不一致；第三，是否提示在体外培养系统中必须控制基底硬度、细胞密度、黏附状态或细胞骨架张力。当前最需要核对的信息包括：NRF2作用发生在priming阶段还是activation阶段；机械信号的具体来源与量化方式；研究细胞类型是巨噬细胞、单核细胞、上皮细胞还是其他髓系细胞；NRF2对NLRP3是正调控还是负调控；以及体内模型和疾病外推范围。由于摘要为空，任何关于分子机制、疾病模型、统计结果和结论强度的判断都只能视为待验证线索。</p></div>
+          </div>
+          
         </div>
       </details>
     
@@ -862,7 +857,7 @@
   </main>
   <footer class="footer">
     <div class="shell">
-      生成时间：2026-11-14 02:25。LLM paper analysis failed for doi:10.1038/s41586-026-11391-w: Extra data: line 1 column 2489 (char 2488)
+      生成时间：2026-11-15 01:55。
     </div>
   </footer>
 </body>
