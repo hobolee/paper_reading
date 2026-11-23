@@ -1,0 +1,648 @@
+{
+  "date": "2026-11-23",
+  "stats": {
+    "fetched": 309,
+    "fetched_by_source": {
+      "arxiv": 150,
+      "nature": 55,
+      "science": 104
+    },
+    "deduped": 309,
+    "deduped_by_source": {
+      "arxiv": 150,
+      "nature": 55,
+      "science": 104
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 133,
+    "keyword_filtered_by_source": {
+      "arxiv": 133
+    },
+    "keyword_optional_included": 138,
+    "keyword_optional_included_by_source": {
+      "nature": 48,
+      "science": 90
+    },
+    "ranked": 176,
+    "ranked_by_source": {
+      "arxiv": 17,
+      "nature": 55,
+      "science": 104
+    },
+    "source_warnings": 4,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 113,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天筛选出 10 篇论文，来源包括Nature、Science、arXiv。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。",
+    "themes": [],
+    "research_ideas": [
+      {
+        "idea": "围绕“FM4SAR-Bench 1.0: Towards A Fair Benchmark for Evaluating Foundation Models for SAR Image Interpretation”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、language model、foundation model、foundation models、rag、multimodal、vlm、ai、remote sensing 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Beyond Final Answers: Interpretable Tumor Immune Microenvironment Reasoning from H&E and mIF”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“ProbeAgent: Principled Diagnosis of Agent Failures in Verifiable Environments”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、llm、language model、agent、agents、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“ChatAtom: A Multi-Agent LLM System for Molecular Dynamics Simulation and Visualization”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、llm、language model、agent、agents、ai、hypothesis generation 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Rising risk of deforestation in Indonesia’s pulp sector”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 science 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      }
+    ],
+    "papers": {
+      "arxiv:2611.27158v1": {
+        "summary": "FM4SAR-Bench 1.0: Towards A Fair Benchmark for Evaluating Foundation Models for SAR Image Interpretation。摘要要点：Foundation models have advanced SAR image interpretation but created a heterogeneous, fragmented model ecosystem.",
+        "contribution": "摘要中最具体的线索是：Foundation models have advanced SAR image interpretation but created a heterogeneous, fragmented model ecosystem. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、language model、foundation model、foundation models、rag、multimodal、vlm、ai、remote sensing。题名指向“FM4SAR-Bench 1.0: Towards A Fair Benchmark for Evaluating Foundation Models for SAR Image Interpretation”。摘要中可用的信息是：Foundation models have advanced SAR image interpretation but created a heterogeneous, fragmented model ecosystem. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“FM4SAR-Bench 1.0: Towards A Fair Benchmark for Evaluating Foundation Models for SAR Image Interpretation”展开；摘要线索显示问题可能与 Foundation models have advanced SAR image interpretation but created a heterogeneous, fragmented model ecosystem. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、language model、foundation model、foundation models、rag、multimodal、vlm、ai、remote sensing 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、language model、foundation model、foundation models、rag、multimodal、vlm、ai、remote sensing。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.26794v1": {
+        "summary": "Beyond Final Answers: Interpretable Tumor Immune Microenvironment Reasoning from H&E and mIF。摘要要点：Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF).",
+        "contribution": "摘要中最具体的线索是：Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment。题名指向“Beyond Final Answers: Interpretable Tumor Immune Microenvironment Reasoning from H&E and mIF”。摘要中可用的信息是：Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Beyond Final Answers: Interpretable Tumor Immune Microenvironment Reasoning from H&E and mIF”展开；摘要线索显示问题可能与 Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.26897v1": {
+        "summary": "ProbeAgent: Principled Diagnosis of Agent Failures in Verifiable Environments。摘要要点：Improving agents requires discovering where they fail and understanding why.",
+        "contribution": "摘要中最具体的线索是：Improving agents requires discovering where they fail and understanding why. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。题名指向“ProbeAgent: Principled Diagnosis of Agent Failures in Verifiable Environments”。摘要中可用的信息是：Improving agents requires discovering where they fail and understanding why. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“ProbeAgent: Principled Diagnosis of Agent Failures in Verifiable Environments”展开；摘要线索显示问题可能与 Improving agents requires discovering where they fail and understanding why. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、llm、language model、agent、agents、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.26782v1": {
+        "summary": "ChatAtom: A Multi-Agent LLM System for Molecular Dynamics Simulation and Visualization。摘要要点：Molecular dynamics (MD) simulation resolves atomic-scale motion and predicts the structural, mechanical, and dynamic properties of materials, making it cen- tral to materials design and discovery.",
+        "contribution": "摘要中最具体的线索是：Molecular dynamics (MD) simulation resolves atomic-scale motion and predicts the structural, mechanical, and dynamic properties of materials, making it cen- tral to materials design and discovery. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、hypothesis generation。题名指向“ChatAtom: A Multi-Agent LLM System for Molecular Dynamics Simulation and Visualization”。摘要中可用的信息是：Molecular dynamics (MD) simulation resolves atomic-scale motion and predicts the structural, mechanical, and dynamic properties of materials, making it cen- tral to materials design and discovery. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“ChatAtom: A Multi-Agent LLM System for Molecular Dynamics Simulation and Visualization”展开；摘要线索显示问题可能与 Molecular dynamics (MD) simulation resolves atomic-scale motion and predicts the structural, mechanical, and dynamic properties of materials, making it cen- tral to materials design and discovery. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、llm、language model、agent、agents、ai、hypothesis generation 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、hypothesis generation。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aeb9995": {
+        "summary": "Rising risk of deforestation in Indonesia’s pulp sector。摘要要点：Recent trends reverse progress toward zero-deforestation",
+        "contribution": "摘要中最具体的线索是：Recent trends reverse progress toward zero-deforestation 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Rising risk of deforestation in Indonesia’s pulp sector”。摘要中可用的信息是：Recent trends reverse progress toward zero-deforestation 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Rising risk of deforestation in Indonesia’s pulp sector”展开；摘要线索显示问题可能与 Recent trends reverse progress toward zero-deforestation 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aee9889": {
+        "summary": "Quiet within, chaos without: Turbulence shelters drive selective particle capture and release。摘要要点：Turbulence is chaotic, yet its fluctuations follow a structured, nonequilibrium energy cascade unconstrained by the equilibrium theorems that limit passive energy extraction from molecular gases.",
+        "contribution": "摘要中最具体的线索是：Turbulence is chaotic, yet its fluctuations follow a structured, nonequilibrium energy cascade unconstrained by the equilibrium theorems that limit passive energy extraction from molecular gases. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Quiet within, chaos without: Turbulence shelters drive selective particle capture and release”。摘要中可用的信息是：Turbulence is chaotic, yet its fluctuations follow a structured, nonequilibrium energy cascade unconstrained by the equilibrium theorems that limit passive energy extraction from molecular gases. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Quiet within, chaos without: Turbulence shelters drive selective particle capture and release”展开；摘要线索显示问题可能与 Turbulence is chaotic, yet its fluctuations follow a structured, nonequilibrium energy cascade unconstrained by the equilibrium theorems that limit passive energy extraction from molecular gases. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aem7343": {
+        "summary": "Mammalian development, recorded and decoded。摘要要点：Two genome editing approaches generate detailed cell lineage maps of prenatal mouse development",
+        "contribution": "摘要中最具体的线索是：Two genome editing approaches generate detailed cell lineage maps of prenatal mouse development 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Mammalian development, recorded and decoded”。摘要中可用的信息是：Two genome editing approaches generate detailed cell lineage maps of prenatal mouse development 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Mammalian development, recorded and decoded”展开；摘要线索显示问题可能与 Two genome editing approaches generate detailed cell lineage maps of prenatal mouse development 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11284-y": {
+        "summary": "Widespread deciduousness reveals diverse Amazonian phenological strategies。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Widespread deciduousness reveals diverse Amazonian phenological strategies”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Widespread deciduousness reveals diverse Amazonian phenological strategies”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-11254-4": {
+        "summary": "Flat-band-induced integer doping and phase transition in monolayer graphene。摘要要点：Abstract van der Waals heterostructures are stabilized by a delicate balance between van der Waals, elastic and Coulomb energies 1–4 .",
+        "contribution": "摘要中最具体的线索是：Abstract van der Waals heterostructures are stabilized by a delicate balance between van der Waals, elastic and Coulomb energies 1–4 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。题名指向“Flat-band-induced integer doping and phase transition in monolayer graphene”。摘要中可用的信息是：Abstract van der Waals heterostructures are stabilized by a delicate balance between van der Waals, elastic and Coulomb energies 1–4 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Flat-band-induced integer doping and phase transition in monolayer graphene”展开；摘要线索显示问题可能与 Abstract van der Waals heterostructures are stabilized by a delicate balance between van der Waals, elastic and Coulomb energies 1–4 . 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11294-w": {
+        "summary": "Quantum resistance paradox of low-dimensional superfluids。摘要要点：Abstract Resistance in standard conductors decreases with increasing cross-section.",
+        "contribution": "摘要中最具体的线索是：Abstract Resistance in standard conductors decreases with increasing cross-section. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。题名指向“Quantum resistance paradox of low-dimensional superfluids”。摘要中可用的信息是：Abstract Resistance in standard conductors decreases with increasing cross-section. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Quantum resistance paradox of low-dimensional superfluids”展开；摘要线索显示问题可能与 Abstract Resistance in standard conductors decreases with increasing cross-section. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      }
+    },
+    "llm_used": false,
+    "warnings": [
+      "LLM authentication failed: HTTP 403 Forbidden. Check GitHub Secrets OPENAI_API_KEY, OPENAI_BASE_URL, and OPENAI_MODEL.",
+      "Skipped LLM analysis for 9 paper(s) after authentication failure.",
+      "arXiv page failed at start=50, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=50&max_results=50&sortBy=su...",
+      "arXiv page failed at start=200, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=200&max_results=50&sortBy=s...",
+      "arXiv page failed at start=250, max_results=50: HTTP 429 for https://export.arxiv.org/api/query?search_query=cat%3Acs.AI+OR+cat%3Acs.CL+OR+cat%3Acs.LG+OR+cat%3Aeess.IV+OR+cat%3Aphysics.ao-ph+OR+cat%3Aphysics.geo-ph+OR+cat%3Astat.ML&start=250&max_results=50&sortBy=s...",
+      "arXiv fetch stopped after 2 consecutive page failure(s)."
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2611.27158v1",
+      "source": "arxiv",
+      "title": "FM4SAR-Bench 1.0: Towards A Fair Benchmark for Evaluating Foundation Models for SAR Image Interpretation",
+      "authors": [
+        "Mingyao Chen",
+        "Yongxiang Liu",
+        "Tianpeng Liu",
+        "Yuchen Yong",
+        "Jie Zhou",
+        "Zhenhao Yang",
+        "Pinyi Huang",
+        "Weijie Li",
+        "Jiehua Zhang",
+        "Bowen Peng",
+        "Zhimao Peng",
+        "Zhiyuan Zhang",
+        "Li Liu"
+      ],
+      "published": "2026-11-20T05:44:24Z",
+      "updated": "2026-11-20T05:44:24Z",
+      "abstract": "Foundation models have advanced SAR image interpretation but created a heterogeneous, fragmented model ecosystem. Existing models differ substantially in their input, training data, objectives, architectures, and release policy, yet the field lacks a unified taxonomy and comparative framework. Current evaluations rely primarily on task-specific benchmarks, which are ill-suited to fair comparison among models with fundamentally different input-output formats and task paradigms, and often overlook data transparency, reproducibility, interpretability, and deployment readiness. Limited SAR data accessibility also means high reported performance does not guarantee access to training data, code, or weights, limiting reproduction, benchmarking, and deployment. To address these issues, we propose a systematic taxonomy and hierarchical evaluation framework for SAR-related foundation models: five rating levels, six dimensions, and fine-grained criteria, with separate protocols for VFMs and VLMs. Beyond overall ratings, it yields interpretable multidimensional capability profiles and supports user-defined weighting, so rankings follow user priorities. Utilizing a fixed auxiliary multimodal large language model in combination with human review, we conduct a systematic meta-analysis and multidimensional assessment of 76 VFMs and 40 VLMs. In terms of SAR benchmark task performance under our framework, SAR-native VLMs do not significantly outperform remote sensing VLMs pretrained on mixed multimodal corpora in which SAR is one of several modalities. This lack of clear advantage is largely due to data availability: large-scale, high-quality, public annotated SAR data remain scarce, restricting both model and training-data scale for SAR-native models. The framework provides a structured basis for requirement-aware model selection and remains extensible as new models emerge.",
+      "url": "http://arxiv.org/abs/2611.27158v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.27158v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "eess.IV",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "language model",
+        "foundation model",
+        "foundation models",
+        "rag",
+        "multimodal",
+        "vlm",
+        "ai",
+        "remote sensing"
+      ],
+      "score": 74.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.26794v1",
+      "source": "arxiv",
+      "title": "Beyond Final Answers: Interpretable Tumor Immune Microenvironment Reasoning from H&E and mIF",
+      "authors": [
+        "Yixuan Duan",
+        "Kexin Geng",
+        "Hanwen Xu",
+        "Wei Qiu"
+      ],
+      "published": "2026-11-19T20:36:13Z",
+      "updated": "2026-11-19T20:36:13Z",
+      "abstract": "Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). Multimodal large language models (MLLMs) could automate these readouts with an explanation, but two gaps remain. Pathology MLLMs read H&E alone, while these readouts need the cell phenotypes that mIF measures. And their reasoning has no step-level truth to be checked against, so R1-style reinforcement learning rewards only the final answer and leaves the reasoning unverified. Same-section H&E and mIF provide what both gaps lack: mIF measures every cell without manual annotation, which gives cell-level ground truth for each step that clinical guidelines prescribe, from delineating a tissue compartment to counting and normalizing the marker-positive cells within it. We therefore present HERMES (H&E-mIF Reasoning with Multimodal Evidence Supervision), an R1-style MLLM that reasons jointly over paired H&E and mIF in guideline steps and is trained with a process reward that checks every stated quantity against this truth. Across four field-level TIME tasks in colorectal cancer, HERMES (4B) reaches an average accuracy of 84.5%, compared with 74.7% for the strongest of twelve proprietary, general, medical and pathology MLLMs, and a higher share of its intermediate quantities is correct than for the strongest open-weight baseline. Without the process reward, reinforcement learning barely improves on supervised fine-tuning (80.0% vs. 78.8%) and fewer stated quantities are correct; editing a decisive stated quantity changes the answer as implied in all 885 test questions. Without retraining, it keeps the highest average accuracy on an external cohort imaged with CODEX (76.4% vs. 67.3%) and on head and neck cancer, a cancer type absent from training (76.7% vs. 72.5%).",
+      "url": "http://arxiv.org/abs/2611.26794v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26794v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "multimodal",
+        "mllm",
+        "ai",
+        "ml",
+        "environment"
+      ],
+      "score": 71.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.26897v1",
+      "source": "arxiv",
+      "title": "ProbeAgent: Principled Diagnosis of Agent Failures in Verifiable Environments",
+      "authors": [
+        "Yue Huang",
+        "Yuchen Ma",
+        "Shuhang Lin",
+        "Yuyang Wu",
+        "Zixuan Weng",
+        "Zixiang Xu",
+        "Xiangqi Wang",
+        "Yuexing Hao",
+        "Yujun Zhou",
+        "Yue Zhao",
+        "Olexandr Isayev",
+        "Stefan Feuerriegel",
+        "Xiangliang Zhang"
+      ],
+      "published": "2026-11-19T23:17:52Z",
+      "updated": "2026-11-19T23:17:52Z",
+      "abstract": "Improving agents requires discovering where they fail and understanding why. An agent acts over multiple steps in a changing environment, so diagnosing its failures requires more than inspecting the final response of a large language model (LLM). The same unsuccessful outcome can arise from task difficulty or from an error the agent repeats across tasks. We introduce ProbeAgent, an automated framework that discovers agent failures, tests their proposed causes, and identifies shared failure modes. Starting from benchmark tasks, ProbeAgent builds executable tests and validates them using reference solutions, automated checks, and review of the task requirements. For each failed trajectory, it explains the error and constructs new tasks that preserve the suspected cause while changing the surrounding context. Running the agent on these tasks tests whether the same error recurs. ProbeAgent then groups failures with similar causes and generates descriptions that distinguish their errors. This process connects explanations of individual failures to executable tests and descriptions of shared failure modes. We evaluate ProbeAgent across 22 agent configurations using tasks from 10 benchmarks, collecting 1,244 failures and producing 536 failure-mode descriptions. These descriptions distinguish specific errors within broad outcomes such as incomplete work, including planning without acting and stopping before delivering a file. In human evaluation, annotators accept 90.0% of assigned descriptions and correctly reject 83.3% of similar alternatives, supporting the accuracy and specificity of the discovered failure modes.",
+      "url": "http://arxiv.org/abs/2611.26897v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26897v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 65.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.26782v1",
+      "source": "arxiv",
+      "title": "ChatAtom: A Multi-Agent LLM System for Molecular Dynamics Simulation and Visualization",
+      "authors": [
+        "Trupti Mohanty",
+        "Ming Du",
+        "Mitchell A. Wood",
+        "Brad L. Boyce",
+        "Remi Dingreville",
+        "Mathew J. Cherukara"
+      ],
+      "published": "2026-11-19T20:18:15Z",
+      "updated": "2026-11-19T20:18:15Z",
+      "abstract": "Molecular dynamics (MD) simulation resolves atomic-scale motion and predicts the structural, mechanical, and dynamic properties of materials, making it cen- tral to materials design and discovery. Yet an MD study requires an expert-driven workflow: designing the simulation, writing reliable input scripts, executing them, and analyzing the results with separate tools. Here we present ChatAtom, a multi-agent large language model system that translates a natural-language request into a complete MD workflow without the user writing input scripts or analysis code. Each agent has a defined responsibility within the workflow. An orchestrator plans the study; the LAMMPS and OVITO agents each use a generator-reviewer pair to prepare and review simulation and visualization scripts before execution; a high-performance computing agent dispatches jobs to remote resources; and an analysis agent interprets the completed run. The work- flow is accessible through a browser interface that streams thermodynamic data and rendered frames during local execution, allowing users to follow the simu- lation as it progresses. The architecture also supports new capabilities through loadable skills without modifying the agents, enabling autonomous hypothesis generation and testing. We evaluate ChatAtom through script-generation bench- marks, an end-to-end study of crack propagation, and a closed-loop campaign. By bringing script generation, execution, visualization, and analysis into one reviewed and observable pipeline, ChatAtom lowers the barrier to conducting MD studies and broadens access to advanced simulation workflows.",
+      "url": "http://arxiv.org/abs/2611.26782v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26782v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "hypothesis generation"
+      ],
+      "score": 60.0,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aeb9995",
+      "source": "science",
+      "title": "Rising risk of deforestation in Indonesia’s pulp sector",
+      "authors": [
+        "Robert Heilmayr",
+        "Jason Jon Benedict",
+        "Brian Orland",
+        "Hilman Afif",
+        "Christopher Barr",
+        "Adrià Descals",
+        "Husnayaen",
+        "Age Kridalaksana",
+        "Timer Manurung",
+        "Grahat Nagara",
+        "David Gaveau"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "Recent trends reverse progress toward zero-deforestation",
+      "url": "https://doi.org/10.1126/science.aeb9995",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeb9995",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "847-849",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeb9995"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aee9889",
+      "source": "science",
+      "title": "Quiet within, chaos without: Turbulence shelters drive selective particle capture and release",
+      "authors": [
+        "Matteo Sabato",
+        "Sarah Chong",
+        "Yaocheng Li",
+        "Zhe Xu",
+        "Daqian Gao",
+        "Martin J. Falk",
+        "Stefano Sacanna",
+        "William T. M. Irvine"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "Turbulence is chaotic, yet its fluctuations follow a structured, nonequilibrium energy cascade unconstrained by the equilibrium theorems that limit passive energy extraction from molecular gases. Here, we introduce turbulence shelters: hollow shells with a single aperture that filter eddies by scale, sustaining gradients in fluctuation intensity that drive directional particle transport despite zero mean fluid flux. Across three orders of magnitude in size, shelters establish particle concentration contrasts between their interior and the surrounding flow, with selectivity controlled by particle geometry, inertia, thermal fluctuations, and electrostatic forces. At the microscale, shelters discriminate particles differing by tens of nanometers independently of material composition. These results establish a design principle for selective filtration: Geometry that compartmentalizes turbulent fluctuations can harness ambient eddies to direct particle transport.",
+      "url": "https://doi.org/10.1126/science.aee9889",
+      "pdf_url": "",
+      "doi": "10.1126/science.aee9889",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "884-889",
+        "reference_count": 87,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aee9889"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aem7343",
+      "source": "science",
+      "title": "Mammalian development, recorded and decoded",
+      "authors": [
+        "Arman Adel",
+        "Nozomu Yachie"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "Two genome editing approaches generate detailed cell lineage maps of prenatal mouse development",
+      "url": "https://doi.org/10.1126/science.aem7343",
+      "pdf_url": "",
+      "doi": "10.1126/science.aem7343",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "837-839",
+        "reference_count": 10,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aem7343"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11284-y",
+      "source": "nature",
+      "title": "Widespread deciduousness reveals diverse Amazonian phenological strategies",
+      "authors": [
+        "Guangqin Song",
+        "Alice C. Hughes",
+        "Xu Lian",
+        "Xiang Zeng",
+        "Scott R. Saleska",
+        "Alfredo Huete",
+        "Loren P. Albert",
+        "Xiangtao Xu",
+        "Josep Peñuelas",
+        "Constantin M. Zohner",
+        "Matteo Detto",
+        "S. Joseph Wright",
+        "Bruce W. Nelson",
+        "Shuli Chen",
+        "Zhengfei Guo",
+        "Yadvinder Malhi",
+        "Xing Li",
+        "Ziyu Lin",
+        "Yanjun Su",
+        "Jingfeng Xiao",
+        "Yingyi Zhao",
+        "Peng Zhu",
+        "Lingli Liu",
+        "Jin Wu"
+      ],
+      "published": "2026-11-18",
+      "updated": "2026-11-18",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11284-y",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11284-y",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 105,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11284-y"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11254-4",
+      "source": "nature",
+      "title": "Flat-band-induced integer doping and phase transition in monolayer graphene",
+      "authors": [
+        "Z. Wang",
+        "C. Moulsdale",
+        "X. Guo",
+        "J. Liu",
+        "Z. Qiu",
+        "I. Soltero",
+        "Z. Jiang",
+        "M. Holwill",
+        "J. Wu",
+        "H. Sun",
+        "Z. Chai",
+        "A. J. H. Jones",
+        "M. Zhu",
+        "J. Yin",
+        "C. P. Y. Wong",
+        "T. Taniguchi",
+        "K. Watanabe",
+        "K. E. J. Goh",
+        "S. V. Morozov",
+        "A. Mishchenko",
+        "S. Ulstrup",
+        "L. Lin",
+        "A. H. MacDonald",
+        "G. Yu",
+        "M. I. Katsnelson",
+        "J. Lu",
+        "V. I. Fal’ko",
+        "A. K. Geim",
+        "P. Huang",
+        "C. R. Woods",
+        "K. S. Novoselov"
+      ],
+      "published": "2026-11-18",
+      "updated": "2026-11-18",
+      "abstract": "Abstract van der Waals heterostructures are stabilized by a delicate balance between van der Waals, elastic and Coulomb energies 1–4 . Because the interfaces are not covalently bonded, the constituent crystals can slide, rotate and reconstruct, resulting in several possible competing structural phases 2,5,6 . However, controlled tuning of this balance, and hence dynamical control over the stacking, has yet to be achieved. Here we report a dynamical heterostructure in which monolayer graphene is doubly aligned to bulk hexagonal boron nitride (hBN) and monolayer hexagonal boron nitride (mhBN) on either side. In such a system, a global structural phase transition, manifested as a change of crystalline symmetry observed by scanning tunnelling microscopy, could be induced by gating, magnetic field or temperature. This structural transition is accompanied by an exotic electronic transition: the doping of graphene switches between discrete levels, corresponding to an exact integer number of electrons or holes per moiré plaquette. We attribute this integer doping to charge trapping in localized, strain-induced pseudo-Landau levels (flat bands in reciprocal space 7–12 ), produced by moiré reconstruction (strongly enhanced by the mhBN). Electrical control of coupled structural and electronic phase transitions provides a route to engineering strain-induced flat bands and strain–Coulomb correlations in van der Waals heterostructures.",
+      "url": "https://doi.org/10.1038/s41586-026-11254-4",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11254-4",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 42,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11254-4"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11294-w",
+      "source": "nature",
+      "title": "Quantum resistance paradox of low-dimensional superfluids",
+      "authors": [
+        "Simon Wili",
+        "Meng-Zi Huang",
+        "Tommaso Bonaccorsi",
+        "Michael U. Mühlematter",
+        "Mohsen Talebi",
+        "Yaakov Yudkin",
+        "Alex Gómez-Salvador",
+        "Filip Marijanovic",
+        "Eugene Demler",
+        "Tilman Esslinger"
+      ],
+      "published": "2026-11-18",
+      "updated": "2026-11-18",
+      "abstract": "Abstract Resistance in standard conductors decreases with increasing cross-section. Yet, in low-dimensional superconductors and superfluids, residual resistance arises from topological fluctuations of the order parameter, manifesting as phase slips in one-dimensional (1D) and vortices in two-dimensional (2D) systems. How resistance and dissipation evolve as geometry interpolates between these regimes remains an open question. This evolution is masked in solid-state experiments by disorder, impurities and geometric imperfections 1–3 , and poses theoretical challenges due to competing dissipative processes and pronounced finite-size effects. Here, we use a defect-free unitary Fermi gas in a digitally programmable transport geometry to isolate geometric effects on superfluid dissipation and discover a paradox: in the crossover from one dimension to two dimensions, the resistance reaches a minimum. There, widening a channel increases its resistance. Narrower, quasi-1D channels show dissipation described by Langer–Ambegaokar–McCumber–Halperin theory of phase slips 4 . In this regime, varying the channel width yields the predicted exponential scaling of the activation factor over many orders of magnitude. Wider, quasi-2D channels show dissipation consistent with phase-slip events described by a finite-size vortex model 5 . The minimal dissipation in the dimensional crossover reflects a transition in the dominant dissipative mechanism, with both 1D and 2D events simultaneously suppressed. Our measurements suggest a route to minimizing dissipation in superconducting devices and provide a benchmark for theoretical efforts aimed at describing the dimensional crossover.",
+      "url": "https://doi.org/10.1038/s41586-026-11294-w",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11294-w",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 49,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11294-w"
+      }
+    }
+  ]
+}
