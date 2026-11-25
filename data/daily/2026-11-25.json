@@ -1,0 +1,639 @@
+{
+  "date": "2026-11-25",
+  "stats": {
+    "fetched": 459,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 55,
+      "science": 104
+    },
+    "deduped": 459,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 55,
+      "science": 104
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 266,
+    "keyword_filtered_by_source": {
+      "arxiv": 266
+    },
+    "keyword_optional_included": 139,
+    "keyword_optional_included_by_source": {
+      "nature": 49,
+      "science": 90
+    },
+    "ranked": 193,
+    "ranked_by_source": {
+      "arxiv": 34,
+      "nature": 55,
+      "science": 104
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 123,
+    "selected_by_source": {
+      "arxiv": 4,
+      "science": 3,
+      "nature": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天筛选出 10 篇论文，来源包括Nature、Science、arXiv。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。",
+    "themes": [],
+    "research_ideas": [
+      {
+        "idea": "围绕“Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 llm、agent、agents、ai agent、ai agents、rag、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“PhysRF-WorldJEPA: Transforming Heterogeneous Large Language Models into Manifold-Decoupled Millimeter-Wave Radar World Models”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、large language models、llm、language model、language models、ai、weather 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“ExpGuard: Guarding Long-Horizon LLM Agents against Corrupted Experience”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、llm、language model、agent、agents、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Telemetric calorimetry for wireless continuous reaction profiling”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 science 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      }
+    ],
+    "papers": {
+      "arxiv:2611.32094v1": {
+        "summary": "Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments。摘要要点：Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities.",
+        "contribution": "摘要中最具体的线索是：Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment。题名指向“Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments”。摘要中可用的信息是：Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments”展开；摘要线索显示问题可能与 Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、multimodal、mllm、ai、ml、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.32958v1": {
+        "summary": "Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents。摘要要点：AI agents are beginning to automate data analysis, orchestration, and simulation steering in HPC environments, but they introduce a security problem that existing cluster defenses do not address: the hijacked authorized agent.",
+        "contribution": "摘要中最具体的线索是：AI agents are beginning to automate data analysis, orchestration, and simulation steering in HPC environments, but they introduce a security problem that existing cluster defenses do not address: the hijacked authorized agent. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：llm、agent、agents、ai agent、ai agents、rag、ai、environment。题名指向“Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents”。摘要中可用的信息是：AI agents are beginning to automate data analysis, orchestration, and simulation steering in HPC environments, but they introduce a security problem that existing cluster defenses do not address: the hijacked authorized agent. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents”展开；摘要线索显示问题可能与 AI agents are beginning to automate data analysis, orchestration, and simulation steering in HPC environments, but they introduce a security problem that existing cluster defenses do not address: the hijacked authorized agent. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 llm、agent、agents、ai agent、ai agents、rag、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：llm、agent、agents、ai agent、ai agents、rag、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.32113v1": {
+        "summary": "PhysRF-WorldJEPA: Transforming Heterogeneous Large Language Models into Manifold-Decoupled Millimeter-Wave Radar World Models。摘要要点：Adapting Large Language Models (LLMs) to millimeter-wave (mmWave) radar enables privacy-preserving, all-weather physical scene understanding across darkness, smoke, and walls.",
+        "contribution": "摘要中最具体的线索是：Adapting Large Language Models (LLMs) to millimeter-wave (mmWave) radar enables privacy-preserving, all-weather physical scene understanding across darkness, smoke, and walls. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、weather。题名指向“PhysRF-WorldJEPA: Transforming Heterogeneous Large Language Models into Manifold-Decoupled Millimeter-Wave Radar World Models”。摘要中可用的信息是：Adapting Large Language Models (LLMs) to millimeter-wave (mmWave) radar enables privacy-preserving, all-weather physical scene understanding across darkness, smoke, and walls. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“PhysRF-WorldJEPA: Transforming Heterogeneous Large Language Models into Manifold-Decoupled Millimeter-Wave Radar World Models”展开；摘要线索显示问题可能与 Adapting Large Language Models (LLMs) to millimeter-wave (mmWave) radar enables privacy-preserving, all-weather physical scene understanding across darkness, smoke, and walls. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、large language models、llm、language model、language models、ai、weather 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、ai、weather。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.32085v1": {
+        "summary": "ExpGuard: Guarding Long-Horizon LLM Agents against Corrupted Experience。摘要要点：Long-horizon large language model (LLM) agents distill past trajectories into reusable experiences.",
+        "contribution": "摘要中最具体的线索是：Long-horizon large language model (LLM) agents distill past trajectories into reusable experiences. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。题名指向“ExpGuard: Guarding Long-Horizon LLM Agents against Corrupted Experience”。摘要中可用的信息是：Long-horizon large language model (LLM) agents distill past trajectories into reusable experiences. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“ExpGuard: Guarding Long-Horizon LLM Agents against Corrupted Experience”展开；摘要线索显示问题可能与 Long-horizon large language model (LLM) agents distill past trajectories into reusable experiences. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、llm、language model、agent、agents、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aei7840": {
+        "summary": "Telemetric calorimetry for wireless continuous reaction profiling。摘要要点：Real-time monitoring of chemical reactions is often achieved with specialized instrumentation along with custom-designed reactors or intrusive sampling.",
+        "contribution": "摘要中最具体的线索是：Real-time monitoring of chemical reactions is often achieved with specialized instrumentation along with custom-designed reactors or intrusive sampling. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Telemetric calorimetry for wireless continuous reaction profiling”。摘要中可用的信息是：Real-time monitoring of chemical reactions is often achieved with specialized instrumentation along with custom-designed reactors or intrusive sampling. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Telemetric calorimetry for wireless continuous reaction profiling”展开；摘要线索显示问题可能与 Real-time monitoring of chemical reactions is often achieved with specialized instrumentation along with custom-designed reactors or intrusive sampling. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aef9553": {
+        "summary": "Interpenetrating bottlebrush elastomer for low-loss soft ultrasonic interfaces。摘要要点：Ultrasound imaging relies on soft interfaces that transmit sound efficiently between a device and the body.",
+        "contribution": "摘要中最具体的线索是：Ultrasound imaging relies on soft interfaces that transmit sound efficiently between a device and the body. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Interpenetrating bottlebrush elastomer for low-loss soft ultrasonic interfaces”。摘要中可用的信息是：Ultrasound imaging relies on soft interfaces that transmit sound efficiently between a device and the body. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Interpenetrating bottlebrush elastomer for low-loss soft ultrasonic interfaces”展开；摘要线索显示问题可能与 Ultrasound imaging relies on soft interfaces that transmit sound efficiently between a device and the body. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aej3009": {
+        "summary": "Zero-shot de novo design of a metalloenzyme。摘要要点：De novo design of enzymes is a frontier challenge, requiring consideration of catalytic mechanism and optimization across biochemical and biophysical criteria.",
+        "contribution": "摘要中最具体的线索是：De novo design of enzymes is a frontier challenge, requiring consideration of catalytic mechanism and optimization across biochemical and biophysical criteria. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Zero-shot de novo design of a metalloenzyme”。摘要中可用的信息是：De novo design of enzymes is a frontier challenge, requiring consideration of catalytic mechanism and optimization across biochemical and biophysical criteria. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Zero-shot de novo design of a metalloenzyme”展开；摘要线索显示问题可能与 De novo design of enzymes is a frontier challenge, requiring consideration of catalytic mechanism and optimization across biochemical and biophysical criteria. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11247-3": {
+        "summary": "Quantum position verification with remote untrusted devices。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Quantum position verification with remote untrusted devices”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Quantum position verification with remote untrusted devices”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1038/s41586-026-11332-7": {
+        "summary": "Structural and regulatory evolution across the genus Hordeum。摘要要点：Abstract The genus Hordeum comprises cultivated barley and its wild relatives, an evolutionarily, ecologically and agriculturally important group of grasses 1,2 .",
+        "contribution": "摘要中最具体的线索是：Abstract The genus Hordeum comprises cultivated barley and its wild relatives, an evolutionarily, ecologically and agriculturally important group of grasses 1,2 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。题名指向“Structural and regulatory evolution across the genus Hordeum”。摘要中可用的信息是：Abstract The genus Hordeum comprises cultivated barley and its wild relatives, an evolutionarily, ecologically and agriculturally important group of grasses 1,2 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Structural and regulatory evolution across the genus Hordeum”展开；摘要线索显示问题可能与 Abstract The genus Hordeum comprises cultivated barley and its wild relatives, an evolutionarily, ecologically and agriculturally important group of grasses 1,2 . 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11300-1": {
+        "summary": "Transient contacts between filaments impart its elasticity to branched actin。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Transient contacts between filaments impart its elasticity to branched actin”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Transient contacts between filaments impart its elasticity to branched actin”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      }
+    },
+    "llm_used": false,
+    "warnings": [
+      "LLM authentication failed: HTTP 403 Forbidden. Check GitHub Secrets OPENAI_API_KEY, OPENAI_BASE_URL, and OPENAI_MODEL.",
+      "Skipped LLM analysis for 9 paper(s) after authentication failure."
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2611.32094v1",
+      "source": "arxiv",
+      "title": "Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments",
+      "authors": [
+        "Yang Bai",
+        "Yingzhi Xia",
+        "Ling Lin",
+        "Jun Cheng",
+        "Lin Fu",
+        "Huazhu Fu"
+      ],
+      "published": "2026-11-24T07:14:47Z",
+      "updated": "2026-11-24T07:14:47Z",
+      "abstract": "Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities. We introduce Clinical3D-Bench, a simulated benchmark with 3,368 questions of eight types on egocentric walkthroughs of 373 hospital-room layouts. Layouts follow hospital design guidelines, answers are computed from the 3D scenes, and paired scene states test whether models change their answers when relevant evidence changes. Videos are photorealistic, and ten physicians screened the layouts. Among 35 multimodal large language models (MLLMs), the best open and proprietary models reach 45.7% and 53.6% macro accuracy, against 40.8% for an answer prior and 79.0% for physicians on a subset, and 27 of 32 open models score below 40% on two-way patient-relative directions. Fine-tuning on Clinical3D-45K, our 44,750-question training set, lifts two MLLMs 16-20 points above the best proprietary model. 3D maps given to the fine-tuned MLLM as input go largely unused: replacing them with another video's, even when they are ground truth, barely changes its accuracy. The proposed GeoJeV instead lets the MLLM compute with 3D: it reconstructs a scene memory from each video, selects 3D operations and their arguments from the MLLM's question state, and adds their evidence to its option scores. It achieves the highest accuracy of all evaluated models, narrowing the gap to physicians.",
+      "url": "http://arxiv.org/abs/2611.32094v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.32094v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "multimodal",
+        "mllm",
+        "ai",
+        "ml",
+        "environment"
+      ],
+      "score": 83.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.32958v1",
+      "source": "arxiv",
+      "title": "Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents",
+      "authors": [
+        "Jie Li",
+        "Chenxu Niu",
+        "Tongyang Wang",
+        "Yong Chen"
+      ],
+      "published": "2026-11-24T16:57:12Z",
+      "updated": "2026-11-24T16:57:12Z",
+      "abstract": "AI agents are beginning to automate data analysis, orchestration, and simulation steering in HPC environments, but they introduce a security problem that existing cluster defenses do not address: the hijacked authorized agent. An adversary can subvert an agent through prompt injection, poisoned shared data, compromised tools, or multi-agent coordination, then exfiltrate sensitive data through legitimate encrypted LLM API traffic. We propose behavioral attestation as a runtime defense for this setting. Our system, AEGIS, compiles task-derived behavioral constraints, monitors agent actions with ebpf-based syscall interception, verifies evidence against constraint profiles, correlates behavior across agents, and triggers slurm-level containment. On the real attestation path, AEGIS detects all four implemented attack classes with sub-second median latency at a 1-second interval and low measured verifier overhead. Controlled experiments show full attack-suite coverage, stronger detection than representative baselines, and no observed false positives on the evaluated benign workflows.",
+      "url": "http://arxiv.org/abs/2611.32958v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.32958v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "llm",
+        "agent",
+        "agents",
+        "ai agent",
+        "ai agents",
+        "rag",
+        "ai",
+        "environment"
+      ],
+      "score": 82.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.32113v1",
+      "source": "arxiv",
+      "title": "PhysRF-WorldJEPA: Transforming Heterogeneous Large Language Models into Manifold-Decoupled Millimeter-Wave Radar World Models",
+      "authors": [
+        "Yicheng Huang",
+        "Feng Ke",
+        "Linhan Chen",
+        "Ziyi Jiang",
+        "Xiu Yin Zhang"
+      ],
+      "published": "2026-11-24T07:33:14Z",
+      "updated": "2026-11-24T07:33:14Z",
+      "abstract": "Adapting Large Language Models (LLMs) to millimeter-wave (mmWave) radar enables privacy-preserving, all-weather physical scene understanding across darkness, smoke, and walls. However, standard instruction tuning treats continuous radar streams as static text-like tokens, causing near-random global radar-to-text retrieval and severe physical drift under sensor blackouts. Conversely, coupling pairwise contrastive losses (e.g., SigLIP) directly into the shared backbone improves retrieval but injects $O(B^2)$ repulsive gradients that fracture continuous coordinate manifolds ($R^2 < 0$). We present PhysRF-WorldJEPA, a manifold-decoupled Joint-Embedding Predictive Architecture (JEPA) that separates continuous electromagnetic state prediction from cross-modal language alignment. An unattenuated 1.0x clock anchor and parallel dual-scale RF encoder feed a lean ~3% LoRA LLM trained with two-step state-space EMA-JEPA (Denoise -> Rollout) and sample-axis Batch-VICReg to predict +3.0 s physical states; a stop-gradient alignment head then maps frozen prompt states onto the text hypersphere with false-negative masking. On a 4,541-window tri-domain suite (77/60.25/60 GHz) against 10 baselines, freezing the physical backbone and training only the decoupled head lifts R->T R@10 from 5.95% to 15.01% and improves MedRank from 107.0 to 60.0 while preserving identical physical readout: 3.37 deg ($R^2=+0.961$) blackout +3.0 s torso tilt, 1.89 m ($R^2=+0.679$; 1.19 m/+0.863 at the RF front-end) cluttered UAV altitude, 2.04 m ($R^2=+0.461$) behind-wall NLOS range, 0.9976 virtual-RIS invariance, and 100% fall recall. Across five 0.5B-1.8B LLM families (15 zero-overhead models), World-JEPA improves retrieval and 75%-drop completion in 10/10 runs and blackout tilt in 4/5 (Span-Euc), 2/5 (Scatter), and 5/5 (per-family best) over SFT.",
+      "url": "http://arxiv.org/abs/2611.32113v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.32113v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.CV",
+        "eess.SP"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "ai",
+        "weather"
+      ],
+      "score": 74.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.32085v1",
+      "source": "arxiv",
+      "title": "ExpGuard: Guarding Long-Horizon LLM Agents against Corrupted Experience",
+      "authors": [
+        "Yuzhou Chen",
+        "Licheng Pan",
+        "Zhixuan Chu",
+        "Yunsheng Lu",
+        "Yichen Sun",
+        "Han Zheng",
+        "Yan Wang",
+        "Bingyu Zhu",
+        "Haiwen Hong",
+        "Longtao Huang",
+        "Kui Ren"
+      ],
+      "published": "2026-11-24T07:09:54Z",
+      "updated": "2026-11-24T07:09:54Z",
+      "abstract": "Long-horizon large language model (LLM) agents distill past trajectories into reusable experiences. Misleading or adversarial guidance in source trajectories can corrupt these experiences, allowing harmful instructions to persist across tasks and influence future agent actions. Assessing the risks of potentially corrupted experiences poses three challenges: (1) modeling provenance and execution dependencies before experience reuse, (2) learning task-conditioned risk from trajectory outcomes, and (3) repairing risky experiences at online inference. To address these challenges, we present ExpGuard, a framework for retrieval-triggered experience risk assessment and online repair. Specifically, to tackle challenge (1), ExpGuard integrates experience semantics with provenance and execution dependencies in a task-conditioned heterogeneous graph to predict attack and task-failure risks before experience reuse. To enable task-conditioned risk supervision and tackle challenge (2), we conduct matched counterfactual replays of each original experience and its minimally neutralized counterpart from the same task and environment checkpoint, deriving separate risk labels from differences in attack success and legitimate task completion. To tackle challenge (3) at inference time, ExpGuard repairs candidate experiences flagged as high-risk by the graph-based predictor at retrieval and re-predicts their risks before they enter the agent's active experience context. Extensive experiments demonstrate the effectiveness of ExpGuard in identifying risky experiences and defending agents against experience corruption.",
+      "url": "http://arxiv.org/abs/2611.32085v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.32085v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 74.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1126/science.aei7840",
+      "source": "science",
+      "title": "Telemetric calorimetry for wireless continuous reaction profiling",
+      "authors": [
+        "Sukwoo Lee",
+        "Evan A. Weingarten",
+        "Michael F. Reynolds",
+        "Kevin Sun",
+        "Alejandro J. Cortese",
+        "Huw M. L. Davies",
+        "Alyosha C. Molnar",
+        "Paul L. McEuen",
+        "Song Lin"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "Real-time monitoring of chemical reactions is often achieved with specialized instrumentation along with custom-designed reactors or intrusive sampling. In this study, we introduce reaction telemetry, a wireless analytical strategy that enables remote, nonintrusive monitoring directly within operating reaction vessels. This approach uses light-powered microelectronic devices that communicate optically and function as autonomous sensing elements. We demonstrate continuous calorimetric measurements across diverse chemical reactions relevant to pharmaceutical and fine chemical synthesis, including photochemical and electrochemical systems, providing access to reaction kinetics under native operating conditions with subsecond temporal resolution. The resulting measurements will support catalyst evaluation, safety assessment, and mechanistic investigation and will accelerate data-driven reaction discovery. By embedding analytical functionality directly within reaction vessels, reaction telemetry establishes a general framework for information-rich observation of chemical processes across research, development, and education.",
+      "url": "https://doi.org/10.1126/science.aei7840",
+      "pdf_url": "",
+      "doi": "10.1126/science.aei7840",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "875-883",
+        "reference_count": 59,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aei7840"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aef9553",
+      "source": "science",
+      "title": "Interpenetrating bottlebrush elastomer for low-loss soft ultrasonic interfaces",
+      "authors": [
+        "Shu Wang",
+        "Runze Li",
+        "Zihan Tang",
+        "Ying Li",
+        "Chen Gong",
+        "Won Jun Song",
+        "Chwee Teck Lim",
+        "Xiaodong Chen",
+        "Xuanhe Zhao"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "Ultrasound imaging relies on soft interfaces that transmit sound efficiently between a device and the body. Conventional gel couplants provide low acoustic loss but contain mobile liquid phases that can dry, flow, or leach during extended use. By contrast, mobile phase–free elastomers are more stable but generally attenuate megahertz ultrasound strongly, limiting their use as couplants. We report an interpenetrating bottlebrush elastomer molecularly designed to overcome this trade-off. A densely grafted backbone lowers the shear modulus without increasing shear loss, whereas well-packed sidechains reduce bulk compressibility, jointly suppressing acoustic attenuation in a soft elastomer. The resulting elastomer combines soft tissue–like mechanics with low-loss acoustics, providing a durable couplant for soft ultrasonic interfaces.",
+      "url": "https://doi.org/10.1126/science.aef9553",
+      "pdf_url": "",
+      "doi": "10.1126/science.aef9553",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "895-900",
+        "reference_count": 62,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aef9553"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aej3009",
+      "source": "science",
+      "title": "Zero-shot de novo design of a metalloenzyme",
+      "authors": [
+        "Gina El Nesr",
+        "Simon L. Dürr",
+        "Irimpan I. Mathews",
+        "Qi Wen",
+        "Kewei Zhao",
+        "Ritimukta Sarangi",
+        "Ursula Rothlisberger",
+        "Fanny Sunden",
+        "Po-Ssu Huang"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "De novo design of enzymes is a frontier challenge, requiring consideration of catalytic mechanism and optimization across biochemical and biophysical criteria. Here, we present dEVA (design by EVolutionary Algorithm), a multi-objective protein design method built on principles drawn from evolutionary biology. We apply dEVA to the zero-shot, de novo design of metalloenzymes by optimizing the coordination sphere of catalytic metals. We characterize a bi-zinc metalloenzyme that exhibits promiscuous hydrolytic activity towards both phosphomonoesters and phosphodiesters. This design achieves a rate enhancement ((k cat /K M )/k w ) of up to 3 x 10 13 relative to the uncatalyzed reaction, comparable to characterized natural phosphatases. Structural characterization via x-ray crystallography and absorption spectroscopy supports the design of a de novo active site. These results demonstrate that de novo enzymes can be designed without pre-specified motifs, natural templates, or evolutionary information.",
+      "url": "https://doi.org/10.1126/science.aej3009",
+      "pdf_url": "",
+      "doi": "10.1126/science.aej3009",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 79,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aej3009"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11247-3",
+      "source": "nature",
+      "title": "Quantum position verification with remote untrusted devices",
+      "authors": [
+        "Gautam A. Kavuri",
+        "Yanbao Zhang",
+        "Abigail R. Gookin",
+        "Soumyadip Patra",
+        "Joshua C. Bienfang",
+        "Honghao Fu",
+        "Yusuf Alnawakhtha",
+        "Dileep V. Reddy",
+        "Michael D. Mazurek",
+        "Carlos Abellán",
+        "Waldimar Amaya",
+        "Morgan W. Mitchell",
+        "Carl A. Miller",
+        "Richard P. Mirin",
+        "Martin J. Stevens",
+        "Scott Glancy",
+        "Emanuel Knill",
+        "Lynden K. Shalm"
+      ],
+      "published": "2026-11-18",
+      "updated": "2026-11-25",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11247-3",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11247-3",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 59,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11247-3"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11332-7",
+      "source": "nature",
+      "title": "Structural and regulatory evolution across the genus Hordeum",
+      "authors": [
+        "Jia-Wu Feng",
+        "Congcong Jiang",
+        "Beáta Strejčková",
+        "Marek Szecówka",
+        "Einar Baldvin Haraldsson",
+        "Thomas Lux",
+        "Chaodan An",
+        "Micha Bayer",
+        "Yann J. K. Bertrand",
+        "Marie Chudecká",
+        "Simón Villanueva Corrales",
+        "Radim Čegan",
+        "Anne Fiebig",
+        "Guangqi Gao",
+        "Reza Haghi",
+        "Axel Himmelbach",
+        "Yanlong Jin",
+        "Karol Krak",
+        "Takao Komatsuda",
+        "Václav Mahelka",
+        "Klaus F. X. Mayer",
+        "Joanna Melonek",
+        "Ales Pecinka",
+        "Shun Sakuma",
+        "Hana Šimková",
+        "Ian Small",
+        "Manuel Spannagl",
+        "Nils Stein",
+        "Helena Toegelová",
+        "Robbie Waugh",
+        "Thomas Wicker",
+        "Hailin Zhang",
+        "Zihao Zhu",
+        "Jan Šafář",
+        "David Kopecký",
+        "Frank R. Blattner",
+        "Ping Yang",
+        "Maria von Korff",
+        "Martin Mascher"
+      ],
+      "published": "2026-11-18",
+      "updated": "2026-11-24",
+      "abstract": "Abstract The genus Hordeum comprises cultivated barley and its wild relatives, an evolutionarily, ecologically and agriculturally important group of grasses 1,2 . Here we generated a chromosome-scale comparative genomic resource comprising all recognized diploid Hordeum species together with representative polyploid lineages. Comparative analyses reveal extensive structural variation, including inversions and chromosomal rearrangements that disrupt proximal collinearity and reflect lineage-specific genome remodelling. Single-copy gene phylogenies identify ancient hybridization, segmental exchange and introgression, revealing pervasive reticulate evolution during Hordeum diversification. We uncover widespread horizontal gene transfer from Panicoideae grasses into Hordeum , with many transferred genes showing evidence of transcription and functional integration. Retrotransposon proliferation explains genome size variation and provides insights into polyploid genome evolution. Whole-genome alignments reveal contrasting evolutionary dynamics: whereas coding sequences remain highly conserved, regulatory elements undergo rapid turnover, providing a rich source of regulatory diversity for phenotypic evolution. Case studies of vernalization and glume development demonstrate how natural variation in regulatory and coding sequences contributes to flowering time and floral morphology. This comprehensive pangenomic framework establishes Hordeum as a model for studying genome evolution, structural variation and the genetic basis of adaptive traits, offering new avenues for barley improvement.",
+      "url": "https://doi.org/10.1038/s41586-026-11332-7",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11332-7",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 149,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11332-7"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11300-1",
+      "source": "nature",
+      "title": "Transient contacts between filaments impart its elasticity to branched actin",
+      "authors": [
+        "Mehdi Bouzid",
+        "Cesar Valencia-Gallardo",
+        "Magdalena Kopec",
+        "Lara Koehler",
+        "Giuseppe Foffi",
+        "Olivia du Roure",
+        "Julien Heuvingh",
+        "Martin Lenz"
+      ],
+      "published": "2026-11-18",
+      "updated": "2026-11-18",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11300-1",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11300-1",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 40.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 29,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11300-1"
+      }
+    }
+  ]
+}
