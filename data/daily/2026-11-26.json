@@ -1,0 +1,595 @@
+{
+  "date": "2026-11-26",
+  "stats": {
+    "fetched": 458,
+    "fetched_by_source": {
+      "arxiv": 300,
+      "nature": 54,
+      "science": 104
+    },
+    "deduped": 458,
+    "deduped_by_source": {
+      "arxiv": 300,
+      "nature": 54,
+      "science": 104
+    },
+    "excluded": 0,
+    "excluded_by_source": {},
+    "keyword_filtered": 260,
+    "keyword_filtered_by_source": {
+      "arxiv": 260
+    },
+    "keyword_optional_included": 139,
+    "keyword_optional_included_by_source": {
+      "nature": 49,
+      "science": 90
+    },
+    "ranked": 198,
+    "ranked_by_source": {
+      "arxiv": 40,
+      "nature": 54,
+      "science": 104
+    },
+    "source_warnings": 0,
+    "feedback_issue_count": 3,
+    "feedback_warnings": 0,
+    "seen_filtered": 106,
+    "selected_by_source": {
+      "arxiv": 4,
+      "nature": 3,
+      "science": 3
+    }
+  },
+  "analysis": {
+    "daily_summary": "今天筛选出 10 篇论文，来源包括Nature、Science、arXiv。以下总结仅基于题录、摘要和关键词命中，建议阅读原文确认关键结论。",
+    "themes": [],
+    "research_ideas": [
+      {
+        "idea": "围绕“Crucible: Evaluating LLM Agents in Executable Chemistry Research Environments”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、large language models、llm、language model、language models、agent、agents、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“DLaR: Dynamic Stochasticity Control for Latent Reasoning in Large Language Models”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、large language models、llm、language model、language models、rag、ai、mathematical reasoning 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“ZeroHero: Training Small Language Agents from Scratch”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、language model、language models、agent、agents、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“EvoLink-Bench: A Benchmark for Evaluating Self-Evolving Agents in Long-Horizon Interdependent Task Streams”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 large language model、llm、language model、agent、agents、ai、environment 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      },
+      {
+        "idea": "围绕“Disturbances and climate drive tree elevational shifts”做一个小型 follow-up：验证其中的方法或发现能否迁移到你的目标任务。",
+        "why": "它与 rag、ai、climate 相关，适合转化为可检查的研究假设，而不只是阅读材料。",
+        "first_step": "先读摘要、方法和主要图表，记录一个可复现实验或可替换数据集。",
+        "risk": "目前只基于题录/摘要生成，真实可行性取决于原文数据、代码和实验细节。"
+      }
+    ],
+    "papers": {
+      "arxiv:2611.34254v1": {
+        "summary": "Crucible: Evaluating LLM Agents in Executable Chemistry Research Environments。摘要要点：Large language models (LLMs) perform well on chemistry knowledge benchmarks, which mainly assess question answering and isolated tasks.",
+        "contribution": "摘要中最具体的线索是：Large language models (LLMs) perform well on chemistry knowledge benchmarks, which mainly assess question answering and isolated tasks. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai、environment。题名指向“Crucible: Evaluating LLM Agents in Executable Chemistry Research Environments”。摘要中可用的信息是：Large language models (LLMs) perform well on chemistry knowledge benchmarks, which mainly assess question answering and isolated tasks. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Crucible: Evaluating LLM Agents in Executable Chemistry Research Environments”展开；摘要线索显示问题可能与 Large language models (LLMs) perform well on chemistry knowledge benchmarks, which mainly assess question answering and isolated tasks. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、large language models、llm、language model、language models、agent、agents、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.33962v1": {
+        "summary": "DLaR: Dynamic Stochasticity Control for Latent Reasoning in Large Language Models。摘要要点：Latent reasoning enables LLMs to operate in continuous embedding space, yet existing methods suffer from deterministic inference that precludes exploration of diverse reasoning paths.",
+        "contribution": "摘要中最具体的线索是：Latent reasoning enables LLMs to operate in continuous embedding space, yet existing methods suffer from deterministic inference that precludes exploration of diverse reasoning paths. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、ai、mathematical reasoning。题名指向“DLaR: Dynamic Stochasticity Control for Latent Reasoning in Large Language Models”。摘要中可用的信息是：Latent reasoning enables LLMs to operate in continuous embedding space, yet existing methods suffer from deterministic inference that precludes exploration of diverse reasoning paths. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“DLaR: Dynamic Stochasticity Control for Latent Reasoning in Large Language Models”展开；摘要线索显示问题可能与 Latent reasoning enables LLMs to operate in continuous embedding space, yet existing methods suffer from deterministic inference that precludes exploration of diverse reasoning paths. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、large language models、llm、language model、language models、rag、ai、mathematical reasoning 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、large language models、llm、language model、language models、rag、ai、mathematical reasoning。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.34635v1": {
+        "summary": "ZeroHero: Training Small Language Agents from Scratch。摘要要点：Large pretrained language models provide capable policies for interactive tasks, but how much model capacity is necessary for a specialized language agent?",
+        "contribution": "摘要中最具体的线索是：Large pretrained language models provide capable policies for interactive tasks, but how much model capacity is necessary for a specialized language agent? 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、language model、language models、agent、agents、ai、environment。题名指向“ZeroHero: Training Small Language Agents from Scratch”。摘要中可用的信息是：Large pretrained language models provide capable policies for interactive tasks, but how much model capacity is necessary for a specialized language agent? 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“ZeroHero: Training Small Language Agents from Scratch”展开；摘要线索显示问题可能与 Large pretrained language models provide capable policies for interactive tasks, but how much model capacity is necessary for a specialized language agent? 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、language model、language models、agent、agents、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、language model、language models、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "arxiv:2611.34400v1": {
+        "summary": "EvoLink-Bench: A Benchmark for Evaluating Self-Evolving Agents in Long-Horizon Interdependent Task Streams。摘要要点：Large language model (LLM) agents are evolving from passive chatbots into autonomous systems that operate continuously in dynamic environments.",
+        "contribution": "摘要中最具体的线索是：Large language model (LLM) agents are evolving from passive chatbots into autonomous systems that operate continuously in dynamic environments. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。题名指向“EvoLink-Bench: A Benchmark for Evaluating Self-Evolving Agents in Long-Horizon Interdependent Task Streams”。摘要中可用的信息是：Large language model (LLM) agents are evolving from passive chatbots into autonomous systems that operate continuously in dynamic environments. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“EvoLink-Bench: A Benchmark for Evaluating Self-Evolving Agents in Long-Horizon Interdependent Task Streams”展开；摘要线索显示问题可能与 Large language model (LLM) agents are evolving from passive chatbots into autonomous systems that operate continuously in dynamic environments. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 arXiv，且与 large language model、llm、language model、agent、agents、ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 arXiv，关键词匹配：large language model、llm、language model、agent、agents、ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11354-1": {
+        "summary": "Disturbances and climate drive tree elevational shifts。摘要要点：Abstract Climate change and disturbances are reshaping forest ecosystems worldwide 1–4 , yet their combined effects on species redistribution remain poorly understood.",
+        "contribution": "摘要中最具体的线索是：Abstract Climate change and disturbances are reshaping forest ecosystems worldwide 1–4 , yet their combined effects on species redistribution remain poorly understood. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：rag、ai、climate。题名指向“Disturbances and climate drive tree elevational shifts”。摘要中可用的信息是：Abstract Climate change and disturbances are reshaping forest ecosystems worldwide 1–4 , yet their combined effects on species redistribution remain poorly understood. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Disturbances and climate drive tree elevational shifts”展开；摘要线索显示问题可能与 Abstract Climate change and disturbances are reshaping forest ecosystems worldwide 1–4 , yet their combined effects on species redistribution remain poorly understood. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 rag、ai、climate 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：rag、ai、climate。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11311-y": {
+        "summary": "Transcription from megabase-scale heterochromatin generates neural barcodes。摘要要点：Abstract Heterochromatin typically represses genes 1,2 , yet some genes paradoxically require it for activation 3–7 .",
+        "contribution": "摘要中最具体的线索是：Abstract Heterochromatin typically represses genes 1,2 , yet some genes paradoxically require it for activation 3–7 . 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Nature，关键词匹配：ai、environment。题名指向“Transcription from megabase-scale heterochromatin generates neural barcodes”。摘要中可用的信息是：Abstract Heterochromatin typically represses genes 1,2 , yet some genes paradoxically require it for activation 3–7 . 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Transcription from megabase-scale heterochromatin generates neural barcodes”展开；摘要线索显示问题可能与 Abstract Heterochromatin typically represses genes 1,2 , yet some genes paradoxically require it for activation 3–7 . 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Nature，且与 ai、environment 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：ai、environment。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1038/s41586-026-11287-9": {
+        "summary": "Licensing mechanisms during RNA-guided DNA integration by type I-F3 CAST。当前元数据没有提供摘要，报告只能基于题名、来源和关键词做粗筛。",
+        "contribution": "题名显示它可能是一篇研究 Article，但 Crossref 未提供摘要；建议直接打开原文查看 abstract、图 1 和结论部分，再判断是否值得深读。",
+        "details": "来源为 Nature，关键词匹配：未命中显式关键词。当前只有题名“Licensing mechanisms during RNA-guided DNA integration by type I-F3 CAST”和基础元数据，无法可靠判断方法细节、实验对象和结论强度；需要打开原文补齐 abstract、图表和方法部分。",
+        "detail_sections": {
+          "question": "题名指向“Licensing mechanisms during RNA-guided DNA integration by type I-F3 CAST”，但缺少摘要，研究问题只能粗略判断。",
+          "method": "方法信息缺失；需要打开原文确认数据、实验、模型或理论推导。",
+          "strengths": "来源为 Nature，可作为候选主刊/预印本条目先进入人工筛选。",
+          "weaknesses": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。",
+          "next_step": "先补读 abstract 和图表标题，再决定是否加入精读列表。"
+        },
+        "why_read": "来源为 Nature，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "缺少摘要会显著降低自动总结质量；这类论文不应只凭本报告判断贡献大小。"
+      },
+      "doi:10.1126/science.aem4000": {
+        "summary": "A quantum paradox at work。摘要要点：A puzzle at the heart of quantum theory could become a benchmark for quantum computers",
+        "contribution": "摘要中最具体的线索是：A puzzle at the heart of quantum theory could become a benchmark for quantum computers 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“A quantum paradox at work”。摘要中可用的信息是：A puzzle at the heart of quantum theory could become a benchmark for quantum computers 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“A quantum paradox at work”展开；摘要线索显示问题可能与 A puzzle at the heart of quantum theory could become a benchmark for quantum computers 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.adx5757": {
+        "summary": "A thalamo-amygdalar circuit drives female vulnerability to chronic pain after early-life stress。摘要要点：Childhood adversity increases the risk of chronic pain and anxiety later in life, particularly in women, yet the neural mechanisms linking early-life stress to adult vulnerability remain elusive.",
+        "contribution": "摘要中最具体的线索是：Childhood adversity increases the risk of chronic pain and anxiety later in life, particularly in women, yet the neural mechanisms linking early-life stress to adult vulnerability remain elusive. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“A thalamo-amygdalar circuit drives female vulnerability to chronic pain after early-life stress”。摘要中可用的信息是：Childhood adversity increases the risk of chronic pain and anxiety later in life, particularly in women, yet the neural mechanisms linking early-life stress to adult vulnerability remain elusive. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“A thalamo-amygdalar circuit drives female vulnerability to chronic pain after early-life stress”展开；摘要线索显示问题可能与 Childhood adversity increases the risk of chronic pain and anxiety later in life, particularly in women, yet the neural mechanisms linking early-life stress to adult vulnerability remain elusive. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      },
+      "doi:10.1126/science.aeh3114": {
+        "summary": "Elastic-field reorganization stabilizes soft-lattice perovskites for durable solar cells。摘要要点：The soft lattice that enables the exceptional performance of halide perovskites inherently compromises their operational stability.",
+        "contribution": "摘要中最具体的线索是：The soft lattice that enables the exceptional performance of halide perovskites inherently compromises their operational stability. 阅读时应重点核对它把什么问题变得更可测、可解释或可复现，以及相对已有工作的增量在哪里。",
+        "details": "来源为 Science，关键词匹配：未命中显式关键词。题名指向“Elastic-field reorganization stabilizes soft-lattice perovskites for durable solar cells”。摘要中可用的信息是：The soft lattice that enables the exceptional performance of halide perovskites inherently compromises their operational stability. 建议展开阅读时优先核对问题定义、数据或实验对象、核心方法、对照基线和结论边界。",
+        "detail_sections": {
+          "question": "这篇论文围绕“Elastic-field reorganization stabilizes soft-lattice perovskites for durable solar cells”展开；摘要线索显示问题可能与 The soft lattice that enables the exceptional performance of halide perovskites inherently compromises their operational stability. 有关。",
+          "method": "元数据没有给出完整方法；需要查看摘要全文、方法部分和关键图表确认实验或建模流程。",
+          "strengths": "它来自 Science，且与 未命中显式关键词 相关；如果摘要线索成立，可能提供一个值得跟进的问题设定或证据对象。",
+          "weaknesses": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。",
+          "next_step": "优先打开原文 abstract、图 1 和方法概览，记录数据来源、对照基线和主要结论的证据链。"
+        },
+        "why_read": "来源为 Science，关键词匹配：未命中显式关键词。如果它与当前主题、主刊优先级或你近期反馈偏好一致，值得先快速浏览摘要和关键图表。",
+        "limitations": "这是基于题录和摘要的初步判断；需要打开原文核对实验设计、对照基线、统计显著性和适用边界。"
+      }
+    },
+    "llm_used": false,
+    "warnings": [
+      "LLM authentication failed: HTTP 403 Forbidden. Check GitHub Secrets OPENAI_API_KEY, OPENAI_BASE_URL, and OPENAI_MODEL.",
+      "Skipped LLM analysis for 9 paper(s) after authentication failure."
+    ]
+  },
+  "papers": [
+    {
+      "id": "arxiv:2611.34254v1",
+      "source": "arxiv",
+      "title": "Crucible: Evaluating LLM Agents in Executable Chemistry Research Environments",
+      "authors": [
+        "Yinjun Liu",
+        "Xinye Li",
+        "Ruisen Peng",
+        "Lang Gao",
+        "Zixiang Xu",
+        "Zirui Song",
+        "Xiuying Chen"
+      ],
+      "published": "2026-11-25T12:18:29Z",
+      "updated": "2026-11-25T12:18:29Z",
+      "abstract": "Large language models (LLMs) perform well on chemistry knowledge benchmarks, which mainly assess question answering and isolated tasks. Chemical research, however, requires using specialized tools and interpreting their outputs to obtain chemically valid results. To address this gap, we introduce Crucible Bench to evaluate this ability across all four stages of the design-make-test-analyze (DMTA) cycle. The benchmark contains 1,078 tasks in 12 task families curated from 18 published datasets, covering molecular design, synthesis planning, experimental execution, closed-loop optimization, simulation, and analytical characterization. Agents access 75 domain-specific tools through the Model Context Protocol in seven isolated environments. Sandboxed graders verify the resulting synthesis routes, experimental protocols, and other outputs. Laboratory tasks use robotic simulators or previously measured experimental data. We evaluate 14 LLMs as agents and find that the best achieves an overall score of 0.545, with synthesis planning and closed-loop optimization emerging as the hardest domains. Overall performance does not predict optimization performance well: the model ranked twelfth overall achieves the highest score in closed-loop optimization. Error analysis also shows that agents often submit chemically invalid results despite running their tools successfully. Stronger models benefit more from tool access, but reliable use of chemical software remains a challenge that Crucible Bench can track as models improve.",
+      "url": "http://arxiv.org/abs/2611.34254v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.34254v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 81.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.33962v1",
+      "source": "arxiv",
+      "title": "DLaR: Dynamic Stochasticity Control for Latent Reasoning in Large Language Models",
+      "authors": [
+        "Xiaocheng Luo",
+        "Peng Xu",
+        "Zaifu Zhan",
+        "Xiangyu Duan"
+      ],
+      "published": "2026-11-25T08:26:01Z",
+      "updated": "2026-11-25T08:26:01Z",
+      "abstract": "Latent reasoning enables LLMs to operate in continuous embedding space, yet existing methods suffer from deterministic inference that precludes exploration of diverse reasoning paths. While recent approaches inject stochasticity to restore exploration, we identify two fundamental limitations: \\textit{uniform stochasticity} across all steps is suboptimal, and unconstrained perturbations disrupt reasoning coherence. We propose Dynamic Stochasticity Control for Latent Reasoning (DLaR), a framework with two complementary mechanisms that operate at different temporal granularities within the GRPO reinforcement learning framework. At the token level, Adaptive Stochasticity Modulation (ASM) dynamically adjusts perturbation intensity at each latent step based on a confidence-entropy fusion signal, increasing exploration when the model is uncertain and preserving stability when confident. At the training level, Training-Aware Stochasticity Tuning (TAST) progressively decays the base stochasticity level following a curriculum schedule. Through this dual-level design, DLaR establishes a hierarchical exploration-exploitation strategy that operates at both token and training levels. Extensive experiments on four in-distribution and three out-of-distribution mathematical reasoning benchmarks demonstrate that DLaR achieves the highest average performance across model scales, reaching 27.9%/50.6% Pass@1/Pass@8 on Llama-3.2-1B and 46.8%/68.2% on Qwen2.5-1.5B. Code: \\href{https://github.com/xiaocen-luo/DLaR}{https://github.com/xiaocen-luo/DLaR}.",
+      "url": "http://arxiv.org/abs/2611.33962v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.33962v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "large language models",
+        "llm",
+        "language model",
+        "language models",
+        "rag",
+        "ai",
+        "mathematical reasoning"
+      ],
+      "score": 72.0,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.34635v1",
+      "source": "arxiv",
+      "title": "ZeroHero: Training Small Language Agents from Scratch",
+      "authors": [
+        "Nikita Sorokin",
+        "Zoya Volovikova",
+        "Alexey Skrynnik",
+        "Aleksandr Panov"
+      ],
+      "published": "2026-11-25T16:20:13Z",
+      "updated": "2026-11-25T16:20:13Z",
+      "abstract": "Large pretrained language models provide capable policies for interactive tasks, but how much model capacity is necessary for a specialized language agent? We introduce ZeroHero, a framework for training small language agents (SLAs) from scratch. In each environment, a large language model acts as the expert, and we collect its successful trajectories. We pretrain each SLA, which has fewer than 50 million parameters, to predict the expert's responses given the interaction history. We then post-train the agent on its own interactions using proximal policy optimization (PPO). During post-training, reasoning alignment supplements environment rewards with expert supervision on the language the agent generates alongside its actions. We evaluate the agents in three multistep environments where acting requires both understanding and generating language. In Crafter, agents interpret textual observations and generate reasoning before acting. In WebShop, they translate shopping instructions into search queries. In Alfworld-Dialogue, they ask clarifying questions and use the answers to guide household actions. The agents approach expert performance on WebShop and surpass their respective demonstration experts on Crafter training rollouts and held-out Alfworld-Dialogue tasks. An interactive demo is available at https://zoyav.github.io/-ZoyaV-zerohero-demo.",
+      "url": "http://arxiv.org/abs/2611.34635v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.34635v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "language model",
+        "language models",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 70.5,
+      "raw": {}
+    },
+    {
+      "id": "arxiv:2611.34400v1",
+      "source": "arxiv",
+      "title": "EvoLink-Bench: A Benchmark for Evaluating Self-Evolving Agents in Long-Horizon Interdependent Task Streams",
+      "authors": [
+        "Wei Chen",
+        "Xiaodong Lu",
+        "Weihao Shen",
+        "Gongxun Li",
+        "Xingyu Guo",
+        "Qihang Sun",
+        "Fuwei Zhang",
+        "Zhao Zhang",
+        "Yikun Ban",
+        "Shuang Li",
+        "Deqing Wang",
+        "Fuzhen Zhuang"
+      ],
+      "published": "2026-11-25T14:00:22Z",
+      "updated": "2026-11-25T14:00:22Z",
+      "abstract": "Large language model (LLM) agents are evolving from passive chatbots into autonomous systems that operate continuously in dynamic environments. Such agents need not only solve current tasks but also learn from past interactions to improve future performance. However, existing streaming benchmarks often rely on short task sequences or largely independent tasks, providing limited evidence of whether agents can effectively reuse experience when later tasks depend on earlier outcomes. To address this gap, we introduce \\textbf{EvoLink-Bench}, a benchmark for evaluating self-evolving agents in long-horizon, interdependent task streams. It covers daily office work, multi-turn dialogue, and AutoResearch-style workflows, with persistent workspaces and dependencies across tasks. The benchmark includes two complementary levels: \\textbf{L1}, which evaluates the acquisition and revision of language-expressible knowledge, and \\textbf{L2}, which assesses the development of task-level capabilities through execution and feedback. Its evaluation further distinguishes within-task recovery, persistent-state updates, and experience reuse in later tasks. We evaluate five agent frameworks across three backbone configurations under three persistence conditions, covering 19,635 scored task slots from selected evaluation cohorts. Results show that no framework consistently performs best across both levels, retries recover only a limited proportion of failed tasks, and persistent-state updates do not necessarily improve subsequent performance. Furthermore, the effects of evolution differ between knowledge- and capability-level tasks, suggesting that these two forms of evolution require different learning mechanisms. Performance gains also vary across domains and task streams, with improvements on some tasks not necessarily extending to others.",
+      "url": "http://arxiv.org/abs/2611.34400v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.34400v1",
+      "doi": "",
+      "journal": "arXiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "large language model",
+        "llm",
+        "language model",
+        "agent",
+        "agents",
+        "ai",
+        "environment"
+      ],
+      "score": 66.5,
+      "raw": {}
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11354-1",
+      "source": "nature",
+      "title": "Disturbances and climate drive tree elevational shifts",
+      "authors": [
+        "Jianmin Wang",
+        "Jonathan A. Knott",
+        "Grant M. Domke",
+        "Brady S. Hardiman",
+        "Brian F. Walters",
+        "Songlin Fei"
+      ],
+      "published": "2026-11-25",
+      "updated": "2026-11-25",
+      "abstract": "Abstract Climate change and disturbances are reshaping forest ecosystems worldwide 1–4 , yet their combined effects on species redistribution remain poorly understood. Here we analyse repeated measurements from 44,368 forest inventory plots spanning 1999–2025, with an average remeasurement interval of 10 years, to examine how climate and natural disturbances jointly influence the elevational redistribution of tree species across the western USA. We show that climate warming increased sapling abundance, whereas increasing drought frequency and recent natural disturbances (fire, insect outbreaks and disease) reduced tree abundance, particularly among adult trees. By contrast, legacy fire was associated with increased sapling abundance, with stronger positive responses in angiosperms than in gymnosperms. These influences were distributed unevenly across species’ elevational ranges: upper portions of species’ ranges generally experienced stronger warming, greater increases in drought frequency and more disturbance activity than lower portions, creating elevational asymmetries in stress and recovery. These elevational asymmetries were associated with more pronounced downslope shifts in basal area centres, probably reflecting disturbance effects on larger trees. By contrast, stem abundance centres showed more divergent shifts, consistent with sapling responses to both climate change and disturbance. Our findings reveal contrasting demographic responses to climate change and natural disturbances that shape the elevational redistribution of different species, with potential consequences for forest composition, resilience and long-term stability.",
+      "url": "https://doi.org/10.1038/s41586-026-11354-1",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11354-1",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "rag",
+        "ai",
+        "climate"
+      ],
+      "score": 61.5,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 68,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11354-1"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11311-y",
+      "source": "nature",
+      "title": "Transcription from megabase-scale heterochromatin generates neural barcodes",
+      "authors": [
+        "Alex Buckley",
+        "Carlo Vetralla",
+        "Brendan Rose",
+        "Jash Gada",
+        "Gabrielle Servito",
+        "Antonina Hafner",
+        "Sedona Murphy",
+        "Michael Mui",
+        "Alistair Nicol Boettiger",
+        "Daniele Canzio"
+      ],
+      "published": "2026-11-25",
+      "updated": "2026-11-25",
+      "abstract": "Abstract Heterochromatin typically represses genes 1,2 , yet some genes paradoxically require it for activation 3–7 . How can the same chromatin environment both silence and promote transcription? Here we address this question by interrogating the clustered protocadherin (Pcdh) locus, where subsets of genes are stochastically expressed while most remain silent 8 . In neurons, stochastic and combinatorial expression of Pcdh genes generates unique cell-surface barcodes required for self–non-self discrimination and neural circuit assembly 8 . By combining RNA labelling of Pcdh genes and neurodevelopmental cell types with single-molecule chromatin tracing and stochastic optical reconstruction microscopy, we find that a compact heterochromatin domain containing Pcdh genes forms as these genes become activated during development. Pcdh transcription occurs within the compact domain and reads through downstream genes, and distal enhancers must access the domain to engage target promoters. Genetic perturbations in mice suggest that opposing genome folding forces cooperate to establish Pcdh locus architecture and promote stochastic Pcdh expression. Specifically, while DNA loop extrusion allows enhancers to breach heterochromatin and find target promoters, heterochromatin-driven compartmentalization supports an expanded enhancer–promoter search space. These findings shed light on a process foundational to the development of vertebrate nervous systems and suggest a mechanism for how transcription can occur within seemingly silent chromatin environments.",
+      "url": "https://doi.org/10.1038/s41586-026-11311-y",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11311-y",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [
+        "ai",
+        "environment"
+      ],
+      "score": 54.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 66,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11311-y"
+      }
+    },
+    {
+      "id": "doi:10.1038/s41586-026-11287-9",
+      "source": "nature",
+      "title": "Licensing mechanisms during RNA-guided DNA integration by type I-F3 CAST",
+      "authors": [
+        "Shirin Fatma",
+        "Shubham Dubey",
+        "Vinh H. Truong",
+        "Seong Guk Park",
+        "Hailey M. Wallace",
+        "Alfredo Jose Florez Ariza",
+        "Isabella King",
+        "Elizabeth H. Kellogg"
+      ],
+      "published": "2026-11-25",
+      "updated": "2026-11-25",
+      "abstract": "",
+      "url": "https://doi.org/10.1038/s41586-026-11287-9",
+      "pdf_url": "",
+      "doi": "10.1038/s41586-026-11287-9",
+      "journal": "Nature",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 45.0,
+      "raw": {
+        "publisher": "Springer Science and Business Media LLC",
+        "volume": null,
+        "issue": null,
+        "page": null,
+        "reference_count": 56,
+        "resource_url": "https://www.nature.com/articles/s41586-026-11287-9"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aem4000",
+      "source": "science",
+      "title": "A quantum paradox at work",
+      "authors": [
+        "Rui Soares Barbosa"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "A puzzle at the heart of quantum theory could become a benchmark for quantum computers",
+      "url": "https://doi.org/10.1126/science.aem4000",
+      "pdf_url": "",
+      "doi": "10.1126/science.aem4000",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "839-840",
+        "reference_count": 15,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aem4000"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.adx5757",
+      "source": "science",
+      "title": "A thalamo-amygdalar circuit drives female vulnerability to chronic pain after early-life stress",
+      "authors": [
+        "Anna Maria Borruto",
+        "Tabea Kohlund",
+        "Lukas Rettig",
+        "Martin von Renesse",
+        "Christian Alexander Hammer",
+        "Nikolas Leonhardt",
+        "Barbara Kurpiers",
+        "Claudia Calpe-López",
+        "Luca Benn",
+        "Hans-Christoph Friederich",
+        "Thomas Kuner",
+        "Rainer Spanagel",
+        "Sebastian Wieland"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "Childhood adversity increases the risk of chronic pain and anxiety later in life, particularly in women, yet the neural mechanisms linking early-life stress to adult vulnerability remain elusive. Here, we show that social isolation and nerve injury interact to amplify activity-dependent synaptic gain and anticipatory recruitment of the paraventricular thalamus-to–central amygdala pathway in female, but not male, mice. This female-specific circuit sensitization enhances mechanical hypersensitivity and avoidance behaviors in adulthood. Chemogenetic pathway inhibition selectively rescued these behaviors when stress and injury co-occurred, whereas sustained and phasic pathway activation triggered mechanical hypersensitivity and avoidance, respectively. Together, these findings uncovered a latent thalamo-amygdalar synaptic gain state that is unmasked by a subsequent injury and transforms early-life stress into female-specific vulnerability to chronic pain and anxiety-like avoidance.",
+      "url": "https://doi.org/10.1126/science.adx5757",
+      "pdf_url": "",
+      "doi": "10.1126/science.adx5757",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": "864-869",
+        "reference_count": 56,
+        "resource_url": "https://www.science.org/doi/10.1126/science.adx5757"
+      }
+    },
+    {
+      "id": "doi:10.1126/science.aeh3114",
+      "source": "science",
+      "title": "Elastic-field reorganization stabilizes soft-lattice perovskites for durable solar cells",
+      "authors": [
+        "Biao Li",
+        "Tianchi Zhang",
+        "Xingtao Wang",
+        "Yehui Wen",
+        "Yong Wang",
+        "Xuegong Yu",
+        "Deren Yang"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "abstract": "The soft lattice that enables the exceptional performance of halide perovskites inherently compromises their operational stability. Here, we show that soft-lattice perovskites can be stabilized through elastic-field reorganization induced by rigid nanodiamond inclusions. Their inclusion enabled efficient bulk-to-boundary load transfer, redistributing and dissipating internal elastic fields at grain boundaries rather than allowing their accumulation within the crystal interior. Suppression of intergranular sliding constrained lattice deformation and mitigated defect generation during prolonged operation. Devices based on the stabilized perovskites with an area of 0.09 square centimeters achieved a certified power conversion efficiency of 27.6%, and minimodules with an area of 16.1 square centimeters achieved 24.3%. These devices retained 80% of their initial PCE after 5000 hours of maximum power point operation at 85°C and 98% after 5000 hours of dynamically varying light-intensity day-night cycling.",
+      "url": "https://doi.org/10.1126/science.aeh3114",
+      "pdf_url": "",
+      "doi": "10.1126/science.aeh3114",
+      "journal": "Science",
+      "categories": [
+        "journal-article"
+      ],
+      "image_url": "",
+      "keyword_matches": [],
+      "score": 42.0,
+      "raw": {
+        "publisher": "American Association for the Advancement of Science (AAAS)",
+        "volume": "394",
+        "issue": "6826",
+        "page": null,
+        "reference_count": 32,
+        "resource_url": "https://www.science.org/doi/10.1126/science.aeh3114"
+      }
+    }
+  ]
+}
